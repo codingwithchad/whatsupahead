@@ -4,18 +4,16 @@
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
-	// Passes without a report for the season are open; count them with the open ones.
-	const order = ['closed', 'chains', 'traction', 'open'] as const;
+	// Passes without a report are counted on their own, never as open: no report is not an all-clear.
+	const order = ['closed', 'chains', 'traction', 'open', 'off-season'] as const;
 	const names: Record<(typeof order)[number], string> = {
 		closed: 'closed',
 		chains: 'chains',
 		traction: 'traction advised',
-		open: 'open'
+		open: 'open',
+		'off-season': 'no report yet'
 	};
-	const counts: Record<string, number> = $derived({
-		...data.counts,
-		open: (data.counts.open ?? 0) + (data.counts['off-season'] ?? 0)
-	});
+	const counts: Record<string, number> = $derived(data.counts);
 	// The first sentence of WSDOT's note, for passes that are not reporting right now.
 	const firstSentence = (s: string) => (s.match(/^.*?[.!](\s|$)/)?.[0] ?? s).trim().slice(0, 140);
 </script>
@@ -41,8 +39,8 @@
 		</p>
 		{#if data.counts['off-season']}
 			<p class="sub">
-				WSDOT's winter reports usually run November to April. Until they start, passes show as open
-				with no report: check the cameras.
+				WSDOT's winter reports usually run November to April. Until they start, there's no official
+				report for those passes: check the cameras and the forecast.
 			</p>
 		{/if}
 	{:else}

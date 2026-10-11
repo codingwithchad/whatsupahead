@@ -40,9 +40,9 @@ export const STATUS_LABEL: Record<PassStatus, string> = {
 	chains: 'Chains required',
 	traction: 'Traction tires advised',
 	open: 'Open',
-	// WSDOT has stopped its hand-written reports for the season (usually April to November). The road is
-	// open unless the report says otherwise; there is just no live report.
-	'off-season': 'Open · no report'
+	// WSDOT has stopped its hand-written reports for the season (usually April to November). No report is
+	// not the same as open: say only what we know, and point to the cameras.
+	'off-season': 'No report yet'
 };
 
 // Worst first: this is how two directions are combined.
@@ -64,7 +64,10 @@ export function classifyRestriction(text: string): PassStatus {
 	return 'open';
 }
 
-export function classifyPass(raw: RawPass): PassReport {
+// A report this old is history, not the road today (WSDOT updates live reports many times a day in season).
+const STALE_MS = 3 * 24 * 60 * 60 * 1000;
+
+export function classifyPass(raw: RawPass, now = Date.now()): PassReport {
 	const restrictions = [raw.RestrictionOne, raw.RestrictionTwo]
 		.filter((r): r is NonNullable<typeof r> => Boolean(r?.RestrictionText?.trim()))
 		.map((r) => ({ direction: r.TravelDirection?.trim() ?? '', text: r.RestrictionText!.trim() }));
@@ -93,15 +96,28 @@ export function classifyPass(raw: RawPass): PassReport {
 	)
 		status = 'open';
 
+	// An old "open" or "chains" is not today's road. A closure stays shown: it is safer to send people to check.
+	const updated = raw.DateUpdated ? parseDotNetDate(raw.DateUpdated) : null;
+	let label = STATUS_LABEL[status];
+	if (
+		updated !== null &&
+		now - updated > STALE_MS &&
+		status !== 'closed' &&
+		status !== 'off-season'
+	) {
+		status = 'off-season';
+		label = 'No recent report';
+	}
+
 	return {
 		id: raw.MountainPassId,
 		status,
-		label: STATUS_LABEL[status],
+		label,
 		restrictions,
 		road,
 		weather: (raw.WeatherCondition ?? '').trim(),
 		tempF: raw.TemperatureInFahrenheit ?? null,
 		advisory: Boolean(raw.TravelAdvisoryActive),
-		updated: raw.DateUpdated ? parseDotNetDate(raw.DateUpdated) : null
+		updated
 	};
 }

@@ -68,7 +68,7 @@ describe('classifyPass', () => {
 			})
 		);
 		expect(p.status).toBe('off-season');
-		expect(p.label).toBe('Open · no report');
+		expect(p.label).toBe('No report yet');
 	});
 
 	it('is open in season with no restrictions', () => {
@@ -87,5 +87,36 @@ describe('classifyPass', () => {
 
 	it('survives empty reports', () => {
 		expect(classifyPass(pass({})).status).toBe('off-season');
+	});
+});
+
+describe('old reports', () => {
+	const now = Date.parse('2026-10-11T12:00:00Z');
+	const at = (ms: number) => `/Date(${ms}-0700)/`;
+	const report = (daysAgo: number, text = 'No restrictions') =>
+		classifyPass(
+			{
+				MountainPassId: 8,
+				MountainPassName: 'Satus Pass US 97',
+				RoadCondition: 'Bare and dry',
+				RestrictionOne: { RestrictionText: text, TravelDirection: 'Northbound' },
+				RestrictionTwo: { RestrictionText: text, TravelDirection: 'Southbound' },
+				DateUpdated: at(now - daysAgo * 86_400_000)
+			} as never,
+			now
+		);
+
+	it('trusts a recent report', () => {
+		expect(report(1).status).toBe('open');
+	});
+
+	it('does not call a weeks-old report open', () => {
+		const p = report(28);
+		expect(p.status).toBe('off-season');
+		expect(p.label).toBe('No recent report');
+	});
+
+	it('still shows an old closure as closed', () => {
+		expect(report(28, 'Pass closed due to a collision').status).toBe('closed');
 	});
 });
