@@ -25,6 +25,7 @@ The app also runs on Azure App Service (Linux, Node 24, always on), at https://w
 - **Deploy:** `scripts/deploy-azure.sh` builds the current commit (the tree must be clean), uploads it and waits until `/healthz` reports that commit under `version`, so a deploy only counts once the new build is actually answering. It keeps the last 5 packages.
 - **Roll back:** `scripts/deploy-azure.sh --list`, then `scripts/deploy-azure.sh --rollback <commit>`.
 - **Keys:** `scripts/azure-set-key.sh NAME` copies a key from `.env` into the app's settings (or `NAME -` to paste it), without the value appearing in a command line or log. Changing a setting restarts the app.
+- **Vault:** `scripts/azure-keys-to-vault.sh` copies the keys from `.env` into the app's Key Vault and turns the app settings into Key Vault references (read by the app's own identity, with read-only access), then reports whether each one resolves. It needs Key Vault Secrets Officer or Administrator on the vault. Key reads are logged to the shared log workspace.
 - The scripts need `az login` and `AZURE_SUBSCRIPTION` in `.env`; they never use az's cached default subscription.
 - Settings that differ from Render: `TRUSTED_PROXIES=1` (Azure adds one forwarding entry, with a port), `STATS_FILE=/home/data/stats.json` (the `/home` disk survives restarts and redeploys), `AZURE_MAPS_KEY` for routes and place search.
 - Password-based deploys (FTP and SCM basic auth) are off; deploys use your Azure sign-in.
