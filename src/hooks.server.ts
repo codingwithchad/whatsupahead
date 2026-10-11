@@ -3,7 +3,14 @@ import { getCatalog } from './lib/server/catalog';
 import { startHistory } from './lib/server/history';
 import { startHealthChecks } from './lib/server/health';
 import { allow, visitorAddress } from './lib/server/rateLimit';
-import { isPerson, pageOf, recordSearch, recordView, startStats } from './lib/server/stats';
+import {
+	isPerson,
+	pageOf,
+	recordSearch,
+	recordView,
+	siteName,
+	startStats
+} from './lib/server/stats';
 import { dev } from '$app/env';
 
 // Load secrets (e.g. WSDOT_CODE) from a local .env file when present. In production, set real environment variables.
@@ -96,8 +103,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 	return response;
 };
 
-// Our own hosts never count as "came from another site".
-const OWN_HOSTS = /(^|\.)(whatsupahead\.com|whatsupahead\.app|onrender\.com|localhost)$/;
+// Our own hosts (and bare addresses, which are tests, not sites) never count as "came from another site".
+const OWN_HOSTS =
+	/(^|\.)(whatsupahead\.com|whatsupahead\.app|onrender\.com|azurewebsites\.net|localhost)$|^[\d.]+$|^\[/;
 
 /** Count a page view (full page loads and in-app moves, which fetch the page's data). */
 function countVisit(event: Parameters<Handle>[0]['event']) {
@@ -115,7 +123,7 @@ function countVisit(event: Parameters<Handle>[0]['event']) {
 		try {
 			const ref = new URL(referer);
 			if (OWN_HOSTS.test(ref.hostname)) from = pageOf(ref)?.page ?? null;
-			else if (!event.isDataRequest) source = ref.hostname.replace(/^www\./, '');
+			else if (!event.isDataRequest) source = siteName(ref.hostname);
 		} catch {
 			// not a usable address
 		}

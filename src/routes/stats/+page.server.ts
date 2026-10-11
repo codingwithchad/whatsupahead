@@ -1,5 +1,5 @@
 import { getCatalog } from '../../lib/server/catalog';
-import { statsReport, type Day } from '../../lib/server/stats';
+import { statsReady, statsReport, type Day } from '../../lib/server/stats';
 import type { PageServerLoad } from './$types';
 
 /** Sum the tables of several days and list them biggest first. */
@@ -12,9 +12,10 @@ function total(days: Day[], pick: (d: Day) => Record<string, number>, limit = 15
 }
 
 /** The site's own visit counts. Not linked from anywhere and hidden from search engines. */
-export const load: PageServerLoad = ({ setHeaders }) => {
+export const load: PageServerLoad = async ({ setHeaders }) => {
 	setHeaders({ 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' });
-	const { since, days } = statsReport();
+	await statsReady();
+	const { since, days, storage, lastSave } = statsReport();
 	const { places, collections } = getCatalog();
 	const names = new Map<string, string>([
 		...places.map((p) => [p.id, p.name] as [string, string]),
@@ -23,6 +24,8 @@ export const load: PageServerLoad = ({ setHeaders }) => {
 	const week = days.slice(0, 7).map(([, d]) => d);
 	return {
 		since,
+		storage: storage.startsWith('blob') ? 'Azure storage' : storage,
+		lastSave,
 		daily: days.slice(0, 14).map(([day, d]) => ({
 			day,
 			visitors: d.visitors,

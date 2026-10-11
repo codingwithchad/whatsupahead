@@ -2,6 +2,14 @@
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+	const pacific = (iso: string) =>
+		new Date(iso).toLocaleString('en-US', {
+			timeZone: 'America/Los_Angeles',
+			month: 'short',
+			day: 'numeric',
+			hour: 'numeric',
+			minute: '2-digit'
+		});
 	const most = $derived(Math.max(1, ...data.daily.map((d) => d.visitors)));
 	const EVENT_NAMES: Record<string, string> = {
 		'viewer-open': 'Opened the camera viewer',
@@ -29,11 +37,17 @@
 <main class="stats">
 	<h1>Visits</h1>
 	<p class="sub">
-		Counts only: no cookies, nothing about who anyone is. Counting since {new Date(
-			data.since
-		).toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })} (resets when the free host restarts
-		the app). Days are Pacific time.
+		Counts only: no cookies, nothing about who anyone is. Counting since {pacific(data.since)}. Days
+		are Pacific time. Kept in {data.storage}{#if data.lastSave.at}, last saved {pacific(
+				data.lastSave.at
+			)}{/if}.
 	</p>
+	{#if !data.lastSave.ok}
+		<p class="place-note">
+			The last save didn't go through ({data.lastSave.error}). Nothing is lost: the counts are kept
+			and saved on the next try.
+		</p>
+	{/if}
 
 	<h2>Different visitors per day</h2>
 	<ul class="bars">

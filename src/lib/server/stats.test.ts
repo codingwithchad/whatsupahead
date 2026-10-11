@@ -1,11 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+import type { StatsStore } from './statsStore';
 import {
+	flushStats,
 	isPerson,
 	pageOf,
 	recordEvent,
 	recordSearch,
 	recordView,
 	resetStats,
+	siteName,
 	statsReport
 } from './stats';
 
@@ -55,5 +58,91 @@ describe('visit counter', () => {
 		expect(isPerson('Googlebot/2.1')).toBe(false);
 		expect(isPerson('facebookexternalhit/1.1')).toBe(false);
 		expect(isPerson('')).toBe(false);
+	});
+});
+
+/** A store in memory that can pretend another copy of the app wrote first, or that it is down. */
+function memoryStore() {
+	const state = { doc: null as unknown, version: 0, raceOnce: false, down: false, writes: 0 };
+	const store: StatsStore<never> = {
+		name: 'memory',
+		async read() {
+			if (state.down) throw new Error('down');
+			return {
+				doc: structuredClone(state.doc) as never,
+				etag: state.version ? String(state.version) : null
+			};
+		},
+		async write(doc, etag) {
+			if (state.raceOnce) {
+				// Another copy adds 100 home views to what is stored, between our read and our write.
+				state.raceOnce = false;
+				const other = structuredClone(state.doc ?? doc) as {
+					days: Record<string, { views: Record<string, number> }>;
+				};
+				for (const d of Object.values(other.days)) d.views.home = (d.views.home ?? 0) + 100;
+				state.doc = other;
+				state.version++;
+				return false;
+			}
+			if (etag !== (state.version ? String(state.version) : null)) return false;
+			state.doc = structuredClone(doc);
+			state.version++;
+			state.writes++;
+			return true;
+		}
+	};
+	return { store, state };
+}
+
+describe('saving counts', () => {
+	const view = () => recordView({ address: '203.0.113.9', userAgent: PHONE, page: 'home' });
+	const homeViews = () => statsReport().days[0][1].views.home;
+
+	it('adds new counts to what is stored, and shows both before and after saving', async () => {
+		const { store, state } = memoryStore();
+		resetStats(store as never);
+		view();
+		await flushStats();
+		view();
+		expect(homeViews()).toBe(2);
+		await flushStats();
+		expect(state.writes).toBe(2);
+		expect(homeViews()).toBe(2);
+	});
+
+	it("keeps both copies' counts when another copy writes first", async () => {
+		const { store, state } = memoryStore();
+		resetStats(store as never);
+		view();
+		await flushStats();
+		state.raceOnce = true;
+		view();
+		await flushStats();
+		// 1 + the other copy's 100 + our 1
+		expect(homeViews()).toBe(102);
+	});
+
+	it('loses nothing when the store is down, and saves it later', async () => {
+		const { store, state } = memoryStore();
+		resetStats(store as never);
+		state.down = true;
+		view();
+		await flushStats();
+		expect(homeViews()).toBe(1);
+		state.down = false;
+		await flushStats();
+		expect(state.writes).toBe(1);
+		expect(homeViews()).toBe(1);
+	});
+});
+
+describe('siteName', () => {
+	it("groups a site's link addresses under one name", () => {
+		expect(siteName('l.facebook.com')).toBe('facebook.com');
+		expect(siteName('m.facebook.com')).toBe('facebook.com');
+		expect(siteName('out.reddit.com')).toBe('reddit.com');
+		expect(siteName('www.google.com')).toBe('google.com');
+		expect(siteName('www.example.org')).toBe('example.org');
 	});
 });
