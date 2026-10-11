@@ -103,7 +103,7 @@ describe('old reports', () => {
 				RestrictionTwo: { RestrictionText: text, TravelDirection: 'Southbound' },
 				DateUpdated: at(now - daysAgo * 86_400_000)
 			} as never,
-			now
+			{ now }
 		);
 
 	it('trusts a recent report', () => {

@@ -14,7 +14,7 @@ export async function livePasses(): Promise<Map<number, PassReport>> {
 				signal: AbortSignal.timeout(8000)
 			});
 			if (!res.ok) throw new Error(`upstream ${res.status}`);
-			return ((await res.json()) as RawPass[]).map(classifyPass);
+			return ((await res.json()) as RawPass[]).map((raw) => classifyPass(raw));
 		});
 		return new Map(reports.map((r) => [r.id, r]));
 	} catch (err) {

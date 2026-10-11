@@ -67,7 +67,11 @@ export function classifyRestriction(text: string): PassStatus {
 // A report this old is history, not the road today (WSDOT updates live reports many times a day in season).
 const STALE_MS = 3 * 24 * 60 * 60 * 1000;
 
-export function classifyPass(raw: RawPass, now = Date.now()): PassReport {
+/** `now` is a named option, so `.map(classifyPass)` (which would pass the index as the time) doesn't type-check. */
+export function classifyPass(
+	raw: RawPass,
+	{ now = Date.now() }: { now?: number } = {}
+): PassReport {
 	const restrictions = [raw.RestrictionOne, raw.RestrictionTwo]
 		.filter((r): r is NonNullable<typeof r> => Boolean(r?.RestrictionText?.trim()))
 		.map((r) => ({ direction: r.TravelDirection?.trim() ?? '', text: r.RestrictionText!.trim() }));
