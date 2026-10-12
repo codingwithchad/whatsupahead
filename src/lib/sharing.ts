@@ -54,8 +54,16 @@ export const previewSlot = (now = Date.now()) => Math.floor(now / (PREVIEW_MINUT
  */
 export function tripShareParams(params: { get(key: string): string | null }): URLSearchParams {
 	const out = new URLSearchParams();
-	for (const key of ['from', 'to', 'fl', 'tl', 'via']) {
-		const v = params.get(key);
+	// A drive planned again from where you are keeps its original start (`of`): share that, never your position.
+	const original = params.get('of');
+	for (const [key, source] of [
+		['from', original ? 'of' : 'from'],
+		['fl', original ? 'ofl' : 'fl'],
+		['to', 'to'],
+		['tl', 'tl'],
+		['via', 'via']
+	]) {
+		const v = params.get(source);
 		if (v) out.set(key, v);
 	}
 	return out;

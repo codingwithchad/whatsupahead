@@ -3,9 +3,14 @@
 	import { timeZoneAt } from './regions';
 	import { headline, type RouteWeather, type StopWeather } from './routeWeather';
 
-	let { weather, leaveIn = 0 }: { weather: RouteWeather; leaveIn?: number } = $props();
+	let {
+		weather,
+		leaveIn = 0,
+		asOf
+	}: { weather: RouteWeather; leaveIn?: number; asOf?: number } = $props();
 
-	const now = Date.now();
+	// The stops' minutes count from when the forecast was worked out.
+	const now = $derived(asOf ?? Date.now());
 	const clock = (s: StopWeather) =>
 		localClock(now + s.minutesIn * 60_000, timeZoneAt(s.lat, s.lon));
 	const level = (s: StopWeather) => (s.hazard >= 3 ? 'high' : s.hazard >= 2 ? 'some' : 'none');
@@ -29,7 +34,13 @@
 			<li class="rw-{level(s)}">
 				<span class="rw-when">
 					<strong>{clock(s)}</strong>
-					<small>{s.minutesIn < 1 ? 'now' : `in ${duration(s.minutesIn)}`}</small>
+					<small
+						>{s.minutesIn < -1
+							? `${duration(-s.minutesIn)} ago`
+							: s.minutesIn < 1
+								? 'now'
+								: `in ${duration(s.minutesIn)}`}</small
+					>
 				</span>
 				<span class="rw-where">
 					{#if s.place}<a href="/search?place={encodeURIComponent(s.place)}">{label(s)}</a

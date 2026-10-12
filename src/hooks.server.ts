@@ -70,6 +70,8 @@ const PER_MINUTE: [prefix: string, limit: number][] = [
 	['/trip', 60],
 	// Saving a before-and-after writes to disk.
 	['/api/moments', 30],
+	// A drive page on the dash refreshes every few minutes; more than this is not a person.
+	['/api/trip', 30],
 	['/api/', 600],
 	['/img/', 600],
 	// Share pictures take a moment to make; crawlers ask for one per shared link.

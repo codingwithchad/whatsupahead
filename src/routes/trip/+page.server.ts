@@ -1,7 +1,5 @@
-import { allowedKinds } from '../../lib/kinds';
-import { distanceMiles, isDormant, nearby } from '../../lib/geo';
+import { isDormant } from '../../lib/geo';
 import { getCatalog } from '../../lib/server/catalog';
-import { getConditions } from '../../lib/server/conditions';
 import {
 	camerasAlong,
 	DEFAULT_DESTINATION_RADIUS,
@@ -10,7 +8,6 @@ import {
 	tripLine
 } from '../../lib/server/trip';
 import { previewSlot, tripShareParams, type ShareMeta } from '../../lib/sharing';
-import { withForecast } from '../../lib/server/autoForecast';
 import { withLiveLinks } from '../../lib/server/live';
 import { safeRoute } from '../../lib/server/safeRoute';
 import { roadWarnings } from '../../lib/server/roadAhead';
@@ -18,20 +15,10 @@ import { snowAlong } from '../../lib/server/snow';
 import { weatherOnTheWay } from '../../lib/server/routeWeather';
 import { nearestTown } from '../../lib/server/gazetteer';
 import { routeStops } from '../../lib/routeWeather';
-import { alongRoute, cumulativeMiles, projectOnRoute, thinToTarget } from '../../lib/route';
-import type { Camera, Nearby, WeatherSource } from '../../lib/types';
+import { thinToTarget } from '../../lib/route';
+import { conditionSources, conditionsAt, roadPass } from '../../lib/server/tripLive';
+import type { Camera, Nearby } from '../../lib/types';
 import type { PageServerLoad } from './$types';
-
-/** Weather sources from the start of the drive to the end, so the strip reads like the road. */
-function inDrivingOrder<T extends { lat: number; lon: number }>(
-	items: T[],
-	coords: [number, number][]
-): { item: T; along: number }[] {
-	const cum = cumulativeMiles(coords);
-	return items
-		.map((item) => ({ item, along: projectOnRoute(item, coords, cum).along }))
-		.sort((a, b) => a.along - b.along);
-}
 
 export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const fromQ = url.searchParams.get('from')?.trim() ?? '';
@@ -48,7 +35,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const base = { fromQ: fromLabel || fromQ, toQ: toLabel || toQ, error: null as string | null };
 	if (!fromQ || !toQ) return { ...base, trip: null };
 
-	const { cameras, weather, places } = getCatalog();
+	const { cameras, places } = getCatalog();
 	let from, to;
 	try {
 		[from, to] = await Promise.all([resolvePlace(fromQ, places), resolvePlace(toQ, places)]);
@@ -95,32 +82,9 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	}));
 	const shown = showAll ? live : thinToTarget(candidates, MAX_SHOWN);
 
-	// Weather: anything along the road, plus anything that serves the destination.
-	const radius = destRadius;
-	const sources = new Map<string, WeatherSource>();
-	// Along the road only forecasts, roadside stations and rivers matter (passes have their own section);
-	// ferries, border and airport reports show up when the drive ends at one of them.
-	const ROADSIDE = new Set(['forecast', 'station', 'river']);
-	for (const w of alongRoute(
-		weather.filter((x) => ROADSIDE.has(x.kind)),
-		route.coords,
-		{ corridor: 3 }
-	))
-		sources.set(w.item.id, w.item);
-	// Near the destination, ferry/airport/border reports only count if you are going to one.
-	const destinationKinds = allowedKinds(to.featured);
-	for (const w of nearby(
-		weather.filter((x) => destinationKinds.has(x.kind)),
-		to,
-		radius
-	))
-		sources.set(w.id, w);
-	// Always a forecast for where you are going, even where we have no weather files yet.
-	for (const w of withForecast([...sources.values()], to, radius)) sources.set(w.id, w);
-	const wx: Nearby<WeatherSource>[] = [...sources.values()].map((w) => ({
-		...w,
-		distance: distanceMiles(w, to)
-	}));
+	// When the drive starts: every forecast and warning is for the time you reach that point.
+	const startAt = Date.now() + leaveIn * 60_000;
+	const sources = conditionSources(route.coords, to, to.featured, destRadius);
 
 	const passNames = safe.passes.map((p) => p.pass.name);
 	const share: ShareMeta = {
@@ -146,25 +110,14 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				avoided: safe.avoided,
 				blocked: safe.blocked,
 				roughMiles: Math.round(route.roughMiles ?? 0),
-				passes: safe.passes.map(({ pass, along, heading, report }) => ({
-					id: pass.id,
-					name: pass.name,
-					route: pass.route,
-					place: pass.place,
-					link: pass.link ?? null,
-					source:
-						pass.pass_id !== undefined
-							? 'WSDOT'
-							: pass.report?.source === 'odot'
-								? 'ODOT'
-								: 'Caltrans',
-					along,
-					heading,
-					report
-				}))
+				passes: safe.passes.map(roadPass)
 			},
 			// Streamed: full road closures and weather warnings for when you get to each point.
-			warnings: roadWarnings(route.coords, route.minutes, Date.now() + leaveIn * 60_000),
+			warnings: roadWarnings(route.coords, route.minutes, startAt),
+			// For the page's refreshes while it stays open (/api/trip/live).
+			startAt,
+			fromPoint: { lat: from.lat, lon: from.lon, label: from.label },
+			toPoint: { lat: to.lat, lon: to.lon, label: to.label, featuredId: to.featured?.id },
 			stops: shown,
 			totalCameras: live.length,
 			showingAll: showAll || shown.length === live.length,
@@ -172,7 +125,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				.filter((s) => isOffline(s.camera))
 				.map((s) => ({ ...s.camera, distance: s.along }) as Nearby<Camera>),
 			// Streamed like the conditions: where snow or freezing starts, for when you will be there.
-			snow: snowAlong(route.coords, Date.now() + leaveIn * 60_000, route.minutes, demoWinter),
+			snow: snowAlong(route.coords, startAt, route.minutes, demoWinter),
 			// Streamed: the forecast at the start, each pass, every hour or so, and the end, for when you get there.
 			onTheWay: weatherOnTheWay(
 				routeStops(
@@ -185,20 +138,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				)
 			),
 			// Streamed: the page shows cameras right away while live weather loads.
-			conditions: Promise.all(
-				thinToTarget(
-					inDrivingOrder(wx, route.coords).map((x) => ({
-						...x,
-						keep: x.item.kind === 'forecast' || !ROADSIDE.has(x.item.kind)
-					})),
-					7
-				).map(({ item, along }) => {
-					// When you will be there: now (or when you leave) plus the driving time to that point.
-					const minutesIn =
-						leaveIn + (route.minutes * Math.min(along, total)) / Math.max(total, 0.1);
-					return getConditions(item, { at: Date.now() + minutesIn * 60_000 });
-				})
-			)
+			conditions: conditionsAt(sources, total, route.minutes, startAt)
 		}
 	};
 };

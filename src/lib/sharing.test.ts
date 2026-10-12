@@ -47,3 +47,16 @@ describe('sentence', () => {
 		expect(sentence('Open all year.')).toBe('Open all year.');
 	});
 });
+
+describe('tripShareParams after planning again from where you are', () => {
+	it('shares the original start, never your position', () => {
+		const p = new URLSearchParams(
+			'from=47.9310,-122.2052&fl=Your+location&of=Seattle&ofl=Seattle,+WA&to=Leavenworth&in=60'
+		);
+		expect(Object.fromEntries(tripShareParams(p))).toEqual({
+			from: 'Seattle',
+			fl: 'Seattle, WA',
+			to: 'Leavenworth'
+		});
+	});
+});

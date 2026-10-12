@@ -14,6 +14,12 @@ import {
 	type WsdotAlert
 } from '../roadAhead';
 import { regionAt } from '../regions';
+import {
+	surfaceOnRoute,
+	surfaceReading,
+	type ScanwebStation,
+	type SurfaceReading
+} from '../roadSurface';
 import { cumulativeMiles, type LatLon } from '../route';
 import { cached, cachedStale } from './cache';
 import { caltransCheckpoints, caltransClosures, odotFeeds } from './passes';
@@ -21,8 +27,27 @@ import { nearestTown } from './gazetteer';
 
 const USER_AGENT = 'WhatsUpAhead (https://github.com/codingwithchad/whatsupahead)';
 const NWS = 'https://api.weather.gov';
+const WSDOT_SURFACE = 'https://wsdot.wa.gov/Traffic/api/api/Scanweb';
 const WSDOT_ALERTS =
 	'https://wsdot.wa.gov/Traffic/api/HighwayAlerts/HighwayAlertsREST.svc/GetAlertsAsJson';
+
+/** WSDOT road weather station readings with a pavement temperature, or null when WSDOT can't be reached. */
+async function wsdotSurface(): Promise<SurfaceReading[] | null> {
+	const key = process.env.WSDOT_CODE;
+	if (!key) return null;
+	try {
+		const stations = await cachedStale('road:wsdot-surface', 5 * 60 * 1000, () =>
+			getJson<ScanwebStation[]>(`${WSDOT_SURFACE}?AccessCode=${encodeURIComponent(key)}`)
+		);
+		const now = Date.now();
+		return stations
+			.map((s) => surfaceReading(s, now))
+			.filter((r): r is SurfaceReading => r !== null);
+	} catch (err) {
+		console.warn(`[road] wsdot surface: ${(err as Error).message}`);
+		return null;
+	}
+}
 
 async function getJson<T>(
 	url: string,
@@ -134,7 +159,7 @@ export async function roadWarnings(
 			.filter((_, i) => i % 20 === 0 || i === route.length - 1)
 			.map(([lat, lon]) => regionAt(lat, lon)?.abbr)
 	);
-	const [wa, or, ca, checkpoints, alerts] = await Promise.all([
+	const [wa, or, ca, checkpoints, alerts, surface] = await Promise.all([
 		states.has('WA') ? wsdotClosures() : [],
 		states.has('OR')
 			? odotFeeds().then((f) =>
@@ -149,18 +174,21 @@ export async function roadWarnings(
 				)
 			: [],
 		states.has('CA') ? caltransCheckpoints() : [],
-		weatherAlerts(route, cum, minutes, departAt)
+		weatherAlerts(route, cum, minutes, departAt),
+		states.has('WA') ? wsdotSurface() : []
 	]);
 	const unchecked = [
 		wa === null ? 'WSDOT closures' : null,
 		or === null ? 'ODOT closures' : null,
 		ca === null ? 'Caltrans closures' : null,
 		checkpoints === null ? 'Caltrans chain controls' : null,
-		alerts === null ? 'National Weather Service warnings' : null
+		alerts === null ? 'National Weather Service warnings' : null,
+		surface === null ? 'WSDOT road surface temperatures' : null
 	].filter((s): s is string => s !== null);
 	return {
 		closures: closuresOnRoute([...(wa ?? []), ...(or ?? []), ...(ca ?? [])], route, cum),
 		chainControls: chainControlsOnRoute(checkpoints ?? [], route, cum),
+		surface: surfaceOnRoute(surface ?? [], route, cum),
 		alerts: (alerts ?? []).map((a) => ({ ...a, near: nearestTown(a.at, 15) })),
 		unchecked
 	};

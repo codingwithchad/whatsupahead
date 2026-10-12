@@ -160,6 +160,8 @@ export function chainControlsOnRoute(
 
 /** What the drive page shows besides the passes. */
 export interface RoadWarnings {
+	/** WSDOT road surface temperatures beside the road (Washington only). */
+	surface: import('./roadSurface').SurfaceOnRoute[];
 	closures: ClosureOnRoute[];
 	/** Caltrans chain controls in effect on the way. */
 	chainControls: (Checkpoint & { along: number })[];

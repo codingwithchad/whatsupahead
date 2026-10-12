@@ -14,6 +14,7 @@
 	} from './vehicle';
 	import type { PassReport } from './passes';
 	import type { RoadWarnings } from './roadAhead';
+	import { FREEZING_F, NEAR_FREEZING_F } from './roadSurface';
 
 	interface RoadPass {
 		id: string;
@@ -36,7 +37,7 @@
 			roughMiles: number;
 			passes: RoadPass[];
 		};
-		warnings: Promise<RoadWarnings>;
+		warnings: Promise<RoadWarnings> | RoadWarnings;
 	} = $props();
 
 	let vehicle = $state<Vehicle | null>(null);
@@ -138,8 +139,28 @@
 				<a href={forecastLink(a.at)} target="_blank" rel="noopener">Details</a>
 			</p>
 		{/each}
+		{#each w.surface.filter((x) => x.surfaceF <= NEAR_FREEZING_F) as r (r.name)}
+			<p class="ra-alert ra-{r.surfaceF <= FREEZING_F ? 'danger' : 'caution'}">
+				<strong
+					>Road surface {r.surfaceF <= FREEZING_F ? 'at freezing' : 'near freezing'}: {r.surfaceF}°F</strong
+				>
+				at {r.name} <small>(mile {Math.round(r.along)}, measured {localClock(r.at)})</small>.
+				{r.surfaceF <= FREEZING_F
+					? r.wet
+						? 'It has been wet: expect ice.'
+						: 'Ice can form, especially in shade.'
+					: 'It can drop below freezing quickly after dark.'}
+			</p>
+		{/each}
+		{#if w.surface.length && w.surface.every((x) => x.surfaceF > NEAR_FREEZING_F)}
+			<p class="ra-note">
+				Road surface on the way: {Math.min(...w.surface.map((x) => x.surfaceF))} to {Math.max(
+					...w.surface.map((x) => x.surfaceF)
+				)}°F at {w.surface.length} WSDOT {w.surface.length === 1 ? 'station' : 'stations'}.
+			</p>
+		{/if}
 		{#if anyClosed(w)}{@render detour()}{/if}
-		{#if !anyClosed(w) && !w.alerts.length && !w.chainControls.length}
+		{#if !anyClosed(w) && !w.alerts.length && !w.chainControls.length && !w.surface.some((x) => x.surfaceF <= NEAR_FREEZING_F)}
 			<p class="ra-clear">
 				{w.unchecked.length
 					? 'No closures or weather warnings found in what we could check.'
@@ -217,7 +238,7 @@
 	{/if}
 
 	<p class="ra-source">
-		From WSDOT, ODOT and Caltrans road reports and National Weather Service warnings, for the time
-		you reach each point.
+		From WSDOT, ODOT and Caltrans road reports and road sensors, and National Weather Service
+		warnings, for the time you reach each point.
 	</p>
 </section>

@@ -13,15 +13,19 @@ import { cached } from './cache';
  * request for the whole drive), otherwise Open-Meteo's free hourly forecast. Null when neither answers, so the
  * trip page just leaves it out.
  */
-export async function weatherOnTheWay(stops: RouteStop[]): Promise<RouteWeather | null> {
+export async function weatherOnTheWay(
+	stops: RouteStop[],
+	{ free = false }: { free?: boolean } = {}
+): Promise<RouteWeather | null> {
 	if (stops.length < 2) return null;
-	// Same drive, same 10 minutes: same answer.
-	const key = `route-wx:${Math.floor(Date.now() / 600_000)}:${stops
+	// Same drive, same 10 minutes: same answer. (`free` is for refreshes while driving: Azure Maps' monthly
+	// weather allowance could not cover a request every few minutes, so those always use Open-Meteo.)
+	const key = `route-wx${free ? '-free' : ''}:${Math.floor(Date.now() / 600_000)}:${stops
 		.map((s) => `${s.lat.toFixed(2)},${s.lon.toFixed(2)},${Math.round(s.minutesIn / 10)}`)
 		.join(';')}`;
 	try {
 		return await cached(key, 10 * 60 * 1000, async () => {
-			if (azureMapsKey()) {
+			if (azureMapsKey() && !free) {
 				try {
 					const points = await azureWeatherAlongRoute(stops);
 					return { source: 'Azure Maps', stops: stops.map((s, i) => fromAzure(s, points[i])) };

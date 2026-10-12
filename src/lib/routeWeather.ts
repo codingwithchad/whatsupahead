@@ -148,14 +148,23 @@ export function fromAzure(stop: RouteStop, w: AzureWaypoint): StopWeather {
 		precip: falling ? (PRECIP[w.precipitation?.type ?? ''] ?? null) : null,
 		windMph: toMph(w.wind?.speed),
 		gustMph: toMph(w.windGust?.speed),
-		hazard: w.hazards?.maxHazardIndex ?? 0,
-		hazards: (w.hazards?.hazardDetails ?? [])
-			.slice()
-			.sort((a, b) => b.hazardIndex - a.hazardIndex)
-			.map((h) => h.shortPhrase ?? '')
-			.filter(Boolean)
+		hazard: Math.max(w.hazards?.maxHazardIndex ?? 0, icy(w) ? 2 : 0),
+		hazards: [
+			...(w.hazards?.hazardDetails ?? [])
+				.slice()
+				.sort((a, b) => b.hazardIndex - a.hazardIndex)
+				.map((h) => h.shortPhrase ?? '')
+				.filter(Boolean),
+			...(icy(w) ? ['Ice possible'] : [])
+		]
 	};
 }
+
+/** Rain falling at 33°F or colder freezes on the road. */
+const icy = (w: AzureWaypoint) =>
+	(w.precipitation?.dbz ?? 0) > 0 &&
+	w.precipitation?.type === 'RAIN' &&
+	(toF(w.temperature) ?? 99) <= 33;
 
 // ---- Open-Meteo (free, no key): the hour you get there --------------------------------------------------------
 
@@ -221,6 +230,9 @@ export function fromOpenMeteo(
 	if (gust >= 45) hazards.push([3, 'Strong winds']);
 	else if (gust >= 30) hazards.push([2, 'Gusty winds']);
 	if (h.precipitation[i] >= 0.3 && precip === 'rain') hazards.push([2, 'Heavy rain']);
+	// Wet road at freezing: rain or snow in the last three hours and 33°F or colder when you get there.
+	const wet = h.precipitation.slice(Math.max(0, i - 3), i + 1).some((p) => p > 0.005);
+	if (precip !== 'ice' && wet && h.temperature_2m[i] <= 33) hazards.push([2, 'Ice possible']);
 	hazards.sort((a, b) => b[0] - a[0]);
 	return {
 		...stop,

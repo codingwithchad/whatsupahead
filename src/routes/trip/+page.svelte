@@ -2,6 +2,8 @@
 	import { track } from '../../lib/track';
 	import { APP_NAME } from '../../lib/brand';
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import { untrack } from 'svelte';
 	import CameraList from '../../lib/CameraList.svelte';
 	import ConditionsBar from '../../lib/ConditionsBar.svelte';
 	import SnowLine from '../../lib/SnowLine.svelte';
@@ -11,7 +13,10 @@
 	import TripForm from '../../lib/TripForm.svelte';
 	import ShareButton from '../../lib/ShareButton.svelte';
 	import { tripShareParams } from '../../lib/sharing';
-	import { duration } from '../../lib/format';
+	import { duration, localClock } from '../../lib/format';
+	import { tripChanges, type Change, type Snapshot } from '../../lib/tripChanges';
+	import type { RoadWarnings } from '../../lib/roadAhead';
+	import type { LiveUpdate } from '../../lib/server/tripLive';
 	import { rememberPlace } from '../../lib/lastPlace';
 	import { rememberRecent } from '../../lib/recents';
 	import { cumulativeMiles, projectOnRoute } from '../../lib/route';
@@ -23,7 +28,9 @@
 	$effect(() => {
 		if (!trip) return;
 		rememberPlace(location.pathname + location.search);
-		rememberRecent({ kind: 'trip', from: trip.from, to: trip.to });
+		// A drive planned again from where you are is the same trip, not a new one to list.
+		if (!page.url.searchParams.has('of'))
+			rememberRecent({ kind: 'trip', from: trip.from, to: trip.to });
 	});
 
 	// Follow mode: use the phone's location to drop cameras you have already passed.
@@ -31,8 +38,182 @@
 	let progress = $state<number | null>(null);
 	let offRoute = $state(false);
 	let gpsError = $state('');
+	let gpsLost = $state(false);
 	let watchId: number | null = null;
 	let wakeLock: { release: () => Promise<void> } | null = null;
+	// Leaving the planned route for a minute plans the drive again from where you are.
+	let offSince: number | null = null;
+	let lastReplan = 0;
+	let lastProgress = 0;
+	let replanned = $state(false);
+	let timedFromHere = false;
+
+	// ---- Fresh while open ----------------------------------------------------------------------------------
+	// A drive page left open on the dash asks every 5 minutes (and when the screen comes back on) for fresh pass
+	// reports, warnings and weather, and says what got worse on the road ahead. It sends the route it already
+	// has, so no new route is worked out. While following, every time counts from where you are now.
+	const REFRESH_MS = 5 * 60 * 1000;
+	let live = $state<LiveUpdate | null>(null);
+	let updatedAt = $state<number | null>(null);
+	let refreshing = $state(false);
+	let refreshFailed = $state(false);
+	let changes = $state<{ at: number; list: Change[] } | null>(null);
+	let speak = $state(true);
+	let lastSnapshot: Snapshot | null = null;
+
+	const SPEAK_KEY = 'speak-changes';
+	$effect(() => {
+		try {
+			speak = localStorage.getItem(SPEAK_KEY) !== 'off';
+		} catch {
+			// remembering is optional
+		}
+	});
+	function saveSpeak() {
+		try {
+			localStorage.setItem(SPEAK_KEY, speak ? 'on' : 'off');
+		} catch {
+			// remembering is optional
+		}
+	}
+
+	// A new drive (or the same one planned again) starts over: what it loaded with is the first snapshot.
+	$effect(() => {
+		const t = trip;
+		live = null;
+		changes = null;
+		lastSnapshot = null;
+		refreshFailed = false;
+		updatedAt = Date.now();
+		if (!t) return;
+		// Planned again while following: place yourself on the new route without waiting for the next fix.
+		untrack(() => {
+			if (following && lastPos) {
+				const { lat, lon } = lastPos;
+				queueMicrotask(() => onPosition(lat, lon));
+			}
+		});
+		Promise.all([t.warnings, t.onTheWay])
+			.then(([warnings, onTheWay]) => {
+				if (data.trip === t) lastSnapshot ??= { passes: t.road.passes, warnings, onTheWay };
+			})
+			.catch(() => {});
+	});
+
+	/** At most about 2,500 points of the route: plenty to find what is beside it, small to send. */
+	function thinRoute(route: [number, number][]): [number, number][] {
+		const step = Math.ceil(route.length / 2500);
+		return route.filter((_, i) => i % step === 0 || i === route.length - 1);
+	}
+
+	const clock = (ms: number) => localClock(ms);
+
+	function announce(list: Change[]) {
+		changes = { at: Date.now(), list };
+		if (list.some((c) => c.tone === 'danger')) navigator.vibrate?.([200, 100, 200]);
+		if (following && speak && 'speechSynthesis' in window)
+			for (const c of list.slice(0, 3))
+				speechSynthesis.speak(new SpeechSynthesisUtterance(c.text.replace(/°F/g, ' degrees')));
+	}
+
+	async function refresh() {
+		const t = trip;
+		if (!t || refreshing) return;
+		refreshing = true;
+		try {
+			// While following: the start time that puts you where you are now.
+			const startAt =
+				following && progress !== null
+					? Date.now() - (t.minutes * 60_000 * progress) / Math.max(t.miles, 0.1)
+					: t.startAt;
+			const res = await fetch('/api/trip/live', {
+				method: 'POST',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify({
+					route: thinRoute(t.route),
+					minutes: t.minutes,
+					startAt,
+					from: t.fromPoint,
+					to: t.toPoint,
+					demo: t.demoWinter
+				})
+			});
+			if (!res.ok) throw new Error(`update ${res.status}`);
+			const update = (await res.json()) as LiveUpdate;
+			if (data.trip !== t) return;
+			const snap: Snapshot = {
+				passes: update.passes,
+				warnings: update.warnings,
+				onTheWay: update.onTheWay
+			};
+			if (lastSnapshot) {
+				const list = tripChanges(lastSnapshot, snap, following ? progress : null, (ms) =>
+					clock(ms)
+				);
+				if (list.length) announce(list);
+			}
+			lastSnapshot = snap;
+			live = update;
+			updatedAt = update.at;
+			refreshFailed = false;
+		} catch {
+			refreshFailed = true;
+		} finally {
+			refreshing = false;
+		}
+	}
+
+	$effect(() => {
+		if (!trip) return;
+		const timer = setInterval(() => {
+			if (document.visibilityState === 'visible') void refresh();
+		}, REFRESH_MS);
+		const onVisible = () => {
+			if (document.visibilityState === 'visible' && Date.now() - (updatedAt ?? 0) > 60_000)
+				void refresh();
+		};
+		document.addEventListener('visibilitychange', onVisible);
+		return () => {
+			clearInterval(timer);
+			document.removeEventListener('visibilitychange', onVisible);
+		};
+	});
+
+	/** Plan the drive again from here, keeping the destination and the stops still ahead. */
+	function replan(lat: number, lon: number) {
+		lastReplan = Date.now();
+		const p = page.url.searchParams;
+		const q = new URLSearchParams(p.toString());
+		// The original start stays in the link, so sharing this drive never shares where you are.
+		if (!q.has('of')) {
+			q.set('of', p.get('from') ?? '');
+			const fl = p.get('fl');
+			if (fl) q.set('ofl', fl);
+		}
+		q.set('from', `${lat.toFixed(4)},${lon.toFixed(4)}`);
+		q.set('fl', 'Your location');
+		q.delete('in');
+		const via = p.get('via');
+		if (via && trip) {
+			const t = trip;
+			const ahead = via
+				.split(';')
+				.filter((v) => {
+					const [vl, vo] = v.split(',').map(Number);
+					return projectOnRoute({ lat: vl, lon: vo }, t.route, cum).along > lastProgress;
+				})
+				.join(';');
+			if (ahead) q.set('via', ahead);
+			else q.delete('via');
+		}
+		replanned = true;
+		timedFromHere = false;
+		if (speak && 'speechSynthesis' in window)
+			speechSynthesis.speak(
+				new SpeechSynthesisUtterance('You left the planned route. Planning again from here.')
+			);
+		void goto(`/trip?${q}`, { replace: true, reset: false });
+	}
 
 	// The same drive the other way: start and destination swap, and the stops come in reverse order.
 	function reverseLink(): string {
@@ -67,10 +248,37 @@
 		following = false;
 		progress = null;
 		offRoute = false;
+		offSince = null;
+		timedFromHere = false;
+		gpsLost = false;
 		if (watchId !== null) navigator.geolocation.clearWatch(watchId);
 		watchId = null;
 		void wakeLock?.release().catch(() => {});
 		wakeLock = null;
+	}
+
+	let lastPos: { lat: number; lon: number } | null = null;
+
+	/** Where you are against the planned route: progress, off the route, and planning again when needed. */
+	function onPosition(lat: number, lon: number) {
+		lastPos = { lat, lon };
+		if (!trip) return;
+		const p = projectOnRoute({ lat, lon }, trip.route, cum);
+		gpsLost = false;
+		offRoute = p.off > 1;
+		progress = offRoute ? null : p.along;
+		if (progress !== null) {
+			lastProgress = progress;
+			offSince = null;
+			// The first fix on the route: time the weather and warnings from here.
+			if (!timedFromHere) {
+				timedFromHere = true;
+				void refresh();
+			}
+		} else if (offRoute) {
+			offSince ??= Date.now();
+			if (Date.now() - offSince > 60_000 && Date.now() - lastReplan > 180_000) replan(lat, lon);
+		}
 	}
 
 	async function startFollowing() {
@@ -92,19 +300,13 @@
 			// keeping the screen on is optional
 		}
 		watchId = navigator.geolocation.watchPosition(
-			(pos) => {
-				if (!trip) return;
-				const p = projectOnRoute(
-					{ lat: pos.coords.latitude, lon: pos.coords.longitude },
-					trip.route,
-					cum
-				);
-				offRoute = p.off > 1;
-				progress = offRoute ? null : p.along;
-			},
-			() => {
-				gpsError = 'Could not get your location. Check that location is allowed for this site.';
-				stopFollowing();
+			(pos) => onPosition(pos.coords.latitude, pos.coords.longitude),
+			(err) => {
+				// Only a refusal stops following. A lost signal (tunnels, snow sheds, canyons) is normal on a drive.
+				if (err.code === err.PERMISSION_DENIED) {
+					gpsError = 'Could not get your location. Check that location is allowed for this site.';
+					stopFollowing();
+				} else gpsLost = true;
 			},
 			{ enableHighAccuracy: true, maximumAge: 10000, timeout: 20000 }
 		);
@@ -119,6 +321,34 @@
 		trip ? trip.stops.filter((s) => progress !== null && s.along < progress - 0.3) : []
 	);
 	const next = $derived(progress !== null ? ahead[0] : undefined);
+	const stillAhead = (along: number) => progress === null || along >= progress - 0.5;
+	const roadNow = $derived(
+		trip
+			? {
+					...trip.road,
+					passes: (live?.passes ?? trip.road.passes).filter((x) => stillAhead(x.along))
+				}
+			: null
+	);
+	const warningsNow = $derived.by((): RoadWarnings | null => {
+		const w = live?.warnings;
+		if (!w) return null;
+		return {
+			...w,
+			closures: w.closures.filter((c) => stillAhead(c.along)),
+			chainControls: w.chainControls.filter((c) => stillAhead(c.along)),
+			alerts: w.alerts.filter((a) => stillAhead(a.toMile)),
+			surface: w.surface.filter((x) => stillAhead(x.along))
+		};
+	});
+	const weatherNow = $derived(
+		live?.onTheWay
+			? {
+					...live.onTheWay,
+					stops: live.onTheWay.stops.filter((x) => x.kind === 'end' || stillAhead(x.along))
+				}
+			: null
+	);
 	const noteFor = (along: number) =>
 		progress !== null
 			? `${Math.max(0, along - progress).toFixed(1)} mi ahead`
@@ -174,16 +404,40 @@
 			<div class="follow">
 				{#if !following}
 					<button onclick={startFollowing}>Follow my trip</button>
+					<p class="sub follow-why">
+						Driving now? Following uses your location to time the weather from where you are, drop
+						cameras you've passed, plan again if you take another way, read changes aloud and keep
+						the screen on.
+					</p>
 				{:else}
 					<button class="secondary" onclick={stopFollowing}>Stop following</button>
+					<label class="speak-toggle"
+						><input type="checkbox" bind:checked={speak} onchange={saveSpeak} /> Read changes aloud</label
+					>
 				{/if}
 			</div>
+			<p class="live-line">
+				{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now; trying again in a
+					few minutes.{:else if updatedAt}Reports and weather as of {clock(updatedAt)}, updated
+					every 5 minutes.{/if}
+				<button type="button" class="linkish" onclick={refresh} disabled={refreshing}
+					>Update now</button
+				>
+			</p>
 			{#if gpsError}<p class="error">{gpsError}</p>{/if}
+			{#if following && gpsLost}<p class="sub">
+					No location signal right now. Still following.
+				</p>{/if}
 			{#if following && progress === null && !offRoute && !gpsError}
 				<p class="sub">Finding your position…</p>
 			{/if}
 			{#if offRoute}
-				<p class="notice">You're off the planned route, so every camera is shown again.</p>
+				<p class="notice">
+					You're off the planned route. If you stay off it for a minute, the drive is planned again
+					from where you are.
+				</p>
+			{:else if replanned && following}
+				<p class="notice">Planned again from where you are.</p>
 			{/if}
 			{#if next}
 				<p class="next-up">
@@ -195,27 +449,49 @@
 			{/if}
 		</section>
 
-		<RoadAhead road={trip.road} warnings={trip.warnings} />
+		{#if changes}
+			<section class="trip-changes" aria-live="polite" aria-label="What changed on the road ahead">
+				<h2>Changed at {clock(changes.at)}</h2>
+				<ul>
+					{#each changes.list as c, i (i)}<li class="tc-{c.tone}">{c.text}</li>{/each}
+				</ul>
+				<button type="button" class="secondary" onclick={() => (changes = null)}>OK</button>
+			</section>
+		{/if}
 
-		{#await trip.snow then snow}
-			{#if snow}<SnowLine
-					{snow}
+		<RoadAhead road={roadNow ?? trip.road} warnings={warningsNow ?? trip.warnings} />
+
+		{#if live}
+			{#if live.snow}<SnowLine
+					snow={live.snow}
 					demo={trip.demoWinter}
 					miles={trip.miles}
 					minutes={trip.minutes}
 					stops={trip.stops}
 				/>{/if}
-		{/await}
+			{#if weatherNow}<RouteWeather weather={weatherNow} asOf={live.at} />{/if}
+			<ConditionsBar conditions={live.conditions} mode="trip" />
+		{:else}
+			{#await trip.snow then snow}
+				{#if snow}<SnowLine
+						{snow}
+						demo={trip.demoWinter}
+						miles={trip.miles}
+						minutes={trip.minutes}
+						stops={trip.stops}
+					/>{/if}
+			{/await}
 
-		{#await trip.onTheWay then onTheWay}
-			{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
-		{/await}
+			{#await trip.onTheWay then onTheWay}
+				{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
+			{/await}
 
-		{#await trip.conditions}
-			<p class="loading">Loading conditions…</p>
-		{:then conditions}
-			<ConditionsBar {conditions} mode="trip" />
-		{/await}
+			{#await trip.conditions}
+				<p class="loading">Loading conditions…</p>
+			{:then conditions}
+				<ConditionsBar {conditions} mode="trip" />
+			{/await}
+		{/if}
 
 		{#if !trip.showingAll}
 			<p class="thinned">
