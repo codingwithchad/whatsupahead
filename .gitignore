@@ -27,3 +27,6 @@ vite.config.ts.timestamp-*
 
 # Our own hosting scripts and notes (not part of the public project)
 /ops
+
+# Private notes for Claude (hosting, where we left off)
+CLAUDE.local.md
