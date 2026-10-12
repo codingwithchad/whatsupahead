@@ -7,7 +7,8 @@
 	// The part of a place page under its title: the place's note, weather and reports, then its cameras.
 	let {
 		data,
-		base
+		base,
+		camerasFirst = false
 	}: {
 		data: {
 			note: string | null;
@@ -22,23 +23,27 @@
 			conditions: Promise<Conditions[]>;
 		};
 		base: string;
+		/** Pass pages: cameras first, then the note and the weather (the pass's answer is already above). */
+		camerasFirst?: boolean;
 	} = $props();
 	const more = $derived(`${base}${base.includes('?') ? '&' : '?'}`);
 </script>
 
-{#if data.note}
-	<p class="place-note">
-		{data.note}
-		{#if data.link}<a href={data.link.url} target="_blank" rel="noopener">{data.link.label} ↗</a
-			>{/if}
-	</p>
-{/if}
+{#if !camerasFirst}
+	{#if data.note}
+		<p class="place-note">
+			{data.note}
+			{#if data.link}<a href={data.link.url} target="_blank" rel="noopener">{data.link.label} ↗</a
+				>{/if}
+		</p>
+	{/if}
 
-{#await data.conditions}
-	<p class="loading">Loading conditions…</p>
-{:then conditions}
-	<ConditionsBar {conditions} mode="place" />
-{/await}
+	{#await data.conditions}
+		<p class="loading">Loading conditions…</p>
+	{:then conditions}
+		<ConditionsBar {conditions} mode="place" />
+	{/await}
+{/if}
 
 {#if !data.showingAll}
 	<p class="thinned">
@@ -69,4 +74,20 @@
 		&mdash;
 		<a href="https://www.windy.com/webcams/add" target="_blank" rel="noopener">add a webcam</a>
 	</p>
+{/if}
+
+{#if camerasFirst}
+	{#if data.note}
+		<p class="place-note">
+			{data.note}
+			{#if data.link}<a href={data.link.url} target="_blank" rel="noopener">{data.link.label} ↗</a
+				>{/if}
+		</p>
+	{/if}
+
+	{#await data.conditions}
+		<p class="loading">Loading conditions…</p>
+	{:then conditions}
+		<ConditionsBar {conditions} mode="place" />
+	{/await}
 {/if}

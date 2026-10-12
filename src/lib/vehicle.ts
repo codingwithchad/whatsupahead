@@ -5,10 +5,11 @@ import { classifyRestriction, type PassReport, type PassStatus, type Restriction
 
 export type Vehicle = 'car' | 'awd' | 'tow';
 
-export const VEHICLES: { id: Vehicle; label: string; short: string }[] = [
-	{ id: 'car', label: 'Car (2WD)', short: 'car' },
-	{ id: 'awd', label: 'AWD or 4WD', short: 'AWD' },
-	{ id: 'tow', label: 'Towing or over 10,000 lb', short: 'rig' }
+/** `label` in lists and tables, `pick` on the small buttons, `short` in "for your AWD". */
+export const VEHICLES: { id: Vehicle; label: string; pick: string; short: string }[] = [
+	{ id: 'car', label: 'Car (2WD)', pick: 'Car', short: 'car' },
+	{ id: 'awd', label: 'AWD or 4WD', pick: 'AWD/4WD', short: 'AWD' },
+	{ id: 'tow', label: 'Towing or over 10,000 lb', pick: 'Towing', short: 'rig' }
 ];
 
 /** Worst first. `carry` is "nothing required, but carry chains". */

@@ -2,10 +2,11 @@
 	import { track } from './track';
 	import { VEHICLES, saveVehicle, type Vehicle } from './vehicle';
 
-	let { vehicle = $bindable() }: { vehicle: Vehicle | null } = $props();
+	let { vehicle = $bindable(), label = '' }: { vehicle: Vehicle | null; label?: string } = $props();
 </script>
 
 <div class="chips vehicle-chips" role="group" aria-label="What are you driving?">
+	{#if label}<span class="vehicle-label">{label}</span>{/if}
 	{#each VEHICLES as v (v.id)}
 		<button
 			type="button"
@@ -15,7 +16,8 @@
 				vehicle = v.id;
 				saveVehicle(v.id);
 				track('vehicle');
-			}}>{v.label}</button
+			}}
+			title={v.label}>{v.pick}</button
 		>
 	{/each}
 </div>

@@ -2442,3 +2442,107 @@ div.image-button {
 	border-style: dashed;
 	color: var(--muted);
 }
+
+/* Drive page top: compact, so the first camera is on the first screen */
+.trip-top h1.trip-title {
+	font-size: var(--fs-xl);
+	line-height: 1.25;
+	margin: 0 0 2px;
+}
+.trip-top .verdict {
+	margin: 0.5rem 0;
+	padding: 0.7rem 0.9rem;
+}
+.verdict-asof {
+	margin: 0.5rem 0 0;
+	color: var(--muted);
+	font-size: var(--fs-xs);
+}
+.trip-tools {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+.trip-tools .tool-follow {
+	min-height: 40px;
+	padding: 8px 16px;
+}
+.trip-tools .chip {
+	min-height: 40px;
+}
+.leave-pick {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: var(--fs-sm);
+	color: var(--muted);
+	font-weight: 600;
+}
+.leave-pick select {
+	min-height: 40px;
+	padding: 6px 10px;
+	border-radius: 999px;
+	border: 1px solid var(--line);
+	background: var(--card);
+	color: var(--text);
+	font: inherit;
+	font-weight: 600;
+}
+.trip-top .speak-toggle {
+	display: inline-block;
+	margin: 8px 0 0;
+}
+.vehicle-label {
+	align-self: center;
+	font-size: var(--fs-sm);
+	color: var(--muted);
+	font-weight: 600;
+}
+.verdict .vehicle-chips .chip,
+.trip-tools .share-btn {
+	min-height: 36px;
+	padding: 6px 12px;
+}
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+.verdict .vehicle-chips .chip {
+	padding: 4px 10px;
+	font-size: var(--fs-sm);
+}
+.verdict .vehicle-chips {
+	gap: 6px;
+}
+.trip-tools .tool-follow {
+	padding: 8px 14px;
+}
+.trip-tools .share-btn {
+	padding: 6px 10px;
+}
+.leave-pick select {
+	padding: 6px 8px;
+	font-size: var(--fs-sm);
+}
+.title-row {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 10px;
+}
+.chains-one {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
+	margin: 0 0 0.4rem;
+	font-weight: 600;
+}
+.chains-one .pill {
+	white-space: normal;
+}

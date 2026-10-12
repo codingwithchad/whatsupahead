@@ -9,8 +9,9 @@
 		path,
 		title,
 		text,
-		dark = false
-	}: { path: string; title: string; text: string; dark?: boolean } = $props();
+		dark = false,
+		compact = false
+	}: { path: string; title: string; text: string; dark?: boolean; compact?: boolean } = $props();
 
 	const url = $derived(new URL(path, page.url.origin).href);
 	const enc = encodeURIComponent;
@@ -45,7 +46,13 @@
 </script>
 
 <div class="share" class:dark>
-	<button class="secondary share-btn" onclick={share} aria-expanded={open}>
+	<button
+		class="secondary share-btn"
+		onclick={share}
+		aria-expanded={open}
+		aria-label={compact ? 'Share' : undefined}
+		title={compact ? 'Share' : undefined}
+	>
 		<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"
 			><path
 				d="M12 3v12M7 8l5-5 5 5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"
@@ -56,7 +63,7 @@
 				stroke-linejoin="round"
 			/></svg
 		>
-		Share
+		{#if !compact}Share{/if}
 	</button>
 	{#if open}
 		<div class="share-menu" role="group" aria-label="Share">

@@ -27,7 +27,14 @@
 		Caltrans: { label: 'QuickMap', url: 'https://quickmap.dot.ca.gov/' }
 	};
 	const statePage = $derived(pass.link ?? STATE_PAGE[pass.source]);
-	const verdict = $derived(passVerdict({ name: pass.name, report }));
+	// Snow on the ground arrives a moment after the page; it joins the card's facts when it does.
+	let snowDepth = $state<number | null>(null);
+	$effect(() => {
+		snowDepth = null;
+		void data.snow.then((s) => (snowDepth = s?.depthIn ?? null)).catch(() => {});
+	});
+	const verdict = $derived(passVerdict({ name: pass.name, report, snowDepthIn: snowDepth }));
+	const answers = $derived(VEHICLES.map((v) => ({ v, a: passAnswer(report, v.id) })));
 	const reporting = $derived(report !== null && report.status !== 'off-season');
 	const updated = $derived(
 		report?.updated ? `updated ${ago(new Date(report.updated).toISOString())}` : ''
@@ -74,24 +81,21 @@
 </header>
 
 <main>
-	<section class="summary">
-		<h1>{pass.name} conditions</h1>
+	<section class="summary trip-top">
+		<div class="title-row">
+			<h1 class="trip-title">{pass.name} conditions</h1>
+			<ShareButton
+				compact
+				path={base}
+				title="{pass.name} conditions"
+				text="{pass.name}: {verdict.sentence}"
+			/>
+		</div>
 		<p class="sub">
-			{[
-				pass.route,
-				pass.elevation_ft ? `${pass.elevation_ft.toLocaleString()} ft` : null,
-				pass.connects
-			]
+			{[pass.route, pass.elevation_ft ? `${pass.elevation_ft.toLocaleString()} ft` : null]
 				.filter(Boolean)
 				.join(' · ')}
 		</p>
-		<div class="page-actions">
-			<ShareButton
-				path={base}
-				title="{pass.name} conditions"
-				text="{pass.name} right now: cameras, chains and weather"
-			/>
-		</div>
 	</section>
 
 	<VerdictCard {verdict} />
@@ -132,16 +136,25 @@
 		{#if pass.winter_closure}<p class="pass-line">{pass.winter_closure}.</p>{/if}
 
 		{#if reporting}
-			<h2>Chains today</h2>
-			<ul class="chains-today">
-				{#each VEHICLES as v (v.id)}
-					{@const a = passAnswer(report, v.id)}
-					<li>
-						<span>{v.label}</span>
-						<StatusPill tone={NEED_TONE[a.need]} label={a.text} />
-					</li>
-				{/each}
-			</ul>
+			{#if new Set(answers.map((x) => x.a.text)).size === 1}
+				<p class="chains-one">
+					<span>Chains today:</span>
+					<StatusPill
+						tone={NEED_TONE[answers[0].a.need]}
+						label="{answers[0].a.text} for any vehicle"
+					/>
+				</p>
+			{:else}
+				<h2>Chains today</h2>
+				<ul class="chains-today">
+					{#each answers as { v, a } (v.id)}
+						<li>
+							<span>{v.label}</span>
+							<StatusPill tone={NEED_TONE[a.need]} label={a.text} />
+						</li>
+					{/each}
+				</ul>
+			{/if}
 			<p class="ra-note">
 				<a href="/tires">What's a traction tire?</a>
 				{lines.length > 1 ? 'The stricter direction. ' : ''}Our reading of the state's rule. Signs
@@ -157,6 +170,13 @@
 			</p>
 		{/if}
 	</section>
+
+	<PlaceBody {data} {base} camerasFirst />
+	<nav class="radius" aria-label="Camera radius">
+		{#each radii as r (r)}
+			<a href="{base}?r={r}" aria-current={r === data.radius ? 'true' : undefined}>{r} mi</a>
+		{/each}
+	</nav>
 
 	{#if data.season}
 		{@const s = data.season}
@@ -234,13 +254,6 @@
 			{/if}
 		{/await}
 	</div>
-
-	<nav class="radius" aria-label="Camera radius">
-		{#each radii as r (r)}
-			<a href="{base}?r={r}" aria-current={r === data.radius ? 'true' : undefined}>{r} mi</a>
-		{/each}
-	</nav>
-	<PlaceBody {data} {base} />
 
 	{#await data.checkpoints then checkpoints}
 		{#if checkpoints?.length}

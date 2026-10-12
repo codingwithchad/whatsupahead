@@ -127,6 +127,8 @@
 	}
 
 	const clock = (ms: number) => localClock(ms);
+	/** "Seattle-Tacoma International Airport, SeaTac" -> "Seattle-Tacoma International Airport". */
+	const short = (label: string) => label.split(',')[0].trim() || label;
 
 	function announce(list: Change[]) {
 		changes = { at: Date.now(), list };
@@ -419,68 +421,76 @@
 		{#if data.error}<p class="error">{data.error}</p>{/if}
 		<TripForm from={data.fromQ} to={data.toQ} places={[]} />
 	{:else}
-		<section class="summary">
-			<h1>{trip.from} → {trip.to}</h1>
+		<section class="summary trip-top">
+			<h1 class="trip-title">{short(trip.from)} → {short(trip.to)}</h1>
 			<p class="sub">
-				{trip.miles.toFixed(0)} mi · about {duration(trip.minutes)}{trip.viaCount
-					? ` · via ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
-					: ''} · {trip.stops.length} cameras on the way
+				{trip.miles.toFixed(0)} mi · {duration(trip.minutes)}{trip.viaCount
+					? ` · ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
+					: ''} · {trip.totalCameras} cameras
 			</p>
 			{#if verdict}
 				<VerdictCard {verdict}>
 					{#if trip.road.passes.length}
-						<p class="verdict-for">Chains for what you're driving:</p>
-						<VehiclePicker bind:vehicle />
+						<VehiclePicker bind:vehicle label="Chains for:" />
 					{/if}
+					<p class="verdict-asof">
+						{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now.{:else if updatedAt}As
+							of {clock(updatedAt)}, updates every 5 min.{/if}
+						<button type="button" class="linkish" onclick={refresh} disabled={refreshing}
+							>Update</button
+						>
+					</p>
 				</VerdictCard>
 			{/if}
-			<div class="reverse page-actions">
+			<div class="trip-tools">
+				{#if !following}
+					<button
+						class="tool-follow"
+						onclick={startFollowing}
+						title="Times from where you are, changes read aloud, screen kept on">▶ Follow</button
+					>
+				{:else}
+					<button class="secondary tool-follow" onclick={stopFollowing}>■ Stop</button>
+				{/if}
 				<ShareButton
+					compact
 					path="/trip?{tripShareParams(page.url.searchParams)}"
 					title="{trip.from} to {trip.to}"
 					text={verdict
 						? `${trip.from} to ${trip.to}: ${verdict.title.toLowerCase()}. ${verdict.sentence}`
 						: `Driving ${trip.from} to ${trip.to}: cameras, weather and passes on the way`}
 				/>
-				<a class="chip" href={reverseLink()} onclick={() => track('reverse-trip')}
-					>⇄ Reverse this drive</a
+				<a
+					class="chip"
+					href={reverseLink()}
+					onclick={() => track('reverse-trip')}
+					aria-label="Reverse this drive"
+					title="Reverse this drive">⇄</a
+				>
+				<label class="leave-pick"
+					><span class="visually-hidden">When are you leaving?</span>
+					<select
+						value={String(trip.leaveIn)}
+						onchange={(e) => {
+							const mins = (e.currentTarget as HTMLSelectElement).value;
+							if (mins !== '0') track('leave-later');
+							void goto(tripLink({ in: mins === '0' ? null : mins }));
+						}}
+					>
+						{#each [[0, 'Leave now'], [60, 'Leave in 1 h'], [120, 'Leave in 2 h'], [180, 'Leave in 3 h']] as [mins, text] (mins)}
+							<option value={String(mins)}>{text}</option>
+						{/each}
+						{#if ![0, 60, 120, 180].includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
+								>Leave in {duration(trip.leaveIn)}</option
+							>{/if}
+					</select></label
 				>
 			</div>
-			<nav class="leave" aria-label="When are you leaving?">
-				<span class="leave-label">Leave</span>
-				{#each [[0, 'Now'], [60, 'In 1 h'], [120, 'In 2 h'], [180, 'In 3 h']] as [mins, text] (mins)}
-					<a
-						class="chip"
-						aria-current={trip.leaveIn === mins ? 'true' : undefined}
-						href={tripLink({ in: mins ? String(mins) : null })}
-						onclick={() => mins && track('leave-later')}
-					>
-						{text}
-					</a>
-				{/each}
-			</nav>
-			<div class="follow">
-				{#if !following}
-					<button onclick={startFollowing}>Follow my trip</button>
-					<p class="sub follow-why">
-						Driving now? Follow to get times from where you are, changes read aloud, and the screen
-						kept on.
-					</p>
-				{:else}
-					<button class="secondary" onclick={stopFollowing}>Stop following</button>
-					<label class="speak-toggle"
-						><input type="checkbox" bind:checked={speak} onchange={saveSpeak} /> Read changes aloud</label
-					>
-				{/if}
-			</div>
-			<p class="live-line">
-				{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now; trying again in a
-					few minutes.{:else if updatedAt}Reports and weather as of {clock(updatedAt)}, updated
-					every 5 minutes.{/if}
-				<button type="button" class="linkish" onclick={refresh} disabled={refreshing}
-					>Update now</button
+			{#if following}
+				<label class="speak-toggle"
+					><input type="checkbox" bind:checked={speak} onchange={saveSpeak} /> Read changes aloud</label
 				>
-			</p>
+			{/if}
 			{#if gpsError}<p class="error">{gpsError}</p>{/if}
 			{#if following && gpsLost}<p class="sub">
 					No location signal right now. Still following.
@@ -517,7 +527,7 @@
 		{/if}
 
 		<details class="trip-details">
-			<summary>Road, chains and weather details</summary>
+			<summary>More: road, chains, weather</summary>
 			<RoadAhead
 				road={roadNow ?? trip.road}
 				warnings={warningsNow ?? trip.warnings}
@@ -558,17 +568,6 @@
 			{/if}
 		</details>
 
-		{#if !trip.showingAll}
-			<p class="thinned">
-				Showing {trip.stops.length} key cameras of {trip.totalCameras}.
-				<a href={tripLink({ all: '1' })}>Show all {trip.totalCameras}</a>
-			</p>
-		{:else if trip.totalCameras > 40}
-			<p class="thinned">
-				Showing all {trip.totalCameras} cameras. <a href={tripLink({ all: null })}>Show fewer</a>
-			</p>
-		{/if}
-
 		{#if ahead.length}
 			<CameraList
 				items={ahead.map((stop) => ({
@@ -580,6 +579,17 @@
 			<p class="empty">You've passed every camera on this drive.</p>
 		{:else}
 			<p class="empty">No cameras along this drive yet.</p>
+		{/if}
+
+		{#if !trip.showingAll}
+			<p class="thinned">
+				Showing {trip.stops.length} key cameras of {trip.totalCameras}.
+				<a href={tripLink({ all: '1' })}>Show all {trip.totalCameras}</a>
+			</p>
+		{:else if trip.totalCameras > 40}
+			<p class="thinned">
+				Showing all {trip.totalCameras} cameras. <a href={tripLink({ all: null })}>Show fewer</a>
+			</p>
 		{/if}
 
 		{#if passed.length}
