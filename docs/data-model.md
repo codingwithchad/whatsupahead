@@ -60,7 +60,7 @@ The app should show these as a clearly labeled placeholder ("not broken, back in
 
 ## Weather sources
 
-Conditions are data too. Each file in `data/weather-sources/` (schema: `schema/weather-source.schema.json`) points at one place to get conditions for a location: an NWS forecast, a WSDOT weather station, or WSDOT pass conditions. Search returns nearby weather sources the same way it returns nearby cameras.
+Conditions are data too. Each file in `data/weather-sources/` (schema: `schema/weather-source.schema.json`) points at one place to get conditions for a location: an NWS forecast, a WSDOT weather station, or a pass report (`wsdot-pass` for Washington, `dot-pass` for Oregon and California, whose `provider_ref` is the pass id in `data/passes/`). Search returns nearby weather sources the same way it returns nearby cameras.
 
 The files only say where to look. The app fetches live values at view time. API keys are never stored: `requires_key` names an environment variable (e.g. `WSDOT_CODE`).
 
@@ -83,7 +83,7 @@ A collection (`data/collections/`, schema `collection.schema.json`) is a section
 - **Ferries:** one place per WSF terminal (`ferry-<name>`), each with its WSDOT cameras and a `ferry` weather source (`provider: wsdot-ferry`, `provider_ref` = WSF terminal id) that shows the next sailings and drive-up space.
 - **Border crossings:** one place per crossing (`border-<name>`), each with nearby WSDOT cameras and a `border` source (`provider: wsdot-border`, `provider_ref` = comma-separated WSDOT crossing names) that shows wait times by lane. WSDOT reports -1 when a lane has no data.
 
-Both use the WSDOT access code (`WSDOT_CODE`). Places overlap by distance, so a camera near two crossings appears in both.
+Both use the WSDOT access code (`WSDOT_CODE`), so today they cover Washington only. Places overlap by distance, so a camera near two crossings appears in both.
 
 ## Featured drives
 
@@ -106,11 +106,17 @@ A `river` weather source (`provider: nwps`, `provider_ref` = NOAA gauge id such 
 
 ## Mountain passes
 
-`data/passes/` (schema `pass.schema.json`) lists the 16 passes in WSDOT's pass reports: WSDOT's `pass_id`, the road, which towns it connects, a group, and the `place` page that shows its cameras and weather. The `/passes` page reads WSDOT's live reports for all of them and shows a status tag: Open, Traction tires advised, Chains required, Closed, or Off-season (WSDOT has stopped reporting for the year). `src/lib/passes.ts` turns WSDOT's hand-written restriction text into that status, taking the worse of the two directions. WSDOT reports are mostly November to April, so most passes read "Off-season" in summer.
+`data/passes/` (schema `pass.schema.json`) lists the passes on the `/passes` page: the road, which towns it connects, a group, and the `place` page that shows its cameras and weather. Each shows a status tag: Open (or "No chain controls"), Traction tires advised, Chains required, Closed, or No report yet. Where the report comes from depends on the state (`src/lib/passes.ts`):
+
+- **Washington:** WSDOT's pass reports, by WSDOT's `pass_id`. Its hand-written restriction text is turned into a status, taking the worse of the two directions.
+- **Oregon** (`report.source: "odot"`): ODOT's crew road-and-weather reports on the pass's highway (`report.route`, as ODOT writes it, e.g. `US20`) within `radius_km` of the summit (default 15), plus ODOT closures there.
+- **California** (`report.source: "caltrans"`): Caltrans chain-control checkpoints on the highway (e.g. `SR-89`) near the summit, plus full closures from Caltrans's lane-closure list. `districts` names the Caltrans districts to fetch; `closures: false` skips the closure list where it is very large.
+
+`winter_closure` marks roads that close for the season (Tioga, Sonora, McKenzie); in deep winter they are not shown as open just because nothing is listed. Crews report mostly November to April, so many passes read "No report yet" in summer.
 
 ## Camera replay
 
-The server saves a small picture from each camera within 6 miles of a pass (WSDOT, WSDOT Aviation and National Park Service only, never Windy) about every 5 minutes and keeps the last 2 hours in memory. Enlarging a camera shows a replay with play, pause and a slider. The replay starts empty after each restart and fills in as the server runs, so it works best on an always-on plan. `HISTORY=off` turns recording off; `HISTORY_EVERY_SECONDS` changes the interval.
+The server saves a small picture from each camera within 6 miles of a pass (WSDOT, WSDOT Aviation, Caltrans and National Park Service only; never Windy, and not ODOT, whose terms cover showing the current picture) about every 5 minutes and keeps the last 2 hours in memory. Enlarging a camera shows a replay with play, pause and a slider. The replay starts empty after each restart and fills in as the server runs, so it works best on an always-on plan. `HISTORY=off` turns recording off; `HISTORY_EVERY_SECONDS` changes the interval.
 
 ## Themed places
 
@@ -118,4 +124,4 @@ A place can set `camera_tags` (for example `["scenic"]`) to list only cameras ca
 
 ## The All places directory
 
-`/places` shows every place as a tree: state, then the kind of place (featured places, mountain passes, ferries, airfields and so on), then the places. Kinds start folded; typing in the search box opens only the kinds with matches. A place's state comes from its optional `state` field and defaults to Washington; set it when adding places in another state so they group under their own state.
+`/places` shows every place as a tree: state, then the kind of place (featured places, mountain passes, ferries, airfields and so on), then the places. Kinds start folded; typing in the search box opens only the kinds with matches. A place's state comes from its optional `state` field and defaults to the state its coordinates are in; set it when adding places in another state so they group under their own state.

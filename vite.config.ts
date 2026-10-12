@@ -3,7 +3,7 @@ import adapter from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { execSync } from 'node:child_process';
 
-// Which code is running, for /healthz: the commit this was built from (Render says it; elsewhere ask git).
+// Which code is running, for /healthz: the commit this was built from (from the host if it says, else git).
 function commit(): string {
 	if (process.env.RENDER_GIT_COMMIT) return process.env.RENDER_GIT_COMMIT.slice(0, 7);
 	try {

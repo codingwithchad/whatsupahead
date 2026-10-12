@@ -1,32 +1,81 @@
-# Deploying to Render
+# Running your own copy
 
-The app is a single Node server (`node build`). `render.yaml` describes it.
+What's Up Ahead is one Node server. Any host that runs Node 24 works: a small virtual machine, a container
+platform or a platform-as-a-service. Nothing in the app is tied to one provider.
 
-1. In Render, choose New > Blueprint and connect the `codingwithchad/whatsupahead` GitHub repo.
-2. When asked for `WSDOT_CODE`, paste your WSDOT access code (never commit it).
-3. Render builds and gives you an https URL. Camera and data changes go live when you push to `main`.
+## Build and start
 
-Notes
-- The free plan sleeps when idle and takes about a minute to wake. Switch the service to the Starter plan to keep it always on.
-- Health check: `/healthz` reports how many cameras, weather sources and places loaded.
-- Installable offline mode only works over https, so test it on the Render URL.
+```
+npm ci
+npm run build
+node build          # listens on PORT (default 3000)
+```
 
-## Using your own domain (for example whatsupahead.com)
+The server needs the `build/` folder, the `data/` folder and the production packages (`npm ci --omit=dev`). It
+reads all data files into memory when it starts, so camera and place changes go live on the next deploy.
 
-1. Buy the domain at a registrar (Cloudflare Registrar, Porkbun and Namecheap sell .com at or near cost).
-2. In Render, open the service, then Settings, then Custom Domains. Add the root domain (`whatsupahead.com`) and `www.whatsupahead.com`. Render shows the exact DNS records to create; add them at the registrar (if you use Cloudflare, keep the records "DNS only", not proxied, until Render says the certificate is ready).
-3. When Render shows the domain as verified with HTTPS, add the environment variable `CANONICAL_HOST=whatsupahead.com`. From then on any other address (the old `onrender.com` address, or `www.`) forwards there with a permanent redirect, so old links keep working. Set it only after step 2 works, or the site will forward visitors to an address that isn't ready.
-4. Update the project identification on the Windy API key page to the new address.
+About 250 MB of memory is enough for the current data. Use an always-on plan if you can: the pass-camera replay
+lives in memory and starts empty after every restart.
 
-## Azure App Service
+## Settings
 
-The app also runs on Azure App Service (Linux, Node 24, always on), at https://whatsupahead.azurewebsites.net while it is tested.
+Everything is optional. Without any keys the app still runs: cameras that need no key, NWS forecasts, place search
+and routes on free public services. Copy `.env.example` to `.env` for local use; on a host, set the same names as
+environment variables. Never commit keys.
 
-- **Deploy:** `scripts/deploy-azure.sh` builds the current commit (the tree must be clean), uploads it and waits until `/healthz` reports that commit under `version`, so a deploy only counts once the new build is actually answering. It keeps the last 5 packages.
-- **Roll back:** `scripts/deploy-azure.sh --list`, then `scripts/deploy-azure.sh --rollback <commit>`.
-- **Keys:** `scripts/azure-set-key.sh NAME` copies a key from `.env` into the app's settings (or `NAME -` to paste it), without the value appearing in a command line or log. Changing a setting restarts the app.
-- **Vault:** `scripts/azure-keys-to-vault.sh` copies the keys from `.env` into the app's Key Vault and turns the app settings into Key Vault references (read by the app's own identity, with read-only access), then reports whether each one resolves. It needs Key Vault Secrets Officer or Administrator on the vault. Key reads are logged to the shared log workspace.
-- The scripts need `az login` and `AZURE_SUBSCRIPTION` in `.env`; they never use az's cached default subscription.
-- **Visit counts** (`/stats`) are kept in Azure Blob Storage (`STATS_BLOB_URL`), written by the app's own identity (the account allows no keys and no public access; old versions are kept 14 days). Saves add to what is stored and only land if nobody wrote in between, so overlapping copies during a deploy keep both their counts; on shutdown, unsaved counts go to a hand-off file in `/home/data` that the next copy adds in.
-- Settings that differ from Render: `TRUSTED_PROXIES=1` (Azure adds one forwarding entry, with a port), `STATS_FILE=/home/data/stats.json` (the `/home` disk survives restarts and redeploys), `AZURE_MAPS_KEY` for routes and place search.
-- Password-based deploys (FTP and SCM basic auth) are off; deploys use your Azure sign-in.
+### Keys for live data
+
+| Variable | What it turns on | Get one |
+|---|---|---|
+| `WSDOT_CODE` | Washington pass reports, ferry space, border waits, weather stations | [WSDOT Traveler Information API](https://wsdot.wa.gov/traffic/api/) |
+| `ORDOT_CODE_PRIMARY` | Oregon pass reports (ODOT crew reports and closures) | [ODOT API portal](https://apiportal.odot.state.or.us/) |
+| `WINDY_API_KEY` | Cameras that come through Windy.com | [Windy Webcams API](https://api.windy.com/keys) |
+| `YOU_TUBE_DATA_API_KEY` | Checks that YouTube live cameras are still live | Google Cloud, YouTube Data API v3 |
+| `AZURE_MAPS_KEY` | Optional routing and place search with live traffic; without it, routes use OSRM and place search uses Photon and Nominatim | Azure Maps account |
+| `GITHUB_ISSUES_TOKEN` | Lets the "Add a camera" form file suggestions as issues | A fine-grained GitHub token, Issues read and write, one repository |
+
+California's Caltrans data, the National Park Service, NOAA and the NWS need no key.
+
+`/healthz` shows which keys are set (true or false, never the values) and whether each outside source is
+answering, so you can check a new deploy.
+
+### Running behind a proxy or load balancer
+
+| Variable | Use |
+|---|---|
+| `TRUSTED_PROXIES` | How many `X-Forwarded-For` entries your proxies add (often 1). The rate limits use it to find the visitor's address; `/healthz` shows `forwarded_hops` so you can measure it. |
+| `PROTOCOL_HEADER=x-forwarded-proto` | Tells the server the visitor used https, so forms pass the same-site check. (`ORIGIN=https://your.site` works too.) |
+| `CANONICAL_HOST` | Your main address, for example `example.com`. Every other address (www, the host's own default address) forwards there. Set it only once that address works with https. |
+
+### Saving data between restarts
+
+| Variable | Use |
+|---|---|
+| `STATS_FILE` | Where the anonymous visit counts (`/stats`) are saved. Point it at a disk that survives restarts and deploys. Default `.stats/stats.json`. |
+| `STATS_BLOB_URL` | Instead of a file, keep the counts in an Azure Blob Storage blob, written with the host's managed identity (no keys). Leave it unset to use the file. |
+
+### Tuning
+
+| Variable | Use |
+|---|---|
+| `AZURE_MAPS_DAILY` | Daily allowance for each kind of Azure Maps request (default 150), so you stay inside its free amount. |
+| `HISTORY=off` | Turns off the pass-camera replay (saves memory). `HISTORY_EVERY_SECONDS` changes how often it records (default 300). |
+| `HEALTH_CHECKS=off` | Turns off the half-hourly checks of outside sources. |
+| `DATA_DIR` | Read data files from somewhere other than `./data`. |
+
+## Health check
+
+Point your host's health check at `/healthz`. It answers 200 with the number of cameras and places loaded, the
+commit that is running (`version.commit`, from git at build time), and the state of each outside source. Checking
+`version.commit` after a deploy tells you the new build is the one answering.
+
+## Your own domain
+
+Add the domain at your host, wait until it serves https, then set `CANONICAL_HOST`. If you use the Windy API, update
+the project address on your Windy key page too.
+
+## Using your copy's data
+
+The data files belong to this project, but the camera pictures belong to their owners. Each source's terms are in
+[sources.md](sources.md); some (ODOT, Windy) set rules about how pictures are shown, which the app already follows.
+Get your own keys for each service rather than reusing someone else's.

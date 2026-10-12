@@ -35,7 +35,7 @@ npm run lint         # formatting (npx prettier --write . to fix)
 npm test             # unit tests and data checks
 ```
 
-Some features use free WSDOT or Windy API keys. You do not need them: those parts show "unavailable" locally, and CI never has them. If you want them, copy `.env.example` to `.env`. Never commit `.env`.
+Some features use free API keys (WSDOT, ODOT, Windy). You do not need them: those parts show "unavailable" locally, and CI never has them. If you want them, copy `.env.example` to `.env`. Never commit `.env`.
 
 Keep changes small and focused. Add or update a test when you change behavior. Camera data stays in `data/`, never hard-coded in the app.
 

@@ -2,7 +2,7 @@
 
 **Cameras, weather and waits along your way, for the West Coast: Washington, Oregon and California.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts, no ads.
 
-**Try it: https://whatsupahead.com** (during the move from the old address, https://oscams.onrender.com forwards there)
+**Try it: https://whatsupahead.com**
 
 ## What it does
 
@@ -30,11 +30,11 @@ npm test           # unit tests and the data checks
 npm run check      # type check
 ```
 
-Some live data needs free keys: a WSDOT access code (road reports, ferry sailing space, border waits, weather stations) and a Windy.com Webcams API key (the resort, Westport and Seattle cameras that come through Windy). Copy `.env.example` to `.env` and fill them in. Everything else works without them. On a host, set the same names as environment variables; `/healthz` shows `keys.windy` and `keys.wsdot` as true or false so you can confirm they're set.
+Some live data needs free keys (WSDOT, ODOT TripCheck, Windy and others). Copy `.env.example` to `.env` and fill in the ones you want; everything else works without them. To run your own copy on a server, see [docs/deploy.md](docs/deploy.md).
 
 ## How it's built
 
-SvelteKit and TypeScript on one small Node server, deployed on Render. Cameras, places, drives, passes and weather sources live in `data/`, each file checked against a schema in `schema/`. See [docs/data-model.md](docs/data-model.md), [docs/decisions.md](docs/decisions.md) and [docs/sources.md](docs/sources.md) (where each camera feed comes from and why we're allowed to use it).
+SvelteKit and TypeScript on one small Node server. Cameras, places, drives, passes and weather sources live in `data/`, each file checked against a schema in `schema/`. See [docs/data-model.md](docs/data-model.md), [docs/decisions.md](docs/decisions.md) and [docs/sources.md](docs/sources.md) (where each camera feed comes from and why we're allowed to use it).
 
 ## About this project
 

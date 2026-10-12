@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	const week = days.slice(0, 7).map(([, d]) => d);
 	return {
 		since,
-		storage: storage.startsWith('blob') ? 'Azure storage' : storage,
+		storage: storage.startsWith('blob') ? 'cloud storage' : 'a file on the server',
 		lastSave,
 		daily: days.slice(0, 14).map(([day, d]) => ({
 			day,

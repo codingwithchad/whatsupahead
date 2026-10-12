@@ -24,3 +24,6 @@ vite.config.ts.timestamp-*
 
 # Visit counts saved by the server (src/lib/server/stats.ts)
 .stats
+
+# Our own hosting scripts and notes (not part of the public project)
+/ops

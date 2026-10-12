@@ -73,3 +73,15 @@ If a place has no live cameras inside its radius, the page shows the nearest wor
 ## 2026-10-08: New name, new look, own domain
 
 The app is now "What's Up Ahead" (the question you ask before every trip), replacing "OS Cams", which could be misread as "O-scams". Tagline: "Cameras, weather and waits along your way." Chosen because it fits commutes, mountain passes and wait times, is not tied to Washington, and the .com was free. The free hosting address (`*.onrender.com`) looked suspicious to Reddit and to people, so the app moves to its own domain, and the old address forwards to it (`CANONICAL_HOST`). Also added: an About page and a footer on every page (what it is, sources, privacy, "not affiliated with WSDOT"), a link-preview image, and standard security headers. The look moved to a dusk mountain scene with an orange road and sun.
+
+## 2026-10-09: More than one state
+
+Regions come from `data/regions.json` (bounds, an outline where the border is a river, time zone, ZIP pattern), with each region's data in its own folder. Oregon came first, with ODOT's cameras through its official API. Place search, local times and automatic forecasts follow from the regions file.
+
+## 2026-10-11: California, and pass reports in every state
+
+California added about 3,380 Caltrans cameras (open data, no key) and the towns and ZIP codes from the Census. Oregon and California don't publish one report per pass the way WSDOT does, so a pass's report is built from what the state does publish on that highway near the summit: ODOT's crew road reports and closures, and Caltrans chain controls and full closures. Roads that close for the winter are never shown as open in deep winter just because nothing is listed. Ski areas link to the resorts' own cameras, which are not published for reuse.
+
+## 2026-10-11: Host-neutral repository
+
+The repository describes how to run the app on any Node host (docs/deploy.md) rather than one provider's steps. Optional integrations (a paid routing service, a cloud store for visit counts) are switched on by settings and the app works without them.

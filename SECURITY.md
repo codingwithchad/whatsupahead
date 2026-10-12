@@ -4,4 +4,4 @@ If you find a security problem (for example a way to make the server fetch an ar
 
 What is in scope: this repository's code and the live site. What is not: the cameras themselves (report a camera problem as a normal issue) and the third-party services we link to.
 
-This project has no accounts, no cookies and no stored personal data. Secrets (the WSDOT and Windy keys) live only in environment variables on the host and in a local, untracked `.env` file.
+This project has no accounts, no cookies and no stored personal data. Secrets (the API keys) live only in the host's environment variables or secret store and in a local, untracked `.env` file.
