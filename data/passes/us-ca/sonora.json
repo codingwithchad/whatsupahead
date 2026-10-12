@@ -1,0 +1,25 @@
+{
+  "id": "sonora",
+  "name": "Sonora Pass",
+  "route": "SR 108",
+  "connects": "Sonora and Pinecrest to US 395 near Bridgeport",
+  "group": "Sierra crossings",
+  "lat": 38.3279,
+  "lon": -119.6372,
+  "elevation_ft": 9624,
+  "place": "pass-sonora",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-108",
+    "radius_km": 15,
+    "districts": [
+      9,
+      10
+    ]
+  },
+  "winter_closure": "Closed for the winter, usually from November until late May or June",
+  "link": {
+    "label": "Caltrans: Highway 108 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=108"
+  }
+}

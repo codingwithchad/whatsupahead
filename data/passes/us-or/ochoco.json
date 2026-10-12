@@ -1,0 +1,19 @@
+{
+  "id": "ochoco",
+  "name": "Ochoco Pass",
+  "route": "US 26",
+  "connects": "Prineville to Mitchell and John Day",
+  "group": "Eastern Oregon",
+  "lat": 44.5013,
+  "lon": -120.3862,
+  "elevation_ft": 4720,
+  "place": "pass-ochoco",
+  "report": {
+    "source": "odot",
+    "route": "US26"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

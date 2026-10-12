@@ -1,0 +1,23 @@
+{
+  "id": "sherwin",
+  "name": "Sherwin Summit",
+  "route": "US 395",
+  "connects": "Mammoth Lakes to Bishop",
+  "group": "Eastern Sierra (US 395)",
+  "lat": 37.5516,
+  "lon": -118.6418,
+  "elevation_ft": 7000,
+  "place": "pass-sherwin",
+  "report": {
+    "source": "caltrans",
+    "route": "US-395",
+    "radius_km": 6,
+    "districts": [
+      9
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 395 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395"
+  }
+}

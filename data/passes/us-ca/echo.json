@@ -1,0 +1,23 @@
+{
+  "id": "echo",
+  "name": "Echo Summit",
+  "route": "US 50",
+  "connects": "Placerville to South Lake Tahoe",
+  "group": "Lake Tahoe and I-80",
+  "lat": 38.813,
+  "lon": -120.0304,
+  "elevation_ft": 7380,
+  "place": "pass-echo",
+  "report": {
+    "source": "caltrans",
+    "route": "US-50",
+    "radius_km": 10,
+    "districts": [
+      3
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 50 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=50"
+  }
+}

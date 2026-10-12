@@ -1,0 +1,19 @@
+{
+  "id": "dot-pass-echo",
+  "name": "Echo Summit road report",
+  "lat": 38.813,
+  "lon": -120.0304,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "echo",
+  "source": "Caltrans",
+  "page_url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=50",
+  "elevation_ft": 7380,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "brockway",
+  "name": "Brockway Summit",
+  "route": "SR 267",
+  "connects": "Truckee and Northstar to Kings Beach",
+  "group": "Lake Tahoe and I-80",
+  "lat": 39.261,
+  "lon": -120.0713,
+  "elevation_ft": 7210,
+  "place": "pass-brockway",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-267",
+    "radius_km": 8,
+    "districts": [
+      3
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 267 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=267"
+  }
+}

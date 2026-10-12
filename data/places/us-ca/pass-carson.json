@@ -1,0 +1,15 @@
+{
+  "id": "pass-carson",
+  "name": "Carson Pass (SR 88)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Jackson and Kirkwood to Hope Valley",
+  "lat": 38.6943,
+  "lon": -119.9886,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 88 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=88"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pass-deadman",
+  "name": "Deadman Summit (US 395)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Lee Vining and June Lake to Mammoth Lakes",
+  "lat": 37.771,
+  "lon": -119.0082,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 395 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395"
+  }
+}

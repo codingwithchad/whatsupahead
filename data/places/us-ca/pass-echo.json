@@ -1,0 +1,15 @@
+{
+  "id": "pass-echo",
+  "name": "Echo Summit (US 50)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Placerville to South Lake Tahoe",
+  "lat": 38.813,
+  "lon": -120.0304,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 50 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=50"
+  }
+}

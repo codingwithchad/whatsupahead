@@ -1,0 +1,15 @@
+{
+  "id": "pass-luther",
+  "name": "Luther Pass (SR 89)",
+  "region": "California",
+  "state": "California",
+  "blurb": "South Lake Tahoe to Hope Valley",
+  "lat": 38.7876,
+  "lon": -119.9456,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 89 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=89"
+  }
+}

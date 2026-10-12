@@ -1,0 +1,19 @@
+{
+  "id": "willamette",
+  "name": "Willamette Pass",
+  "route": "OR 58",
+  "connects": "Eugene and Oakridge to Klamath Falls and US 97",
+  "group": "Oregon Cascades",
+  "lat": 43.6006,
+  "lon": -122.0379,
+  "elevation_ft": 5128,
+  "place": "pass-willamette",
+  "report": {
+    "source": "odot",
+    "route": "OR58"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

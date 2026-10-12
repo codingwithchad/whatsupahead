@@ -1,0 +1,18 @@
+{
+  "id": "government-camp",
+  "name": "Government Camp (Mount Hood)",
+  "route": "US 26",
+  "connects": "Portland to Mount Hood and Central Oregon",
+  "group": "Oregon Cascades",
+  "lat": 45.3041,
+  "lon": -121.7548,
+  "place": "mount-hood",
+  "report": {
+    "source": "odot",
+    "route": "US26"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

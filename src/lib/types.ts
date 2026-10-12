@@ -1,3 +1,4 @@
+import type { PassReportSource } from './passes';
 export type Availability = 'live' | 'seasonal';
 
 interface Located {
@@ -48,6 +49,7 @@ export interface WeatherSource extends Located {
 		| 'nws'
 		| 'wsdot-weather'
 		| 'wsdot-pass'
+		| 'dot-pass'
 		| 'ndbc'
 		| 'noaa-tides'
 		| 'wsdot-ferry'
@@ -141,7 +143,14 @@ export interface Conditions {
 export interface PassInfo {
 	id: string;
 	name: string;
-	pass_id: number;
+	/** WSDOT's pass number (Washington passes). */
+	pass_id?: number;
+	/** Oregon and California passes: where their report comes from. */
+	report?: PassReportSource;
+	/** For roads that close for the winter, e.g. "Closed for the winter, usually November to late May". */
+	winter_closure?: string;
+	/** The state's own page for this road. */
+	link?: { label: string; url: string };
 	route: string;
 	connects: string;
 	group: string;

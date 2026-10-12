@@ -1,0 +1,19 @@
+{
+  "id": "bennett",
+  "name": "Bennett Pass",
+  "route": "OR 35",
+  "connects": "Mount Hood to Hood River",
+  "group": "Oregon Cascades",
+  "lat": 45.3108,
+  "lon": -121.6437,
+  "elevation_ft": 4670,
+  "place": "pass-bennett",
+  "report": {
+    "source": "odot",
+    "route": "OR35"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

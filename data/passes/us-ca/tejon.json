@@ -1,0 +1,24 @@
+{
+  "id": "tejon",
+  "name": "Tejon Pass (the Grapevine)",
+  "route": "I-5",
+  "connects": "Los Angeles to Bakersfield",
+  "group": "Southern California",
+  "lat": 34.8028,
+  "lon": -118.8768,
+  "elevation_ft": 4144,
+  "place": "pass-tejon",
+  "report": {
+    "source": "caltrans",
+    "route": "I-5",
+    "radius_km": 15,
+    "districts": [
+      7
+    ],
+    "closures": false
+  },
+  "link": {
+    "label": "Caltrans: Highway 5 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=5"
+  }
+}

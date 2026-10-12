@@ -1,0 +1,15 @@
+{
+  "id": "pass-ebbetts",
+  "name": "Ebbetts Pass (SR 4)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Arnold and Bear Valley to Markleeville",
+  "lat": 38.5443,
+  "lon": -119.8119,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 4 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=4"
+  }
+}

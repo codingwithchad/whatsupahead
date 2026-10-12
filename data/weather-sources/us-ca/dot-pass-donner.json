@@ -1,0 +1,19 @@
+{
+  "id": "dot-pass-donner",
+  "name": "Donner Summit road report",
+  "lat": 39.3416,
+  "lon": -120.3399,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "donner",
+  "source": "Caltrans",
+  "page_url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=80",
+  "elevation_ft": 7230,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

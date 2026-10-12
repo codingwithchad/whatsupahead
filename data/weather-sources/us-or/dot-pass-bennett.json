@@ -1,0 +1,20 @@
+{
+  "id": "dot-pass-bennett",
+  "name": "Bennett Pass road report",
+  "lat": 45.3108,
+  "lon": -121.6437,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "bennett",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "elevation_ft": 4670,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

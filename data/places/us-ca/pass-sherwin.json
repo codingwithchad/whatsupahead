@@ -1,0 +1,15 @@
+{
+  "id": "pass-sherwin",
+  "name": "Sherwin Summit (US 395)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Mammoth Lakes to Bishop",
+  "lat": 37.5516,
+  "lon": -118.6418,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 395 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395"
+  }
+}

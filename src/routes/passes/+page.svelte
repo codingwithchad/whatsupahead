@@ -28,8 +28,9 @@
 <main>
 	<h1>Mountain passes</h1>
 	<p class="lede-dark">
-		Open or closed, chains, and conditions for every Washington pass from WSDOT's pass reports, plus
-		cameras and forecasts for Oregon's passes.
+		Open or closed, chains and conditions for mountain passes in Washington (WSDOT pass reports),
+		Oregon (ODOT crew reports) and California (Caltrans chain controls and closures), with cameras
+		and forecasts for each.
 	</p>
 
 	{#if data.reachable}
@@ -39,8 +40,8 @@
 		</p>
 		{#if data.counts['off-season']}
 			<p class="sub">
-				WSDOT's winter reports usually run November to April. Until they start, there's no official
-				report for those passes: check the cameras and the forecast.
+				Winter reports usually run November to April. Until they start, some passes have no official
+				report: check the cameras and the forecast.
 			</p>
 		{/if}
 	{:else}
@@ -90,21 +91,23 @@
 							<span class="pass-detail">Cameras and forecast. No live pass report here yet.</span>
 						{:else if p.report}
 							<span class="pass-detail"
-								>{firstSentence(p.report.road) ||
-									'WSDOT is not reporting this pass right now.'}</span
+								>{firstSentence(p.report.road) || 'No report for this pass right now.'}</span
 							>
 						{/if}
+						{#if p.winter_closure}<span class="pass-detail">{p.winter_closure}.</span>{/if}
 					</a>
 				</li>
 			{/each}
 		</ul>
 	{/each}
 	<p class="hint">
-		Reports come from WSDOT and are updated by hand, mostly November through April. Always check
+		Reports come from WSDOT, ODOT and Caltrans; crews update them by hand, mostly November through
+		April. Always check the state's own page before you go:
 		<a href="https://wsdot.com/travel/real-time/mountainpasses" target="_blank" rel="noopener"
 			>WSDOT's pass page</a
-		>
-		before you go. WSDOT has no public camera on the North Cascades Highway itself. For Oregon, check
-		<a href="https://tripcheck.com/" target="_blank" rel="noopener">TripCheck</a>.
+		>,
+		<a href="https://tripcheck.com/" target="_blank" rel="noopener">TripCheck</a> for Oregon, or
+		<a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> for California.
+		WSDOT has no public camera on the North Cascades Highway itself.
 	</p>
 </main>

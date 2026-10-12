@@ -1,0 +1,23 @@
+{
+  "id": "deadman",
+  "name": "Deadman Summit",
+  "route": "US 395",
+  "connects": "Lee Vining and June Lake to Mammoth Lakes",
+  "group": "Eastern Sierra (US 395)",
+  "lat": 37.771,
+  "lon": -119.0082,
+  "elevation_ft": 8036,
+  "place": "pass-deadman",
+  "report": {
+    "source": "caltrans",
+    "route": "US-395",
+    "radius_km": 6,
+    "districts": [
+      9
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 395 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395"
+  }
+}

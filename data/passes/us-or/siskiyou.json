@@ -1,0 +1,19 @@
+{
+  "id": "siskiyou",
+  "name": "Siskiyou Summit",
+  "route": "I-5",
+  "connects": "Ashland and Medford to Yreka, California",
+  "group": "Southern Oregon",
+  "lat": 42.0619,
+  "lon": -122.6058,
+  "elevation_ft": 4310,
+  "place": "pass-siskiyou",
+  "report": {
+    "source": "odot",
+    "route": "I5"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

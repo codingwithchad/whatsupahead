@@ -1,0 +1,24 @@
+{
+  "id": "tioga",
+  "name": "Tioga Pass",
+  "route": "SR 120",
+  "connects": "Yosemite to Lee Vining and Mono Lake",
+  "group": "Sierra crossings",
+  "lat": 37.9109,
+  "lon": -119.2579,
+  "elevation_ft": 9943,
+  "place": "pass-tioga",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-120",
+    "radius_km": 15,
+    "districts": [
+      9
+    ]
+  },
+  "winter_closure": "Closed for the winter, usually from November until late May or June",
+  "link": {
+    "label": "Caltrans: Highway 120 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=120"
+  }
+}

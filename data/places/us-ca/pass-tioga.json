@@ -1,0 +1,15 @@
+{
+  "id": "pass-tioga",
+  "name": "Tioga Pass (SR 120)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Yosemite to Lee Vining and Mono Lake",
+  "lat": 37.9109,
+  "lon": -119.2579,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 120 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=120"
+  }
+}

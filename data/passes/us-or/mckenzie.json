@@ -1,0 +1,20 @@
+{
+  "id": "mckenzie",
+  "name": "McKenzie Pass",
+  "route": "OR 242",
+  "connects": "McKenzie Bridge to Sisters (the old lava highway)",
+  "group": "Oregon Cascades",
+  "lat": 44.2602,
+  "lon": -121.8005,
+  "elevation_ft": 5325,
+  "place": "pass-mckenzie",
+  "report": {
+    "source": "odot",
+    "route": "OR242"
+  },
+  "winter_closure": "Closed for the winter, usually from mid-November until June",
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

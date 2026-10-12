@@ -1,0 +1,19 @@
+{
+  "id": "dot-pass-sherwin",
+  "name": "Sherwin Summit road report",
+  "lat": 37.5516,
+  "lon": -118.6418,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "sherwin",
+  "source": "Caltrans",
+  "page_url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395",
+  "elevation_ft": 7000,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

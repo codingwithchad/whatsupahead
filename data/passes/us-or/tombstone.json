@@ -1,0 +1,19 @@
+{
+  "id": "tombstone",
+  "name": "Tombstone Pass",
+  "route": "US 20",
+  "connects": "Sweet Home to Santiam Junction",
+  "group": "Oregon Cascades",
+  "lat": 44.3958,
+  "lon": -122.1413,
+  "elevation_ft": 4240,
+  "place": "pass-tombstone",
+  "report": {
+    "source": "odot",
+    "route": "US20"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

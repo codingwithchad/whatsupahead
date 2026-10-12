@@ -7,15 +7,17 @@ import { getCatalog } from './catalog';
 // A rolling window of small pictures from the cameras near mountain passes, so a visitor can watch the
 // last couple of hours and see whether snow is building up. Kept in memory only: it starts empty after a
 // restart and fills in as the server runs. Only cameras whose owner publishes them for public use are
-// recorded (WSDOT, WSDOT Aviation and the National Park Service), never Windy pictures.
+// recorded (WSDOT, WSDOT Aviation, Caltrans and the National Park Service), never Windy pictures. ODOT's
+// pictures are left out: its terms cover serving one refreshed copy, not keeping past ones.
 
 // One picture every five minutes by default; HISTORY_EVERY_SECONDS lets tests record faster.
 const EVERY_MS = Math.max(5, Number(process.env.HISTORY_EVERY_SECONDS) || 300) * 1000;
 const KEEP_FRAMES = 24; // two hours at one every five minutes
 const NEAR_PASS_MILES = 6;
-const MAX_CAMERAS = 160;
+// About 24 small frames each, roughly 0.4 MB a camera.
+const MAX_CAMERAS = 240;
 const WIDTH = 480;
-const RECORDABLE = new Set(['WSDOT', 'WSDOT Aviation', 'National Park Service']);
+const RECORDABLE = new Set(['WSDOT', 'WSDOT Aviation', 'Caltrans', 'National Park Service']);
 
 export interface Frame {
 	t: number;
@@ -26,7 +28,7 @@ export interface Frame {
 const frames = new Map<string, Frame[]>();
 let started = 0;
 
-/** The cameras worth recording: working pictures within a few miles of any tracked pass. */
+/** The cameras worth recording: working pictures within a few miles of any tracked pass, closest first. */
 export function historyTargets(): Camera[] {
 	const { cameras, passes } = getCatalog();
 	return cameras
@@ -36,10 +38,13 @@ export function historyTargets(): Camera[] {
 				c.feed_type === 'image' &&
 				!c.provider &&
 				c.availability !== 'seasonal' &&
-				RECORDABLE.has(c.source) &&
-				passes.some((p) => distanceMiles(p, c) <= NEAR_PASS_MILES)
+				RECORDABLE.has(c.source)
 		)
-		.slice(0, MAX_CAMERAS);
+		.map((c) => ({ c, d: Math.min(...passes.map((p) => distanceMiles(p, c))) }))
+		.filter((x) => x.d <= NEAR_PASS_MILES)
+		.sort((a, b) => a.d - b.d)
+		.slice(0, MAX_CAMERAS)
+		.map((x) => x.c);
 }
 
 async function grab(camera: Camera) {

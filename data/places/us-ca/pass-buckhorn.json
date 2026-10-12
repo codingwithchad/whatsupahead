@@ -1,0 +1,15 @@
+{
+  "id": "pass-buckhorn",
+  "name": "Buckhorn Summit (SR 299)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Redding to Weaverville",
+  "lat": 40.6354,
+  "lon": -122.7335,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 299 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=299"
+  }
+}

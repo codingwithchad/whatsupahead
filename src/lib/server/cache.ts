@@ -82,3 +82,22 @@ export function clearCache() {
 	inFlight.clear();
 	bytes = 0;
 }
+
+/**
+ * Like `cached`, but once a value is past `ttlMs` the old one is returned at once while a fresh one loads in
+ * the background, so no visitor waits on a slow upstream. Past `maxStaleMs` it waits for the fresh value.
+ */
+export function cachedStale<T>(
+	key: string,
+	ttlMs: number,
+	load: () => Promise<T>,
+	maxStaleMs = 60 * 60 * 1000
+): Promise<T> {
+	const hit = store.get(key);
+	const age = hit ? Date.now() - hit.at : Infinity;
+	if (hit && age >= ttlMs && age < maxStaleMs) {
+		if (!inFlight.has(key)) cached(key, 0, load).catch(() => {});
+		return Promise.resolve(hit.value as T);
+	}
+	return cached(key, ttlMs, load);
+}

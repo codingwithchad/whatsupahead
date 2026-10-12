@@ -1,0 +1,24 @@
+{
+  "id": "cajon",
+  "name": "Cajon Pass",
+  "route": "I-15",
+  "connects": "San Bernardino to Victorville and Las Vegas",
+  "group": "Southern California",
+  "lat": 34.3253,
+  "lon": -117.4287,
+  "elevation_ft": 3780,
+  "place": "pass-cajon",
+  "report": {
+    "source": "caltrans",
+    "route": "I-15",
+    "radius_km": 12,
+    "districts": [
+      8
+    ],
+    "closures": false
+  },
+  "link": {
+    "label": "Caltrans: Highway 15 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=15"
+  }
+}

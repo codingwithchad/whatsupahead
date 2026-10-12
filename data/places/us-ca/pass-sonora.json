@@ -1,0 +1,15 @@
+{
+  "id": "pass-sonora",
+  "name": "Sonora Pass (SR 108)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Sonora and Pinecrest to US 395 near Bridgeport",
+  "lat": 38.3279,
+  "lon": -119.6372,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 108 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=108"
+  }
+}

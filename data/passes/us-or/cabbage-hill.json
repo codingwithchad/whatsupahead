@@ -1,0 +1,19 @@
+{
+  "id": "cabbage-hill",
+  "name": "Deadman Pass (Cabbage Hill)",
+  "route": "I-84",
+  "connects": "Pendleton to La Grande over the Blue Mountains",
+  "group": "Eastern Oregon",
+  "lat": 45.6005,
+  "lon": -118.504,
+  "elevation_ft": 3610,
+  "place": "pass-cabbage-hill",
+  "report": {
+    "source": "odot",
+    "route": "I84"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

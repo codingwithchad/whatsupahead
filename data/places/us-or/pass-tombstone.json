@@ -1,0 +1,15 @@
+{
+  "id": "pass-tombstone",
+  "name": "Tombstone Pass (US 20)",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "Sweet Home to Santiam Junction",
+  "lat": 44.3958,
+  "lon": -122.1413,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

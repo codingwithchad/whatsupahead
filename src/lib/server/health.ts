@@ -95,6 +95,30 @@ const CHECKS: Check[] = [
 		}
 	},
 	{
+		name: 'caltrans-chain-controls',
+		run: async () => {
+			const body = (await (
+				await get('https://cwwp2.dot.ca.gov/data/d3/cc/ccStatusD03.json')
+			).json()) as {
+				data?: unknown[];
+			};
+			if (!body.data?.length) return 'chain control list is empty';
+		}
+	},
+	{
+		name: 'odot-road-reports',
+		run: async () => {
+			const key = process.env.ORDOT_CODE_PRIMARY;
+			if (!key) return null;
+			const body = (await (
+				await get('https://api.odot.state.or.us/tripcheck/RW/Reports', {
+					'Ocp-Apim-Subscription-Key': key
+				})
+			).json()) as { 'road-weather-reports'?: unknown };
+			if (!Array.isArray(body['road-weather-reports'])) return 'unexpected answer';
+		}
+	},
+	{
 		name: 'nws',
 		run: async () => {
 			await get('https://api.weather.gov/points/47.6062,-122.3321', {

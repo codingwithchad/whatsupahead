@@ -1,7 +1,9 @@
 import { isDormant } from '../geo';
 import type { Conditions, Nearby, WeatherSource } from '../types';
 import { riverRows, type GaugeInfo, type StageFlow } from '../river';
-import { classifyPass, STATUS_LABEL, type RawPass } from '../passes';
+import { classifyPass, toneOf, type RawPass } from '../passes';
+import { allPassReports } from './passes';
+import { getCatalog } from './catalog';
 import { faaRows, observationRows } from '../airport';
 import { hourlyRows, type HourlyPeriod } from '../forecast';
 import { timeZoneAt } from '../regions';
@@ -104,6 +106,25 @@ async function fetchWsdotPass(src: WeatherSource): Promise<Row[]> {
 		['Weather', show(pass.weather)],
 		['Temperature', show(pass.tempF, '°F')],
 		['Travel advisory', pass.advisory ? 'Active' : null]
+	]);
+}
+
+/** An Oregon or California pass report (provider_ref is our pass id in data/passes). */
+async function fetchDotPass(src: WeatherSource): Promise<Row[]> {
+	const pass = getCatalog().passes.find((p) => p.id === src.provider_ref);
+	if (!pass) throw new Error(`no pass ${src.provider_ref}`);
+	const report = (await allPassReports([pass])).get(pass.id);
+	if (!report) throw new Error('state feed not reachable');
+	return compact([
+		['Status', report.label],
+		...report.restrictions.map((r): [string, string | null] => [
+			r.direction || 'Restriction',
+			r.text
+		]),
+		['Road', show(report.road)],
+		['Weather', show(report.weather)],
+		['Temperature', show(report.tempF, '°F')],
+		['Winter', pass.winter_closure ?? null]
 	]);
 }
 
@@ -272,19 +293,13 @@ async function fetchRiver(src: WeatherSource): Promise<Row[]> {
 	return riverRows(gauge, flow, Date.now(), timeZoneAt(src.lat, src.lon));
 }
 
-const PASS_TONE: Record<string, NonNullable<Conditions['badge']>['tone']> = Object.fromEntries(
-	(Object.entries(STATUS_LABEL) as [keyof typeof STATUS_LABEL, string][]).map(([tone, label]) => [
-		label,
-		tone
-	])
-);
-
 const adapters: Record<
 	NonNullable<WeatherSource['provider']>,
 	(s: WeatherSource, at?: number) => Promise<Row[]>
 > = {
 	nws: fetchNws,
 	'wsdot-pass': fetchWsdotPass,
+	'dot-pass': fetchDotPass,
 	'wsdot-weather': fetchWsdotStation,
 	ndbc: fetchBuoy,
 	'noaa-tides': fetchTides,
@@ -319,7 +334,8 @@ export async function getConditions(
 		const fast =
 			src.provider === 'wsdot-ferry' ||
 			src.provider === 'wsdot-border' ||
-			src.provider === 'faa-status';
+			src.provider === 'faa-status' ||
+			src.provider === 'dot-pass';
 		// Forecasts for a future arrival time are asked for by the 10 minute slot so they can be cached.
 		const at = src.kind === 'forecast' ? opts.at : undefined;
 		const slot = at === undefined ? 'now' : Math.floor(at / 600_000);
@@ -334,7 +350,10 @@ export async function getConditions(
 				rows: []
 			};
 		// Road-condition reports lead with a one-word status that gets a coloured tag.
-		const tone = src.provider === 'wsdot-pass' ? PASS_TONE[rows[0]?.value ?? ''] : undefined;
+		const tone =
+			src.provider === 'wsdot-pass' || src.provider === 'dot-pass'
+				? toneOf(rows[0]?.value ?? '')
+				: undefined;
 		// A boat wait is worth a line of its own at the top of the ferry report.
 		const glance = src.provider === 'wsdot-ferry' ? await getGlance(src) : null;
 		return {

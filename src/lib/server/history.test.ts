@@ -7,9 +7,12 @@ describe('history', () => {
 		expect(targets.length).toBeGreaterThan(20);
 		for (const c of targets) {
 			expect(c.provider, c.id).toBeUndefined();
-			expect(['WSDOT', 'WSDOT Aviation', 'National Park Service'], c.id).toContain(c.source);
+			expect(['WSDOT', 'WSDOT Aviation', 'Caltrans', 'National Park Service'], c.id).toContain(
+				c.source
+			);
 		}
 		expect(targets.some((c) => c.id === 'wsdot-us2-mp63-big-windy')).toBe(true);
+		expect(targets.some((c) => c.source === 'Caltrans')).toBe(true);
 	});
 
 	it('returns saved frames oldest first and finds one by time', () => {

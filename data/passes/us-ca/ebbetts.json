@@ -1,0 +1,24 @@
+{
+  "id": "ebbetts",
+  "name": "Ebbetts Pass",
+  "route": "SR 4",
+  "connects": "Arnold and Bear Valley to Markleeville",
+  "group": "Sierra crossings",
+  "lat": 38.5443,
+  "lon": -119.8119,
+  "elevation_ft": 8730,
+  "place": "pass-ebbetts",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-4",
+    "radius_km": 15,
+    "districts": [
+      10
+    ]
+  },
+  "winter_closure": "Closed for the winter past Bear Valley, usually from November until late May",
+  "link": {
+    "label": "Caltrans: Highway 4 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=4"
+  }
+}

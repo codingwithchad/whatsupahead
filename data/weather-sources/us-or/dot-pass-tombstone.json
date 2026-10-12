@@ -1,0 +1,20 @@
+{
+  "id": "dot-pass-tombstone",
+  "name": "Tombstone Pass road report",
+  "lat": 44.3958,
+  "lon": -122.1413,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "tombstone",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "elevation_ft": 4240,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

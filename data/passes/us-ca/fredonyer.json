@@ -1,0 +1,23 @@
+{
+  "id": "fredonyer",
+  "name": "Fredonyer Pass",
+  "route": "SR 36",
+  "connects": "Chester and Westwood to Susanville",
+  "group": "Northern California",
+  "lat": 40.36,
+  "lon": -120.8664,
+  "elevation_ft": 5748,
+  "place": "pass-fredonyer",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-36",
+    "radius_km": 8,
+    "districts": [
+      2
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 36 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=36"
+  }
+}

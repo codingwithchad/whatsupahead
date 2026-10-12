@@ -1,0 +1,15 @@
+{
+  "id": "pass-cajon",
+  "name": "Cajon Pass (I-15)",
+  "region": "California",
+  "state": "California",
+  "blurb": "San Bernardino to Victorville and Las Vegas",
+  "lat": 34.3253,
+  "lon": -117.4287,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 15 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=15"
+  }
+}

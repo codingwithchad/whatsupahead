@@ -1,0 +1,20 @@
+{
+  "id": "dot-pass-willamette",
+  "name": "Willamette Pass road report",
+  "lat": 43.6006,
+  "lon": -122.0379,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "willamette",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "elevation_ft": 5128,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

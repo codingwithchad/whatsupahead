@@ -1,0 +1,24 @@
+{
+  "id": "luther",
+  "name": "Luther Pass",
+  "route": "SR 89",
+  "connects": "South Lake Tahoe to Hope Valley",
+  "group": "Lake Tahoe and I-80",
+  "lat": 38.7876,
+  "lon": -119.9456,
+  "elevation_ft": 7740,
+  "place": "pass-luther",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-89",
+    "radius_km": 6,
+    "districts": [
+      3,
+      10
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 89 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=89"
+  }
+}

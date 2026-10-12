@@ -1,0 +1,19 @@
+{
+  "id": "santiam",
+  "name": "Santiam Pass",
+  "route": "US 20",
+  "connects": "Salem and Albany to Sisters and Bend",
+  "group": "Oregon Cascades",
+  "lat": 44.4248,
+  "lon": -121.8455,
+  "elevation_ft": 4817,
+  "place": "pass-santiam",
+  "report": {
+    "source": "odot",
+    "route": "US20"
+  },
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

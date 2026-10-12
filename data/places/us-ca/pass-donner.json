@@ -1,0 +1,15 @@
+{
+  "id": "pass-donner",
+  "name": "Donner Summit (I-80)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Sacramento and Auburn to Truckee and Reno",
+  "lat": 39.3416,
+  "lon": -120.3399,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 80 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=80"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pass-monitor",
+  "name": "Monitor Pass (SR 89)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Markleeville to US 395",
+  "lat": 38.6754,
+  "lon": -119.6215,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 89 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=89"
+  }
+}

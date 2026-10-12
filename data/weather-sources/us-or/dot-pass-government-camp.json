@@ -1,0 +1,19 @@
+{
+  "id": "dot-pass-government-camp",
+  "name": "Government Camp (Mount Hood) road report",
+  "lat": 45.3041,
+  "lon": -121.7548,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "government-camp",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

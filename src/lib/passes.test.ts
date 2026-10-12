@@ -1,5 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { classifyPass, classifyRestriction, type RawPass } from './passes';
+import {
+	caltransPassReport,
+	checkpointName,
+	classifyPass,
+	classifyRestriction,
+	odotPassReport,
+	toneOf,
+	type CaltransChainControl,
+	type CaltransClosure,
+	type OdotIncident,
+	type OdotRwReport,
+	type RawPass
+} from './passes';
 
 const pass = (over: Partial<RawPass>): RawPass => ({
 	MountainPassId: 1,
@@ -118,5 +130,215 @@ describe('old reports', () => {
 
 	it('still shows an old closure as closed', () => {
 		expect(report(28, 'Pass closed due to a collision').status).toBe('closed');
+	});
+});
+
+describe('Oregon pass reports (ODOT)', () => {
+	const santiam = {
+		id: 'santiam',
+		lat: 44.4248,
+		lon: -121.8455,
+		report: { source: 'odot' as const, route: 'US20' }
+	};
+	const now = Date.parse('2026-12-10T12:00:00Z');
+	const rw = (over: Partial<OdotRwReport> = {}): OdotRwReport => ({
+		'entry-time': '2026-12-10T10:00:00Z',
+		'expiry-time': '2026-12-10T22:00:00Z',
+		location: {
+			'location-name': 'SANTIAM PASS',
+			'route-id': 'US20',
+			'start-location': { 'start-lat': 44.42, 'start-long': -121.85 }
+		},
+		'air-temperature': 28,
+		'weather-conditions': { 'weather-id': 7 },
+		'road-conditions': { 'road-cond-id': 6 },
+		'driving-restriction': { 'restriction-id': 'C' },
+		...over
+	});
+
+	it('says no report when ODOT has none (outside winter)', () => {
+		const r = odotPassReport(santiam, [], [], { now });
+		expect(r.status).toBe('off-season');
+		expect(r.label).toBe('No report yet');
+	});
+
+	it('reads chains, road, weather and temperature from the crew report', () => {
+		const r = odotPassReport(santiam, [rw()], [], { now });
+		expect(r.status).toBe('chains');
+		expect(r.road).toBe('Packed snow');
+		expect(r.weather).toBe('Snow flurries');
+		expect(r.tempF).toBe(28);
+		expect(r.restrictions[0].direction).toBe('Santiam Pass');
+	});
+
+	it('reads "carry chains" as traction, and no restriction as open', () => {
+		expect(
+			odotPassReport(santiam, [rw({ 'driving-restriction': { 'restriction-id': 'A' } })], [], {
+				now
+			}).status
+		).toBe('traction');
+		expect(
+			odotPassReport(santiam, [rw({ 'driving-restriction': { 'restriction-id': '0' } })], [], {
+				now
+			}).status
+		).toBe('open');
+	});
+
+	it('ignores other highways, far-away and expired reports', () => {
+		expect(
+			odotPassReport(santiam, [rw({ location: { ...rw().location, 'route-id': 'OR22' } })], [], {
+				now
+			}).status
+		).toBe('off-season');
+		expect(
+			odotPassReport(
+				santiam,
+				[
+					rw({
+						location: {
+							...rw().location,
+							'start-location': { 'start-lat': 45.3, 'start-long': -121.7 }
+						}
+					})
+				],
+				[],
+				{ now }
+			).status
+		).toBe('off-season');
+		expect(
+			odotPassReport(santiam, [rw({ 'expiry-time': '2026-12-10T11:00:00Z' })], [], { now }).status
+		).toBe('off-season');
+	});
+
+	it('is closed when ODOT lists a closure on the highway near the summit, but not for a ramp', () => {
+		const closure: OdotIncident = {
+			'impact-id': '4',
+			headline: 'US 20 is closed at Santiam Pass due to crashes.',
+			location: {
+				'route-id': 'US20',
+				'start-location': { 'start-lat': 44.43, 'start-long': -121.83 }
+			}
+		};
+		const r = odotPassReport(santiam, [rw()], [closure], { now });
+		expect(r.status).toBe('closed');
+		expect(r.road).toMatch(/closed at Santiam Pass/);
+		expect(
+			odotPassReport(santiam, [], [{ ...closure, headline: 'The EB on ramp is closed' }], { now })
+				.status
+		).toBe('off-season');
+	});
+});
+
+describe('California pass reports (Caltrans)', () => {
+	const donner = {
+		id: 'donner',
+		lat: 39.3416,
+		lon: -120.3399,
+		report: { source: 'caltrans' as const, route: 'I-80', radius_km: 15 }
+	};
+	const now = Date.parse('2027-01-10T20:00:00Z');
+	const cc = (
+		status: string,
+		over: Partial<CaltransChainControl['location']> = {}
+	): CaltransChainControl => ({
+		location: {
+			locationName: 'Kingvale',
+			latitude: '39.32',
+			longitude: '-120.43',
+			route: 'I-80',
+			direction: 'West',
+			...over
+		},
+		inService: 'true',
+		statusData: {
+			status,
+			statusDescription: '',
+			statusTimestamp: { statusDate: '2027-01-10', statusTime: '10:00:00' }
+		}
+	});
+	const closure = (over: Partial<CaltransClosure['closure']> = {}): CaltransClosure => ({
+		location: {
+			begin: {
+				beginLatitude: '39.30',
+				beginLongitude: '-120.70',
+				beginRoute: 'I-80',
+				beginLocationName: 'Colfax'
+			},
+			end: { endLatitude: '39.33', endLongitude: '-120.20', endLocationName: 'Truckee' }
+		},
+		closure: {
+			facility: 'Mainline',
+			typeOfClosure: 'Full',
+			typeOfWork: 'Spin-outs',
+			closureTimestamp: {
+				closureStartEpoch: String(now / 1000 - 3600),
+				closureEndEpoch: String(now / 1000 + 3600)
+			},
+			code1097: { isCode1097: 'true' },
+			code1098: { isCode1098: 'false' },
+			...over
+		}
+	});
+
+	it('is "no chain controls" when the checkpoints say R-0', () => {
+		const r = caltransPassReport(donner, [cc('R-0')], [], { now });
+		expect(r.status).toBe('open');
+		expect(r.label).toBe('No chain controls');
+		expect(toneOf(r.label)).toBe('open');
+	});
+
+	it('reports the strictest chain control, once per direction', () => {
+		const r = caltransPassReport(
+			donner,
+			[cc('R-1'), cc('R-2', { locationName: 'Soda Springs' }), cc('R-2', { direction: 'East' })],
+			[],
+			{ now }
+		);
+		expect(r.status).toBe('chains');
+		expect(r.restrictions[0].text).toMatch(/Four-wheel drive/);
+		expect(r.restrictions.map((x) => x.direction)).toEqual([
+			'Westbound at Soda Springs',
+			'Eastbound at Kingvale',
+			'Westbound at Kingvale'
+		]);
+	});
+
+	it('is closed by a full mainline closure in effect across the summit', () => {
+		const r = caltransPassReport(donner, [cc('R-2')], [closure()], { now });
+		expect(r.status).toBe('closed');
+		expect(r.road).toBe('Closed from Colfax to Truckee. Spin-outs');
+	});
+
+	it('ignores closures that ended, have not started, or are only a ramp', () => {
+		expect(
+			caltransPassReport(donner, [cc('R-0')], [closure({ code1098: { isCode1098: 'true' } })], {
+				now
+			}).status
+		).toBe('open');
+		expect(
+			caltransPassReport(donner, [cc('R-0')], [closure({ code1097: { isCode1097: 'false' } })], {
+				now
+			}).status
+		).toBe('open');
+		expect(
+			caltransPassReport(donner, [cc('R-0')], [closure({ facility: 'Off Ramp' })], { now }).status
+		).toBe('open');
+	});
+
+	it('does not call a winter-closure road open in deep winter just because nothing is listed', () => {
+		const tioga = { ...donner, id: 'tioga', winter_closure: 'Closed for the winter' };
+		expect(caltransPassReport(tioga, [cc('R-0')], [], { now }).label).toBe(
+			'Usually closed in winter'
+		);
+		expect(
+			caltransPassReport(tioga, [cc('R-0')], [], { now: Date.parse('2027-07-01T12:00:00Z') }).status
+		).toBe('open');
+	});
+
+	it('cleans up checkpoint names', () => {
+		expect(checkpointName('Foot of Conway / 8 Mi. N of Lee Vining _ _ _ _ (17)7_ (15)34')).toBe(
+			'Foot of Conway / 8 Mi. N of Lee Vining'
+		);
+		expect(checkpointName('RED LAKE CREEK - CARSON PASS')).toBe('Red Lake Creek - Carson Pass');
 	});
 });

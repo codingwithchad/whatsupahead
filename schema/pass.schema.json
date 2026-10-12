@@ -2,13 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/codingwithchad/whatsupahead/schema/pass.schema.json",
   "title": "Mountain pass",
-  "description": "A mountain pass tracked by WSDOT's pass reports.",
+  "description": "A mountain pass with a live report: WSDOT's pass reports (Washington), ODOT's crew road reports (Oregon) or Caltrans chain controls and closures (California).",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "id",
     "name",
-    "pass_id",
     "route",
     "connects",
     "group",
@@ -26,7 +25,7 @@
     },
     "pass_id": {
       "type": "integer",
-      "description": "WSDOT's MountainPassId."
+      "description": "WSDOT's MountainPassId (Washington passes)."
     },
     "route": {
       "type": "string"
@@ -50,6 +49,77 @@
     "place": {
       "type": "string",
       "description": "Id of the place page showing this pass's cameras and weather."
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "route"
+      ],
+      "description": "Oregon and California passes: which state feed the report comes from.",
+      "properties": {
+        "source": {
+          "enum": [
+            "odot",
+            "caltrans"
+          ]
+        },
+        "route": {
+          "type": "string",
+          "description": "The highway as the feed writes it, e.g. US20 (ODOT) or SR-89 (Caltrans)."
+        },
+        "radius_km": {
+          "type": "number",
+          "description": "How far from the summit to use reports (default 15)."
+        },
+        "districts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "description": "Caltrans districts to fetch."
+        },
+        "closures": {
+          "type": "boolean",
+          "description": "Also check Caltrans's lane-closure list for full closures (default true)."
+        }
+      }
+    },
+    "winter_closure": {
+      "type": "string",
+      "description": "For roads that close for the winter: when, in words."
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "url"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
     }
-  }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "pass_id"
+      ]
+    },
+    {
+      "required": [
+        "report"
+      ]
+    }
+  ]
 }

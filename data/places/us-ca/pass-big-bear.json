@@ -1,0 +1,15 @@
+{
+  "id": "pass-big-bear",
+  "name": "Big Bear roads (Running Springs) (SR 18)",
+  "region": "California",
+  "state": "California",
+  "blurb": "San Bernardino to Lake Arrowhead and Big Bear",
+  "lat": 34.2078,
+  "lon": -117.1092,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 18 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=18"
+  }
+}

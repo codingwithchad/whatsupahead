@@ -1,0 +1,23 @@
+{
+  "id": "black-butte",
+  "name": "Black Butte Summit",
+  "route": "I-5",
+  "connects": "Redding and Mount Shasta to Weed and Yreka",
+  "group": "Northern California",
+  "lat": 41.3541,
+  "lon": -122.3554,
+  "elevation_ft": 3912,
+  "place": "pass-black-butte",
+  "report": {
+    "source": "caltrans",
+    "route": "I-5",
+    "radius_km": 8,
+    "districts": [
+      2
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 5 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=5"
+  }
+}

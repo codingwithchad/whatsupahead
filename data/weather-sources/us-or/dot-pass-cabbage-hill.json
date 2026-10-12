@@ -1,0 +1,20 @@
+{
+  "id": "dot-pass-cabbage-hill",
+  "name": "Deadman Pass (Cabbage Hill) road report",
+  "lat": 45.6005,
+  "lon": -118.504,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "cabbage-hill",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "elevation_ft": 3610,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

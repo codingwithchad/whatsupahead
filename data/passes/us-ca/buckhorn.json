@@ -1,0 +1,23 @@
+{
+  "id": "buckhorn",
+  "name": "Buckhorn Summit",
+  "route": "SR 299",
+  "connects": "Redding to Weaverville",
+  "group": "Northern California",
+  "lat": 40.6354,
+  "lon": -122.7335,
+  "elevation_ft": 3212,
+  "place": "pass-buckhorn",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-299",
+    "radius_km": 8,
+    "districts": [
+      2
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 299 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=299"
+  }
+}

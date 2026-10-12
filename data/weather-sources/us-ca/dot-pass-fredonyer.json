@@ -1,0 +1,19 @@
+{
+  "id": "dot-pass-fredonyer",
+  "name": "Fredonyer Pass road report",
+  "lat": 40.36,
+  "lon": -120.8664,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "fredonyer",
+  "source": "Caltrans",
+  "page_url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=36",
+  "elevation_ft": 5748,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

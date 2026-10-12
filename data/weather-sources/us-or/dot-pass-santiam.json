@@ -1,0 +1,20 @@
+{
+  "id": "dot-pass-santiam",
+  "name": "Santiam Pass road report",
+  "lat": 44.4248,
+  "lon": -121.8455,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "santiam",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "elevation_ft": 4817,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

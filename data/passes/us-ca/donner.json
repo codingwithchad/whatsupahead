@@ -1,0 +1,23 @@
+{
+  "id": "donner",
+  "name": "Donner Summit",
+  "route": "I-80",
+  "connects": "Sacramento and Auburn to Truckee and Reno",
+  "group": "Lake Tahoe and I-80",
+  "lat": 39.3416,
+  "lon": -120.3399,
+  "elevation_ft": 7230,
+  "place": "pass-donner",
+  "report": {
+    "source": "caltrans",
+    "route": "I-80",
+    "radius_km": 15,
+    "districts": [
+      3
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 80 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=80"
+  }
+}

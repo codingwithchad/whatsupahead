@@ -1,0 +1,23 @@
+{
+  "id": "conway",
+  "name": "Conway Summit",
+  "route": "US 395",
+  "connects": "Bridgeport to Lee Vining and Mono Lake",
+  "group": "Eastern Sierra (US 395)",
+  "lat": 38.0877,
+  "lon": -119.1822,
+  "elevation_ft": 8143,
+  "place": "pass-conway",
+  "report": {
+    "source": "caltrans",
+    "route": "US-395",
+    "radius_km": 6,
+    "districts": [
+      9
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 395 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395"
+  }
+}

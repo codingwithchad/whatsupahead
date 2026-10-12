@@ -1,0 +1,23 @@
+{
+  "id": "carson",
+  "name": "Carson Pass",
+  "route": "SR 88",
+  "connects": "Jackson and Kirkwood to Hope Valley",
+  "group": "Sierra crossings",
+  "lat": 38.6943,
+  "lon": -119.9886,
+  "elevation_ft": 8574,
+  "place": "pass-carson",
+  "report": {
+    "source": "caltrans",
+    "route": "SR-88",
+    "radius_km": 12,
+    "districts": [
+      10
+    ]
+  },
+  "link": {
+    "label": "Caltrans: Highway 88 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=88"
+  }
+}

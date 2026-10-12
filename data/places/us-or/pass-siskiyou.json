@@ -1,0 +1,15 @@
+{
+  "id": "pass-siskiyou",
+  "name": "Siskiyou Summit (I-5)",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "Ashland and Medford to Yreka, California",
+  "lat": 42.0619,
+  "lon": -122.6058,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

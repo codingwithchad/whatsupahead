@@ -1,0 +1,20 @@
+{
+  "id": "dot-pass-siskiyou",
+  "name": "Siskiyou Summit road report",
+  "lat": 42.0619,
+  "lon": -122.6058,
+  "kind": "pass-conditions",
+  "provider": "dot-pass",
+  "provider_ref": "siskiyou",
+  "source": "ODOT TripCheck",
+  "page_url": "https://tripcheck.com/",
+  "requires_key": "ORDOT_CODE_PRIMARY",
+  "elevation_ft": 4310,
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "tags": [
+    "pass"
+  ],
+  "attribution_text": "Oregon Department of Transportation (TripCheck)",
+  "created_at": "2026-10-12T00:00:00Z"
+}

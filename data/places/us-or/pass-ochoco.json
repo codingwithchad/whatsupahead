@@ -1,0 +1,15 @@
+{
+  "id": "pass-ochoco",
+  "name": "Ochoco Pass (US 26)",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "Prineville to Mitchell and John Day",
+  "lat": 44.5013,
+  "lon": -120.3862,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

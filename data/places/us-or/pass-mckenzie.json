@@ -1,0 +1,15 @@
+{
+  "id": "pass-mckenzie",
+  "name": "McKenzie Pass (OR 242)",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "McKenzie Bridge to Sisters (the old lava highway)",
+  "lat": 44.2602,
+  "lon": -121.8005,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

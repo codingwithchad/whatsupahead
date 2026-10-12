@@ -1,0 +1,15 @@
+{
+  "id": "pass-brockway",
+  "name": "Brockway Summit (SR 267)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Truckee and Northstar to Kings Beach",
+  "lat": 39.261,
+  "lon": -120.0713,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 267 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=267"
+  }
+}

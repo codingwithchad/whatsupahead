@@ -1,0 +1,15 @@
+{
+  "id": "pass-conway",
+  "name": "Conway Summit (US 395)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Bridgeport to Lee Vining and Mono Lake",
+  "lat": 38.0877,
+  "lon": -119.1822,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 395 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=395"
+  }
+}

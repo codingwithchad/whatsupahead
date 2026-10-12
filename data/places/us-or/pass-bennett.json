@@ -1,0 +1,15 @@
+{
+  "id": "pass-bennett",
+  "name": "Bennett Pass (OR 35)",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "Mount Hood to Hood River",
+  "lat": 45.3108,
+  "lon": -121.6437,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "TripCheck road conditions",
+    "url": "https://tripcheck.com/"
+  }
+}

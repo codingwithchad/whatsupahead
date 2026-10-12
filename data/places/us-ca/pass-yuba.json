@@ -1,0 +1,15 @@
+{
+  "id": "pass-yuba",
+  "name": "Yuba Pass (SR 49)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Downieville to Sierraville",
+  "lat": 39.6166,
+  "lon": -120.4922,
+  "radius_miles": 10,
+  "collection": "passes",
+  "link": {
+    "label": "Caltrans: Highway 49 conditions",
+    "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=49"
+  }
+}

@@ -53,6 +53,7 @@
         "nws",
         "wsdot-weather",
         "wsdot-pass",
+        "dot-pass",
         "ndbc",
         "noaa-tides",
         "wsdot-ferry",
@@ -65,7 +66,7 @@
     },
     "provider_ref": {
       "type": "string",
-      "description": "Provider-specific id: a WSDOT station or pass id, or a lat,lon for NWS."
+      "description": "Provider-specific id: a WSDOT station or pass id, a lat,lon for NWS, or our pass id (data/passes) for dot-pass."
     },
     "source": {
       "type": "string",
