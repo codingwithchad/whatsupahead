@@ -7,6 +7,9 @@ import { withForecast } from '../../lib/server/autoForecast';
 import { withLiveLinks } from '../../lib/server/live';
 import { drivingRoute } from '../../lib/server/routing';
 import { snowAlong } from '../../lib/server/snow';
+import { weatherOnTheWay } from '../../lib/server/routeWeather';
+import { nearestTown } from '../../lib/server/gazetteer';
+import { routeStops } from '../../lib/routeWeather';
 import { alongRoute, cumulativeMiles, projectOnRoute, thinToTarget } from '../../lib/route';
 import type { Camera, FeaturedPlace, Nearby, Place, WeatherSource } from '../../lib/types';
 import type { PageServerLoad } from './$types';
@@ -168,6 +171,17 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				.map((s) => ({ ...s.camera, distance: s.along }) as Nearby<Camera>),
 			// Streamed like the conditions: where snow or freezing starts, for when you will be there.
 			snow: snowAlong(route.coords, Date.now() + leaveIn * 60_000, route.minutes, demoWinter),
+			// Streamed: the forecast at the start, each pass, every hour or so, and the end, for when you get there.
+			onTheWay: weatherOnTheWay(
+				routeStops(
+					route.coords,
+					route.minutes,
+					leaveIn,
+					{ from: { ...from, label: from.label }, to: { ...to, label: to.label } },
+					getCatalog().passes,
+					nearestTown
+				)
+			),
 			// Streamed: the page shows cameras right away while live weather loads.
 			conditions: Promise.all(
 				thinToTarget(

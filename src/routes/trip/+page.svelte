@@ -5,6 +5,7 @@
 	import CameraList from '../../lib/CameraList.svelte';
 	import ConditionsBar from '../../lib/ConditionsBar.svelte';
 	import SnowLine from '../../lib/SnowLine.svelte';
+	import RouteWeather from '../../lib/RouteWeather.svelte';
 	import OfflineCameras from '../../lib/OfflineCameras.svelte';
 	import TripForm from '../../lib/TripForm.svelte';
 	import { duration } from '../../lib/format';
@@ -194,6 +195,10 @@
 					minutes={trip.minutes}
 					stops={trip.stops}
 				/>{/if}
+		{/await}
+
+		{#await trip.onTheWay then onTheWay}
+			{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
 		{/await}
 
 		{#await trip.conditions}

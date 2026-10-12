@@ -85,3 +85,7 @@ California added about 3,380 Caltrans cameras (open data, no key) and the towns 
 ## 2026-10-11: Host-neutral repository
 
 The repository describes how to run the app on any Node host (docs/deploy.md) rather than one provider's steps. Optional integrations (a paid routing service, a cloud store for visit counts) are switched on by settings and the app works without them.
+
+## 2026-10-11: Weather on the way
+
+A trip shows the forecast at the start, at each pass the road crosses (within 2 miles of it), about every hour on long stretches, and at the destination, each for the time you will reach it: when you leave plus the driving time to that point. One Azure Maps Weather Along Route request covers the whole drive when its key is set (inside the same daily allowance as routes and searches); otherwise Open-Meteo's free hourly forecast. A line at the top names the worst point ("Heavy snow expected at Snoqualmie Pass when you get there").

@@ -4,6 +4,7 @@ import { COVERAGE, REGIONS } from '../regions';
 import { allow } from './rateLimit';
 import type { DrivingRoute } from './routing';
 import type { Suggestion } from './photon';
+import type { AzureWaypoint } from '../routeWeather';
 
 // Azure Maps (Microsoft): routing with live traffic and place search, used first when AZURE_MAPS_KEY is set.
 // It is paid past a free monthly amount, so the whole app gets a daily allowance per kind of request
@@ -19,7 +20,7 @@ const ABBR = new Map(REGIONS.map((r) => [r.name, r.abbr]));
 
 export const azureMapsKey = () => process.env.AZURE_MAPS_KEY?.trim() || '';
 
-function spend(kind: 'route' | 'search'): boolean {
+function spend(kind: 'route' | 'search' | 'weather'): boolean {
 	const daily = Number(process.env.AZURE_MAPS_DAILY) || 150;
 	return allow(`upstream:azure-maps:${kind}`, 30) && allow(`azure-maps-day:${kind}`, daily, DAY);
 }
@@ -40,6 +41,26 @@ async function get<T>(path: string, params: Record<string, string>): Promise<T> 
 		throw new Error(`azure maps ${res.status} ${reason.slice(0, 160)}`.trim());
 	}
 	return (await res.json()) as T;
+}
+
+/**
+ * The weather at each point when you get there: one request for the whole drive. Each stop is a point and the
+ * minutes from now until you reach it (Azure allows up to 60 points and 120 hours).
+ */
+export async function azureWeatherAlongRoute(
+	stops: { lat: number; lon: number; minutesIn: number }[]
+): Promise<AzureWaypoint[]> {
+	if (!spend('weather')) throw new Error('daily allowance used');
+	const body = await get<{ waypoints?: AzureWaypoint[] }>('/weather/route/json', {
+		'api-version': '1.1',
+		query: stops
+			.map((s) => `${s.lat.toFixed(4)},${s.lon.toFixed(4)},${Math.max(0, Math.round(s.minutesIn))}`)
+			.join(':'),
+		language: 'en-US'
+	});
+	if (body.waypoints?.length !== stops.length)
+		throw new Error('weather along route: wrong number of points');
+	return body.waypoints;
 }
 
 interface AzureRoute {

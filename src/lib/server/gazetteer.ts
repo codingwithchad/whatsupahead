@@ -110,3 +110,16 @@ export function suggestTowns(
 		.slice(0, limit)
 		.map((t) => ({ label: t.name, sub: t.abbr, lat: t.lat, lon: t.lon }));
 }
+
+/** The nearest city or town within `maxMiles`, for naming a point on a drive ("Near Ellensburg"). */
+export function nearestTown(p: { lat: number; lon: number }, maxMiles = 12): string | null {
+	const k = Math.cos((p.lat * Math.PI) / 180);
+	let best: { d: number; name: string } | null = null;
+	for (const list of load().towns.values())
+		for (const t of list) {
+			if (t.type !== 'city' && t.type !== 'town') continue;
+			const d = Math.hypot((t.lat - p.lat) * 69, (t.lon - p.lon) * 69 * k);
+			if (d <= maxMiles && (!best || d < best.d)) best = { d, name: t.name };
+		}
+	return best?.name ?? null;
+}

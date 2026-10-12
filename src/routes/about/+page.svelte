@@ -44,6 +44,8 @@
 		</li>
 		<li>
 			Weather, rivers, tides and flights: the National Weather Service, NOAA, USGS and the FAA.
+			Weather on the way and snow along a drive: Azure Maps weather and
+			<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0).
 		</li>
 		<li>
 			Some cameras, such as ski areas and viewpoints, come through <a

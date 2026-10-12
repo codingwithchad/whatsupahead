@@ -31,7 +31,7 @@ environment variables. Never commit keys.
 | `ORDOT_CODE_PRIMARY` | Oregon pass reports (ODOT crew reports and closures) | [ODOT API portal](https://apiportal.odot.state.or.us/) |
 | `WINDY_API_KEY` | Cameras that come through Windy.com | [Windy Webcams API](https://api.windy.com/keys) |
 | `YOU_TUBE_DATA_API_KEY` | Checks that YouTube live cameras are still live | Google Cloud, YouTube Data API v3 |
-| `AZURE_MAPS_KEY` | Optional routing and place search with live traffic; without it, routes use OSRM and place search uses Photon and Nominatim | Azure Maps account |
+| `AZURE_MAPS_KEY` | Optional routing and place search with live traffic, and weather along a drive; without it, routes use OSRM, place search uses Photon and Nominatim, and weather along a drive uses Open-Meteo | Azure Maps account |
 | `GITHUB_ISSUES_TOKEN` | Lets the "Add a camera" form file suggestions as issues | A fine-grained GitHub token, Issues read and write, one repository |
 
 California's Caltrans data, the National Park Service, NOAA and the NWS need no key.
@@ -58,7 +58,7 @@ answering, so you can check a new deploy.
 
 | Variable | Use |
 |---|---|
-| `AZURE_MAPS_DAILY` | Daily allowance for each kind of Azure Maps request (default 150), so you stay inside its free amount. |
+| `AZURE_MAPS_DAILY` | Daily allowance for each kind of Azure Maps request (routes, searches, weather along a drive; default 150 each), so you stay inside its free amount. |
 | `HISTORY=off` | Turns off the pass-camera replay (saves memory). `HISTORY_EVERY_SECONDS` changes how often it records (default 300). |
 | `HEALTH_CHECKS=off` | Turns off the half-hourly checks of outside sources. |
 | `DATA_DIR` | Read data files from somewhere other than `./data`. |
