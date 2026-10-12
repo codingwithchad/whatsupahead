@@ -38,7 +38,7 @@ SvelteKit and TypeScript on one small Node server. Cameras, places, drives, pass
 
 ## About this project
 
-Built in October 2026 by one person with voice dictation and [Claude Code](https://claude.com/claude-code), while recovering from surgery. It's a prototype and it's open source, and it would be better with other people in it.
+Built in October 2026 by one person with voice dictation and [Claude Code](https://claude.com/claude-code). It's a prototype and it's open source, and it would be better with other people in it.
 
 ## License
 
