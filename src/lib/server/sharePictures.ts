@@ -1,7 +1,8 @@
 import { isDormant, nearby } from '../geo';
 import { forPlace } from '../placeCameras';
 import { STATUS_LABEL } from '../passes';
-import { duration, returnLabel } from '../format';
+import { duration, localClock, returnLabel } from '../format';
+import { DEFAULT_TIME_ZONE } from '../regions';
 import { credits, PREVIEW_MINUTES, previewCredit, previewSlot } from '../sharing';
 import type { Camera, Collection, FeaturedPlace, PassInfo, Place } from '../types';
 import { cached } from './cache';
@@ -9,7 +10,8 @@ import { getCatalog } from './catalog';
 import { nearestTown } from './gazetteer';
 import { allPassReports } from './passes';
 import { drivingRoute } from './routing';
-import { fetchPicture, renderCard, type CardPicture } from './shareCard';
+import { momentPicture, type Moment } from './moments';
+import { fetchPicture, renderCard, renderPair, type CardPicture } from './shareCard';
 import {
 	camerasAlong,
 	DEFAULT_DESTINATION_RADIUS,
@@ -215,6 +217,36 @@ export async function tripPreview(params: URLSearchParams, site: string): Promis
 			to: toName,
 			marks: over.slice(0, 4).map((p) => ({ lat: p.lat, lon: p.lon, label: p.name }))
 		},
+		site
+	});
+}
+
+/** The words for a before-and-after: "6:05 AM", "9:10 AM", "3 h 5 min apart", "Mon, Oct 12". */
+export function momentWords(m: Moment) {
+	return {
+		before: localClock(m.before),
+		after: localClock(m.after),
+		apart: `${duration(Math.round((m.after - m.before) / 60_000))} apart`,
+		day: new Intl.DateTimeFormat('en-US', {
+			weekday: 'short',
+			month: 'short',
+			day: 'numeric',
+			timeZone: DEFAULT_TIME_ZONE
+		}).format(new Date(m.after))
+	};
+}
+
+export async function momentPreview(m: Moment, site: string): Promise<Buffer> {
+	const camera = getCatalog().cameras.find((c) => c.id === m.camera);
+	const before = momentPicture(m.id, 'before');
+	const after = momentPicture(m.id, 'after');
+	if (!camera || !before || !after) throw new Error('moment pictures missing');
+	const words = momentWords(m);
+	return renderPair({
+		title: camera.name,
+		line: `${words.apart} · ${words.day} · Pictures: ${previewCredit(camera) ?? camera.source}`,
+		before: { image: before, label: `Before · ${words.before}` },
+		after: { image: after, label: `After · ${words.after}` },
 		site
 	});
 }

@@ -474,3 +474,50 @@ export async function fetchPicture(url: string): Promise<Buffer | null> {
 		return null;
 	}
 }
+
+// ---- Before and after ---------------------------------------------------------------------------------------
+
+export interface PairCard {
+	title: string;
+	/** "3 h apart · Picture: WSDOT · Mon, Oct 12". */
+	line: string;
+	before: { image: Buffer; label: string };
+	after: { image: Buffer; label: string };
+	site: string;
+}
+
+/** Two pictures side by side, labelled with their times, and the camera's name under them. */
+export async function renderPair(card: PairCard): Promise<Buffer> {
+	const w = 552;
+	const h = 414;
+	const boxes: Box[] = [
+		{ x: 40, y: 36, w, h },
+		{ x: WIDTH - 40 - w, y: 36, w, h }
+	];
+	const shots = [card.before, card.after];
+	const composites = await Promise.all(shots.map((s, i) => tile(s.image, boxes[i], 'cover')));
+	const svg: string[] = [];
+	shots.forEach((s, i) => {
+		const b = boxes[i];
+		const pill = fit(s.label, 26, b.w - 60, 'bold');
+		const pw = textWidth(pill, 26, 'bold') + 32;
+		svg.push(
+			`<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${RADIUS}" fill="none" stroke="#ffffff" stroke-opacity=".4" stroke-width="2"/>`,
+			`<rect x="${b.x + 14}" y="${b.y + b.h - 62}" width="${pw}" height="48" rx="12" fill="${i ? '#ff9a2e' : '#04192a'}" fill-opacity="${i ? 1 : 0.78}"/>`,
+			text(pill, b.x + 30, b.y + b.h - 29, 26, i ? '#04192a' : '#ffffff', 'bold')
+		);
+	});
+	svg.push(`<g transform="translate(40 478) scale(1.05)">${mark}</g>`);
+	const right = WIDTH - 40;
+	svg.push(text(fit(card.title, 38, right - 122, 'bold'), 122, 520, 38, '#ffffff', 'bold'));
+	const room = right - 122 - textWidth(card.site, 28, 'bold') - 30;
+	svg.push(text(fit(card.line, 22, room), 122, 562, 22, '#d7ecf5'));
+	svg.push(text(card.site, WIDTH - 40, 562, 28, '#ff9a2e', 'bold', 'end'));
+	const overlay = Buffer.from(
+		`<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}">${svg.join('\n')}</svg>`
+	);
+	return sharp(await background(card.after.image))
+		.composite([...composites, { input: overlay, left: 0, top: 0 }])
+		.jpeg({ quality: 84, mozjpeg: true })
+		.toBuffer();
+}

@@ -97,7 +97,7 @@
 				{/if}
 			</p>
 			{#if item.camera.feed_type === 'image' && !item.camera.view}
-				{#key item.camera.id}<HistoryPlayer id={item.camera.id} />{/key}
+				{#key item.camera.id}<HistoryPlayer id={item.camera.id} name={item.camera.name} />{/key}
 			{/if}
 			{#key item.camera.id}<ShareButton
 					dark

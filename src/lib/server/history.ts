@@ -5,16 +5,20 @@ import type { Camera } from '../types';
 import { getCatalog } from './catalog';
 
 // A rolling window of small pictures from the cameras near mountain passes, so a visitor can watch the
-// last couple of hours and see whether snow is building up. Kept in memory only: it starts empty after a
+// last couple of hours and see whether snow is building up, and share a before-and-after from up to six
+// hours back. Kept in memory only: it starts empty after a
 // restart and fills in as the server runs. Only cameras whose owner publishes them for public use are
 // recorded (WSDOT, WSDOT Aviation, Caltrans and the National Park Service), never Windy pictures. ODOT's
 // pictures are left out: its terms cover serving one refreshed copy, not keeping past ones.
 
 // One picture every five minutes by default; HISTORY_EVERY_SECONDS lets tests record faster.
 const EVERY_MS = Math.max(5, Number(process.env.HISTORY_EVERY_SECONDS) || 300) * 1000;
-const KEEP_FRAMES = 24; // two hours at one every five minutes
+/** Every picture from the last two hours (the replay), then one every half hour back to six hours. */
+export const REPLAY_MS = 2 * 60 * 60_000;
+const KEEP_MS = 6 * 60 * 60_000;
+const SPARSE_MS = 30 * 60_000;
 const NEAR_PASS_MILES = 6;
-// About 24 small frames each, roughly 0.4 MB a camera.
+// About 32 small frames each (24 recent, 8 older), roughly 0.3 MB a camera.
 const MAX_CAMERAS = 240;
 const WIDTH = 480;
 const RECORDABLE = new Set(['WSDOT', 'WSDOT Aviation', 'Caltrans', 'National Park Service']);
@@ -63,11 +67,25 @@ async function grab(camera: Camera) {
 		// A camera that has not changed since the last grab adds nothing to the replay.
 		if (list.length && list[list.length - 1].hash === hash) return;
 		list.push({ t: Date.now(), hash, jpeg });
-		while (list.length > KEEP_FRAMES) list.shift();
-		frames.set(camera.id, list);
+		frames.set(camera.id, thin(list));
 	} catch {
 		// a failed grab just leaves a gap
 	}
+}
+
+/** Keep every frame of the last two hours, and older ones at least half an hour apart, up to six hours. */
+export function thin<T extends { t: number }>(list: T[], now = Date.now()): T[] {
+	const out: T[] = [];
+	let last = -Infinity;
+	for (const f of list) {
+		const age = now - f.t;
+		if (age > KEEP_MS) continue;
+		if (age <= REPLAY_MS || f.t - last >= SPARSE_MS) {
+			out.push(f);
+			last = f.t;
+		}
+	}
+	return out;
 }
 
 async function captureAll() {

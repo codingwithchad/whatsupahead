@@ -42,7 +42,10 @@
 		</p>
 	{:else if camera.feed_url}
 		<div class="camera-page-media"><CameraMedia {camera} large /></div>
-		{#if camera.feed_type === 'image' && !camera.view}<HistoryPlayer id={camera.id} />{/if}
+		{#if camera.feed_type === 'image' && !camera.view}<HistoryPlayer
+				id={camera.id}
+				name={camera.name}
+			/>{/if}
 	{:else}
 		<p class="notice">This camera's picture is not available right now.</p>
 	{/if}

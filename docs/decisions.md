@@ -95,3 +95,7 @@ A trip shows the forecast at the start, at each pass the road crosses (within 2 
 Every camera now has its own page (`/cameras/<id>`), and cameras, places, lists and drives have a Share button: the phone's share menu where there is one, otherwise Copy link, Facebook (a plain link to Facebook's share page, so no Facebook code on our pages), Text and Email. A shared drive drops personal choices (leaving time, "show all").
 
 Shared links show a picture made for that page (1200 by 630): the camera's latest picture, up to three of a place's cameras, one picture from each of a list's first places, or the drive drawn on a map with its passes, a camera at the first pass and one at the destination. Only sources whose owners allow reuse go in (docs/sources.md, Link previews); the rest get a card with the name. Text is drawn from a font that ships with the app (Inter, SIL Open Font License), so the pictures look the same on any server whether or not it has fonts installed.
+
+## 2026-10-12: Before and after
+
+The pass-camera replay keeps every picture from the last two hours, plus one every half hour back to six hours, so "6 AM bare, 9 AM snow" can be shown. "Share before and after" puts the newest picture next to one from 30 minutes to 6 hours earlier and gives it a link (`/moments/<id>`). The replay is in memory, so the two pictures are saved to disk (`MOMENTS_DIR`, next to the visit counts by default) and kept 30 days; the same two pictures always get the same link. Its link preview is the two pictures side by side with their times.

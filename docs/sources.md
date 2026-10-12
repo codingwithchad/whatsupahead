@@ -33,6 +33,8 @@ A shared link shows a picture our server makes (src/lib/server/shareCard.ts): th
 
 Every preview with a picture prints the owner's credit and the time it was made, and links back to the page that shows the live camera with the owner's credit and source link. A page whose cameras are all excluded still gets a card with its name and our logo. Previews are made at most once every 10 minutes per page.
 
+A shared before-and-after (two pictures from a camera's replay, hours apart) keeps those two small pictures for 30 days so the link keeps working. Only cameras whose pictures may appear in previews can be shared this way, and the replay itself records only WSDOT, Caltrans and National Park Service cameras near passes (never ODOT, whose terms cover one refreshed copy, not past ones).
+
 ## Looked at, not used yet (2026-10-09)
 
 - **WebCOOS** (NOAA-backed coastal cameras): API needs an account; only Ocean Shores is in our area.

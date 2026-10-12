@@ -18,10 +18,11 @@ export function ago(iso: string, now: number = Date.now()): string {
 	return hours < 48 ? `${hours} h ago` : `${Math.round(hours / 24)} days ago`;
 }
 
-/** 83 -> "1 h 23 min". */
+/** 83 -> "1 h 23 min", 120 -> "2 h". */
 export function duration(minutes: number): string {
 	const m = Math.round(minutes);
-	return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`;
+	if (m < 60) return `${m} min`;
+	return m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`;
 }
 
 /** "2:55 PM" in the local time of the place it is about (see timeZoneAt in regions.ts). */

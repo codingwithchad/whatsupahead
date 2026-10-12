@@ -7,7 +7,7 @@
 ## What it does
 
 - **Trip mode:** enter a start and a finish and see the cameras along the road in the order you'll pass them, with the forecast for when you'll arrive. "Follow my trip" hides cameras you've already passed.
-- **Mountain passes:** open, chains or closed for passes in Washington (WSDOT), Oregon (ODOT) and California (Caltrans chain controls), plus a replay of the last two hours of each pass camera so you can see snow building up.
+- **Mountain passes:** open, chains or closed for passes in Washington (WSDOT), Oregon (ODOT) and California (Caltrans chain controls), plus a replay of the last two hours of each pass camera so you can see snow building up, and a before-and-after from up to six hours back that you can share ("6 AM bare, 9 AM snow").
 - **Places:** ferries (with sailing space), border crossings (with wait times), airports (with FAA delays), airfields, national parks, ski areas, and any town or zip code.
 - **Share:** every camera, place, list and drive has a Share button, and a shared link shows a live picture: the camera's latest view (from public agencies whose pictures may be reused, credited), a place's cameras, or the drive on a map with the passes on the way.
 - **Cameras are data, not code.** Adding one is a small JSON file, so you don't need to write any code to help.

@@ -64,6 +64,8 @@ const SECURITY_HEADERS: Record<string, string> = {
 const PER_MINUTE: [prefix: string, limit: number][] = [
 	['/search', 60],
 	['/trip', 60],
+	// Saving a before-and-after writes to disk.
+	['/api/moments', 30],
 	['/api/', 600],
 	['/img/', 600],
 	// Share pictures take a moment to make; crawlers ask for one per shared link.

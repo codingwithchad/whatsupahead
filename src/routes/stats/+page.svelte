@@ -25,7 +25,8 @@
 		'share-sent': 'Shared from the phone menu',
 		'share-copy': 'Copied a link',
 		'share-facebook': 'Shared to Facebook',
-		'share-text': 'Shared by text message'
+		'share-text': 'Shared by text message',
+		'moment-open': 'Opened before and after'
 	};
 </script>
 

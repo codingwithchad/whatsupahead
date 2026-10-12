@@ -52,6 +52,7 @@ answering, so you can check a new deploy.
 | Variable | Use |
 |---|---|
 | `STATS_FILE` | Where the anonymous visit counts (`/stats`) are saved. Point it at a disk that survives restarts and deploys. Default `.stats/stats.json`. |
+| `MOMENTS_DIR` | Where shared before-and-after pictures are saved (two small pictures each, kept 30 days, at most 5,000). Default: a `moments` folder next to `STATS_FILE`, so the same lasting disk. |
 | `STATS_BLOB_URL` | Instead of a file, keep the counts in an Azure Blob Storage blob, written with the host's managed identity (no keys). Leave it unset to use the file. |
 
 ### Tuning

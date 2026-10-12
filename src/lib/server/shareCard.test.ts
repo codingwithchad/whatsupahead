@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
-import { fit, grid, HEIGHT, renderCard, textWidth, WIDTH, wrap } from './shareCard';
+import { fit, grid, HEIGHT, renderCard, renderPair, textWidth, WIDTH, wrap } from './shareCard';
 
 describe('text layout', () => {
 	it('measures, shortens and wraps', () => {
@@ -77,5 +77,23 @@ describe('renderCard', () => {
 			site: 'example.com'
 		});
 		for (const out of [drive, plain]) expect((await sharp(out).metadata()).width).toBe(WIDTH);
+	});
+});
+
+describe('renderPair', () => {
+	it('draws a before-and-after at 1200 by 630', async () => {
+		const shot = (color: string) =>
+			sharp({ create: { width: 480, height: 360, channels: 3, background: color } })
+				.jpeg()
+				.toBuffer();
+		const out = await renderPair({
+			title: 'I-90 at MP 52: Snoqualmie Summit',
+			line: '3 h apart · Mon, Oct 12 · Pictures: WSDOT',
+			before: { image: await shot('#556b2f'), label: 'Before · 6:05 AM' },
+			after: { image: await shot('#f0f4f8'), label: 'After · 9:10 AM' },
+			site: 'example.com'
+		});
+		const meta = await sharp(out).metadata();
+		expect([meta.width, meta.height]).toEqual([WIDTH, HEIGHT]);
 	});
 });

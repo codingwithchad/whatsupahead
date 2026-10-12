@@ -1890,3 +1890,68 @@ div.image-button {
 	max-height: 70dvh;
 	object-fit: contain;
 }
+/* A shared before-and-after: side by side where there is room, one above the other on a phone. */
+.moment {
+	display: grid;
+	gap: 12px;
+	margin: 8px 0;
+}
+@media (min-width: 640px) {
+	.moment {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+.moment figure {
+	position: relative;
+	margin: 0;
+	border-radius: var(--radius);
+	overflow: hidden;
+	background: #000;
+}
+.moment img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.moment figcaption {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	padding: 4px 12px;
+	border-radius: 10px;
+	font-weight: 700;
+	background: rgb(4 25 42 / 0.8);
+	color: #fff;
+}
+.moment figcaption.after {
+	background: #ff9a2e;
+	color: #04192a;
+}
+/* Before and after, from the replay */
+.moment-open {
+	margin-top: 10px;
+	min-height: 40px;
+}
+.moment-pick {
+	margin-top: 8px;
+}
+.moment-choices {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 6px 0 10px;
+}
+.moment-choices .chip[aria-pressed='true'] {
+	background: var(--accent);
+	color: var(--on-accent);
+	border-color: var(--accent);
+}
+.moment-small {
+	grid-template-columns: 1fr 1fr;
+}
+.moment-small figcaption {
+	left: 6px;
+	bottom: 6px;
+	padding: 2px 8px;
+	font-size: var(--fs-xs);
+}
