@@ -14,7 +14,12 @@ At the end of a session, when the user says they're wrapping up: update "Where w
 
 ## Working with the user
 
-- One-handed, working by voice. Claude writes all the code. Keep replies short and plain.
+- The user is one-handed and works by voice dictation. They can type a short command, a variable name or an
+  env name, nothing longer. Claude writes all the code and runs the commands; when the user must run one
+  (a login, a vault write), give a single line they can paste with `!`.
+- Keep replies short and plain, and offer choices they can answer in a word.
+- Read dictation charitably: words arrive as sound-alikes ("bear" for bare, "Clayolum" for Cle Elum) and
+  background TV sometimes lands in a message. Ask only when a misheard word would change the meaning.
 - Commit straight to `main` when a change is done and checked (the owner pushes past branch protection).
 
 ## Commands
