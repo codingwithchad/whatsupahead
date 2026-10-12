@@ -9,6 +9,7 @@
 - **Trip mode:** enter a start and a finish and see the cameras along the road in the order you'll pass them, with the forecast for when you'll arrive. "Follow my trip" hides cameras you've already passed.
 - **Mountain passes:** open, chains or closed for passes in Washington (WSDOT), Oregon (ODOT) and California (Caltrans chain controls), plus a replay of the last two hours of each pass camera so you can see snow building up.
 - **Places:** ferries (with sailing space), border crossings (with wait times), airports (with FAA delays), airfields, national parks, ski areas, and any town or zip code.
+- **Share:** every camera, place, list and drive has a Share button, and a shared link shows a live picture: the camera's latest view (from public agencies whose pictures may be reused, credited), a place's cameras, or the drive on a map with the passes on the way.
 - **Cameras are data, not code.** Adding one is a small JSON file, so you don't need to write any code to help.
 
 It covers the West Coast: Washington, Oregon and California (about 6,400 cameras). The design (data files plus small adapters) is meant to grow to other states; Idaho is next.
@@ -42,4 +43,4 @@ Built in October 2026 by one person with voice dictation and [Claude Code](https
 
 ## License
 
-MIT. See [LICENSE](LICENSE). Camera pictures belong to their owners; this project only links to feeds their owners publish for public use.
+MIT. See [LICENSE](LICENSE). Camera pictures belong to their owners; this project only links to feeds their owners publish for public use, and puts pictures in link previews only where the owner allows it ([docs/sources.md](docs/sources.md)). The Inter font in `src/lib/server/fonts` is under the SIL Open Font License ([OFL.txt](src/lib/server/fonts/OFL.txt)).

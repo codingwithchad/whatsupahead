@@ -17,6 +17,22 @@ Checked 2026-10-07. Rule: use a camera only if its owner publishes it for public
 | Pass reports outside Washington (data, not cameras; `data/passes/us-or`, `us-ca`) | Oregon: ODOT crew road-and-weather reports and closures (TripCheck API `/RW/Reports`, `/Incidents`, same key and terms as the cameras). California: Caltrans chain controls and full closures (CWWP2 `cc` and `lcs` lists, open data) | A pass's report is built from the reports on its highway near the summit (`report.route`, `radius_km`); see src/lib/passes.ts |
 | NOAA / National Weather Service, FAA, USGS (data, not cameras) | forecasts, river gauges, delays, tides, buoys | US government data |
 
+## Link previews (shared links)
+
+A shared link shows a picture our server makes (src/lib/server/shareCard.ts): the camera's latest picture, a few of a place's cameras, or the drive on a map. That picture is a copy, and the site showing the link (Facebook, a messaging app) keeps its own copy, so only some sources' pictures go in. The list is in src/lib/sharing.ts (checked 2026-10-12):
+
+| Source | In previews | Why |
+|---|---|---|
+| Caltrans | Yes | Open data, public domain unless noted (dot.ca.gov/conditions-of-use) |
+| National Park Service, USGS | Yes | US government works, public domain; credited |
+| ODOT TripCheck | Yes | ODOT's terms ask republishers to serve their own copy and credit the agency, which a preview does |
+| WSDOT | Yes, credited | Published by a public agency for the public, and widely reused with credit. WSDOT's site states no terms for reusing camera pictures either way (only a general copyright line), so this is our reading, not a stated permission. Remove WSDOT from the list in src/lib/sharing.ts if WSDOT asks |
+| Cameras WSDOT passes on for others ("via WSDOT"), WSDOT Aviation | No | Owned by others (telecoms, cities, airports) |
+| Windy.com | No | Terms: show the image unchanged, from Windy's link, linked to Windy; a preview would change and re-host it |
+| YouTube streams, private owners | No | No reuse permission |
+
+Every preview with a picture prints the owner's credit and the time it was made, and links back to the page that shows the live camera with the owner's credit and source link. A page whose cameras are all excluded still gets a card with its name and our logo. Previews are made at most once every 10 minutes per page.
+
 ## Looked at, not used yet (2026-10-09)
 
 - **WebCOOS** (NOAA-backed coastal cameras): API needs an account; only Ocean Shores is in our area.

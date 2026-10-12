@@ -4,6 +4,7 @@
 	import ConditionsBar from '../../lib/ConditionsBar.svelte';
 	import OfflineCameras from '../../lib/OfflineCameras.svelte';
 	import SearchBox from '../../lib/SearchBox.svelte';
+	import ShareButton from '../../lib/ShareButton.svelte';
 	import { rememberPlace } from '../../lib/lastPlace';
 	import { rememberRecent } from '../../lib/recents';
 	import type { PageProps } from './$types';
@@ -45,6 +46,13 @@
 	{:else}
 		<section class="summary">
 			<h1>{data.place.label}</h1>
+			<div class="page-actions">
+				<ShareButton
+					path={base}
+					title={data.place.label}
+					text="Live cameras and weather at {data.place.label}"
+				/>
+			</div>
 			<nav class="radius" aria-label="Search radius">
 				{#each radii as r (r)}
 					<a href="{base}&r={r}" aria-current={r === data.radius ? 'true' : undefined}>{r} mi</a>

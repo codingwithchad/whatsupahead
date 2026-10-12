@@ -5,6 +5,8 @@ import { getCatalog } from '../../../lib/server/catalog';
 import { getGlance } from '../../../lib/server/conditions';
 import type { Glance } from '../../../lib/transit';
 import { REGIONS, regionAt } from '../../../lib/regions';
+import { APP_NAME } from '../../../lib/brand';
+import { previewSlot, sentence, type ShareMeta } from '../../../lib/sharing';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = ({ params }) => {
@@ -45,7 +47,14 @@ export const load: PageServerLoad = ({ params }) => {
 				(pairs) => Object.fromEntries(pairs.filter((x): x is [string, Glance] => x[1] !== null))
 			)
 		: null;
+	const share: ShareMeta = {
+		title: collection.name,
+		description: `${collection.blurb ? `${sentence(collection.blurb)} ` : ''}${list.length} places, with live cameras and the forecast for each, on ${APP_NAME}.`,
+		image: `/og/collection/${encodeURIComponent(collection.id)}?v=${previewSlot()}`,
+		imageAlt: `Camera pictures from ${collection.name}`
+	};
 	return {
+		share,
 		collection,
 		groups: states.map((state) => ({ state, places: list.filter((p) => p.state === state) })),
 		glances

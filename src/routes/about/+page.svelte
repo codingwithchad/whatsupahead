@@ -77,6 +77,12 @@
 		network address and browser name with a random value that changes daily and is never saved. It
 		never records what you type into search.
 	</p>
+	<p>
+		The Share button uses your phone's own share menu. On a computer, the Facebook choice is a plain
+		link to Facebook's share page: no Facebook code runs on this site. A shared link shows a picture
+		made by this site: the latest camera picture (only from public agencies whose pictures may be
+		reused, with their credit and the time it was taken), or the drive on a map.
+	</p>
 
 	<h2>Please note</h2>
 	<p>

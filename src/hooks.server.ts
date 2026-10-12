@@ -65,7 +65,9 @@ const PER_MINUTE: [prefix: string, limit: number][] = [
 	['/search', 60],
 	['/trip', 60],
 	['/api/', 600],
-	['/img/', 600]
+	['/img/', 600],
+	// Share pictures take a moment to make; crawlers ask for one per shared link.
+	['/og/', 60]
 ];
 
 export const handle: Handle = async ({ event, resolve }) => {

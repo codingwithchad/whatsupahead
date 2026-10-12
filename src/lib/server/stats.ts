@@ -22,7 +22,12 @@ export const EVENTS = [
 	'reverse-trip',
 	'leave-later',
 	'install',
-	'use-location'
+	'use-location',
+	'share',
+	'share-sent',
+	'share-copy',
+	'share-facebook',
+	'share-text'
 ] as const;
 export type EventName = (typeof EVENTS)[number];
 

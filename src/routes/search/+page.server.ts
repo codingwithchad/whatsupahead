@@ -8,6 +8,8 @@ import { withForecast } from '../../lib/server/autoForecast';
 import { recordView } from '../../lib/server/popularity';
 import { withLiveLinks } from '../../lib/server/live';
 import type { Camera, Nearby, Place } from '../../lib/types';
+import { APP_NAME } from '../../lib/brand';
+import { previewSlot, sentence, type ShareMeta } from '../../lib/sharing';
 import type { PageServerLoad } from './$types';
 
 const DEFAULT_RADIUS = 10;
@@ -93,8 +95,22 @@ export const load: PageServerLoad = async ({ url, setHeaders, locals }) => {
 		live = near.filter((c) => !offline(c)).slice(0, 6);
 		fallback = live.length > 0;
 	}
+	const preview = featured
+		? `place=${encodeURIComponent(featured.id)}`
+		: `q=${encodeURIComponent(q)}`;
+	const share: ShareMeta = {
+		title: place.label,
+		description: `${featured?.blurb ? `${sentence(featured.blurb)} ` : ''}${
+			fallback
+				? 'The nearest live cameras'
+				: `${live.length} live ${live.length === 1 ? 'camera' : 'cameras'}`
+		}, the forecast and conditions, on ${APP_NAME}.`,
+		image: `/og/search?${preview}&v=${previewSlot()}`,
+		imageAlt: `Camera pictures from ${place.label}`
+	};
 	return {
 		...empty,
+		share,
 		place,
 		fallback,
 		cameras: showAll || fallback ? live : live.slice(0, CAMERA_LIMIT),

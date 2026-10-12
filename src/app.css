@@ -1833,3 +1833,60 @@ div.image-button {
 	color: var(--muted);
 	font-size: var(--fs-xs);
 }
+
+/* Share: a button, and on computers without a share sheet a small row of choices under it. */
+.share {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+.share-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 40px;
+}
+.share-menu {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	width: 100%;
+}
+.share-menu button {
+	min-height: 40px;
+}
+.share.dark .share-btn,
+.share.dark .share-menu button {
+	color: #e8eef2;
+	border-color: rgb(255 255 255 / 0.3);
+	background: transparent;
+}
+.share.dark .share-menu .chip {
+	color: #e8eef2;
+	background: transparent;
+	border-color: rgb(255 255 255 / 0.3);
+}
+.page-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	margin: 8px 0 4px;
+}
+.viewer-info .share {
+	margin-top: 8px;
+}
+/* A camera's own page: the picture as wide as the page, kept in its shape. */
+.camera-page-media {
+	margin: 8px 0;
+	border-radius: var(--radius);
+	overflow: hidden;
+	background: #000;
+}
+.camera-page-media img {
+	display: block;
+	width: 100%;
+	max-height: 70dvh;
+	object-fit: contain;
+}

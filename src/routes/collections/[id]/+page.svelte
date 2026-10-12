@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { loadOpenStates, saveOpenState } from '../../../lib/openStates';
+	import ShareButton from '../../../lib/ShareButton.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -29,6 +30,13 @@
 <main>
 	<h1>{data.collection.name}</h1>
 	{#if data.collection.blurb}<p class="lede-dark">{data.collection.blurb}</p>{/if}
+	<div class="page-actions">
+		<ShareButton
+			path="/collections/{data.collection.id}"
+			title={data.collection.name}
+			text="{data.collection.name}: live cameras and weather"
+		/>
+	</div>
 	{#each data.groups as group (group.state)}
 		<details
 			class="tree-region state-fold"

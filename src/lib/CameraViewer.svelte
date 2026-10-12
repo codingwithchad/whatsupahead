@@ -2,6 +2,7 @@
 	import { track } from './track';
 	import CameraMedia from './CameraMedia.svelte';
 	import HistoryPlayer from './HistoryPlayer.svelte';
+	import ShareButton from './ShareButton.svelte';
 	import type { Camera, Nearby } from './types';
 
 	// One camera at a time, as big as the screen allows, with Previous and Next (buttons, swipe or arrow keys)
@@ -98,6 +99,12 @@
 			{#if item.camera.feed_type === 'image' && !item.camera.view}
 				{#key item.camera.id}<HistoryPlayer id={item.camera.id} />{/key}
 			{/if}
+			{#key item.camera.id}<ShareButton
+					dark
+					path="/cameras/{item.camera.id}"
+					title={item.camera.name}
+					text="Live camera: {item.camera.name}"
+				/>{/key}
 		</div>
 		<nav class="viewer-nav" aria-label="Cameras">
 			<button class="secondary" disabled={!hasPrev} onclick={() => go(-1)}>‹ Previous</button>

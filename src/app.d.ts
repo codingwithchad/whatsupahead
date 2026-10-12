@@ -9,7 +9,10 @@ declare global {
 			/** Set by the search page when a typed search found (true) or did not find (false) a place. */
 			searchFound?: boolean;
 		}
-		// interface PageData {}
+		interface PageData {
+			/** What a shared link to this page shows (see src/lib/sharing.ts). */
+			share?: import('./lib/sharing').ShareMeta;
+		}
 		interface PageState {
 			/** Which camera the full-screen viewer shows (its place in the list), when it is open. */
 			camera?: number;

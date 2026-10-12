@@ -8,6 +8,8 @@
 	import RouteWeather from '../../lib/RouteWeather.svelte';
 	import OfflineCameras from '../../lib/OfflineCameras.svelte';
 	import TripForm from '../../lib/TripForm.svelte';
+	import ShareButton from '../../lib/ShareButton.svelte';
+	import { tripShareParams } from '../../lib/sharing';
 	import { duration } from '../../lib/format';
 	import { rememberPlace } from '../../lib/lastPlace';
 	import { rememberRecent } from '../../lib/recents';
@@ -145,11 +147,16 @@
 					? ` · via ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
 					: ''} · {trip.stops.length} cameras on the way
 			</p>
-			<p class="reverse">
+			<div class="reverse page-actions">
+				<ShareButton
+					path="/trip?{tripShareParams(page.url.searchParams)}"
+					title="{trip.from} to {trip.to}"
+					text="Driving {trip.from} to {trip.to}: cameras, weather and passes on the way"
+				/>
 				<a class="chip" href={reverseLink()} onclick={() => track('reverse-trip')}
 					>⇄ Reverse this drive</a
 				>
-			</p>
+			</div>
 			<nav class="leave" aria-label="When are you leaving?">
 				<span class="leave-label">Leave</span>
 				{#each [[0, 'Now'], [60, 'In 1 h'], [120, 'In 2 h'], [180, 'In 3 h']] as [mins, text] (mins)}

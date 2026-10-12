@@ -20,7 +20,12 @@
 		'reverse-trip': 'Reverse this drive',
 		'leave-later': 'Leave in 1–3 h',
 		install: 'Install now',
-		'use-location': 'Use my location'
+		'use-location': 'Use my location',
+		share: 'Share (tapped)',
+		'share-sent': 'Shared from the phone menu',
+		'share-copy': 'Copied a link',
+		'share-facebook': 'Shared to Facebook',
+		'share-text': 'Shared by text message'
 	};
 </script>
 

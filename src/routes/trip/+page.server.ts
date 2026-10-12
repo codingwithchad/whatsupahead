@@ -1,8 +1,16 @@
 import { allowedKinds } from '../../lib/kinds';
-import { distanceMiles, isDormant, nearby, parseLatLon } from '../../lib/geo';
+import { distanceMiles, isDormant, nearby } from '../../lib/geo';
 import { getCatalog } from '../../lib/server/catalog';
 import { getConditions } from '../../lib/server/conditions';
-import { geocode } from '../../lib/server/geocode';
+import {
+	camerasAlong,
+	DEFAULT_DESTINATION_RADIUS,
+	parseVia,
+	passesOnRoute,
+	resolvePlace,
+	tripLine
+} from '../../lib/server/trip';
+import { previewSlot, tripShareParams, type ShareMeta } from '../../lib/sharing';
 import { withForecast } from '../../lib/server/autoForecast';
 import { withLiveLinks } from '../../lib/server/live';
 import { drivingRoute } from '../../lib/server/routing';
@@ -11,25 +19,8 @@ import { weatherOnTheWay } from '../../lib/server/routeWeather';
 import { nearestTown } from '../../lib/server/gazetteer';
 import { routeStops } from '../../lib/routeWeather';
 import { alongRoute, cumulativeMiles, projectOnRoute, thinToTarget } from '../../lib/route';
-import type { Camera, FeaturedPlace, Nearby, Place, WeatherSource } from '../../lib/types';
+import type { Camera, Nearby, WeatherSource } from '../../lib/types';
 import type { PageServerLoad } from './$types';
-
-const DEFAULT_DESTINATION_RADIUS = 3;
-const NEAREST_FALLBACK_MILES = 15;
-
-async function resolve(
-	q: string,
-	places: FeaturedPlace[]
-): Promise<(Place & { featured?: FeaturedPlace }) | null> {
-	const text = q.trim();
-	if (!text) return null;
-	const lower = text.toLowerCase();
-	const featured = places.find((p) => p.id === lower || p.name.toLowerCase() === lower);
-	if (featured) return { lat: featured.lat, lon: featured.lon, label: featured.name, featured };
-	const point = parseLatLon(text);
-	if (point) return { ...point, label: 'Your location' };
-	return geocode(text);
-}
 
 /** Weather sources from the start of the drive to the end, so the strip reads like the road. */
 function inDrivingOrder<T extends { lat: number; lon: number }>(
@@ -46,12 +37,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const fromQ = url.searchParams.get('from')?.trim() ?? '';
 	const toQ = url.searchParams.get('to')?.trim() ?? '';
 
-	// Stops along the way, in order: "lat,lon;lat,lon" (at most 8).
-	const via = (url.searchParams.get('via') ?? '')
-		.split(';')
-		.map((p) => parseLatLon(p))
-		.filter((p): p is NonNullable<typeof p> => p !== null)
-		.slice(0, 8);
+	const via = parseVia(url.searchParams.get('via'));
 	const fromLabel = url.searchParams.get('fl')?.trim().slice(0, 80) ?? '';
 	const toLabel = url.searchParams.get('tl')?.trim().slice(0, 80) ?? '';
 	// ?demo=winter swaps in an invented cold day so the snow section can be tried out in summer.
@@ -65,7 +51,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const { cameras, weather, places } = getCatalog();
 	let from, to;
 	try {
-		[from, to] = await Promise.all([resolve(fromQ, places), resolve(toQ, places)]);
+		[from, to] = await Promise.all([resolvePlace(fromQ, places), resolvePlace(toQ, places)]);
 	} catch {
 		return {
 			...base,
@@ -94,24 +80,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const total = route.miles;
 	// Along the road only road cameras count; skyline, park and other views only show up near the destination.
 	const destRadius = to.featured?.radius_miles ?? DEFAULT_DESTINATION_RADIUS;
-	const isRoad = (c: Camera) => c.tags?.includes('road') ?? false;
-	const found = [
-		...alongRoute(cameras.filter(isRoad), route.coords),
-		...alongRoute(
-			cameras.filter((c) => !isRoad(c)),
-			route.coords,
-			{ corridor: 0, endBuffer: 0, destinationRadius: destRadius }
-		)
-	].sort((a, b) => a.along - b.along || a.off - b.off);
-	// Always finish on a camera near the destination: if nothing is within reach, take the closest one.
-	if (!found.some((f) => distanceMiles(f.item, to) <= destRadius)) {
-		const closest = nearby(
-			cameras.filter((c) => !isDormant(c) && c.feed_url),
-			to,
-			NEAREST_FALLBACK_MILES
-		)[0];
-		if (closest) found.push({ item: closest, along: total, off: closest.distance });
-	}
+	const found = camerasAlong(cameras, route.coords, to, destRadius, total);
 	const withLinks = await withLiveLinks(found.map((f) => f.item));
 	const stops = found.map((f, i) => ({ camera: withLinks[i], along: f.along, off: f.off }));
 	const isOffline = (c: Camera) => isDormant(c) || !c.feed_url;
@@ -152,8 +121,16 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		distance: distanceMiles(w, to)
 	}));
 
+	const passNames = passesOnRoute(getCatalog().passes, route.coords, total).map((p) => p.name);
+	const share: ShareMeta = {
+		title: `${from.label} to ${to.label}`,
+		description: `${tripLine(total, route.minutes, passNames)} ${live.length} live cameras on the way, with the weather and pass reports for when you get there.`,
+		image: `/og/trip?${tripShareParams(url.searchParams)}&v=${previewSlot()}`,
+		imageAlt: `Map of the drive from ${from.label} to ${to.label}, with camera pictures from the way`
+	};
 	return {
 		...base,
+		share,
 		trip: {
 			from: from.label,
 			to: to.label,
