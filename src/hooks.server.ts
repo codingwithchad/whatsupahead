@@ -4,6 +4,7 @@ import { startHistory } from './lib/server/history';
 import { startHealthChecks } from './lib/server/health';
 import { startPassHistory } from './lib/server/passHistory';
 import { allow, visitorAddress } from './lib/server/rateLimit';
+import { withVisitor } from './lib/server/visitor';
 import {
 	isPerson,
 	pageOf,
@@ -70,8 +71,8 @@ const PER_MINUTE: [prefix: string, limit: number][] = [
 	['/trip', 60],
 	// Saving a before-and-after writes to disk.
 	['/api/moments', 30],
-	// A drive page on the dash refreshes every few minutes; more than this is not a person.
-	['/api/trip', 30],
+	// A drive page on the dash refreshes every 5 minutes (or on "Update now"); more than this is not a person.
+	['/api/trip', 12],
 	['/api/', 600],
 	['/img/', 600],
 	// Share pictures take a moment to make; crawlers ask for one per shared link.
@@ -79,9 +80,18 @@ const PER_MINUTE: [prefix: string, limit: number][] = [
 ];
 
 export const handle: Handle = async ({ event, resolve }) => {
+	const who = visitorAddress(event.request, event.getClientAddress);
+	// Everything this request starts (including data the page streams in later) knows whose it is.
+	return withVisitor(who, () => handleFor(who, event, resolve));
+};
+
+async function handleFor(
+	who: string,
+	event: Parameters<Handle>[0]['event'],
+	resolve: Parameters<Handle>[0]['resolve']
+): Promise<Response> {
 	const rule = PER_MINUTE.find(([prefix]) => event.url.pathname.startsWith(prefix));
 	if (rule) {
-		const who = visitorAddress(event.request, event.getClientAddress);
 		if (!allow(`${rule[0]}:${who}`, rule[1]))
 			return new Response('Too many requests. Please wait a minute and try again.', {
 				status: 429,
@@ -111,7 +121,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	for (const [name, value] of Object.entries(SECURITY_HEADERS))
 		if (!response.headers.has(name)) response.headers.set(name, value);
 	return response;
-};
+}
 
 // Our own hosts (and bare addresses, which are tests, not sites) never count as "came from another site".
 const OWN_HOSTS =

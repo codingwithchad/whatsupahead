@@ -3,6 +3,7 @@ import type { LatLon } from '../route';
 import { COVERAGE, REGIONS } from '../regions';
 import { takeMapsRequest, type MapsKind } from './mapsBudget';
 import { allow } from './rateLimit';
+import { currentVisitor } from './visitor';
 import type { DrivingRoute } from './routing';
 import type { Suggestion } from './photon';
 import type { AzureWaypoint } from '../routeWeather';
@@ -20,7 +21,15 @@ const ABBR = new Map(REGIONS.map((r) => [r.name, r.abbr]));
 
 export const azureMapsKey = () => process.env.AZURE_MAPS_KEY?.trim() || '';
 
+/**
+ * Requests one visitor may cause in an hour, per kind. A normal drive is one route, one weather and a few
+ * searches; past this the free services answer for that visitor, so one bot can't use up the day's allowance.
+ */
+const PER_VISITOR_HOUR: Record<MapsKind, number> = { route: 10, search: 30, weather: 10 };
+
 function spend(kind: MapsKind): boolean {
+	const who = currentVisitor();
+	if (who && !allow(`azure-maps:${kind}:${who}`, PER_VISITOR_HOUR[kind], 3600_000)) return false;
 	return allow(`upstream:azure-maps:${kind}`, 30) && takeMapsRequest(kind);
 }
 

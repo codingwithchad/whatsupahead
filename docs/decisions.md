@@ -143,3 +143,7 @@ While following, every time counts from where you are, not from when you set out
 ## 2026-10-12: Telling search engines
 
 Google reads `/sitemap.xml` once the site is verified in Google Search Console (the owner's Google account; verify the domain through Cloudflare, then submit the sitemap). Bing, Yandex, Seznam and Naver take IndexNow, which needs no account: `static/<key>.txt` proves the site is ours (the key is public by design) and `node scripts/indexnow.mjs` sends every page in the sitemap. Run it after a deploy that adds or renames pages. Bing's index is also what several AI answer services search.
+
+## 2026-10-12: One visitor can't use up what everyone shares
+
+Azure Maps can't cost money past its free amounts (the monthly and daily limits stop it), but one bot could use up a day's share in minutes and leave everyone else on the free services. Each visitor (by address, known to everything a request starts through `src/lib/server/visitor.ts`) may now cause at most 10 routes, 30 searches and 10 weather requests an hour; past that, the free services answer for them. The free services get overall limits too, so we stay welcome there: Open-Meteo forecasts at most 120 a minute and 8,000 a day (its free allowance is about 10,000), Weather Service point lookups 240 a minute. A drive page refreshing on the dash may ask for an update 12 times a minute at most.

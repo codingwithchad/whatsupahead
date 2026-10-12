@@ -7,6 +7,7 @@ import {
 } from '../routeWeather';
 import { azureMapsKey, azureWeatherAlongRoute } from './azureMaps';
 import { cached } from './cache';
+import { openMeteoAllowed } from './rateLimit';
 
 /**
  * The weather at each stop for the time you'll be there. Azure Maps' Weather Along Route when it is set up (one
@@ -42,6 +43,7 @@ export async function weatherOnTheWay(
 }
 
 async function openMeteo(stops: RouteStop[]) {
+	if (!openMeteoAllowed()) throw new Error('open-meteo busy');
 	const url = new URL('https://api.open-meteo.com/v1/forecast');
 	url.searchParams.set('latitude', stops.map((s) => s.lat.toFixed(3)).join(','));
 	url.searchParams.set('longitude', stops.map((s) => s.lon.toFixed(3)).join(','));

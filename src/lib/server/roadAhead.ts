@@ -22,6 +22,7 @@ import {
 } from '../roadSurface';
 import { cumulativeMiles, type LatLon } from '../route';
 import { cached, cachedStale } from './cache';
+import { allow } from './rateLimit';
 import { caltransCheckpoints, caltransClosures, odotFeeds } from './passes';
 import { nearestTown } from './gazetteer';
 
@@ -84,6 +85,8 @@ async function zonesAt(lat: number, lon: number): Promise<string[]> {
 	const key = `${lat.toFixed(2)},${lon.toFixed(2)}`;
 	const hit = zoneCache.get(key);
 	if (hit) return hit;
+	// A new drive looks up a few dozen points once; this keeps a flood of made-up routes off the Weather Service.
+	if (!allow('upstream:nws-points', 240)) throw new Error('weather service busy');
 	const p = await getJson<{
 		properties: { forecastZone?: string; county?: string; fireWeatherZone?: string };
 	}>(`${NWS}/points/${key}`, { 'User-Agent': USER_AGENT, Accept: 'application/geo+json' }, 6000);

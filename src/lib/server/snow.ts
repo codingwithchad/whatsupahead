@@ -1,4 +1,5 @@
 import { cached } from './cache';
+import { openMeteoAllowed } from './rateLimit';
 import { cumulativeMiles, type LatLon } from '../route';
 import { snowStretches, winterDay, type SnowSample, type SnowStretch } from '../snowLine';
 
@@ -46,6 +47,7 @@ export async function snowAlong(
 	const key = `snow${demo ? '-demo' : ''}:${hour}:${points.map((p) => `${p.lat.toFixed(2)},${p.lon.toFixed(2)}`).join(';')}:${Math.round(minutes / 15)}`;
 	try {
 		return await cached(key, 30 * 60 * 1000, async () => {
+			if (!openMeteoAllowed()) throw new Error('open-meteo busy');
 			const url = new URL('https://api.open-meteo.com/v1/forecast');
 			url.searchParams.set('latitude', points.map((p) => p.lat.toFixed(3)).join(','));
 			url.searchParams.set('longitude', points.map((p) => p.lon.toFixed(3)).join(','));

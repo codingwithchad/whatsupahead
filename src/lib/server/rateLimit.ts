@@ -33,3 +33,13 @@ export function withoutPort(address: string): string {
 	if (v6) return v6[1];
 	return /^[\d.]+:\d+$/.test(address) ? address.slice(0, address.lastIndexOf(':')) : address;
 }
+
+/**
+ * Open-Meteo's free forecast allows about 10,000 calls a day for everyone using this app. Stay well under it,
+ * and under a steady rate, whatever visitors (or bots) do; past it, forecasts are left out until it frees up.
+ */
+export function openMeteoAllowed(): boolean {
+	return (
+		allow('upstream:open-meteo-forecast', 120) && allow('upstream:open-meteo-day', 8000, 86_400_000)
+	);
+}
