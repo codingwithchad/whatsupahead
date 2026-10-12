@@ -73,7 +73,10 @@
 	{/if}
 
 	{#if data.reachable}
-		<p class="ra-ask">Chains and traction tires for what you're driving:</p>
+		<p class="ra-ask">
+			Chains and traction tires for what you're driving (<a href="/tires">what's a traction tire?</a
+			>):
+		</p>
 		<VehiclePicker bind:vehicle />
 	{/if}
 

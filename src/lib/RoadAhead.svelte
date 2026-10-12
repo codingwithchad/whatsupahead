@@ -200,8 +200,8 @@
 		</ul>
 		{#if vehicle}
 			<p class="ra-note">
-				Our reading of the state's rule for your vehicle. The state's own words are under each pass,
-				and signs on the road always come first.
+				<a href="/tires">What's a traction tire?</a> Our reading of the state's rule for your vehicle.
+				The state's own words are under each pass, and signs on the road always come first.
 			</p>
 		{/if}
 	{/if}

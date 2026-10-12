@@ -2156,3 +2156,47 @@ div.image-button {
 	font-size: var(--fs-sm);
 	color: var(--muted);
 }
+
+/* Tires and chains guide */
+.tire-checks {
+	display: grid;
+	gap: 12px;
+}
+.tire-check,
+.state-rules {
+	padding: 0.75rem 1rem;
+	border-radius: var(--radius);
+	background: var(--card);
+	border: 1px solid var(--line);
+	box-shadow: var(--shadow);
+}
+.state-rules {
+	margin: 0.75rem 0;
+}
+.tire-check h3,
+.state-rules h3 {
+	margin: 0 0 0.4rem;
+	font-size: var(--fs-md);
+}
+.tire-check p,
+.state-rules p {
+	margin: 0 0 0.5rem;
+}
+.tire-check ul,
+.state-rules ul {
+	margin: 0 0 0.5rem;
+}
+.tire-check li,
+.state-rules li {
+	margin-bottom: 0.4rem;
+}
+.snowflake {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 4px;
+	color: var(--text);
+}
+.tire-fine {
+	color: var(--muted);
+	font-size: var(--fs-sm);
+}

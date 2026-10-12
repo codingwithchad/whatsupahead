@@ -126,6 +126,7 @@
 				{/each}
 			</ul>
 			<p class="ra-note">
+				<a href="/tires">What's a traction tire?</a>
 				{lines.length > 1 ? 'The stricter direction. ' : ''}Our reading of the state's rule. Signs
 				on the road always come first.
 				<a href={statePage.url} target="_blank" rel="noopener">{statePage.label}</a>
