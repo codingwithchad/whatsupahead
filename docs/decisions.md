@@ -12,7 +12,7 @@
 
 Windy.com already offers a map of cameras, so OS Cams focuses on the drive: enter From and To, get the cameras (and conditions) along the road in the order you will pass them, stopping at the destination. "Follow my trip" uses the phone's location to hide cameras already passed and show the next one ahead.
 
-- Routes and place search use Azure Maps when `AZURE_MAPS_KEY` is set (live traffic, business names), within a daily allowance per kind (`AZURE_MAPS_DAILY`, default 150) that keeps it inside the free monthly amount. Past the allowance, or when Azure finds no route (it knows about seasonal closures, and won't start from a point far from a road), the free services take over: the OSRM demo server for routes, Photon then Nominatim then Open-Meteo for places. As-you-type suggestions stay on Photon, with Azure only as its backup, so typing doesn't spend the allowance.
+- Routes and place search use Azure Maps when `AZURE_MAPS_KEY` is set (live traffic, business names), within a monthly limit per kind that keeps it inside the free monthly amounts (see 2026-10-12, Azure Maps costs). Past the allowance, or when Azure finds no route (it knows about seasonal closures, and won't start from a point far from a road), the free services take over: the OSRM demo server for routes, Photon then Nominatim then Open-Meteo for places. As-you-type suggestions stay on Photon, with Azure only as its backup, so typing doesn't spend the allowance.
 - Corridor 1.5 mi either side of the road, 2 mi buffer past the destination, 2.5 mi radius around the destination for places like resorts that sit off the road.
 - Follow mode needs the page open and the screen on (it asks for a screen wake lock). It is meant for passengers and pre-trip checks, not for a driver to study.
 
@@ -99,3 +99,7 @@ Shared links show a picture made for that page (1200 by 630): the camera's lates
 ## 2026-10-12: Before and after
 
 The pass-camera replay keeps every picture from the last two hours, plus one every half hour back to six hours, so "6 AM bare, 9 AM snow" can be shown. "Share before and after" puts the newest picture next to one from 30 minutes to 6 hours earlier and gives it a link (`/moments/<id>`). The replay is in memory, so the two pictures are saved to disk (`MOMENTS_DIR`, next to the visit counts by default) and kept 30 days; the same two pictures always get the same link. Its link preview is the two pictures side by side with their times.
+
+## 2026-10-12: Azure Maps costs
+
+Azure Maps cost about 50 cents a day with very few visitors. Causes: the daily allowance (150 routes a day) allowed far more than the 1,000 free routes a month; the count lived in memory, so every deploy started it again; local testing used the real key; and search engines could load drive pages, each a new route. Now each kind has a monthly limit inside the free amount (90%), at most three days' share in one day, saved to a file so restarts keep it, and shown on `/stats`. `robots.txt` keeps search engines off `/trip` (link-preview readers may still load it). Test locally without `AZURE_MAPS_KEY`; the free services cover everything.

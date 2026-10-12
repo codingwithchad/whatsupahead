@@ -1,17 +1,17 @@
 import type { Point } from '../geo';
 import type { LatLon } from '../route';
 import { COVERAGE, REGIONS } from '../regions';
+import { takeMapsRequest, type MapsKind } from './mapsBudget';
 import { allow } from './rateLimit';
 import type { DrivingRoute } from './routing';
 import type { Suggestion } from './photon';
 import type { AzureWaypoint } from '../routeWeather';
 
 // Azure Maps (Microsoft): routing with live traffic and place search, used first when AZURE_MAPS_KEY is set.
-// It is paid past a free monthly amount, so the whole app gets a daily allowance per kind of request
-// (AZURE_MAPS_DAILY, default 150 each, which stays inside the free amount). Past it, or on any error, callers
-// fall back to the free services (OSRM, Photon, Nominatim).
+// It is paid past a free monthly amount, so the whole app keeps a count per kind of request that survives
+// restarts (mapsBudget.ts) and stays inside the free amounts. Past it, or on any error, callers fall back to
+// the free services (OSRM, Photon, Nominatim, Open-Meteo).
 const API = 'https://atlas.microsoft.com';
-const DAY = 24 * 60 * 60 * 1000;
 const CENTER = {
 	lat: ((COVERAGE[1] + COVERAGE[3]) / 2).toFixed(2),
 	lon: ((COVERAGE[0] + COVERAGE[2]) / 2).toFixed(2)
@@ -20,9 +20,8 @@ const ABBR = new Map(REGIONS.map((r) => [r.name, r.abbr]));
 
 export const azureMapsKey = () => process.env.AZURE_MAPS_KEY?.trim() || '';
 
-function spend(kind: 'route' | 'search' | 'weather'): boolean {
-	const daily = Number(process.env.AZURE_MAPS_DAILY) || 150;
-	return allow(`upstream:azure-maps:${kind}`, 30) && allow(`azure-maps-day:${kind}`, daily, DAY);
+function spend(kind: MapsKind): boolean {
+	return allow(`upstream:azure-maps:${kind}`, 30) && takeMapsRequest(kind);
 }
 
 async function get<T>(path: string, params: Record<string, string>): Promise<T> {

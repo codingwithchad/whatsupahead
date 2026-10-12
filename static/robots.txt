@@ -1,3 +1,16 @@
-# allow crawling everything by default
-User-agent: *
+# Drive pages work out a route each time they load (a paid map service), and every pair of places is a new
+# page, so search engines are asked to skip them. Link previews (Facebook, messages) may still read them.
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: Twitterbot
+User-agent: Slackbot
+User-agent: Discordbot
+User-agent: LinkedInBot
+User-agent: WhatsApp
+User-agent: TelegramBot
 Disallow:
+
+User-agent: *
+Disallow: /trip
+Disallow: /api/
+Disallow: /stats

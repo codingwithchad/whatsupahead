@@ -1,4 +1,6 @@
 import { getCatalog } from '../../lib/server/catalog';
+import { azureMapsKey } from '../../lib/server/azureMaps';
+import { mapsUsage } from '../../lib/server/mapsBudget';
 import { statsReady, statsReport, type Day } from '../../lib/server/stats';
 import type { PageServerLoad } from './$types';
 
@@ -26,6 +28,8 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 		since,
 		storage: storage.startsWith('blob') ? 'cloud storage' : 'a file on the server',
 		lastSave,
+		// Paid map requests this month (counted only when a key is set), against the free amounts.
+		maps: azureMapsKey() ? mapsUsage() : null,
 		daily: days.slice(0, 14).map(([day, d]) => ({
 			day,
 			visitors: d.visitors,

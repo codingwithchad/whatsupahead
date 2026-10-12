@@ -59,7 +59,7 @@ answering, so you can check a new deploy.
 
 | Variable | Use |
 |---|---|
-| `AZURE_MAPS_DAILY` | Daily allowance for each kind of Azure Maps request (routes, searches, weather along a drive; default 150 each), so you stay inside its free amount. |
+| `AZURE_MAPS_MONTHLY_ROUTE`, `_SEARCH`, `_WEATHER` | Monthly limit for each kind of Azure Maps request. Defaults stay inside the free amounts (900 routes, 4,500 searches, 900 weather requests), with at most three days' share in one day. The count is saved next to `STATS_FILE` (or `AZURE_MAPS_USAGE_FILE`), so restarts don't reset it; `/stats` shows it. |
 | `HISTORY=off` | Turns off the pass-camera replay (saves memory). `HISTORY_EVERY_SECONDS` changes how often it records (default 300). |
 | `HEALTH_CHECKS=off` | Turns off the half-hourly checks of outside sources. |
 | `DATA_DIR` | Read data files from somewhere other than `./data`. |

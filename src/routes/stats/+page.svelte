@@ -66,6 +66,33 @@
 		{/each}
 	</ul>
 
+	{#if data.maps}
+		<h2>Azure Maps this month</h2>
+		<p class="sub">
+			Requests counted against the free monthly amounts (UTC month). Past the limit, or a day's
+			share of it, the free services take over.
+		</p>
+		<table class="maps-usage">
+			<thead><tr><th>Kind</th><th>This month</th><th>Today</th><th>Limit</th></tr></thead>
+			<tbody>
+				{#each data.maps as m (m.kind)}
+					<tr>
+						<td
+							>{m.kind === 'route'
+								? 'Routes'
+								: m.kind === 'search'
+									? 'Searches'
+									: 'Weather on the way'}</td
+						>
+						<td>{m.month}</td>
+						<td>{m.today}</td>
+						<td>{m.monthLimit} a month, {m.dayLimit} a day</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	{/if}
+
 	<h2>Last 7 days: {data.week.visitors} visitors</h2>
 	<div class="stat-grid">
 		{#snippet table(title: string, rows: (string | number)[][], empty = 'Nothing yet')}
