@@ -139,3 +139,7 @@ New: WSDOT's road weather stations measure the pavement itself, so the page says
 Each update is compared with the last, and what got worse on the road still ahead is shown at the top ("Changed at 6:31 PM"), with a buzz for the worst news and, while following, read aloud (it can be turned off). Two forecast services can disagree, so the first update after the page loads only sets the baseline for weather.
 
 While following, every time counts from where you are, not from when you set out. Leaving the planned route for a minute plans the drive again from where you are (as a navigation app would), keeping the destination and the stops still ahead, which covers every way out of a city without guessing them. The original start stays in the link (`of`), so sharing a re-planned drive never shares your position, and it is not added to recent drives again. A lost GPS signal (tunnels, snow sheds) no longer stops following; only a refusal does.
+
+## 2026-10-12: Telling search engines
+
+Google reads `/sitemap.xml` once the site is verified in Google Search Console (the owner's Google account; verify the domain through Cloudflare, then submit the sitemap). Bing, Yandex, Seznam and Naver take IndexNow, which needs no account: `static/<key>.txt` proves the site is ours (the key is public by design) and `node scripts/indexnow.mjs` sends every page in the sitemap. Run it after a deploy that adds or renames pages. Bing's index is also what several AI answer services search.
