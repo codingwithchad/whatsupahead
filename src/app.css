@@ -2050,3 +2050,109 @@ div.image-button {
 .pass-answer {
 	font-weight: 600;
 }
+
+/* Pass pages */
+.pass-now,
+.mountain-card,
+.pass-alternates,
+.pass-faq {
+	margin: 0.75rem 0;
+	padding: 0.75rem 1rem;
+	border-radius: var(--radius);
+	background: var(--card);
+	border: 1px solid var(--line);
+	box-shadow: var(--shadow);
+}
+.pass-now h2,
+.mountain-card h2,
+.pass-alternates h2,
+.pass-faq h2 {
+	margin: 0.75rem 0 0.4rem;
+	font-size: var(--fs-md);
+}
+.mountain-card h2,
+.pass-alternates h2,
+.pass-faq h2 {
+	margin-top: 0;
+}
+.pass-now-top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
+	margin-bottom: 0.5rem;
+}
+.pass-now-top .pill {
+	font-size: var(--fs-sm);
+	padding: 4px 12px;
+}
+.pass-now-top small {
+	color: var(--muted);
+}
+.pass-line {
+	margin: 0 0 0.35rem;
+	font-size: var(--fs-sm);
+}
+.chains-today {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.chains-today li {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 4px 10px;
+	padding: 6px 0;
+	border-top: 1px solid var(--line);
+	font-size: var(--fs-sm);
+}
+.chains-today .pill {
+	white-space: normal;
+	text-align: right;
+}
+.mountain-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 0 12px;
+}
+.mountain-big {
+	margin: 0;
+	font-size: var(--fs-xl);
+	font-weight: 700;
+}
+.mountain-sub {
+	margin: 2px 0 0;
+	font-weight: 600;
+}
+.mountain-src {
+	margin: 0.4rem 0 0;
+	color: var(--muted);
+	font-size: var(--fs-xs);
+}
+/* North American avalanche danger scale colours. */
+.avy-1 {
+	color: #3d8b37;
+}
+.avy-2 {
+	color: #b88a00;
+}
+.avy-3 {
+	color: #e8590c;
+}
+.avy-4 {
+	color: #c92a2a;
+}
+.avy-5 {
+	color: var(--text);
+}
+.pass-faq h3 {
+	margin: 0.75rem 0 0.2rem;
+	font-size: var(--fs-sm);
+}
+.pass-faq p {
+	margin: 0;
+	font-size: var(--fs-sm);
+	color: var(--muted);
+}

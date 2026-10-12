@@ -22,7 +22,11 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	const { passes, places } = getCatalog();
 	const live = await allPassReports(passes);
 	setHeaders({ 'cache-control': 'public, max-age=60' });
-	const rows = passes.map((p) => ({ ...p, report: live.get(p.id) ?? null }));
+	const rows = passes.map((p) => ({
+		...p,
+		href: `/passes/${encodeURIComponent(p.id)}`,
+		report: live.get(p.id) ?? null
+	}));
 	const names = [...GROUP_ORDER, ...new Set(passes.map((p) => p.group))].filter(
 		(g, i, all) => all.indexOf(g) === i
 	);
@@ -51,6 +55,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 					lat: p.lat,
 					lon: p.lon,
 					place: p.id,
+					href: `/search?place=${encodeURIComponent(p.id)}`,
 					connects: p.blurb ?? '',
 					report: null
 				})) as unknown as (typeof rows)[number][]

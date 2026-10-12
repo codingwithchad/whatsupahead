@@ -99,7 +99,7 @@
 					<ul class="pass-list">
 						{#each g.passes as p (p.id)}
 							<li>
-								<a href="/search?place={encodeURIComponent(p.place)}">
+								<a href={p.href}>
 									<span class="pass-top">
 										<span class="place-name">{p.name}</span>
 										{#if p.report}<StatusPill tone={p.report.status} label={p.report.label} />{/if}

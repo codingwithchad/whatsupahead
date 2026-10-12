@@ -12,6 +12,8 @@ declare global {
 		interface PageData {
 			/** What a shared link to this page shows (see src/lib/sharing.ts). */
 			share?: import('./lib/sharing').ShareMeta;
+			/** This page's one address for search engines (a path), when other addresses show the same page. */
+			canonical?: string | null;
 		}
 		interface PageState {
 			/** Which camera the full-screen viewer shows (its place in the list), when it is open. */

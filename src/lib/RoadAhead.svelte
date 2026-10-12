@@ -170,7 +170,7 @@
 					: []}
 				<li>
 					<span class="ra-pass-top">
-						<a href="/search?place={encodeURIComponent(p.place)}">{p.name}</a>
+						<a href="/passes/{encodeURIComponent(p.id)}">{p.name}</a>
 						{#if answer}
 							<StatusPill tone={NEED_TONE[answer.need]} label={answer.text} />
 						{:else if p.report}
