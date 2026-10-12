@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-jct-138-phelan",
+  "name": "I-15 – Jct. 138 (Phelan)",
+  "lat": 34.31279,
+  "lon": -117.47553,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i15590jct138/i15590jct138.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

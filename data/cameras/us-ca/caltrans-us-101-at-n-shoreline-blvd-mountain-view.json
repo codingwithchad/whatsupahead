@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-at-n-shoreline-blvd-mountain-view",
+  "name": "US-101 at N Shoreline Blvd (Mountain View)",
+  "lat": 37.4128,
+  "lon": -122.07916,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvc80us101atnshorelineblvd/tvc80us101atnshorelineblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

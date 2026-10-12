@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-110-slauson-ave-sb-on-ramp-vermont-slauson",
+  "name": "I-110 – Slauson Ave SB On-Ramp (Vermont-Slauson)",
+  "lat": 33.988151,
+  "lon": -118.281062,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i110816slausonavesbonramp/i110816slausonavesbonramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 110"
+}

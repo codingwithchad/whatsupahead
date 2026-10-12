@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-at-california-st-rodeo",
+  "name": "I-80 at California St (Rodeo)",
+  "lat": 38.02978,
+  "lon": -122.25544,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv979i80atcaliforniast/tv979i80atcaliforniast.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

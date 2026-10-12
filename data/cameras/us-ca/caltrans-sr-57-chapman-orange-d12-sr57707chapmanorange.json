@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-57-chapman-orange-d12-sr57707chapmanorange",
+  "name": "SR-57 – Chapman (Orange)",
+  "lat": 33.790565,
+  "lon": -117.879842,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr57707chapmanorange/sr57707chapmanorange.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 57"
+}

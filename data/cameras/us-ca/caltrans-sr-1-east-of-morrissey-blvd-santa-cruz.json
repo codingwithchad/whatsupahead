@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-east-of-morrissey-blvd-santa-cruz",
+  "name": "SR-1 – East of Morrissey Blvd (Santa Cruz)",
+  "lat": 36.98836,
+  "lon": -121.998833,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/sr1eastofmorrisseyblvd/sr1eastofmorrisseyblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

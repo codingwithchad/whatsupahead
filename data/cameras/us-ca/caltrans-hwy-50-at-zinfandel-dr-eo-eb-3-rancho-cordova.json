@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-50-at-zinfandel-dr-eo-eb-3-rancho-cordova",
+  "name": "Hwy 50 at Zinfandel Dr EO EB 3 (Rancho Cordova)",
+  "lat": 38.597857,
+  "lon": -121.277972,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy50atzinfandeldreoeb3/hwy50atzinfandeldreoeb3.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 50"
+}

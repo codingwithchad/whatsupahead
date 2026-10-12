@@ -16,17 +16,20 @@ describe('lookupTown', () => {
 		expect(lookupTown('Hood River')?.label).toBe('Hood River, OR');
 		expect(lookupTown('Salem, Oregon')?.label).toBe('Salem, OR');
 		expect(lookupTown('Portland')?.lat).toBeLessThan(46);
+		expect(lookupTown('Mammoth Lakes')?.label).toBe('Mammoth Lakes, CA');
+		expect(lookupTown('Redding, California')?.label).toBe('Redding, CA');
 	});
 
 	it('finds ZIP codes and names the nearest town', () => {
 		expect(lookupTown('98290')?.label).toBe('98290, Snohomish, WA');
 		expect(lookupTown('98101')?.label).toBe('98101, Seattle, WA');
 		expect(lookupTown('97028')?.label).toMatch(/, OR$/);
+		expect(lookupTown('90210')?.label).toBe('90210, Beverly Hills, CA');
 	});
 
 	it('leaves other states and unknown text to the online search', () => {
 		expect(lookupTown('Boise, Idaho')).toBeNull();
-		expect(lookupTown('90210')).toBeNull();
+		expect(lookupTown('83702')).toBeNull();
 		expect(lookupTown('Stevens Pass')).toBeNull();
 		expect(lookupTown('1600 Pennsylvania Ave')).toBeNull();
 	});

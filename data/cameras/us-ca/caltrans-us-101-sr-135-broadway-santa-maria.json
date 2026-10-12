@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-sr-135-broadway-santa-maria",
+  "name": "US-101 – SR-135 Broadway (Santa Maria)",
+  "lat": 34.984583,
+  "lon": -120.433019,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/us101sr135broadway/us101sr135broadway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

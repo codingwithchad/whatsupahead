@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-ventura-blvd-sherman-oaks",
+  "name": "I-405 – Ventura Blvd (Sherman Oaks)",
+  "lat": 34.15575,
+  "lon": -118.46895,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i405675venturablvd/i405675venturablvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

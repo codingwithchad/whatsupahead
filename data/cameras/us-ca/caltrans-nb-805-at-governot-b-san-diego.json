@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-805-at-governot-b-san-diego",
+  "name": "NB 805 at Governot B (San Diego)",
+  "lat": 32.85776,
+  "lon": -117.18419,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c376nb805atgovernotb/c376nb805atgovernotb.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 805"
+}

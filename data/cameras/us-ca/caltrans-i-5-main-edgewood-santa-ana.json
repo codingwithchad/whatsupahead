@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-main-edgewood-santa-ana",
+  "name": "I-5 – Main & Edgewood (Santa Ana)",
+  "lat": 33.769021,
+  "lon": -117.86727,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i5523mainedgewood/i5523mainedgewood.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

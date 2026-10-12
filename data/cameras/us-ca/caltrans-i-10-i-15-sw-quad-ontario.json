@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-i-15-sw-quad-ontario",
+  "name": "I-10 – I-15 SW Quad (Ontario)",
+  "lat": 34.067058,
+  "lon": -117.549166,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1015i15swquad/i1015i15swquad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}

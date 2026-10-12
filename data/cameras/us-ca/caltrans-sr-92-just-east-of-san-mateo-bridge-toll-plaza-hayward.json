@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-92-just-east-of-san-mateo-bridge-toll-plaza-hayward",
+  "name": "SR-92 – Just East Of San Mateo Bridge Toll Plaza (Hayward)",
+  "lat": 37.619085,
+  "lon": -122.147617,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tve09sr92justeastofsanmateobridgetollplaza/tve09sr92justeastofsanmateobridgetollplaza.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 92"
+}

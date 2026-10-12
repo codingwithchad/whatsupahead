@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-68-york-road-monterey",
+  "name": "SR-68 – York Road (Monterey)",
+  "lat": 36.571675,
+  "lon": -121.808567,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/sr68yorkroad/sr68yorkroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 68"
+}

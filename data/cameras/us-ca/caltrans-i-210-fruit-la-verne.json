@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-fruit-la-verne",
+  "name": "I-210 – Fruit (La Verne)",
+  "lat": 34.11906,
+  "lon": -117.76117,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i210476fruit/i210476fruit.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

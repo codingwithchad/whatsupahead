@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-51-at-e-st-sacramento",
+  "name": "Hwy 51 at E St (Sacramento)",
+  "lat": 38.578995,
+  "lon": -121.464797,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy51atest/hwy51atest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 51"
+}

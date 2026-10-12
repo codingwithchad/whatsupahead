@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-280-at-stevens-creek-onramp-santa-clara",
+  "name": "I-280 at Stevens Creek Onramp (Santa Clara)",
+  "lat": 37.323329,
+  "lon": -121.99904,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvb91i280atstevenscreekonramp/tvb91i280atstevenscreekonramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 280"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-allen-maple-pasadena",
+  "name": "I-210 – Allen-Maple (Pasadena)",
+  "lat": 34.15289,
+  "lon": -118.11287,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i210758allenmaple/i210758allenmaple.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

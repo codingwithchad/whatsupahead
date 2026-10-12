@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-south-of-laguna-hills-drive-overcross-aliso-viejo",
+  "name": "SR-73 – South of Laguna Hills Drive Overcross (Aliso Viejo)",
+  "lat": 33.58418,
+  "lon": -117.72702,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73331southoflagunahillsdriveovercross/sr73331southoflagunahillsdriveovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

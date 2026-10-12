@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-261-200-meters-south-of-i-5-irvine",
+  "name": "SR-261 – 200 Meters South of I-5 (Irvine)",
+  "lat": 33.71751,
+  "lon": -117.79526,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr261310200meterssouthofi5/sr261310200meterssouthofi5.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 261"
+}

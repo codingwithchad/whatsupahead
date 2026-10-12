@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-55-south-of-lincoln-orange",
+  "name": "SR-55 – South of Lincoln (Orange)",
+  "lat": 33.831168,
+  "lon": -117.834251,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr55205southoflincoln/sr55205southoflincoln.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 55"
+}

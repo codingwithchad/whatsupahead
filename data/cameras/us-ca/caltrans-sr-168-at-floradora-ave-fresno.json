@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-168-at-floradora-ave-fresno",
+  "name": "SR-168 at Floradora Ave (Fresno)",
+  "lat": 36.761689,
+  "lon": -119.749632,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/fre168atfloradoraave/fre168atfloradoraave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 168"
+}

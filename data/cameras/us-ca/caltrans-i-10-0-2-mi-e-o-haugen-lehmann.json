@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-0-2-mi-e-o-haugen-lehmann",
+  "name": "I-10 – 0.2 mi e/o Haugen-Lehmann",
+  "lat": 33.923624,
+  "lon": -116.690424,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1051102mieohaugenlehmann/i1051102mieohaugenlehmann.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}

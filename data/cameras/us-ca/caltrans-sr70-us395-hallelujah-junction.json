@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr70-us395-hallelujah-junction",
+  "name": "SR70-US395 (Hallelujah Junction)",
+  "lat": 39.774845,
+  "lon": -120.03846,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/sr70us395/sr70us395.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 395"
+}

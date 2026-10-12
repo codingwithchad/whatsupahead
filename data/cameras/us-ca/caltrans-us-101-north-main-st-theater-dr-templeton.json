@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-north-main-st-theater-dr-templeton",
+  "name": "US-101 – North Main St - Theater Dr (Templeton)",
+  "lat": 35.56616,
+  "lon": -120.70152,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/us101northmainsttheaterdr/us101northmainsttheaterdr.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

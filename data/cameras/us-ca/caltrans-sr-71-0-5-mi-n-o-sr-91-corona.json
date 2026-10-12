@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-71-0-5-mi-n-o-sr-91-corona",
+  "name": "SR-71 – 0.5 Mi N/O SR-91 (Corona)",
+  "lat": 33.88934,
+  "lon": -117.64646,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr7141805minosr91/sr7141805minosr91.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 71"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-at-at-chadbourne-rd-fairfield",
+  "name": "I-80 at at Chadbourne Rd (Fairfield)",
+  "lat": 38.24218,
+  "lon": -122.08624,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv984i80atatchadbournerd/tv984i80atatchadbournerd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

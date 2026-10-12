@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-22-main-street-orange",
+  "name": "SR-22 – Main Street (Orange)",
+  "lat": 33.778524,
+  "lon": -117.862898,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr22156mainstreet/sr22156mainstreet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 22"
+}

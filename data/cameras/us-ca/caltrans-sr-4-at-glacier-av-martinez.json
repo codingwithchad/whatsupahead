@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-4-at-glacier-av-martinez",
+  "name": "SR-4 at Glacier Av (Martinez)",
+  "lat": 37.99084,
+  "lon": -122.08769,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv831sr4atglacierav/tv831sr4atglacierav.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 4"
+}

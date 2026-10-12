@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-0-6mi-south-of-kenwood-san-bernardino",
+  "name": "I-15 – 0.6mi South Of Kenwood (San Bernardino)",
+  "lat": 34.23009,
+  "lon": -117.41801,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1521906misouthofkenwood/i1521906misouthofkenwood.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

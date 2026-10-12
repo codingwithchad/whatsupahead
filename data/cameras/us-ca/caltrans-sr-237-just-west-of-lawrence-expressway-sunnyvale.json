@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-237-just-west-of-lawrence-expressway-sunnyvale",
+  "name": "SR-237 – Just West Of Lawrence Expressway (Sunnyvale)",
+  "lat": 37.409232,
+  "lon": -122.000241,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvc95sr237justwestoflawrenceexpressway/tvc95sr237justwestoflawrenceexpressway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 237"
+}

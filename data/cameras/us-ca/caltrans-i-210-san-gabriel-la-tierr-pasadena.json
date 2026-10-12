@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-san-gabriel-la-tierr-pasadena",
+  "name": "I-210 – San Gabriel-La Tierr (Pasadena)",
+  "lat": 34.15179,
+  "lon": -118.09407,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i210764sangabriellatierr/i210764sangabriellatierr.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

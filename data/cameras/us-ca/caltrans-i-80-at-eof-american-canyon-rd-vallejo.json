@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-at-eof-american-canyon-rd-vallejo",
+  "name": "I-80 at Eof American Canyon Rd (Vallejo)",
+  "lat": 38.17936,
+  "lon": -122.18901,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv941i80ateofamericancanyonrd/tv941i80ateofamericancanyonrd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

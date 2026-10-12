@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-299-berry-summit-sand-house-north-blue-lake",
+  "name": "SR-299 – Berry Summit - Sand House - North (Blue Lake)",
+  "lat": 40.896949,
+  "lon": -123.768674,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/sr299berrysummitsandhousen/sr299berrysummitsandhousen.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 299"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-56-just-east-of-rsf-farms-san-diego",
+  "name": "SR-56 – Just East of RSF Farms (San Diego)",
+  "lat": 32.96735,
+  "lon": -117.17184,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c137sr56justeastofrsffarms/c137sr56justeastofrsffarms.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 56"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-4th-street-ontario",
+  "name": "I-10 – 4th Street (Ontario)",
+  "lat": 34.076985,
+  "lon": -117.622827,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i10094thstreet/i10094thstreet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}

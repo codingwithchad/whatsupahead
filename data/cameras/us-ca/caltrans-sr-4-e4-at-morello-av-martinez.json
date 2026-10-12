@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-4-e4-at-morello-av-martinez",
+  "name": "SR-4 – E4 at Morello Av (Martinez)",
+  "lat": 37.9915,
+  "lon": -122.10053,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvf39sr4e4atmorelloav/tvf39sr4e4atmorelloav.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 4"
+}

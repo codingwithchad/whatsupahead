@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-mid-skyway-san-francisco-d4-tvd38i80midskyway",
+  "name": "I-80 – Mid Skyway (San Francisco)",
+  "lat": 37.820452,
+  "lon": -122.339316,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvd38i80midskyway/tvd38i80midskyway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

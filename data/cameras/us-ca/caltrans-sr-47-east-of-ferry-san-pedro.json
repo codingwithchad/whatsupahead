@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-47-east-of-ferry-san-pedro",
+  "name": "SR-47 – East of Ferry (San Pedro)",
+  "lat": 33.74966,
+  "lon": -118.26068,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/sr47953eastofferry/sr47953eastofferry.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 47"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-50-at-15th-st-sacramento",
+  "name": "Hwy 50 at 15th St (Sacramento)",
+  "lat": 38.564444,
+  "lon": -121.494694,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy50at15thst/hwy50at15thst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 50"
+}

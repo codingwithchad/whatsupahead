@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-110-florence-ave-sb-off-ramp",
+  "name": "I-110 – Florence Ave SB Off Ramp",
+  "lat": 33.975807,
+  "lon": -118.281331,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i110812florenceavesbofframp/i110812florenceavesbofframp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 110"
+}

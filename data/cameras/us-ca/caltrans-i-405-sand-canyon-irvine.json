@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-sand-canyon-irvine",
+  "name": "I-405 – Sand Canyon (Irvine)",
+  "lat": 33.658267,
+  "lon": -117.779688,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i405172sandcanyon/i405172sandcanyon.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-82-page-mill-road-oregon-expressway-palo-alto-d4-t029nsr82pagemillroadoregonex",
+  "name": "SR-82 – Page Mill Road / Oregon Expressway (Palo Alto)",
+  "lat": 37.42334,
+  "lon": -122.14216,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t029nsr82pagemillroadoregonexpressway/t029nsr82pagemillroadoregonexpressway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 82"
+}

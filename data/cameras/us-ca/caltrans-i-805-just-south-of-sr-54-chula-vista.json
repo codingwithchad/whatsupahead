@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-805-just-south-of-sr-54-chula-vista",
+  "name": "I-805 – Just South Of SR-54 (Chula Vista)",
+  "lat": 32.65446,
+  "lon": -117.0716,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c144i805justsouthofsr54/c144i805justsouthofsr54.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 805"
+}

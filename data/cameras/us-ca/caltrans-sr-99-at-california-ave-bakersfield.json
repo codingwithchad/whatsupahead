@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-99-at-california-ave-bakersfield",
+  "name": "SR-99 at California Ave (Bakersfield)",
+  "lat": 35.36857,
+  "lon": -119.04225,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/ker99atcaliforniaave/ker99atcaliforniaave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

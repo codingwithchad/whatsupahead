@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-at-truck-escape-ramp-median-lebec",
+  "name": "I-5 at Truck Escape Ramp(Median) (Lebec)",
+  "lat": 34.921729,
+  "lon": -118.92381,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/ker5attruckescaperampmedian/ker5attruckescaperampmedian.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

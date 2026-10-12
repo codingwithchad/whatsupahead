@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-sr-116-cotati",
+  "name": "US-101 – SR-116 (Cotati)",
+  "lat": 38.331632,
+  "lon": -122.713014,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv171us101sr116/tv171us101sr116.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

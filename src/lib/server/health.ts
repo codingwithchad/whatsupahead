@@ -86,6 +86,15 @@ const CHECKS: Check[] = [
 		}
 	},
 	{
+		name: 'caltrans-pictures',
+		run: async () => {
+			const cam = getCatalog().cameras.find((c) => c.source === 'Caltrans' && c.feed_url);
+			if (!cam) return null;
+			const bytes = new Uint8Array(await (await get(cam.feed_url!)).arrayBuffer());
+			if (!(bytes[0] === 0xff && bytes[1] === 0xd8)) return 'picture is not a JPEG';
+		}
+	},
+	{
 		name: 'nws',
 		run: async () => {
 			await get('https://api.weather.gov/points/47.6062,-122.3321', {

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-south-of-melrose-ave-los-angeles",
+  "name": "US-101 – South of Melrose Ave (Los Angeles)",
+  "lat": 34.08275,
+  "lon": -118.29791,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/us101602southofmelroseave/us101602southofmelroseave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

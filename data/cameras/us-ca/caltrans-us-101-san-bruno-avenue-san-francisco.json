@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-san-bruno-avenue-san-francisco",
+  "name": "US-101 – San Bruno Avenue (San Francisco)",
+  "lat": 37.63106,
+  "lon": -122.40302,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv409us101sanbrunoavenue/tv409us101sanbrunoavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

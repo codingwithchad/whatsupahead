@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-sb-at-chestnut-ave-carlsbad",
+  "name": "I-5 – SB at Chestnut Ave (Carlsbad)",
+  "lat": 33.1579618,
+  "lon": -117.3397755,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c365i5sbatchestnutavet/c365i5sbatchestnutavet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

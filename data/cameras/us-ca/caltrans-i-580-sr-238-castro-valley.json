@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-580-sr-238-castro-valley",
+  "name": "I-580 – SR-238 (Castro Valley)",
+  "lat": 37.690899,
+  "lon": -122.098599,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tva46i580sr238/tva46i580sr238.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 580"
+}

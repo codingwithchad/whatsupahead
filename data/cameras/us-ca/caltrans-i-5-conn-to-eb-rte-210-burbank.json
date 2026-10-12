@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-conn-to-eb-rte-210-burbank",
+  "name": "I-5 – Conn To EB Rte 210 (Burbank)",
+  "lat": 34.3170489,
+  "lon": -118.492144,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i562conntoebrte210/i562conntoebrte210.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-605-peck-rd-south-of-i-605-whittier",
+  "name": "I-605 – Peck Rd (South of I-605) (Whittier)",
+  "lat": 34.02872,
+  "lon": -118.03441,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i605522peckrdsouthofi605/i605522peckrdsouthofi605.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 605"
+}

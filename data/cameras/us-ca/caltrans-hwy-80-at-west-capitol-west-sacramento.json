@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-80-at-west-capitol-west-sacramento",
+  "name": "Hwy 80 at West Capitol (West Sacramento)",
+  "lat": 38.573915,
+  "lon": -121.581819,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy80atwestcapitol/hwy80atwestcapitol.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-just-south-of-encinitas-top",
+  "name": "I-5 – Just South of Encinitas Top",
+  "lat": 33.042,
+  "lon": -117.28555,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c254i5justsouthofencinitastop/c254i5justsouthofencinitastop.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

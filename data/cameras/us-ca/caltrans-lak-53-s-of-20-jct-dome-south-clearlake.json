@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-lak-53-s-of-20-jct-dome-south-clearlake",
+  "name": "LAK 53 – S of 20 JCT (Dome, South) (Clearlake)",
+  "lat": 38.980094,
+  "lon": -122.612649,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/lak53sof20jctdomes/lak53sof20jctdomes.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 53"
+}

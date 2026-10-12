@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-395-mcgee-creek-road-mammoth-lakes",
+  "name": "US-395 – McGee Creek Road (Mammoth Lakes)",
+  "lat": 37.58796,
+  "lon": -118.78405,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d9/cctv/image/us395mcgeecreekroad/us395mcgeecreekroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 395"
+}

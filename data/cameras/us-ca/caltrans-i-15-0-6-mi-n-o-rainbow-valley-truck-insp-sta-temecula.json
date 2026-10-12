@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-0-6-mi-n-o-rainbow-valley-truck-insp-sta-temecula",
+  "name": "I-15 – 0.6 mi N/O Rainbow Valley Truck Insp. Sta (Temecula)",
+  "lat": 33.45523,
+  "lon": -117.13531,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1529906minorainbowvalleytruckinspsta/i1529906minorainbowvalleytruckinspsta.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

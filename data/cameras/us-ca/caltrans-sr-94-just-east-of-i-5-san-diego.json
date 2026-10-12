@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-94-just-east-of-i-5-san-diego",
+  "name": "SR-94 – Just East Of I-5 (San Diego)",
+  "lat": 32.71329,
+  "lon": -117.14517,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c025sr94justeastofi5/c025sr94justeastofi5.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 94"
+}

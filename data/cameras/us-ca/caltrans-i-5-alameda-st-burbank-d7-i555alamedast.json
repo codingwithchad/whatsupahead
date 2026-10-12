@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-alameda-st-burbank-d7-i555alamedast",
+  "name": "I-5 – Alameda St (Burbank)",
+  "lat": 34.2720785,
+  "lon": -118.4488007,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i555alamedast/i555alamedast.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

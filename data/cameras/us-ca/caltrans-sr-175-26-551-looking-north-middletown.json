@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-175-26-551-looking-north-middletown",
+  "name": "SR-175 – 26.551 – Looking North (Middletown)",
+  "lat": 38.758979,
+  "lon": -122.640641,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/lak17526551lookingn/lak17526551lookingn.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 175"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-680-just-south-of-marshview-road-benicia",
+  "name": "I-680 – Just South Of Marshview Road (Benicia)",
+  "lat": 38.14468,
+  "lon": -122.10938,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv808i680justsouthofmarshviewroad/tv808i680justsouthofmarshviewroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 680"
+}

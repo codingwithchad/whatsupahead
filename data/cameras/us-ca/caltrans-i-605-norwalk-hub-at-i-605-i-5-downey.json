@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-605-norwalk-hub-at-i-605-i-5-downey",
+  "name": "I-605 – Norwalk Hub at I-605 / I-5 (Downey)",
+  "lat": 33.9405,
+  "lon": -118.0973,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i605515norwalkhubati605i5/i605515norwalkhubati605i5.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 605"
+}

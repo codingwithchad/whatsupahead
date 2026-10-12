@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-sr-99-south-of-sultana-drive-livingston",
+  "name": "NB SR 99 South of Sultana Drive (Livingston)",
+  "lat": 37.37426,
+  "lon": -120.68083,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/19nbsr99southofsultanadrive/19nbsr99southofsultanadrive.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

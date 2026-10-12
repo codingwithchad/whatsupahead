@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-black-butte-mount-shasta",
+  "name": "I-5 – Black Butte (Mount Shasta)",
+  "lat": 41.35411,
+  "lon": -122.3559,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/blackbutte/blackbutte.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

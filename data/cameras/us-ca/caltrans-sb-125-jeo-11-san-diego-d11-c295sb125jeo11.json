@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sb-125-jeo-11-san-diego-d11-c295sb125jeo11",
+  "name": "SB 125 – Jeo 11 (San Diego)",
+  "lat": 32.565022,
+  "lon": -116.948711,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c295sb125jeo11/c295sb125jeo11.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 125"
+}

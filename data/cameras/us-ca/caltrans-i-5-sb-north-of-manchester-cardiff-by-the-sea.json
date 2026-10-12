@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-sb-north-of-manchester-cardiff-by-the-sea",
+  "name": "I-5 – SB North of Manchester (Cardiff By The Sea)",
+  "lat": 33.01493,
+  "lon": -117.27047,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c516i5sbnorthofmanchestert/c516i5sbnorthofmanchestert.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

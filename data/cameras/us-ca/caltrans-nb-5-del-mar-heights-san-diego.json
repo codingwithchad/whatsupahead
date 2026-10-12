@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-5-del-mar-heights-san-diego",
+  "name": "NB 5 – Del Mar Heights (San Diego)",
+  "lat": 32.95051,
+  "lon": -117.24292,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c336nb5delmarheights/c336nb5delmarheights.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

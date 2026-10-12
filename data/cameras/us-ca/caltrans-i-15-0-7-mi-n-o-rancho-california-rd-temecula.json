@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-0-7-mi-n-o-rancho-california-rd-temecula",
+  "name": "I-15 – 0.7 mi N/O Rancho California Rd (Temecula)",
+  "lat": 33.511156,
+  "lon": -117.156544,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1530407minoranchocaliforniard/i1530407minoranchocaliforniard.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

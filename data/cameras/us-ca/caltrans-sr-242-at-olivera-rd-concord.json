@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-242-at-olivera-rd-concord",
+  "name": "SR-242 at Olivera Rd (Concord)",
+  "lat": 37.99709,
+  "lon": -122.03825,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvf36sr242atoliverard/tvf36sr242atoliverard.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 242"
+}

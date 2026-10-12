@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-57-nb-sr-57-at-lincoln-anaheim",
+  "name": "SR-57 – NB SR-57 at Lincoln (Anaheim)",
+  "lat": 33.83877,
+  "lon": -117.875909,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr57920nbsr57atlincoln/sr57920nbsr57atlincoln.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 57"
+}

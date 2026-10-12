@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-90-valencia-ave-nw-corner-brea",
+  "name": "SR-90 – Valencia Ave NW Corner (Brea)",
+  "lat": 33.91,
+  "lon": -117.85243,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr90519valenciaavenwcorner/sr90519valenciaavenwcorner.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 90"
+}

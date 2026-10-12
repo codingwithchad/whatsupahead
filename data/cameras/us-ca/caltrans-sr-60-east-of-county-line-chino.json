@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-60-east-of-county-line-chino",
+  "name": "SR-60 – East of County Line (Chino)",
+  "lat": 34.02476,
+  "lon": -117.72937,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr60145eastofcountyline/sr60145eastofcountyline.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 60"
+}

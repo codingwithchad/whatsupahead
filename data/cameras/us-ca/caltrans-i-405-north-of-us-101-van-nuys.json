@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-north-of-us-101-van-nuys",
+  "name": "I-405 – North of US-101 (Van Nuys)",
+  "lat": 34.16509,
+  "lon": -118.46998,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i405676northofus101/i405676northofus101.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

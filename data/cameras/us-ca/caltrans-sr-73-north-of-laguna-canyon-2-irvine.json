@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-north-of-laguna-canyon-2-irvine",
+  "name": "SR-73 – North of Laguna Canyon 2 (Irvine)",
+  "lat": 33.59876,
+  "lon": -117.77494,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73338northoflagunacanyon2/sr73338northoflagunacanyon2.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

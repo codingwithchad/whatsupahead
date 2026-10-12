@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-91-central-riverside",
+  "name": "SR-91 – Central (Riverside)",
+  "lat": 33.95652,
+  "lon": -117.37956,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr91142central/sr91142central.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 91"
+}

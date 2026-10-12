@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-123-40th-street-looking-south-emeryville",
+  "name": "SR-123 – 40th Street - Looking South (Emeryville)",
+  "lat": 37.83125,
+  "lon": -122.27982,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t250ssr12340thstreetlookingsouth/t250ssr12340thstreetlookingsouth.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 123"
+}

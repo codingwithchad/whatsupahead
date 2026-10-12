@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us101-south-padaro-lane-off-ramp-carpinteria",
+  "name": "US101- South Padaro Lane Off Ramp (Carpinteria)",
+  "lat": 34.409554,
+  "lon": -119.550615,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/us101southpadarolaneofframp/us101southpadarolaneofframp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

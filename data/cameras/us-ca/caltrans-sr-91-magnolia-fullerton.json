@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-91-magnolia-fullerton",
+  "name": "SR-91 – Magnolia (Fullerton)",
+  "lat": 33.857781,
+  "lon": -117.97653,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr91186magnolia/sr91186magnolia.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 91"
+}

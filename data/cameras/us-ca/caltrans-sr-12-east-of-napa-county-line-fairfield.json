@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-12-east-of-napa-county-line-fairfield",
+  "name": "SR-12 – East of Napa County Line (Fairfield)",
+  "lat": 38.20869,
+  "lon": -122.19386,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv485sr12eastofnapacountyline/tv485sr12eastofnapacountyline.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 12"
+}

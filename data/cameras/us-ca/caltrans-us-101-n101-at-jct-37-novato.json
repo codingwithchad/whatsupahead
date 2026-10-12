@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-n101-at-jct-37-novato",
+  "name": "US-101 – N101 at JCT 37 (Novato)",
+  "lat": 38.08014,
+  "lon": -122.54585,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tve87us101n101atjct37/tve87us101n101atjct37.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 37"
+}

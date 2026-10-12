@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-99-at-twin-cities-galt",
+  "name": "Hwy 99 at Twin Cities (Galt)",
+  "lat": 38.28277,
+  "lon": -121.306928,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy99attwincities/hwy99attwincities.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

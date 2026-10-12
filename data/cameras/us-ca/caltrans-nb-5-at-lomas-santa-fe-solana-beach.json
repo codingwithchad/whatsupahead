@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-5-at-lomas-santa-fe-solana-beach",
+  "name": "NB 5 at Lomas Santa Fe (Solana Beach)",
+  "lat": 32.998328,
+  "lon": -117.256718,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c190nb5atlomassantafe/c190nb5atlomassantafe.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

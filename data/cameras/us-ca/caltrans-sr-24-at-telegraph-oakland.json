@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-24-at-telegraph-oakland",
+  "name": "SR-24 at Telegraph (Oakland)",
+  "lat": 37.84008,
+  "lon": -122.26424,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv113sr24attelegraph/tv113sr24attelegraph.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 24"
+}

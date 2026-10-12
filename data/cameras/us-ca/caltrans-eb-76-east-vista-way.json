@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-eb-76-east-vista-way",
+  "name": "EB 76 – East Vista Way",
+  "lat": 33.25746,
+  "lon": -117.23738,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c153eb76eastvistaway/c153eb76eastvistaway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 76"
+}

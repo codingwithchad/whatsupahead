@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-20-west-of-sr-53-looking-west-clearlake",
+  "name": "SR-20 – West Of SR-53 - Looking West (Clearlake)",
+  "lat": 39.012763,
+  "lon": -122.631352,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/sr20westofsr53lookingwest/sr20westofsr53lookingwest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 20"
+}

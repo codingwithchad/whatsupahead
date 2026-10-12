@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-91-promenade-overcross-corona",
+  "name": "SR-91 – Promenade Overcross (Corona)",
+  "lat": 33.88305,
+  "lon": -117.53719,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr9156promenadeovercross/sr9156promenadeovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 91"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-south-of-newport-coast-drive-b",
+  "name": "SR-73 – South of Newport Coast Drive B",
+  "lat": 33.62225,
+  "lon": -117.82676,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73345southofnewportcoastdriveb/sr73345southofnewportcoastdriveb.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

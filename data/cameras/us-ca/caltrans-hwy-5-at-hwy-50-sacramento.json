@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-5-at-hwy-50-sacramento",
+  "name": "Hwy 5 at Hwy 50 (Sacramento)",
+  "lat": 38.568818,
+  "lon": -121.509993,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy5athwy50/hwy5athwy50.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

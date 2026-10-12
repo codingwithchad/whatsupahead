@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-580-i-680-dublin",
+  "name": "I-580 – I-680 (Dublin)",
+  "lat": 37.7015,
+  "lon": -121.92204,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tva35i580i680/tva35i580i680.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 580"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-242-at-concord-av",
+  "name": "SR-242 at Concord Av",
+  "lat": 37.978452,
+  "lon": -122.04342,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv826sr242atconcordav/tv826sr242atconcordav.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 242"
+}

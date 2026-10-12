@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-52-genesee-avenue-san-diego",
+  "name": "SR-52 – Genesee Avenue (San Diego)",
+  "lat": 32.84682,
+  "lon": -117.20588,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c110sr52geneseeavenue/c110sr52geneseeavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 52"
+}

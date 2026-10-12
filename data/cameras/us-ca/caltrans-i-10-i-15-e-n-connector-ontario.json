@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-i-15-e-n-connector-ontario",
+  "name": "I-10 – I-15 E-N Connector (Ontario)",
+  "lat": 34.066155,
+  "lon": -117.543586,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1016i15enconnector/i1016i15enconnector.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-eureka-5th-r-street-looking-north",
+  "name": "US-101 – Eureka / 5th & R Street - Looking North",
+  "lat": 40.803788,
+  "lon": -124.153431,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/us101eureka5thrstreetlookingnorth/us101eureka5thrstreetlookingnorth.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

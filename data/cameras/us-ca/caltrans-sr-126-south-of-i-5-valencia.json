@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-126-south-of-i-5-valencia",
+  "name": "SR-126 – South of I-5 (Valencia)",
+  "lat": 34.44276,
+  "lon": -118.60697,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/sr126948southofi5/sr126948southofi5.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 126"
+}

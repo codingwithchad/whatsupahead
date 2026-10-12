@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-99-at-shaw-ave-fresno",
+  "name": "SR-99 at Shaw Ave (Fresno)",
+  "lat": 36.807656,
+  "lon": -119.886741,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/fre99atshawave/fre99atshawave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

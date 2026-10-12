@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-880-at-jct-112-davis-st-san-leandro",
+  "name": "I-880 at Jct-112 Davis St (San Leandro)",
+  "lat": 37.7192,
+  "lon": -122.17642,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvb18i880atjct112davisst/tvb18i880atjct112davisst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 880"
+}

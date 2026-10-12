@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-rte-5-14-interchange-burbank",
+  "name": "I-5 – Rte 5/14 Interchange (Burbank)",
+  "lat": 34.3365136,
+  "lon": -118.5073635,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i564rte514interchange/i564rte514interchange.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

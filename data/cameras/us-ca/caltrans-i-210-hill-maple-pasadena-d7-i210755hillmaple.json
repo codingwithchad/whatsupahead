@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-hill-maple-pasadena-d7-i210755hillmaple",
+  "name": "I-210 – Hill-Maple (Pasadena)",
+  "lat": 34.1506,
+  "lon": -118.1345,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i210755hillmaple/i210755hillmaple.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

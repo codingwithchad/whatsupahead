@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-magic-mtn-truck-scales-elysian-park",
+  "name": "I-5 – Magic Mtn Truck Scales (Elysian Park)",
+  "lat": 34.434382,
+  "lon": -118.591798,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i5946magicmtntruckscales/i5946magicmtntruckscales.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-299-blue-lake-east",
+  "name": "SR-299 – Blue Lake (East)",
+  "lat": 40.884659,
+  "lon": -123.958805,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/sr299bluelake/sr299bluelake.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 299"
+}

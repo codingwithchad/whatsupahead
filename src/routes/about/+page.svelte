@@ -38,7 +38,8 @@
 		</li>
 		<li>
 			Cameras and road reports: the Washington State Department of Transportation (WSDOT), WSDOT
-			Aviation, the Oregon Department of Transportation (TripCheck) and the National Park Service.
+			Aviation, the Oregon Department of Transportation (TripCheck), the California Department of
+			Transportation (Caltrans) and the National Park Service.
 		</li>
 		<li>
 			Weather, rivers, tides and flights: the National Weather Service, NOAA, USGS and the FAA.

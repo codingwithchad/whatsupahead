@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-680-just-north-of-bollinger-canyon-san-ramon",
+  "name": "I-680 – Just North Of Bollinger Canyon (San Ramon)",
+  "lat": 37.760001,
+  "lon": -121.96483,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvf07i680justnorthofbollingercanyon/tvf07i680justnorthofbollingercanyon.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 680"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-204-at-8th-st-bakersfield",
+  "name": "SR-204 at 8th St (Bakersfield)",
+  "lat": 35.36444,
+  "lon": -119.00316,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/ker204at8thst/ker204at8thst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 204"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sb-i-5-jct-i-205-tracy",
+  "name": "SB I-5 Jct I-205 (Tracy)",
+  "lat": 37.76976,
+  "lon": -121.32887,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/2sbi5jcti205/2sbi5jcti205.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

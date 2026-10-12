@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-at-wof-barrett-av-richmond",
+  "name": "I-80 at Wof Barrett Av (Richmond)",
+  "lat": 37.93546,
+  "lon": -122.32742,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv505i80atwofbarrettav/tv505i80atwofbarrettav.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

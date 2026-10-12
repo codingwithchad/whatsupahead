@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-238-south-of-ashland-avenue-san-lorenzo",
+  "name": "SR-238 – South of Ashland Avenue (San Lorenzo)",
+  "lat": 37.69022,
+  "lon": -122.12463,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv709sr238southofashlandavenue/tv709sr238southofashlandavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 238"
+}

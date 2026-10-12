@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-toll-plaza-oakland",
+  "name": "I-80 – Toll Plaza (Oakland)",
+  "lat": 37.824458,
+  "lon": -122.313281,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvd13i80tollplaza/tvd13i80tollplaza.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

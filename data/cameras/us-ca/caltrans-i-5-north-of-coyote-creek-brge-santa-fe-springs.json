@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-north-of-coyote-creek-brge-santa-fe-springs",
+  "name": "I-5 – North of Coyote Creek Brge (Santa Fe Springs)",
+  "lat": 33.88762,
+  "lon": -118.03591,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i5568northofcoyotecreekbrge/i5568northofcoyotecreekbrge.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

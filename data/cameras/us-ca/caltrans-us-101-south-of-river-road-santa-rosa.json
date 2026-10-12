@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-south-of-river-road-santa-rosa",
+  "name": "US-101 – South Of River Road (Santa Rosa)",
+  "lat": 38.487616,
+  "lon": -122.744512,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv147us101southofriverroad/tv147us101southofriverroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

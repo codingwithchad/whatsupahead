@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-41st-avenue-santa-cruz",
+  "name": "SR-1 – 41st Avenue (Santa Cruz)",
+  "lat": 36.982871,
+  "lon": -121.969751,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/sr141stavenue/sr141stavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

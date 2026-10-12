@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-215-nueveo-road-onramp-perris",
+  "name": "I-215 – Nueveo Road Onramp (Perris)",
+  "lat": 33.80082,
+  "lon": -117.23274,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i215256nueveoroadonramp/i215256nueveoroadonramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 215"
+}

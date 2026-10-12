@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-110-1st-st-downtown-la",
+  "name": "I-110 – 1st St (Downtown LA)",
+  "lat": 34.0597,
+  "lon": -118.2524,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i1101881stst/i1101881stst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 110"
+}

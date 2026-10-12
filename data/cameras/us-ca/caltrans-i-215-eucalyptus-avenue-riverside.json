@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-215-eucalyptus-avenue-riverside",
+  "name": "I-215 – Eucalyptus Avenue (Riverside)",
+  "lat": 33.93161,
+  "lon": -117.28948,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i215272eucalyptusavenue/i215272eucalyptusavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 215"
+}

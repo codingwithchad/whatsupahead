@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-pinole-valley-road",
+  "name": "I-80 – Pinole Valley Road",
+  "lat": 37.996783,
+  "lon": -122.286282,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv511i80pinolevalleyroad/tv511i80pinolevalleyroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

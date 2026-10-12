@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-date-palm-drive-desert-hot-springs",
+  "name": "I-10 – Date Palm Drive (Desert Hot Springs)",
+  "lat": 33.84805149,
+  "lon": -116.45809498311783,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i10518datepalmdrive/i10518datepalmdrive.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}

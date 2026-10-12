@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-red-bluff",
+  "name": "I-5 – Red Bluff",
+  "lat": 40.18061,
+  "lon": -122.2257,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/redbluff/redbluff.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

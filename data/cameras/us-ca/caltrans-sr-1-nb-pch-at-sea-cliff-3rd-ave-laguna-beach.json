@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-nb-pch-at-sea-cliff-3rd-ave-laguna-beach",
+  "name": "SR-1 – NB PCH at Sea Cliff/3rd Ave (Laguna Beach)",
+  "lat": 33.502244,
+  "lon": -117.744187,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr1826nbpchatseacliff3rdave/sr1826nbpchatseacliff3rdave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

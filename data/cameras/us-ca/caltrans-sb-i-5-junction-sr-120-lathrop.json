@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sb-i-5-junction-sr-120-lathrop",
+  "name": "SB I-5 Junction SR 120 (Lathrop)",
+  "lat": 37.78955,
+  "lon": -121.30189,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/3sbi5junctionsr120/3sbi5junctionsr120.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

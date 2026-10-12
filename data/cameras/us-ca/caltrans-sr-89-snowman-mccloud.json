@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-89-snowman-mccloud",
+  "name": "SR-89 – Snowman (McCloud)",
+  "lat": 41.26879,
+  "lon": -122.21239,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/snowman/snowman.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 89"
+}

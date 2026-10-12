@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-91-0-6-miles-east-of-sr-71-corona",
+  "name": "SR-91 – 0.6 Miles East of SR-71 (Corona)",
+  "lat": 33.88384,
+  "lon": -117.62949,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr914806mileseastofsr71/sr914806mileseastofsr71.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 91"
+}

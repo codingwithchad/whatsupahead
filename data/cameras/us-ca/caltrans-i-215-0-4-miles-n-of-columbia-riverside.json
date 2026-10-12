@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-215-0-4-miles-n-of-columbia-riverside",
+  "name": "I-215 – 0.4 Miles N of Columbia (Riverside)",
+  "lat": 34.00833,
+  "lon": -117.34701,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i2156204milesnofcolumbia/i2156204milesnofcolumbia.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 215"
+}

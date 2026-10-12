@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-5-just-north-of-pacific-highway-san-diego",
+  "name": "NB 5 – Just North Of Pacific Highway (San Diego)",
+  "lat": 32.73556,
+  "lon": -117.17461,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c012nb5justnorthofpacifichighway/c012nb5justnorthofpacifichighway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

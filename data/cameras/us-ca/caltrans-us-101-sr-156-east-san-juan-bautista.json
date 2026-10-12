@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-sr-156-east-san-juan-bautista",
+  "name": "US-101 – SR-156 East (San Juan Bautista)",
+  "lat": 36.862318,
+  "lon": -121.580046,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/us101sr156east/us101sr156east.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

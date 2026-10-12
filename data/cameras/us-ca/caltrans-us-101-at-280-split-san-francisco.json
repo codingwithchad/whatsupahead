@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-at-280-split-san-francisco",
+  "name": "US-101 at 280 Split (San Francisco)",
+  "lat": 37.72781,
+  "lon": -122.4029,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv380us101at280split/tv380us101at280split.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

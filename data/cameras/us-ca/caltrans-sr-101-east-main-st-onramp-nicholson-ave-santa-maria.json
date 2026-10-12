@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-101-east-main-st-onramp-nicholson-ave-santa-maria",
+  "name": "SR-101 – East Main St Onramp Nicholson Ave (Santa Maria)",
+  "lat": 34.953112,
+  "lon": -120.416519,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/sr101eastmainstonrampnicholsonave/sr101eastmainstonrampnicholsonave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

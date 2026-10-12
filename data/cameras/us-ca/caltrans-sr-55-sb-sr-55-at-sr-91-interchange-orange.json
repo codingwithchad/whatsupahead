@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-55-sb-sr-55-at-sr-91-interchange-orange",
+  "name": "SR-55 – SB SR-55 at SR-91 Interchange (Orange)",
+  "lat": 33.808786,
+  "lon": -117.831811,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr55906sbsr55atsr91interchange/sr55906sbsr55atsr91interchange.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 55"
+}

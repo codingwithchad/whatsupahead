@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-carmel-mountain-road-san-diego",
+  "name": "I-5 – Carmel Mountain Road (San Diego)",
+  "lat": 32.92109,
+  "lon": -117.23824,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c051i5carmelmountainroadt/c051i5carmelmountainroadt.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-n-o-manchester-blvd-lax",
+  "name": "I-405 – N/O Manchester Blvd (LAX)",
+  "lat": 33.964407,
+  "lon": -118.370707,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i405873nomanchesterblvd/i405873nomanchesterblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

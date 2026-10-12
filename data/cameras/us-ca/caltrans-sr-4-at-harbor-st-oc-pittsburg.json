@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-4-at-harbor-st-oc-pittsburg",
+  "name": "SR-4 at Harbor St OC (Pittsburg)",
+  "lat": 38.01486,
+  "lon": -121.8829,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvf48sr4atharborstoc/tvf48sr4atharborstoc.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 4"
+}

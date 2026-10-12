@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-57-lambert-street-brea",
+  "name": "SR-57 – Lambert Street (Brea)",
+  "lat": 33.92561,
+  "lon": -117.87992,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr5782lambertstreet/sr5782lambertstreet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 57"
+}

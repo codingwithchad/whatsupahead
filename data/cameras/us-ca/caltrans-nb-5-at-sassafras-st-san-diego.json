@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-5-at-sassafras-st-san-diego",
+  "name": "NB 5 at Sassafras St (San Diego)",
+  "lat": 32.73166,
+  "lon": -117.17124,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c013nb5atsassafrasst/c013nb5atsassafrasst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

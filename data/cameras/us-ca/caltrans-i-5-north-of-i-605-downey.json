@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-north-of-i-605-downey",
+  "name": "I-5 – North of I-605 (Downey)",
+  "lat": 33.94788,
+  "lon": -118.10135,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i5576northofi605/i5576northofi605.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

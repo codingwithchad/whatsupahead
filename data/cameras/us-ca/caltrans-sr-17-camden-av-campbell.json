@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-17-camden-av-campbell",
+  "name": "SR-17 – Camden Av (Campbell)",
+  "lat": 37.26912,
+  "lon": -121.94748,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvc04sr17camdenav/tvc04sr17camdenav.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 17"
+}

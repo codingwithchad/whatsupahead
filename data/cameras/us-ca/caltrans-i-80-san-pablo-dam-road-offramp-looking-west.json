@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-san-pablo-dam-road-offramp-looking-west",
+  "name": "I-80 – San Pablo Dam Road Offramp - Looking West",
+  "lat": 37.95564,
+  "lon": -122.33043,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t262wi80sanpablodamroadofframplookingwest/t262wi80sanpablodamroadofframplookingwest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

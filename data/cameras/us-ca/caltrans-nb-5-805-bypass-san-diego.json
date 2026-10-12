@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-5-805-bypass-san-diego",
+  "name": "NB 5/805 Bypass (San Diego)",
+  "lat": 32.90594,
+  "lon": -117.2239,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c047nb5805bypass/c047nb5805bypass.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-sb-i-5-at-ortega-hwy-san-juan-capistrano",
+  "name": "I-5 – SB I-5 at Ortega Hwy (San Juan Capistrano)",
+  "lat": 33.510563,
+  "lon": -117.661298,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i5913sbi5atortegahwy/i5913sbi5atortegahwy.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

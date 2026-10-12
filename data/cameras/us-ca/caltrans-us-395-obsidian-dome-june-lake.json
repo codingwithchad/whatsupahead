@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-395-obsidian-dome-june-lake",
+  "name": "US-395 – Obsidian Dome (June Lake)",
+  "lat": 37.77493,
+  "lon": -119.01401,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d9/cctv/image/us395obsidiandome/us395obsidiandome.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 395"
+}

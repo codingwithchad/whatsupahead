@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-84-university-avenue-menlo-park",
+  "name": "SR-84 – University Avenue (Menlo Park)",
+  "lat": 37.486653,
+  "lon": -122.142,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv949sr84universityavenue/tv949sr84universityavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 84"
+}

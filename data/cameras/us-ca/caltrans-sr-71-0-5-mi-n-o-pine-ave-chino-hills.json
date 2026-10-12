@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-71-0-5-mi-n-o-pine-ave-chino-hills",
+  "name": "SR-71 – 0.5 Mi N/O Pine Ave (Chino Hills)",
+  "lat": 33.954959,
+  "lon": -117.679241,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr7140405minopineave/sr7140405minopineave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 71"
+}

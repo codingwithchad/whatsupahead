@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-state-college-orange-center",
+  "name": "I-5 – State College & Orange Center",
+  "lat": 33.793653,
+  "lon": -117.889504,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i5528statecollegeorangecenter/i5528statecollegeorangecenter.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

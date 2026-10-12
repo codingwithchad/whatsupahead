@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-howe-av-jeo-sac50-eb-sacramento",
+  "name": "Howe Av JEO SAC50 EB (Sacramento)",
+  "lat": 38.55593,
+  "lon": -121.39853,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/howeavjeosac50eb/howeavjeosac50eb.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 50"
+}

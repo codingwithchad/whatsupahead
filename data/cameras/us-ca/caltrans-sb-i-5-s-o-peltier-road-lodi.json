@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sb-i-5-s-o-peltier-road-lodi",
+  "name": "SB I-5 S/O Peltier Road (Lodi)",
+  "lat": 38.16783,
+  "lon": -121.40004,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/59sbi5sopeltierroad/59sbi5sopeltierroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

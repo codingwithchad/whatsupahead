@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-110-el-segundo-blvd-on-ramp-harbor-gateway",
+  "name": "I-110 – El Segundo Blvd On-Ramp (Harbor Gateway)",
+  "lat": 33.91522,
+  "lon": -118.285135,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i110804elsegundoblvdonramp/i110804elsegundoblvdonramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 110"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-22-wb-sr-22-at-beach-garden-grove",
+  "name": "SR-22 – WB SR-22 at Beach (Garden Grove)",
+  "lat": 33.770931,
+  "lon": -117.987537,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr22919wbsr22atbeach/sr22919wbsr22atbeach.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 22"
+}

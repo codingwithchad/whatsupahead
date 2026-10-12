@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-0-5-miles-west-of-milliken-rancho-cucamonga",
+  "name": "I-210 – 0.5 Miles West of Milliken (Rancho Cucamonga)",
+  "lat": 34.13633,
+  "lon": -117.56695,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i21011805mileswestofmilliken/i21011805mileswestofmilliken.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

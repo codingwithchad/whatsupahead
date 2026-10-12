@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-20-west-of-us-101-looking-west-willits",
+  "name": "SR-20 – West Of US-101 - Looking West (Willits)",
+  "lat": 39.405805,
+  "lon": -123.369057,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/sr20westofus101lookingwest/sr20westofus101lookingwest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 20"
+}

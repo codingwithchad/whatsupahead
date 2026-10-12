@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-sidehill-lakehead",
+  "name": "I-5 – Sidehill (Lakehead)",
+  "lat": 40.77984,
+  "lon": -122.32062,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/sidehill/sidehill.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

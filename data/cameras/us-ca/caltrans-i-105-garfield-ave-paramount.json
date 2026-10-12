@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-105-garfield-ave-paramount",
+  "name": "I-105 – Garfield Ave (Paramount)",
+  "lat": 33.9108,
+  "lon": -118.1705,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i105316garfieldave/i105316garfieldave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 105"
+}

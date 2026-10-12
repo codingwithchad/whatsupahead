@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-68th-street-overcross-mira-loma",
+  "name": "I-15 – 68th Street Overcross (Mira Loma)",
+  "lat": 33.96448,
+  "lon": -117.5484,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i157568thstreetovercross/i157568thstreetovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

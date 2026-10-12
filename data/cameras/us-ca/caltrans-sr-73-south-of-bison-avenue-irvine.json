@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-south-of-bison-avenue-irvine",
+  "name": "SR-73 – South of Bison Avenue (Irvine)",
+  "lat": 33.63394,
+  "lon": -117.8502,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73348southofbisonavenue/sr73348southofbisonavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

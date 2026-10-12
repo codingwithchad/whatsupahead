@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-east-of-27th-san-bernardino",
+  "name": "I-210 – East of 27th (San Bernardino)",
+  "lat": 34.14093,
+  "lon": -117.32305,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i210180eastof27th/i210180eastof27th.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

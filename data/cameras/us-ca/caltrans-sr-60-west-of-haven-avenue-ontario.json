@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-60-west-of-haven-avenue-ontario",
+  "name": "SR-60 – West of Haven Avenue (Ontario)",
+  "lat": 34.02986,
+  "lon": -117.58056,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr60158westofhavenavenue/sr60158westofhavenavenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 60"
+}

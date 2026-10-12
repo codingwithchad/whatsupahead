@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-0-5mi-n-o-kenwood-san-bernardino",
+  "name": "I-15 – 0.5mi n/o Kenwood (San Bernardino)",
+  "lat": 34.24171,
+  "lon": -117.4325,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1522105minokenwood/i1522105minokenwood.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

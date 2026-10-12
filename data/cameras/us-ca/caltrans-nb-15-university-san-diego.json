@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-15-university-san-diego",
+  "name": "NB 15 – University (San Diego)",
+  "lat": 32.74987,
+  "lon": -117.10841,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c290nb15university/c290nb15university.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

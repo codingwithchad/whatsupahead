@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-580-at-fallon-rd-loop-dublin",
+  "name": "I-580 at Fallon Rd Loop (Dublin)",
+  "lat": 37.70166,
+  "lon": -121.84949,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tva60i580atfallonrdloop/tva60i580atfallonrdloop.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 580"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-56-penasquitos-boulevard-san-diego",
+  "name": "SR-56 – Penasquitos Boulevard (San Diego)",
+  "lat": 32.95856,
+  "lon": -117.11456,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c141sr56penasquitosboulevard/c141sr56penasquitosboulevard.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 56"
+}

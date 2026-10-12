@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr138-n-o-hwy-18-crestline",
+  "name": "SR138 – N/O Hwy 18 (Crestline)",
+  "lat": 34.231026051083596,
+  "lon": -117.2910897779557,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr138393nohwy18/sr138393nohwy18.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 138"
+}

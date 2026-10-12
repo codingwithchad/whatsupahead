@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-13-e13-at-7th-st-looking-west-berkeley",
+  "name": "SR-13 – E13 AT 7th ST - Looking West (Berkeley)",
+  "lat": 37.8512,
+  "lon": -122.29097,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t251wsr13e13at7thstlookingwest/t251wsr13e13at7thstlookingwest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 13"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-580-east-of-el-charro-road-pleasanton",
+  "name": "I-580 – East Of El Charro Road (Pleasanton)",
+  "lat": 37.700833,
+  "lon": -121.834103,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tva24i580eastofelcharroroad/tva24i580eastofelcharroroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 580"
+}

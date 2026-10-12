@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-via-rancho-parkway-escondido",
+  "name": "I-15 – Via Rancho Parkway (Escondido)",
+  "lat": 33.06892,
+  "lon": -117.06888,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c087i15viaranchoparkway/c087i15viaranchoparkway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

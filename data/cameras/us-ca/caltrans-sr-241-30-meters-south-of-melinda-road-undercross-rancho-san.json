@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-241-30-meters-south-of-melinda-road-undercross-rancho-san",
+  "name": "SR-241 – 30 Meters South of Melinda Road Undercross (Rancho Santa Margarita)",
+  "lat": 33.65181,
+  "lon": -117.61143,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr24124630meterssouthofmelindaroadundercross/sr24124630meterssouthofmelindaroadundercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 241"
+}

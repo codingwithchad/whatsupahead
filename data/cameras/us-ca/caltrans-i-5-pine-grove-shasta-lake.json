@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-pine-grove-shasta-lake",
+  "name": "I-5 – Pine Grove (Shasta Lake)",
+  "lat": 40.66356,
+  "lon": -122.35598,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/pinegrove/pinegrove.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-eb-sr-152-san-luis-res-gustine",
+  "name": "EB SR-152 San Luis Res (Gustine)",
+  "lat": 37.06207,
+  "lon": -121.06008,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/53ebsr152sanluisres/53ebsr152sanluisres.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 152"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-280-at-cesar-chavez-san-francisco",
+  "name": "I-280 at Cesar Chavez (San Francisco)",
+  "lat": 37.75025,
+  "lon": -122.3924,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv309i280atcesarchavez/tv309i280atcesarchavez.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 280"
+}

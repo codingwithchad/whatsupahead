@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sb-sr-99-n-o-sr-59-mlk-blvd-merced",
+  "name": "SB SR-99 N/O SR- 59/MLK Blvd (Merced)",
+  "lat": 37.29878,
+  "lon": -120.48915,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/17sbsr99nosr59mlkblvd/17sbsr99nosr59mlkblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

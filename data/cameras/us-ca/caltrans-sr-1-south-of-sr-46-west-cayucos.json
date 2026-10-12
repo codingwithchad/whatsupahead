@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-south-of-sr-46-west-cayucos",
+  "name": "SR-1 – South of SR-46 West (Cayucos)",
+  "lat": 35.52237,
+  "lon": -121.04112,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/sr1southofsr46west/sr1southofsr46west.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

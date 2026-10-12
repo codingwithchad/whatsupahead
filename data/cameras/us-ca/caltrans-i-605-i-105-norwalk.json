@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-605-i-105-norwalk",
+  "name": "I-605 – I-105 (Norwalk)",
+  "lat": 33.91643,
+  "lon": -118.10504,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i605513i105/i605513i105.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 605"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-99-at-hosking-ave-bakersfield",
+  "name": "SR-99 at Hosking Ave (Bakersfield)",
+  "lat": 35.281382,
+  "lon": -119.02655,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/ker99athoskingave/ker99athoskingave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-el-camino-real-san-clemente-d12-i5901elcaminoreal",
+  "name": "I-5 – El Camino Real (San Clemente)",
+  "lat": 33.451,
+  "lon": -117.64067,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i5901elcaminoreal/i5901elcaminoreal.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

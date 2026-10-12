@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-52-sr-125-santee",
+  "name": "SR-52 – SR-125 (Santee)",
+  "lat": 32.83654,
+  "lon": -117.00392,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c114sr52sr125/c114sr52sr125.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 52"
+}

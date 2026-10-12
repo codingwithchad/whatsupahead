@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-anzar-rd-san-juan-bautista",
+  "name": "US-101 – Anzar Rd (San Juan Bautista)",
+  "lat": 36.876422,
+  "lon": -121.568994,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/us101anzarrd/us101anzarrd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

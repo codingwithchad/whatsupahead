@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-eb-sr-120-main-street-manteca",
+  "name": "EB SR 120 Main Street Manteca",
+  "lat": 37.78311,
+  "lon": -121.21739,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/26ebsr120mainstreetmanteca/26ebsr120mainstreetmanteca.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 120"
+}

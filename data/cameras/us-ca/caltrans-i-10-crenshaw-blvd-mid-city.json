@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-crenshaw-blvd-mid-city",
+  "name": "I-10 – Crenshaw Blvd (Mid City)",
+  "lat": 34.0351,
+  "lon": -118.335,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i10117crenshawblvd/i10117crenshawblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}

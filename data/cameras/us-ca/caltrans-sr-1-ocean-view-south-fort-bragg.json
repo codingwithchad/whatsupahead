@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-ocean-view-south-fort-bragg",
+  "name": "SR-1 – Ocean View (South) (Fort Bragg)",
+  "lat": 39.423726,
+  "lon": -123.80771,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/sr1oceanviews/sr1oceanviews.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-60-0-7-mi-e-o-jack-rabbit-trail-beaumont",
+  "name": "SR-60 – 0.7 mi e/o Jack Rabbit Trail (Beaumont)",
+  "lat": 33.93245,
+  "lon": -117.02611,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr6058107mieojackrabbittrail/sr6058107mieojackrabbittrail.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 60"
+}

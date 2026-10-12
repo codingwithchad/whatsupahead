@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-90-state-college-se-corner-fullerton",
+  "name": "SR-90 – State College SE Corner (Fullerton)",
+  "lat": 33.91164,
+  "lon": -117.88778,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr90512statecollegesecorner/sr90512statecollegesecorner.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 90"
+}

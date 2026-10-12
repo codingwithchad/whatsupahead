@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-nb-pch-at-laguna-laguna-beach",
+  "name": "SR-1 – NB PCH at Laguna (Laguna Beach)",
+  "lat": 33.541532,
+  "lon": -117.782891,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr1588nbpchatlaguna/sr1588nbpchatlaguna.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-680-at-mission-bl-262-fremont",
+  "name": "I-680 at Mission Bl - 262 (Fremont)",
+  "lat": 37.49556,
+  "lon": -121.92365,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tva23i680atmissionbl262/tva23i680atmissionbl262.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 680"
+}

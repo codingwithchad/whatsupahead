@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-wb-76-gird-rd-bottom-fallbrook",
+  "name": "WB 76 – Gird Rd Bottom (Fallbrook)",
+  "lat": 33.31443,
+  "lon": -117.19538,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c173wb76girdrdbottom/c173wb76girdrdbottom.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 76"
+}

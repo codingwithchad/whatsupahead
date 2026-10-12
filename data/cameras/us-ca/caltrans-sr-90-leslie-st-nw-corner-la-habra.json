@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-90-leslie-st-nw-corner-la-habra",
+  "name": "SR-90 – Leslie St NW Corner (La Habra)",
+  "lat": 33.91748,
+  "lon": -117.93987,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr90504lesliestnwcorner/sr90504lesliestnwcorner.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 90"
+}

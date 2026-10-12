@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-oakie-flats-road-san-bernardino",
+  "name": "I-15 – Oakie Flats Road (San Bernardino)",
+  "lat": 34.263559,
+  "lon": -117.449426,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i15588oakieflatsroad/i15588oakieflatsroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

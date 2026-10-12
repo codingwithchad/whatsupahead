@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-alicia-parkway-overcross-aliso-viejo",
+  "name": "SR-73 – Alicia Parkway Overcross (Aliso Viejo)",
+  "lat": 33.57539,
+  "lon": -117.71214,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73329aliciaparkwayovercross/sr73329aliciaparkwayovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

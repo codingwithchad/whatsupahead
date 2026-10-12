@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-68-josselyn-canyon-road-monterey",
+  "name": "SR-68 – Josselyn Canyon Road (Monterey)",
+  "lat": 36.583486,
+  "lon": -121.856416,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/sr68josselyncanyonroad/sr68josselyncanyonroad.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 68"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-vernon-ave-on-ramp-xxx",
+  "name": "I-210 – Vernon Ave On-Ramp (xxx)",
+  "lat": 34.1254,
+  "lon": -117.9149,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i210464vernonaveonramp/i210464vernonaveonramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-sb-405-wb-105-connector-lax",
+  "name": "I-405 – SB 405 / WB 105 Connector (LAX)",
+  "lat": 33.935063,
+  "lon": -118.368955,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i405864sb405wb105connector/i405864sb405wb105connector.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

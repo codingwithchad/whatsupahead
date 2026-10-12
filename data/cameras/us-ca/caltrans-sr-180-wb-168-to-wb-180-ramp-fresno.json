@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-180-wb-168-to-wb-180-ramp-fresno",
+  "name": "SR-180 – WB 168 to WB 180 Ramp (Fresno)",
+  "lat": 36.75556,
+  "lon": -119.76093,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/fre180wb168towb180ramp/fre180wb168towb180ramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 180"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-las-flores-rambla-pacifico-las-flores-canyon",
+  "name": "SR-1 – Las Flores / Rambla Pacifico (Las Flores Canyon)",
+  "lat": 34.036972,
+  "lon": -118.637028,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/sr1243lasfloresramblapacifico/sr1243lasfloresramblapacifico.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

@@ -29,11 +29,11 @@
 				],
 				[
 					-116.92,
-					46.0
+					46
 				],
 				[
 					-118.98,
-					46.0
+					46
 				],
 				[
 					-119.34,
@@ -152,6 +152,92 @@
 				}
 			],
 			"zip": "^97\\d{3}$"
+		},
+		{
+			"code": "US-CA",
+			"folder": "us-ca",
+			"name": "California",
+			"abbr": "CA",
+			"country": "US",
+			"bbox": [
+				-124.7,
+				32.4,
+				-114.1,
+				42
+			],
+			"time_zone": "America/Los_Angeles",
+			"zip": "^(9[0-5]\\d|96[01])\\d{2}$",
+			"outline_note": "Simplified state line: the Nevada border, the Colorado River and Mexico; the ocean side is left wide for the islands. Oregon comes first in this list, so the strip just below 42° stays Oregon.",
+			"outline": [
+				[
+					-124.7,
+					42
+				],
+				[
+					-120,
+					42
+				],
+				[
+					-120,
+					39
+				],
+				[
+					-114.63,
+					35
+				],
+				[
+					-114.57,
+					34.8
+				],
+				[
+					-114.43,
+					34.6
+				],
+				[
+					-114.13,
+					34.3
+				],
+				[
+					-114.43,
+					34.08
+				],
+				[
+					-114.53,
+					33.93
+				],
+				[
+					-114.5,
+					33.6
+				],
+				[
+					-114.72,
+					33.4
+				],
+				[
+					-114.7,
+					33.08
+				],
+				[
+					-114.47,
+					32.85
+				],
+				[
+					-114.72,
+					32.72
+				],
+				[
+					-117.12,
+					32.53
+				],
+				[
+					-117.3,
+					32.4
+				],
+				[
+					-124.7,
+					32.4
+				]
+			]
 		}
 	]
 }

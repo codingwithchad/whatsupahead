@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-710-firestone-blvd-south-gate",
+  "name": "I-710 – Firestone Blvd. (South Gate)",
+  "lat": 33.94999,
+  "lon": -118.17011,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i710277firestoneblvd/i710277firestoneblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 710"
+}

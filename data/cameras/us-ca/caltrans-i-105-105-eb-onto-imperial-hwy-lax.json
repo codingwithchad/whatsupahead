@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-105-105-eb-onto-imperial-hwy-lax",
+  "name": "I-105 – 105 EB Onto Imperial Hwy (LAX)",
+  "lat": 33.931078,
+  "lon": -118.363831,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i105847105ebontoimperialhwy/i105847105ebontoimperialhwy.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 105"
+}

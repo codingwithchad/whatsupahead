@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-crescent-anaheim",
+  "name": "I-5 – Crescent (Anaheim)",
+  "lat": 33.83983,
+  "lon": -117.94824,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i5115crescent/i5115crescent.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

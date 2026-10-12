@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-110-martin-luther-king-blvd-figueroa-street",
+  "name": "I-110 – Martin Luther King Blvd (Figueroa Street)",
+  "lat": 34.009798,
+  "lon": -118.281435,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i110177martinlutherkingblvd/i110177martinlutherkingblvd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 110"
+}

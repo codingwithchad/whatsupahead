@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-60-west-of-vineyard-walker-avenue-ontario",
+  "name": "SR-60 – West of Vineyard (Walker Avenue) (Ontario)",
+  "lat": 34.03079,
+  "lon": -117.61862,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr60155westofvineyardwalkeravenue/sr60155westofvineyardwalkeravenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 60"
+}

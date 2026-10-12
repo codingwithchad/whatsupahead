@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-123-gilman-street-looking-west-albany",
+  "name": "SR-123 – Gilman Street - Looking West (Albany)",
+  "lat": 37.88048,
+  "lon": -122.29564,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t254wsr123gilmanstreetlookingwest/t254wsr123gilmanstreetlookingwest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 123"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-at-sr-116-petaluma",
+  "name": "US-101 at SR-116 (Petaluma)",
+  "lat": 38.235369,
+  "lon": -122.619264,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tve90us101atsr116/tve90us101atsr116.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

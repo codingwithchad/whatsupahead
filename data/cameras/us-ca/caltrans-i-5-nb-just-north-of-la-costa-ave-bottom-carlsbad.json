@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-nb-just-north-of-la-costa-ave-bottom-carlsbad",
+  "name": "I-5 – NB Just North of La Costa Ave Bottom (Carlsbad)",
+  "lat": 33.09387,
+  "lon": -117.30401,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c271i5nbjustnorthoflacostaavebottom/c271i5nbjustnorthoflacostaavebottom.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

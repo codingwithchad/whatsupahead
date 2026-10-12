@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-99-n-o-ave-384-kingsburg",
+  "name": "SR-99 – N/O Ave 384 (Kingsburg)",
+  "lat": 36.49338,
+  "lon": -119.52455,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/tul99noave384/tul99noave384.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

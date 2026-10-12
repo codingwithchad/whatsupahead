@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-genesee-san-diego",
+  "name": "I-5 – Genesee (San Diego)",
+  "lat": 32.88761,
+  "lon": -117.22831,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c048i5genesee/c048i5genesee.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

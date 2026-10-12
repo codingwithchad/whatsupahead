@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-sr-20-redwood-highway-looking-south-willits",
+  "name": "US-101 – SR-20 Redwood Highway - Looking South (Willits)",
+  "lat": 39.375615,
+  "lon": -123.325258,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/us101sr20redwoodhighwaylookingsouth/us101sr20redwoodhighwaylookingsouth.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-261-so-santiago-cyn-rd-irvine",
+  "name": "SR-261 – SO Santiago Cyn Rd (Irvine)",
+  "lat": 33.78029,
+  "lon": -117.753016,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr261319sosantiagocynrd/sr261319sosantiagocynrd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 261"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-wb-132-e-o-i-5-tracy",
+  "name": "WB 132 E/O I-5 (Tracy)",
+  "lat": 37.63811,
+  "lon": -121.31347,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/129wb132eoi5/129wb132eoi5.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 132"
+}

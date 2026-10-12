@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-15-w-country-club-lane-escondido",
+  "name": "NB 15 – W Country Club Lane (Escondido)",
+  "lat": 33.157597,
+  "lon": -117.10397,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c384nb15wcountryclublanet/c384nb15wcountryclublanet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

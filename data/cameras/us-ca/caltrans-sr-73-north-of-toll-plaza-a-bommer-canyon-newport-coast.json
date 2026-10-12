@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-north-of-toll-plaza-a-bommer-canyon-newport-coast",
+  "name": "SR-73 – North of Toll Plaza A/ Bommer Canyon (Newport Coast)",
+  "lat": 33.607386,
+  "lon": -117.802277,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73341northoftollplazaabommercanyon/sr73341northoftollplazaabommercanyon.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

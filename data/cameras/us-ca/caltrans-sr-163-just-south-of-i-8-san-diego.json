@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-163-just-south-of-i-8-san-diego",
+  "name": "SR-163 – Just South Of I-8 (San Diego)",
+  "lat": 32.76076,
+  "lon": -117.16382,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c002sr163justsouthofi8/c002sr163justsouthofi8.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 163"
+}

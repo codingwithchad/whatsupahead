@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-92-san-mateo-bridge-metering-lights-hayward",
+  "name": "SR-92 – San Mateo Bridge Metering Lights (Hayward)",
+  "lat": 37.617335,
+  "lon": -122.154113,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tve15sr92sanmateobridgemeteringlights/tve15sr92sanmateobridgemeteringlights.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 92"
+}

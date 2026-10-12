@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-210-grand-ave-glendora",
+  "name": "I-210 – Grand Ave (Glendora)",
+  "lat": 34.11962,
+  "lon": -117.87253,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i210787grandave/i210787grandave.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 210"
+}

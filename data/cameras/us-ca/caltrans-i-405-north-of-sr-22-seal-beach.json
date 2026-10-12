@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-north-of-sr-22-seal-beach",
+  "name": "I-405 – North of SR-22 (Seal Beach)",
+  "lat": 33.774731,
+  "lon": -118.067405,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i405143northofsr22/i405143northofsr22.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

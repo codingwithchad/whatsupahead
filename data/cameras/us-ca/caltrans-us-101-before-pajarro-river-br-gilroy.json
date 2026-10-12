@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-before-pajarro-river-br-gilroy",
+  "name": "US-101 – Before Pajarro River Br (Gilroy)",
+  "lat": 36.919193,
+  "lon": -121.547782,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvb60us101beforepajarroriverbr/tvb60us101beforepajarroriverbr.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

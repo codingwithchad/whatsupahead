@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-84-w84-at-substation-1-menlo-park",
+  "name": "SR-84 – W84 at Substation 1 (Menlo Park)",
+  "lat": 37.49919,
+  "lon": -122.1287,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv951sr84w84atsubstation1/tv951sr84w84atsubstation1.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 84"
+}

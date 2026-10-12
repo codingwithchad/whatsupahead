@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-4th-street-pismo-beach",
+  "name": "US-101 – 4th Street (Pismo Beach)",
+  "lat": 35.136549,
+  "lon": -120.621828,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d5/cctv/image/us1014thstreet/us1014thstreet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

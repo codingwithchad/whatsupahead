@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr36-sr89-chester",
+  "name": "SR36-SR89 (Chester)",
+  "lat": 40.278999,
+  "lon": -121.25358,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/sr36sr89/sr36sr89.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 36"
+}

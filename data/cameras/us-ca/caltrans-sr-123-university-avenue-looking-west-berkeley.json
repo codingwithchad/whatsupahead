@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-123-university-avenue-looking-west-berkeley",
+  "name": "SR-123 – University Avenue - Looking West (Berkeley)",
+  "lat": 37.86904,
+  "lon": -122.29195,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t253wsr123universityavenuelookingwest/t253wsr123universityavenuelookingwest.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 123"
+}

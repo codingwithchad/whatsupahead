@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-22-grand-street-santa-ana",
+  "name": "SR-22 – Grand Street (Santa Ana)",
+  "lat": 33.77496,
+  "lon": -117.85224,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr22155grandstreet/sr22155grandstreet.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 22"
+}

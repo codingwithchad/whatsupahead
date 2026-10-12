@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-67-just-north-of-iron-mtn-bottom-poway",
+  "name": "NB 67 – Just North of Iron Mtn Bottom (Poway)",
+  "lat": 32.96882,
+  "lon": -116.97027,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c228nb67justnorthofironmtnbottom/c228nb67justnorthofironmtnbottom.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 67"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-580-lower-deck-pier-8-san-quentin",
+  "name": "I-580 – Lower Deck Pier 8 (San Quentin)",
+  "lat": 37.939825,
+  "lon": -122.46558,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvr21i580lowerdeckpier8/tvr21i580lowerdeckpier8.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 580"
+}

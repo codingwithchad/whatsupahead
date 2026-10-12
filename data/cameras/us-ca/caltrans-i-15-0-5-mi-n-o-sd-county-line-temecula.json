@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-0-5-mi-n-o-sd-county-line-temecula",
+  "name": "I-15 – 0.5 mi N/O SD County Line (Temecula)",
+  "lat": 33.438542366720874,
+  "lon": -117.13880028873169,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i1529705minosdcountyline/i1529705minosdcountyline.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-fairview-costa-mesa",
+  "name": "I-405 – Fairview (Costa Mesa)",
+  "lat": 33.688325,
+  "lon": -117.908385,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i405166fairview/i405166fairview.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

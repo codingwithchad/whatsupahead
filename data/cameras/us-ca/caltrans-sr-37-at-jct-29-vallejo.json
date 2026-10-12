@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-37-at-jct-29-vallejo",
+  "name": "SR-37 at Jct-29 (Vallejo)",
+  "lat": 38.14184,
+  "lon": -122.25387,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv130sr37atjct29/tv130sr37atjct29.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 37"
+}

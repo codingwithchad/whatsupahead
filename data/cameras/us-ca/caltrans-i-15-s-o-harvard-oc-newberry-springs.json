@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-s-o-harvard-oc-newberry-springs",
+  "name": "I-15 – s/o Harvard OC (Newberry Springs)",
+  "lat": 34.95277,
+  "lon": -116.66969,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i15627soharvardoc/i15627soharvardoc.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

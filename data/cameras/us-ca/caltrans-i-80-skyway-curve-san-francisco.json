@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-skyway-curve-san-francisco",
+  "name": "I-80 – Skyway Curve (San Francisco)",
+  "lat": 37.818479,
+  "lon": -122.352466,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvd34i80skywaycurve/tvd34i80skywaycurve.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

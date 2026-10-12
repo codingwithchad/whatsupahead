@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-south-of-birch-street-overcross-newport-beach",
+  "name": "SR-73 – South of Birch Street Overcross (Newport Beach)",
+  "lat": 33.6605,
+  "lon": -117.87176,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr7336southofbirchstreetovercross/sr7336southofbirchstreetovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

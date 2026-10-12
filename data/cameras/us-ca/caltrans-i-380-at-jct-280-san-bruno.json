@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-380-at-jct-280-san-bruno",
+  "name": "I-380 at Jct 280 (San Bruno)",
+  "lat": 37.629152,
+  "lon": -122.430802,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv395i380atjct280/tv395i380atjct280.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 380"
+}

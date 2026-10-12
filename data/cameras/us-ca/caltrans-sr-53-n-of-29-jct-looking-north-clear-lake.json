@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-53-n-of-29-jct-looking-north-clear-lake",
+  "name": "SR-53 – N of 29 JCT - Looking North (Clear Lake)",
+  "lat": 38.927338,
+  "lon": -122.61738,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d1/cctv/image/sr53nof29jctlookingn/sr53nof29jctlookingn.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 53"
+}

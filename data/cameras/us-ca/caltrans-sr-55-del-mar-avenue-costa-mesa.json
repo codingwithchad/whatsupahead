@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-55-del-mar-avenue-costa-mesa",
+  "name": "SR-55 – Del Mar Avenue (Costa Mesa)",
+  "lat": 33.66381,
+  "lon": -117.89661,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr5511delmaravenue/sr5511delmaravenue.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 55"
+}

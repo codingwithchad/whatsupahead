@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-60-east-of-central-chino",
+  "name": "SR-60 – East of Central (Chino)",
+  "lat": 34.03053,
+  "lon": -117.68371,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr60149eastofcentral/sr60149eastofcentral.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 60"
+}

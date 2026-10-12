@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-north-of-la-paz-road-south-of-alicia-mission-viejo",
+  "name": "I-5 – North of La Paz Road (South of Alicia) (Mission Viejo)",
+  "lat": 33.60151,
+  "lon": -117.68392,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i589northoflapazroadsouthofalicia/i589northoflapazroadsouthofalicia.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

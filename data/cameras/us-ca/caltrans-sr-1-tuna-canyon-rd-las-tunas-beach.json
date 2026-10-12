@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-1-tuna-canyon-rd-las-tunas-beach",
+  "name": "SR-1 – Tuna Canyon Rd (Las Tunas Beach)",
+  "lat": 34.039556,
+  "lon": -118.58975,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/sr1237tunacanyonrd/sr1237tunacanyonrd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 1"
+}

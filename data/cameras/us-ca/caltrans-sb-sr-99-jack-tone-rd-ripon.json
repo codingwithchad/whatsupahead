@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sb-sr-99-jack-tone-rd-ripon",
+  "name": "SB SR-99 Jack Tone Rd (Ripon)",
+  "lat": 37.75105,
+  "lon": -121.14036,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/155sbsr99jacktonerd/155sbsr99jacktonerd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

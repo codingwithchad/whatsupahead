@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-eb-sr-120-west-of-union-manteca",
+  "name": "EB SR 120 West Of Union (Manteca)",
+  "lat": 37.78301,
+  "lon": -121.24299,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/25ebsr120westofunion/25ebsr120westofunion.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 120"
+}

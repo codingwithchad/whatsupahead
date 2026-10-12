@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-880-at-edes-av-eb-or-oakland",
+  "name": "I-880 at Edes Av EB Or (Oakland)",
+  "lat": 37.74109,
+  "lon": -122.19544,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/t284ei880atedesavebor/t284ei880atedesavebor.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 880"
+}

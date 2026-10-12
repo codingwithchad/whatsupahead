@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-37-sr-121-sonoma",
+  "name": "SR-37 – SR-121 (Sonoma)",
+  "lat": 38.1469,
+  "lon": -122.45495,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv136sr37sr121/tv136sr37sr121.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 37"
+}

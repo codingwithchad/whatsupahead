@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-hwy-80-at-enterprise-eb-3-west-sacramento",
+  "name": "Hwy 80 At Enterprise EB 3 (West Sacramento)",
+  "lat": 38.573652,
+  "lon": -121.580165,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d3/cctv/image/hwy80atenterpriseeb3/hwy80atenterpriseeb3.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

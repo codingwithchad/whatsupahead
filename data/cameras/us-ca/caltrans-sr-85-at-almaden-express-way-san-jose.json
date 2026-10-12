@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-85-at-almaden-express-way-san-jose",
+  "name": "SR-85 at Almaden Express Way (San Jose)",
+  "lat": 37.25606,
+  "lon": -121.87535,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv911sr85atalmadenexpressway/tv911sr85atalmadenexpressway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 85"
+}

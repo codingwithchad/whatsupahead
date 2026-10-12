@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-at-jno-broadway-burlingame",
+  "name": "US-101 at Jno Broadway (Burlingame)",
+  "lat": 37.5958,
+  "lon": -122.37038,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv413us101atjnobroadway/tv413us101atjnobroadway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

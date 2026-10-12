@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-8-just-west-of-i-805-san-diego",
+  "name": "I-8 – Just West Of I-805 (San Diego)",
+  "lat": 32.77142,
+  "lon": -117.1347,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c054i8justwestofi805/c054i8justwestofi805.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 8"
+}

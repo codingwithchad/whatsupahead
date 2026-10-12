@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-580-at-jeo-castro-valley-bl",
+  "name": "I-580 at Jeo Castro Valley Bl",
+  "lat": 37.70105,
+  "lon": -122.03802,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tva47i580atjeocastrovalleybl/tva47i580atjeocastrovalleybl.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 580"
+}

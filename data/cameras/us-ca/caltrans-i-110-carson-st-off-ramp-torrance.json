@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-110-carson-st-off-ramp-torrance",
+  "name": "I-110 – Carson St Off-Ramp (Torrance)",
+  "lat": 33.827891,
+  "lon": -118.286554,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i110798carsonstofframp/i110798carsonstofframp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 110"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-41-at-rte-49-oakhurst",
+  "name": "SR-41 at Rte 49 (Oakhurst)",
+  "lat": 37.331009,
+  "lon": -119.6558,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d6/cctv/image/mad41atrte49/mad41atrte49.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 41"
+}

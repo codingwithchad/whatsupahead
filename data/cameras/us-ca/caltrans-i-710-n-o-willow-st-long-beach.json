@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-710-n-o-willow-st-long-beach",
+  "name": "I-710 – N/O Willow St (Long Beach)",
+  "lat": 33.8135,
+  "lon": -118.2071,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i710261nowillowst/i710261nowillowst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 710"
+}

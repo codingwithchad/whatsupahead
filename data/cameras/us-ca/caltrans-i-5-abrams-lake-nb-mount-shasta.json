@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-abrams-lake-nb-mount-shasta",
+  "name": "I-5 – Abrams Lake NB (Mount Shasta)",
+  "lat": 41.34496,
+  "lon": -122.34276,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/abramslakenb/abramslakenb.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-241-los-alisos-boulevard-rancho-santa-margarita",
+  "name": "SR-241 – Los Alisos Boulevard (Rancho Santa Margarita)",
+  "lat": 33.65511,
+  "lon": -117.62442,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr241247losalisosboulevard/sr241247losalisosboulevard.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 241"
+}

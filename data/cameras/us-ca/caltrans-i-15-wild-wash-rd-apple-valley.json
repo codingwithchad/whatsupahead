@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-15-wild-wash-rd-apple-valley",
+  "name": "I-15 – Wild Wash Rd (Apple Valley)",
+  "lat": 34.71182,
+  "lon": -117.19956,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i15609wildwashrd/i15609wildwashrd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-405-westminster",
+  "name": "I-405 – Westminster",
+  "lat": 33.759512,
+  "lon": -118.022138,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i405228westminster/i405228westminster.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 405"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-80-powell-street-onramp-emeryville",
+  "name": "I-80 – Powell Street Onramp (Emeryville)",
+  "lat": 37.84002,
+  "lon": -122.29745,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvh03i80powellstreetonramp/tvh03i80powellstreetonramp.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 80"
+}

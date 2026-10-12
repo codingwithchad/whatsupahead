@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-at-jso-milbrae-av-oc-burlingame",
+  "name": "US-101 at JSO Milbrae Av OC (Burlingame)",
+  "lat": 37.6017,
+  "lon": -122.3797,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv412us101atjsomilbraeavoc/tv412us101atjsomilbraeavoc.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

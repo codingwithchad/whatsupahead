@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-sb-just-north-of-encinitas-bottom",
+  "name": "I-5 – SB Just North of Encinitas Bottom",
+  "lat": 33.05478,
+  "lon": -117.28949,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c258i5sbjustnorthofencinitasbottom/c258i5sbjustnorthofencinitasbottom.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

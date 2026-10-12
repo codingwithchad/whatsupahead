@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-73-pacific-park-drive-overcross-aliso-viejo",
+  "name": "SR-73 – Pacific Park Drive Overcross (Aliso Viejo)",
+  "lat": 33.58672,
+  "lon": -117.73372,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr73333pacificparkdriveovercross/sr73333pacificparkdriveovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 73"
+}

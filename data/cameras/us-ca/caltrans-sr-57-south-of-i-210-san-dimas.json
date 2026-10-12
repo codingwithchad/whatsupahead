@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-57-south-of-i-210-san-dimas",
+  "name": "SR-57 – South of I-210 (San Dimas)",
+  "lat": 34.11532,
+  "lon": -117.82421,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/sr57491southofi210/sr57491southofi210.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 57"
+}

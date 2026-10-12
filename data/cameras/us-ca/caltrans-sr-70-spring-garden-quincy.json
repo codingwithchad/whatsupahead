@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-70-spring-garden-quincy",
+  "name": "SR-70 – Spring Garden (Quincy)",
+  "lat": 39.91438,
+  "lon": -120.8184,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/springgarden/springgarden.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 600,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 70"
+}

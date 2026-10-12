@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-241-900-meters-no-santiago-1-canyon-road-overcross-silver",
+  "name": "SR-241 – 900 Meters NO Santiago 1 Canyon Road Overcross (Silverado)",
+  "lat": 33.78705,
+  "lon": -117.74372,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr241298900metersnosantiago1canyonroadovercross/sr241298900metersnosantiago1canyonroadovercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 241"
+}

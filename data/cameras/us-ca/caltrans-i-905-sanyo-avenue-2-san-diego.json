@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-905-sanyo-avenue-2-san-diego",
+  "name": "I-905 – Sanyo Avenue 2 (San Diego)",
+  "lat": 32.563808,
+  "lon": -116.941412,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c160i905sanyoavenue2/c160i905sanyoavenue2.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 905"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-sr-99-s-o-sr-120-manteca",
+  "name": "NB SR-99 S/O SR-120 (Manteca)",
+  "lat": 37.77865,
+  "lon": -121.18401,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/80nbsr99sosr120/80nbsr99sosr120.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

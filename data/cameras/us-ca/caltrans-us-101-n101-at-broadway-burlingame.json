@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-n101-at-broadway-burlingame",
+  "name": "US-101 – N101 at Broadway (Burlingame)",
+  "lat": 37.59004,
+  "lon": -122.36151,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv414us101n101atbroadway/tv414us101n101atbroadway.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

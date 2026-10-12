@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-4-i-680-martinez",
+  "name": "SR-4 – I-680 (Martinez)",
+  "lat": 37.994702,
+  "lon": -122.069497,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv822sr4i680/tv822sr4i680.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 4"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-241-40-meters-so-lake-forestreet-drive-undercross-foothil",
+  "name": "SR-241 – 40 Meters SO Lake Forestreet Drive Undercross (Foothill Ranch)",
+  "lat": 33.6719,
+  "lon": -117.6601,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/sr24125040meterssolakeforestreetdriveundercross/sr24125040meterssolakeforestreetdriveundercross.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 241"
+}

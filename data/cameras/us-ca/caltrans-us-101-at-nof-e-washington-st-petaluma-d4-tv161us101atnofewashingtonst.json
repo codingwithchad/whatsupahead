@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-101-at-nof-e-washington-st-petaluma-d4-tv161us101atnofewashingtonst",
+  "name": "US-101 at Nof E Washington St (Petaluma)",
+  "lat": 38.26613,
+  "lon": -122.66373,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tv161us101atnofewashingtonst/tv161us101atnofewashingtonst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 101"
+}

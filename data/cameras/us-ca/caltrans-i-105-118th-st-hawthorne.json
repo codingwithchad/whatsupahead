@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-105-118th-st-hawthorne",
+  "name": "I-105 – 118th St (Hawthorne)",
+  "lat": 33.92727,
+  "lon": -118.34074,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i105305118thst/i105305118thst.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 105"
+}

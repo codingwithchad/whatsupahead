@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-sr-91-0-7-miles-west-of-green-river-corona",
+  "name": "SR-91 – 0.7 Miles West of Green River (Corona)",
+  "lat": 33.87338,
+  "lon": -117.66328,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/sr914407mileswestofgreenriver/sr914407mileswestofgreenriver.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 91"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-215-north-alessandro-riverside",
+  "name": "I-215 – North Alessandro (Riverside)",
+  "lat": 33.91629,
+  "lon": -117.28772,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d8/cctv/image/i215269northalessandro/i215269northalessandro.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 180,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 215"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-nb-sr-99-s-o-le-grand-rd-merced",
+  "name": "NB SR-99 S/O Le Grand Rd (Merced)",
+  "lat": 37.21889,
+  "lon": -120.36848,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d10/cctv/image/67nbsr99solegrandrd/67nbsr99solegrandrd.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "SR 99"
+}

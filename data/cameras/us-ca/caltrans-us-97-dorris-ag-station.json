@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-us-97-dorris-ag-station",
+  "name": "US-97 – Dorris Ag Station",
+  "lat": 41.957731,
+  "lon": -121.921223,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d2/cctv/image/dorrisagstation/dorrisagstation.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "US 97"
+}

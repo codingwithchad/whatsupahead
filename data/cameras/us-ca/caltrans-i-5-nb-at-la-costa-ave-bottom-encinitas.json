@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-nb-at-la-costa-ave-bottom-encinitas",
+  "name": "I-5 – NB at La Costa Ave Bottom (Encinitas)",
+  "lat": 33.08417,
+  "lon": -117.29769,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d11/cctv/image/c268i5nbatlacostaavebottom/c268i5nbatlacostaavebottom.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

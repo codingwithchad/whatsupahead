@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-5-state-college-boulevard-orange",
+  "name": "I-5 – State College Boulevard (Orange)",
+  "lat": 33.79191,
+  "lon": -117.88941,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d12/cctv/image/i5109statecollegeboulevard/i5109statecollegeboulevard.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 5"
+}

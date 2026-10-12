@@ -1,0 +1,20 @@
+{
+  "id": "caltrans-i-10-bundy-dr-santa-monica-airport",
+  "name": "I-10 – Bundy Dr (Santa Monica Airport)",
+  "lat": 34.0283,
+  "lon": -118.4488,
+  "feed_url": "https://cwwp2.dot.ca.gov/data/d7/cctv/image/i10106bundydr/i10106bundydr.jpg",
+  "feed_type": "image",
+  "source": "Caltrans",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://quickmap.dot.ca.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "California Department of Transportation (Caltrans)",
+  "created_at": "2026-10-12T00:00:00Z",
+  "route": "I 10"
+}
