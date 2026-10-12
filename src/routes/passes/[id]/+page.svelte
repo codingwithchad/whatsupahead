@@ -8,6 +8,8 @@
 	import { rememberRecent } from '../../../lib/recents';
 	import { timeZoneAt } from '../../../lib/regions';
 	import { NEED_TONE, passAnswer, VEHICLES } from '../../../lib/vehicle';
+	import { passVerdict } from '../../../lib/verdict';
+	import VerdictCard from '../../../lib/VerdictCard.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -25,6 +27,7 @@
 		Caltrans: { label: 'QuickMap', url: 'https://quickmap.dot.ca.gov/' }
 	};
 	const statePage = $derived(pass.link ?? STATE_PAGE[pass.source]);
+	const verdict = $derived(passVerdict({ name: pass.name, report }));
 	const reporting = $derived(report !== null && report.status !== 'off-season');
 	const updated = $derived(
 		report?.updated ? `updated ${ago(new Date(report.updated).toISOString())}` : ''
@@ -91,9 +94,10 @@
 		</div>
 	</section>
 
+	<VerdictCard {verdict} />
+
 	<section class="pass-now" aria-label="{pass.name} right now">
 		<div class="pass-now-top">
-			{#if report}<StatusPill tone={report.status} label={report.label} />{/if}
 			<small
 				>{reporting
 					? `${pass.source} report${updated ? `, ${updated}` : ''}`

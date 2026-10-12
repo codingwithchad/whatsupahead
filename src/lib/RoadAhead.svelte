@@ -3,15 +3,7 @@
 	import VehiclePicker from './VehiclePicker.svelte';
 	import { ago, duration, localClock } from './format';
 	import { timeZoneAt } from './regions';
-	import {
-		forDirection,
-		loadVehicle,
-		NEED_TONE,
-		needFor,
-		passAnswer,
-		VEHICLES,
-		type Vehicle
-	} from './vehicle';
+	import { forDirection, NEED_TONE, needFor, passAnswer, VEHICLES, type Vehicle } from './vehicle';
 	import type { PassReport } from './passes';
 	import type { RoadWarnings } from './roadAhead';
 	import { FREEZING_F, NEAR_FREEZING_F } from './roadSurface';
@@ -27,9 +19,12 @@
 		heading: number | null;
 		report: PassReport | null;
 	}
+	// The vehicle is chosen in the page's at-a-glance card, which owns it; it shows here too.
 	let {
 		road,
-		warnings
+		warnings,
+		vehicle = $bindable(null),
+		picker = true
 	}: {
 		road: {
 			avoided: { closed: string; instead: string; extraMinutes: number }[];
@@ -38,12 +33,9 @@
 			passes: RoadPass[];
 		};
 		warnings: Promise<RoadWarnings> | RoadWarnings;
+		vehicle?: Vehicle | null;
+		picker?: boolean;
 	} = $props();
-
-	let vehicle = $state<Vehicle | null>(null);
-	$effect(() => {
-		vehicle = loadVehicle();
-	});
 	const short = $derived(VEHICLES.find((v) => v.id === vehicle)?.short ?? '');
 
 	const STATE_PAGE: Record<string, { label: string; url: string }> = {
@@ -188,8 +180,10 @@
 
 	{#if road.passes.length}
 		<h3>Passes on the way</h3>
-		<p class="ra-ask">What are you driving?</p>
-		<VehiclePicker bind:vehicle />
+		{#if picker}
+			<p class="ra-ask">What are you driving?</p>
+			<VehiclePicker bind:vehicle />
+		{/if}
 		<ul class="ra-passes">
 			{#each road.passes as p (p.id)}
 				{@const answer = vehicle ? passAnswer(p.report, vehicle, p.heading) : null}

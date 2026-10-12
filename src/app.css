@@ -2314,3 +2314,131 @@ div.image-button {
 .follow-why {
 	margin: 6px 0 0;
 }
+
+/* At a glance: the answer to "am I OK to go?" */
+.verdict {
+	--v: #1f8a4c;
+	--v-bg: var(--ok-bg);
+	margin: 0.75rem 0;
+	padding: 0.9rem 1rem;
+	border-radius: var(--radius-lg);
+	background: var(--v-bg);
+	border: 2px solid var(--v);
+	box-shadow: var(--shadow);
+}
+.verdict-ready {
+	--v: #d97706;
+	--v-bg: var(--warn-bg);
+}
+.verdict-stop {
+	--v: var(--danger-line);
+	--v-bg: var(--danger-bg);
+}
+.verdict-unknown {
+	--v: var(--muted);
+	--v-bg: var(--card);
+}
+.verdict-top {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+}
+.verdict-mark {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: var(--v);
+}
+.verdict-mark svg {
+	width: 28px;
+	height: 28px;
+	fill: none;
+	stroke: #fff;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.verdict-title {
+	margin: 0;
+	font-size: var(--fs-xl);
+	line-height: 1.2;
+}
+.verdict-sentence {
+	margin: 2px 0 0;
+	font-size: var(--fs-md);
+	line-height: 1.4;
+}
+.verdict-facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	list-style: none;
+	margin: 0.7rem 0 0;
+	padding: 0;
+}
+.verdict-facts li {
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: var(--card);
+	border: 1px solid var(--line);
+	font-size: var(--fs-sm);
+	font-weight: 600;
+}
+.verdict-facts .fact-ready {
+	border-color: #d97706;
+}
+.verdict-facts .fact-stop {
+	border-color: var(--danger-line);
+}
+.verdict .vehicle-chips {
+	margin-top: 0.7rem;
+}
+.verdict .verdict-for {
+	margin: 0.7rem 0 0;
+	font-size: var(--fs-sm);
+	color: var(--muted);
+}
+.trip-details {
+	margin: 0.5rem 0 0.75rem;
+}
+.trip-details > summary {
+	cursor: pointer;
+	padding: 10px 14px;
+	border-radius: var(--radius);
+	background: var(--card);
+	border: 1px solid var(--line);
+	font-weight: 700;
+	color: var(--accent);
+	list-style: none;
+}
+.trip-details > summary::-webkit-details-marker {
+	display: none;
+}
+.trip-details > summary::after {
+	content: ' ▾';
+}
+.trip-details[open] > summary::after {
+	content: ' ▴';
+}
+.verdict-facts li {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+.fact-icon {
+	flex: none;
+	width: 16px;
+	height: 16px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.verdict-facts .fact-unknown {
+	border-style: dashed;
+	color: var(--muted);
+}

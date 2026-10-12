@@ -15,6 +15,12 @@
 	import { tripShareParams } from '../../lib/sharing';
 	import { duration, localClock } from '../../lib/format';
 	import { tripChanges, type Change, type Snapshot } from '../../lib/tripChanges';
+	import { driveVerdict } from '../../lib/verdict';
+	import { loadVehicle, type Vehicle } from '../../lib/vehicle';
+	import { timeZoneAt } from '../../lib/regions';
+	import VerdictCard from '../../lib/VerdictCard.svelte';
+	import VehiclePicker from '../../lib/VehiclePicker.svelte';
+	import type { RouteWeather as RouteWeatherData } from '../../lib/routeWeather';
 	import type { RoadWarnings } from '../../lib/roadAhead';
 	import type { LiveUpdate } from '../../lib/server/tripLive';
 	import { rememberPlace } from '../../lib/lastPlace';
@@ -47,6 +53,8 @@
 	let lastProgress = 0;
 	let replanned = $state(false);
 	let timedFromHere = false;
+	// The first update after you start following is read aloud as the drive at a glance.
+	let sayVerdict = false;
 
 	// ---- Fresh while open ----------------------------------------------------------------------------------
 	// A drive page left open on the dash asks every 5 minutes (and when the screen comes back on) for fresh pass
@@ -60,6 +68,13 @@
 	let changes = $state<{ at: number; list: Change[] } | null>(null);
 	let speak = $state(true);
 	let lastSnapshot: Snapshot | null = null;
+	// What the page loaded with, once the streamed parts arrive (the at-a-glance card needs the values).
+	let firstWarnings = $state<RoadWarnings | null>(null);
+	let firstWeather = $state<RouteWeatherData | null>(null);
+	let vehicle = $state<Vehicle | null>(null);
+	$effect(() => {
+		vehicle = loadVehicle();
+	});
 
 	const SPEAK_KEY = 'speak-changes';
 	$effect(() => {
@@ -83,6 +98,8 @@
 		live = null;
 		changes = null;
 		lastSnapshot = null;
+		firstWarnings = null;
+		firstWeather = null;
 		refreshFailed = false;
 		updatedAt = Date.now();
 		if (!t) return;
@@ -95,7 +112,10 @@
 		});
 		Promise.all([t.warnings, t.onTheWay])
 			.then(([warnings, onTheWay]) => {
-				if (data.trip === t) lastSnapshot ??= { passes: t.road.passes, warnings, onTheWay };
+				if (data.trip !== t) return;
+				lastSnapshot ??= { passes: t.road.passes, warnings, onTheWay };
+				firstWarnings = warnings;
+				firstWeather = onTheWay;
 			})
 			.catch(() => {});
 	});
@@ -154,6 +174,17 @@
 			}
 			lastSnapshot = snap;
 			live = update;
+			if (sayVerdict && following && speak && 'speechSynthesis' in window) {
+				sayVerdict = false;
+				queueMicrotask(() => {
+					if (verdict)
+						speechSynthesis.speak(
+							new SpeechSynthesisUtterance(
+								`${verdict.title}. ${verdict.sentence}`.replace(/°F/g, ' degrees')
+							)
+						);
+				});
+			}
 			updatedAt = update.at;
 			refreshFailed = false;
 		} catch {
@@ -288,6 +319,7 @@
 			return;
 		}
 		following = true;
+		sayVerdict = true;
 		track('follow-trip');
 		try {
 			wakeLock =
@@ -349,6 +381,22 @@
 				}
 			: null
 	);
+
+	// The answer at a glance, from the freshest of everything the page has.
+	const verdict = $derived.by(() => {
+		if (!trip || !roadNow) return null;
+		const stops = (weatherNow ?? firstWeather)?.stops ?? null;
+		const asOf = live?.at ?? Date.now();
+		return driveVerdict({
+			avoided: trip.road.avoided,
+			blocked: trip.road.blocked,
+			passes: roadNow.passes,
+			warnings: warningsNow ?? firstWarnings,
+			weather: stops,
+			vehicle,
+			clock: (st) => localClock(asOf + st.minutesIn * 60_000, timeZoneAt(st.lat, st.lon))
+		});
+	});
 	const noteFor = (along: number) =>
 		progress !== null
 			? `${Math.max(0, along - progress).toFixed(1)} mi ahead`
@@ -378,11 +426,21 @@
 					? ` · via ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
 					: ''} · {trip.stops.length} cameras on the way
 			</p>
+			{#if verdict}
+				<VerdictCard {verdict}>
+					{#if trip.road.passes.length}
+						<p class="verdict-for">Chains for what you're driving:</p>
+						<VehiclePicker bind:vehicle />
+					{/if}
+				</VerdictCard>
+			{/if}
 			<div class="reverse page-actions">
 				<ShareButton
 					path="/trip?{tripShareParams(page.url.searchParams)}"
 					title="{trip.from} to {trip.to}"
-					text="Driving {trip.from} to {trip.to}: cameras, weather and passes on the way"
+					text={verdict
+						? `${trip.from} to ${trip.to}: ${verdict.title.toLowerCase()}. ${verdict.sentence}`
+						: `Driving ${trip.from} to ${trip.to}: cameras, weather and passes on the way`}
 				/>
 				<a class="chip" href={reverseLink()} onclick={() => track('reverse-trip')}
 					>⇄ Reverse this drive</a
@@ -405,9 +463,8 @@
 				{#if !following}
 					<button onclick={startFollowing}>Follow my trip</button>
 					<p class="sub follow-why">
-						Driving now? Following uses your location to time the weather from where you are, drop
-						cameras you've passed, plan again if you take another way, read changes aloud and keep
-						the screen on.
+						Driving now? Follow to get times from where you are, changes read aloud, and the screen
+						kept on.
 					</p>
 				{:else}
 					<button class="secondary" onclick={stopFollowing}>Stop following</button>
@@ -459,39 +516,47 @@
 			</section>
 		{/if}
 
-		<RoadAhead road={roadNow ?? trip.road} warnings={warningsNow ?? trip.warnings} />
+		<details class="trip-details">
+			<summary>Road, chains and weather details</summary>
+			<RoadAhead
+				road={roadNow ?? trip.road}
+				warnings={warningsNow ?? trip.warnings}
+				bind:vehicle
+				picker={false}
+			/>
 
-		{#if live}
-			{#if live.snow}<SnowLine
-					snow={live.snow}
-					demo={trip.demoWinter}
-					miles={trip.miles}
-					minutes={trip.minutes}
-					stops={trip.stops}
-				/>{/if}
-			{#if weatherNow}<RouteWeather weather={weatherNow} asOf={live.at} />{/if}
-			<ConditionsBar conditions={live.conditions} mode="trip" />
-		{:else}
-			{#await trip.snow then snow}
-				{#if snow}<SnowLine
-						{snow}
+			{#if live}
+				{#if live.snow}<SnowLine
+						snow={live.snow}
 						demo={trip.demoWinter}
 						miles={trip.miles}
 						minutes={trip.minutes}
 						stops={trip.stops}
 					/>{/if}
-			{/await}
+				{#if weatherNow}<RouteWeather weather={weatherNow} asOf={live.at} />{/if}
+				<ConditionsBar conditions={live.conditions} mode="trip" />
+			{:else}
+				{#await trip.snow then snow}
+					{#if snow}<SnowLine
+							{snow}
+							demo={trip.demoWinter}
+							miles={trip.miles}
+							minutes={trip.minutes}
+							stops={trip.stops}
+						/>{/if}
+				{/await}
 
-			{#await trip.onTheWay then onTheWay}
-				{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
-			{/await}
+				{#await trip.onTheWay then onTheWay}
+					{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
+				{/await}
 
-			{#await trip.conditions}
-				<p class="loading">Loading conditions…</p>
-			{:then conditions}
-				<ConditionsBar {conditions} mode="trip" />
-			{/await}
-		{/if}
+				{#await trip.conditions}
+					<p class="loading">Loading conditions…</p>
+				{:then conditions}
+					<ConditionsBar {conditions} mode="trip" />
+				{/await}
+			{/if}
+		</details>
 
 		{#if !trip.showingAll}
 			<p class="thinned">
