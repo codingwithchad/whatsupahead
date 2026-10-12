@@ -1,6 +1,6 @@
 import { getCatalog } from '../../lib/server/catalog';
 import { allPassReports } from '../../lib/server/passes';
-import { regionAt } from '../../lib/regions';
+import { REGIONS, regionAt } from '../../lib/regions';
 import type { PageServerLoad } from './$types';
 
 // Washington, then Oregon, then California, north to south; a group not listed here goes at the end.
@@ -48,13 +48,31 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 				.map((p) => ({
 					id: p.id,
 					name: p.name,
+					lat: p.lat,
+					lon: p.lon,
 					place: p.id,
 					connects: p.blurb ?? '',
 					report: null
 				})) as unknown as (typeof rows)[number][]
 		});
+	// Each state folds on the page (most people want one state), worst news first in its summary line.
+	const stateOf = (g: (typeof groups)[number]) => {
+		const p = g.passes[0];
+		return regionAt(p.lat, p.lon)?.name ?? g.name;
+	};
+	const states = REGIONS.map((r) => r.name)
+		.concat(groups.map(stateOf))
+		.filter((n, i, all) => all.indexOf(n) === i)
+		.map((name) => {
+			const mine = groups.filter((g) => stateOf(g) === name);
+			const all = mine.flatMap((g) => g.passes);
+			const closed = all.filter((p) => p.report?.status === 'closed').length;
+			const chains = all.filter((p) => p.report?.status === 'chains').length;
+			return { name, groups: mine, count: all.length, closed, chains };
+		})
+		.filter((s) => s.count);
 	const counts: Record<string, number> = {};
 	for (const r of rows)
 		counts[r.report?.status ?? 'unknown'] = (counts[r.report?.status ?? 'unknown'] ?? 0) + 1;
-	return { groups, counts, reachable: live.size > 0 };
+	return { states, counts, reachable: live.size > 0 };
 };

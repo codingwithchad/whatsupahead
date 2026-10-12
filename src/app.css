@@ -1196,6 +1196,24 @@ button.wide {
 .tree-group[open] > summary::before {
 	transform: rotate(90deg);
 }
+.state-fold .grid-places,
+.state-fold .state-body {
+	padding: 0 12px 12px;
+}
+.state-fold .section-title {
+	margin-top: 14px;
+}
+/* A list in one state only: no fold, no frame. */
+.state-fold.single {
+	background: none;
+	border: 0;
+}
+.state-fold.single > summary {
+	display: none;
+}
+.state-fold.single .grid-places {
+	padding: 0;
+}
 .tree-name {
 	flex: 1;
 	font-weight: 700;

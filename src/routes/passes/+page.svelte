@@ -1,6 +1,7 @@
 <script lang="ts">
 	import StatusPill from '../../lib/StatusPill.svelte';
 	import { ago } from '../../lib/format';
+	import { loadOpenStates, saveOpenState } from '../../lib/openStates';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -14,6 +15,19 @@
 		'off-season': 'no report yet'
 	};
 	const counts: Record<string, number> = $derived(data.counts);
+	// States start folded (a single state starts open); the ones this visitor opened before open again.
+	let opened = $state<Record<string, boolean>>({});
+	$effect(() => {
+		opened = loadOpenStates();
+	});
+	const isOpen = (name: string) => opened[name] ?? data.states.length === 1;
+	const toggled = (name: string) => (e: Event) => {
+		const open = (e.currentTarget as HTMLDetailsElement).open;
+		if (open !== isOpen(name)) {
+			opened[name] = open;
+			saveOpenState(name, open);
+		}
+	};
 	// The first sentence of WSDOT's note, for passes that are not reporting right now.
 	const firstSentence = (s: string) => (s.match(/^.*?[.!](\s|$)/)?.[0] ?? s).trim().slice(0, 140);
 </script>
@@ -50,55 +64,78 @@
 		</p>
 	{/if}
 
-	{#each data.groups as g (g.name)}
-		<h2 class="section-title">{g.name}</h2>
-		<ul class="pass-list">
-			{#each g.passes as p (p.id)}
-				<li>
-					<a href="/search?place={encodeURIComponent(p.place)}">
-						<span class="pass-top">
-							<span class="place-name">{p.name}</span>
-							{#if p.report}<StatusPill tone={p.report.status} label={p.report.label} />{/if}
-						</span>
-						<span class="place-sub"
-							>{[
-								p.route,
-								p.elevation_ft ? `${p.elevation_ft.toLocaleString()} ft` : null,
-								p.connects
-							]
-								.filter(Boolean)
-								.join(' · ')}</span
-						>
-						{#if p.report && p.report.status !== 'off-season'}
-							<span class="pass-detail">
-								{[
-									p.report.tempF !== null ? `${Math.round(p.report.tempF)}°F` : null,
-									p.report.weather || null,
-									p.report.updated
-										? `updated ${ago(new Date(p.report.updated).toISOString())}`
-										: null
-								]
-									.filter(Boolean)
-									.join(' · ')}
-							</span>
-							{#each p.report.restrictions.filter((r) => !/^no restrictions/i.test(r.text)) as r (r.direction + r.text)}
-								<span class="pass-detail"
-									><strong>{r.direction || 'Restriction'}:</strong> {r.text}</span
-								>
-							{/each}
-							{#if p.report.road}<span class="pass-detail">{p.report.road.slice(0, 160)}</span>{/if}
-						{:else if !p.report}
-							<span class="pass-detail">Cameras and forecast. No live pass report here yet.</span>
-						{:else if p.report}
-							<span class="pass-detail"
-								>{firstSentence(p.report.road) || 'No report for this pass right now.'}</span
-							>
-						{/if}
-						{#if p.winter_closure}<span class="pass-detail">{p.winter_closure}.</span>{/if}
-					</a>
-				</li>
-			{/each}
-		</ul>
+	{#each data.states as st (st.name)}
+		<details class="tree-region state-fold" open={isOpen(st.name)} ontoggle={toggled(st.name)}>
+			<summary>
+				<span class="tree-name">{st.name}</span>
+				<span class="tree-count"
+					>{[
+						`${st.count} passes`,
+						st.closed ? `${st.closed} closed` : null,
+						st.chains ? `${st.chains} chains` : null
+					]
+						.filter(Boolean)
+						.join(' · ')}</span
+				>
+			</summary>
+			<div class="state-body">
+				{#each st.groups as g (g.name)}
+					{#if st.groups.length > 1 || g.name !== st.name}<h2 class="section-title">
+							{g.name}
+						</h2>{/if}
+					<ul class="pass-list">
+						{#each g.passes as p (p.id)}
+							<li>
+								<a href="/search?place={encodeURIComponent(p.place)}">
+									<span class="pass-top">
+										<span class="place-name">{p.name}</span>
+										{#if p.report}<StatusPill tone={p.report.status} label={p.report.label} />{/if}
+									</span>
+									<span class="place-sub"
+										>{[
+											p.route,
+											p.elevation_ft ? `${p.elevation_ft.toLocaleString()} ft` : null,
+											p.connects
+										]
+											.filter(Boolean)
+											.join(' · ')}</span
+									>
+									{#if p.report && p.report.status !== 'off-season'}
+										<span class="pass-detail">
+											{[
+												p.report.tempF !== null ? `${Math.round(p.report.tempF)}°F` : null,
+												p.report.weather || null,
+												p.report.updated
+													? `updated ${ago(new Date(p.report.updated).toISOString())}`
+													: null
+											]
+												.filter(Boolean)
+												.join(' · ')}
+										</span>
+										{#each p.report.restrictions.filter((r) => !/^no restrictions/i.test(r.text)) as r (r.direction + r.text)}
+											<span class="pass-detail"
+												><strong>{r.direction || 'Restriction'}:</strong> {r.text}</span
+											>
+										{/each}
+										{#if p.report.road}<span class="pass-detail">{p.report.road.slice(0, 160)}</span
+											>{/if}
+									{:else if !p.report}
+										<span class="pass-detail"
+											>Cameras and forecast. No live pass report here yet.</span
+										>
+									{:else if p.report}
+										<span class="pass-detail"
+											>{firstSentence(p.report.road) || 'No report for this pass right now.'}</span
+										>
+									{/if}
+									{#if p.winter_closure}<span class="pass-detail">{p.winter_closure}.</span>{/if}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				{/each}
+			</div>
+		</details>
 	{/each}
 	<p class="hint">
 		Reports come from WSDOT, ODOT and Caltrans; crews update them by hand, mostly November through
