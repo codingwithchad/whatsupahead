@@ -2,6 +2,7 @@ import type { Handle } from '@sveltejs/kit/hooks';
 import { getCatalog } from './lib/server/catalog';
 import { startHistory } from './lib/server/history';
 import { startHealthChecks } from './lib/server/health';
+import { startPassHistory } from './lib/server/passHistory';
 import { allow, visitorAddress } from './lib/server/rateLimit';
 import {
 	isPerson,
@@ -28,6 +29,9 @@ if (!dev && process.env.HISTORY !== 'off') startHistory();
 
 // Check every half hour that each outside source (and its key) still works; results are on /healthz.
 if (!dev && process.env.HEALTH_CHECKS !== 'off') startHealthChecks();
+
+// Note each pass's report every 10 minutes, for "chains required on 9 days this season" on pass pages.
+if (!dev && process.env.PASS_HISTORY !== 'off') startPassHistory();
 
 // Our own visit counter (counts only, no cookies); the numbers are on /stats.
 if (!dev) startStats();

@@ -121,3 +121,7 @@ Every page now has its own description for search results and link previews (the
 ## 2026-10-12: What's a traction tire?
 
 Drivers who rarely cross a pass don't know what "traction tires required" asks of them, and the three states mean different things by it (in Oregon M+S alone is not a traction tire; in Washington it is, with 1/8 inch of tread). `/tires` explains how to check your own tires, what each state's signs mean for a car, an AWD and a trailer, and how to use chains, written from WSDOT, ODOT and Caltrans rules and linked from every pass page, the drive page and the footer.
+
+## 2026-10-12: Pass history
+
+The states publish today's pass report but no history anyone can read, and people ask how often a pass needs chains. Every 10 minutes the server notes each pass's report, keeps the worst of each day, and saves the days to `pass-history.json` next to the visit counts (`PASS_HISTORY_FILE`), merged with any copy another server saved during a deploy and kept for 400 days. A pass page shows this season's count of chain, closed and traction-tire days, the last of each, and the last 30 days as coloured squares. A day a state's feed was down is left out, never counted as open.

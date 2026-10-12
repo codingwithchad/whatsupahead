@@ -33,6 +33,19 @@
 		(report?.restrictions ?? []).filter((r) => r.text.trim() && !/^no restrictions/i.test(r.text))
 	);
 	const radii = [5, 10, 25, 50];
+	// "Oct 12" from "2026-10-12".
+	const shortDay = (day: string) =>
+		new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(
+			new Date(`${day}T12:00:00Z`)
+		);
+	const DAY_WORDS: Record<string, string> = {
+		closed: 'closed',
+		chains: 'chains required',
+		traction: 'traction tires',
+		open: 'open, no restrictions',
+		none: 'no report'
+	};
+	const days = (n: number) => `${n} ${n === 1 ? 'day' : 'days'}`;
 	const tz = $derived(data.place ? timeZoneAt(data.place.lat, data.place.lon) : undefined);
 	const openAlternates = $derived(
 		data.alternates.filter((a) => a.report && a.report.status !== 'closed')
@@ -140,6 +153,41 @@
 			</p>
 		{/if}
 	</section>
+
+	{#if data.season}
+		{@const s = data.season}
+		<section class="pass-season" aria-label="This season">
+			<h2>This season</h2>
+			{#if s.reported}
+				<p>
+					Since we started on {shortDay(s.since)}: chains required on
+					<strong>{days(s.chains)}</strong>, closed on
+					<strong>{days(s.closed)}</strong>, traction tires on {days(s.traction)}.{s.lastChains
+						? ` Last chains: ${shortDay(s.lastChains)}.`
+						: ''}{s.lastClosed ? ` Last closed: ${shortDay(s.lastClosed)}.` : ''}
+				</p>
+			{:else}
+				<p>
+					No reports yet this season. We note the report every 10 minutes from {shortDay(s.since)} on,
+					so this will show how often {pass.name} needs chains.
+				</p>
+			{/if}
+			<ol class="season-strip" aria-label="The last 30 days">
+				{#each s.recent as d (d.day)}
+					<li
+						class="day-{d.status ?? 'untracked'}"
+						title="{shortDay(d.day)}: {d.status ? DAY_WORDS[d.status] : 'not tracked yet'}"
+					></li>
+				{/each}
+			</ol>
+			<p class="ra-note">
+				The last 30 days, worst report of each day:
+				{#each [['closed', 'closed'], ['chains', 'chains'], ['traction', 'traction tires'], ['open', 'open'], ['none', 'no report']] as [k, label] (k)}
+					<span class="key-item"><span class="key day-{k}"></span> {label}</span>
+				{/each}
+			</p>
+		</section>
+	{/if}
 
 	<div class="mountain-cards">
 		{#await data.snow then snow}

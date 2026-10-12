@@ -5,6 +5,7 @@ import { previewSlot } from '../../../lib/sharing';
 import { getCatalog } from '../../../lib/server/catalog';
 import { avalancheAtPass, snowAtPass } from '../../../lib/server/mountain';
 import { allPassReports } from '../../../lib/server/passes';
+import { passSeason } from '../../../lib/server/passHistory';
 import { placePage } from '../../../lib/server/placePage';
 import type { PassInfo } from '../../../lib/types';
 import type { PageServerLoad } from './$types';
@@ -64,6 +65,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 				pass.pass_id !== undefined ? 'WSDOT' : pass.report?.source === 'odot' ? 'ODOT' : 'Caltrans'
 		},
 		report,
+		season: passSeason(pass),
 		alternates: alternates.map((p) => ({
 			id: p.id,
 			name: p.name,
