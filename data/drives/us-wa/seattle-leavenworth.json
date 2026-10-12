@@ -1,0 +1,13 @@
+{
+  "id": "seattle-leavenworth",
+  "name": "Seattle to Leavenworth",
+  "blurb": "Oktoberfest in October, holiday lights in December, over Stevens Pass",
+  "from": "Seattle",
+  "to": "leavenworth",
+  "season": {
+    "from": "09-15",
+    "to": "12-31"
+  },
+  "state": "WA",
+  "order": 1
+}

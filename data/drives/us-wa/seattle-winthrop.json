@@ -1,0 +1,13 @@
+{
+  "id": "seattle-winthrop",
+  "name": "Seattle to Winthrop",
+  "blurb": "The North Cascades Highway, open until snow closes it, usually in November",
+  "from": "Seattle",
+  "to": "Winthrop",
+  "season": {
+    "from": "06-01",
+    "to": "10-31"
+  },
+  "state": "WA",
+  "order": 2
+}

@@ -1,0 +1,13 @@
+{
+  "id": "portland-mount-hood",
+  "name": "Portland to Mount Hood",
+  "blurb": "Ski season at Timberline, Meadows and Skibowl",
+  "from": "portland",
+  "to": "mount-hood",
+  "season": {
+    "from": "12-01",
+    "to": "03-31"
+  },
+  "state": "OR",
+  "order": 4
+}

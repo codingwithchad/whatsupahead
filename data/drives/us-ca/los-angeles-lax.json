@@ -1,0 +1,13 @@
+{
+  "id": "los-angeles-lax",
+  "name": "Los Angeles to LAX",
+  "blurb": "Holiday flights: Thanksgiving to New Year",
+  "from": "los-angeles",
+  "to": "airport-lax",
+  "season": {
+    "from": "11-15",
+    "to": "01-05"
+  },
+  "state": "CA",
+  "order": 4
+}

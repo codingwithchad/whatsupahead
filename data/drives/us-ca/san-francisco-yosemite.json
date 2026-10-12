@@ -1,0 +1,13 @@
+{
+  "id": "san-francisco-yosemite",
+  "name": "San Francisco to Yosemite",
+  "blurb": "Yosemite in summer",
+  "from": "san-francisco",
+  "to": "yosemite",
+  "season": {
+    "from": "05-15",
+    "to": "09-30"
+  },
+  "state": "CA",
+  "order": 2
+}

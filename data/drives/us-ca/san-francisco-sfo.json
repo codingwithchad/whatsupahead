@@ -1,0 +1,13 @@
+{
+  "id": "san-francisco-sfo",
+  "name": "San Francisco to SFO",
+  "blurb": "Holiday flights: Thanksgiving to New Year",
+  "from": "san-francisco",
+  "to": "airport-sfo",
+  "season": {
+    "from": "11-15",
+    "to": "01-05"
+  },
+  "state": "CA",
+  "order": 3
+}

@@ -1,0 +1,13 @@
+{
+  "id": "los-angeles-big-bear",
+  "name": "Los Angeles to Big Bear",
+  "blurb": "Snow in the San Bernardino Mountains",
+  "from": "los-angeles",
+  "to": "ski-big-bear",
+  "season": {
+    "from": "12-01",
+    "to": "03-15"
+  },
+  "state": "CA",
+  "order": 6
+}

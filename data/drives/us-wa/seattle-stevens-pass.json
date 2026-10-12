@@ -1,0 +1,13 @@
+{
+  "id": "seattle-stevens-pass",
+  "name": "Seattle to Stevens Pass",
+  "blurb": "Ski season at Stevens Pass",
+  "from": "Seattle",
+  "to": "stevens-pass",
+  "season": {
+    "from": "12-01",
+    "to": "03-31"
+  },
+  "state": "WA",
+  "order": 6
+}

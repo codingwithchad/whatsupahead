@@ -1,0 +1,13 @@
+{
+  "id": "portland-columbia-gorge",
+  "name": "Portland to the Columbia Gorge",
+  "blurb": "Fall colors and waterfalls",
+  "from": "portland",
+  "to": "columbia-gorge",
+  "season": {
+    "from": "10-01",
+    "to": "11-10"
+  },
+  "state": "OR",
+  "order": 1
+}

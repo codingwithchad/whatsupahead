@@ -1,0 +1,13 @@
+{
+  "id": "seattle-spokane",
+  "name": "Seattle to Spokane",
+  "blurb": "Across the Cascades in winter, over Snoqualmie Pass",
+  "from": "Seattle",
+  "to": "Spokane",
+  "season": {
+    "from": "11-15",
+    "to": "03-15"
+  },
+  "state": "WA",
+  "order": 7
+}

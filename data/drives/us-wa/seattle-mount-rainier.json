@@ -1,0 +1,13 @@
+{
+  "id": "seattle-mount-rainier",
+  "name": "Seattle to Mount Rainier",
+  "blurb": "Wildflowers at Paradise",
+  "from": "Seattle",
+  "to": "mount-rainier",
+  "season": {
+    "from": "07-01",
+    "to": "09-30"
+  },
+  "state": "WA",
+  "order": 3
+}

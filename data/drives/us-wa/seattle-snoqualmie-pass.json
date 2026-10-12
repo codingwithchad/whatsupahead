@@ -1,0 +1,13 @@
+{
+  "id": "seattle-snoqualmie-pass",
+  "name": "Seattle to Snoqualmie Pass",
+  "blurb": "Ski season at The Summit",
+  "from": "Seattle",
+  "to": "snoqualmie-pass",
+  "season": {
+    "from": "12-01",
+    "to": "03-31"
+  },
+  "state": "WA",
+  "order": 5
+}

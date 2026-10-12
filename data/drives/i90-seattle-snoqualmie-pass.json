@@ -1,9 +1,0 @@
-{
-  "id": "i90-seattle-snoqualmie-pass",
-  "name": "Seattle to Snoqualmie Pass",
-  "blurb": "I-90 up to the pass",
-  "from": "47.6062,-122.3321",
-  "from_label": "Seattle",
-  "to": "snoqualmie-pass",
-  "order": 6
-}

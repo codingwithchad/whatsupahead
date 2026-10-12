@@ -2,6 +2,8 @@ import { isDormant, nearby } from '../lib/geo';
 import { coverPicture, forPlace } from '../lib/placeCameras';
 import { getCatalog } from '../lib/server/catalog';
 import { viewCount } from '../lib/server/popularity';
+import { seasonalDrives } from '../lib/seasonalDrives';
+import { localDay } from '../lib/passHistory';
 import type { PageServerLoad } from './$types';
 
 const DEFAULT_RADIUS = 25;
@@ -39,7 +41,9 @@ function compute() {
 
 export const load: PageServerLoad = () => {
 	if (!memo || Date.now() - memo.at > TEN_MINUTES) memo = { at: Date.now(), value: compute() };
-	const { collections, drives, places: cards } = memo.value;
+	const { collections, drives: allDrives, places: cards } = memo.value;
+	// The drives people take at this time of year, by the calendar where the drives are.
+	const drives = seasonalDrives(allDrives, localDay(Date.now(), 'America/Los_Angeles').slice(5));
 	// Most viewed across everyone first; ties keep the order set in the data files.
 	const popular = cards
 		.filter((c) => !c.collection)

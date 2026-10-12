@@ -1,0 +1,13 @@
+{
+  "id": "portland-pdx",
+  "name": "Portland to PDX Airport",
+  "blurb": "Holiday flights: Thanksgiving to New Year",
+  "from": "portland",
+  "to": "airport-portland",
+  "season": {
+    "from": "11-15",
+    "to": "01-05"
+  },
+  "state": "OR",
+  "order": 3
+}

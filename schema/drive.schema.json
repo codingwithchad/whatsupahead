@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/codingwithchad/whatsupahead/schema/drive.schema.json",
   "title": "Featured drive",
-  "description": "A ready-made trip shown on the home page, opening trip mode with From and To filled in.",
+  "description": "A ready-made trip shown on the home page in its season, opening trip mode with From and To filled in.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -21,7 +21,8 @@
       "minLength": 1
     },
     "blurb": {
-      "type": "string"
+      "type": "string",
+      "description": "Why now, in a few words: \"Oktoberfest in October, holiday lights in December\"."
     },
     "from": {
       "type": "string",
@@ -43,6 +44,33 @@
     "to_label": {
       "type": "string",
       "description": "Name to show when `to` is coordinates."
+    },
+    "season": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "description": "When it shows on the home page, month-day to month-day (may wrap past New Year). Without it, it shows all year.",
+      "properties": {
+        "from": {
+          "type": "string",
+          "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+        },
+        "to": {
+          "type": "string",
+          "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+        }
+      }
+    },
+    "state": {
+      "enum": [
+        "WA",
+        "OR",
+        "CA"
+      ],
+      "description": "So the home page can mix states."
     }
   }
 }

@@ -102,6 +102,9 @@ export interface Drive {
 	to: string;
 	to_label?: string;
 	order?: number;
+	/** When it shows on the home page, "MM-DD" to "MM-DD" (may wrap past New Year). */
+	season?: { from: string; to: string };
+	state?: string;
 }
 
 export interface Place {

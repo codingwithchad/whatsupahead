@@ -111,8 +111,8 @@
 			</div>
 		{/if}
 		{#if drives.length}
-			<h3 class="mini-title">Popular drives</h3>
-			<nav class="drives" aria-label="Popular drives">
+			<h3 class="mini-title">Drives this season</h3>
+			<nav class="drives" aria-label="Drives this season">
 				{#each drives as d (d.id)}
 					<a class="drive" href={driveLink(d)}>
 						<span class="place-name">{d.name}</span>

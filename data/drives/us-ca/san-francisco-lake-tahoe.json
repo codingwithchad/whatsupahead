@@ -1,0 +1,13 @@
+{
+  "id": "san-francisco-lake-tahoe",
+  "name": "San Francisco to Lake Tahoe",
+  "blurb": "Ski season, over Donner Summit or Echo Summit",
+  "from": "san-francisco",
+  "to": "lake-tahoe",
+  "season": {
+    "from": "12-01",
+    "to": "03-31"
+  },
+  "state": "CA",
+  "order": 5
+}

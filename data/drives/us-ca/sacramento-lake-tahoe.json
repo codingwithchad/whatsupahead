@@ -1,0 +1,13 @@
+{
+  "id": "sacramento-lake-tahoe",
+  "name": "Sacramento to Lake Tahoe",
+  "blurb": "Fall colors over Echo Summit",
+  "from": "sacramento",
+  "to": "lake-tahoe",
+  "season": {
+    "from": "09-25",
+    "to": "10-31"
+  },
+  "state": "CA",
+  "order": 1
+}

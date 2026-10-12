@@ -87,7 +87,7 @@ Both use the WSDOT access code (`WSDOT_CODE`), so today they cover Washington on
 
 ## Featured drives
 
-Files in `data/drives/` (schema `drive.schema.json`) are ready-made trips shown on the home page under Plan a drive. `from` and `to` can be a town, zip, address, a place id, or `lat,lon` (coordinates skip the place search; set `from_label` to name them). Example: `us2-everett-stevens-pass`.
+Files in `data/drives/<state>/` (schema `drive.schema.json`) are ready-made trips shown on the home page under "Drives this season". `from` and `to` can be a town, zip, address, a place id, or `lat,lon` (coordinates skip the place search; set `from_label` to name them). `season` (`"from": "09-15", "to": "12-31"`, may wrap past New Year) says when it shows, `blurb` says why now, and `state` lets the home page take turns between states (up to six at a time). Example: `us-wa/seattle-leavenworth`.
 
 ## Airports
 

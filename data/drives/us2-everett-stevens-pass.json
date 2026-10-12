@@ -1,9 +1,0 @@
-{
-  "id": "us2-everett-stevens-pass",
-  "name": "Everett to Stevens Pass",
-  "blurb": "US 2 up the Skykomish valley",
-  "from": "47.9769,-122.209",
-  "to": "stevens-pass",
-  "order": 1,
-  "from_label": "Everett"
-}

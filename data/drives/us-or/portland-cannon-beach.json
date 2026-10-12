@@ -1,0 +1,13 @@
+{
+  "id": "portland-cannon-beach",
+  "name": "Portland to Cannon Beach",
+  "blurb": "Summer on the coast",
+  "from": "portland",
+  "to": "coast-cannon-beach",
+  "season": {
+    "from": "06-01",
+    "to": "09-15"
+  },
+  "state": "OR",
+  "order": 2
+}

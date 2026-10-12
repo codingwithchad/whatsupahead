@@ -1,0 +1,13 @@
+{
+  "id": "portland-bend",
+  "name": "Portland to Bend",
+  "blurb": "Over the Cascades to Mt. Bachelor in winter",
+  "from": "portland",
+  "to": "Bend",
+  "season": {
+    "from": "12-01",
+    "to": "03-31"
+  },
+  "state": "OR",
+  "order": 5
+}

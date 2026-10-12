@@ -1,9 +1,0 @@
-{
-  "id": "i90-bellevue-snoqualmie-pass",
-  "name": "Bellevue to Snoqualmie Pass",
-  "blurb": "I-90 east from the Eastside",
-  "from": "47.6101,-122.2015",
-  "from_label": "Bellevue",
-  "to": "snoqualmie-pass",
-  "order": 7
-}
