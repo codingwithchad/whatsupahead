@@ -42,6 +42,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   <g transform="translate(70 70) scale(2.6)">${MARK}</g>
   <text x="70" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="92" fill="#ffffff">What's Up Ahead</text>
   <text x="74" y="364" font-family="DejaVu Sans, Arial, sans-serif" font-size="40" fill="#cfeaf6">Cameras, weather and waits along your way.</text>
+  <text x="74" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="34" fill="#ff9a2e">Washington · Oregon · California</text>
 </svg>`;
 await sharp(Buffer.from(og)).png().toFile('static/og-image.png');
 console.log('icons written');

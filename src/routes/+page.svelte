@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Logo from '../lib/Logo.svelte';
-	import { APP_NAME, TAGLINE } from '../lib/brand';
+	import { APP_NAME, COVERAGE_SHORT, TAGLINE } from '../lib/brand';
 	import CollectionIcon from '../lib/CollectionIcon.svelte';
 	import InstallHelp from '../lib/InstallHelp.svelte';
 	import StartCard from '../lib/StartCard.svelte';
@@ -69,6 +69,7 @@
 		<div class="hero-text">
 			<h1>What's Up Ahead</h1>
 			<p class="tagline">{TAGLINE}</p>
+			<p class="coverage">{COVERAGE_SHORT}</p>
 		</div>
 	</div>
 </header>

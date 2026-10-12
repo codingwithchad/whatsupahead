@@ -409,6 +409,13 @@ dd {
 	color: #ffe2b8;
 	max-width: 22ch;
 }
+.coverage {
+	font-size: var(--fs-xs, 0.78rem);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	margin: 4px 0 0;
+	color: #ff9a2e;
+}
 .home {
 	max-width: 560px;
 	margin: 0 auto;

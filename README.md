@@ -1,17 +1,17 @@
 # What's Up Ahead
 
-**Cameras, weather and waits along your way.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts, no ads.
+**Cameras, weather and waits along your way, for the West Coast: Washington, Oregon and California.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts, no ads.
 
 **Try it: https://whatsupahead.com** (during the move from the old address, https://oscams.onrender.com forwards there)
 
 ## What it does
 
 - **Trip mode:** enter a start and a finish and see the cameras along the road in the order you'll pass them, with the forecast for when you'll arrive. "Follow my trip" hides cameras you've already passed.
-- **Mountain passes:** open, chains or closed for every Washington pass, plus a replay of the last two hours of each pass camera so you can see snow building up.
+- **Mountain passes:** open, chains or closed for passes in Washington (WSDOT), Oregon (ODOT) and California (Caltrans chain controls), plus a replay of the last two hours of each pass camera so you can see snow building up.
 - **Places:** ferries (with sailing space), border crossings (with wait times), airports (with FAA delays), airfields, national parks, ski areas, and any town or zip code.
 - **Cameras are data, not code.** Adding one is a small JSON file, so you don't need to write any code to help.
 
-Right now it covers Washington State. The design (data files plus small adapters) is meant to grow to other states.
+It covers the West Coast: Washington, Oregon and California (about 6,400 cameras). The design (data files plus small adapters) is meant to grow to other states; Idaho is next.
 
 ## Help wanted
 

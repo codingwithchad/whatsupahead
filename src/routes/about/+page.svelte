@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { APP_NAME, REPO_URL, TAGLINE } from '../../lib/brand';
+	import { APP_NAME, COVERAGE, REPO_URL, TAGLINE } from '../../lib/brand';
 </script>
 
 <svelte:head><title>About · {APP_NAME}</title></svelte:head>
@@ -17,7 +17,8 @@
 	<p>
 		You enter a place, or a start and a finish, and it shows the public cameras, the weather and the
 		waits along the way: snow on a mountain pass, the ferry line, the border, a commute home.
-		Cameras appear in the order you'll pass them, with the forecast for when you'll get there.
+		Cameras appear in the order you'll pass them, with the forecast for when you'll get there. It
+		covers the West Coast: {COVERAGE}.
 	</p>
 
 	<h2>Where the information comes from</h2>

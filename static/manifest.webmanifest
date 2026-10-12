@@ -1,7 +1,7 @@
 {
 	"name": "What's Up Ahead",
 	"short_name": "Up Ahead",
-	"description": "Cameras, weather and waits along your way.",
+	"description": "Cameras, weather and waits along your way. For the West Coast: Washington, Oregon and California.",
 	"start_url": "/",
 	"scope": "/",
 	"display": "standalone",

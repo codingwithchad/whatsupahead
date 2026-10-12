@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import favicon from '../lib/assets/favicon.svg';
 	import '../app.css';
-	import { APP_NAME, REPO_URL, TAGLINE } from '../lib/brand';
+	import { APP_NAME, REPO_URL, TAGLINE, WHERE } from '../lib/brand';
 	import OfflineBanner from '../lib/OfflineBanner.svelte';
 	import type { LayoutProps } from './$types';
 
@@ -15,13 +15,13 @@
 	<link rel="icon" href={favicon} />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="theme-color" content="#0b2540" />
-	<meta name="description" content={TAGLINE} />
+	<meta name="description" content="{TAGLINE} {WHERE}" />
 	<meta property="og:site_name" content={APP_NAME} />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content={APP_NAME} />
 	<meta
 		property="og:description"
-		content="{TAGLINE} Free, no accounts, no ads. Works on any phone."
+		content="{TAGLINE} {WHERE} Free, no accounts, no ads. Works on any phone."
 	/>
 	<meta property="og:image" content={image} />
 	<meta property="og:image:width" content="1200" />
