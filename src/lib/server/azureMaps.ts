@@ -73,7 +73,9 @@ export async function azureRoute(stops: Point[]): Promise<DrivingRoute> {
 	const body = await get<{ routes?: AzureRoute[] }>('/route/directions/json', {
 		query: stops.map((p) => `${p.lat},${p.lon}`).join(':'),
 		travelMode: 'car',
-		traffic: 'true'
+		traffic: 'true',
+		// Forest and dirt roads are where GPS detours strand drivers in winter.
+		avoid: 'unpavedRoads'
 	});
 	const route = body.routes?.[0];
 	if (!route) throw new Error('no route');

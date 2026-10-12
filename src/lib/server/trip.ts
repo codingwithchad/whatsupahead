@@ -59,7 +59,9 @@ export function camerasAlong(
 			to,
 			NEAREST_FALLBACK_MILES
 		)[0];
-		if (closest) found.push({ item: closest, along: total, off: closest.distance });
+		// It may already be on the list (along the road, just outside the destination radius).
+		if (closest && !found.some((f) => f.item.id === closest.id))
+			found.push({ item: closest, along: total, off: closest.distance });
 	}
 	return found;
 }

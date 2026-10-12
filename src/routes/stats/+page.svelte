@@ -26,7 +26,8 @@
 		'share-copy': 'Copied a link',
 		'share-facebook': 'Shared to Facebook',
 		'share-text': 'Shared by text message',
-		'moment-open': 'Opened before and after'
+		'moment-open': 'Opened before and after',
+		vehicle: 'Picked a vehicle for chains'
 	};
 </script>
 

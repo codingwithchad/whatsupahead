@@ -416,10 +416,24 @@ export function closureInEffect(c: CaltransClosure, now = Date.now()): boolean {
 	);
 }
 
-const winterMonth = (now: number) => {
+export const winterMonth = (now: number) => {
 	const m = new Date(now).getUTCMonth();
 	return m >= 11 || m <= 3; // December through April
 };
+
+/**
+ * Should a drive go around this pass? When it is closed, or when it is a road that closes for the winter, it is
+ * winter, and nothing says it is open (no report is not an open road).
+ */
+export function blocksRoad(
+	pass: { winter_closure?: string },
+	report: Pick<PassReport, 'status'> | null | undefined,
+	now = Date.now()
+): boolean {
+	if (report?.status === 'closed') return true;
+	const reportedOpen = report && ['open', 'traction', 'chains'].includes(report.status);
+	return Boolean(pass.winter_closure) && winterMonth(now) && !reportedOpen;
+}
 
 /** A California pass's report from Caltrans chain controls and full closures near its summit. */
 export function caltransPassReport(

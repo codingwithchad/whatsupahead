@@ -159,3 +159,29 @@ export function thinToTarget<T extends { along: number; keep?: boolean }>(
 	}
 	return thinStops(stops, 20);
 }
+
+/** The point `miles` along the route (clamped to its ends). */
+export function pointAt(route: LatLon[], cum: number[], miles: number): Point {
+	const total = cum[cum.length - 1];
+	const m = Math.min(Math.max(miles, 0), total);
+	let i = 1;
+	while (i < cum.length - 1 && cum[i] < m) i++;
+	const span = cum[i] - cum[i - 1];
+	const t = span > 0 ? (m - cum[i - 1]) / span : 0;
+	return {
+		lat: route[i - 1][0] + t * (route[i][0] - route[i - 1][0]),
+		lon: route[i - 1][1] + t * (route[i][1] - route[i - 1][1])
+	};
+}
+
+/** Which way the road heads at `miles` along, in degrees from north (0 north, 90 east), over about a mile. */
+export function headingAt(route: LatLon[], cum: number[], miles: number): number | null {
+	if (route.length < 2) return null;
+	const a = pointAt(route, cum, miles - 0.5);
+	const b = pointAt(route, cum, miles + 0.5);
+	const k = Math.cos((((a.lat + b.lat) / 2) * Math.PI) / 180);
+	const dx = (b.lon - a.lon) * k;
+	const dy = b.lat - a.lat;
+	if (!dx && !dy) return null;
+	return ((Math.atan2(dx, dy) * 180) / Math.PI + 360) % 360;
+}

@@ -6,6 +6,7 @@
 	import ConditionsBar from '../../lib/ConditionsBar.svelte';
 	import SnowLine from '../../lib/SnowLine.svelte';
 	import RouteWeather from '../../lib/RouteWeather.svelte';
+	import RoadAhead from '../../lib/RoadAhead.svelte';
 	import OfflineCameras from '../../lib/OfflineCameras.svelte';
 	import TripForm from '../../lib/TripForm.svelte';
 	import ShareButton from '../../lib/ShareButton.svelte';
@@ -193,6 +194,8 @@
 				</p>
 			{/if}
 		</section>
+
+		<RoadAhead road={trip.road} warnings={trip.warnings} />
 
 		{#await trip.snow then snow}
 			{#if snow}<SnowLine

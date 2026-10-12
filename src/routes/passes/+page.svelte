@@ -1,5 +1,7 @@
 <script lang="ts">
 	import StatusPill from '../../lib/StatusPill.svelte';
+	import VehiclePicker from '../../lib/VehiclePicker.svelte';
+	import { loadVehicle, passAnswer, VEHICLES, type Vehicle } from '../../lib/vehicle';
 	import { ago } from '../../lib/format';
 	import { loadOpenStates, saveOpenState } from '../../lib/openStates';
 	import type { PageProps } from './$types';
@@ -28,6 +30,12 @@
 			saveOpenState(name, open);
 		}
 	};
+	// Chains for the visitor's vehicle, when they have picked one (kept on the device).
+	let vehicle = $state<Vehicle | null>(null);
+	$effect(() => {
+		vehicle = loadVehicle();
+	});
+	const short = $derived(VEHICLES.find((v) => v.id === vehicle)?.short ?? '');
 	// The first sentence of WSDOT's note, for passes that are not reporting right now.
 	const firstSentence = (s: string) => (s.match(/^.*?[.!](\s|$)/)?.[0] ?? s).trim().slice(0, 140);
 </script>
@@ -62,6 +70,11 @@
 		<p class="place-note">
 			Pass reports aren't loading right now. Each pass page still shows its cameras and forecast.
 		</p>
+	{/if}
+
+	{#if data.reachable}
+		<p class="ra-ask">Chains and traction tires for what you're driving:</p>
+		<VehiclePicker bind:vehicle />
 	{/if}
 
 	{#each data.states as st (st.name)}
@@ -100,6 +113,11 @@
 											.filter(Boolean)
 											.join(' · ')}</span
 									>
+									{#if vehicle && p.report && p.report.status !== 'off-season'}
+										<span class="pass-detail pass-answer"
+											>For your {short}: {passAnswer(p.report, vehicle).text}</span
+										>
+									{/if}
 									{#if p.report && p.report.status !== 'off-season'}
 										<span class="pass-detail">
 											{[

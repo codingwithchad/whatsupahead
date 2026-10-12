@@ -44,7 +44,10 @@ async function json<T>(url: string, headers: Record<string, string> = {}): Promi
 }
 
 /** ODOT's crew road reports and incidents (closures), or null when ODOT can't be reached. */
-async function odotFeeds(): Promise<{ reports: OdotRwReport[]; incidents: OdotIncident[] } | null> {
+export async function odotFeeds(): Promise<{
+	reports: OdotRwReport[];
+	incidents: OdotIncident[];
+} | null> {
 	const key = process.env.ORDOT_CODE_PRIMARY;
 	if (!key) return null;
 	const headers = { 'Ocp-Apim-Subscription-Key': key };
@@ -103,6 +106,24 @@ async function caltransFeeds(
 	}
 }
 
+/** The Caltrans districts these passes need chain controls from, and the ones to read closures from. */
+function caltransDistricts(passes: PassInfo[]) {
+	const caltransPasses = passes.flatMap((p) => (p.report?.source === 'caltrans' ? [p.report] : []));
+	const unique = (lists: number[][]) => [...new Set(lists.flat())].sort((a, b) => a - b);
+	return {
+		districts: unique(caltransPasses.map((r) => r.districts ?? [])),
+		closureDistricts: unique(
+			caltransPasses.filter((r) => r.closures !== false).map((r) => r.districts ?? [])
+		)
+	};
+}
+
+/** Caltrans full closures in the mountain districts we read for passes, or null if unreachable. */
+export async function caltransClosures(): Promise<CaltransClosure[] | null> {
+	const { districts, closureDistricts } = caltransDistricts(getCatalog().passes);
+	return (await caltransFeeds(districts, closureDistricts))?.closures ?? null;
+}
+
 /**
  * The current report for every pass in data/passes, keyed by our pass id. A pass is missing when its state's
  * feed can't be reached (which is not the same as "no report": that is a report saying so).
@@ -110,12 +131,7 @@ async function caltransFeeds(
 export async function allPassReports(
 	passes: PassInfo[] = getCatalog().passes
 ): Promise<Map<string, PassReport>> {
-	const caltransPasses = passes.flatMap((p) => (p.report?.source === 'caltrans' ? [p.report] : []));
-	const unique = (lists: number[][]) => [...new Set(lists.flat())].sort((a, b) => a - b);
-	const districts = unique(caltransPasses.map((r) => r.districts ?? []));
-	const closureDistricts = unique(
-		caltransPasses.filter((r) => r.closures !== false).map((r) => r.districts ?? [])
-	);
+	const { districts, closureDistricts } = caltransDistricts(passes);
 	const [wsdot, odot, caltrans] = await Promise.all([
 		livePasses(),
 		passes.some((p) => p.report?.source === 'odot') ? odotFeeds() : null,

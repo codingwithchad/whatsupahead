@@ -11,6 +11,8 @@ export interface DrivingRoute {
 	coords: LatLon[];
 	miles: number;
 	minutes: number;
+	/** Miles on very slow roads (unpaved or forest roads): often not plowed, and where GPS detours strand people. */
+	roughMiles?: number;
 }
 
 interface OsrmRoute {
@@ -37,8 +39,18 @@ export function driveMinutes(route: Pick<OsrmRoute, 'duration' | 'legs'>): numbe
 	return seconds / 60;
 }
 
+/** Miles of long stretches OSRM rates under 10 mph: unpaved and forest roads. */
+export function roughMiles(route: Pick<OsrmRoute, 'legs'>): number {
+	const steps = route.legs?.flatMap((l) => l.steps ?? []) ?? [];
+	let meters = 0;
+	for (const s of steps)
+		if (s.distance >= 1609 && s.duration > s.distance / (10 * MPH)) meters += s.distance;
+	return meters / 1609.344;
+}
+
 export function toDrivingRoute(route: OsrmRoute): DrivingRoute {
 	return {
+		roughMiles: roughMiles(route),
 		coords: route.geometry.coordinates.map(
 			([lon, lat]) => [Math.round(lat * 1e5) / 1e5, Math.round(lon * 1e5) / 1e5] as LatLon
 		),

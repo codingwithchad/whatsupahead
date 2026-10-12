@@ -6,14 +6,14 @@ import {
 	camerasAlong,
 	DEFAULT_DESTINATION_RADIUS,
 	parseVia,
-	passesOnRoute,
 	resolvePlace,
 	tripLine
 } from '../../lib/server/trip';
 import { previewSlot, tripShareParams, type ShareMeta } from '../../lib/sharing';
 import { withForecast } from '../../lib/server/autoForecast';
 import { withLiveLinks } from '../../lib/server/live';
-import { drivingRoute } from '../../lib/server/routing';
+import { safeRoute } from '../../lib/server/safeRoute';
+import { roadWarnings } from '../../lib/server/roadAhead';
 import { snowAlong } from '../../lib/server/snow';
 import { weatherOnTheWay } from '../../lib/server/routeWeather';
 import { nearestTown } from '../../lib/server/gazetteer';
@@ -65,9 +65,9 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	if (toLabel) to.label = toLabel;
 	base.toQ = toLabel || (to.featured?.name ?? toQ);
 
-	let route;
+	let safe;
 	try {
-		route = await drivingRoute(from, to, via);
+		safe = await safeRoute(from, to, via);
 	} catch {
 		return {
 			...base,
@@ -76,6 +76,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		};
 	}
 
+	const { route } = safe;
 	setHeaders({ 'cache-control': 'private, max-age=60' });
 	const total = route.miles;
 	// Along the road only road cameras count; skyline, park and other views only show up near the destination.
@@ -97,9 +98,9 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	// Weather: anything along the road, plus anything that serves the destination.
 	const radius = destRadius;
 	const sources = new Map<string, WeatherSource>();
-	// Along the road only forecasts, roadside stations and pass conditions matter; ferries, border and
-	// airport reports show up when the drive ends at one of them.
-	const ROADSIDE = new Set(['forecast', 'station', 'pass-conditions', 'river']);
+	// Along the road only forecasts, roadside stations and rivers matter (passes have their own section);
+	// ferries, border and airport reports show up when the drive ends at one of them.
+	const ROADSIDE = new Set(['forecast', 'station', 'river']);
 	for (const w of alongRoute(
 		weather.filter((x) => ROADSIDE.has(x.kind)),
 		route.coords,
@@ -121,7 +122,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		distance: distanceMiles(w, to)
 	}));
 
-	const passNames = passesOnRoute(getCatalog().passes, route.coords, total).map((p) => p.name);
+	const passNames = safe.passes.map((p) => p.pass.name);
 	const share: ShareMeta = {
 		title: `${from.label} to ${to.label}`,
 		description: `${tripLine(total, route.minutes, passNames)} ${live.length} live cameras on the way, with the weather and pass reports for when you get there.`,
@@ -140,6 +141,30 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 			leaveIn,
 			demoWinter,
 			route: route.coords,
+			// Closed passes gone around or still in the way, each pass's report, and slow back roads.
+			road: {
+				avoided: safe.avoided,
+				blocked: safe.blocked,
+				roughMiles: Math.round(route.roughMiles ?? 0),
+				passes: safe.passes.map(({ pass, along, heading, report }) => ({
+					id: pass.id,
+					name: pass.name,
+					route: pass.route,
+					place: pass.place,
+					link: pass.link ?? null,
+					source:
+						pass.pass_id !== undefined
+							? 'WSDOT'
+							: pass.report?.source === 'odot'
+								? 'ODOT'
+								: 'Caltrans',
+					along,
+					heading,
+					report
+				}))
+			},
+			// Streamed: full road closures and weather warnings for when you get to each point.
+			warnings: roadWarnings(route.coords, route.minutes, Date.now() + leaveIn * 60_000),
 			stops: shown,
 			totalCameras: live.length,
 			showingAll: showAll || shown.length === live.length,

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+	blocksRoad,
 	caltransPassReport,
 	checkpointName,
 	classifyPass,
@@ -340,5 +341,21 @@ describe('California pass reports (Caltrans)', () => {
 			'Foot of Conway / 8 Mi. N of Lee Vining'
 		);
 		expect(checkpointName('RED LAKE CREEK - CARSON PASS')).toBe('Red Lake Creek - Carson Pass');
+	});
+});
+
+describe('blocksRoad', () => {
+	const winter = Date.UTC(2027, 0, 15);
+	const summer = Date.UTC(2026, 6, 15);
+	const seasonal = { winter_closure: 'Closed for the winter' };
+	it('goes around closed passes', () => {
+		expect(blocksRoad({}, { status: 'closed' }, summer)).toBe(true);
+		expect(blocksRoad({}, { status: 'chains' }, winter)).toBe(false);
+	});
+	it('treats a winter road with no open report as closed in winter only', () => {
+		expect(blocksRoad(seasonal, null, winter)).toBe(true);
+		expect(blocksRoad(seasonal, { status: 'off-season' }, winter)).toBe(true);
+		expect(blocksRoad(seasonal, { status: 'open' }, winter)).toBe(false);
+		expect(blocksRoad(seasonal, null, summer)).toBe(false);
 	});
 });

@@ -9,16 +9,10 @@ import { cached } from './cache';
 import { getCatalog } from './catalog';
 import { nearestTown } from './gazetteer';
 import { allPassReports } from './passes';
-import { drivingRoute } from './routing';
+import { safeRoute } from './safeRoute';
 import { momentPicture, type Moment } from './moments';
 import { fetchPicture, renderCard, renderPair, type CardPicture } from './shareCard';
-import {
-	camerasAlong,
-	DEFAULT_DESTINATION_RADIUS,
-	parseVia,
-	passesOnRoute,
-	resolvePlace
-} from './trip';
+import { camerasAlong, DEFAULT_DESTINATION_RADIUS, parseVia, resolvePlace } from './trip';
 
 // The share pictures for each kind of page. Only pictures whose owners allow it go in (see ../sharing.ts);
 // a page with none still gets a card with its name.
@@ -157,7 +151,7 @@ export async function collectionPreview(collection: Collection, site: string): P
 
 /** The drive: its line on a map, a camera at the first pass and one at the destination. */
 export async function tripPreview(params: URLSearchParams, site: string): Promise<Buffer> {
-	const { places, cameras, passes } = getCatalog();
+	const { places, cameras } = getCatalog();
 	const [from, to] = await Promise.all([
 		resolvePlace(params.get('from') ?? '', places),
 		resolvePlace(params.get('to') ?? '', places)
@@ -166,7 +160,7 @@ export async function tripPreview(params: URLSearchParams, site: string): Promis
 	const label = (key: string, fallback: string) => params.get(key)?.trim().slice(0, 60) || fallback;
 	const fromName = label('fl', from.label);
 	const toName = label('tl', to.label);
-	const route = await drivingRoute(from, to, parseVia(params.get('via')));
+	const { route, passes: over } = await safeRoute(from, to, parseVia(params.get('via')));
 	const total = route.miles;
 	const along = camerasAlong(
 		cameras,
@@ -175,12 +169,10 @@ export async function tripPreview(params: URLSearchParams, site: string): Promis
 		to.featured?.radius_miles ?? DEFAULT_DESTINATION_RADIUS,
 		total
 	).filter((f) => !isDormant(f.item) && (f.item.feed_url || f.item.provider));
-	const over = passesOnRoute(passes, route.coords, total);
-
 	// A camera at the first pass (the nearest we may share, within 3 miles), then one at the destination.
 	const chosen: Camera[] = [];
 	const caption = new Map<string, string>();
-	const pass = over[0];
+	const pass = over[0]?.pass;
 	if (pass) {
 		const c = nearby(
 			along.map((f) => f.item).filter((x) => previewCredit(x)),
@@ -215,7 +207,7 @@ export async function tripPreview(params: URLSearchParams, site: string): Promis
 			route: route.coords,
 			from: fromName,
 			to: toName,
-			marks: over.slice(0, 4).map((p) => ({ lat: p.lat, lon: p.lon, label: p.name }))
+			marks: over.slice(0, 4).map(({ pass: p }) => ({ lat: p.lat, lon: p.lon, label: p.name }))
 		},
 		site
 	});

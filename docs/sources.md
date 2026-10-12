@@ -15,7 +15,8 @@ Checked 2026-10-07. Rule: use a camera only if its owner publishes it for public
 | USGS river cameras (HIVIS, via the National Imagery Management System API; `scripts/import-usgs-cameras.mjs`) | about 25 streamgage cameras in Washington and Oregon (Skagit, Nooksack, Cowlitz, Sandy, McKenzie, Rogue...) | US government imagery, public domain for the most part; each camera links to its streamgage page with the water-level graph |
 | USGS Cascades Volcano Observatory | Mount St. Helens from Johnston Ridge | Public domain (USGS) |
 | Pass reports outside Washington (data, not cameras; `data/passes/us-or`, `us-ca`) | Oregon: ODOT crew road-and-weather reports and closures (TripCheck API `/RW/Reports`, `/Incidents`, same key and terms as the cameras). California: Caltrans chain controls and full closures (CWWP2 `cc` and `lcs` lists, open data) | A pass's report is built from the reports on its highway near the summit (`report.route`, `radius_km`); see src/lib/passes.ts |
-| NOAA / National Weather Service, FAA, USGS (data, not cameras) | forecasts, river gauges, delays, tides, buoys | US government data |
+| Road closures on a drive (data, not cameras) | WSDOT Highway Alerts (same access code as the cameras; only alerts whose wording closes the whole road), ODOT incidents (closures), Caltrans full closures in the mountain districts we read for passes | Same terms as each state's camera and pass data above; see src/lib/roadAhead.ts |
+| NOAA / National Weather Service, FAA, USGS (data, not cameras) | forecasts, weather warnings along a drive (api.weather.gov `/alerts/active`, matched by forecast zone), river gauges, delays, tides, buoys | US government data |
 
 ## Link previews (shared links)
 

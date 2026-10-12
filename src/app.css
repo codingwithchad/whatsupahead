@@ -10,6 +10,8 @@
 	--warn-line: #e3b93c;
 	--ok-bg: #e3f4e1;
 	--ok-text: #1d4d1a;
+	--danger-bg: #fdecec;
+	--danger-line: #c92a2a;
 	/* One type scale, one set of corners and shadows, used everywhere */
 	--fs-xs: 0.8rem;
 	--fs-sm: 0.875rem;
@@ -37,6 +39,8 @@
 		--warn-line: #8a6d17;
 		--ok-bg: #173a1c;
 		--ok-text: #bfe8c0;
+		--danger-bg: #3a1717;
+		--danger-line: #e05252;
 		--shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 14px rgb(0 0 0 / 0.3);
 	}
 }
@@ -1954,4 +1958,95 @@ div.image-button {
 	bottom: 6px;
 	padding: 2px 8px;
 	font-size: var(--fs-xs);
+}
+
+/* Road ahead: closures, chains for your vehicle, weather warnings */
+.road-ahead {
+	margin: 0.75rem 0;
+	padding: 0.75rem 1rem;
+	border-radius: var(--radius);
+	background: var(--card);
+	border: 1px solid var(--line);
+	box-shadow: var(--shadow);
+}
+.road-ahead h2 {
+	margin: 0 0 0.5rem;
+	font-size: var(--fs-md);
+}
+.road-ahead h3 {
+	margin: 0.9rem 0 0.25rem;
+	font-size: var(--fs-sm);
+}
+.ra-alert {
+	margin: 0 0 0.5rem;
+	padding: 8px 12px;
+	border-radius: var(--radius-sm);
+	border-left: 4px solid var(--warn-line);
+	background: var(--warn-bg);
+}
+.ra-danger {
+	border-left-color: var(--danger-line);
+	background: var(--danger-bg);
+}
+.ra-alert small,
+.ra-pass-sub,
+.ra-line {
+	color: var(--muted);
+}
+.ra-detour {
+	margin: 0 0 0.5rem;
+	font-size: var(--fs-sm);
+	font-weight: 600;
+}
+.ra-clear {
+	margin: 0 0 0.5rem;
+	color: var(--ok-text);
+}
+.ra-checking,
+.ra-note,
+.ra-source,
+.ra-ask {
+	margin: 0.25rem 0 0.5rem;
+	color: var(--muted);
+	font-size: var(--fs-sm);
+}
+.ra-source {
+	margin-bottom: 0;
+}
+.vehicle-chips .chip {
+	font: inherit;
+	font-size: var(--fs-sm);
+	font-weight: 600;
+	cursor: pointer;
+}
+.ra-passes {
+	list-style: none;
+	margin: 0.5rem 0 0;
+	padding: 0;
+}
+.ra-passes li {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: 8px 0;
+	border-top: 1px solid var(--line);
+}
+.ra-pass-top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
+}
+.ra-pass-top a {
+	font-weight: 700;
+}
+.ra-pass-top .pill {
+	white-space: normal;
+}
+.ra-pass-sub,
+.ra-line {
+	font-size: var(--fs-xs);
+}
+.pass-answer {
+	font-weight: 600;
 }
