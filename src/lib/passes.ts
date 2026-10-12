@@ -152,7 +152,7 @@ interface Pt {
 }
 
 const DEFAULT_RADIUS_KM = 15;
-const sameRoute = (a: string | undefined, b: string) =>
+export const sameRoute = (a: string | undefined, b: string) =>
 	(a ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '') === b.toUpperCase().replace(/[^A-Z0-9]/g, '');
 
 /** Distance in km from a point to the straight line between two others (a report that covers a stretch). */
@@ -350,6 +350,7 @@ export interface CaltransChainControl {
 		longitude: string;
 		route?: string;
 		direction?: string;
+		elevation?: string;
 	};
 	inService?: string;
 	statusData?: {
@@ -395,7 +396,7 @@ export function checkpointName(raw: string): string {
 	return name === name.toUpperCase() && /[A-Z]{3}/.test(name) ? titleWords(name) : name;
 }
 
-const CHAIN_LEVEL: Record<string, string> = {
+export const CHAIN_LEVEL: Record<string, string> = {
 	'R-1': 'Chains required. Snow tires allowed on vehicles under 6,000 lb',
 	'R-2': 'Chains required. Four-wheel drive with snow tires on all four wheels allowed',
 	'R-3': 'Chains required on all vehicles'
@@ -516,4 +517,45 @@ export function caltransPassReport(
 	if (!points.length) return empty(pass.id);
 	// "No chain controls" stands until Caltrans changes it: its date is when that was set, not a fresh reading.
 	return { ...empty(pass.id), status: 'open', label: 'No chain controls' };
+}
+
+/** A Caltrans chain-control checkpoint, as pages show it. */
+export interface Checkpoint {
+	name: string;
+	route: string;
+	/** "North", "East"... the way traffic is going at this checkpoint. */
+	direction: string;
+	lat: number;
+	lon: number;
+	elevation_ft: number | null;
+	/** "R-0" (no chain controls) to "R-3". */
+	level: string;
+	/** What the level asks for, in the words the vehicle answers read. */
+	text: string;
+	updated: number | null;
+}
+
+export function toCheckpoint(c: CaltransChainControl): Checkpoint | null {
+	const lat = Number(c.location.latitude);
+	const lon = Number(c.location.longitude);
+	const level = c.statusData?.status ?? '';
+	if (c.inService === 'false' || !lat || !lon || !/^R-\d$/.test(level)) return null;
+	const s = c.statusData?.statusTimestamp;
+	const elevation = Number(c.location.elevation);
+	return {
+		name: checkpointName(c.location.locationName ?? ''),
+		route: (c.location.route ?? '')
+			.replace(/^SR-/, 'SR ')
+			.replace(/^I-/, 'I-')
+			.replace(/^US-/, 'US '),
+		direction: c.location.direction ?? '',
+		lat,
+		lon,
+		elevation_ft: elevation || null,
+		level,
+		text: CHAIN_LEVEL[level] ?? 'No chain controls',
+		updated: s?.statusDate
+			? Date.parse(`${s.statusDate}T${s.statusTime ?? '00:00:00'}-08:00`) || null
+			: null
+	};
 }

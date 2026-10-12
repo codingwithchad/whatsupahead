@@ -2,6 +2,8 @@ import {
 	caltransPassReport,
 	classifyPass,
 	odotPassReport,
+	toCheckpoint,
+	type Checkpoint,
 	type CaltransChainControl,
 	type CaltransClosure,
 	type OdotIncident,
@@ -102,6 +104,39 @@ async function caltransFeeds(
 		return { controls, closures };
 	} catch (err) {
 		console.warn(`[passes] caltrans: ${(err as Error).message}`);
+		return null;
+	}
+}
+
+// Every Caltrans district that has chain-control checkpoints (4, 5 and 12 have none).
+const CHECKPOINT_DISTRICTS = [1, 2, 3, 6, 7, 8, 9, 10, 11];
+
+/** Every Caltrans chain-control checkpoint and its level now, or null if Caltrans can't be reached. */
+export async function caltransCheckpoints(): Promise<Checkpoint[] | null> {
+	try {
+		return await cachedStale('passes:caltrans-checkpoints', 5 * 60 * 1000, async () => [
+			...(
+				await Promise.all(
+					CHECKPOINT_DISTRICTS.map((d) =>
+						json<{ data: { cc: CaltransChainControl }[] }>(
+							`${CALTRANS}/d${d}/cc/ccStatusD${String(d).padStart(2, '0')}.json`
+						)
+					)
+				)
+			)
+				.flatMap((j) => j.data.map((x) => toCheckpoint(x.cc)))
+				.filter((c): c is Checkpoint => c !== null)
+				// Caltrans lists some checkpoints up to four times (one per lane or kind of vehicle): keep the strictest.
+				.reduce((seen, c) => {
+					const key = `${c.name}|${c.direction}|${c.lat}|${c.lon}`;
+					const had = seen.get(key);
+					if (!had || c.level > had.level) seen.set(key, c);
+					return seen;
+				}, new Map<string, Checkpoint>())
+				.values()
+		]);
+	} catch (err) {
+		console.warn(`[passes] caltrans checkpoints: ${(err as Error).message}`);
 		return null;
 	}
 }

@@ -125,3 +125,7 @@ Drivers who rarely cross a pass don't know what "traction tires required" asks o
 ## 2026-10-12: Pass history
 
 The states publish today's pass report but no history anyone can read, and people ask how often a pass needs chains. Every 10 minutes the server notes each pass's report, keeps the worst of each day, and saves the days to `pass-history.json` next to the visit counts (`PASS_HISTORY_FILE`), merged with any copy another server saved during a deploy and kept for 400 days. A pass page shows this season's count of chain, closed and traction-tire days, the last of each, and the last 30 days as coloured squares. A day a state's feed was down is left out, never counted as open.
+
+## 2026-10-12: Chain checkpoints (California only)
+
+California pass pages list Caltrans's chain-control checkpoints on the pass's highway within about 25 miles, with the level at each now (the full list folds away; the ones in effect show first). A drive in California shows any chain control in effect on its road, for its direction, with the answer for the driver's vehicle. Caltrans lists some checkpoints up to four times; we keep one, the strictest. Washington and Oregon chain-up areas are not shown: neither WSDOT nor ODOT publishes their locations as data, OpenStreetMap has one, and a wrong chain-up location is worse than none, so we wait for an official source rather than typing them in by hand.

@@ -2260,3 +2260,10 @@ div.image-button {
 .pass-season .key-item {
 	white-space: nowrap;
 }
+.checkpoint-all summary {
+	cursor: pointer;
+	color: var(--accent);
+	font-size: var(--fs-sm);
+	font-weight: 600;
+	padding: 4px 0;
+}

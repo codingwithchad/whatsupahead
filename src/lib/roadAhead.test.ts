@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	alertsOnRoute,
+	chainControlsOnRoute,
 	closuresOnRoute,
 	inGeometry,
 	odotClosure,
@@ -12,6 +13,7 @@ import {
 	type Sample
 } from './roadAhead';
 import { cumulativeMiles, headingAt, type LatLon } from './route';
+import { toCheckpoint, type Checkpoint } from './passes';
 
 describe('wholeRoadClosed', () => {
 	it('finds whole-road closures', () => {
@@ -181,5 +183,60 @@ describe('samplePoints and headingAt', () => {
 	it('reads the way the road heads', () => {
 		expect(headingAt(road, cum, 10)).toBeCloseTo(90, 0);
 		expect(headingAt([...road].reverse(), cum, 10)).toBeCloseTo(270, 0);
+	});
+});
+
+describe('chainControlsOnRoute', () => {
+	const cp = (lon: number, direction: string, level = 'R-2'): Checkpoint => ({
+		name: 'Kingvale',
+		route: 'I-80',
+		direction,
+		lat: 47.4,
+		lon,
+		elevation_ft: 6000,
+		level,
+		text: 'x',
+		updated: null
+	});
+	it('keeps controls in effect on the road, for the way you are going', () => {
+		const out = chainControlsOnRoute(
+			[cp(-121.5, 'East'), cp(-121.5, 'West'), cp(-121.4, 'East', 'R-0'), cp(-121.3, '')],
+			road,
+			cum
+		);
+		expect(out.map((c) => [c.direction, Math.round(c.along)])).toEqual([
+			['East', 14],
+			['', 23]
+		]);
+	});
+});
+
+describe('toCheckpoint', () => {
+	it('reads a Caltrans checkpoint', () => {
+		const c = toCheckpoint({
+			location: {
+				locationName: 'KINGVALE _ _ _ (3)',
+				latitude: '39.3',
+				longitude: '-120.4',
+				route: 'I-80',
+				direction: 'East',
+				elevation: '6100'
+			},
+			inService: 'true',
+			statusData: {
+				status: 'R-2',
+				statusTimestamp: { statusDate: '2026-12-01', statusTime: '06:00:00' }
+			}
+		});
+		expect(c).toMatchObject({
+			name: 'Kingvale',
+			level: 'R-2',
+			elevation_ft: 6100,
+			direction: 'East'
+		});
+		expect(c?.text).toContain('Four-wheel drive');
+		expect(
+			toCheckpoint({ location: { latitude: '39.3', longitude: '-120.4' }, inService: 'false' })
+		).toBeNull();
 	});
 });

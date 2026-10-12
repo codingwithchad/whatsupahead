@@ -7,6 +7,7 @@
 		forDirection,
 		loadVehicle,
 		NEED_TONE,
+		needFor,
 		passAnswer,
 		VEHICLES,
 		type Vehicle
@@ -117,6 +118,15 @@
 				>
 			</p>
 		{/each}
+		{#each w.chainControls as c (`${c.name}|${c.direction}|${c.lat}|${c.lon}`)}
+			{@const ans = vehicle ? needFor(c.text, vehicle) : null}
+			<p class="ra-alert ra-caution">
+				<strong>Chain control {c.level}</strong>
+				at {c.name}{c.direction ? `, ${c.direction.toLowerCase()}bound` : ''}
+				<small>(mile {Math.round(c.along)})</small>: {c.text}.
+				{#if ans}<StatusPill tone={NEED_TONE[ans.need]} label="Your {short}: {ans.text}" />{/if}
+			</p>
+		{/each}
 		{#each w.alerts as a (a.event)}
 			<p class="ra-alert ra-{a.tone}">
 				<strong>{a.event}</strong>
@@ -129,7 +139,7 @@
 			</p>
 		{/each}
 		{#if anyClosed(w)}{@render detour()}{/if}
-		{#if !anyClosed(w) && !w.alerts.length}
+		{#if !anyClosed(w) && !w.alerts.length && !w.chainControls.length}
 			<p class="ra-clear">
 				{w.unchecked.length
 					? 'No closures or weather warnings found in what we could check.'

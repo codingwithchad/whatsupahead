@@ -238,6 +238,46 @@
 	</nav>
 	<PlaceBody {data} {base} />
 
+	{#await data.checkpoints then checkpoints}
+		{#if checkpoints?.length}
+			{@const active = checkpoints.filter((c) => c.level !== 'R-0')}
+			<section class="pass-alternates" aria-label="Chain control checkpoints">
+				<h2>Chain control checkpoints</h2>
+				<p class="pass-line">
+					{active.length
+						? `Chain controls at ${active.length} of ${checkpoints.length} checkpoints on ${pass.route} near the pass.`
+						: `No chain controls at any of the ${checkpoints.length} checkpoints on ${pass.route} near the pass.`}
+					Put chains on in a chain installation area before a checkpoint, never in a traffic lane.
+				</p>
+				{#snippet list(items: typeof checkpoints)}
+					<ul class="ra-passes">
+						{#each items as c (`${c.name}|${c.direction}|${c.lat}|${c.lon}`)}
+							<li>
+								<span class="ra-pass-top">
+									<span class="place-name">{c.name}</span>
+									<StatusPill
+										tone={c.level === 'R-0' ? 'open' : 'chains'}
+										label={c.level === 'R-0' ? 'No chain controls' : `${c.level}: ${c.text}`}
+									/>
+								</span>
+								<small class="ra-pass-sub"
+									>{c.direction ? `${c.direction}bound` : ''}{c.elevation_ft
+										? ` · ${c.elevation_ft.toLocaleString()} ft`
+										: ''} · {(c.km * 0.621).toFixed(0)} mi from the summit</small
+								>
+							</li>
+						{/each}
+					</ul>
+				{/snippet}
+				{#if active.length}{@render list(active)}{/if}
+				<details class="checkpoint-all">
+					<summary>Every checkpoint ({checkpoints.length})</summary>
+					{@render list(checkpoints)}
+				</details>
+			</section>
+		{/if}
+	{/await}
+
 	{#if data.alternates.length}
 		<section class="pass-alternates">
 			<h2>If {pass.name} closes</h2>

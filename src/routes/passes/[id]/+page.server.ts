@@ -4,13 +4,28 @@ import { APP_NAME } from '../../../lib/brand';
 import { previewSlot } from '../../../lib/sharing';
 import { getCatalog } from '../../../lib/server/catalog';
 import { avalancheAtPass, snowAtPass } from '../../../lib/server/mountain';
-import { allPassReports } from '../../../lib/server/passes';
+import { allPassReports, caltransCheckpoints } from '../../../lib/server/passes';
+import { kmToStretch, sameRoute, type Checkpoint } from '../../../lib/passes';
 import { passSeason } from '../../../lib/server/passHistory';
 import { placePage } from '../../../lib/server/placePage';
 import type { PassInfo } from '../../../lib/types';
 import type { PageServerLoad } from './$types';
 
 const ALTERNATES = 5;
+// Caltrans checkpoints can sit 20 to 30 km down the mountain on either side of the summit.
+const CHECKPOINT_KM = 40;
+
+/** Caltrans chain-control checkpoints on this pass's highway, each way, nearest the summit first. */
+async function checkpointsFor(pass: PassInfo): Promise<(Checkpoint & { km: number })[] | null> {
+	if (pass.report?.source !== 'caltrans') return [];
+	const all = await caltransCheckpoints();
+	if (!all) return null;
+	return all
+		.filter((c) => sameRoute(c.route, pass.report!.route))
+		.map((c) => ({ ...c, km: kmToStretch(c, pass) }))
+		.filter((c) => c.km <= CHECKPOINT_KM)
+		.sort((a, b) => a.direction.localeCompare(b.direction) || a.km - b.km);
+}
 const ALTERNATE_MILES = 120;
 
 /** Other ways over the same mountains: passes in the same group first, then the nearest others, closest first. */
@@ -75,6 +90,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 		})),
 		// Streamed: the page shows the report and cameras while these load.
 		snow: snowAtPass(pass),
+		checkpoints: checkpointsFor(pass),
 		avalanche: avalancheAtPass(pass)
 	};
 };

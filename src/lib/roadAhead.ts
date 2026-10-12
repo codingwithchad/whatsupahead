@@ -1,7 +1,12 @@
 import type { Point } from './geo';
 import { parseDotNetDate } from './transit';
-import { closureInEffect, type CaltransClosure, type OdotIncident } from './passes';
-import { projectOnRoute, type LatLon } from './route';
+import {
+	closureInEffect,
+	type CaltransClosure,
+	type Checkpoint,
+	type OdotIncident
+} from './passes';
+import { headingAt, projectOnRoute, type LatLon } from './route';
 
 // What could stop a drive besides a closed pass: full road closures the states report, and National Weather
 // Service warnings (winter storms, floods, wind) for the places on the way at the time you get there.
@@ -127,9 +132,37 @@ export function closuresOnRoute(
 	return out.sort((a, b) => a.along - b.along);
 }
 
+const COMPASS: Record<string, number> = { north: 0, east: 90, south: 180, west: 270 };
+
+/**
+ * Caltrans chain controls in effect on the road you will drive, for your direction: each checkpoint is for one
+ * way (the other side of the road has its own), within about a sixth of a mile of the route.
+ */
+export function chainControlsOnRoute(
+	checkpoints: Checkpoint[],
+	route: LatLon[],
+	cum: number[],
+	miles = 0.15
+): (Checkpoint & { along: number })[] {
+	const out: (Checkpoint & { along: number })[] = [];
+	for (const c of checkpoints) {
+		if (c.level === 'R-0') continue;
+		const p = projectOnRoute(c, route, cum);
+		if (p.off > miles) continue;
+		const way = COMPASS[c.direction.toLowerCase()];
+		const heading = headingAt(route, cum, p.along);
+		if (way !== undefined && heading !== null && Math.abs(((heading - way + 540) % 360) - 180) > 60)
+			continue;
+		out.push({ ...c, along: p.along });
+	}
+	return out.sort((a, b) => a.along - b.along);
+}
+
 /** What the drive page shows besides the passes. */
 export interface RoadWarnings {
 	closures: ClosureOnRoute[];
+	/** Caltrans chain controls in effect on the way. */
+	chainControls: (Checkpoint & { along: number })[];
 	alerts: (RouteAlert & { near: string | null })[];
 	/** Sources we could not reach for this drive, so the page never reads silence as an all-clear. */
 	unchecked: string[];
