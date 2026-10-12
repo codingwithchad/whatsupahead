@@ -1,0 +1,19 @@
+{
+  "id": "faa-delays-sacramento",
+  "name": "Sacramento International Airport flight delays",
+  "lat": 38.6951,
+  "lon": -121.5908,
+  "kind": "airport",
+  "provider": "faa-status",
+  "provider_ref": "SMF",
+  "source": "FAA",
+  "page_url": "https://nasstatus.faa.gov/",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "attribution_text": "Federal Aviation Administration",
+  "tags": [
+    "airport",
+    "smf"
+  ],
+  "created_at": "2026-10-12T00:00:00Z"
+}

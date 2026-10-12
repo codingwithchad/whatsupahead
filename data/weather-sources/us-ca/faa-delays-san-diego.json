@@ -1,0 +1,19 @@
+{
+  "id": "faa-delays-san-diego",
+  "name": "San Diego International Airport flight delays",
+  "lat": 32.7338,
+  "lon": -117.1933,
+  "kind": "airport",
+  "provider": "faa-status",
+  "provider_ref": "SAN",
+  "source": "FAA",
+  "page_url": "https://nasstatus.faa.gov/",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "attribution_text": "Federal Aviation Administration",
+  "tags": [
+    "airport",
+    "san"
+  ],
+  "created_at": "2026-10-12T00:00:00Z"
+}

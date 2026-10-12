@@ -1,0 +1,10 @@
+{
+  "id": "san-jose",
+  "name": "San Jose",
+  "region": "California",
+  "state": "California",
+  "blurb": "Downtown and the US 101, I-280 and I-880 interchanges",
+  "lat": 37.3382,
+  "lon": -121.8863,
+  "radius_miles": 5
+}

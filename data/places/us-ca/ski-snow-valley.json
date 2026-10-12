@@ -1,0 +1,11 @@
+{
+  "id": "ski-snow-valley",
+  "name": "Snow Valley",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 18 at Running Springs, on the way to Big Bear",
+  "lat": 34.225,
+  "lon": -117.0353,
+  "radius_miles": 8,
+  "collection": "ski-areas"
+}

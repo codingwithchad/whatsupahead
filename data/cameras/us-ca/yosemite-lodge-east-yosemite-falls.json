@@ -1,0 +1,18 @@
+{
+  "id": "yosemite-lodge-east-yosemite-falls",
+  "name": "Yosemite Lodge – East: Yosemite Falls",
+  "lat": 37.7439,
+  "lon": -119.59863,
+  "feed_type": "image",
+  "source": "yosemite.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1581059409",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1581059409",
+  "tags": [],
+  "attribution_text": "yosemite.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

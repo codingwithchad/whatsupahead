@@ -1,0 +1,18 @@
+{
+  "id": "mono-county-1760901096",
+  "name": "Mono County",
+  "lat": 37.49973,
+  "lon": -118.1688,
+  "feed_type": "image",
+  "source": "webviewcams.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1760901096",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1760901096",
+  "tags": [],
+  "attribution_text": "webviewcams.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

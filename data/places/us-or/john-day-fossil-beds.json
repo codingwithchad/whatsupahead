@@ -1,0 +1,11 @@
+{
+  "id": "john-day-fossil-beds",
+  "name": "John Day Fossil Beds",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "Sheep Rock and the Painted Hills, central Oregon",
+  "lat": 44.6,
+  "lon": -119.95,
+  "radius_miles": 30,
+  "collection": "national-parks"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-palisades-tahoe",
+  "name": "Palisades Tahoe",
+  "region": "California",
+  "state": "California",
+  "blurb": "Olympic Valley and Alpine Meadows, off SR 89 near Tahoe City",
+  "lat": 39.1966,
+  "lon": -120.2345,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Palisades Tahoe's website",
+    "url": "https://www.palisadestahoe.com/"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "los-angeles",
+  "name": "Los Angeles",
+  "region": "California",
+  "state": "California",
+  "blurb": "Downtown and the big freeway interchanges",
+  "lat": 34.0537,
+  "lon": -118.2428,
+  "radius_miles": 6
+}

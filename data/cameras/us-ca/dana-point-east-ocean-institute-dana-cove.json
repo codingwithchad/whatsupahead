@@ -1,0 +1,18 @@
+{
+  "id": "dana-point-east-ocean-institute-dana-cove",
+  "name": "Dana Point – East: Ocean Institute - Dana Cove",
+  "lat": 33.46137,
+  "lon": -117.70697,
+  "feed_type": "image",
+  "source": "hdontap.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1541199830",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1541199830",
+  "tags": [],
+  "attribution_text": "hdontap.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

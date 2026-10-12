@@ -1,0 +1,18 @@
+{
+  "id": "corvallis-osu-monroe-street",
+  "name": "Corvallis: OSU Monroe Street",
+  "lat": 44.56797,
+  "lon": -123.27598,
+  "feed_type": "image",
+  "source": "webcam.oregonstate.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1240473815",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1240473815",
+  "tags": [],
+  "attribution_text": "webcam.oregonstate.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

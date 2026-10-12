@@ -1,0 +1,16 @@
+{
+  "id": "ski-northstar",
+  "name": "Northstar",
+  "region": "California",
+  "state": "California",
+  "blurb": "Off SR 267 between Truckee and Lake Tahoe",
+  "lat": 39.2746,
+  "lon": -120.121,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Northstar's website",
+    "url": "https://www.northstarcalifornia.com/"
+  }
+}

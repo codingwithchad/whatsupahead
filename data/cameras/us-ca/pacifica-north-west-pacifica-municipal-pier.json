@@ -1,0 +1,18 @@
+{
+  "id": "pacifica-north-west-pacifica-municipal-pier",
+  "name": "Pacifica – North-west: Pacifica Municipal Pier",
+  "lat": 37.63146,
+  "lon": -122.49366,
+  "feed_type": "image",
+  "source": "mixdivr.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1600928714",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1600928714",
+  "tags": [],
+  "attribution_text": "mixdivr.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

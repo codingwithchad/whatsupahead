@@ -1,0 +1,11 @@
+{
+  "id": "airport-ontario",
+  "name": "Ontario International Airport (ONT)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Ontario: I-10 and flight delays",
+  "lat": 34.056,
+  "lon": -117.6012,
+  "radius_miles": 3,
+  "collection": "airports"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "coast-big-sur",
+  "name": "Big Sur",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 1 along Big Sur, where slides close the road",
+  "lat": 36.2704,
+  "lon": -121.8081,
+  "radius_miles": 25,
+  "collection": "coast"
+}

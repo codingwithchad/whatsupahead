@@ -1,0 +1,18 @@
+{
+  "id": "sunnyvale-megapixel-webcam",
+  "name": "Sunnyvale: Megapixel Webcam",
+  "lat": 37.37033,
+  "lon": -122.03635,
+  "feed_type": "image",
+  "source": "mpcam.marklex.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1389768482",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1389768482",
+  "tags": [],
+  "attribution_text": "mpcam.marklex.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

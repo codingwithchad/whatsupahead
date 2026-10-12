@@ -1,0 +1,18 @@
+{
+  "id": "scotts-valley-south",
+  "name": "Scotts Valley – South",
+  "lat": 37.08767,
+  "lon": -122.03444,
+  "feed_type": "image",
+  "source": "ohlonetrail.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1710455412",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1710455412",
+  "tags": [],
+  "attribution_text": "ohlonetrail.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

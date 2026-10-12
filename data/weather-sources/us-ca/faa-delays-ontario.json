@@ -1,0 +1,19 @@
+{
+  "id": "faa-delays-ontario",
+  "name": "Ontario International Airport flight delays",
+  "lat": 34.056,
+  "lon": -117.6012,
+  "kind": "airport",
+  "provider": "faa-status",
+  "provider_ref": "ONT",
+  "source": "FAA",
+  "page_url": "https://nasstatus.faa.gov/",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "attribution_text": "Federal Aviation Administration",
+  "tags": [
+    "airport",
+    "ont"
+  ],
+  "created_at": "2026-10-12T00:00:00Z"
+}

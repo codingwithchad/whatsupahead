@@ -1,0 +1,16 @@
+{
+  "id": "ski-bear-valley",
+  "name": "Bear Valley",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 4 below Ebbetts Pass",
+  "lat": 38.492,
+  "lon": -120.004,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Bear Valley's website",
+    "url": "https://www.bearvalley.com/"
+  }
+}

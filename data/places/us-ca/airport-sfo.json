@@ -1,0 +1,11 @@
+{
+  "id": "airport-sfo",
+  "name": "San Francisco International Airport (SFO)",
+  "region": "California",
+  "state": "California",
+  "blurb": "San Francisco International: US 101 and flight delays",
+  "lat": 37.6213,
+  "lon": -122.379,
+  "radius_miles": 3,
+  "collection": "airports"
+}

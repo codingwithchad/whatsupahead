@@ -1,0 +1,18 @@
+{
+  "id": "mammoth-lakes-mccoy-station",
+  "name": "Mammoth Lakes: McCoy Station",
+  "lat": 37.64247,
+  "lon": -119.03066,
+  "feed_type": "image",
+  "source": "mammothmountain.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1743696225",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1743696225",
+  "tags": [],
+  "attribution_text": "mammothmountain.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

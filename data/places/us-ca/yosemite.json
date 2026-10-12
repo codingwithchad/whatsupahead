@@ -1,0 +1,11 @@
+{
+  "id": "yosemite",
+  "name": "Yosemite",
+  "region": "California",
+  "state": "California",
+  "blurb": "Yosemite Valley, Wawona Road and the roads in: SR 41, SR 140 and SR 120",
+  "lat": 37.7456,
+  "lon": -119.5936,
+  "radius_miles": 18,
+  "collection": "national-parks"
+}

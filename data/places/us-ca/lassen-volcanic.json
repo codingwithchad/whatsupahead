@@ -1,0 +1,11 @@
+{
+  "id": "lassen-volcanic",
+  "name": "Lassen Volcanic",
+  "region": "California",
+  "state": "California",
+  "blurb": "The Lassen Park Highway (SR 89) between the two entrances",
+  "lat": 40.4977,
+  "lon": -121.4207,
+  "radius_miles": 15,
+  "collection": "national-parks"
+}

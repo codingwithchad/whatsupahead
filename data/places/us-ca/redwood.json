@@ -1,0 +1,11 @@
+{
+  "id": "redwood",
+  "name": "Redwood National and State Parks",
+  "region": "California",
+  "state": "California",
+  "blurb": "US 101 and US 199 through the redwoods, Orick to Crescent City",
+  "lat": 41.4,
+  "lon": -124.04,
+  "radius_miles": 25,
+  "collection": "national-parks"
+}

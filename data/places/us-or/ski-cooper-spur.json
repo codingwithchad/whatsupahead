@@ -1,0 +1,16 @@
+{
+  "id": "ski-cooper-spur",
+  "name": "Cooper Spur",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "The quiet north side of Mount Hood, off OR 35",
+  "lat": 45.4257,
+  "lon": -121.5909,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Cooper Spur's website",
+    "url": "https://cooperspur.com/"
+  }
+}

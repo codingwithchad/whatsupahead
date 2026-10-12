@@ -1,0 +1,16 @@
+{
+  "id": "ski-anthony-lakes",
+  "name": "Anthony Lakes",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "The Elkhorn Mountains, west of Baker City",
+  "lat": 44.96,
+  "lon": -118.24,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Anthony Lakes's website",
+    "url": "https://www.anthonylakes.com/"
+  }
+}

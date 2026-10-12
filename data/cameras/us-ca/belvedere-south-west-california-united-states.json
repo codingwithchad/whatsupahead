@@ -1,0 +1,18 @@
+{
+  "id": "belvedere-south-west-california-united-states",
+  "name": "Belvedere – South-west: California, United States",
+  "lat": 37.8727,
+  "lon": -122.46442,
+  "feed_type": "image",
+  "source": "rntl.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1468687535",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1468687535",
+  "tags": [],
+  "attribution_text": "rntl.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

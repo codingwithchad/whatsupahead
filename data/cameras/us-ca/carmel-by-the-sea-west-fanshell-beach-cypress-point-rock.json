@@ -1,0 +1,18 @@
+{
+  "id": "carmel-by-the-sea-west-fanshell-beach-cypress-point-rock",
+  "name": "Carmel-by-the-Sea – West: Fanshell Beach - Cypress Point Rock",
+  "lat": 36.58245,
+  "lon": -121.95822,
+  "feed_type": "image",
+  "source": "rachleff.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1296343777",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1296343777",
+  "tags": [],
+  "attribution_text": "rachleff.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

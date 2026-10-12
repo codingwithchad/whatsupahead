@@ -1,0 +1,16 @@
+{
+  "id": "ski-skibowl",
+  "name": "Mt. Hood Skibowl",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "US 26 at Government Camp: night skiing",
+  "lat": 45.3018,
+  "lon": -121.7738,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Mt. Hood Skibowl's website",
+    "url": "https://skibowl.com/"
+  }
+}

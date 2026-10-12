@@ -1,0 +1,18 @@
+{
+  "id": "yosemite-lodge-east-half-dome",
+  "name": "Yosemite Lodge – East: Half Dome",
+  "lat": 37.74657,
+  "lon": -119.58271,
+  "feed_type": "image",
+  "source": "yosemite.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1548443898",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1548443898",
+  "tags": [],
+  "attribution_text": "yosemite.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

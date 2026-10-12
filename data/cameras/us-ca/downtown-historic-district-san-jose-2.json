@@ -1,0 +1,18 @@
+{
+  "id": "downtown-historic-district-san-jose-2",
+  "name": "Downtown Historic District: San Jose 2",
+  "lat": 37.3385,
+  "lon": -121.89537,
+  "feed_type": "image",
+  "source": "met.sjsu.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1183553729",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1183553729",
+  "tags": [],
+  "attribution_text": "met.sjsu.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

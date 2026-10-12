@@ -1,0 +1,18 @@
+{
+  "id": "auburn-auburn-municipal-airport",
+  "name": "Auburn: Auburn Municipal Airport",
+  "lat": 38.95332,
+  "lon": -121.07724,
+  "feed_type": "image",
+  "source": "d3htqygb09st0.cloudfront.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1273893621",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1273893621",
+  "tags": [],
+  "attribution_text": "d3htqygb09st0.cloudfront.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

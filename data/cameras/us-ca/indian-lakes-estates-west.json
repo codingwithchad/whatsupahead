@@ -1,0 +1,18 @@
+{
+  "id": "indian-lakes-estates-west",
+  "name": "Indian Lakes Estates – West",
+  "lat": 37.21166,
+  "lon": -119.70077,
+  "feed_type": "image",
+  "source": "abc30.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1669221624",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1669221624",
+  "tags": [],
+  "attribution_text": "abc30.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

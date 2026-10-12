@@ -1,0 +1,18 @@
+{
+  "id": "long-beach-washington-state-sky-view",
+  "name": "Long Beach: Washington State - Sky View",
+  "lat": 33.76696,
+  "lon": -118.18923,
+  "feed_type": "image",
+  "source": "642weather.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1350102619",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1350102619",
+  "tags": [],
+  "attribution_text": "642weather.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

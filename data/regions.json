@@ -167,7 +167,7 @@
 			],
 			"time_zone": "America/Los_Angeles",
 			"zip": "^(9[0-5]\\d|96[01])\\d{2}$",
-			"outline_note": "Simplified state line: the Nevada border, the Colorado River and Mexico; the ocean side is left wide for the islands. Oregon comes first in this list, so the strip just below 42° stays Oregon.",
+			"outline_note": "Simplified state line: the Nevada border, the Colorado River and Mexico; the ocean side is left wide for the islands. Oregon comes first in this list, so the strip just below 42\u00b0 stays Oregon.",
 			"outline": [
 				[
 					-124.7,
@@ -192,6 +192,10 @@
 				[
 					-114.43,
 					34.6
+				],
+				[
+					-114.38,
+					34.45
 				],
 				[
 					-114.13,

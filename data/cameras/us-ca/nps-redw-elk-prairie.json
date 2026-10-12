@@ -1,0 +1,25 @@
+{
+  "id": "nps-redw-elk-prairie",
+  "name": "Redwood: Elk Prairie",
+  "description": "Elk Prairie at Prairie Creek Redwoods State Park, looking southeast across the meadow.",
+  "lat": 41.361,
+  "lon": -124.023,
+  "feed_url": "https://www.nps.gov/webcams-redw/Elk_Prairie.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/redw/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "redwood",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

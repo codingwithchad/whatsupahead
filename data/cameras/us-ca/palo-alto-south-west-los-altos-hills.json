@@ -1,0 +1,18 @@
+{
+  "id": "palo-alto-south-west-los-altos-hills",
+  "name": "Palo Alto – South-west: Los Altos Hills",
+  "lat": 37.38136,
+  "lon": -122.14493,
+  "feed_type": "image",
+  "source": "marketliberal.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1589728765",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1589728765",
+  "tags": [],
+  "attribution_text": "marketliberal.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

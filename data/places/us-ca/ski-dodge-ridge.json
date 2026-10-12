@@ -1,0 +1,16 @@
+{
+  "id": "ski-dodge-ridge",
+  "name": "Dodge Ridge",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 108 above Pinecrest, west of Sonora Pass",
+  "lat": 38.1895,
+  "lon": -119.956,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Dodge Ridge's website",
+    "url": "https://dodgeridge.com/"
+  }
+}

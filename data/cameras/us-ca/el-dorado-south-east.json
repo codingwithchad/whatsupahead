@@ -1,0 +1,18 @@
+{
+  "id": "el-dorado-south-east",
+  "name": "El Dorado – South-east",
+  "lat": 38.76308,
+  "lon": -120.58124,
+  "feed_type": "image",
+  "source": "pollockpinesweathercam.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1677256850",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1677256850",
+  "tags": [],
+  "attribution_text": "pollockpinesweathercam.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

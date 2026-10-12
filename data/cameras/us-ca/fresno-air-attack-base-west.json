@@ -1,0 +1,18 @@
+{
+  "id": "fresno-air-attack-base-west",
+  "name": "Fresno Air Attack Base – West",
+  "lat": 36.93304,
+  "lon": -119.35223,
+  "feed_type": "image",
+  "source": "samsomiller.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793906448",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793906448",
+  "tags": [],
+  "attribution_text": "samsomiller.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

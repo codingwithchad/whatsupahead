@@ -1,0 +1,18 @@
+{
+  "id": "mono-north-east-mono-lake",
+  "name": "Mono – North-east: Mono Lake",
+  "lat": 37.97743,
+  "lon": -119.11722,
+  "feed_type": "image",
+  "source": "gbuapcd.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793898918",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793898918",
+  "tags": [],
+  "attribution_text": "gbuapcd.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

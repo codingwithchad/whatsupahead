@@ -1,0 +1,19 @@
+{
+  "id": "faa-delays-lax",
+  "name": "Los Angeles International Airport flight delays",
+  "lat": 33.9416,
+  "lon": -118.4085,
+  "kind": "airport",
+  "provider": "faa-status",
+  "provider_ref": "LAX",
+  "source": "FAA",
+  "page_url": "https://nasstatus.faa.gov/",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "attribution_text": "Federal Aviation Administration",
+  "tags": [
+    "airport",
+    "lax"
+  ],
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "mammoth-lakes-west-mammoth-yosemite-airport",
+  "name": "Mammoth Lakes – West: Mammoth Yosemite Airport",
+  "lat": 37.62784,
+  "lon": -118.84633,
+  "feed_type": "image",
+  "source": "webcam.townofmammothlakes.ca.gov via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1598218761",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1598218761",
+  "tags": [],
+  "attribution_text": "webcam.townofmammothlakes.ca.gov via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

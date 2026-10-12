@@ -1,0 +1,18 @@
+{
+  "id": "mammoth-lakes-mono-lake-trail",
+  "name": "Mammoth Lakes: Mono Lake Trail",
+  "lat": 37.6541,
+  "lon": -119.05324,
+  "feed_type": "image",
+  "source": "monolake.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1742921579",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1742921579",
+  "tags": [],
+  "attribution_text": "monolake.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

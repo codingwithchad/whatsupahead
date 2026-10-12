@@ -1,0 +1,18 @@
+{
+  "id": "joseph-south-chief-joseph-mountain-sacajawea-peak",
+  "name": "Joseph – South: Chief Joseph Mountain - Sacajawea Peak",
+  "lat": 45.36723,
+  "lon": -117.22824,
+  "feed_type": "image",
+  "source": "josephoregonweather.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1349995817",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1349995817",
+  "tags": [],
+  "attribution_text": "josephoregonweather.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

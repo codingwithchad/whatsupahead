@@ -1,0 +1,11 @@
+{
+  "id": "airport-burbank",
+  "name": "Hollywood Burbank Airport (BUR)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Burbank: I-5 and flight delays",
+  "lat": 34.2007,
+  "lon": -118.3587,
+  "radius_miles": 3,
+  "collection": "airports"
+}

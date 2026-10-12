@@ -1,0 +1,18 @@
+{
+  "id": "el-hongo-east-boulevard-highway-94",
+  "name": "El Hongo – East: Boulevard - Highway 94",
+  "lat": 32.64764,
+  "lon": -116.31747,
+  "feed_type": "image",
+  "source": "hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1753338763",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1753338763",
+  "tags": [],
+  "attribution_text": "hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-homewood",
+  "name": "Homewood",
+  "region": "California",
+  "state": "California",
+  "blurb": "Lake Tahoe's west shore, on SR 89",
+  "lat": 39.0856,
+  "lon": -120.1613,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Homewood's website",
+    "url": "https://www.skihomewood.com/"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "los-angeles-eagle-rock-mt-wilson-west",
+  "name": "Los Angeles: Eagle Rock: Mt. Wilson West",
+  "lat": 34.22451,
+  "lon": -118.05867,
+  "feed_type": "image",
+  "source": "hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1604848456",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1604848456",
+  "tags": [],
+  "attribution_text": "hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "airport-oakland",
+  "name": "Oakland International Airport (OAK)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Oakland: I-880 and flight delays",
+  "lat": 37.7126,
+  "lon": -122.2197,
+  "radius_miles": 3,
+  "collection": "airports"
+}

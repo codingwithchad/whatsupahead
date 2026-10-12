@@ -1,0 +1,11 @@
+{
+  "id": "ski-spout-springs",
+  "name": "Spout Springs",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "OR 204 in the Blue Mountains, east of Pendleton",
+  "lat": 45.7469,
+  "lon": -118.037,
+  "radius_miles": 8,
+  "collection": "ski-areas"
+}

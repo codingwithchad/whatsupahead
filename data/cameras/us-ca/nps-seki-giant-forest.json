@@ -1,0 +1,25 @@
+{
+  "id": "nps-seki-giant-forest",
+  "name": "Sequoia: Giant Forest",
+  "description": "NPS air-quality camera at Giant Forest, looking west over the Kaweah River foothills.",
+  "lat": 36.565,
+  "lon": -118.775,
+  "feed_url": "https://www.nps.gov/featurecontent/ard/webcams/images/sekilarge.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/seki/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "sequoia",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

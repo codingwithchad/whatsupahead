@@ -1,0 +1,18 @@
+{
+  "id": "san-francisco-fog-cam",
+  "name": "San Francisco: fog cam",
+  "lat": 37.72158,
+  "lon": -122.47762,
+  "feed_type": "image",
+  "source": "fogcam.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1345864882",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1345864882",
+  "tags": [],
+  "attribution_text": "fogcam.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

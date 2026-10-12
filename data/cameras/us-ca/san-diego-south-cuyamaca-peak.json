@@ -1,0 +1,18 @@
+{
+  "id": "san-diego-south-cuyamaca-peak",
+  "name": "San Diego – South: Cuyamaca Peak",
+  "lat": 32.94664,
+  "lon": -116.60617,
+  "feed_type": "image",
+  "source": "cdn.hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1683882819",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1683882819",
+  "tags": [],
+  "attribution_text": "cdn.hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

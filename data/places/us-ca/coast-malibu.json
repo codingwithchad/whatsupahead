@@ -1,0 +1,11 @@
+{
+  "id": "coast-malibu",
+  "name": "Malibu",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 1 (Pacific Coast Highway) and the beaches",
+  "lat": 34.0259,
+  "lon": -118.7798,
+  "radius_miles": 8,
+  "collection": "coast"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "perris-east",
+  "name": "Perris – East",
+  "lat": 33.76139,
+  "lon": -117.21873,
+  "feed_type": "image",
+  "source": "skydiveperris.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1579534870",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1579534870",
+  "tags": [],
+  "attribution_text": "skydiveperris.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

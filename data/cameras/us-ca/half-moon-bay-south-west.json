@@ -1,0 +1,18 @@
+{
+  "id": "half-moon-bay-south-west",
+  "name": "Half Moon Bay – South-west",
+  "lat": 37.50252,
+  "lon": -122.47611,
+  "feed_type": "image",
+  "source": "cams.samschowderhouse.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793887682",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793887682",
+  "tags": [],
+  "attribution_text": "cams.samschowderhouse.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

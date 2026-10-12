@@ -1,0 +1,18 @@
+{
+  "id": "clayton-north-east-mount-diablo-state-park-mount-diablo-moun",
+  "name": "Clayton – North-east: Mount Diablo State Park - Mount Diablo - Mount Diablo Summit Museum and Trailhead",
+  "lat": 37.88087,
+  "lon": -121.91679,
+  "feed_type": "image",
+  "source": "rntl.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1709591663",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1709591663",
+  "tags": [],
+  "attribution_text": "rntl.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

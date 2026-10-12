@@ -1,0 +1,11 @@
+{
+  "id": "coast-huntington-beach",
+  "name": "Huntington Beach",
+  "region": "California",
+  "state": "California",
+  "blurb": "The pier and the Orange County beaches",
+  "lat": 33.6595,
+  "lon": -117.9988,
+  "radius_miles": 6,
+  "collection": "coast"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "tehachapi-south-mountain-valley-airport-l94",
+  "name": "Tehachapi – South: Mountain Valley Airport-L94",
+  "lat": 35.10104,
+  "lon": -118.42242,
+  "feed_type": "image",
+  "source": "skylarknorth.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1528523784",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1528523784",
+  "tags": [],
+  "attribution_text": "skylarknorth.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "solvang-south-santa-ynez-airport-kunkle-field",
+  "name": "Solvang – South: Santa Ynez Airport/ Kunkle Field",
+  "lat": 34.60808,
+  "lon": -120.07406,
+  "feed_type": "image",
+  "source": "santaynezairport.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1611868131",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1611868131",
+  "tags": [],
+  "attribution_text": "santaynezairport.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

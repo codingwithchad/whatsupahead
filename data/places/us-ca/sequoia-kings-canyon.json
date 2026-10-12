@@ -1,0 +1,11 @@
+{
+  "id": "sequoia-kings-canyon",
+  "name": "Sequoia and Kings Canyon",
+  "region": "California",
+  "state": "California",
+  "blurb": "Giant Forest and the Generals Highway, up from Three Rivers",
+  "lat": 36.5647,
+  "lon": -118.7733,
+  "radius_miles": 20,
+  "collection": "national-parks"
+}

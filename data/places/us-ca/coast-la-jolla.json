@@ -1,0 +1,11 @@
+{
+  "id": "coast-la-jolla",
+  "name": "La Jolla",
+  "region": "California",
+  "state": "California",
+  "blurb": "La Jolla Cove and the San Diego beaches",
+  "lat": 32.8328,
+  "lon": -117.2713,
+  "radius_miles": 5,
+  "collection": "coast"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "coast-santa-cruz",
+  "name": "Santa Cruz",
+  "region": "California",
+  "state": "California",
+  "blurb": "The beaches, the wharf and SR 1",
+  "lat": 36.9741,
+  "lon": -122.0308,
+  "radius_miles": 6,
+  "collection": "coast"
+}

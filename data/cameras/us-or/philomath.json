@@ -1,0 +1,18 @@
+{
+  "id": "philomath",
+  "name": "Philomath",
+  "lat": 44.50875,
+  "lon": -123.5507,
+  "feed_type": "image",
+  "source": "janniehornby%40gmail.com@webcam.oregonstate.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1631993393",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1631993393",
+  "tags": [],
+  "attribution_text": "janniehornby%40gmail.com@webcam.oregonstate.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

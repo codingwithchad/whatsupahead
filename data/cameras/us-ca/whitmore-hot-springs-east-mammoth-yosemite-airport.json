@@ -1,0 +1,18 @@
+{
+  "id": "whitmore-hot-springs-east-mammoth-yosemite-airport",
+  "name": "Whitmore Hot Springs – East: Mammoth Yosemite Airport",
+  "lat": 37.62734,
+  "lon": -118.84149,
+  "feed_type": "image",
+  "source": "webcam.townofmammothlakes.ca.gov via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1598218643",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1598218643",
+  "tags": [],
+  "attribution_text": "webcam.townofmammothlakes.ca.gov via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

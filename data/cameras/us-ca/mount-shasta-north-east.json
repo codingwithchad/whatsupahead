@@ -1,0 +1,18 @@
+{
+  "id": "mount-shasta-north-east",
+  "name": "Mount Shasta – North-east",
+  "lat": 41.30651,
+  "lon": -122.31098,
+  "feed_type": "image",
+  "source": "sc.snowcrest.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1587052631",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1587052631",
+  "tags": [],
+  "attribution_text": "sc.snowcrest.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

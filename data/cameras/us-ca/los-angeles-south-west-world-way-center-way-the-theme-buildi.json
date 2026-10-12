@@ -1,0 +1,18 @@
+{
+  "id": "los-angeles-south-west-world-way-center-way-the-theme-buildi",
+  "name": "Los Angeles – South-west: World Way - Center Way - The Theme Building - Los Angeles International Airport",
+  "lat": 33.94597,
+  "lon": -118.39569,
+  "feed_type": "image",
+  "source": "surveillance-map.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793907353",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793907353",
+  "tags": [],
+  "attribution_text": "surveillance-map.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "coast-monterey",
+  "name": "Monterey and Carmel",
+  "region": "California",
+  "state": "California",
+  "blurb": "Monterey Bay, Carmel and SR 1 south",
+  "lat": 36.6002,
+  "lon": -121.8947,
+  "radius_miles": 7,
+  "collection": "coast"
+}

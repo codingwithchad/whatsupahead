@@ -1,0 +1,18 @@
+{
+  "id": "mono-silver-lake-campground",
+  "name": "Mono: Silver Lake Campground",
+  "lat": 37.78058,
+  "lon": -119.1289,
+  "feed_type": "image",
+  "source": "silverlakeresort.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793901958",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793901958",
+  "tags": [],
+  "attribution_text": "silverlakeresort.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

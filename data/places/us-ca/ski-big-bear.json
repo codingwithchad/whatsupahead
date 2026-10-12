@@ -1,0 +1,16 @@
+{
+  "id": "ski-big-bear",
+  "name": "Big Bear Mountain Resort",
+  "region": "California",
+  "state": "California",
+  "blurb": "Bear Mountain and Snow Summit at Big Bear Lake",
+  "lat": 34.2274,
+  "lon": -116.8614,
+  "radius_miles": 10,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Big Bear Mountain Resort's website",
+    "url": "https://www.bigbearmountainresort.com/"
+  }
+}

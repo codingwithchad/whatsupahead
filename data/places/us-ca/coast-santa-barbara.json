@@ -1,0 +1,11 @@
+{
+  "id": "coast-santa-barbara",
+  "name": "Santa Barbara",
+  "region": "California",
+  "state": "California",
+  "blurb": "The waterfront, US 101 and the Channel",
+  "lat": 34.4208,
+  "lon": -119.6982,
+  "radius_miles": 6,
+  "collection": "coast"
+}

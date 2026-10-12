@@ -1,0 +1,16 @@
+{
+  "id": "ski-june-mountain",
+  "name": "June Mountain",
+  "region": "California",
+  "state": "California",
+  "blurb": "June Lake Loop (SR 158), off US 395",
+  "lat": 37.7614,
+  "lon": -119.084,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "June Mountain's website",
+    "url": "https://www.junemountain.com/"
+  }
+}

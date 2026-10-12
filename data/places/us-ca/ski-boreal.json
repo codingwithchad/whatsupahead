@@ -1,0 +1,16 @@
+{
+  "id": "ski-boreal",
+  "name": "Boreal",
+  "region": "California",
+  "state": "California",
+  "blurb": "Right off I-80 at Castle Peak, Donner Summit",
+  "lat": 39.3361,
+  "lon": -120.3502,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Boreal's website",
+    "url": "https://www.rideboreal.com/"
+  }
+}

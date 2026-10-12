@@ -1,0 +1,18 @@
+{
+  "id": "imperial-county-salton-city",
+  "name": "Imperial County: Salton City",
+  "lat": 33.35288,
+  "lon": -115.98126,
+  "feed_type": "image",
+  "source": "iid.roundshot.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1705617120",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1705617120",
+  "tags": [],
+  "attribution_text": "iid.roundshot.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

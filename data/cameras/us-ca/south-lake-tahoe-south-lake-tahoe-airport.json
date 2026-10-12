@@ -1,0 +1,18 @@
+{
+  "id": "south-lake-tahoe-south-lake-tahoe-airport",
+  "name": "South Lake Tahoe – South: Lake Tahoe Airport",
+  "lat": 38.89268,
+  "lon": -119.99847,
+  "feed_type": "image",
+  "source": "linkly.link via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793899915",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793899915",
+  "tags": [],
+  "attribution_text": "linkly.link via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

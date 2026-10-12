@@ -1,0 +1,18 @@
+{
+  "id": "avalon-moonstone-lookout",
+  "name": "Avalon: Moonstone Lookout",
+  "lat": 33.38947,
+  "lon": -118.36757,
+  "feed_type": "image",
+  "source": "moonstone-lookout.click2stream.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793909401",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793909401",
+  "tags": [],
+  "attribution_text": "moonstone-lookout.click2stream.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

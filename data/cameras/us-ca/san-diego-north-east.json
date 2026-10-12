@@ -1,0 +1,18 @@
+{
+  "id": "san-diego-north-east",
+  "name": "San Diego – North-east",
+  "lat": 32.95174,
+  "lon": -117.11561,
+  "feed_type": "image",
+  "source": "sandiego.teudt.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1639252621",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1639252621",
+  "tags": [],
+  "attribution_text": "sandiego.teudt.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

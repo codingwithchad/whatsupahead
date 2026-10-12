@@ -1,0 +1,18 @@
+{
+  "id": "berkeley-south-east-south-sailing-basin",
+  "name": "Berkeley – South-east: South Sailing Basin",
+  "lat": 37.863,
+  "lon": -122.31388,
+  "feed_type": "image",
+  "source": "status.cal-sailing.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793902088",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793902088",
+  "tags": [],
+  "attribution_text": "status.cal-sailing.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

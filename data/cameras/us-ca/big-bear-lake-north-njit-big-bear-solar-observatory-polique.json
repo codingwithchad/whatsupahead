@@ -1,0 +1,18 @@
+{
+  "id": "big-bear-lake-north-njit-big-bear-solar-observatory-polique",
+  "name": "Big Bear Lake – North: NJIT Big Bear Solar Observatory - Polique Canyon Road",
+  "lat": 34.25829,
+  "lon": -116.92126,
+  "feed_type": "image",
+  "source": "bbso.njit.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1350070808",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1350070808",
+  "tags": [],
+  "attribution_text": "bbso.njit.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

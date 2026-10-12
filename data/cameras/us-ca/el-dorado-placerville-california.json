@@ -1,0 +1,18 @@
+{
+  "id": "el-dorado-placerville-california",
+  "name": "El Dorado: Placerville California",
+  "lat": 38.69532,
+  "lon": -120.84898,
+  "feed_type": "image",
+  "source": "eldoradoweather.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1324084048",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1324084048",
+  "tags": [],
+  "attribution_text": "eldoradoweather.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "wamic-east",
+  "name": "Wamic – East",
+  "lat": 45.10873,
+  "lon": -121.365,
+  "feed_type": "image",
+  "source": "pinegrovehwycam.boringonian.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793897712",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793897712",
+  "tags": [],
+  "attribution_text": "pinegrovehwycam.boringonian.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

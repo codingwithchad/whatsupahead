@@ -1,0 +1,18 @@
+{
+  "id": "independence-north-west-independence-state-airport-7s5",
+  "name": "Independence – North-west: Independence State AIRPORT-7S5",
+  "lat": 44.86427,
+  "lon": -123.19612,
+  "feed_type": "image",
+  "source": "flyjeanne.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1609186781",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1609186781",
+  "tags": [],
+  "attribution_text": "flyjeanne.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

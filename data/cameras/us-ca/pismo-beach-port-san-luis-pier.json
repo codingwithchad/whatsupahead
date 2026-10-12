@@ -1,0 +1,18 @@
+{
+  "id": "pismo-beach-port-san-luis-pier",
+  "name": "Pismo Beach: Port San Luis Pier",
+  "lat": 35.17254,
+  "lon": -120.75641,
+  "feed_type": "image",
+  "source": "47.44.18.194:81 via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1707072453",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1707072453",
+  "tags": [],
+  "attribution_text": "47.44.18.194:81 via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

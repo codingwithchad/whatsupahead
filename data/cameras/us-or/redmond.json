@@ -1,0 +1,18 @@
+{
+  "id": "redmond",
+  "name": "Redmond",
+  "lat": 44.36731,
+  "lon": -121.14418,
+  "feed_type": "image",
+  "source": "smithrocklivecam.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1713571374",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1713571374",
+  "tags": [],
+  "attribution_text": "smithrocklivecam.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

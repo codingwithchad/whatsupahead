@@ -1,0 +1,18 @@
+{
+  "id": "san-juan-bautista-west-hollister-municipal-airport-californi",
+  "name": "San Juan Bautista – West: Hollister Municipal Airport - California, United States",
+  "lat": 36.88892,
+  "lon": -121.40258,
+  "feed_type": "image",
+  "source": "hsc-webcam.saahbs.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1503843765",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1503843765",
+  "tags": [],
+  "attribution_text": "hsc-webcam.saahbs.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

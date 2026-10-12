@@ -1,0 +1,18 @@
+{
+  "id": "san-bernardino-lake-arrowhead-reservoir",
+  "name": "San Bernardino: Lake Arrowhead Reservoir",
+  "lat": 34.25284,
+  "lon": -117.18792,
+  "feed_type": "image",
+  "source": "ala-ca.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1350487212",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1350487212",
+  "tags": [],
+  "attribution_text": "ala-ca.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

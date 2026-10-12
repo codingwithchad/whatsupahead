@@ -1,0 +1,25 @@
+{
+  "id": "nps-joda-sheep-rock",
+  "name": "John Day Fossil Beds: Sheep Rock",
+  "description": "Sheep Rock, across the John Day River from the Thomas Condon visitor center on OR 19.",
+  "lat": 44.553,
+  "lon": -119.645,
+  "feed_url": "https://www.nps.gov/webcams-joda/SheepRock.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/joda/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "john-day-fossil-beds",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

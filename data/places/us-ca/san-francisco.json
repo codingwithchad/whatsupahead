@@ -1,0 +1,10 @@
+{
+  "id": "san-francisco",
+  "name": "San Francisco",
+  "region": "California",
+  "state": "California",
+  "blurb": "Downtown, the Bay Bridge and the freeways",
+  "lat": 37.7793,
+  "lon": -122.4193,
+  "radius_miles": 5
+}

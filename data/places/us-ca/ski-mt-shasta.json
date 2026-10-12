@@ -1,0 +1,16 @@
+{
+  "id": "ski-mt-shasta",
+  "name": "Mt. Shasta Ski Park",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 89 east of McCloud and Mount Shasta city",
+  "lat": 41.3214,
+  "lon": -122.2034,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Mt. Shasta Ski Park's website",
+    "url": "https://www.skipark.com/"
+  }
+}

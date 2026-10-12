@@ -1,0 +1,11 @@
+{
+  "id": "airport-lax",
+  "name": "Los Angeles International Airport (LAX)",
+  "region": "California",
+  "state": "California",
+  "blurb": "LAX: I-405, Century Boulevard and flight delays",
+  "lat": 33.9416,
+  "lon": -118.4085,
+  "radius_miles": 3,
+  "collection": "airports"
+}

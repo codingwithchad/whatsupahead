@@ -1,0 +1,11 @@
+{
+  "id": "airport-orange-county",
+  "name": "John Wayne Airport (Orange County) (SNA)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Orange County: I-405, SR 55 and flight delays",
+  "lat": 33.6762,
+  "lon": -117.8675,
+  "radius_miles": 3,
+  "collection": "airports"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "redding",
+  "name": "Redding",
+  "region": "California",
+  "state": "California",
+  "blurb": "I-5 and the roads into the mountains",
+  "lat": 40.5865,
+  "lon": -122.3917,
+  "radius_miles": 6
+}

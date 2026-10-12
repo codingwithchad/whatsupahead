@@ -1,0 +1,18 @@
+{
+  "id": "downtown-historic-district-san-jose",
+  "name": "Downtown Historic District: San Jose",
+  "lat": 37.34178,
+  "lon": -121.64338,
+  "feed_type": "image",
+  "source": "mtham.ucolick.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1252128916",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1252128916",
+  "tags": [],
+  "attribution_text": "mtham.ucolick.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

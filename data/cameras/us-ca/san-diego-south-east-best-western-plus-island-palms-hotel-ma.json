@@ -1,0 +1,18 @@
+{
+  "id": "san-diego-south-east-best-western-plus-island-palms-hotel-ma",
+  "name": "San Diego – South-east: Best Western Plus Island Palms Hotel & Marina - 2038 Shelter Island Dr - San Diego Bay",
+  "lat": 32.71404,
+  "lon": -117.22734,
+  "feed_type": "image",
+  "source": "islandpalms.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793909119",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793909119",
+  "tags": [],
+  "attribution_text": "islandpalms.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

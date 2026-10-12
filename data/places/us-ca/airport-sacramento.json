@@ -1,0 +1,11 @@
+{
+  "id": "airport-sacramento",
+  "name": "Sacramento International Airport (SMF)",
+  "region": "California",
+  "state": "California",
+  "blurb": "Sacramento International: I-5 and flight delays",
+  "lat": 38.6951,
+  "lon": -121.5908,
+  "radius_miles": 3,
+  "collection": "airports"
+}

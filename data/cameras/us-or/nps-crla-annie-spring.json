@@ -1,0 +1,26 @@
+{
+  "id": "nps-crla-annie-spring",
+  "name": "Crater Lake: Annie Spring entrance",
+  "description": "Looking south along Munson Valley Road from the Annie Spring entrance station (6,000 ft): the road in from OR 62.",
+  "lat": 42.866,
+  "lon": -122.167,
+  "feed_url": "https://www.nps.gov/webcams-crla/camera0.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/crla/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "crater-lake",
+    "road",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

@@ -1,0 +1,18 @@
+{
+  "id": "sierra-madre-west-mount-wilson",
+  "name": "Sierra Madre – West: Mount Wilson",
+  "lat": 34.22402,
+  "lon": -118.06131,
+  "feed_type": "image",
+  "source": "hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1641224762",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1641224762",
+  "tags": [],
+  "attribution_text": "hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

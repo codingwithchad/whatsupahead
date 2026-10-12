@@ -1,0 +1,11 @@
+{
+  "id": "coast-mendocino",
+  "name": "Mendocino and Fort Bragg",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 1 along the Mendocino coast",
+  "lat": 39.3077,
+  "lon": -123.7995,
+  "radius_miles": 10,
+  "collection": "coast"
+}

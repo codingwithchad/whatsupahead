@@ -1,0 +1,11 @@
+{
+  "id": "coast-eureka",
+  "name": "Eureka and Arcata",
+  "region": "California",
+  "state": "California",
+  "blurb": "Humboldt Bay and US 101",
+  "lat": 40.8021,
+  "lon": -124.1637,
+  "radius_miles": 7,
+  "collection": "coast"
+}

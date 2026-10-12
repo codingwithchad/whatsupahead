@@ -1,0 +1,19 @@
+{
+  "id": "faa-delays-san-jose",
+  "name": "San Jose Mineta International Airport flight delays",
+  "lat": 37.3639,
+  "lon": -121.9289,
+  "kind": "airport",
+  "provider": "faa-status",
+  "provider_ref": "SJC",
+  "source": "FAA",
+  "page_url": "https://nasstatus.faa.gov/",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "attribution_text": "Federal Aviation Administration",
+  "tags": [
+    "airport",
+    "sjc"
+  ],
+  "created_at": "2026-10-12T00:00:00Z"
+}

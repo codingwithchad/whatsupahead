@@ -1,0 +1,18 @@
+{
+  "id": "el-cajon-south-east-lyons-peak",
+  "name": "El Cajon – South-east: Lyons Peak",
+  "lat": 32.70918,
+  "lon": -116.82981,
+  "feed_type": "image",
+  "source": "hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1601510652",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1601510652",
+  "tags": [],
+  "attribution_text": "hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

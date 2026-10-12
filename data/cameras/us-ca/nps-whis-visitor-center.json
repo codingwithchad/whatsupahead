@@ -1,0 +1,25 @@
+{
+  "id": "nps-whis-visitor-center",
+  "name": "Whiskeytown Lake",
+  "description": "From the roof of the Whiskeytown visitor center on SR 299, looking west over the lake.",
+  "lat": 40.611,
+  "lon": -122.539,
+  "feed_url": "https://www.nps.gov/webcams-whis/VC-Cam.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/whis/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "whiskeytown",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

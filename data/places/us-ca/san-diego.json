@@ -1,0 +1,10 @@
+{
+  "id": "san-diego",
+  "name": "San Diego",
+  "region": "California",
+  "state": "California",
+  "blurb": "Downtown, I-5 and the bay",
+  "lat": 32.7157,
+  "lon": -117.1611,
+  "radius_miles": 6
+}

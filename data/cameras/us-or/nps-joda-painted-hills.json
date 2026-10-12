@@ -1,0 +1,25 @@
+{
+  "id": "nps-joda-painted-hills",
+  "name": "John Day Fossil Beds: Carroll Rim (Painted Hills)",
+  "description": "From about 2,100 ft at the Painted Hills Unit; the hills themselves are not in view, but the weather there is.",
+  "lat": 44.66,
+  "lon": -120.262,
+  "feed_url": "https://www.nps.gov/webcams-joda/PaintedHills.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/joda/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "john-day-fossil-beds",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

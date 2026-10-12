@@ -1,0 +1,18 @@
+{
+  "id": "june-lake-south-west-gull-lake",
+  "name": "June Lake – South-west: Gull Lake",
+  "lat": 37.77674,
+  "lon": -119.0793,
+  "feed_type": "image",
+  "source": "gulllakemarina.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793908677",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793908677",
+  "tags": [],
+  "attribution_text": "gulllakemarina.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

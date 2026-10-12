@@ -1,0 +1,16 @@
+{
+  "id": "ski-sierra-at-tahoe",
+  "name": "Sierra-at-Tahoe",
+  "region": "California",
+  "state": "California",
+  "blurb": "US 50 just west of Echo Summit",
+  "lat": 38.8003,
+  "lon": -120.0808,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Sierra-at-Tahoe's website",
+    "url": "https://sierraattahoe.com/"
+  }
+}

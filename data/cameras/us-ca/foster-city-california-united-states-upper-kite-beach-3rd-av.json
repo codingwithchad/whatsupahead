@@ -1,0 +1,18 @@
+{
+  "id": "foster-city-california-united-states-upper-kite-beach-3rd-av",
+  "name": "Foster City: California, United States: upper kite beach 3rd ave",
+  "lat": 37.56976,
+  "lon": -122.27649,
+  "feed_type": "image",
+  "source": "poulton.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1521927261",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1521927261",
+  "tags": [],
+  "attribution_text": "poulton.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

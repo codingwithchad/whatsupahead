@@ -1,0 +1,16 @@
+{
+  "id": "ski-china-peak",
+  "name": "China Peak",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 168 at Huntington Lake, above Fresno",
+  "lat": 37.2356,
+  "lon": -119.1557,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "China Peak's website",
+    "url": "https://www.skichinapeak.com/"
+  }
+}

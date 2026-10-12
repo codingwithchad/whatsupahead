@@ -1,0 +1,18 @@
+{
+  "id": "riverside-east",
+  "name": "Riverside – East",
+  "lat": 33.51904,
+  "lon": -116.40508,
+  "feed_type": "image",
+  "source": "hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1673534043",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1673534043",
+  "tags": [],
+  "attribution_text": "hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

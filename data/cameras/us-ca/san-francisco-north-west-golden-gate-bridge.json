@@ -1,0 +1,18 @@
+{
+  "id": "san-francisco-north-west-golden-gate-bridge",
+  "name": "San Francisco – North-west: Golden Gate Bridge",
+  "lat": 37.80597,
+  "lon": -122.44905,
+  "feed_type": "image",
+  "source": "parksconservancy.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793904702",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793904702",
+  "tags": [],
+  "attribution_text": "parksconservancy.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

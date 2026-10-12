@@ -1,0 +1,10 @@
+{
+  "id": "sacramento",
+  "name": "Sacramento",
+  "region": "California",
+  "state": "California",
+  "blurb": "Downtown, I-5, I-80 and US 50",
+  "lat": 38.5816,
+  "lon": -121.4944,
+  "radius_miles": 5
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-mammoth",
+  "name": "Mammoth Mountain",
+  "region": "California",
+  "state": "California",
+  "blurb": "Mammoth Lakes, off US 395 by SR 203",
+  "lat": 37.6502,
+  "lon": -119.0376,
+  "radius_miles": 12,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Mammoth Mountain's website",
+    "url": "https://www.mammothmountain.com/"
+  }
+}

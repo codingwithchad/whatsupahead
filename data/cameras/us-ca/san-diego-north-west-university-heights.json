@@ -1,0 +1,18 @@
+{
+  "id": "san-diego-north-west-university-heights",
+  "name": "San Diego – North-west: University Heights",
+  "lat": 32.76072,
+  "lon": -117.1592,
+  "feed_type": "image",
+  "source": "admin.meteobridge.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1637121310",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1637121310",
+  "tags": [],
+  "attribution_text": "admin.meteobridge.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

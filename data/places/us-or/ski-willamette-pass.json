@@ -1,0 +1,16 @@
+{
+  "id": "ski-willamette-pass",
+  "name": "Willamette Pass Resort",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "OR 58 at the top of Willamette Pass",
+  "lat": 43.6013,
+  "lon": -122.0365,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Willamette Pass Resort's website",
+    "url": "https://www.willamettepass.com/"
+  }
+}

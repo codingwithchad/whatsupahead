@@ -1,0 +1,18 @@
+{
+  "id": "eureka-east",
+  "name": "Eureka – East",
+  "lat": 40.76615,
+  "lon": -124.16455,
+  "feed_type": "image",
+  "source": "wxeka.mrmarkel.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1636393775",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1636393775",
+  "tags": [],
+  "attribution_text": "wxeka.mrmarkel.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "inglewood-west-ucla-marina-aquatic-center-marina-del-rey-inl",
+  "name": "Inglewood – West: UCLA Marina Aquatic Center - Marina del Rey Inlet Park - Ballona Creek",
+  "lat": 33.96807,
+  "lon": -118.44649,
+  "feed_type": "image",
+  "source": "marinaaquaticcenter.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1349917207",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1349917207",
+  "tags": [],
+  "attribution_text": "marinaaquaticcenter.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "los-angeles-north-venice-beach-skatepark",
+  "name": "Los Angeles – North: Venice Beach Skatepark",
+  "lat": 33.9892,
+  "lon": -118.4757,
+  "feed_type": "image",
+  "source": "westland.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1230041522",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1230041522",
+  "tags": [],
+  "attribution_text": "westland.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

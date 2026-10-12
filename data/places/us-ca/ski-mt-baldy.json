@@ -1,0 +1,16 @@
+{
+  "id": "ski-mt-baldy",
+  "name": "Mt. Baldy",
+  "region": "California",
+  "state": "California",
+  "blurb": "Above Claremont at the top of Mount Baldy Road",
+  "lat": 34.2734,
+  "lon": -117.612,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Mt. Baldy's website",
+    "url": "https://www.mtbaldyresort.com/"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "lane-north-east",
+  "name": "Lane – North-east",
+  "lat": 44.10804,
+  "lon": -122.29907,
+  "feed_type": "image",
+  "source": "ipcamlive.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1692673400",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1692673400",
+  "tags": [],
+  "attribution_text": "ipcamlive.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

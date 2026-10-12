@@ -1,0 +1,18 @@
+{
+  "id": "lakeshore-south-east",
+  "name": "Lakeshore – South-east",
+  "lat": 37.22601,
+  "lon": -119.16102,
+  "feed_type": "image",
+  "source": "skichinapeak.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1668107751",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1668107751",
+  "tags": [],
+  "attribution_text": "skichinapeak.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

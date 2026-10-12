@@ -1,0 +1,18 @@
+{
+  "id": "cerritos-west",
+  "name": "Cerritos – West",
+  "lat": 33.86443,
+  "lon": -118.05393,
+  "feed_type": "image",
+  "source": "ambientweather.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1678743729",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1678743729",
+  "tags": [],
+  "attribution_text": "ambientweather.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "santa-monica-santa-monica-pier-1745061715",
+  "name": "Santa Monica: Santa Monica Pier",
+  "lat": 34.01947,
+  "lon": -118.49123,
+  "feed_type": "image",
+  "source": "worldwebcams.info via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1745061715",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1745061715",
+  "tags": [],
+  "attribution_text": "worldwebcams.info via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "lake-tahoe",
+  "name": "Lake Tahoe",
+  "region": "California",
+  "state": "California",
+  "blurb": "Around the lake: South Lake Tahoe, Tahoe City, Kings Beach, and the passes in",
+  "lat": 39.0968,
+  "lon": -120.0324,
+  "radius_miles": 20,
+  "collection": "scenic"
+}

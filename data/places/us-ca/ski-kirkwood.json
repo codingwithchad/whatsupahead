@@ -1,0 +1,16 @@
+{
+  "id": "ski-kirkwood",
+  "name": "Kirkwood",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 88 below Carson Pass: deep snow, high base",
+  "lat": 38.6758,
+  "lon": -120.0616,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Kirkwood's website",
+    "url": "https://www.kirkwood.com/"
+  }
+}

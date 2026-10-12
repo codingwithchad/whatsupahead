@@ -1,0 +1,18 @@
+{
+  "id": "santa-paula",
+  "name": "Santa Paula",
+  "lat": 34.34805,
+  "lon": -119.06158,
+  "feed_type": "image",
+  "source": "santapaulaairport.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1654785247",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1654785247",
+  "tags": [],
+  "attribution_text": "santapaulaairport.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "hammond-three-rivers",
+  "name": "Hammond: Three Rivers",
+  "lat": 36.49118,
+  "lon": -118.82711,
+  "feed_type": "image",
+  "source": "vision-environnement.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1674059539",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1674059539",
+  "tags": [],
+  "attribution_text": "vision-environnement.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

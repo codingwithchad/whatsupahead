@@ -1,0 +1,10 @@
+{
+  "id": "fresno",
+  "name": "Fresno",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 99 and SR 41, the way to Yosemite and the Sierra",
+  "lat": 36.7378,
+  "lon": -119.7871,
+  "radius_miles": 6
+}

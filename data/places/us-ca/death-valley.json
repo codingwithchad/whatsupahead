@@ -1,0 +1,11 @@
+{
+  "id": "death-valley",
+  "name": "Death Valley",
+  "region": "California",
+  "state": "California",
+  "blurb": "Furnace Creek and SR 190 across the valley",
+  "lat": 36.4617,
+  "lon": -116.8665,
+  "radius_miles": 30,
+  "collection": "national-parks"
+}

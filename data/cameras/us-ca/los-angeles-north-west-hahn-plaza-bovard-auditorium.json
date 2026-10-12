@@ -1,0 +1,18 @@
+{
+  "id": "los-angeles-north-west-hahn-plaza-bovard-auditorium",
+  "name": "Los Angeles – North-west: Hahn Plaza - Bovard Auditorium",
+  "lat": 34.02026,
+  "lon": -118.28555,
+  "feed_type": "image",
+  "source": "about.usc.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1596132062",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1596132062",
+  "tags": [],
+  "attribution_text": "about.usc.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "south-lake-tahoe-west-california-united-states",
+  "name": "South Lake Tahoe – West: California, United States",
+  "lat": 38.92864,
+  "lon": -120.0123,
+  "feed_type": "image",
+  "source": "c8423948.eero.online:2024 via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1554314792",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1554314792",
+  "tags": [],
+  "attribution_text": "c8423948.eero.online:2024 via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

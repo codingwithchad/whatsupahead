@@ -1,0 +1,16 @@
+{
+  "id": "ski-hoodoo",
+  "name": "Hoodoo",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "US 20 at Santiam Pass",
+  "lat": 44.4087,
+  "lon": -121.872,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Hoodoo's website",
+    "url": "https://www.hoodoo.com/"
+  }
+}

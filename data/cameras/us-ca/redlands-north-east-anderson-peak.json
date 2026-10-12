@@ -1,0 +1,18 @@
+{
+  "id": "redlands-north-east-anderson-peak",
+  "name": "Redlands – North-east: Anderson Peak",
+  "lat": 34.02945,
+  "lon": -117.19074,
+  "feed_type": "image",
+  "source": "Windy.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793911537",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793911537",
+  "tags": [],
+  "attribution_text": "Windy.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "whiskeytown",
+  "name": "Whiskeytown",
+  "region": "California",
+  "state": "California",
+  "blurb": "Whiskeytown Lake on SR 299, west of Redding",
+  "lat": 40.611,
+  "lon": -122.539,
+  "radius_miles": 10,
+  "collection": "national-parks"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "mammoth-lakes-the-village-at-mammoth",
+  "name": "Mammoth Lakes: The Village At Mammoth",
+  "lat": 37.65013,
+  "lon": -118.98525,
+  "feed_type": "image",
+  "source": "mammothmountain.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1290112318",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1290112318",
+  "tags": [],
+  "attribution_text": "mammothmountain.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

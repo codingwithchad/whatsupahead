@@ -1,0 +1,18 @@
+{
+  "id": "fresno-county-north-china-peak-mountain-resort-huntington-la",
+  "name": "Fresno County – North: China Peak Mountain Resort - Huntington Lake",
+  "lat": 37.2209,
+  "lon": -119.1545,
+  "feed_type": "image",
+  "source": "skichinapeak.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1667765725",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1667765725",
+  "tags": [],
+  "attribution_text": "skichinapeak.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

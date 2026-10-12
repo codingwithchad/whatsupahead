@@ -1,0 +1,18 @@
+{
+  "id": "los-angeles-south-hollywood-sign",
+  "name": "Los Angeles – South: Hollywood Sign",
+  "lat": 34.13442,
+  "lon": -118.32194,
+  "feed_type": "image",
+  "source": "hollywoodsign.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1729312463",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1729312463",
+  "tags": [],
+  "attribution_text": "hollywoodsign.org via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

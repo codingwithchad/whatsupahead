@@ -1,0 +1,25 @@
+{
+  "id": "nps-crla-steel-information-center",
+  "name": "Crater Lake: Steel Information Center",
+  "description": "Park headquarters at Munson Valley, between the entrance and Rim Village: shows how deep the snow is.",
+  "lat": 42.896,
+  "lon": -122.134,
+  "feed_url": "https://www.nps.gov/webcams-crla/cameraHQ0.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/crla/learn/photosmultimedia/webcams.htm",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "national-park",
+    "crater-lake",
+    "scenic"
+  ],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-12T00:00:00Z",
+  "location_precision": "approximate",
+  "max_width": 900
+}

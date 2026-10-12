@@ -1,0 +1,11 @@
+{
+  "id": "airport-san-jose",
+  "name": "San Jose Mineta International Airport (SJC)",
+  "region": "California",
+  "state": "California",
+  "blurb": "San Jose: US 101, I-880 and flight delays",
+  "lat": 37.3639,
+  "lon": -121.9289,
+  "radius_miles": 3,
+  "collection": "airports"
+}

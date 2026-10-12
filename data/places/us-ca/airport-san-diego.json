@@ -1,0 +1,11 @@
+{
+  "id": "airport-san-diego",
+  "name": "San Diego International Airport (SAN)",
+  "region": "California",
+  "state": "California",
+  "blurb": "San Diego International: I-5 and flight delays",
+  "lat": 32.7338,
+  "lon": -117.1933,
+  "radius_miles": 3,
+  "collection": "airports"
+}

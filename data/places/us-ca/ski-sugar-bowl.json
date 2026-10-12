@@ -1,0 +1,16 @@
+{
+  "id": "ski-sugar-bowl",
+  "name": "Sugar Bowl",
+  "region": "California",
+  "state": "California",
+  "blurb": "I-80 at Donner Summit, Norden",
+  "lat": 39.304,
+  "lon": -120.335,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Sugar Bowl's website",
+    "url": "https://www.sugarbowl.com/"
+  }
+}

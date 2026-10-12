@@ -1,0 +1,18 @@
+{
+  "id": "rainbow-h-j-andrews-experimental-forest",
+  "name": "Rainbow: H.J. Andrews Experimental Forest",
+  "lat": 44.21196,
+  "lon": -122.25732,
+  "feed_type": "image",
+  "source": "webcam.oregonstate.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1333320902",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1333320902",
+  "tags": [],
+  "attribution_text": "webcam.oregonstate.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

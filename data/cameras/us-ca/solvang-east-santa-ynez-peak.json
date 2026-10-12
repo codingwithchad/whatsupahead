@@ -1,0 +1,18 @@
+{
+  "id": "solvang-east-santa-ynez-peak",
+  "name": "Solvang – East: Santa Ynez Peak",
+  "lat": 34.52695,
+  "lon": -119.97852,
+  "feed_type": "image",
+  "source": "hpwren.ucsd.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1599950759",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1599950759",
+  "tags": [],
+  "attribution_text": "hpwren.ucsd.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

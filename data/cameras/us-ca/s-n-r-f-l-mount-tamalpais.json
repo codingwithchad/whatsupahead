@@ -1,0 +1,18 @@
+{
+  "id": "s-n-r-f-l-mount-tamalpais",
+  "name": "ˌsæn rəˈfɛl: Mount Tamalpais",
+  "lat": 37.98014,
+  "lon": -122.53957,
+  "feed_type": "image",
+  "source": "webcams.courbage.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793879671",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793879671",
+  "tags": [],
+  "attribution_text": "webcams.courbage.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

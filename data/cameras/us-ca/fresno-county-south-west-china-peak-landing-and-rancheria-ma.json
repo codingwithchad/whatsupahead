@@ -1,0 +1,18 @@
+{
+  "id": "fresno-county-south-west-china-peak-landing-and-rancheria-ma",
+  "name": "Fresno County – South-west: China Peak Landing and Rancheria Marina - Lakeshore",
+  "lat": 37.25366,
+  "lon": -119.16563,
+  "feed_type": "image",
+  "source": "g1.ipcamlive.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1638295452",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1638295452",
+  "tags": [],
+  "attribution_text": "g1.ipcamlive.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

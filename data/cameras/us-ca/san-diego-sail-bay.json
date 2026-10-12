@@ -1,0 +1,18 @@
+{
+  "id": "san-diego-sail-bay",
+  "name": "San Diego: Sail Bay",
+  "lat": 32.79035,
+  "lon": -117.25173,
+  "feed_type": "image",
+  "source": "catamaranresort.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1336780807",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1336780807",
+  "tags": [],
+  "attribution_text": "catamaranresort.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

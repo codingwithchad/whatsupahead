@@ -1,0 +1,18 @@
+{
+  "id": "mammoth-lakes-east-june-meadows-chalet-june-mountain",
+  "name": "Mammoth Lakes – East: June Meadows Chalet - June Mountain",
+  "lat": 37.76136,
+  "lon": -119.08392,
+  "feed_type": "image",
+  "source": "opensnow.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793896803",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793896803",
+  "tags": [],
+  "attribution_text": "opensnow.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

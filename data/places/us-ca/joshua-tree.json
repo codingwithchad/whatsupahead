@@ -1,0 +1,11 @@
+{
+  "id": "joshua-tree",
+  "name": "Joshua Tree",
+  "region": "California",
+  "state": "California",
+  "blurb": "The park and its desert towns: Twentynine Palms, Joshua Tree, Yucca Valley",
+  "lat": 33.95,
+  "lon": -116,
+  "radius_miles": 25,
+  "collection": "national-parks"
+}

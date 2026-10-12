@@ -1,0 +1,18 @@
+{
+  "id": "grass-valley-north-west-sierra-college-nevada-county-campus",
+  "name": "Grass Valley – North-west: Sierra College Nevada County Campus - Robert Ross Way",
+  "lat": 39.2367,
+  "lon": -121.0479,
+  "feed_type": "image",
+  "source": "sierracollege.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793906283",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793906283",
+  "tags": [],
+  "attribution_text": "sierracollege.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

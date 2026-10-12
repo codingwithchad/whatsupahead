@@ -1,0 +1,18 @@
+{
+  "id": "galice-south-east-rogue-river",
+  "name": "Galice – South-east: Rogue River",
+  "lat": 42.56648,
+  "lon": -123.59632,
+  "feed_type": "image",
+  "source": "images.ambientweather.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1701808403",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1701808403",
+  "tags": [],
+  "attribution_text": "images.ambientweather.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

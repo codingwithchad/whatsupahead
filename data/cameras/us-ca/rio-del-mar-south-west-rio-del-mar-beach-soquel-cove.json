@@ -1,0 +1,18 @@
+{
+  "id": "rio-del-mar-south-west-rio-del-mar-beach-soquel-cove",
+  "name": "Rio Del Mar – South-west: Rio Del Mar Beach - Soquel Cove",
+  "lat": 36.96917,
+  "lon": -121.90444,
+  "feed_type": "image",
+  "source": "pixiedeli.banditsys.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793912252",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793912252",
+  "tags": [],
+  "attribution_text": "pixiedeli.banditsys.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

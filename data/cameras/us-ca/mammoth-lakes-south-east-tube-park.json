@@ -1,0 +1,18 @@
+{
+  "id": "mammoth-lakes-south-east-tube-park",
+  "name": "Mammoth Lakes – South-east: Tube Park",
+  "lat": 37.6526,
+  "lon": -119.00723,
+  "feed_type": "image",
+  "source": "mammothmountain.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793902090",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793902090",
+  "tags": [],
+  "attribution_text": "mammothmountain.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

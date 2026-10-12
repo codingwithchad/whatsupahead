@@ -1,0 +1,18 @@
+{
+  "id": "big-pine-california-owens-valley-observatory",
+  "name": "Big Pine: California - Owens Valley - Observatory",
+  "lat": 37.23166,
+  "lon": -118.2774,
+  "feed_type": "image",
+  "source": "vlba.nrao.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1350099630",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1350099630",
+  "tags": [],
+  "attribution_text": "vlba.nrao.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

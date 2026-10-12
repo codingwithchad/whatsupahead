@@ -1,0 +1,16 @@
+{
+  "id": "ski-heavenly",
+  "name": "Heavenly",
+  "region": "California",
+  "state": "California",
+  "blurb": "Above South Lake Tahoe, on the California–Nevada line",
+  "lat": 38.9362,
+  "lon": -119.939,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Heavenly's website",
+    "url": "https://www.skiheavenly.com/"
+  }
+}

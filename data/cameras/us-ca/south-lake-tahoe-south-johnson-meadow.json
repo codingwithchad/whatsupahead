@@ -1,0 +1,18 @@
+{
+  "id": "south-lake-tahoe-south-johnson-meadow",
+  "name": "South Lake Tahoe – South: Johnson Meadow",
+  "lat": 38.9216,
+  "lon": -119.99034,
+  "feed_type": "image",
+  "source": "linkly.link via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793899916",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793899916",
+  "tags": [],
+  "attribution_text": "linkly.link via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "downtown-historic-district-california-san-jose-sky-view-3",
+  "name": "Downtown Historic District: California - San Jose - Sky View 3",
+  "lat": 37.33939,
+  "lon": -121.89496,
+  "feed_type": "image",
+  "source": "met.sjsu.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1349794810",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1349794810",
+  "tags": [],
+  "attribution_text": "met.sjsu.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

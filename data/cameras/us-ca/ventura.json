@@ -1,0 +1,18 @@
+{
+  "id": "ventura",
+  "name": "Ventura",
+  "lat": 34.25171,
+  "lon": -119.26688,
+  "feed_type": "image",
+  "source": "ipcamlive.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1606683946",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1606683946",
+  "tags": [],
+  "attribution_text": "ipcamlive.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

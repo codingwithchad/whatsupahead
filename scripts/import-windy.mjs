@@ -68,7 +68,7 @@ for (const w of webcams) {
 	}
 	// State DOT cameras come straight from the agencies (import-wsdot-route.mjs, import-tripcheck.mjs), never
 	// through Windy: bigger pictures, the right credit, and the agencies' own terms.
-	if (/tripcheck\.com|wsdot/i.test(w.urls?.provider ?? '')) {
+	if (/tripcheck\.com|wsdot|dot\.ca\.gov|caltrans/i.test(w.urls?.provider ?? '')) {
 		skipped.agency++;
 		continue;
 	}

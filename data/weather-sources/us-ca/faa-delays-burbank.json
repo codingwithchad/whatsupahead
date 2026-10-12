@@ -1,0 +1,19 @@
+{
+  "id": "faa-delays-burbank",
+  "name": "Hollywood Burbank Airport flight delays",
+  "lat": 34.2007,
+  "lon": -118.3587,
+  "kind": "airport",
+  "provider": "faa-status",
+  "provider_ref": "BUR",
+  "source": "FAA",
+  "page_url": "https://nasstatus.faa.gov/",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "attribution_text": "Federal Aviation Administration",
+  "tags": [
+    "airport",
+    "bur"
+  ],
+  "created_at": "2026-10-12T00:00:00Z"
+}

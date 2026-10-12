@@ -1,0 +1,18 @@
+{
+  "id": "corvallis-osu-goss-stadium",
+  "name": "Corvallis: OSU Goss Stadium",
+  "lat": 44.56127,
+  "lon": -123.27752,
+  "feed_type": "image",
+  "source": "webcam.oregonstate.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1240475570",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1240475570",
+  "tags": [],
+  "attribution_text": "webcam.oregonstate.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

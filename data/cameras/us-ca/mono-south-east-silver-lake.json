@@ -1,0 +1,18 @@
+{
+  "id": "mono-south-east-silver-lake",
+  "name": "Mono – South-east: Silver Lake",
+  "lat": 37.7799,
+  "lon": -119.12814,
+  "feed_type": "image",
+  "source": "silverlakeresort.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793899209",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793899209",
+  "tags": [],
+  "attribution_text": "silverlakeresort.net via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

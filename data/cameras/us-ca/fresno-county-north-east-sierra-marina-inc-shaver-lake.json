@@ -1,0 +1,18 @@
+{
+  "id": "fresno-county-north-east-sierra-marina-inc-shaver-lake",
+  "name": "Fresno County – North-east: Sierra Marina, Inc. - Shaver Lake",
+  "lat": 37.15209,
+  "lon": -119.29829,
+  "feed_type": "image",
+  "source": "sierramarina.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1635105569",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1635105569",
+  "tags": [],
+  "attribution_text": "sierramarina.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

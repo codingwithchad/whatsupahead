@@ -1,0 +1,18 @@
+{
+  "id": "los-angeles-north",
+  "name": "Los Angeles – North",
+  "lat": 34.02482,
+  "lon": -118.28469,
+  "feed_type": "image",
+  "source": "usc.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793898722",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793898722",
+  "tags": [],
+  "attribution_text": "usc.edu via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-mountain-high",
+  "name": "Mountain High",
+  "region": "California",
+  "state": "California",
+  "blurb": "SR 2 at Wrightwood, the closest big ski area to Los Angeles",
+  "lat": 34.377,
+  "lon": -117.69,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Mountain High's website",
+    "url": "https://www.mthigh.com/"
+  }
+}

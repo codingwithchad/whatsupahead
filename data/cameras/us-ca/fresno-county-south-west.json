@@ -1,0 +1,18 @@
+{
+  "id": "fresno-county-south-west",
+  "name": "Fresno County – South-west",
+  "lat": 37.23597,
+  "lon": -119.15457,
+  "feed_type": "image",
+  "source": "g1.ipcamlive.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1667843078",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1667843078",
+  "tags": [],
+  "attribution_text": "g1.ipcamlive.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-mt-ashland",
+  "name": "Mt. Ashland",
+  "region": "Oregon",
+  "state": "Oregon",
+  "blurb": "Off I-5 at Siskiyou Summit, above Ashland",
+  "lat": 42.0812,
+  "lon": -122.7066,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras and snow report are on its website.",
+  "link": {
+    "label": "Mt. Ashland's website",
+    "url": "https://www.mtashland.com/"
+  }
+}

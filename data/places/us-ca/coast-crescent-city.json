@@ -1,0 +1,11 @@
+{
+  "id": "coast-crescent-city",
+  "name": "Crescent City",
+  "region": "California",
+  "state": "California",
+  "blurb": "The harbor and US 101 by the redwoods",
+  "lat": 41.7558,
+  "lon": -124.2026,
+  "radius_miles": 6,
+  "collection": "coast"
+}

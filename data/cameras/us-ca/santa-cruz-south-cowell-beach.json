@@ -1,0 +1,18 @@
+{
+  "id": "santa-cruz-south-cowell-beach",
+  "name": "Santa Cruz – South: Cowell Beach",
+  "lat": 36.95947,
+  "lon": -122.02326,
+  "feed_type": "image",
+  "source": "cmgp-coastcam.s3-us-west-2.amazonaws.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1744590554",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1744590554",
+  "tags": [],
+  "attribution_text": "cmgp-coastcam.s3-us-west-2.amazonaws.com via Windy.com",
+  "created_at": "2026-10-12T00:00:00Z"
+}
