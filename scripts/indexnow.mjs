@@ -5,7 +5,8 @@
 //
 //   node scripts/indexnow.mjs [https://whatsupahead.com]
 //
-// The key is not a secret: IndexNow checks that the site serves it at /<key>.txt (static/<key>.txt).
+// The key is not a secret: IndexNow checks that the site serves it at /<key>.txt (static/<key>.txt), the
+// default place, so the request doesn't name it (naming it got 403 answers).
 import { readdirSync } from 'node:fs';
 
 const site = (process.argv[2] ?? 'https://whatsupahead.com').replace(/\/$/, '');
@@ -25,7 +26,6 @@ const res = await fetch('https://api.indexnow.org/indexnow', {
 	body: JSON.stringify({
 		host: new URL(site).host,
 		key,
-		keyLocation: `${site}/${keyFile}`,
 		urlList: urls
 	})
 });
