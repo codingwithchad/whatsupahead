@@ -11,7 +11,13 @@ import { nearestTown } from './gazetteer';
 import { allPassReports } from './passes';
 import { safeRoute } from './safeRoute';
 import { momentPicture, type Moment } from './moments';
-import { fetchPicture, renderCard, renderPair, type CardPicture } from './shareCard';
+import {
+	fetchPicture,
+	renderCard,
+	renderPair,
+	renderPairTall,
+	type CardPicture
+} from './shareCard';
 import { camerasAlong, DEFAULT_DESTINATION_RADIUS, parseVia, resolvePlace } from './trip';
 
 // The share pictures for each kind of page. Only pictures whose owners allow it go in (see ../sharing.ts);
@@ -21,13 +27,19 @@ import { camerasAlong, DEFAULT_DESTINATION_RADIUS, parseVia, resolvePlace } from
  * Serve a share picture, made at most once per 10 minutes for each page. If making it fails, the app's
  * general picture is served instead, so a shared link always shows something.
  */
-export async function previewResponse(key: string, make: () => Promise<Buffer>): Promise<Response> {
+export async function previewResponse(
+	key: string,
+	make: () => Promise<Buffer>,
+	/** Save as a file with this name (the "Save picture" button) instead of showing it. */
+	download?: string
+): Promise<Response> {
 	try {
 		const body = await cached(`og:${key}:${previewSlot()}`, PREVIEW_MINUTES * 60_000, make);
 		return new Response(new Uint8Array(body), {
 			headers: {
 				'content-type': 'image/jpeg',
-				'cache-control': `public, max-age=${PREVIEW_MINUTES * 60}`
+				'cache-control': `public, max-age=${PREVIEW_MINUTES * 60}`,
+				...(download ? { 'content-disposition': `attachment; filename="${download}"` } : {})
 			}
 		});
 	} catch (err) {
@@ -228,13 +240,17 @@ export function momentWords(m: Moment) {
 	};
 }
 
-export async function momentPreview(m: Moment, site: string): Promise<Buffer> {
+export async function momentPreview(
+	m: Moment,
+	site: string,
+	{ tall = false }: { tall?: boolean } = {}
+): Promise<Buffer> {
 	const camera = getCatalog().cameras.find((c) => c.id === m.camera);
 	const before = momentPicture(m.id, 'before');
 	const after = momentPicture(m.id, 'after');
 	if (!camera || !before || !after) throw new Error('moment pictures missing');
 	const words = momentWords(m);
-	return renderPair({
+	return (tall ? renderPairTall : renderPair)({
 		title: camera.name,
 		line: `${words.apart} · ${words.day} · Pictures: ${previewCredit(camera) ?? camera.source}`,
 		before: { image: before, label: `Before · ${words.before}` },

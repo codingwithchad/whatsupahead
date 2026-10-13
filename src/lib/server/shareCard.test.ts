@@ -1,6 +1,17 @@
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
-import { fit, grid, HEIGHT, renderCard, renderPair, textWidth, WIDTH, wrap } from './shareCard';
+import {
+	fit,
+	grid,
+	HEIGHT,
+	renderCard,
+	renderPair,
+	renderPairTall,
+	TALL,
+	textWidth,
+	WIDTH,
+	wrap
+} from './shareCard';
 
 describe('text layout', () => {
 	it('measures, shortens and wraps', () => {
@@ -95,5 +106,23 @@ describe('renderPair', () => {
 		});
 		const meta = await sharp(out).metadata();
 		expect([meta.width, meta.height]).toEqual([WIDTH, HEIGHT]);
+	});
+});
+
+describe('renderPairTall', () => {
+	it("stacks a before-and-after in Instagram's portrait size", async () => {
+		const shot = (color: string) =>
+			sharp({ create: { width: 480, height: 360, channels: 3, background: color } })
+				.jpeg()
+				.toBuffer();
+		const out = await renderPairTall({
+			title: 'I-90 at MP 52: Snoqualmie Summit',
+			line: '3 h apart · Mon, Oct 12 · Pictures: WSDOT',
+			before: { image: await shot('#556b2f'), label: 'Before · 6:05 AM' },
+			after: { image: await shot('#f0f4f8'), label: 'After · 9:10 AM' },
+			site: 'whatsupahead.com'
+		});
+		const meta = await sharp(out).metadata();
+		expect([meta.width, meta.height]).toEqual([TALL.width, TALL.height]);
 	});
 });

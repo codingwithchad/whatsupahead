@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { APP_NAME } from '../../../lib/brand';
 	import ShareButton from '../../../lib/ShareButton.svelte';
+	import { track } from '../../../lib/track';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -38,6 +39,12 @@
 	</p>
 
 	<div class="page-actions">
+		<a
+			class="chip save-picture"
+			href="/og/moment/{data.id}?tall&save"
+			download
+			onclick={() => track('moment-save')}>Save picture</a
+		>
 		<a class="chip" href="/cameras/{data.camera.id}">See it live now</a>
 		<ShareButton
 			path="/moments/{data.id}"
@@ -45,4 +52,8 @@
 			text="{data.camera.name}, {data.words.before} and {data.words.after}"
 		/>
 	</div>
+	<p class="hint">
+		<strong>Save picture</strong> keeps a tall version for Instagram, a story or a Facebook group, with
+		the times and whatsupahead.com on it.
+	</p>
 </main>

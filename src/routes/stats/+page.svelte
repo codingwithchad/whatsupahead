@@ -27,7 +27,8 @@
 		'share-facebook': 'Shared to Facebook',
 		'share-text': 'Shared by text message',
 		'moment-open': 'Opened before and after',
-		vehicle: 'Picked a vehicle for chains'
+		vehicle: 'Picked a vehicle for chains',
+		'moment-save': 'Saved a before-and-after picture'
 	};
 </script>
 

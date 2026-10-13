@@ -177,13 +177,22 @@ const BRAND_SKY = `<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><s
 <path d="M0 630 V500 L150 430 L270 490 L420 410 L560 500 L700 450 L880 520 L1040 440 L1200 500 V630Z" fill="#082b3f"/>`;
 
 /** Background: the first picture, blurred and darkened, or the app's dusk mountains (and for maps). */
-async function background(first: Buffer | undefined): Promise<Buffer> {
+async function background(
+	first: Buffer | undefined,
+	width = WIDTH,
+	height = HEIGHT
+): Promise<Buffer> {
 	if (first)
 		// Small, then blurred and stretched back up: soft colour, no detail.
 		return sharp(
-			await sharp(first).rotate().resize(300, 158, { fit: 'cover' }).blur(6).png().toBuffer()
+			await sharp(first)
+				.rotate()
+				.resize(300, Math.round((300 * height) / width), { fit: 'cover' })
+				.blur(6)
+				.png()
+				.toBuffer()
 		)
-			.resize(WIDTH, HEIGHT)
+			.resize(width, height)
 			.modulate({ brightness: 0.42, saturation: 0.8 })
 			.png()
 			.toBuffer();
@@ -519,5 +528,49 @@ export async function renderPair(card: PairCard): Promise<Buffer> {
 	return sharp(await background(card.after.image))
 		.composite([...composites, { input: overlay, left: 0, top: 0 }])
 		.jpeg({ quality: 84, mozjpeg: true })
+		.toBuffer();
+}
+
+/** Instagram's portrait size (4:5): what a feed post or story shows without cropping much. */
+export const TALL = { width: 1080, height: 1350 };
+
+/**
+ * The before-and-after stacked, for posting as a picture (Instagram, a Facebook group): before above after,
+ * each with its time, and the camera, the day, the credit and the site under them, so the address travels with
+ * the picture.
+ */
+export async function renderPairTall(card: PairCard): Promise<Buffer> {
+	const { width: W, height: H } = TALL;
+	const pad = 40;
+	const w = W - 2 * pad;
+	const h = 540;
+	const boxes: Box[] = [
+		{ x: pad, y: pad, w, h },
+		{ x: pad, y: pad + h + 24, w, h }
+	];
+	const shots = [card.before, card.after];
+	const composites = await Promise.all(shots.map((s, i) => tile(s.image, boxes[i], 'cover')));
+	const svg: string[] = [];
+	shots.forEach((s, i) => {
+		const b = boxes[i];
+		const pill = fit(s.label, 34, b.w - 80, 'bold');
+		const pw = textWidth(pill, 34, 'bold') + 40;
+		svg.push(
+			`<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${RADIUS}" fill="none" stroke="#ffffff" stroke-opacity=".4" stroke-width="2"/>`,
+			`<rect x="${b.x + 18}" y="${b.y + b.h - 76}" width="${pw}" height="58" rx="14" fill="${i ? '#ff9a2e' : '#04192a'}" fill-opacity="${i ? 1 : 0.78}"/>`,
+			text(pill, b.x + 38, b.y + b.h - 36, 34, i ? '#04192a' : '#ffffff', 'bold')
+		);
+	});
+	const top = pad + 2 * h + 24;
+	svg.push(`<g transform="translate(${pad} ${top + 44}) scale(1.05)">${mark}</g>`);
+	svg.push(text(fit(card.title, 40, W - pad - 122, 'bold'), 122, top + 86, 40, '#ffffff', 'bold'));
+	svg.push(text(fit(card.line, 24, W - pad - 122), 122, top + 128, 24, '#d7ecf5'));
+	svg.push(text(card.site, W - pad, top + 182, 32, '#ff9a2e', 'bold', 'end'));
+	const overlay = Buffer.from(
+		`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${svg.join('\n')}</svg>`
+	);
+	return sharp(await background(card.after.image, W, H))
+		.composite([...composites, { input: overlay, left: 0, top: 0 }])
+		.jpeg({ quality: 88, mozjpeg: true })
 		.toBuffer();
 }

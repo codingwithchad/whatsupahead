@@ -29,7 +29,8 @@ export const EVENTS = [
 	'share-facebook',
 	'share-text',
 	'moment-open',
-	'vehicle'
+	'vehicle',
+	'moment-save'
 ] as const;
 export type EventName = (typeof EVENTS)[number];
 
