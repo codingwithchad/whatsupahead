@@ -126,6 +126,8 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 			startAt,
 			fromPoint: { lat: from.lat, lon: from.lon, label: from.label },
 			toPoint: { lat: to.lat, lon: to.lon, label: to.label, featuredId: to.featured?.id },
+			// A drive to a pass (Seattle to Stevens Pass) ends at it, so the pass isn't one it goes over.
+			endPass: getCatalog().passes.find((p) => p.place === to.featured?.id)?.name ?? null,
 			stops: shown,
 			totalCameras: live.length,
 			showingAll: showAll || shown.length === live.length,

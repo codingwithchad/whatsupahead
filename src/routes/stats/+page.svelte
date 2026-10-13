@@ -16,6 +16,7 @@
 		'viewer-next': 'Next / Previous in the viewer',
 		'viewer-swipe': 'Swiped in the viewer',
 		'pass-way': 'Picked a way over a pass',
+		'jump-to-pass': 'Jumped to a pass on a drive',
 		'watch-live': 'Watch live (YouTube)',
 		'follow-trip': 'Follow my trip',
 		'reverse-trip': 'Reverse this drive',

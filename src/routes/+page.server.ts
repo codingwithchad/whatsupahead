@@ -1,6 +1,8 @@
 import { isDormant, nearby } from '../lib/geo';
 import { coverPicture, forPlace } from '../lib/placeCameras';
 import { getCatalog } from '../lib/server/catalog';
+import { allPassReports } from '../lib/server/passes';
+import { rightNow } from '../lib/rightNow';
 import { viewCount } from '../lib/server/popularity';
 import { seasonalDrives } from '../lib/seasonalDrives';
 import { localDay } from '../lib/passHistory';
@@ -50,5 +52,10 @@ export const load: PageServerLoad = () => {
 		.map((c, i) => ({ c, i }))
 		.sort((a, b) => viewCount(b.c.id) - viewCount(a.c.id) || a.i - b.i)
 		.map((x) => x.c.id);
-	return { collections, drives, places: cards, popular };
+	// Streamed: the page shows at once, and the passes that are closed or need chains join it a moment later.
+	const { passes } = getCatalog();
+	const storm = allPassReports(passes)
+		.then((reports) => rightNow(passes, reports))
+		.catch(() => []);
+	return { collections, drives, places: cards, popular, storm };
 };

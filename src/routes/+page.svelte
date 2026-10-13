@@ -4,6 +4,7 @@
 	import CollectionIcon from '../lib/CollectionIcon.svelte';
 	import InstallHelp from '../lib/InstallHelp.svelte';
 	import StartCard from '../lib/StartCard.svelte';
+	import StatusPill from '../lib/StatusPill.svelte';
 	import { loadRecents, type Recent } from '../lib/recents';
 	import type { PageProps } from './$types';
 
@@ -75,6 +76,22 @@
 </header>
 
 <main class="home">
+	{#await data.storm then lines}
+		{#if lines.length}
+			<section class="right-now" aria-label="Mountain passes right now">
+				<h2 class="section-title first">Right now</h2>
+				{#each lines as line (line.status)}
+					<p class="right-now-line">
+						<StatusPill tone={line.status} label={line.label} />
+						<span
+							>{#each line.passes as p, i (p.id)}{i ? ', ' : ''}<a href="/passes/{p.id}">{p.name}</a
+								>{/each}{#if line.more}, <a href="/passes">{line.more} more</a>{/if}</span
+						>
+					</p>
+				{/each}
+			</section>
+		{/if}
+	{/await}
 	<StartCard
 		drives={data.drives}
 		searches={searches.map((x) => ({ q: x.q, label: x.label }))}

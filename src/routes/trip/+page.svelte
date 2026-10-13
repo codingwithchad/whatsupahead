@@ -357,6 +357,29 @@
 	);
 	const next = $derived(progress !== null ? ahead[0] : undefined);
 	const stillAhead = (along: number) => progress === null || along >= progress - 0.5;
+	// "Jump to" a pass: the first camera from a few miles before its summit, so the mountain cameras are one tap
+	// away on a long drive whose first cameras are city streets.
+	const PASS_LEAD_MILES = 5;
+	const jumps = $derived(
+		trip
+			? [
+					...(live?.passes ?? trip.road.passes).filter((x) => stillAhead(x.along)),
+					...(trip.endPass ? [{ id: 'end', name: trip.endPass, along: trip.miles }] : [])
+				]
+					.map((x) => ({
+						id: x.id,
+						name: x.name,
+						index: ahead.findIndex((s) => s.along >= x.along - PASS_LEAD_MILES)
+					}))
+					.filter((x) => x.index > 0)
+			: []
+	);
+	let cameraList: HTMLElement | undefined = $state();
+	function jumpTo(index: number) {
+		track('jump-to-pass');
+		const card = cameraList?.querySelectorAll('.grid > .card')[index];
+		card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
 	const roadNow = $derived(
 		trip
 			? {
@@ -588,13 +611,23 @@
 			{/if}
 		</details>
 
+		{#if jumps.length}
+			<nav class="radius way jump" aria-label="Jump to a pass">
+				{#each jumps as j (j.id)}
+					<button onclick={() => jumpTo(j.index)}>{j.name} ↓</button>
+				{/each}
+			</nav>
+		{/if}
+
 		{#if ahead.length}
-			<CameraList
-				items={ahead.map((stop) => ({
-					camera: { ...stop.camera, distance: stop.along },
-					note: noteFor(stop.along)
-				}))}
-			/>
+			<div bind:this={cameraList}>
+				<CameraList
+					items={ahead.map((stop) => ({
+						camera: { ...stop.camera, distance: stop.along },
+						note: noteFor(stop.along)
+					}))}
+				/>
+			</div>
 		{:else if trip.stops.length}
 			<p class="empty">You've passed every camera on this drive.</p>
 		{:else}

@@ -168,6 +168,13 @@ button:disabled {
 	color: var(--text);
 	background: var(--card);
 }
+.jump {
+	margin-bottom: 12px;
+}
+/* Jumping to a camera stops below the sticky top bar. */
+.grid > .card {
+	scroll-margin-top: 72px;
+}
 .way button[aria-pressed='true'],
 .radius a[aria-current='true'] {
 	background: var(--accent);
@@ -770,6 +777,19 @@ button.wide {
 }
 
 /* Home ordering */
+.right-now {
+	margin-bottom: 14px;
+}
+.right-now-line {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	margin: 0 0 8px;
+	line-height: 1.5;
+}
+.right-now-line .pill {
+	flex: none;
+}
 .section-title.first {
 	margin-top: 22px;
 }
