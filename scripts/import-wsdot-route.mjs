@@ -70,12 +70,16 @@ const cams = await (
 		`https://wsdot.wa.gov/Traffic/api/HighwayCameras/HighwayCamerasREST.svc/GetCamerasAsJson?AccessCode=${key}`
 	)
 ).json();
+// Owners whose cameras we don't show (removed 2026-10-13: Whidbey Telecom's Clinton ferry cameras).
+const LEFT_OUT = new Set(['Whidbeytel.com']);
+
 const candidates = cams.filter(
 	(c) =>
 		c.IsActive &&
 		!haveUrls.has(c.ImageURL) &&
 		// WSDOT's list includes Oregon cameras near Portland that TripCheck publishes; those belong to Oregon.
 		!/tripcheck\.com/i.test(c.ImageURL) &&
+		!LEFT_OUT.has((c.CameraOwner ?? '').replace(/\s+/g, ' ').trim()) &&
 		offRoute(c.CameraLocation.Latitude, c.CameraLocation.Longitude) <= corridor
 );
 
