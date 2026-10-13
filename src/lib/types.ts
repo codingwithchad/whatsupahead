@@ -162,4 +162,6 @@ export interface PassInfo {
 	elevation_ft?: number;
 	/** The place page for this pass (its cameras and weather). */
 	place: string;
+	/** The highway some miles each side of the summit, as an encoded line (scripts/build-pass-roads.mjs). */
+	road?: string;
 }

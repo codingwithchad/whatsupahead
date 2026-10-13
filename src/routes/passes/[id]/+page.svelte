@@ -3,10 +3,12 @@
 	import SearchBox from '../../../lib/SearchBox.svelte';
 	import ShareButton from '../../../lib/ShareButton.svelte';
 	import StatusPill from '../../../lib/StatusPill.svelte';
+	import { inRoadOrder, looksBack } from '../../../lib/alongRoad';
 	import { ago, localClock } from '../../../lib/format';
 	import { rememberPlace } from '../../../lib/lastPlace';
 	import { rememberRecent } from '../../../lib/recents';
 	import { timeZoneAt } from '../../../lib/regions';
+	import { track } from '../../../lib/track';
 	import { NEED_TONE, passAnswer, VEHICLES } from '../../../lib/vehicle';
 	import { passVerdict } from '../../../lib/verdict';
 	import VerdictCard from '../../../lib/VerdictCard.svelte';
@@ -45,6 +47,34 @@
 		(report?.restrictions ?? []).filter((r) => r.text.trim() && !/^no restrictions/i.test(r.text))
 	);
 	const radii = [5, 10, 25, 50];
+
+	// Cameras in the order you'd pass them. Pick a way and they run that way, leaving out the ones whose name
+	// says they look back where you came from; the choice is remembered for this pass on this phone.
+	let way = $state<0 | 1 | null>(null);
+	$effect(() => {
+		try {
+			const saved = localStorage.getItem(`way:${pass.id}`);
+			way = saved === '0' ? 0 : saved === '1' ? 1 : null;
+		} catch {
+			way = null;
+		}
+	});
+	function pickWay(w: 0 | 1) {
+		way = way === w ? null : w;
+		track('pass-way');
+		try {
+			if (way === null) localStorage.removeItem(`way:${pass.id}`);
+			else localStorage.setItem(`way:${pass.id}`, String(way));
+		} catch {
+			// Not remembered; the page still works.
+		}
+	}
+	const road = $derived(data.road);
+	const shown = $derived(
+		road && way !== null ? data.cameras.filter((c) => !looksBack(c.name, road, way!)) : data.cameras
+	);
+	const ordered = $derived(road ? inRoadOrder(shown, road, way ?? 0) : undefined);
+	const leftOut = $derived(data.cameras.length - shown.length);
 	// "Oct 12" from "2026-10-12".
 	const shortDay = (day: string) =>
 		new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(
@@ -173,7 +203,23 @@
 		{/if}
 	</section>
 
-	<PlaceBody {data} {base} camerasFirst />
+	{#if road}
+		<nav class="radius way" aria-label="Which way you're going">
+			{#each road.ways as w, i (w)}
+				<button aria-pressed={way === i} onclick={() => pickWay(i as 0 | 1)}>{w}</button>
+			{/each}
+		</nav>
+		<p class="thinned">
+			{way === null
+				? `Cameras in order from ${road.sides[0]} to ${road.sides[1]}. Pick a way to see them as you'd pass them.`
+				: `Cameras as you'd pass them going ${road.ways[way].toLowerCase()}.`}
+			{#if leftOut}
+				Left out: {leftOut}
+				{leftOut === 1 ? 'camera' : 'cameras'} looking {road.sides[way!]}, back the way you came.
+			{/if}
+		</p>
+	{/if}
+	<PlaceBody {data} {base} camerasFirst items={ordered} />
 	<nav class="radius" aria-label="Camera radius">
 		{#each radii as r (r)}
 			<a href="{base}?r={r}" aria-current={r === data.radius ? 'true' : undefined}>{r} mi</a>

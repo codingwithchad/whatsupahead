@@ -114,9 +114,15 @@ A `river` weather source (`provider: nwps`, `provider_ref` = NOAA gauge id such 
 
 `winter_closure` marks roads that close for the season (Tioga, Sonora, McKenzie); in deep winter they are not shown as open just because nothing is listed. Crews report mostly November to April, so many passes read "No report yet" in summer.
 
+`road` is the pass's highway for some miles each side of the summit, as an encoded line, made by
+`node scripts/build-pass-roads.mjs --write` (run it again after adding passes or cameras). With it, the pass page
+lists cameras in the order you'd pass them and offers Eastbound/Westbound (or Northbound/Southbound, as the
+highway is signed); picking a way leaves out cameras whose names say they look the other way ("Kingvale WB",
+"Looking East"). Passes with fewer than three cameras on their highway have no line and list cameras nearest first.
+
 ## Camera replay
 
-The server saves a small picture from each camera within 6 miles of a pass (WSDOT, WSDOT Aviation, Caltrans and National Park Service only; never Windy, and not ODOT, whose terms cover showing the current picture) about every 5 minutes and keeps the last 2 hours in memory. Enlarging a camera shows a replay with play, pause and a slider. The replay starts empty after each restart and fills in as the server runs, so it works best on an always-on plan. `HISTORY=off` turns recording off; `HISTORY_EVERY_SECONDS` changes the interval.
+The server saves a small picture from each camera within 6 miles of a pass (WSDOT, WSDOT Aviation, Caltrans and National Park Service only; never Windy, and not ODOT, whose terms cover showing the current picture) about every 5 minutes and keeps the last 2 hours in full and older pictures half an hour apart for 6 hours, on disk (`HISTORY_DIR`, or a `replay` folder next to `STATS_FILE`) so restarts don't empty it; without either it stays in memory. Enlarging a camera shows a replay with play, pause and a slider. `HISTORY=off` turns recording off; `HISTORY_EVERY_SECONDS` changes the interval.
 
 ## Themed places
 

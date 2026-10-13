@@ -50,6 +50,10 @@
       "type": "string",
       "description": "Id of the place page showing this pass's cameras and weather."
     },
+    "road": {
+      "type": "string",
+      "description": "The pass's highway for some miles each side of the summit, as an encoded line (Google polyline, five decimals), so its page can list cameras in the order you'd pass them. Made by scripts/build-pass-roads.mjs."
+    },
     "report": {
       "type": "object",
       "additionalProperties": false,

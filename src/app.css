@@ -158,6 +158,17 @@ button:disabled {
 	color: var(--text);
 	background: var(--card);
 }
+.way button {
+	min-height: 40px;
+	padding: 8px 14px;
+	border-radius: 999px;
+	border: 1px solid var(--line);
+	font: inherit;
+	font-weight: 600;
+	color: var(--text);
+	background: var(--card);
+}
+.way button[aria-pressed='true'],
 .radius a[aria-current='true'] {
 	background: var(--accent);
 	color: var(--on-accent);

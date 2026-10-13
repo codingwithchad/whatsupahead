@@ -8,7 +8,8 @@
 	let {
 		data,
 		base,
-		camerasFirst = false
+		camerasFirst = false,
+		items
 	}: {
 		data: {
 			note: string | null;
@@ -25,6 +26,8 @@
 		base: string;
 		/** Pass pages: cameras first, then the note and the weather (the pass's answer is already above). */
 		camerasFirst?: boolean;
+		/** Pass pages: the cameras in road order, each with where it is from the summit. */
+		items?: { camera: Nearby<Camera>; note?: string }[];
 	} = $props();
 	const more = $derived(`${base}${base.includes('?') ? '&' : '?'}`);
 </script>
@@ -60,7 +63,7 @@
 {/if}
 
 {#if data.cameras.length}
-	<CameraList items={data.cameras.map((camera) => ({ camera }))} />
+	<CameraList items={items ?? data.cameras.map((camera) => ({ camera }))} />
 {:else}
 	<p class="empty">No working cameras within {data.radius} miles. Try a larger radius.</p>
 {/if}

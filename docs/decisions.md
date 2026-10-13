@@ -211,3 +211,18 @@ The replay now says how much snow fell while it plays ("+4 in of new snow since 
 ## 2026-10-13: Small fixes from the code review
 
 "Other ways" is no longer offered on a drive with any stop (it went straight from start to finish, so it dropped the stop). The limit of 30 a minute on before-and-afters now counts only saving one, not looking at one. Share pictures print the site's main address (`CANONICAL_HOST`) rather than whatever address a request came in on, since a picture is kept for ten minutes and copied by Facebook. The services that fetch link previews (Facebook, X, Slack and others) get ten times the picture limit, as each asks for everyone sharing at once. Two place descriptions still said "live cameras"; they now say "cameras", as WSDOT asked.
+
+## 2026-10-13: Pass cameras in road order, one way at a time
+
+A pass page listed its cameras nearest first, so flipping through them jumped from one side of the summit to the
+other (13 miles east, then 17 miles west). Now each pass with at least three cameras on its highway has the
+highway's line saved (`road`, from the free routing service between the farthest cameras on each side, checked
+that it stays on the highway and passes the summit), and its page lists cameras in the order you'd pass them, with
+where each one is ("3.1 mi west of the summit", in road miles). Eastbound and Westbound (Northbound and Southbound
+for odd-numbered interstates and US highways, as the signs say) run them that way and leave out cameras whose names
+say they look back the way you came; the choice is remembered for that pass on that phone. Most states don't say
+which way a camera looks (WSDOT marks about a third of its cameras with a direction, and Caltrans and NDOT put EB
+or WB in some names), so most cameras stay in either way.
+
+WSDOT notes that a road is "closed … due to a collision" stay a notice, not Closed: a collision closure is often
+one direction or a few lanes for a short time, and the note says so in WSDOT's own words.

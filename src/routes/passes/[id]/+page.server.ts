@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { alongRoad } from '../../../lib/alongRoad';
 import { distanceMiles } from '../../../lib/geo';
 import { APP_NAME } from '../../../lib/brand';
 import { previewSlot } from '../../../lib/sharing';
@@ -79,6 +80,8 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 			source: reportSource(pass)
 		},
 		report,
+		// Where each camera is along the highway, so the page can list them in the order you'd pass them.
+		road: alongRoad(base.cameras, pass),
 		season: passSeason(pass),
 		alternates: alternates.map((p) => ({
 			id: p.id,

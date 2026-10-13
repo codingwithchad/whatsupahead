@@ -17,6 +17,7 @@ export const EVENTS = [
 	'viewer-open',
 	'viewer-next',
 	'viewer-swipe',
+	'pass-way',
 	'watch-live',
 	'follow-trip',
 	'reverse-trip',
