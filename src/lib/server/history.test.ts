@@ -15,12 +15,12 @@ describe('history', () => {
 		expect(targets.some((c) => c.source === 'Caltrans')).toBe(true);
 	});
 
-	it('returns saved frames oldest first and finds one by time', () => {
+	it('returns saved frames oldest first and finds one by time', async () => {
 		_addFrameForTest('cam-a', { t: 1000, hash: 'a', jpeg: Buffer.from([1]) });
 		_addFrameForTest('cam-a', { t: 2000, hash: 'b', jpeg: Buffer.from([2]) });
 		expect(listFrames('cam-a')).toEqual([{ t: 1000 }, { t: 2000 }]);
-		expect(getFrame('cam-a', 2000)?.[0]).toBe(2);
-		expect(getFrame('cam-a', 9)).toBeNull();
+		expect((await getFrame('cam-a', 2000))?.[0]).toBe(2);
+		expect(await getFrame('cam-a', 9)).toBeNull();
 		expect(listFrames('nope')).toBeNull();
 	});
 

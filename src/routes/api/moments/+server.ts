@@ -17,7 +17,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const { camera, before, after } = body;
 	if (typeof camera !== 'string' || typeof before !== 'number' || typeof after !== 'number')
 		error(400, 'Needs camera, before and after');
-	const moment = saveMoment(camera, before, after);
+	const moment = await saveMoment(camera, before, after);
 	if (!moment) error(404, 'Those pictures are no longer available');
 	return json({ id: moment.id, path: `/moments/${moment.id}` });
 };

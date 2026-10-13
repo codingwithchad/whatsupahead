@@ -28,7 +28,9 @@
 		'share-text': 'Shared by text message',
 		'moment-open': 'Opened before and after',
 		vehicle: 'Picked a vehicle for chains',
-		'moment-save': 'Saved a before-and-after picture'
+		'moment-save': 'Saved a before-and-after picture',
+		'replay-video': 'Made a replay video',
+		'replay-video-share': 'Shared or saved a replay video'
 	};
 </script>
 

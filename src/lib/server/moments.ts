@@ -14,8 +14,8 @@ import { getCatalog } from './catalog';
 import { getFrame } from './history';
 
 // A shared before-and-after: two pictures from one camera's replay (say 6 AM bare, 9 AM snow). The replay
-// lives in memory for a few hours, but a shared link has to keep working, so the two pictures are saved to
-// disk with a small note, and kept for 30 days. Only cameras whose pictures may appear in link previews
+// keeps pictures for six hours, but a shared link has to keep working, so the two pictures are copied to
+// their own files with a small note, and kept for 30 days. Only cameras whose pictures may appear in link previews
 // (see ../sharing.ts) can be shared this way.
 
 const DIR =
@@ -51,13 +51,16 @@ export function canShareMoment(cameraId: string): boolean {
  * Save a before-and-after from two pictures still in the replay. The same two pictures always get the same
  * link, so tapping again doesn't save them twice. Null if the camera can't be shared or a picture is gone.
  */
-export function saveMoment(cameraId: string, before: number, after: number): Moment | null {
+export async function saveMoment(
+	cameraId: string,
+	before: number,
+	after: number
+): Promise<Moment | null> {
 	if (!canShareMoment(cameraId) || !(before < after)) return null;
 	const id = createHash('sha1').update(`${cameraId}|${before}|${after}`).digest('hex').slice(0, 12);
 	const existing = getMoment(id);
 	if (existing) return existing;
-	const a = getFrame(cameraId, before);
-	const b = getFrame(cameraId, after);
+	const [a, b] = await Promise.all([getFrame(cameraId, before), getFrame(cameraId, after)]);
 	if (!a || !b) return null;
 	const moment: Moment = { id, camera: cameraId, before, after, created: Date.now() };
 	mkdirSync(DIR, { recursive: true });

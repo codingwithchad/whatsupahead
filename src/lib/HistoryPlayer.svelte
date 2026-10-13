@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { ago, duration, localClock } from './format';
+	import { snowLine, type VideoInput } from './replayVideo';
 	import ShareButton from './ShareButton.svelte';
 	import { track } from './track';
+	import VideoMaker from './VideoMaker.svelte';
 
 	let { id, name = '' }: { id: string; name?: string } = $props();
 
@@ -11,6 +13,10 @@
 	let all = $state<{ t: number }[]>([]);
 	const frames = $derived(all.filter((f) => f.t >= (all.at(-1)?.t ?? 0) - REPLAY_MS));
 	let canShare = $state(false);
+	let credit = $state('');
+	let place = $state<string | null>(null);
+	let timeZone = $state<string | undefined>(undefined);
+	let snow = $state<(VideoInput['snow'] & { depthIn: number; link: string }) | null>(null);
 	let mode = $state<'loading' | 'none' | 'building' | 'ready'>('loading');
 	let idx = $state(0);
 	let playing = $state(true);
@@ -21,10 +27,21 @@
 			try {
 				const res = await fetch(`/api/history/${encodeURIComponent(id)}`);
 				if (!res.ok) return void (mode = 'none');
-				const body = (await res.json()) as { frames: { t: number }[]; moments?: boolean };
+				const body = (await res.json()) as {
+					frames: { t: number }[];
+					moments?: boolean;
+					credit?: string;
+					place?: string | null;
+					timeZone?: string | null;
+					snow?: (VideoInput['snow'] & { depthIn: number; link: string }) | null;
+				};
 				if (cancelled) return;
 				all = body.frames;
 				canShare = Boolean(body.moments);
+				credit = body.credit ?? '';
+				place = body.place ?? null;
+				timeZone = body.timeZone ?? undefined;
+				snow = body.snow ?? null;
 				idx = Math.max(0, frames.length - 1);
 				// Fetch every picture up front so the replay plays smoothly.
 				for (const f of frames) new Image().src = src(f.t);
@@ -100,6 +117,12 @@
 	const span = $derived(
 		frames.length > 1 ? Math.round((frames[frames.length - 1].t - frames[0].t) / 60000) : 0
 	);
+	// "+4 in of new snow since 6:10 AM" over the replay, from the gauge at the nearest pass.
+	const snowNow = $derived(
+		snow && frames.length > 1
+			? snowLine(snow, frames[0].t, frames[frames.length - 1].t, timeZone ?? 'America/Los_Angeles')
+			: null
+	);
 	const spanText = $derived(
 		span >= 60
 			? `${Math.floor(span / 60)} h ${span % 60 ? `${span % 60} min` : ''}`.trim()
@@ -113,6 +136,12 @@
 			<strong>Replay: last {spanText}</strong>
 			<span class="sub">{ago(new Date(frames[idx].t).toISOString())}</span>
 		</div>
+		{#if snowNow}
+			<p class="replay-snow">
+				{snowNow} at the
+				<a href={snow?.link} target="_blank" rel="noopener">{snow?.station} snow gauge</a>
+			</p>
+		{/if}
 		<img src={src(frames[idx].t)} alt="Camera replay frame" />
 		<div class="replay-controls">
 			<button
@@ -178,6 +207,17 @@
 					{/if}
 				</div>
 			{/if}
+		{/if}
+		{#if canShare}
+			<VideoMaker
+				{id}
+				name={name || 'Camera'}
+				frames={all}
+				{place}
+				{credit}
+				timeZone={timeZone ?? 'America/Los_Angeles'}
+				{snow}
+			/>
 		{/if}
 	</section>
 {:else if mode === 'building'}

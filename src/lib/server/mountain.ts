@@ -25,11 +25,11 @@ async function getJson<T>(url: string): Promise<T> {
 	return (await res.json()) as T;
 }
 
-/** SNOTEL stations in the states we cover (and Nevada, for Tahoe), refreshed daily. */
+/** SNOTEL stations in the states we cover, refreshed daily. */
 function stations(): Promise<SnotelStation[]> {
 	return cached('mountain:snotel-stations', 24 * HOUR, () =>
 		getJson<SnotelStation[]>(
-			`${AWDB}/stations?stationTriplets=*:WA:SNTL,*:OR:SNTL,*:CA:SNTL,*:NV:SNTL&activeOnly=true`
+			`${AWDB}/stations?stationTriplets=*:WA:SNTL,*:OR:SNTL,*:CA:SNTL,*:NV:SNTL,*:ID:SNTL&activeOnly=true`
 		)
 	);
 }

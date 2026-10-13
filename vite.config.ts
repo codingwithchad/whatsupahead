@@ -47,7 +47,8 @@ export default defineConfig({
 					],
 					'style-src': ['self', 'unsafe-inline'],
 					'img-src': ['self', 'https:', 'data:', 'blob:'],
-					'media-src': ['self', 'https:'],
+					// blob: plays the replay video the visitor's own phone just made (VideoMaker), before they share it.
+					'media-src': ['self', 'https:', 'blob:'],
 					'frame-src': ['https://www.youtube-nocookie.com', 'https://www.youtube.com'],
 					'connect-src': ['self'],
 					'font-src': ['self'],

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { avalancheAt, nearestStation, snowReading, type AwdbSeries } from './mountain';
+import { avalancheAt, nearestStation, snowBetween, snowReading, type AwdbSeries } from './mountain';
 
 const olallie = {
 	stationTriplet: '672:WA:SNTL',
@@ -79,5 +79,25 @@ describe('avalancheAt', () => {
 		expect(avalancheAt([zone(3)], snoqualmie)).toMatchObject({ level: 3, danger: 'Considerable' });
 		expect(avalancheAt([zone(-1)], snoqualmie)).toMatchObject({ level: null, danger: 'No rating' });
 		expect(avalancheAt([zone(3)], { lat: 46, lon: -121 })).toBeNull();
+	});
+});
+
+describe('snowBetween', () => {
+	const H = 3600_000;
+	const hourly = [
+		{ t: 0, in: 30 },
+		{ t: H, in: 31 },
+		{ t: 2 * H, in: 34 },
+		{ t: 3 * H, in: 37 }
+	];
+	it('gives the new snow between two times from the nearest readings', () => {
+		expect(snowBetween(hourly, 10 * 60_000, 3 * H + 5 * 60_000)).toBe(7);
+		// The gauge reports late: the end can be up to 90 minutes after the last reading.
+		expect(snowBetween(hourly, H, 3 * H + 80 * 60_000)).toBe(6);
+	});
+	it('is null without a reading near each end', () => {
+		expect(snowBetween(hourly, -2 * H, 3 * H)).toBeNull();
+		expect(snowBetween(hourly, 0, 6 * H)).toBeNull();
+		expect(snowBetween([], 0, H)).toBeNull();
 	});
 });

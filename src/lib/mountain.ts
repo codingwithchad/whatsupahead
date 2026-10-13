@@ -21,6 +21,8 @@ export interface SnowReading {
 	depthIn: number;
 	/** Change over the last 24 hours, when there is a reading from then. */
 	change24: number | null;
+	/** Every hourly depth reading of the last day or two, oldest first (for "new snow since 6 AM"). */
+	hourly: { t: number; in: number }[];
 	tempF: number | null;
 	at: number;
 	link: string;
@@ -82,10 +84,30 @@ export function snowReading(
 		miles: station.miles,
 		depthIn: Math.max(0, last.value),
 		change24: dayBefore ? last.value - dayBefore.value : null,
+		hourly: depth.map((v) => ({ t: time(v.date), in: Math.max(0, v.value) })),
 		tempF: temp && time(temp.date) >= at - 3 * 3600_000 ? temp.value : null,
 		at,
 		link: `https://wcc.sc.egov.usda.gov/nwcc/site?sitenum=${id}`
 	};
+}
+
+/**
+ * New snow at the gauge between two times, in inches, from its hourly readings: the reading nearest each time
+ * (within 45 minutes of the start, and up to 90 minutes before the end, as gauges report late). Null when
+ * there is no reading near either time. Snow settles, so a small loss is reported as it is, not hidden.
+ */
+export function snowBetween(
+	hourly: { t: number; in: number }[],
+	from: number,
+	to: number
+): number | null {
+	const near = (t: number, before: number, after: number) =>
+		hourly
+			.filter((h) => h.t >= t - before && h.t <= t + after)
+			.sort((a, b) => Math.abs(a.t - t) - Math.abs(b.t - t))[0];
+	const a = near(from, 45 * 60_000, 45 * 60_000);
+	const b = near(to, 90 * 60_000, 15 * 60_000);
+	return a && b && b.t > a.t ? Math.round(b.in - a.in) : null;
 }
 
 /** One avalanche forecast zone from avalanche.org's map layer (the fields we use). */

@@ -1081,6 +1081,14 @@ button.wide {
 .replay-note {
 	margin: 10px 0 0;
 }
+.replay-snow {
+	margin: 0 0 6px;
+	font-weight: 600;
+	color: var(--accent);
+}
+.replay .video-open {
+	margin-top: 10px;
+}
 
 /* Footer and About */
 .site-footer {

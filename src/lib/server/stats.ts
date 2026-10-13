@@ -30,7 +30,9 @@ export const EVENTS = [
 	'share-text',
 	'moment-open',
 	'vehicle',
-	'moment-save'
+	'moment-save',
+	'replay-video',
+	'replay-video-share'
 ] as const;
 export type EventName = (typeof EVENTS)[number];
 
