@@ -60,16 +60,17 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 					report: null
 				})) as unknown as (typeof rows)[number][]
 		});
-	// Each state folds on the page (most people want one state), worst news first in its summary line.
-	const stateOf = (g: (typeof groups)[number]) => {
-		const p = g.passes[0];
-		return regionAt(p.lat, p.lon)?.name ?? g.name;
-	};
+	// Each state folds on the page (most people want one state), worst news first in its summary line. A group
+	// can cross a state line (Lake Tahoe's passes are in California and Nevada), so each pass goes under its own state.
+	const stateOf = (p: (typeof rows)[number], g: (typeof groups)[number]) =>
+		regionAt(p.lat, p.lon)?.name ?? g.name;
 	const states = REGIONS.map((r) => r.name)
-		.concat(groups.map(stateOf))
+		.concat(groups.flatMap((g) => g.passes.map((p) => stateOf(p, g))))
 		.filter((n, i, all) => all.indexOf(n) === i)
 		.map((name) => {
-			const mine = groups.filter((g) => stateOf(g) === name);
+			const mine = groups
+				.map((g) => ({ ...g, passes: g.passes.filter((p) => stateOf(p, g) === name) }))
+				.filter((g) => g.passes.length);
 			const all = mine.flatMap((g) => g.passes);
 			const closed = all.filter((p) => p.report?.status === 'closed').length;
 			const chains = all.filter((p) => p.report?.status === 'chains').length;

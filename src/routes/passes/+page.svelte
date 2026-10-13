@@ -50,9 +50,8 @@
 <main>
 	<h1>Mountain passes</h1>
 	<p class="lede-dark">
-		Open or closed, chains and conditions for mountain passes in Washington (WSDOT pass reports),
-		Oregon (ODOT crew reports) and California (Caltrans chain controls and closures), with cameras
-		and forecasts for each.
+		Open or closed, chains and conditions for mountain passes in Washington, Oregon, California,
+		Idaho and Nevada, from each state's own reports, with cameras and forecasts for each.
 	</p>
 
 	{#if data.reachable}
@@ -159,13 +158,16 @@
 		</details>
 	{/each}
 	<p class="hint">
-		Reports come from WSDOT, ODOT and Caltrans; crews update them by hand, mostly November through
-		April. Always check the state's own page before you go:
+		Reports come from WSDOT, ODOT, Caltrans, Idaho's ITD and Nevada's NDOT; crews update them by
+		hand, mostly November through April. Always check the state's own page before you go:
 		<a href="https://wsdot.com/travel/real-time/mountainpasses" target="_blank" rel="noopener"
 			>WSDOT's pass page</a
 		>,
-		<a href="https://tripcheck.com/" target="_blank" rel="noopener">TripCheck</a> for Oregon, or
-		<a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> for California.
-		WSDOT has no public camera on the North Cascades Highway itself.
+		<a href="https://tripcheck.com/" target="_blank" rel="noopener">TripCheck</a> for Oregon,
+		<a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> for
+		California,
+		<a href="https://511.idaho.gov/" target="_blank" rel="noopener">Idaho 511</a> or
+		<a href="https://www.nvroads.com/" target="_blank" rel="noopener">Nevada 511</a>. WSDOT has no
+		public camera on the North Cascades Highway itself.
 	</p>
 </main>
