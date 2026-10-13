@@ -24,12 +24,12 @@ At the end of a session, when the user says they're wrapping up: update "Where w
 
 ## Commands
 
-|                                        |                                                                              |
-| -------------------------------------- | ---------------------------------------------------------------------------- |
-| Install                                | `npm ci`                                                                     |
-| Checks (all must pass before a commit) | `npm run lint`, `npm run check`, `npm test`                                  |
-| Format                                 | `npx prettier --write <paths>`                                               |
-| Build and run locally                  | `npm run build`, then `AZURE_MAPS_KEY= PORT=3311 node --env-file=.env build` |
+|                                        |                                                                                                                       |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Install                                | `npm ci`                                                                                                              |
+| Checks (all must pass before a commit) | `npm run lint`, `npm run check`, `npm test`                                                                           |
+| Format                                 | `npx prettier --write <paths>`                                                                                        |
+| Build and run locally                  | `npm run build`, then `AZURE_MAPS_KEY= PORT=3311 node --env-file=.env build` (or the key runner in `CLAUDE.local.md`) |
 
 Local testing: always run with `AZURE_MAPS_KEY=` (empty) so routes, search and weather use the free services;
 Azure Maps is paid past small free amounts. Stop a local server by its port, never with a broad `pkill`.
@@ -54,7 +54,8 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
 - Respect each camera source's terms (`docs/sources.md`). Windy pictures: unchanged, linked, never enlarged.
   ODOT: serve our own copy (`mirror`), never keep past ones. Link previews: only sources in `src/lib/sharing.ts`.
   Ask before adding fire-lookout cameras.
-- Never print, commit or put on a command line any key or secret. Keys live in the gitignored `.env`.
+- Never print, commit or put on a command line any key or secret. Keys live outside the repository: a gitignored `.env`
+  for your own copy; where this project's own keys live is in `CLAUDE.local.md`.
 - This repository is public: keep hosting-provider and sponsor details out of it (they go in
   `CLAUDE.local.md` or the gitignored `ops/` folder).
 - Visit counting stays cookieless and anonymous.
