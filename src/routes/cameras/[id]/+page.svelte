@@ -54,7 +54,7 @@
 		<ShareButton
 			path="/cameras/{camera.id}"
 			title={camera.name}
-			text={`Live camera: ${camera.name}${near ? `, near ${near}` : ''}`}
+			text={`Camera: ${camera.name}${near ? `, near ${near}` : ''}`}
 		/>
 		<a class="chip" href={aroundLink}>Everything near {near ?? 'here'}</a>
 		<a

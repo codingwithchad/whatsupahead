@@ -49,7 +49,7 @@ export const load: PageServerLoad = ({ params }) => {
 		: null;
 	const share: ShareMeta = {
 		title: collection.name,
-		description: `${collection.blurb ? `${sentence(collection.blurb)} ` : ''}${list.length} places, with live cameras and the forecast for each, on ${APP_NAME}.`,
+		description: `${collection.blurb ? `${sentence(collection.blurb)} ` : ''}${list.length} places, with cameras and the forecast for each, on ${APP_NAME}.`,
 		image: `/og/collection/${encodeURIComponent(collection.id)}?v=${previewSlot()}`,
 		imageAlt: `Camera pictures from ${collection.name}`
 	};

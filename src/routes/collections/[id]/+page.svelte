@@ -34,7 +34,7 @@
 		<ShareButton
 			path="/collections/{data.collection.id}"
 			title={data.collection.name}
-			text="{data.collection.name}: live cameras and weather"
+			text="{data.collection.name}: cameras and weather"
 		/>
 	</div>
 	{#each data.groups as group (group.state)}
@@ -71,7 +71,7 @@
 									{/if}
 								{/await}
 							{/if}
-							<span class="place-count">{place.liveCameras} live cameras</span>
+							<span class="place-count">{place.liveCameras} cameras</span>
 						</span>
 					</a>
 				{/each}

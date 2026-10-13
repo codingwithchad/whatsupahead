@@ -51,7 +51,7 @@
 				<ShareButton
 					path={base}
 					title={data.place.label}
-					text="Live cameras and weather at {data.place.label}"
+					text="Cameras and weather at {data.place.label}"
 				/>
 			</div>
 			<nav class="radius" aria-label="Search radius">

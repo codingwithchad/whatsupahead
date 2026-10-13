@@ -55,7 +55,7 @@ describe('renderCard', () => {
 	it('draws a 1200 by 630 picture with a camera picture', async () => {
 		const out = await renderCard({
 			title: 'I-90 at MP 52: Snoqualmie Summit',
-			lines: ['Live camera near Snoqualmie Pass'],
+			lines: ['Camera near Snoqualmie Pass'],
 			credit: 'Picture: WSDOT',
 			pictures: [{ image: await picture() }],
 			site: 'example.com'

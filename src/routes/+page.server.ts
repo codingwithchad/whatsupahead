@@ -25,7 +25,7 @@ function compute() {
 			blurb: p.blurb,
 			collection: p.collection ?? null,
 			liveCameras: live.length,
-			// The nearest live picture becomes the place's cover photo.
+			// The nearest working camera's picture becomes the place's cover photo.
 			cover: coverPicture(live)
 		};
 	});

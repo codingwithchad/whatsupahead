@@ -8,7 +8,8 @@ import type { Camera } from './types';
 /** Sources whose pictures may appear in a preview, and the short credit printed on the picture. */
 const PREVIEW_CREDIT: Record<string, string> = {
 	// Public agencies that publish the pictures for the public; credited on every preview.
-	WSDOT: 'WSDOT',
+	// WSDOT agreed on 2026-10-13, asking for exactly this credit (and that pictures are never called live).
+	WSDOT: 'Camera courtesy of WSDOT',
 	// ODOT's terms ask republishers to serve their own copy (we already do) and credit the agency.
 	ODOT: 'ODOT TripCheck',
 	// Open data, public domain unless noted.
@@ -31,9 +32,28 @@ export function previewCredit(
 	return PREVIEW_CREDIT[camera.source] ?? null;
 }
 
-/** Each credit once, in the order the pictures appear: "WSDOT, Caltrans". */
+/** Each credit once, in the order the pictures appear: "Caltrans, ODOT TripCheck". */
 export function credits(list: (string | null)[]): string {
 	return [...new Set(list.filter(Boolean))].join(', ');
+}
+
+/**
+ * The credit line under preview pictures: "Pictures: Caltrans, ODOT TripCheck". A credit that is already a
+ * sentence ("Camera courtesy of WSDOT", the owner's own wording) is printed as it is.
+ */
+export function creditLine(list: (string | null)[], pictures: number): string {
+	const all = [...new Set(list.filter((c): c is string => Boolean(c)))];
+	const own = all.filter((c) => /^camera courtesy/i.test(c));
+	const rest = all.filter((c) => !own.includes(c));
+	return [rest.length ? `${pictures > 1 ? 'Pictures' : 'Picture'}: ${rest.join(', ')}` : '', ...own]
+		.filter(Boolean)
+		.join(' · ');
+}
+
+/** Who a camera is from, as a sentence: "Camera courtesy of WSDOT." or "From Caltrans." */
+export function creditSentence(camera: Pick<Camera, 'source' | 'attribution_text'>): string {
+	const who = camera.attribution_text ?? camera.source;
+	return /^camera courtesy/i.test(who) ? `${who}.` : `From ${who}.`;
 }
 
 /** What a page tells link previews; `image` is a path on this site. */

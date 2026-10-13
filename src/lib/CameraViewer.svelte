@@ -103,7 +103,7 @@
 					dark
 					path="/cameras/{item.camera.id}"
 					title={item.camera.name}
-					text="Live camera: {item.camera.name}"
+					text="Camera: {item.camera.name}"
 				/>{/key}
 		</div>
 		<nav class="viewer-nav" aria-label="Cameras">

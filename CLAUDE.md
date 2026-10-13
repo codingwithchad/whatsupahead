@@ -1,7 +1,7 @@
 # What's Up Ahead: notes for Claude
 
-Live public cameras, weather and pass reports around a place and along a drive, for Washington, Oregon and
-California. A SvelteKit web app (no install, no accounts, no ads) at whatsupahead.com.
+Public cameras, weather and pass reports around a place and along a drive, for Washington, Oregon, California
+and Idaho. A SvelteKit web app (no install, no accounts, no ads) at whatsupahead.com.
 
 ## Start of every session: catch up before suggesting anything
 
@@ -52,7 +52,9 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
 ## Rules
 
 - Respect each camera source's terms (`docs/sources.md`). Windy pictures: unchanged, linked, never enlarged.
-  ODOT: serve our own copy (`mirror`), never keep past ones. Link previews: only sources in `src/lib/sharing.ts`.
+  ODOT: serve our own copy (`mirror`), never keep past ones. WSDOT: credit "Camera courtesy of WSDOT", never call
+  a picture "live" (only real video streams are live), go easy on its servers. Link previews: only sources in
+  `src/lib/sharing.ts`.
   Ask before adding fire-lookout cameras.
 - Never print, commit or put on a command line any key or secret. Keys live outside the repository: a gitignored `.env`
   for your own copy; where this project's own keys live is in `CLAUDE.local.md`.

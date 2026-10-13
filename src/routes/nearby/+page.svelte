@@ -51,7 +51,7 @@
 							<span class="place-sub">
 								{r.distance.toFixed(r.distance < 10 ? 1 : 0)} mi away{r.kind
 									? ` · ${r.kind}`
-									: ''}{r.liveCameras ? ` · ${r.liveCameras} live cameras` : ''}
+									: ''}{r.liveCameras ? ` · ${r.liveCameras} cameras` : ''}
 							</span>
 						</a>
 					</li>

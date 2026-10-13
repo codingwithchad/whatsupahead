@@ -14,7 +14,7 @@ export const load: PageServerLoad = ({ params }) => {
 	const words = momentWords(moment);
 	const share: ShareMeta = {
 		title: `${camera.name}, ${words.before} and ${words.after}`,
-		description: `Before and after, ${words.apart} (${words.day}). See the camera live now on ${APP_NAME}.`,
+		description: `Before and after, ${words.apart} (${words.day}). See the camera's latest picture on ${APP_NAME}.`,
 		image: `/og/moment/${moment.id}`,
 		imageAlt: `${camera.name} at ${words.before} and at ${words.after}`
 	};

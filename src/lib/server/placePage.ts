@@ -114,7 +114,7 @@ export async function placePage(
 		title: place.label,
 		description: `${featured?.blurb ? `${sentence(featured.blurb)} ` : ''}${
 			fallback
-				? 'The nearest live cameras'
+				? 'The nearest cameras'
 				: `${live.length} live ${live.length === 1 ? 'camera' : 'cameras'}`
 		}, the forecast and conditions, on ${APP_NAME}.`,
 		image: `/og/search?${preview}&v=${previewSlot()}`,
@@ -124,7 +124,7 @@ export async function placePage(
 		...empty,
 		share,
 		canonical: featured ? `/search?place=${encodeURIComponent(featured.id)}` : null,
-		pageTitle: featured ? `${featured.name} Live Cameras & Weather · ${APP_NAME}` : null,
+		pageTitle: featured ? `${featured.name} Cameras & Weather · ${APP_NAME}` : null,
 		place,
 		fallback,
 		cameras: showAll || fallback ? live : live.slice(0, CAMERA_LIMIT),

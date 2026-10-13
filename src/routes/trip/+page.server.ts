@@ -90,7 +90,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const passNames = safe.passes.map((p) => p.pass.name);
 	const share: ShareMeta = {
 		title: `${from.label} to ${to.label}`,
-		description: `${tripLine(total, route.minutes, passNames)} ${live.length} live cameras on the way, with the weather and pass reports for when you get there.`,
+		description: `${tripLine(total, route.minutes, passNames)} ${live.length} cameras on the way, with the weather and pass reports for when you get there.`,
 		image: `/og/trip?${tripShareParams(url.searchParams)}&v=${previewSlot()}`,
 		imageAlt: `Map of the drive from ${from.label} to ${to.label}, with camera pictures from the way`
 	};

@@ -122,7 +122,7 @@
 					<span class="place-body">
 						<span class="place-name">{place.name}</span>
 						<span class="place-sub">{[place.region, place.blurb].filter(Boolean).join(' · ')}</span>
-						<span class="place-count">{place.liveCameras} live cameras</span>
+						<span class="place-count">{place.liveCameras} cameras</span>
 					</span>
 				</a>
 			{/each}

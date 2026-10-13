@@ -45,7 +45,7 @@
 			download
 			onclick={() => track('moment-save')}>Save picture</a
 		>
-		<a class="chip" href="/cameras/{data.camera.id}">See it live now</a>
+		<a class="chip" href="/cameras/{data.camera.id}">See the latest picture</a>
 		<ShareButton
 			path="/moments/{data.id}"
 			title="{data.camera.name}: before and after"

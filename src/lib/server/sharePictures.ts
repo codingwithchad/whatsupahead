@@ -3,7 +3,13 @@ import { forPlace } from '../placeCameras';
 import { STATUS_LABEL } from '../passes';
 import { duration, localClock, returnLabel } from '../format';
 import { DEFAULT_TIME_ZONE } from '../regions';
-import { credits, PREVIEW_MINUTES, previewCredit, previewSlot } from '../sharing';
+import {
+	creditLine,
+	creditSentence,
+	PREVIEW_MINUTES,
+	previewCredit,
+	previewSlot
+} from '../sharing';
 import type { Camera, Collection, FeaturedPlace, PassInfo, Place } from '../types';
 import { cached } from './cache';
 import { getCatalog } from './catalog';
@@ -60,10 +66,12 @@ async function sharePictures(
 		.map((c, i) => ({ c, image: got[i] }))
 		.filter((x): x is { c: Camera; image: Buffer } => x.image !== null)
 		.slice(0, n);
-	const names = credits(picked.map((x) => previewCredit(x.c)));
 	return {
 		pictures: picked.map((x) => ({ image: x.image, caption: caption?.(x.c) })),
-		credit: names ? `${picked.length > 1 ? 'Pictures' : 'Picture'}: ${names}` : ''
+		credit: creditLine(
+			picked.map((x) => previewCredit(x.c)),
+			picked.length
+		)
 	};
 }
 
@@ -90,11 +98,11 @@ export async function cameraPreview(camera: Camera, site: string): Promise<Buffe
 			back
 				? `Seasonal camera, back in ${back}`
 				: camera.feed_type === 'image'
-					? `Live camera${near ? ` near ${near}` : ''}`
+					? `Camera${near ? ` near ${near}` : ''}`
 					: `Live video${near ? ` near ${near}` : ''}`,
 			pictures.length
-				? 'See it now, with the weather and nearby cameras.'
-				: `From ${camera.attribution_text ?? camera.source}`
+				? 'See the latest picture, with the weather and nearby cameras.'
+				: creditSentence(camera)
 		],
 		credit,
 		pictures,
@@ -211,7 +219,7 @@ export async function tripPreview(params: URLSearchParams, site: string): Promis
 			// The passes are on the map, so just the distance and time here.
 			`${Math.round(total)} mi · about ${duration(route.minutes)}`,
 			...(status ? [status] : []),
-			`${along.length} live cameras on the way`
+			`${along.length} cameras on the way`
 		],
 		credit,
 		pictures,
@@ -252,7 +260,7 @@ export async function momentPreview(
 	const words = momentWords(m);
 	return (tall ? renderPairTall : renderPair)({
 		title: camera.name,
-		line: `${words.apart} · ${words.day} · Pictures: ${previewCredit(camera) ?? camera.source}`,
+		line: `${words.apart} · ${words.day} · ${creditLine([previewCredit(camera) ?? camera.source], 2)}`,
 		before: { image: before, label: `Before · ${words.before}` },
 		after: { image: after, label: `After · ${words.after}` },
 		site

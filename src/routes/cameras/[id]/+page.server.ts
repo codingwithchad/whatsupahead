@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import { distanceMiles, isDormant, nearby } from '../../../lib/geo';
 import { returnLabel } from '../../../lib/format';
 import { APP_NAME } from '../../../lib/brand';
-import { previewSlot, type ShareMeta } from '../../../lib/sharing';
+import { creditSentence, previewSlot, type ShareMeta } from '../../../lib/sharing';
 import { getCatalog } from '../../../lib/server/catalog';
 import { nearestTown } from '../../../lib/server/gazetteer';
 import { withLiveLinks } from '../../../lib/server/live';
@@ -28,7 +28,7 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 		title: found.name,
 		description: back
 			? `Seasonal camera${near ? ` near ${near}` : ''}, back in ${back}. On ${APP_NAME}.`
-			: `Live camera${near ? ` near ${near}` : ''}, from ${found.attribution_text ?? found.source}. See it now, with the weather and nearby cameras, on ${APP_NAME}.`,
+			: `Camera${near ? ` near ${near}` : ''}. ${creditSentence(found)} See the latest picture, with the weather and nearby cameras, on ${APP_NAME}.`,
 		image: `/og/camera/${encodeURIComponent(found.id)}?v=${previewSlot()}`,
 		imageAlt: `Latest picture from the ${found.name} camera`
 	};

@@ -88,7 +88,7 @@ const OWNER_NAMES = {
 function credit(c) {
 	const owner = (c.CameraOwner ?? '').replace(/\s+/g, ' ').trim();
 	if (!owner || /^WSDOT\b|tripcheck|sign up/i.test(owner))
-		return { attribution_text: 'Washington State Department of Transportation' };
+		return { attribution_text: 'Camera courtesy of WSDOT' };
 	return {
 		attribution_text: `${OWNER_NAMES[owner] ?? owner}, via WSDOT`,
 		...(c.OwnerURL ? { page_url: c.OwnerURL.replace(/^http:/, 'https:') } : {})
@@ -136,7 +136,7 @@ for (let i = 0; i < candidates.length; i += 8) {
 			embed_mode: 'direct',
 			refresh_seconds: 120,
 			tags: ['road', ...(tagArg ? [tagArg] : [])],
-			attribution_text: 'Washington State Department of Transportation',
+			attribution_text: 'Camera courtesy of WSDOT',
 			created_at: new Date().toISOString().slice(0, 10) + 'T00:00:00Z',
 			...credit(c)
 		};

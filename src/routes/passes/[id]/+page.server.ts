@@ -60,7 +60,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 	const share = {
 		...base.share,
 		title: `${pass.name} conditions now`,
-		description: `${pass.name} (${pass.route}${elevation})${now ? ` right now: ${now}.` : '.'} Live cameras, chains for your car, snow depth, avalanche danger and the forecast. Free, no app needed.`,
+		description: `${pass.name} (${pass.route}${elevation})${now ? ` right now: ${now}.` : '.'} Cameras, chains for your car, snow depth, avalanche danger and the forecast. Free, no app needed.`,
 		image: `/og/search?place=${encodeURIComponent(featured.id)}&v=${previewSlot()}`
 	};
 	return {

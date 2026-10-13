@@ -54,7 +54,7 @@
 
 {#if data.fallback}
 	<p class="thinned">
-		No live cameras within {data.radius} miles of {data.place.label}. These are the nearest ones,
+		No working cameras within {data.radius} miles of {data.place.label}. These are the nearest ones,
 		with their distance.
 	</p>
 {/if}
@@ -62,7 +62,7 @@
 {#if data.cameras.length}
 	<CameraList items={data.cameras.map((camera) => ({ camera }))} />
 {:else}
-	<p class="empty">No live cameras within {data.radius} miles. Try a larger radius.</p>
+	<p class="empty">No working cameras within {data.radius} miles. Try a larger radius.</p>
 {/if}
 
 <OfflineCameras cameras={data.offline} />

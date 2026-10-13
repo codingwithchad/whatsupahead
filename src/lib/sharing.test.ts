@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { credits, previewCredit, sentence, tripShareParams } from './sharing';
+import {
+	creditLine,
+	creditSentence,
+	credits,
+	previewCredit,
+	sentence,
+	tripShareParams
+} from './sharing';
 
 const cam = (over: Record<string, unknown> = {}) => ({
 	source: 'WSDOT',
@@ -11,7 +18,8 @@ const cam = (over: Record<string, unknown> = {}) => ({
 
 describe('previewCredit', () => {
 	it('allows public agency and public domain pictures, with a short credit', () => {
-		expect(previewCredit(cam())).toBe('WSDOT');
+		// WSDOT's own wording (2026-10-13).
+		expect(previewCredit(cam())).toBe('Camera courtesy of WSDOT');
 		expect(previewCredit(cam({ source: 'Caltrans' }))).toBe('Caltrans');
 		expect(previewCredit(cam({ source: 'ODOT' }))).toBe('ODOT TripCheck');
 		expect(previewCredit(cam({ source: 'National Park Service' }))).toBe('National Park Service');
@@ -27,6 +35,19 @@ describe('previewCredit', () => {
 	});
 	it('lists each credit once', () => {
 		expect(credits(['WSDOT', null, 'Caltrans', 'WSDOT'])).toBe('WSDOT, Caltrans');
+	});
+
+	it("prints an owner's own credit sentence as it is", () => {
+		expect(creditLine(['Caltrans', null, 'Caltrans'], 2)).toBe('Pictures: Caltrans');
+		expect(creditLine(['Camera courtesy of WSDOT'], 1)).toBe('Camera courtesy of WSDOT');
+		expect(creditLine(['Camera courtesy of WSDOT', 'ODOT TripCheck'], 2)).toBe(
+			'Pictures: ODOT TripCheck · Camera courtesy of WSDOT'
+		);
+		expect(creditLine([], 0)).toBe('');
+		expect(creditSentence({ source: 'WSDOT', attribution_text: 'Camera courtesy of WSDOT' })).toBe(
+			'Camera courtesy of WSDOT.'
+		);
+		expect(creditSentence({ source: 'Caltrans' })).toBe('From Caltrans.');
 	});
 });
 
