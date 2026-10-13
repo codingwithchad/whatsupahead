@@ -12,7 +12,7 @@ import {
 	type RawPass
 } from '../passes';
 import type { PassInfo } from '../types';
-import { cached, cachedStale } from './cache';
+import { cachedStale } from './cache';
 import { getCatalog } from './catalog';
 
 const URL_ =
@@ -25,7 +25,9 @@ export async function livePasses(): Promise<Map<number, PassReport>> {
 	const key = process.env.WSDOT_CODE;
 	if (!key) return new Map();
 	try {
-		const reports = await cached('passes:all', 2 * 60 * 1000, async () => {
+		// Like the other states: the last good reports at once while a fresh copy loads, so a slow WSDOT on a
+		// storm day never holds up a page (each report says how old it is).
+		const reports = await cachedStale('passes:all', 2 * 60 * 1000, async () => {
 			const res = await fetch(`${URL_}?AccessCode=${encodeURIComponent(key)}`, {
 				signal: AbortSignal.timeout(8000)
 			});

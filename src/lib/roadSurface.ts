@@ -1,5 +1,5 @@
 import type { Point } from './geo';
-import { projectOnRoute, type LatLon } from './route';
+import { projectNear, type LatLon } from './route';
 
 // Road surface temperature from WSDOT's roadside weather stations: a measurement of the pavement itself, so
 // "the road is at 31°F" is known when it happens, not forecast. Ice forms on wet pavement at or below freezing,
@@ -31,14 +31,16 @@ export type SurfaceOnRoute = SurfaceReading & { along: number };
 const toF = (c: number) => Math.round((c * 9) / 5 + 32);
 
 /** "2026-10-12T13:14:00" in Pacific time, to a time in ms. */
+// Made once: building a date formatter is slow, and a route has dozens of stations.
+const PACIFIC_OFFSET = new Intl.DateTimeFormat('en-US', {
+	timeZone: 'America/Los_Angeles',
+	timeZoneName: 'shortOffset'
+});
+
 export function pacificTime(local: string | null | undefined): number {
 	const asUtc = Date.parse(`${local}Z`);
 	if (!Number.isFinite(asUtc)) return NaN;
-	const offset = new Intl.DateTimeFormat('en-US', {
-		timeZone: 'America/Los_Angeles',
-		timeZoneName: 'shortOffset'
-	})
-		.formatToParts(asUtc)
+	const offset = PACIFIC_OFFSET.formatToParts(asUtc)
 		.find((p) => p.type === 'timeZoneName')
 		?.value.match(/GMT([+-]\d+)/)?.[1];
 	return asUtc - Number(offset ?? -8) * 3600_000;
@@ -75,8 +77,8 @@ export function surfaceOnRoute(
 	miles = 0.5
 ): SurfaceOnRoute[] {
 	return readings
-		.map((r) => ({ r, p: projectOnRoute(r, route, cum) }))
-		.filter(({ p }) => p.off <= miles)
+		.map((r) => ({ r, p: projectNear(r, route, cum, miles) }))
+		.filter((x): x is { r: SurfaceReading; p: NonNullable<typeof x.p> } => x.p !== null)
 		.map(({ r, p }) => ({ ...r, along: p.along }))
 		.sort((a, b) => a.along - b.along);
 }

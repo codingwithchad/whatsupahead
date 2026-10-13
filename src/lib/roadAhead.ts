@@ -6,7 +6,7 @@ import {
 	type Checkpoint,
 	type OdotIncident
 } from './passes';
-import { headingAt, projectOnRoute, type LatLon } from './route';
+import { headingAt, projectNear, type LatLon } from './route';
 
 // What could stop a drive besides a closed pass: full road closures the states report, and National Weather
 // Service warnings (winter storms, floods, wind) for the places on the way at the time you get there.
@@ -125,8 +125,8 @@ export function closuresOnRoute(
 	const out: ClosureOnRoute[] = [];
 	for (const c of closures) {
 		const hits = [c.start, c.end]
-			.map((p) => projectOnRoute(p, route, cum))
-			.filter((p) => p.off <= miles);
+			.map((p) => projectNear(p, route, cum, miles))
+			.filter((p) => p !== null);
 		if (hits.length) out.push({ ...c, along: Math.min(...hits.map((h) => h.along)) });
 	}
 	return out.sort((a, b) => a.along - b.along);
@@ -147,8 +147,8 @@ export function chainControlsOnRoute(
 	const out: (Checkpoint & { along: number })[] = [];
 	for (const c of checkpoints) {
 		if (c.level === 'R-0') continue;
-		const p = projectOnRoute(c, route, cum);
-		if (p.off > miles) continue;
+		const p = projectNear(c, route, cum, miles);
+		if (!p) continue;
 		const way = COMPASS[c.direction.toLowerCase()];
 		const heading = headingAt(route, cum, p.along);
 		if (way !== undefined && heading !== null && Math.abs(((heading - way + 540) % 360) - 180) > 60)

@@ -3,6 +3,7 @@ import { distanceMiles, nearby, type Point } from '../geo';
 import {
 	cumulativeMiles,
 	headingAt,
+	projectNear,
 	projectOnRoute,
 	alongRoute,
 	thinToTarget,
@@ -110,7 +111,10 @@ export function conditionSources(
 	const cum = cumulativeMiles(route);
 	return thinToTarget(
 		wx
-			.map((item) => ({ item, along: projectOnRoute(item, route, cum).along }))
+			.map((item) => ({
+				item,
+				along: (projectNear(item, route, cum, 5) ?? projectOnRoute(item, route, cum)).along
+			}))
 			.sort((a, b) => a.along - b.along)
 			.map((x) => ({ ...x, keep: x.item.kind === 'forecast' || !ROADSIDE.has(x.item.kind) })),
 		7

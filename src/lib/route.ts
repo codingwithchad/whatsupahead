@@ -185,3 +185,27 @@ export function headingAt(route: LatLon[], cum: number[], miles: number): number
 	if (!dx && !dy) return null;
 	return ((Math.atan2(dx, dy) * 180) / Math.PI + 360) % 360;
 }
+
+// One grid per route, shared by everything that looks along the same route while a page is worked out.
+const grids = new WeakMap<LatLon[], ReturnType<typeof segmentGrid>>();
+
+/**
+ * Where a point meets the route if it is within `miles` of it, looking only at the stretches of road near the
+ * point (fast for long routes and many points); null when it is farther.
+ */
+export function projectNear(
+	p: Point,
+	route: LatLon[],
+	cum: number[],
+	miles: number
+): Projection | null {
+	let near = grids.get(route);
+	if (!near) {
+		near = segmentGrid(route);
+		grids.set(route, near);
+	}
+	const segments = near(p, miles);
+	if (!segments.size) return null;
+	const at = projectOnRoute(p, route, cum, segments);
+	return at.off <= miles ? at : null;
+}
