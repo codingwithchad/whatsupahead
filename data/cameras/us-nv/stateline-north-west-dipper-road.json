@@ -1,0 +1,18 @@
+{
+  "id": "stateline-north-west-dipper-road",
+  "name": "Stateline – North-west: Dipper Road",
+  "lat": 38.92744,
+  "lon": -119.90242,
+  "feed_type": "image",
+  "source": "player.brownrice.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1743087393",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1743087393",
+  "tags": [],
+  "attribution_text": "player.brownrice.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

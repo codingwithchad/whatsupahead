@@ -1,0 +1,20 @@
+{
+  "id": "usgs-santa-ana-r-bl-prado-dam",
+  "name": "Santa Ana R bl Prado Dam",
+  "description": "Santa Ana River",
+  "lat": 33.8833487464323,
+  "lon": -117.64532963562,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Santa_Ana_R_bl_Prado_Dam/CA_Santa_Ana_R_bl_Prado_Dam_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11074000/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

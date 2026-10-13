@@ -1,0 +1,20 @@
+{
+  "id": "usgs-s-fk-humboldt-rv-abv-tenmile-ck-nr-elko",
+  "name": "S Fk Humboldt Rv Abv Tenmile Ck nr Elko",
+  "description": "South Fork Humboldt River Above Tenmile Creek near Elko. ",
+  "lat": 40.6274972222222,
+  "lon": -115.730522222222,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/NV_S_Fk_Humboldt_Rv_Abv_Tenmile_Ck_nr_Elko/NV_S_Fk_Humboldt_Rv_Abv_Tenmile_Ck_nr_Elko_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/10319900/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

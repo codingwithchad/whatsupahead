@@ -1,0 +1,20 @@
+{
+  "id": "usgs-lv-wash-blw-lake-las-vegas-nr-boulder-city",
+  "name": "Lv Wash Blw Lake Las Vegas nr Boulder City",
+  "description": "Las Vegas Wash Below Lake Las Vegas near Boulder City NV",
+  "lat": 36.12219816,
+  "lon": -114.904992,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/NV_Lv_Wash_Blw_Lake_Las_Vegas_nr_Boulder_City/NV_Lv_Wash_Blw_Lake_Las_Vegas_nr_Boulder_City_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/09419800/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "stateline-north-east-heavenly-mountain-scenic-gondola",
+  "name": "Stateline – North-east: Heavenly Mountain Scenic Gondola",
+  "lat": 38.93988,
+  "lon": -119.91865,
+  "feed_type": "image",
+  "source": "streamer2.brownrice.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1743088467",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1743088467",
+  "tags": [],
+  "attribution_text": "streamer2.brownrice.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

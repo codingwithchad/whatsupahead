@@ -1,0 +1,18 @@
+{
+  "id": "reno-desert-research-institute-northern-nevada-science-cente",
+  "name": "Reno: Desert Research Institute - Northern Nevada Science Center Webcam - NV, USA: Intersection of Dandini/US395",
+  "lat": 39.57158,
+  "lon": -119.8011,
+  "feed_type": "image",
+  "source": "wrcc.dri.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1404747462",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1404747462",
+  "tags": [],
+  "attribution_text": "wrcc.dri.edu via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "stanley-south-west-redfish-lake-lodge",
+  "name": "Stanley – South-west: Redfish Lake Lodge",
+  "lat": 44.14392,
+  "lon": -114.91885,
+  "feed_type": "image",
+  "source": "discoversawtooth.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1745845619",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1745845619",
+  "tags": [],
+  "attribution_text": "discoversawtooth.org via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

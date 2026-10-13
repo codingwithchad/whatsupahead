@@ -226,3 +226,14 @@ or WB in some names), so most cameras stay in either way.
 
 WSDOT notes that a road is "closed … due to a collision" stay a notice, not Closed: a collision closure is often
 one direction or a few lanes for a short time, and the note says so in WSDOT's own words.
+
+## 2026-10-13: More cameras outside Washington
+
+The project started in Seattle, and the sweeps for river and Windy cameras had only been run there, in Oregon and in
+California. USGS river cameras now cover all five states (58 more: the Boise, Salmon, Clearwater, Truckee, Walker and
+Sacramento rivers among them), Windy was searched around Idaho's and Nevada's towns, lakes and ski areas (34 more,
+including Mt. Rose, Diamond Peak, Heavenly, Galena Lodge and Redfish Lake), and the Park Service's Point Reyes air
+camera was added. The Windy importer now skips the state cameras Windy relays from Idaho 511, Nevada 511 and
+Arizona's 511 (we take state cameras from the states), and fire-lookout cameras, which still need asking first.
+The Park Service has no published camera pictures for Craters of the Moon, Great Basin, Death Valley or Lake Mead.
+City and county cameras in all five states are a research task for contributors (issue #6).

@@ -50,7 +50,7 @@ for (let offset = 0; offset < 1000; offset += 50) {
 }
 
 let added = 0;
-const skipped = { have: 0, near: 0, outside: 0, inactive: 0, agency: 0 };
+const skipped = { have: 0, near: 0, outside: 0, inactive: 0, agency: 0, fire: 0 };
 for (const w of webcams) {
 	const ref = String(w.webcamId);
 	const at = { lat: w.location.latitude, lon: w.location.longitude };
@@ -68,8 +68,17 @@ for (const w of webcams) {
 	}
 	// State DOT cameras come straight from the agencies (import-wsdot-route.mjs, import-tripcheck.mjs), never
 	// through Windy: bigger pictures, the right credit, and the agencies' own terms.
-	if (/tripcheck\.com|wsdot|dot\.ca\.gov|caltrans/i.test(w.urls?.provider ?? '')) {
+	if (
+		/tripcheck\.com|wsdot|dot\.ca\.gov|caltrans|511\.idaho\.gov|nvroads\.com|az511\.gov/i.test(
+			w.urls?.provider ?? ''
+		)
+	) {
 		skipped.agency++;
+		continue;
+	}
+	// Fire-lookout cameras (ALERTWildfire, ALERTCalifornia, AlertWest) need the owner's say first (docs/sources.md).
+	if (/alertwildfire|alertcalifornia|alertwest/i.test(`${w.urls?.provider ?? ''} ${w.title}`)) {
+		skipped.fire++;
 		continue;
 	}
 	if (existing.some((c) => km(c, at) < 0.1)) {
@@ -118,5 +127,5 @@ for (const w of webcams) {
 	else console.log(`would add ${file}  (${owner})`);
 }
 console.log(
-	`${write ? 'Added' : 'Would add'} ${added} of ${webcams.length} Windy cameras. Skipped: ${skipped.have} already added, ${skipped.near} next to a camera we have, ${skipped.outside} outside our regions, ${skipped.inactive} inactive, ${skipped.agency} state DOT cameras (imported from the agency instead).`
+	`${write ? 'Added' : 'Would add'} ${added} of ${webcams.length} Windy cameras. Skipped: ${skipped.have} already added, ${skipped.near} next to a camera we have, ${skipped.outside} outside our regions, ${skipped.inactive} inactive, ${skipped.agency} state DOT cameras (imported from the agency instead), ${skipped.fire} fire-lookout cameras.`
 );

@@ -1,0 +1,18 @@
+{
+  "id": "donnelly-west",
+  "name": "Donnelly – West",
+  "lat": 44.72282,
+  "lon": -116.02232,
+  "feed_type": "image",
+  "source": "id76.aviationwx.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793898486",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793898486",
+  "tags": [],
+  "attribution_text": "id76.aviationwx.org via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

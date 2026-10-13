@@ -1,0 +1,20 @@
+{
+  "id": "usgs-merced-river-at-happy-isles-bridge-yosemite",
+  "name": "Merced River at Happy Isles Bridge Yosemite",
+  "description": "Camera used to transmit images of stream conditions.",
+  "lat": 37.73131496,
+  "lon": -119.5590514,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Merced_River_at_Happy_Isles_Bridge_Yosemite/CA_Merced_River_at_Happy_Isles_Bridge_Yosemite_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11264500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

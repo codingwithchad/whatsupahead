@@ -1,0 +1,20 @@
+{
+  "id": "usgs-portneuf-river-at-pocatello",
+  "name": "Portneuf River at Pocatello",
+  "description": "Portneuf River at Pocatello, ID",
+  "lat": 42.87166667,
+  "lon": -112.4680556,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Portneuf_River_at_Pocatello/ID_Portneuf_River_at_Pocatello_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13075500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

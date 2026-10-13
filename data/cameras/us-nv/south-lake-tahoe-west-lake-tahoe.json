@@ -1,0 +1,18 @@
+{
+  "id": "south-lake-tahoe-west-lake-tahoe",
+  "name": "South Lake Tahoe – West: Lake Tahoe",
+  "lat": 38.96129,
+  "lon": -119.93978,
+  "feed_type": "image",
+  "source": "storage.googleapis.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793910241",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793910241",
+  "tags": [],
+  "attribution_text": "storage.googleapis.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

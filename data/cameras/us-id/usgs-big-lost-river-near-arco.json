@@ -1,0 +1,20 @@
+{
+  "id": "usgs-big-lost-river-near-arco",
+  "name": "Big Lost River near Arco",
+  "description": "Big Lost River near Arco, ID",
+  "lat": 43.5822222,
+  "lon": -113.2705556,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Big_Lost_River_near_Arco/ID_Big_Lost_River_near_Arco_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13132500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

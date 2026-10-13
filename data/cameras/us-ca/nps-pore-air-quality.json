@@ -1,0 +1,21 @@
+{
+  "id": "nps-pore-air-quality",
+  "name": "Point Reyes Beach air-quality view",
+  "description": "NPS air quality camera looking north-northeast over Point Reyes Beach; updates about every 15 minutes.",
+  "lat": 38.0446,
+  "lon": -122.9786,
+  "feed_url": "https://www.nps.gov/featurecontent/ard/webcams/images/porelarge.jpg",
+  "feed_type": "image",
+  "source": "National Park Service",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nps.gov/subjects/air/webcams.htm?site=pore",
+  "embed_mode": "direct",
+  "refresh_seconds": 120,
+  "max_width": 900,
+  "tags": ["national-park", "coast", "air-quality"],
+  "attribution_text": "National Park Service",
+  "license_or_terms": "NPS content is generally public domain unless otherwise noted; credit appreciated (nps.gov/aboutus/disclaimer.htm).",
+  "created_at": "2026-10-13T00:00:00Z",
+  "location_precision": "approximate"
+}

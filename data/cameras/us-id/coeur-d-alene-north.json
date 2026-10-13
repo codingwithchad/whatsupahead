@@ -1,0 +1,18 @@
+{
+  "id": "coeur-d-alene-north",
+  "name": "Coeur d'Alene – North",
+  "lat": 47.67588,
+  "lon": -116.79761,
+  "feed_type": "image",
+  "source": "br1.nic.edu via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1677174322",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1677174322",
+  "tags": [],
+  "attribution_text": "br1.nic.edu via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

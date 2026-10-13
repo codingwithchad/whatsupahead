@@ -1,0 +1,18 @@
+{
+  "id": "blaine-county-south-galena-lodge",
+  "name": "Blaine County – South: Galena Lodge",
+  "lat": 43.87195,
+  "lon": -114.65481,
+  "feed_type": "image",
+  "source": "altserver.bcrd.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1747172589",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1747172589",
+  "tags": [],
+  "attribution_text": "altserver.bcrd.org via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

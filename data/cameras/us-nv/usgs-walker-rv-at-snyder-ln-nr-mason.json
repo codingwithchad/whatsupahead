@@ -1,0 +1,20 @@
+{
+  "id": "usgs-walker-rv-at-snyder-ln-nr-mason",
+  "name": "Walker Rv at Snyder Ln nr Mason",
+  "description": "Walker River at Snyder Lane near Mason, NV",
+  "lat": 38.92125,
+  "lon": -119.191583333333,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/NV_Walker_Rv_at_Snyder_Ln_nr_Mason/NV_Walker_Rv_at_Snyder_Ln_nr_Mason_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/10300600/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "reno-south-east-longley-lane-larch-road-huffaker-hills",
+  "name": "Reno – South-east: Longley Lane - Larch Road - Huffaker Hills",
+  "lat": 39.46914,
+  "lon": -119.76949,
+  "feed_type": "image",
+  "source": "rollernet.us via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1732089587",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1732089587",
+  "tags": [],
+  "attribution_text": "rollernet.us via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

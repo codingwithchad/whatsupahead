@@ -1,0 +1,18 @@
+{
+  "id": "carson-city",
+  "name": "Carson City",
+  "lat": 39.19372,
+  "lon": -119.73342,
+  "feed_type": "image",
+  "source": "live3.brownrice.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1652201796",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1652201796",
+  "tags": [],
+  "attribution_text": "live3.brownrice.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

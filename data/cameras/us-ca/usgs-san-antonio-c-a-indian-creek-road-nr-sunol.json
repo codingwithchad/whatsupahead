@@ -1,0 +1,20 @@
+{
+  "id": "usgs-san-antonio-c-a-indian-creek-road-nr-sunol",
+  "name": "San Antonio C A Indian Creek Road nr Sunol",
+  "description": "Camera used to transmit images of stream conditions and collect image velocimetry data.",
+  "lat": 37.58527777777778,
+  "lon": -121.78916666666666,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_San_Antonio_C_A_Indian_Creek_Road_nr_Sunol/CA_San_Antonio_C_A_Indian_Creek_Road_nr_Sunol_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/373507121472101/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

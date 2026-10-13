@@ -1,0 +1,20 @@
+{
+  "id": "usgs-clearwater-river-at-spalding",
+  "name": "Clearwater River at Spalding",
+  "description": "Clearwater River at Spalding, ID",
+  "lat": 46.4483333,
+  "lon": -116.8275,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Clearwater_River_at_Spalding/ID_Clearwater_River_at_Spalding_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13342500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

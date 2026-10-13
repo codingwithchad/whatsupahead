@@ -1,0 +1,18 @@
+{
+  "id": "las-vegas",
+  "name": "Las Vegas",
+  "lat": 36.17497,
+  "lon": -115.13722,
+  "feed_type": "image",
+  "source": "198.71.120.207:8080 via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793912348",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793912348",
+  "tags": [],
+  "attribution_text": "198.71.120.207:8080 via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

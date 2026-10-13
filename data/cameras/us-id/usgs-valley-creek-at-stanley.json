@@ -1,0 +1,20 @@
+{
+  "id": "usgs-valley-creek-at-stanley",
+  "name": "Valley Creek at Stanley",
+  "description": "Valley Creek at Stanley, ID",
+  "lat": 44.2225,
+  "lon": -114.931111,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Valley_Creek_at_Stanley/ID_Valley_Creek_at_Stanley_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13295000/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

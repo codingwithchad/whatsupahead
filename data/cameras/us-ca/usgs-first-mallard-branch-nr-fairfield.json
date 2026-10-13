@@ -1,0 +1,20 @@
+{
+  "id": "usgs-first-mallard-branch-nr-fairfield",
+  "name": "First Mallard Branch nr Fairfield",
+  "description": "Looking upstream at First Mallard Branch in Suisun Marsh, California.",
+  "lat": 38.1948944444444,
+  "lon": -122.032813888889,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_First_Mallard_Branch_nr_Fairfield/CA_First_Mallard_Branch_nr_Fairfield_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/381142122015801/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

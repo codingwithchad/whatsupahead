@@ -1,0 +1,20 @@
+{
+  "id": "usgs-sacramento-r-bl-walnut-grove-br-a-walnut-grove",
+  "name": "Sacramento R bl Walnut Grove Br A Walnut Grove",
+  "description": "Georgiana Slough Salmonid Migratory Barrier near Walnut Grove, CA",
+  "lat": 38.240858333333335,
+  "lon": -121.51583611111111,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Georgiana_Slough_Salmonid_Migratory_Barrier/CA_Georgiana_Slough_Salmonid_Migratory_Barrier_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/381427121305401/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

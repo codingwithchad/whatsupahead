@@ -1,0 +1,18 @@
+{
+  "id": "henderson-las-vegas",
+  "name": "Henderson: Las Vegas",
+  "lat": 36.02304,
+  "lon": -114.98101,
+  "feed_type": "image",
+  "source": "admin.meteobridge.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1556387888",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1556387888",
+  "tags": [],
+  "attribution_text": "admin.meteobridge.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "usgs-salsipuedes-c-nr-lompoc",
+  "name": "Salsipuedes C nr Lompoc",
+  "description": "Salsipuedes Creek HIVIS",
+  "lat": 34.58858864753724,
+  "lon": -120.40845241489687,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Salsipuedes_C_nr_Lompoc/CA_Salsipuedes_C_nr_Lompoc_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11132500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

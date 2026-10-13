@@ -1,0 +1,20 @@
+{
+  "id": "usgs-lemhi-river-below-l5-diversion-near-salmon",
+  "name": "Lemhi River below L5 Diversion near Salmon",
+  "description": "Lemhi River below L5 Diversion near Salmon, ID",
+  "lat": 45.13277778,
+  "lon": -113.7988889,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Lemhi_River_below_L5_Diversion_near_Salmon/ID_Lemhi_River_below_L5_Diversion_near_Salmon_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13305310/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "usgs-pend-oreille-river-at-newport",
+  "name": "Pend Oreille River at Newport",
+  "description": "Pend Oreille River at Newport, WA",
+  "lat": 48.1822222,
+  "lon": -117.0341667,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/WA_Pend_Oreille_River_at_Newport/WA_Pend_Oreille_River_at_Newport_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/12395500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

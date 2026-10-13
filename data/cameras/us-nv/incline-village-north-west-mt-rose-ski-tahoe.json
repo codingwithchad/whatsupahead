@@ -1,0 +1,18 @@
+{
+  "id": "incline-village-north-west-mt-rose-ski-tahoe",
+  "name": "Incline Village – North-west: Mt. Rose - Ski Tahoe",
+  "lat": 39.31394,
+  "lon": -119.88432,
+  "feed_type": "image",
+  "source": "snowstash.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1662185166",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1662185166",
+  "tags": [],
+  "attribution_text": "snowstash.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

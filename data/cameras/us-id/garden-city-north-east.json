@@ -1,0 +1,18 @@
+{
+  "id": "garden-city-north-east",
+  "name": "Garden City – North-east",
+  "lat": 43.55812,
+  "lon": -116.29046,
+  "feed_type": "image",
+  "source": "ambientweather.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793897647",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793897647",
+  "tags": [],
+  "attribution_text": "ambientweather.net via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

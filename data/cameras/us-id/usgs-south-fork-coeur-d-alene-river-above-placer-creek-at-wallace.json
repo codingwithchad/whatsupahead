@@ -1,0 +1,20 @@
+{
+  "id": "usgs-south-fork-coeur-d-alene-river-above-placer-creek-at-wallace",
+  "name": "South Fork Coeur d Alene River above Placer Creek at Wallace",
+  "description": "South Fork Coeur d'Alene River above Placer Creek at Wallace, ID",
+  "lat": 47.47518056,
+  "lon": -115.9284444,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_South_Fork_Coeur_d_Alene_River_above_Placer_Creek_at_Wallace/ID_South_Fork_Coeur_d_Alene_River_above_Placer_Creek_at_Wallace_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/12413131/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

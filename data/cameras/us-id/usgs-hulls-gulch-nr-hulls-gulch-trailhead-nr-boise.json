@@ -1,0 +1,20 @@
+{
+  "id": "usgs-hulls-gulch-nr-hulls-gulch-trailhead-nr-boise",
+  "name": "Hulls Gulch nr Hulls Gulch Trailhead nr Boise",
+  "description": "Claremont Fire Response Network",
+  "lat": 43.64675,
+  "lon": -116.145139,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Hulls_Gulch_nr_Hulls_Gulch_Trailhead_nr_Boise/ID_Hulls_Gulch_nr_Hulls_Gulch_Trailhead_nr_Boise_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13205540/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

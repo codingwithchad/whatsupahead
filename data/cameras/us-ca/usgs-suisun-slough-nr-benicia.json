@@ -1,0 +1,20 @@
+{
+  "id": "usgs-suisun-slough-nr-benicia",
+  "name": "Suisun Slough nr Benicia",
+  "description": "Suisun Slough nr Benicia, CA",
+  "lat": 38.12379722,
+  "lon": -122.08138611,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Suisun_Slough_nr_Benicia/CA_Suisun_Slough_nr_Benicia_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11455740/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

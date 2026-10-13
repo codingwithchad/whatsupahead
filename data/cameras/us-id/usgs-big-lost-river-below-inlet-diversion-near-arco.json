@@ -1,0 +1,20 @@
+{
+  "id": "usgs-big-lost-river-below-inlet-diversion-near-arco",
+  "name": "Big Lost River below Inlet Diversion near Arco",
+  "description": "Big Lost River below Inlet Diversion near Arco, ID",
+  "lat": 43.5158333,
+  "lon": -113.0819444,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Big_Lost_River_below_Inlet_Diversion_near_Arco/ID_Big_Lost_River_below_Inlet_Diversion_near_Arco_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13132520/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

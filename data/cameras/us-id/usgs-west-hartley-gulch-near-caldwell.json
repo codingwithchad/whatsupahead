@@ -1,0 +1,20 @@
+{
+  "id": "usgs-west-hartley-gulch-near-caldwell",
+  "name": "West Hartley Gulch near Caldwell",
+  "description": "West Hartley Gulch near Caldwell, ID ",
+  "lat": 43.69960556,
+  "lon": -116.6856944,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_West_Hartley_Gulch_near_Caldwell/ID_West_Hartley_Gulch_near_Caldwell_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13210986/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

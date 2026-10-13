@@ -1,0 +1,20 @@
+{
+  "id": "usgs-steamboat-ck-at-steamboat",
+  "name": "Steamboat Ck at Steamboat",
+  "description": "Rhodes Road bridge upstream of gaging station",
+  "lat": 39.3771333,
+  "lon": -119.7436583,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/NV_Steamboat_Ck_at_Steamboat/NV_Steamboat_Ck_at_Steamboat_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/10349300/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "usgs-freestone-cr-at-freestone-cr-trailhead-nr-boise",
+  "name": "Freestone Cr at Freestone Cr Trailhead nr Boise",
+  "description": "Claremont Fire Response Network. ",
+  "lat": 43.624219,
+  "lon": -116.175719,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Freestone_Cr_at_Freestone_Cr_Trailhead_nr_Boise/ID_Freestone_Cr_at_Freestone_Cr_Trailhead_nr_Boise_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13204990/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "reno-south-west-carson-range",
+  "name": "Reno – South-west: Carson Range",
+  "lat": 39.55725,
+  "lon": -119.81423,
+  "feed_type": "image",
+  "source": "cameraftp.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1514596691",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1514596691",
+  "tags": [],
+  "attribution_text": "cameraftp.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

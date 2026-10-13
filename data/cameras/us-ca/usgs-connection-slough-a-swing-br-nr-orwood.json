@@ -1,0 +1,20 @@
+{
+  "id": "usgs-connection-slough-a-swing-br-nr-orwood",
+  "name": "Connection Slough A Swing Br nr Orwood",
+  "description": "Connection Slough at Swing Bridge near Orwood, CA looking toward Swing Bridge.",
+  "lat": 38.004122,
+  "lon": -121.530939,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Connection_Slough_A_Swing_Br_nr_Orwood/CA_Connection_Slough_A_Swing_Br_nr_Orwood_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/380015121315101/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "usgs-big-lost-river-near-leslie",
+  "name": "Big Lost River near Leslie",
+  "description": "Big Lost River near Leslie, ID",
+  "lat": 43.859375,
+  "lon": -113.4666694,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Big_Lost_River_near_Leslie/ID_Big_Lost_River_near_Leslie_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13130300/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

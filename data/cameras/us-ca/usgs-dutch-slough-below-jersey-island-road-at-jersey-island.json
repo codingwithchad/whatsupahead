@@ -1,0 +1,20 @@
+{
+  "id": "usgs-dutch-slough-below-jersey-island-road-at-jersey-island",
+  "name": "Dutch Slough below Jersey Island Road at Jersey Island",
+  "description": "Dutch Slough below Jersey Island Road at Jersey Island, CA",
+  "lat": 38.0135326,
+  "lon": -121.667731,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Dutch_Slough_below_Jersey_Island_Road_at_Jersey_Island/CA_Dutch_Slough_below_Jersey_Island_Road_at_Jersey_Island_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11313433/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

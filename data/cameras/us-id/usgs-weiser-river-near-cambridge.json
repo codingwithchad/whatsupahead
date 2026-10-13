@@ -1,0 +1,20 @@
+{
+  "id": "usgs-weiser-river-near-cambridge",
+  "name": "Weiser River near Cambridge",
+  "description": "Weiser River near Cambridge, ID",
+  "lat": 44.5794444,
+  "lon": -116.6433333,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/ID_Weiser_River_near_Cambridge/ID_Weiser_River_near_Cambridge_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/13258500/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

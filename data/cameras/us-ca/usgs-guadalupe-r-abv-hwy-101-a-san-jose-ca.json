@@ -1,0 +1,20 @@
+{
+  "id": "usgs-guadalupe-r-abv-hwy-101-a-san-jose-ca",
+  "name": "GUADALUPE R ABV HWY 101 A SAN JOSE CA",
+  "description": "Camera is used to transmit images of stream conditions.",
+  "lat": 37.3738296,
+  "lon": -121.9330129,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_GUADALUPE_R_ABV_HWY_101_A_SAN_JOSE_CA/CA_GUADALUPE_R_ABV_HWY_101_A_SAN_JOSE_CA_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11169025/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

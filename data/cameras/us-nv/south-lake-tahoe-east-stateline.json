@@ -1,0 +1,18 @@
+{
+  "id": "south-lake-tahoe-east-stateline",
+  "name": "South Lake Tahoe – East: Stateline",
+  "lat": 38.96187,
+  "lon": -119.93813,
+  "feed_type": "image",
+  "source": "storage.googleapis.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1793910242",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1793910242",
+  "tags": [],
+  "attribution_text": "storage.googleapis.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

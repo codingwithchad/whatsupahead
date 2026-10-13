@@ -1,0 +1,20 @@
+{
+  "id": "usgs-arroyo-de-la-laguna-a-corte-madrid-nr-pleasanton",
+  "name": "Arroyo De LA Laguna A Corte Madrid nr Pleasanton",
+  "description": "Camera used to transmit images of stream conditions and collect image velocimetry data.",
+  "lat": 37.66830556,
+  "lon": -121.9094167,
+  "feed_url": "https://usgs-nims-images.s3.amazonaws.com/720/CA_Arroyo_DE_LA_Laguna_A_Corte_Madrid_nr_Pleasanton/CA_Arroyo_DE_LA_Laguna_A_Corte_Madrid_nr_Pleasanton_newest.jpg",
+  "feed_type": "image",
+  "source": "USGS",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://waterdata.usgs.gov/monitoring-location/11176340/",
+  "embed_mode": "direct",
+  "refresh_seconds": 900,
+  "tags": [
+    "river"
+  ],
+  "attribution_text": "U.S. Geological Survey",
+  "created_at": "2026-10-13T00:00:00Z"
+}

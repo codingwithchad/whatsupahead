@@ -1,0 +1,18 @@
+{
+  "id": "mccall-north-art-roberts-park-payette-lake",
+  "name": "McCall – North: Art Roberts Park - Payette Lake",
+  "lat": 44.91132,
+  "lon": -116.09902,
+  "feed_type": "image",
+  "source": "brundage.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1349994605",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1349994605",
+  "tags": [],
+  "attribution_text": "brundage.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

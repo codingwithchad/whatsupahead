@@ -1,0 +1,18 @@
+{
+  "id": "sandpoint-west-sandpoint-airport",
+  "name": "Sandpoint – West: Sandpoint Airport",
+  "lat": 48.2922,
+  "lon": -116.56447,
+  "feed_type": "image",
+  "source": "kaniksu.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1619024190",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1619024190",
+  "tags": [],
+  "attribution_text": "kaniksu.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

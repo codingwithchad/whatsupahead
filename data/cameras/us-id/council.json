@@ -1,0 +1,18 @@
+{
+  "id": "council",
+  "name": "Council",
+  "lat": 44.75039,
+  "lon": -116.44555,
+  "feed_type": "image",
+  "source": "eye-n-sky.net via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1701971623",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1701971623",
+  "tags": [],
+  "attribution_text": "eye-n-sky.net via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

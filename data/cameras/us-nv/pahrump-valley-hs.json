@@ -1,0 +1,18 @@
+{
+  "id": "pahrump-valley-hs",
+  "name": "Pahrump: Valley HS",
+  "lat": 36.21274,
+  "lon": -115.99475,
+  "feed_type": "image",
+  "source": "instacam.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1385545201",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1385545201",
+  "tags": [],
+  "attribution_text": "instacam.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}
