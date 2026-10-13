@@ -613,6 +613,7 @@
 
 		{#if jumps.length}
 			<nav class="radius way jump" aria-label="Jump to a pass">
+				<span class="vehicle-label">Jump to:</span>
 				{#each jumps as j (j.id)}
 					<button onclick={() => jumpTo(j.index)}>{j.name} ↓</button>
 				{/each}

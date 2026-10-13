@@ -134,7 +134,6 @@
 						{#if place.cover}
 							<img src={place.cover.url} alt="" loading="lazy" />
 						{/if}
-						<span class="live"><i></i> Live</span>
 					</span>
 					<span class="place-body">
 						<span class="place-name">{place.name}</span>

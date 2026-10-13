@@ -34,6 +34,7 @@
 
 <header class="top">
 	<a class="brand" href="/">What's Up Ahead</a>
+	<span class="top-title top-narrow">{data.placeId ? 'Place' : 'Search'}</span>
 	<SearchBox value={data.placeId ? '' : data.q} />
 </header>
 

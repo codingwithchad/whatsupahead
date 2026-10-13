@@ -169,6 +169,7 @@ button:disabled {
 	background: var(--card);
 }
 .jump {
+	align-items: center;
 	margin-bottom: 12px;
 }
 /* Jumping to a camera stops below the sticky top bar. */
@@ -485,36 +486,7 @@ dd {
 	object-fit: cover;
 	display: block;
 }
-.live {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	display: flex;
-	align-items: center;
-	gap: 6px;
-	padding: 3px 10px;
-	border-radius: 999px;
-	font-size: var(--fs-xs);
-	font-weight: 700;
-	color: #fff;
-	background: rgb(0 0 0 / 0.6);
-}
-.live i {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: #ff4d4d;
-	animation: pulse 1.6s infinite;
-}
-@keyframes pulse {
-	50% {
-		opacity: 0.25;
-	}
-}
 @media (prefers-reduced-motion: reduce) {
-	.live i {
-		animation: none;
-	}
 	.place {
 		transition: none;
 	}
@@ -683,6 +655,19 @@ button.wide {
 .top-title {
 	color: var(--muted);
 	font-size: var(--fs-sm);
+}
+/* Place and pass pages: a search box in the top bar on wider screens, the page's name on phones (where the box
+   would be squeezed to a few letters; search is on the home page, one tap away). */
+.top-narrow {
+	display: none;
+}
+@media (max-width: 479px) {
+	.top .search {
+		display: none;
+	}
+	.top-narrow {
+		display: inline;
+	}
 }
 .lede-dark {
 	color: var(--muted);
@@ -1462,6 +1447,11 @@ button.wide {
 .live-play:active .play-icon {
 	transform: scale(1.08);
 }
+@keyframes pulse {
+	50% {
+		opacity: 0.25;
+	}
+}
 .live-badge {
 	position: absolute;
 	top: 10px;
@@ -1889,6 +1879,7 @@ div.image-button {
 	align-items: center;
 	gap: 6px;
 	min-height: 40px;
+	border-radius: 999px;
 }
 .share-menu {
 	display: flex;
@@ -2560,6 +2551,7 @@ div.image-button {
 }
 .trip-tools .tool-follow {
 	padding: 8px 14px;
+	border-radius: 999px;
 }
 .trip-tools .share-btn {
 	padding: 6px 10px;

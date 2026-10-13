@@ -237,3 +237,16 @@ camera was added. The Windy importer now skips the state cameras Windy relays fr
 Arizona's 511 (we take state cameras from the states), and fire-lookout cameras, which still need asking first.
 The Park Service has no published camera pictures for Craters of the Moon, Great Basin, Death Valley or Lake Mead.
 City and county cameras in all five states are a research task for contributors (issue #6).
+
+## 2026-10-13: Right now, jump to the pass, and one look throughout
+
+The home page now opens with "Right now" when any pass is closed or needs chains or traction tires (each pass
+linked; roads shut for the winter left out; nothing at all when every pass is clear), so a storm shows before anyone
+searches. A drive's first cameras are often city streets (Seattle to Stevens Pass starts in the SR 99 tunnel), so
+drives that cross or end at a pass get "Jump to: Stevens Pass ↓", which scrolls to the cameras from five miles before
+the summit.
+
+One look across the app: a missing page now has the usual top bar and a way on (it was a bare "404"); on phones the
+top bar of place and pass pages names the page, like every other page, instead of a search box squeezed to a few
+letters (wider screens keep the box); Share and Follow are pills like the other buttons in a row; and place cover
+pictures no longer carry a "Live" badge (only YouTube streams are live).

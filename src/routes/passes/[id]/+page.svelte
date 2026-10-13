@@ -109,6 +109,7 @@
 
 <header class="top">
 	<a class="brand" href="/">What's Up Ahead</a>
+	<span class="top-title top-narrow">Mountain pass</span>
 	<SearchBox value="" />
 </header>
 

@@ -31,9 +31,12 @@
 	<h1>Near you</h1>
 	{#if !data.point}
 		<p class="empty">
-			{status === 'denied'
-				? 'Location is turned off for this site. You can still search any town or zip on the home page.'
-				: 'Finding where you are…'}
+			{#if status === 'denied'}
+				Location is turned off for this site. You can still search any town or zip on the
+				<a href="/">home page</a>.
+			{:else}
+				Finding where you are…
+			{/if}
 		</p>
 	{:else}
 		<p class="lede-dark">
