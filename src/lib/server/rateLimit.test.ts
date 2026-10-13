@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { allow, visitorAddress, withoutPort } from './rateLimit';
+import { allow, isCloudflare, visitorAddress, withoutPort } from './rateLimit';
 
 describe('allow', () => {
 	it('lets calls through up to the limit, then says no', () => {
@@ -33,6 +33,37 @@ describe('visitorAddress', () => {
 		expect(visitorAddress(req('6.6.6.6, 203.0.113.9, 10.1.1.1, 10.2.2.2'), socket)).toBe(
 			'203.0.113.9'
 		);
+	});
+
+	it("trusts Cloudflare's CF-Connecting-IP only when the request came from Cloudflare", () => {
+		const through = (peer: string, visitor: string) =>
+			new Request('http://x/', {
+				headers: { 'x-forwarded-for': `6.6.6.6, ${peer}`, 'cf-connecting-ip': visitor }
+			});
+		const old = process.env.TRUSTED_PROXIES;
+		process.env.TRUSTED_PROXIES = '1';
+		try {
+			expect(visitorAddress(through('172.70.1.2:443', '203.0.113.9'), socket)).toBe('203.0.113.9');
+			expect(visitorAddress(through('[2606:4700::1]:443', '2001:db8::5'), socket)).toBe(
+				'2001:db8::5'
+			);
+			// Someone reaching the app directly can't choose who they are.
+			expect(visitorAddress(through('198.51.100.7:5555', '203.0.113.9'), socket)).toBe(
+				'198.51.100.7'
+			);
+			expect(visitorAddress(through('172.70.1.2:443', 'not an address'), socket)).toBe(
+				'172.70.1.2'
+			);
+		} finally {
+			process.env.TRUSTED_PROXIES = old;
+		}
+	});
+
+	it('knows Cloudflare addresses', () => {
+		expect(isCloudflare('104.16.1.1')).toBe(true);
+		expect(isCloudflare('2a06:98c1::1')).toBe(true);
+		expect(isCloudflare('203.0.113.9')).toBe(false);
+		expect(isCloudflare('nonsense')).toBe(false);
 	});
 
 	it('uses the connection address when there is no proxy header', () => {

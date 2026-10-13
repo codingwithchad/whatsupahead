@@ -118,6 +118,13 @@ async function handleFor(
 	}
 	const response = await resolve(event);
 	if (event.request.method === 'GET' && response.status === 200) countVisit(event);
+	// Pictures may be kept by Cloudflare in front of the app (a shared link's preview is then made once, not for
+	// every visitor), but pages never: each page view must reach the app to be counted, and pages are cheap.
+	if (
+		(event.isDataRequest || response.headers.get('content-type')?.startsWith('text/html')) &&
+		!response.headers.has('cdn-cache-control')
+	)
+		response.headers.set('cdn-cache-control', 'no-store');
 	for (const [name, value] of Object.entries(SECURITY_HEADERS))
 		if (!response.headers.has(name)) response.headers.set(name, value);
 	return response;
