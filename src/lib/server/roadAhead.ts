@@ -24,7 +24,13 @@ import { cumulativeMiles, type LatLon } from '../route';
 import { cached, cachedStale } from './cache';
 import { allow } from './rateLimit';
 import { idahoClosure, idahoSurface } from '../idaho';
-import { caltransCheckpoints, caltransClosures, idahoFeeds, odotFeeds } from './passes';
+import {
+	caltransCheckpoints,
+	caltransClosures,
+	idahoFeeds,
+	nevadaFeeds,
+	odotFeeds
+} from './passes';
 import { nearestTown } from './gazetteer';
 
 const USER_AGENT = 'WhatsUpAhead (https://github.com/codingwithchad/whatsupahead)';
@@ -163,7 +169,7 @@ export async function roadWarnings(
 			.filter((_, i) => i % 20 === 0 || i === route.length - 1)
 			.map(([lat, lon]) => regionAt(lat, lon)?.abbr)
 	);
-	const [wa, or, ca, id, checkpoints, alerts, surface, idSurface] = await Promise.all([
+	const [wa, or, ca, id, nv, checkpoints, alerts, surface, idSurface] = await Promise.all([
 		states.has('WA') ? wsdotClosures() : [],
 		states.has('OR')
 			? odotFeeds().then((f) =>
@@ -184,6 +190,20 @@ export async function roadWarnings(
 						: null
 				)
 			: [],
+		states.has('NV')
+			? nevadaFeeds().then((f) =>
+					f
+						? f.events
+								.map((e) =>
+									idahoClosure(e, Date.now(), {
+										source: 'NDOT',
+										link: 'https://www.nvroads.com/'
+									})
+								)
+								.filter((c): c is RoadClosure => c !== null)
+						: null
+				)
+			: [],
 		states.has('CA') ? caltransCheckpoints() : [],
 		weatherAlerts(route, cum, minutes, departAt),
 		states.has('WA') ? wsdotSurface() : [],
@@ -200,6 +220,7 @@ export async function roadWarnings(
 		or === null ? 'ODOT closures' : null,
 		ca === null ? 'Caltrans closures' : null,
 		id === null ? 'Idaho closures' : null,
+		nv === null ? 'Nevada closures' : null,
 		checkpoints === null ? 'Caltrans chain controls' : null,
 		alerts === null ? 'National Weather Service warnings' : null,
 		surface === null ? 'WSDOT road surface temperatures' : null,
@@ -207,7 +228,7 @@ export async function roadWarnings(
 	].filter((s): s is string => s !== null);
 	return {
 		closures: closuresOnRoute(
-			[...(wa ?? []), ...(or ?? []), ...(ca ?? []), ...(id ?? [])],
+			[...(wa ?? []), ...(or ?? []), ...(ca ?? []), ...(id ?? []), ...(nv ?? [])],
 			route,
 			cum
 		),

@@ -1,0 +1,19 @@
+{
+  "id": "ndot-sahara-ave-cc-215-nb",
+  "name": "Sahara Ave & CC 215 NB",
+  "lat": 36.14436,
+  "lon": -115.33578,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7377",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "ndot-flamingo-rd-el-capitan-way",
+  "name": "Flamingo Rd & El Capitan Way",
+  "lat": 36.11517,
+  "lon": -115.28782,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7661",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

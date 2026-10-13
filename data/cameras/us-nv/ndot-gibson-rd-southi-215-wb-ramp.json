@@ -1,0 +1,19 @@
+{
+  "id": "ndot-gibson-rd-southi-215-wb-ramp",
+  "name": "Gibson Rd & SouthI-215 WB Ramp",
+  "lat": 36.03246,
+  "lon": -115.02979,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7551",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

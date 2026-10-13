@@ -1,0 +1,20 @@
+{
+  "id": "ndot-us95-schurz",
+  "name": "US95 @ Schurz",
+  "lat": 38.94067,
+  "lon": -118.8107,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7856",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 95"
+}

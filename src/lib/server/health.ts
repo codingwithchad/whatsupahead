@@ -1,6 +1,6 @@
 import { REPO_URL } from '../brand';
 import { getCatalog } from './catalog';
-import { idahoFeeds } from './passes';
+import { idahoFeeds, nevadaFeeds } from './passes';
 
 // Is each outside source still answering? Every half hour the server makes one small request to each (the same
 // kind the app makes), and /healthz reports the results. A daily GitHub Action reads them and opens an issue
@@ -121,6 +121,25 @@ const CHECKS: Check[] = [
 			if (!cam) return null;
 			const bytes = new Uint8Array(await (await get(cam.feed_url!)).arrayBuffer());
 			if (!(bytes[0] === 0xff && bytes[1] === 0xd8)) return 'picture is not a JPEG';
+		}
+	},
+	{
+		name: 'nevada-511',
+		run: async () => {
+			if (!process.env.NV_511_DOT_API_KEY) return null;
+			// The same cached feeds the pass reports use, so this costs Nevada 511 no extra calls.
+			if (!(await nevadaFeeds())) return 'not answering (key may be invalid)';
+		}
+	},
+	{
+		name: 'ndot-pictures',
+		run: async () => {
+			const cam = getCatalog().cameras.find((c) => c.source === 'NDOT' && c.feed_url);
+			if (!cam) return null;
+			const bytes = new Uint8Array(await (await get(cam.feed_url!)).arrayBuffer());
+			// NDOT answers a camera that is down with a PNG notice; only the system as a whole matters here.
+			if (!(bytes[0] === 0xff && bytes[1] === 0xd8) && !(bytes[0] === 0x89 && bytes[1] === 0x50))
+				return 'picture is not an image';
 		}
 	},
 	{

@@ -1,0 +1,11 @@
+{
+  "id": "pass-mt-rose",
+  "name": "Mount Rose Summit (SR 431)",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Reno to Incline Village and the north shore of Lake Tahoe",
+  "lat": 39.31163,
+  "lon": -119.89983,
+  "radius_miles": 10,
+  "collection": "passes"
+}

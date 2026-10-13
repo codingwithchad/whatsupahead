@@ -1,0 +1,19 @@
+{
+  "id": "spooner",
+  "name": "Spooner Summit",
+  "route": "US 50",
+  "connects": "Carson City to Lake Tahoe's east shore, Stateline and South Lake Tahoe",
+  "group": "Lake Tahoe and I-80",
+  "lat": 39.10403,
+  "lon": -119.89655,
+  "elevation_ft": 7146,
+  "place": "pass-spooner",
+  "report": {
+    "source": "ndot",
+    "route": "US 50"
+  },
+  "link": {
+    "label": "Nevada 511 road conditions",
+    "url": "https://www.nvroads.com/"
+  }
+}

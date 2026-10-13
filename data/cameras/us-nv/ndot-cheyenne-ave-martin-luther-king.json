@@ -1,0 +1,19 @@
+{
+  "id": "ndot-cheyenne-ave-martin-luther-king",
+  "name": "Cheyenne Ave & Martin Luther King",
+  "lat": 36.21753,
+  "lon": -115.16148,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7502",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

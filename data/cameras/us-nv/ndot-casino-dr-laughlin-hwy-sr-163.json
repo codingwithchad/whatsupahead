@@ -1,0 +1,19 @@
+{
+  "id": "ndot-casino-dr-laughlin-hwy-sr-163",
+  "name": "Casino Dr & Laughlin Hwy SR 163",
+  "lat": 35.17232,
+  "lon": -114.57137,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7623",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

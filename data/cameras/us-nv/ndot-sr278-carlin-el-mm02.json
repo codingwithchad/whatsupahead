@@ -1,0 +1,20 @@
+{
+  "id": "ndot-sr278-carlin-el-mm02",
+  "name": "SR278 Carlin EL MM02",
+  "lat": 40.67771,
+  "lon": -116.13918,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7760",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SR 278"
+}

@@ -1,7 +1,7 @@
 {
 	"name": "What's Up Ahead",
 	"short_name": "Up Ahead",
-	"description": "Cameras, weather and waits along your way. For Washington, Oregon, California and Idaho.",
+	"description": "Cameras, weather and waits along your way. For Washington, Oregon, California, Idaho and Nevada.",
 	"start_url": "/",
 	"scope": "/",
 	"display": "standalone",

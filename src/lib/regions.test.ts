@@ -9,6 +9,19 @@ describe('regions', () => {
 		expect(regionAt(46.87, -113.99)).toBeUndefined(); // Missoula, Montana
 	});
 
+	it('follows the California line and the Colorado River around Nevada', () => {
+		expect(regionAt(39.53, -119.81)?.abbr).toBe('NV'); // Reno
+		expect(regionAt(38.962, -119.94)?.abbr).toBe('NV'); // Stateline
+		expect(regionAt(38.94, -119.98)?.abbr).toBe('CA'); // South Lake Tahoe
+		expect(regionAt(39.31163, -119.89983)?.abbr).toBe('NV'); // Mount Rose Summit
+		expect(regionAt(36.17, -115.14)?.abbr).toBe('NV'); // Las Vegas
+		expect(regionAt(35.165, -114.573)?.abbr).toBe('NV'); // Laughlin
+		expect(regionAt(35.147, -114.56)).toBeUndefined(); // Bullhead City, Arizona
+		expect(regionAt(37.1, -113.58)).toBeUndefined(); // St. George, Utah
+		expect(timeZoneAt(39.53, -119.81)).toBe('America/Los_Angeles');
+		expect(timeZoneAt(40.737, -114.07)).toBe('America/Denver'); // West Wendover
+	});
+
 	it('follows the Snake River between Oregon and Idaho', () => {
 		expect(regionAt(44.027, -116.963)?.abbr).toBe('OR'); // Ontario
 		expect(regionAt(43.877, -116.995)?.abbr).toBe('OR'); // Nyssa
@@ -36,9 +49,9 @@ describe('regions', () => {
 		expect(regionAt(41.73, -122.63)?.abbr).toBe('CA'); // Yreka
 		expect(regionAt(42.19, -122.71)?.abbr).toBe('OR'); // Ashland
 		expect(regionAt(38.94, -119.98)?.abbr).toBe('CA'); // South Lake Tahoe
-		expect(regionAt(38.96, -119.94)).toBeUndefined(); // Stateline, Nevada
+		expect(regionAt(38.96, -119.94)?.abbr).toBe('NV'); // Stateline, Nevada
 		expect(regionAt(37.65, -118.97)?.abbr).toBe('CA'); // Mammoth Lakes
-		expect(regionAt(36.17, -115.14)).toBeUndefined(); // Las Vegas
+		expect(regionAt(36.17, -115.14)?.abbr).toBe('NV'); // Las Vegas
 		expect(regionAt(34.84, -114.61)?.abbr).toBe('CA'); // Needles
 		expect(regionAt(32.69, -114.63)).toBeUndefined(); // Yuma, Arizona
 		expect(regionAt(32.72, -117.16)?.abbr).toBe('CA'); // San Diego

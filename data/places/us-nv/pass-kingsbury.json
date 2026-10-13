@@ -1,0 +1,11 @@
+{
+  "id": "pass-kingsbury",
+  "name": "Kingsbury Grade (Daggett Summit) (SR 207)",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Minden and Gardnerville to Stateline and Heavenly",
+  "lat": 38.9757,
+  "lon": -119.8796,
+  "radius_miles": 10,
+  "collection": "passes"
+}

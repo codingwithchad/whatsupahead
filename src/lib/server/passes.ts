@@ -17,6 +17,7 @@ import {
 	type IdahoRoadReport,
 	type IdahoStation
 } from '../idaho';
+import { nevadaPassReport, type NevadaRoadReport, type NevadaStation } from '../nevada';
 import type { PassInfo } from '../types';
 import { cachedStale } from './cache';
 import { getCatalog } from './catalog';
@@ -26,7 +27,6 @@ const URL_ =
 	'https://wsdot.wa.gov/Traffic/api/MountainPassConditions/MountainPassConditionsREST.svc/GetMountainPassConditionsAsJson';
 const ODOT = 'https://api.odot.state.or.us/tripcheck';
 const CALTRANS = 'https://cwwp2.dot.ca.gov/data';
-const IDAHO = 'https://511.idaho.gov/api';
 
 /** The current report for every Washington pass, keyed by WSDOT's pass id. Empty if WSDOT can't be reached. */
 export async function livePasses(): Promise<Map<number, PassReport>> {
@@ -77,45 +77,63 @@ export async function odotFeeds(): Promise<{
 	}
 }
 
-let idahoFailedAt = 0;
+// Idaho 511 and Nevada 511 are the same system: one key each, ten calls a minute each.
+const FEEDS_511 = {
+	idaho: {
+		base: 'https://511.idaho.gov/api',
+		key: 'ID_511_DOT_API_KEY',
+		roads: 'v3/get/winterroads'
+	},
+	nevada: {
+		base: 'https://www.nvroads.com/api',
+		key: 'NV_511_DOT_API_KEY',
+		roads: 'v3/get/roadconditions'
+	}
+} as const;
+const failedAt: Record<keyof typeof FEEDS_511, number> = { idaho: 0, nevada: 0 };
 
 /**
- * Idaho 511's road reports, traffic events and road weather stations, or null when Idaho can't be reached.
- * Idaho 511 allows ten calls a minute for our key; this makes three every five minutes, whoever asks.
+ * A 511 site's road reports, traffic events and road weather stations, or null when it can't be reached.
+ * Each allows ten calls a minute for our key; this makes three every five minutes, whoever asks, and after a
+ * failure (a bad key, the site down) waits five minutes before asking again rather than on every page.
  */
-export async function idahoFeeds(): Promise<{
-	roads: IdahoRoadReport[];
-	events: IdahoEvent[];
-	stations: IdahoStation[];
-} | null> {
-	const key = process.env.ID_511_DOT_API_KEY;
+async function feeds511<R, S>(
+	state: keyof typeof FEEDS_511
+): Promise<{ roads: R[]; events: IdahoEvent[]; stations: S[] } | null> {
+	const feed = FEEDS_511[state];
+	const key = process.env[feed.key];
 	if (!key) return null;
 	const get = <T>(path: string) => {
-		if (!allow('upstream:idaho511', 8)) throw new Error('Idaho 511 limit');
-		return json<T>(`${IDAHO}/${path}?format=json&key=${encodeURIComponent(key)}`);
+		if (!allow(`upstream:${state}511`, 8)) throw new Error('511 call limit');
+		return json<T>(`${feed.base}/${path}?format=json&key=${encodeURIComponent(key)}`);
 	};
 	try {
-		return await cachedStale('passes:idaho', 5 * 60 * 1000, async () => {
-			// After a failure (a bad key, Idaho down), wait before asking again rather than on every page.
-			if (Date.now() - idahoFailedAt < 5 * 60 * 1000) throw new Error('waiting after a failure');
+		return await cachedStale(`passes:${state}`, 5 * 60 * 1000, async () => {
+			if (Date.now() - failedAt[state] < 5 * 60 * 1000) throw new Error('waiting after a failure');
 			try {
 				const [roads, events, stations] = await Promise.all([
-					get<IdahoRoadReport[]>('v3/get/winterroads'),
+					get<R[]>(feed.roads),
 					get<IdahoEvent[]>('v2/get/event'),
-					get<IdahoStation[]>('v2/get/weatherstations')
+					get<S[]>('v2/get/weatherstations')
 				]);
 				return { roads, events, stations };
 			} catch (err) {
-				idahoFailedAt = Date.now();
+				failedAt[state] = Date.now();
 				throw err;
 			}
 		});
 	} catch (err) {
 		// Never the address: it carries the key.
-		console.warn(`[passes] idaho: ${(err as Error).message.replace(/key=[^&\s]+/g, 'key=…')}`);
+		console.warn(`[passes] ${state}: ${(err as Error).message.replace(/key=[^&\s]+/g, 'key=…')}`);
 		return null;
 	}
 }
+
+/** Idaho 511's road reports, events and road weather stations, or null when Idaho can't be reached. */
+export const idahoFeeds = () => feeds511<IdahoRoadReport, IdahoStation>('idaho');
+
+/** Nevada 511's road reports (with NDOT's chain controls), events and weather stations, or null. */
+export const nevadaFeeds = () => feeds511<NevadaRoadReport, NevadaStation>('nevada');
 
 /** Caltrans chain controls and lane closures for the districts our passes are in, or null if unreachable. */
 async function caltransFeeds(
@@ -217,11 +235,12 @@ export async function allPassReports(
 	passes: PassInfo[] = getCatalog().passes
 ): Promise<Map<string, PassReport>> {
 	const { districts, closureDistricts } = caltransDistricts(passes);
-	const [wsdot, odot, caltrans, idaho] = await Promise.all([
+	const [wsdot, odot, caltrans, idaho, nevada] = await Promise.all([
 		livePasses(),
 		passes.some((p) => p.report?.source === 'odot') ? odotFeeds() : null,
 		caltransFeeds(districts, closureDistricts),
-		passes.some((p) => p.report?.source === 'itd') ? idahoFeeds() : null
+		passes.some((p) => p.report?.source === 'itd') ? idahoFeeds() : null,
+		passes.some((p) => p.report?.source === 'ndot') ? nevadaFeeds() : null
 	]);
 	const out = new Map<string, PassReport>();
 	for (const p of passes) {
@@ -237,6 +256,11 @@ export async function allPassReports(
 			out.set(
 				p.id,
 				idahoPassReport({ ...p, report: r }, idaho.roads, idaho.events, idaho.stations)
+			);
+		else if (r?.source === 'ndot' && nevada)
+			out.set(
+				p.id,
+				nevadaPassReport({ ...p, report: r }, nevada.roads, nevada.events, nevada.stations)
 			);
 	}
 	return out;

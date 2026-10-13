@@ -1,0 +1,20 @@
+{
+  "id": "ndot-i-15-nb-1-mile-n-of-st-rose",
+  "name": "I-15 NB 1 mile N of St Rose",
+  "lat": 35.9741,
+  "lon": -115.1794,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7609",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 15"
+}

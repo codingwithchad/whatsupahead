@@ -1,0 +1,19 @@
+{
+  "id": "ndot-summerlin-pkwy-durango-dr-eb-ramp",
+  "name": "Summerlin Pkwy & Durango Dr EB Ramp",
+  "lat": 36.1763,
+  "lon": -115.27842,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7390",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

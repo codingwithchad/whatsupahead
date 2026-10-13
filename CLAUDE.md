@@ -1,7 +1,7 @@
 # What's Up Ahead: notes for Claude
 
-Public cameras, weather and pass reports around a place and along a drive, for Washington, Oregon, California
-and Idaho. A SvelteKit web app (no install, no accounts, no ads) at whatsupahead.com.
+Public cameras, weather and pass reports around a place and along a drive, for Washington, Oregon, California,
+Idaho and Nevada. A SvelteKit web app (no install, no accounts, no ads) at whatsupahead.com.
 
 ## Start of every session: catch up before suggesting anything
 

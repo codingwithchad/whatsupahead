@@ -12,7 +12,7 @@ import { headingAt, projectNear, type LatLon } from './route';
 // Service warnings (winter storms, floods, wind) for the places on the way at the time you get there.
 
 export interface RoadClosure {
-	source: 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD';
+	source: 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD' | 'NDOT';
 	headline: string;
 	start: Point;
 	end: Point;

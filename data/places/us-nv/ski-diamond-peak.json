@@ -1,0 +1,16 @@
+{
+  "id": "ski-diamond-peak",
+  "name": "Diamond Peak",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Above Incline Village, looking over Lake Tahoe",
+  "lat": 39.2537,
+  "lon": -119.9197,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Diamond Peak's website",
+    "url": "https://www.diamondpeak.com/"
+  }
+}

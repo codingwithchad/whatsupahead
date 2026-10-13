@@ -1,0 +1,20 @@
+{
+  "id": "ndot-us-95-nb-w-of-decatur",
+  "name": "US 95 NB W of Decatur",
+  "lat": 36.17429,
+  "lon": -115.21579,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7474",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 95"
+}

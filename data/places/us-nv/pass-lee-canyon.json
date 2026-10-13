@@ -1,0 +1,11 @@
+{
+  "id": "pass-lee-canyon",
+  "name": "Lee Canyon Road (SR 156)",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Las Vegas to the Lee Canyon ski area on Mount Charleston",
+  "lat": 36.3798,
+  "lon": -115.6117,
+  "radius_miles": 10,
+  "collection": "passes"
+}

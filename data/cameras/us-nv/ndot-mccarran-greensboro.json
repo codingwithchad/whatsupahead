@@ -1,0 +1,19 @@
+{
+  "id": "ndot-mccarran-greensboro",
+  "name": "McCarran & Greensboro",
+  "lat": 39.4778,
+  "lon": -119.8228,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7921",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "ndot-us395-white-lake-pkwy",
+  "name": "US395 @ White Lake Pkwy",
+  "lat": 39.64333,
+  "lon": -119.95814,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7870",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 395"
+}

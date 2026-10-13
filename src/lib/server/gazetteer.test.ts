@@ -28,8 +28,8 @@ describe('lookupTown', () => {
 	});
 
 	it('leaves other states and unknown text to the online search', () => {
-		expect(lookupTown('Reno, Nevada')).toBeNull();
-		expect(lookupTown('89501')).toBeNull();
+		expect(lookupTown('Phoenix, Arizona')).toBeNull();
+		expect(lookupTown('85004')).toBeNull();
 		expect(lookupTown('Stevens Pass')).toBeNull();
 		expect(lookupTown('1600 Pennsylvania Ave')).toBeNull();
 	});
@@ -38,5 +38,7 @@ describe('lookupTown', () => {
 		expect(suggestTowns('Hood R').map((t) => `${t.label}, ${t.sub}`)).toContain('Hood River, OR');
 		expect(lookupTown('Boise, Idaho')).not.toBeNull();
 		expect(lookupTown('83702')).not.toBeNull();
+		expect(lookupTown('Reno, Nevada')?.label).toBe('Reno, NV');
+		expect(lookupTown('89501')?.label).toMatch(/, NV$/);
 	});
 });

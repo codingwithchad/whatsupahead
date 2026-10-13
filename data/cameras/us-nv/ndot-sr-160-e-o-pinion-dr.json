@@ -1,0 +1,20 @@
+{
+  "id": "ndot-sr-160-e-o-pinion-dr",
+  "name": "SR-160 E/O Pinion Dr",
+  "lat": 36.01562,
+  "lon": -115.5024,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7692",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SR 160"
+}

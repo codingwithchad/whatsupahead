@@ -1,0 +1,19 @@
+{
+  "id": "lee-canyon",
+  "name": "Lee Canyon Road",
+  "route": "SR 156",
+  "connects": "Las Vegas to the Lee Canyon ski area on Mount Charleston",
+  "group": "Mount Charleston",
+  "lat": 36.3798,
+  "lon": -115.6117,
+  "place": "pass-lee-canyon",
+  "report": {
+    "source": "ndot",
+    "route": "SR 156",
+    "radius_km": 15
+  },
+  "link": {
+    "label": "Nevada 511 road conditions",
+    "url": "https://www.nvroads.com/"
+  }
+}

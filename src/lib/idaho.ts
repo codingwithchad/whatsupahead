@@ -113,22 +113,25 @@ export function reportLines(field: IdahoRoadReport['EncodedPolyline']): Pt[][] {
 		: [];
 }
 
-/** "I-90", "I 90" and "US-95", "US 95" are the same road; "SH-21" and "ID-21" too. */
+/**
+ * "I-90", "I 90" and "US-95", "US 95" are the same road; so are a state's own names for its highways ("SH-21",
+ * "ID-21"; Nevada's "SR-431", "NV-431"). Used for Idaho 511 and Nevada 511, which are the same system.
+ */
 export const sameIdahoRoad = (a: string | null | undefined, b: string) => {
 	const norm = (s: string) =>
 		s
 			.toUpperCase()
-			.replace(/^(SH|ID|SR)\b/, 'SH')
+			.replace(/^(SH|ID|SR|NV)\b/, 'SH')
 			.replace(/[^A-Z0-9]/g, '');
-	const road = (a ?? '').match(/^\s*((?:I|US|SH|ID|SR)[- ]?\d+)/i)?.[1];
+	const road = (a ?? '').match(/^\s*((?:I|US|SH|ID|SR|NV)[- ]?\d+)/i)?.[1];
 	return road !== undefined && norm(road) === norm(b);
 };
 
-const list = (v: string[] | string | null | undefined): string[] =>
+export const list = (v: string[] | string | null | undefined): string[] =>
 	(Array.isArray(v) ? v : v ? [v] : []).map((s) => s.trim()).filter(Boolean);
 
 /** How far a report's stretch comes to a point, in km. */
-function kmToLines(p: Pt, lines: Pt[][]): number {
+export function kmToLines(p: Pt, lines: Pt[][]): number {
 	let best = Infinity;
 	for (const line of lines)
 		for (let i = 0; i < line.length; i++)
@@ -175,7 +178,7 @@ export function eventInEffect(e: IdahoEvent, now = Date.now()): boolean {
 	});
 }
 
-const eventPoints = (e: IdahoEvent): Pt[] =>
+export const eventPoints = (e: IdahoEvent): Pt[] =>
 	[
 		[e.Latitude, e.Longitude],
 		[e.LatitudeSecondary, e.LongitudeSecondary]
@@ -183,7 +186,7 @@ const eventPoints = (e: IdahoEvent): Pt[] =>
 		.filter(([lat, lon]) => typeof lat === 'number' && typeof lon === 'number' && lat && lon)
 		.map(([lat, lon]) => ({ lat: lat as number, lon: lon as number }));
 
-const tidy = (s: string | null | undefined) =>
+export const tidy = (s: string | null | undefined) =>
 	(s ?? '')
 		.replace(/<[^>]+>/g, ' ')
 		.replace(/\s+/g, ' ')
@@ -297,24 +300,35 @@ export function idahoPassReport(
 }
 
 const ORDER: PassStatus[] = ['closed', 'chains', 'traction', 'open', 'off-season'];
-const worse = (a: PassStatus, b: PassStatus) => (ORDER.indexOf(a) <= ORDER.indexOf(b) ? a : b);
+export const worse = (a: PassStatus, b: PassStatus) =>
+	ORDER.indexOf(a) <= ORDER.indexOf(b) ? a : b;
 
-/** An Idaho event that closes a highway now, as a closure on a drive; null for anything else. */
-export function idahoClosure(e: IdahoEvent, now = Date.now()): RoadClosure | null {
+/**
+ * An Idaho 511 or Nevada 511 event that closes a highway now, as a closure on a drive; null for anything else.
+ * `by` names the agency (ITD by default) and its 511 site.
+ */
+export function idahoClosure(
+	e: IdahoEvent,
+	now = Date.now(),
+	by: { source: RoadClosure['source']; link: string } = {
+		source: 'ITD',
+		link: 'https://511.idaho.gov/'
+	}
+): RoadClosure | null {
 	if (!e.IsFullClosure || !eventInEffect(e, now)) return null;
-	// Only state highways: Idaho 511 also lists county and city streets, which a drive crosses rather than uses.
-	if (!/^\s*(I|US|SH|ID)[- ]?\d/i.test(e.RoadwayName ?? '')) return null;
+	// Only state highways: the 511 sites also list county and city streets, which a drive crosses rather than uses.
+	if (!/^\s*(I|US|SH|ID|SR|NV)[- ]?\d/i.test(e.RoadwayName ?? '')) return null;
 	const [start, end = start] = eventPoints(e);
 	if (!start) return null;
 	const headline = tidy(e.Description);
 	if (!headline) return null;
 	return {
-		source: 'ITD',
+		source: by.source,
 		headline,
 		start,
 		end,
 		updated: e.LastUpdated ? e.LastUpdated * 1000 : null,
-		link: 'https://511.idaho.gov/'
+		link: by.link
 	};
 }
 

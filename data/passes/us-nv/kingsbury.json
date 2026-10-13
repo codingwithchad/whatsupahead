@@ -1,0 +1,19 @@
+{
+  "id": "kingsbury",
+  "name": "Kingsbury Grade (Daggett Summit)",
+  "route": "SR 207",
+  "connects": "Minden and Gardnerville to Stateline and Heavenly",
+  "group": "Lake Tahoe and I-80",
+  "lat": 38.9757,
+  "lon": -119.8796,
+  "elevation_ft": 7334,
+  "place": "pass-kingsbury",
+  "report": {
+    "source": "ndot",
+    "route": "SR 207"
+  },
+  "link": {
+    "label": "Nevada 511 road conditions",
+    "url": "https://www.nvroads.com/"
+  }
+}

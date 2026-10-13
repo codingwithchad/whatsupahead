@@ -1,0 +1,10 @@
+{
+  "id": "elko",
+  "name": "Elko",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "I-80 across northern Nevada",
+  "lat": 40.8324,
+  "lon": -115.7631,
+  "radius_miles": 8
+}

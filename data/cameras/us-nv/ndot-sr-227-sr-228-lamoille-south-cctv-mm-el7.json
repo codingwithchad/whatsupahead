@@ -1,0 +1,20 @@
+{
+  "id": "ndot-sr-227-sr-228-lamoille-south-cctv-mm-el7",
+  "name": "SR-227/SR-228 Lamoille South CCTV MM EL7",
+  "lat": 40.78548,
+  "lon": -115.6756,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7725",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SR 227"
+}

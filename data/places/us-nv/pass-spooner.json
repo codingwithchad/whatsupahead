@@ -1,0 +1,11 @@
+{
+  "id": "pass-spooner",
+  "name": "Spooner Summit (US 50)",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Carson City to Lake Tahoe's east shore, Stateline and South Lake Tahoe",
+  "lat": 39.10403,
+  "lon": -119.89655,
+  "radius_miles": 10,
+  "collection": "passes"
+}

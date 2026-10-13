@@ -1,0 +1,19 @@
+{
+  "id": "ndot-jones-blvd-south-cc-215-eb-ramp",
+  "name": "Jones Blvd & South CC 215 EB Ramp",
+  "lat": 36.06578,
+  "lon": -115.22457,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7560",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

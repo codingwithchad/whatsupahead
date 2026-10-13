@@ -1,0 +1,20 @@
+{
+  "id": "ndot-i580-sr431-off-ramp-nb",
+  "name": "I580 @ SR431 Off Ramp NB",
+  "lat": 39.3969,
+  "lon": -119.75769,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7310",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 580"
+}

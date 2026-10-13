@@ -1,0 +1,19 @@
+{
+  "id": "mt-rose",
+  "name": "Mount Rose Summit",
+  "route": "SR 431",
+  "connects": "Reno to Incline Village and the north shore of Lake Tahoe",
+  "group": "Lake Tahoe and I-80",
+  "lat": 39.31163,
+  "lon": -119.89983,
+  "elevation_ft": 8911,
+  "place": "pass-mt-rose",
+  "report": {
+    "source": "ndot",
+    "route": "SR 431"
+  },
+  "link": {
+    "label": "Nevada 511 road conditions",
+    "url": "https://www.nvroads.com/"
+  }
+}

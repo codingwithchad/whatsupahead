@@ -1,0 +1,19 @@
+{
+  "id": "geiger",
+  "name": "Geiger Summit",
+  "route": "SR 341",
+  "connects": "Reno to Virginia City",
+  "group": "Northern Nevada",
+  "lat": 39.3682,
+  "lon": -119.6672,
+  "elevation_ft": 6789,
+  "place": "pass-geiger",
+  "report": {
+    "source": "ndot",
+    "route": "SR 341"
+  },
+  "link": {
+    "label": "Nevada 511 road conditions",
+    "url": "https://www.nvroads.com/"
+  }
+}

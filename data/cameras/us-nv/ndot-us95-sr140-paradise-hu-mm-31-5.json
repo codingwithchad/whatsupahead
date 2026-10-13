@@ -1,0 +1,20 @@
+{
+  "id": "ndot-us95-sr140-paradise-hu-mm-31-5",
+  "name": "US95/SR140 Paradise HU MM 31.5",
+  "lat": 41.39449,
+  "lon": -117.78223,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7743",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 95"
+}

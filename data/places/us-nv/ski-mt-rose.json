@@ -1,0 +1,16 @@
+{
+  "id": "ski-mt-rose",
+  "name": "Mt. Rose Ski Tahoe",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "At the top of the Mount Rose Highway, between Reno and Lake Tahoe",
+  "lat": 39.3285,
+  "lon": -119.885,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Mt. Rose Ski Tahoe's website",
+    "url": "https://skirose.com/"
+  }
+}

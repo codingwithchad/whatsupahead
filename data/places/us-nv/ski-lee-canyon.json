@@ -1,0 +1,16 @@
+{
+  "id": "ski-lee-canyon",
+  "name": "Lee Canyon",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "On Mount Charleston, about an hour from Las Vegas",
+  "lat": 36.3035,
+  "lon": -115.6788,
+  "radius_miles": 12,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Lee Canyon's website",
+    "url": "https://www.leecanyonlv.com/"
+  }
+}

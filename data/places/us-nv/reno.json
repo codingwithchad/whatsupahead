@@ -1,0 +1,10 @@
+{
+  "id": "reno",
+  "name": "Reno",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "I-80, I-580 and the Spaghetti Bowl",
+  "lat": 39.5296,
+  "lon": -119.8138,
+  "radius_miles": 4
+}

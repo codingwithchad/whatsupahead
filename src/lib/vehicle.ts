@@ -63,13 +63,14 @@ export function needFor(text: string, v: Vehicle): Answer {
 		// WSDOT: all-wheel drive is exempt "when all wheels are in gear and equipped with approved traction tires".
 		return answer('tires', 'AWD with traction tires: no chains. Carry them');
 	}
-	// Caltrans R-2: four-wheel drive with snow tires on all four wheels may go without chains.
-	if (/four-wheel drive with snow tires/i.test(t))
+	// Caltrans R-2 and NDOT ("All Vehicles except 4-wheel drive with Snow tires"): four-wheel drive with snow
+	// tires on all four wheels may go without chains.
+	if (/(four|4)-wheel drive with snow tires/i.test(t))
 		return v === 'awd'
 			? answer('tires', 'Snow tires on all four wheels, or chains. Carry chains')
 			: answer('chains');
-	// Caltrans R-1: snow tires instead of chains on vehicles under 6,000 lb.
-	if (/snow tires allowed/i.test(t))
+	// Caltrans R-1: snow tires instead of chains on vehicles under 6,000 lb. NDOT: "Chains or Snow Tires Required".
+	if (/snow tires allowed|chains or snow tires required/i.test(t))
 		return v === 'tow' ? answer('chains') : answer('tires', 'Snow tires, or chains. Carry chains');
 	// ODOT C: traction tires instead of chains under 10,000 lb and not towing.
 	if (/traction tires allowed in place of chains/i.test(t))

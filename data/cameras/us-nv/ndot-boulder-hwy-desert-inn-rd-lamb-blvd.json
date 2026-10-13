@@ -1,0 +1,19 @@
+{
+  "id": "ndot-boulder-hwy-desert-inn-rd-lamb-blvd",
+  "name": "Boulder Hwy & Desert Inn Rd-Lamb Blvd",
+  "lat": 36.12987,
+  "lon": -115.08396,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7338",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

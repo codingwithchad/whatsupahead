@@ -1,0 +1,19 @@
+{
+  "id": "ndot-veterans-memorial-dr-us-93-95",
+  "name": "Veterans Memorial Dr & US 93/95",
+  "lat": 35.96746,
+  "lon": -114.86848,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7548",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z"
+}

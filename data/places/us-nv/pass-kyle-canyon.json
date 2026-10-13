@@ -1,0 +1,11 @@
+{
+  "id": "pass-kyle-canyon",
+  "name": "Kyle Canyon Road (SR 157)",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Las Vegas to Mount Charleston village",
+  "lat": 36.2585,
+  "lon": -115.6435,
+  "radius_miles": 10,
+  "collection": "passes"
+}

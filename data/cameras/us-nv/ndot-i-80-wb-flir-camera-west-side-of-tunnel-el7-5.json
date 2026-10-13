@@ -1,0 +1,20 @@
+{
+  "id": "ndot-i-80-wb-flir-camera-west-side-of-tunnel-el7-5",
+  "name": "I-80 WB FLIR Camera West Side of Tunnel EL7.5",
+  "lat": 40.7229,
+  "lon": -116.0159,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7718",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 80"
+}

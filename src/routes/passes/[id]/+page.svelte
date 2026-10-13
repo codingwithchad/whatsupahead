@@ -25,7 +25,8 @@
 		WSDOT: { label: "WSDOT's pass page", url: 'https://wsdot.com/travel/real-time/mountainpasses' },
 		ODOT: { label: 'TripCheck', url: 'https://tripcheck.com/' },
 		Caltrans: { label: 'QuickMap', url: 'https://quickmap.dot.ca.gov/' },
-		ITD: { label: 'Idaho 511', url: 'https://511.idaho.gov/' }
+		ITD: { label: 'Idaho 511', url: 'https://511.idaho.gov/' },
+		NDOT: { label: 'Nevada 511', url: 'https://www.nvroads.com/' }
 	};
 	const statePage = $derived(pass.link ?? STATE_PAGE[pass.source]);
 	// Snow on the ground arrives a moment after the page; it joins the card's facts when it does.

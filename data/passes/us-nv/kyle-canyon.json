@@ -1,0 +1,19 @@
+{
+  "id": "kyle-canyon",
+  "name": "Kyle Canyon Road",
+  "route": "SR 157",
+  "connects": "Las Vegas to Mount Charleston village",
+  "group": "Mount Charleston",
+  "lat": 36.2585,
+  "lon": -115.6435,
+  "place": "pass-kyle-canyon",
+  "report": {
+    "source": "ndot",
+    "route": "SR 157",
+    "radius_km": 12
+  },
+  "link": {
+    "label": "Nevada 511 road conditions",
+    "url": "https://www.nvroads.com/"
+  }
+}

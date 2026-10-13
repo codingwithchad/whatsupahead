@@ -1,0 +1,10 @@
+{
+  "id": "incline-village",
+  "name": "Incline Village",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Lake Tahoe's north shore, at the bottom of the Mount Rose Highway",
+  "lat": 39.2513,
+  "lon": -119.9729,
+  "radius_miles": 5
+}

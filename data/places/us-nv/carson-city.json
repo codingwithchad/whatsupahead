@@ -1,0 +1,10 @@
+{
+  "id": "carson-city",
+  "name": "Carson City",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "I-580, US 50 and US 395",
+  "lat": 39.1638,
+  "lon": -119.7674,
+  "radius_miles": 5
+}

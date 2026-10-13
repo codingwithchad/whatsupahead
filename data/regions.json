@@ -487,6 +487,72 @@
 					46.43
 				]
 			]
+		},
+		{
+			"code": "US-NV",
+			"folder": "us-nv",
+			"name": "Nevada",
+			"abbr": "NV",
+			"country": "US",
+			"bbox": [
+				-120.01,
+				35.0,
+				-114.03,
+				42.0
+			],
+			"time_zone": "America/Los_Angeles",
+			"zones": [
+				{
+					"bbox": [
+						-114.1,
+						40.6,
+						-114.03,
+						40.8
+					],
+					"time_zone": "America/Denver",
+					"note": "West Wendover keeps Mountain time, with Utah"
+				}
+			],
+			"zip": "^8(89|9[0-8])\\d{2}$",
+			"outline_note": "Simplified state line: the Utah and Arizona borders and the Colorado River through Lake Mead; the California side is left wide because California comes first in this list.",
+			"outline": [
+				[
+					-120.01,
+					42.0
+				],
+				[
+					-114.04,
+					42.0
+				],
+				[
+					-114.04,
+					36.15
+				],
+				[
+					-114.4,
+					36.1
+				],
+				[
+					-114.74,
+					36.0
+				],
+				[
+					-114.66,
+					35.5
+				],
+				[
+					-114.569,
+					35.17
+				],
+				[
+					-114.63,
+					35.0
+				],
+				[
+					-120.01,
+					35.0
+				]
+			]
 		}
 	]
 }

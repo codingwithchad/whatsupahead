@@ -1,0 +1,20 @@
+{
+  "id": "ndot-us-95-nb-n-of-smoke-ranch",
+  "name": "US 95 NB N of Smoke Ranch",
+  "lat": 36.2071,
+  "lon": -115.2427,
+  "feed_url": "https://www.nvroads.com/map/Cctv/7452",
+  "feed_type": "image",
+  "source": "NDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.nvroads.com/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Nevada Department of Transportation (Nevada 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 95"
+}

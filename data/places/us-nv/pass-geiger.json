@@ -1,0 +1,11 @@
+{
+  "id": "pass-geiger",
+  "name": "Geiger Summit (SR 341)",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "Reno to Virginia City",
+  "lat": 39.3682,
+  "lon": -119.6672,
+  "radius_miles": 10,
+  "collection": "passes"
+}

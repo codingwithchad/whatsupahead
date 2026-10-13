@@ -1,0 +1,10 @@
+{
+  "id": "las-vegas",
+  "name": "Las Vegas",
+  "region": "Nevada",
+  "state": "Nevada",
+  "blurb": "I-15, the Strip and the beltway",
+  "lat": 36.1699,
+  "lon": -115.1398,
+  "radius_miles": 4
+}
