@@ -3,10 +3,11 @@
   "name": "Chinook Pass",
   "pass_id": 3,
   "route": "SR 410",
-  "connects": "Enumclaw to Yakima (closes in winter)",
+  "connects": "Enumclaw to Yakima",
   "group": "Cross-Cascades",
   "lat": 46.8717,
   "lon": -121.515483,
   "elevation_ft": 5430,
-  "place": "pass-chinook"
+  "place": "pass-chinook",
+  "winter_closure": "Closed for the winter, usually from November until late May"
 }

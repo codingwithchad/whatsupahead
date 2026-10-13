@@ -359,3 +359,90 @@ describe('blocksRoad', () => {
 		expect(blocksRoad(seasonal, null, summer)).toBe(false);
 	});
 });
+
+// Wordings from WSDOT's own pass reports in past winters (from the Internet Archive's copies, 2023 to 2026).
+describe('classifyPass with real WSDOT winter wording', () => {
+	const real = (restriction: string, road: string, dir = 'Eastbound') =>
+		classifyPass(
+			pass({
+				RestrictionOne: restriction ? r(restriction, dir) : null,
+				RestrictionTwo: restriction
+					? r(restriction, dir === 'Eastbound' ? 'Westbound' : dir)
+					: null,
+				RoadCondition: road
+			})
+		);
+
+	it('reads the restriction lines WSDOT used', () => {
+		expect(
+			real('Traction Tires Advised, Oversize Vehicles Prohibited.', 'Compact snow and ice.').status
+		).toBe('traction');
+		expect(
+			real(
+				'Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight.  Oversize Vehicles Prohibited.',
+				'Snowing'
+			).status
+		).toBe('chains');
+		expect(
+			real(
+				'Chains required on all vehicles except all wheel drive, Oversize Vehicles Prohibited.',
+				''
+			).status
+		).toBe('chains');
+		expect(real('Chains Required All Vehicles Including All Wheel Drive', '').status).toBe(
+			'chains'
+		);
+		expect(real('Pass Closed', 'Due to continued hazardous weather conditions...').status).toBe(
+			'closed'
+		);
+		expect(real('Closed for the season', '').status).toBe('closed');
+	});
+
+	it('closes a winter highway even when the note mentions reopening or a start time', () => {
+		expect(
+			real(
+				'',
+				'SR 20 North Cascades Highway between milepost 134 and 178 (Ross Dam Trailhead to Early Winters gate), is closed for the winter as of Nov. 8. Spring clearing work is typically assessed in March and the seasonal reopening date announced.'
+			).status
+		).toBe('closed');
+		expect(
+			real(
+				'',
+				'SR 20 the North Cascades Highway is closed for the season as of Thursday, November 30th at 6:00 p.m. The closure points are milepost 134 at Ross Dam Trailhead.'
+			).status
+		).toBe('closed');
+	});
+
+	it('does not close Mt. Baker Highway for the last stretch to Artist Point', () => {
+		const r1 = real(
+			'Traction Tires Advised, Oversize Vehicles Prohibited.',
+			'Compact snow and ice in places. The final 2.7 mile section of SR 542, known as the road to Artist Point (milepost 55) is closed for the season.'
+		);
+		expect(r1.status).toBe('traction');
+		expect(r1.notice).toBeUndefined();
+	});
+
+	it('passes on night closures and closures down the road as a notice', () => {
+		const night = real(
+			'Traction Tires Advised, Oversize Vehicles Prohibited.',
+			'Compact snow and ice\n\nUS 2 Stevens Pass between milepost 64 and 85 (pass summit to Coles Corner) is open daily from 6 a.m. to 6 p.m. with pilot car operations. **Road closed from 6 p.m. to 6 a.m. with no eastbound through traffic.'
+		);
+		expect(night.status).toBe('traction');
+		expect(night.notice).toBe(
+			'Road closed from 6 p.m. to 6 a.m. with no eastbound through traffic.'
+		);
+		const gate = real(
+			'No restrictions',
+			'Bare and wet\n\nUS 2 is still closed at MP 85, Coles Corner, 21 miles East of the summit and no freight traffic is allowed on the Chumstick Detour.'
+		);
+		expect(gate.status).toBe('open');
+		expect(gate.notice).toMatch(/^US 2 is still closed at MP 85/);
+		// Lane closures are not the road.
+		expect(
+			real(
+				'No restrictions',
+				'Bare and dry. Motorists will experience minor delays due to lane closures.'
+			).notice
+		).toBeUndefined();
+	});
+});

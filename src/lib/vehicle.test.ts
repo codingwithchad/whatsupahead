@@ -19,7 +19,7 @@ describe('needFor', () => {
 	it('reads WSDOT wordings for each vehicle', () => {
 		const awd = 'Chains are required on all vehicles except all wheel drive.';
 		expect(needFor(awd, 'car').need).toBe('chains');
-		expect(needFor(awd, 'awd').need).toBe('carry');
+		expect(needFor(awd, 'awd').need).toBe('tires');
 		expect(needFor(awd, 'tow').need).toBe('chains');
 		const heavy = 'Traction tires are required. Chains are required on vehicles over 10,000 GVW.';
 		expect(needFor(heavy, 'car').need).toBe('tires');
@@ -98,7 +98,7 @@ describe('passAnswer', () => {
 				{ direction: 'Westbound', text: 'Traction tires advised.' }
 			]
 		});
-		expect(passAnswer(r, 'awd', 90).need).toBe('carry');
+		expect(passAnswer(r, 'awd', 90).need).toBe('tires');
 		expect(passAnswer(r, 'car', 90).need).toBe('chains');
 		expect(passAnswer(r, 'car', 270).need).toBe('carry');
 		expect(passAnswer(r, 'car').need).toBe('chains');

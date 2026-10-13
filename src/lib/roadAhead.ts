@@ -39,7 +39,7 @@ export interface WsdotAlert {
 // The whole road, not a lane or a ramp. WSDOT files many lane and shoulder closures under "Closure", and some
 // "Closure" alerts are only delays, so the wording decides.
 const WHOLE_ROAD =
-	/\b(?:road|highway|roadway|pass|bridge|(?:I|SR|US)[- ]?\d+)\b[^.]{0,80}?\b(?:is|are|remains?|will be|has been)\s+(?:now\s+|fully\s+|completely\s+)?closed\b|\bfull(?:y)?\s+clos|\bclosed (?:in|to) both directions\b|\ball lanes (?:are |will be )?(?:closed|blocked)\b/i;
+	/\b(?:road|highway|roadway|pass|bridge|(?:I|SR|US)[- ]?\d+)\b[^.]{0,80}?\b(?:is|are|remains?|will be|has been)\s+(?:now\s+|still\s+|temporarily\s+|fully\s+|completely\s+)?closed\b|\bfull(?:y)?\s+clos|\bclosed (?:in|to) both directions\b|\ball lanes (?:are |will be )?(?:closed|blocked)\b/i;
 const PART =
 	/\b(?:up to (?:one|two|three|four|\d)|one|two|three|four|right|left|center|inside|outside|single|hov|express)\s+lanes?\b|\bshoulder\b|\bramps?\b|\bsidewalk\b|\btrail\b|\bexit\b/i;
 const ALL = /\ball lanes\b|\bboth directions\b|\bfull(?:y)?\s+clos/i;

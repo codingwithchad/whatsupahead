@@ -75,8 +75,8 @@ describe('driveVerdict', () => {
 		const passes = [{ name: 'Stevens Pass', report: chains, heading: 90 }];
 		expect(driveVerdict(drive({ passes, vehicle: 'car' })).level).toBe('ready');
 		const awd = driveVerdict(drive({ passes, vehicle: 'awd' }));
-		expect(awd.level).toBe('go');
-		expect(awd.facts[0].text).toBe('Stevens Pass: no chains needed for AWD. Carry them');
+		expect(awd.level).toBe('ready');
+		expect(awd.facts[0].text).toBe('Stevens Pass: AWD with traction tires: no chains. Carry them');
 	});
 
 	it('says stop for a closed pass with no way around, or a closed road', () => {

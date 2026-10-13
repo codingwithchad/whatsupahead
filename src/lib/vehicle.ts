@@ -50,15 +50,18 @@ export function needFor(text: string, v: Vehicle): Answer {
 	if (base === 'closed') return answer('closed');
 	if (v === 'tow' && /(towing|trailers?)[^.]{0,30}prohibited|prohibited[^.]{0,30}towing/i.test(t))
 		return answer('closed', 'No towing allowed');
-	if (/traction tires alone are not enough|chains? (are )?required on all vehicles\.?$/i.test(t))
+	if (
+		/traction tires alone are not enough|chains? (are )?required on all vehicles\.?$|including all[- ]wheel drive/i.test(
+			t
+		)
+	)
 		return answer('chains');
 
 	// WSDOT: "Chains are required on all vehicles except all wheel drive."
 	if (/except (all|four)[- ]wheel drive/i.test(t)) {
 		if (v !== 'awd') return answer('chains');
-		return TIRES_REQUIRED.test(t)
-			? answer('tires', 'Traction tires required. Carry chains')
-			: answer('carry', 'No chains needed for AWD. Carry them');
+		// WSDOT: all-wheel drive is exempt "when all wheels are in gear and equipped with approved traction tires".
+		return answer('tires', 'AWD with traction tires: no chains. Carry them');
 	}
 	// Caltrans R-2: four-wheel drive with snow tires on all four wheels may go without chains.
 	if (/four-wheel drive with snow tires/i.test(t))

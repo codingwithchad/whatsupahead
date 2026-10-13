@@ -33,7 +33,8 @@ export const TITLES: Record<Level, string> = {
 
 const ORDER: Level[] = ['stop', 'ready', 'unknown', 'go'];
 const worst = (a: Level, b: Level) => (ORDER.indexOf(a) <= ORDER.indexOf(b) ? a : b);
-const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+// Lower-case the first letter for the middle of a sentence, but not in a short form like "AWD" or "SR 20".
+const lower = (s: string) => (/^[A-Z]{2}/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1));
 const NEED_LEVEL: Record<Need, Level> = {
 	closed: 'stop',
 	chains: 'ready',
@@ -99,6 +100,14 @@ export function driveVerdict(d: DriveInput): Verdict {
 			tone: l
 		});
 	}
+	// A closure in the notes of an open pass (a night closure, a gate past the summit): worth a look.
+	for (const p of d.passes)
+		if (p.report?.notice)
+			add('ready', `${p.name}: ${lower(p.report.notice)}`, {
+				icon: 'closed',
+				text: `${p.name}: closure noted`,
+				tone: 'ready'
+			});
 	const reported = d.passes.filter((p) => p.report && p.report.status !== 'off-season');
 	// A pass with no report isn't a pass with no rules: show that it wasn't reported.
 	const silent = d.passes.filter((p) => !p.report || p.report.status === 'off-season');
@@ -208,7 +217,7 @@ export function passVerdict(p: PassInput): Verdict {
 	const level: Level =
 		r.status === 'closed'
 			? 'stop'
-			: r.status === 'chains' || r.status === 'traction'
+			: r.status === 'chains' || r.status === 'traction' || r.notice
 				? 'ready'
 				: 'go';
 	const bits = [r.label, r.tempF !== null ? `${Math.round(r.tempF)}°F` : null, r.weather || null]
@@ -229,7 +238,7 @@ export function passVerdict(p: PassInput): Verdict {
 	return {
 		level,
 		title: level === 'stop' ? 'Closed' : TITLES[level],
-		sentence: `${p.name} right now: ${bits.join(', ')}.`,
+		sentence: `${p.name} right now: ${bits.join(', ')}.${r.notice ? ` ${r.notice}` : ''}`,
 		facts: facts.slice(0, 4)
 	};
 }

@@ -34,6 +34,8 @@ export interface PassReport {
 	tempF: number | null;
 	advisory: boolean;
 	updated: number | null;
+	/** A closure the report's notes mention while its status is not closed (night closures, a gate down the road). */
+	notice?: string;
 }
 
 export const STATUS_LABEL: Record<PassStatus, string> = {
@@ -84,13 +86,26 @@ export function classifyPass(
 			.map((r) => classifyRestriction(r.text))
 			.sort((a, b) => SEVERITY.indexOf(a) - SEVERITY.indexOf(b))[0] ?? 'off-season';
 
-	// The road report can say the pass is closed even when the restriction lines are blank or generic.
-	if (
-		status !== 'closed' &&
-		/\b(is|are|remains?|currently|now)\s+closed\b/i.test(road) &&
-		!/reopen|re-open/i.test(road)
-	)
-		status = 'closed';
+	// The road report can say the pass is closed even when the restriction lines are blank or generic. When the
+	// lines do give a live status, a closure in the notes doesn't replace it (WSDOT writes "the road to Artist
+	// Point is closed for the season" under an open Mt. Baker Highway) but is passed on as a notice, because some
+	// are real: "Road closed from 6 p.m. to 6 a.m.", "US 2 is still closed at Coles Corner".
+	// Read from WSDOT's own text: its line breaks separate notes that have no full stop.
+	const closures = closureSentences(raw.RoadCondition ?? '');
+	let notice: string | undefined;
+	if (status !== 'closed' && closures.length) {
+		// "No restrictions" next to "SR 20 is closed for the winter" is the closure; a closure for some hours
+		// ("Road closed from 6 p.m. to 6 a.m.") or beside live chain rules is a notice.
+		const allDay = closures.filter((c) => !TIMED.test(c));
+		// With live "No restrictions" lines, only a seasonal closure closes the pass; "US 2 is still closed at
+		// milepost 85" is a gate 21 miles past the summit, which skiers going to the summit can still reach.
+		if (
+			(status === 'off-season' && allDay.length) ||
+			(status === 'open' && allDay.some((c) => /for the (?:season|winter)/i.test(c)))
+		)
+			status = 'closed';
+		else notice = closures.join(' ');
+	}
 	// Reporting has stopped for the season: the "No restrictions" lines are not live information.
 	if (status === 'open' && OFF_SEASON.test(road)) status = 'off-season';
 	if (
@@ -123,8 +138,28 @@ export function classifyPass(
 		weather: (raw.WeatherCondition ?? '').trim(),
 		tempF: raw.TemperatureInFahrenheit ?? null,
 		advisory: Boolean(raw.TravelAdvisoryActive),
-		updated
+		updated,
+		...(notice ? { notice } : {})
 	};
+}
+
+const CLOSED_SENTENCE =
+	/\b(?:is|are|remains?|currently|now|still)\s+(?:still\s+|temporarily\s+|currently\s+|now\s+)?closed\b|\broad closed\b|\bclosed (?:from|between|daily|nightly|each)\b/i;
+// Parts of the road, not the road: lanes, ramps, the last stretch to a trailhead or viewpoint.
+const PART_OF_ROAD =
+	/\b(?:lanes?|shoulder|ramps?|section|portion|road to|sno-?parks?|rest areas?|spur|parking lots?)\b/i;
+// A closure for some hours: "from 6 p.m. to 6 a.m.", "nightly". A time alone ("as of Nov. 30 at 6 p.m.") is when it started.
+const TIMED =
+	/\bfrom\s+\d{1,2}(?::\d\d)?\s*[ap]\.?m\.?\s+(?:to|until)\b|\bbetween\s+\d{1,2}(?::\d\d)?\s*[ap]\.?m\b|\b(?:daily|nightly|overnight|each night)\b/i;
+/\b(?:from|until)\s+\d|\b\d{1,2}(?::\d\d)?\s*[ap]\.?m\b|\b(?:daily|nightly|overnight|each night)\b/i;
+const REOPENED = /\b(?:has reopened|reopened|is (?:now )?open|are (?:now )?open)\b/i;
+
+/** The sentences of a road report that say the road itself is closed (at least for a time). */
+export function closureSentences(road: string): string[] {
+	return road
+		.split(/(?<=[.!?])\s+(?=[A-Z*])|\n+/)
+		.map((x) => x.replace(/\*+/g, '').replace(/\s+/g, ' ').trim())
+		.filter((x) => CLOSED_SENTENCE.test(x) && !PART_OF_ROAD.test(x) && !REOPENED.test(x));
 }
 
 // ---- Oregon (ODOT TripCheck) and California (Caltrans) ----------------------------------------------------

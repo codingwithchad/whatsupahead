@@ -3,10 +3,11 @@
   "name": "Cayuse Pass",
   "pass_id": 2,
   "route": "SR 123",
-  "connects": "Mount Rainier: SR 410 to Packwood (closes in winter)",
+  "connects": "Mount Rainier: SR 410 to Packwood",
   "group": "Cross-Cascades",
   "lat": 46.865575,
   "lon": -121.53611,
   "elevation_ft": 4675,
-  "place": "pass-cayuse"
+  "place": "pass-cayuse",
+  "winter_closure": "Closed for the winter, usually from November until late May"
 }

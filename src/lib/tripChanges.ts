@@ -52,6 +52,8 @@ export function tripChanges(
 			});
 		else if (now.label !== was.label)
 			out.push({ tone: 'caution', text: `${p.name}: now ${now.label.toLowerCase()}.` });
+		if (now.notice && now.notice !== was.notice)
+			out.push({ tone: 'caution', text: `${p.name}: ${now.notice}` });
 	}
 
 	const w = next.warnings;
