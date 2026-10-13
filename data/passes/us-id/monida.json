@@ -1,0 +1,20 @@
+{
+  "id": "monida",
+  "name": "Monida Pass",
+  "route": "I-15",
+  "connects": "Idaho Falls to Dillon and Butte, Montana",
+  "group": "Idaho to Montana",
+  "lat": 44.5325,
+  "lon": -112.26997,
+  "elevation_ft": 6823,
+  "place": "pass-monida",
+  "report": {
+    "source": "itd",
+    "route": "I 15",
+    "station": "191.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

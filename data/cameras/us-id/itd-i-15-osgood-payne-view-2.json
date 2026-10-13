@@ -1,0 +1,20 @@
+{
+  "id": "itd-i-15-osgood-payne-view-2",
+  "name": "I-15 Osgood/Payne, view 2",
+  "lat": 43.5698,
+  "lon": -112.072,
+  "feed_url": "https://511.idaho.gov/map/Cctv/980",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 15"
+}

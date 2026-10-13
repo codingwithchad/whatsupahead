@@ -1,0 +1,12 @@
+{
+  "id": "pass-mores-creek",
+  "name": "Mores Creek Summit (SH 21)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Boise and Idaho City to Lowman and Stanley",
+  "lat": 43.93234,
+  "lon": -115.66762,
+  "radius_miles": 25,
+  "collection": "passes",
+  "note": "Idaho has no camera at this summit; these are the nearest road cameras."
+}

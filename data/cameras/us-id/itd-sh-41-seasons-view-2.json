@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-41-seasons-view-2",
+  "name": "SH-41 Seasons, view 2",
+  "lat": 47.9261,
+  "lon": -116.85,
+  "feed_url": "https://511.idaho.gov/map/Cctv/559",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 41"
+}

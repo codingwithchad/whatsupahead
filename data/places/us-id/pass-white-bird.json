@@ -1,0 +1,12 @@
+{
+  "id": "pass-white-bird",
+  "name": "White Bird Hill (US 95)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Grangeville to Riggins and McCall",
+  "lat": 45.84493,
+  "lon": -116.23787,
+  "radius_miles": 12,
+  "collection": "passes",
+  "note": "Idaho has no camera at this summit; these are the nearest road cameras."
+}

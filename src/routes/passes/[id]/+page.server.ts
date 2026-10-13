@@ -5,7 +5,7 @@ import { previewSlot } from '../../../lib/sharing';
 import { getCatalog } from '../../../lib/server/catalog';
 import { avalancheAtPass, snowAtPass } from '../../../lib/server/mountain';
 import { allPassReports, caltransCheckpoints } from '../../../lib/server/passes';
-import { kmToStretch, sameRoute, type Checkpoint } from '../../../lib/passes';
+import { kmToStretch, reportSource, sameRoute, type Checkpoint } from '../../../lib/passes';
 import { passSeason } from '../../../lib/server/passHistory';
 import { placePage } from '../../../lib/server/placePage';
 import type { PassInfo } from '../../../lib/types';
@@ -76,8 +76,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 			elevation_ft: pass.elevation_ft ?? null,
 			winter_closure: pass.winter_closure ?? null,
 			link: pass.link ?? null,
-			source:
-				pass.pass_id !== undefined ? 'WSDOT' : pass.report?.source === 'odot' ? 'ODOT' : 'Caltrans'
+			source: reportSource(pass)
 		},
 		report,
 		season: passSeason(pass),

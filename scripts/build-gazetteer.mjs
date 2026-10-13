@@ -24,6 +24,8 @@ async function table(kind) {
 }
 
 const KINDS = ['city', 'town', 'village', 'CDP', 'municipality'];
+// Official names that nobody searches for: the Census lists Boise as "Boise City".
+const EVERYDAY = { 'ID:Boise City': 'Boise' };
 const round = (n) => Math.round(Number(n) * 1e4) / 1e4;
 
 mkdirSync('data/gazetteer', { recursive: true });
@@ -36,8 +38,9 @@ for (const region of regions.filter((r) => r.country === 'US')) {
 		.filter((r) => r.USPS === region.abbr)
 		.map((r) => {
 			const m = r.NAME.match(new RegExp(`^(.*) (${KINDS.join('|')})$`));
+			const name = m ? m[1] : r.NAME;
 			return {
-				name: m ? m[1] : r.NAME,
+				name: EVERYDAY[`${region.abbr}:${name}`] ?? name,
 				type: m ? m[2] : '',
 				lat: round(r.INTPTLAT),
 				lon: round(r.INTPTLONG)

@@ -1,0 +1,19 @@
+{
+  "id": "achd-6th-front-st-us-20",
+  "name": "6th & Front St (US-20)",
+  "lat": 43.6128,
+  "lon": -116.203,
+  "feed_url": "https://511.idaho.gov/map/Cctv/636",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z"
+}

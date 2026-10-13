@@ -1,0 +1,20 @@
+{
+  "id": "achd-i-184-17th-st",
+  "name": "I-184 17th St",
+  "lat": 43.619,
+  "lon": -116.216,
+  "feed_url": "https://511.idaho.gov/map/Cctv/692",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 184"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-28-lone-pine-view-3",
+  "name": "SH-28 Lone Pine, view 3",
+  "lat": 44.2001,
+  "lon": -112.951,
+  "feed_url": "https://511.idaho.gov/map/Cctv/362",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 28"
+}

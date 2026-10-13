@@ -1,0 +1,20 @@
+{
+  "id": "lookout",
+  "name": "Lookout Pass",
+  "route": "I-90",
+  "connects": "Wallace and Mullan to St. Regis and Missoula, Montana",
+  "group": "Idaho to Montana",
+  "lat": 47.46116,
+  "lon": -115.69425,
+  "elevation_ft": 4725,
+  "place": "pass-lookout",
+  "report": {
+    "source": "itd",
+    "route": "I 90",
+    "station": "242.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

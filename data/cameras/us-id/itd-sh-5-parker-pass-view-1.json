@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-5-parker-pass-view-1",
+  "name": "SH-5 Parker Pass, view 1",
+  "lat": 47.3375,
+  "lon": -116.67,
+  "feed_url": "https://511.idaho.gov/map/Cctv/508",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 5"
+}

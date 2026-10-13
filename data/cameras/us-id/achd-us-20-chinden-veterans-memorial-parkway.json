@@ -1,0 +1,20 @@
+{
+  "id": "achd-us-20-chinden-veterans-memorial-parkway",
+  "name": "US-20 Chinden & Veterans Memorial Parkway",
+  "lat": 43.630627,
+  "lon": -116.250946,
+  "feed_url": "https://511.idaho.gov/map/Cctv/645",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 20"
+}

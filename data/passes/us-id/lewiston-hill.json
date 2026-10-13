@@ -1,0 +1,19 @@
+{
+  "id": "lewiston-hill",
+  "name": "Lewiston Hill",
+  "route": "US 95",
+  "connects": "Lewiston to Moscow",
+  "group": "US 95 grades",
+  "lat": 46.4634,
+  "lon": -117.01962,
+  "elevation_ft": 2687,
+  "place": "pass-lewiston-hill",
+  "report": {
+    "source": "itd",
+    "route": "US 95"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

@@ -1,5 +1,6 @@
 import { REPO_URL } from '../brand';
 import { getCatalog } from './catalog';
+import { idahoFeeds } from './passes';
 
 // Is each outside source still answering? Every half hour the server makes one small request to each (the same
 // kind the app makes), and /healthz reports the results. A daily GitHub Action reads them and opens an issue
@@ -103,6 +104,23 @@ const CHECKS: Check[] = [
 				data?: unknown[];
 			};
 			if (!body.data?.length) return 'chain control list is empty';
+		}
+	},
+	{
+		name: 'idaho-511',
+		run: async () => {
+			if (!process.env.ID_511_DOT_API_KEY) return null;
+			// The same cached feeds the pass reports use, so this costs Idaho 511 no extra calls.
+			if (!(await idahoFeeds())) return 'not answering (key may be invalid)';
+		}
+	},
+	{
+		name: 'itd-pictures',
+		run: async () => {
+			const cam = getCatalog().cameras.find((c) => c.source === 'ITD' && c.feed_url);
+			if (!cam) return null;
+			const bytes = new Uint8Array(await (await get(cam.feed_url!)).arrayBuffer());
+			if (!(bytes[0] === 0xff && bytes[1] === 0xd8)) return 'picture is not a JPEG';
 		}
 	},
 	{

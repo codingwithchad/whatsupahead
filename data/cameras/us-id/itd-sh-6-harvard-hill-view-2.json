@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-6-harvard-hill-view-2",
+  "name": "SH-6 Harvard Hill, view 2",
+  "lat": 47.0669,
+  "lon": -116.667,
+  "feed_url": "https://511.idaho.gov/map/Cctv/506",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 6"
+}

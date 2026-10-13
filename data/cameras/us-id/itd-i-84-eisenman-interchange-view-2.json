@@ -1,0 +1,20 @@
+{
+  "id": "itd-i-84-eisenman-interchange-view-2",
+  "name": "I-84 Eisenman Interchange, view 2",
+  "lat": 43.507819,
+  "lon": -116.142477,
+  "feed_url": "https://511.idaho.gov/map/Cctv/952",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 84"
+}

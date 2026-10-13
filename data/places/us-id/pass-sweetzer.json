@@ -1,0 +1,11 @@
+{
+  "id": "pass-sweetzer",
+  "name": "Sweetzer Summit (I-84)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Burley to Utah (Ogden and Salt Lake City)",
+  "lat": 42.20776,
+  "lon": -113.04586,
+  "radius_miles": 10,
+  "collection": "passes"
+}

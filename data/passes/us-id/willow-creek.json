@@ -1,0 +1,20 @@
+{
+  "id": "willow-creek",
+  "name": "Willow Creek Summit",
+  "route": "US 93",
+  "connects": "Arco and Mackay to Challis",
+  "group": "Central Idaho",
+  "lat": 44.2306,
+  "lon": -113.9748,
+  "elevation_ft": 7178,
+  "place": "pass-willow-creek",
+  "report": {
+    "source": "itd",
+    "route": "US 93",
+    "station": "181.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

@@ -10,5 +10,5 @@ export const COVERAGE =
 	states.length > 1 ? `${states.slice(0, -1).join(', ')} and ${states.at(-1)}` : states[0];
 export const COVERAGE_SHORT = states.join(' · ');
 /** One sentence for descriptions and link previews. */
-export const WHERE = `For the West Coast: ${COVERAGE}.`;
+export const WHERE = `For ${COVERAGE}.`;
 export const REPO_URL = 'https://github.com/codingwithchad/whatsupahead';

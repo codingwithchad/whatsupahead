@@ -1,0 +1,19 @@
+{
+  "id": "galena",
+  "name": "Galena Summit",
+  "route": "SH 75",
+  "connects": "Ketchum and Sun Valley to Stanley",
+  "group": "Central Idaho",
+  "lat": 43.86997,
+  "lon": -114.71256,
+  "elevation_ft": 8743,
+  "place": "pass-galena",
+  "report": {
+    "source": "itd",
+    "route": "SH 75"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

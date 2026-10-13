@@ -11,14 +11,22 @@ import {
 	type PassReport,
 	type RawPass
 } from '../passes';
+import {
+	idahoPassReport,
+	type IdahoEvent,
+	type IdahoRoadReport,
+	type IdahoStation
+} from '../idaho';
 import type { PassInfo } from '../types';
 import { cachedStale } from './cache';
 import { getCatalog } from './catalog';
+import { allow } from './rateLimit';
 
 const URL_ =
 	'https://wsdot.wa.gov/Traffic/api/MountainPassConditions/MountainPassConditionsREST.svc/GetMountainPassConditionsAsJson';
 const ODOT = 'https://api.odot.state.or.us/tripcheck';
 const CALTRANS = 'https://cwwp2.dot.ca.gov/data';
+const IDAHO = 'https://511.idaho.gov/api';
 
 /** The current report for every Washington pass, keyed by WSDOT's pass id. Empty if WSDOT can't be reached. */
 export async function livePasses(): Promise<Map<number, PassReport>> {
@@ -65,6 +73,46 @@ export async function odotFeeds(): Promise<{
 		});
 	} catch (err) {
 		console.warn(`[passes] odot: ${(err as Error).message}`);
+		return null;
+	}
+}
+
+let idahoFailedAt = 0;
+
+/**
+ * Idaho 511's road reports, traffic events and road weather stations, or null when Idaho can't be reached.
+ * Idaho 511 allows ten calls a minute for our key; this makes three every five minutes, whoever asks.
+ */
+export async function idahoFeeds(): Promise<{
+	roads: IdahoRoadReport[];
+	events: IdahoEvent[];
+	stations: IdahoStation[];
+} | null> {
+	const key = process.env.ID_511_DOT_API_KEY;
+	if (!key) return null;
+	const get = <T>(path: string) => {
+		if (!allow('upstream:idaho511', 8)) throw new Error('Idaho 511 limit');
+		return json<T>(`${IDAHO}/${path}?format=json&key=${encodeURIComponent(key)}`);
+	};
+	try {
+		return await cachedStale('passes:idaho', 5 * 60 * 1000, async () => {
+			// After a failure (a bad key, Idaho down), wait before asking again rather than on every page.
+			if (Date.now() - idahoFailedAt < 5 * 60 * 1000) throw new Error('waiting after a failure');
+			try {
+				const [roads, events, stations] = await Promise.all([
+					get<IdahoRoadReport[]>('v3/get/winterroads'),
+					get<IdahoEvent[]>('v2/get/event'),
+					get<IdahoStation[]>('v2/get/weatherstations')
+				]);
+				return { roads, events, stations };
+			} catch (err) {
+				idahoFailedAt = Date.now();
+				throw err;
+			}
+		});
+	} catch (err) {
+		// Never the address: it carries the key.
+		console.warn(`[passes] idaho: ${(err as Error).message.replace(/key=[^&\s]+/g, 'key=…')}`);
 		return null;
 	}
 }
@@ -169,10 +217,11 @@ export async function allPassReports(
 	passes: PassInfo[] = getCatalog().passes
 ): Promise<Map<string, PassReport>> {
 	const { districts, closureDistricts } = caltransDistricts(passes);
-	const [wsdot, odot, caltrans] = await Promise.all([
+	const [wsdot, odot, caltrans, idaho] = await Promise.all([
 		livePasses(),
 		passes.some((p) => p.report?.source === 'odot') ? odotFeeds() : null,
-		caltransFeeds(districts, closureDistricts)
+		caltransFeeds(districts, closureDistricts),
+		passes.some((p) => p.report?.source === 'itd') ? idahoFeeds() : null
 	]);
 	const out = new Map<string, PassReport>();
 	for (const p of passes) {
@@ -184,6 +233,11 @@ export async function allPassReports(
 			out.set(p.id, odotPassReport({ ...p, report: r }, odot.reports, odot.incidents));
 		else if (r?.source === 'caltrans' && caltrans)
 			out.set(p.id, caltransPassReport({ ...p, report: r }, caltrans.controls, caltrans.closures));
+		else if (r?.source === 'itd' && idaho)
+			out.set(
+				p.id,
+				idahoPassReport({ ...p, report: r }, idaho.roads, idaho.events, idaho.stations)
+			);
 	}
 	return out;
 }

@@ -5,7 +5,19 @@ describe('regions', () => {
 	it('finds the region a point is in', () => {
 		expect(regionAt(47.61, -122.33)?.abbr).toBe('WA');
 		expect(regionAt(45.33, -121.71)?.abbr).toBe('OR');
-		expect(regionAt(43.6, -116.2)).toBeUndefined();
+		expect(regionAt(43.6, -116.2)?.abbr).toBe('ID'); // Boise
+		expect(regionAt(46.87, -113.99)).toBeUndefined(); // Missoula, Montana
+	});
+
+	it('follows the Snake River between Oregon and Idaho', () => {
+		expect(regionAt(44.027, -116.963)?.abbr).toBe('OR'); // Ontario
+		expect(regionAt(43.877, -116.995)?.abbr).toBe('OR'); // Nyssa
+		expect(regionAt(44.078, -116.934)?.abbr).toBe('ID'); // Payette
+		expect(regionAt(44.25, -116.97)?.abbr).toBe('ID'); // Weiser
+		expect(regionAt(46.42, -117.0)?.abbr).toBe('ID'); // Lewiston
+		expect(regionAt(46.42, -117.05)?.abbr).toBe('WA'); // Clarkston
+		expect(regionAt(47.46, -115.694)?.abbr).toBe('ID'); // Lookout Pass, on the Montana line
+		expect(regionAt(45.689, -113.948)?.abbr).toBe('ID'); // Lost Trail Pass
 	});
 
 	it('follows the Columbia River between Washington and Oregon', () => {
@@ -40,6 +52,17 @@ describe('regions', () => {
 		expect(timeZoneAt(43.98, -117.0)).toBe('America/Boise');
 	});
 
+	it('gives Idaho Mountain time, and Pacific time north of the Salmon River', () => {
+		expect(timeZoneAt(43.615, -116.2)).toBe('America/Boise'); // Boise
+		expect(timeZoneAt(43.697, -114.351)).toBe('America/Boise'); // Sun Valley
+		expect(timeZoneAt(44.911, -116.099)).toBe('America/Boise'); // McCall
+		expect(timeZoneAt(47.677, -116.78)).toBe('America/Los_Angeles'); // Coeur d'Alene
+		expect(timeZoneAt(47.538, -116.12)).toBe('America/Los_Angeles'); // Kellogg, Silver Mountain
+		expect(timeZoneAt(48.368, -116.62)).toBe('America/Los_Angeles'); // Schweitzer
+		expect(timeZoneAt(45.42, -116.315)).toBe('America/Los_Angeles'); // Riggins
+		expect(timeZoneAt(45.689, -113.948)).toBe('America/Boise'); // Lost Trail Pass
+	});
+
 	it('the data scripts put files in the same region as the app', async () => {
 		// The scripts' plain JavaScript copy of regionAt (loaded by path so the type checker leaves it alone).
 		const script = '../../scripts/lib/data.mjs';
@@ -53,7 +76,10 @@ describe('regions', () => {
 			[45.631, -122.67], // Vancouver
 			[45.73, -121.49], // White Salmon
 			[47.61, -122.33], // Seattle
-			[44.06, -121.31] // Bend
+			[44.06, -121.31], // Bend
+			[43.877, -116.995], // Nyssa
+			[43.615, -116.2], // Boise
+			[47.677, -116.78] // Coeur d'Alene
 		];
 		for (const [lat, lon] of points)
 			expect(scriptRegionAt(lat, lon)?.abbr, `${lat},${lon}`).toBe(regionAt(lat, lon)?.abbr);

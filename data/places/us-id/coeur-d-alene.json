@@ -1,0 +1,10 @@
+{
+  "id": "coeur-d-alene",
+  "name": "Coeur d'Alene",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "I-90 through town and the lake",
+  "lat": 47.6743,
+  "lon": -116.7812,
+  "radius_miles": 8
+}

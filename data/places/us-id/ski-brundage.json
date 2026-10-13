@@ -1,0 +1,15 @@
+{
+  "id": "ski-brundage",
+  "name": "Brundage Mountain",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Above McCall, on SH 55 north of Boise",
+  "lat": 45.0012,
+  "lon": -116.1474,
+  "radius_miles": 10,
+  "collection": "ski-areas",
+  "link": {
+    "label": "Brundage Mountain's website",
+    "url": "https://brundage.com/"
+  }
+}

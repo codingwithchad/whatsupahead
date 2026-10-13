@@ -1,0 +1,19 @@
+{
+  "id": "achd-16th-state",
+  "name": "16th & State",
+  "lat": 43.6233,
+  "lon": -116.20995,
+  "feed_url": "https://511.idaho.gov/map/Cctv/744",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z"
+}

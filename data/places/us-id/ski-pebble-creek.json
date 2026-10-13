@@ -1,0 +1,16 @@
+{
+  "id": "ski-pebble-creek",
+  "name": "Pebble Creek",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Off I-15 near Inkom, south of Pocatello",
+  "lat": 42.7766,
+  "lon": -112.1093,
+  "radius_miles": 15,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Pebble Creek's website",
+    "url": "https://pebblecreekskiarea.com/"
+  }
+}

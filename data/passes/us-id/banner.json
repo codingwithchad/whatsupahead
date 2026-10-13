@@ -1,0 +1,19 @@
+{
+  "id": "banner",
+  "name": "Banner Summit",
+  "route": "SH 21",
+  "connects": "Lowman to Stanley",
+  "group": "Central Idaho",
+  "lat": 44.30633,
+  "lon": -115.2322,
+  "elevation_ft": 7037,
+  "place": "pass-banner",
+  "report": {
+    "source": "itd",
+    "route": "SH 21"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

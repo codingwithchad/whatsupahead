@@ -1,0 +1,20 @@
+{
+  "id": "pine-creek",
+  "name": "Pine Creek Pass",
+  "route": "SH 31",
+  "connects": "Idaho Falls and Swan Valley to Victor and Driggs",
+  "group": "Eastern Idaho",
+  "lat": 43.5716,
+  "lon": -111.21617,
+  "elevation_ft": 6764,
+  "place": "pass-pine-creek",
+  "report": {
+    "source": "itd",
+    "route": "SH 31",
+    "station": "90.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

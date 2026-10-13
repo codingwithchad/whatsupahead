@@ -1,0 +1,20 @@
+{
+  "id": "malad",
+  "name": "Malad Summit",
+  "route": "I-15",
+  "connects": "Pocatello to Utah (Logan and Salt Lake City)",
+  "group": "Idaho to Utah",
+  "lat": 42.34232,
+  "lon": -112.22652,
+  "elevation_ft": 5558,
+  "place": "pass-malad",
+  "report": {
+    "source": "itd",
+    "route": "I 15",
+    "station": "26.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

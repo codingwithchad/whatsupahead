@@ -1,0 +1,11 @@
+{
+  "id": "pass-lookout",
+  "name": "Lookout Pass (I-90)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Wallace and Mullan to St. Regis and Missoula, Montana",
+  "lat": 47.46116,
+  "lon": -115.69425,
+  "radius_miles": 10,
+  "collection": "passes"
+}

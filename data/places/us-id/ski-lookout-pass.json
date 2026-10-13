@@ -1,0 +1,16 @@
+{
+  "id": "ski-lookout-pass",
+  "name": "Lookout Pass",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "On I-90 at the Montana line, known for its snow",
+  "lat": 47.4561,
+  "lon": -115.6977,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Lookout Pass's website",
+    "url": "https://skilookout.com/"
+  }
+}

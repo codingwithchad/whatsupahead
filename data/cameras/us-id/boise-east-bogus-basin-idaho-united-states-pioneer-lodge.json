@@ -1,0 +1,20 @@
+{
+  "id": "boise-east-bogus-basin-idaho-united-states-pioneer-lodge",
+  "name": "Boise – East: Bogus Basin - Idaho, United States: Pioneer Lodge",
+  "lat": 43.76406,
+  "lon": -116.10262,
+  "feed_type": "image",
+  "source": "bogusbasin.org via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1448927592",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1448927592",
+  "tags": [
+    "ski"
+  ],
+  "attribution_text": "bogusbasin.org via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

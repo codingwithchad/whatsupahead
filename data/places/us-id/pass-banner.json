@@ -1,0 +1,12 @@
+{
+  "id": "pass-banner",
+  "name": "Banner Summit (SH 21)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Lowman to Stanley",
+  "lat": 44.30633,
+  "lon": -115.2322,
+  "radius_miles": 22,
+  "collection": "passes",
+  "note": "Idaho has no camera at this summit; these are the nearest road cameras."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "achd-main-3rd",
+  "name": "Main & 3rd",
+  "lat": 43.61251,
+  "lon": -116.1976,
+  "feed_url": "https://511.idaho.gov/map/Cctv/848",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -169,7 +169,7 @@ export function closureSentences(road: string): string[] {
 
 /** Where a non-WSDOT pass gets its report: the state's feed, the highway as that feed writes it, how far to look. */
 export interface PassReportSource {
-	source: 'odot' | 'caltrans';
+	source: 'odot' | 'caltrans' | 'itd';
 	route: string;
 	radius_km?: number;
 	/** Caltrans districts the pass's checkpoints are in, so the server fetches only what it needs. */
@@ -179,11 +179,26 @@ export interface PassReportSource {
 	 * (Los Angeles is about 12 MB) and winter closures are rare.
 	 */
 	closures?: boolean;
+	/** Idaho: the summit weather station, by the camera id Idaho 511's pass list gives it (e.g. 246.C1). */
+	station?: string;
 }
 
 interface Pt {
 	lat: number;
 	lon: number;
+}
+
+/** Which agency a pass's report comes from, as we name it on the page. */
+export function reportSource(pass: {
+	pass_id?: number;
+	report?: Pick<PassReportSource, 'source'>;
+}): 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD' {
+	if (pass.pass_id !== undefined) return 'WSDOT';
+	return pass.report?.source === 'odot'
+		? 'ODOT'
+		: pass.report?.source === 'itd'
+			? 'ITD'
+			: 'Caltrans';
 }
 
 const DEFAULT_RADIUS_KM = 15;

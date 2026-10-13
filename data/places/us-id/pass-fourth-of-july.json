@@ -1,0 +1,11 @@
+{
+  "id": "pass-fourth-of-july",
+  "name": "Fourth of July Pass (I-90)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Coeur d'Alene to Kellogg, Silver Mountain and the Silver Valley",
+  "lat": 47.61932,
+  "lon": -116.52055,
+  "radius_miles": 10,
+  "collection": "passes"
+}

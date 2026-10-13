@@ -1,0 +1,11 @@
+{
+  "id": "pass-lewiston-hill",
+  "name": "Lewiston Hill (US 95)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Lewiston to Moscow",
+  "lat": 46.4634,
+  "lon": -117.01962,
+  "radius_miles": 10,
+  "collection": "passes"
+}

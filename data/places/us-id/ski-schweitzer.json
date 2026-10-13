@@ -1,0 +1,16 @@
+{
+  "id": "ski-schweitzer",
+  "name": "Schweitzer",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Above Sandpoint: Idaho's biggest ski area, with views of Lake Pend Oreille",
+  "lat": 48.3787,
+  "lon": -116.6131,
+  "radius_miles": 15,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Schweitzer's website",
+    "url": "https://www.schweitzer.com/"
+  }
+}

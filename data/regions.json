@@ -151,7 +151,78 @@
 					"note": "Most of Malheur County keeps Mountain time"
 				}
 			],
-			"zip": "^97\\d{3}$"
+			"zip": "^97\\d{3}$",
+			"outline_note": "Simplified state line: the Snake River and the Owyhee meridian on the Idaho side; the Columbia side is left wide because Washington comes first in this list.",
+			"outline": [
+				[
+					-124.9,
+					46.3
+				],
+				[
+					-116.92,
+					46.3
+				],
+				[
+					-116.92,
+					46.0
+				],
+				[
+					-116.62,
+					45.8
+				],
+				[
+					-116.47,
+					45.63
+				],
+				[
+					-116.57,
+					45.47
+				],
+				[
+					-116.7,
+					45.24
+				],
+				[
+					-116.84,
+					44.97
+				],
+				[
+					-116.95,
+					44.8
+				],
+				[
+					-117.2,
+					44.5
+				],
+				[
+					-117.23,
+					44.3
+				],
+				[
+					-117.0,
+					44.25
+				],
+				[
+					-116.95,
+					44.0
+				],
+				[
+					-116.975,
+					43.88
+				],
+				[
+					-117.026,
+					43.82
+				],
+				[
+					-117.026,
+					41.99
+				],
+				[
+					-124.9,
+					41.99
+				]
+			]
 		},
 		{
 			"code": "US-CA",
@@ -167,7 +238,7 @@
 			],
 			"time_zone": "America/Los_Angeles",
 			"zip": "^(9[0-5]\\d|96[01])\\d{2}$",
-			"outline_note": "Simplified state line: the Nevada border, the Colorado River and Mexico; the ocean side is left wide for the islands. Oregon comes first in this list, so the strip just below 42\u00b0 stays Oregon.",
+			"outline_note": "Simplified state line: the Nevada border, the Colorado River and Mexico; the ocean side is left wide for the islands. Oregon comes first in this list, so the strip just below 42° stays Oregon.",
 			"outline": [
 				[
 					-124.7,
@@ -240,6 +311,180 @@
 				[
 					-124.7,
 					32.4
+				]
+			]
+		},
+		{
+			"code": "US-ID",
+			"folder": "us-id",
+			"name": "Idaho",
+			"abbr": "ID",
+			"country": "US",
+			"bbox": [
+				-117.25,
+				41.99,
+				-111.04,
+				49.01
+			],
+			"time_zone": "America/Boise",
+			"zones": [
+				{
+					"bbox": [
+						-117.3,
+						45.41,
+						-114.3,
+						49.1
+					],
+					"time_zone": "America/Los_Angeles",
+					"note": "The panhandle north of the Salmon River (Coeur d'Alene, Sandpoint, Lewiston, Grangeville, Riggins) keeps Pacific time"
+				}
+			],
+			"zip": "^83[2-8]\\d{2}$",
+			"outline_note": "Simplified state line: the Snake River on the Oregon side, the Bitterroot Range and the Continental Divide on the Montana side, drawn just outside the passes that sit on it. Washington and Oregon come first in this list.",
+			"outline": [
+				[
+					-117.04,
+					49.01
+				],
+				[
+					-116.05,
+					49.01
+				],
+				[
+					-116.05,
+					47.98
+				],
+				[
+					-115.66,
+					47.46
+				],
+				[
+					-115.3,
+					47.25
+				],
+				[
+					-114.96,
+					46.93
+				],
+				[
+					-114.55,
+					46.64
+				],
+				[
+					-114.45,
+					46.3
+				],
+				[
+					-114.48,
+					46.0
+				],
+				[
+					-114.55,
+					45.75
+				],
+				[
+					-113.92,
+					45.69
+				],
+				[
+					-113.7,
+					45.35
+				],
+				[
+					-113.42,
+					45.0
+				],
+				[
+					-113.24,
+					44.82
+				],
+				[
+					-112.83,
+					44.44
+				],
+				[
+					-112.25,
+					44.57
+				],
+				[
+					-111.85,
+					44.53
+				],
+				[
+					-111.45,
+					44.74
+				],
+				[
+					-111.26,
+					44.7
+				],
+				[
+					-111.04,
+					44.5
+				],
+				[
+					-111.04,
+					41.99
+				],
+				[
+					-117.026,
+					41.99
+				],
+				[
+					-117.026,
+					43.82
+				],
+				[
+					-116.975,
+					43.88
+				],
+				[
+					-116.95,
+					44.0
+				],
+				[
+					-117.0,
+					44.25
+				],
+				[
+					-117.23,
+					44.3
+				],
+				[
+					-117.2,
+					44.5
+				],
+				[
+					-116.95,
+					44.8
+				],
+				[
+					-116.84,
+					44.97
+				],
+				[
+					-116.7,
+					45.24
+				],
+				[
+					-116.57,
+					45.47
+				],
+				[
+					-116.47,
+					45.63
+				],
+				[
+					-116.62,
+					45.8
+				],
+				[
+					-116.92,
+					46.0
+				],
+				[
+					-117.04,
+					46.43
 				]
 			]
 		}

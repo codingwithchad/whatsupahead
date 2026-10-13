@@ -29,6 +29,7 @@ environment variables. Never commit keys.
 |---|---|---|
 | `WSDOT_CODE` | Washington pass reports, ferry space, border waits, weather stations | [WSDOT Traveler Information API](https://wsdot.wa.gov/traffic/api/) |
 | `ORDOT_CODE_PRIMARY` | Oregon pass reports (ODOT crew reports and closures) | [ODOT API portal](https://apiportal.odot.state.or.us/) |
+| `ID_511_DOT_API_KEY` | Idaho pass reports, closures and road surface temperatures (Idaho 511); Idaho cameras need no key | [Idaho 511 developer page](https://511.idaho.gov/developers/doc) |
 | `WINDY_API_KEY` | Cameras that come through Windy.com | [Windy Webcams API](https://api.windy.com/keys) |
 | `YOU_TUBE_DATA_API_KEY` | Checks that YouTube live cameras are still live | Google Cloud, YouTube Data API v3 |
 | `AZURE_MAPS_KEY` | Optional routing and place search with live traffic, and weather along a drive; without it, routes use OSRM, place search uses Photon and Nominatim, and weather along a drive uses Open-Meteo | Azure Maps account |

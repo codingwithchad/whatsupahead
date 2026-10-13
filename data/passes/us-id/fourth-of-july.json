@@ -1,0 +1,20 @@
+{
+  "id": "fourth-of-july",
+  "name": "Fourth of July Pass",
+  "route": "I-90",
+  "connects": "Coeur d'Alene to Kellogg, Silver Mountain and the Silver Valley",
+  "group": "North Idaho (I-90)",
+  "lat": 47.61932,
+  "lon": -116.52055,
+  "elevation_ft": 3173,
+  "place": "pass-fourth-of-july",
+  "report": {
+    "source": "itd",
+    "route": "I 90",
+    "station": "246.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

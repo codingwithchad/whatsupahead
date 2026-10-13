@@ -1,0 +1,20 @@
+{
+  "id": "achd-sh-55-eagle-pine-ave",
+  "name": "SH-55 Eagle & Pine Ave",
+  "lat": 43.6123,
+  "lon": -116.355,
+  "feed_url": "https://511.idaho.gov/map/Cctv/773",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 55"
+}

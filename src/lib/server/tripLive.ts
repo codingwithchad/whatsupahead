@@ -11,7 +11,7 @@ import {
 } from '../route';
 import { routeStops } from '../routeWeather';
 import type { Conditions, FeaturedPlace, Nearby, WeatherSource } from '../types';
-import type { PassReport } from '../passes';
+import { reportSource, type PassReport } from '../passes';
 import type { RoadWarnings } from '../roadAhead';
 import type { RouteWeather } from '../routeWeather';
 import { withForecast } from './autoForecast';
@@ -56,8 +56,7 @@ export function roadPass({ pass, along, heading, report }: PassOnRoute): RoadPas
 		route: pass.route,
 		place: pass.place,
 		link: pass.link ?? null,
-		source:
-			pass.pass_id !== undefined ? 'WSDOT' : pass.report?.source === 'odot' ? 'ODOT' : 'Caltrans',
+		source: reportSource(pass),
 		along,
 		heading,
 		report,

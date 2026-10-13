@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-75-stanley-hatchery-view-1",
+  "name": "SH-75 Stanley Hatchery, view 1",
+  "lat": 44.150712,
+  "lon": -114.880014,
+  "feed_url": "https://511.idaho.gov/map/Cctv/590",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 75"
+}

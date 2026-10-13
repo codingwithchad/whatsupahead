@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-55-goose-creek-summit-view-2",
+  "name": "SH-55 Goose Creek Summit, view 2",
+  "lat": 44.9295,
+  "lon": -116.154,
+  "feed_url": "https://511.idaho.gov/map/Cctv/420",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 55"
+}

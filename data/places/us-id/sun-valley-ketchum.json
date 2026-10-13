@@ -1,0 +1,10 @@
+{
+  "id": "sun-valley-ketchum",
+  "name": "Sun Valley and Ketchum",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "SH 75 up the Wood River Valley",
+  "lat": 43.6807,
+  "lon": -114.3637,
+  "radius_miles": 10
+}

@@ -1,0 +1,11 @@
+{
+  "id": "pass-galena",
+  "name": "Galena Summit (SH 75)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Ketchum and Sun Valley to Stanley",
+  "lat": 43.86997,
+  "lon": -114.71256,
+  "radius_miles": 10,
+  "collection": "passes"
+}

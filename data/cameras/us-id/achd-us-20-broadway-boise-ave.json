@@ -1,0 +1,20 @@
+{
+  "id": "achd-us-20-broadway-boise-ave",
+  "name": "US-20 Broadway & Boise Ave",
+  "lat": 43.5903,
+  "lon": -116.194,
+  "feed_url": "https://511.idaho.gov/map/Cctv/648",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 20"
+}

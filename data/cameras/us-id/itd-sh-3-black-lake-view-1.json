@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-3-black-lake-view-1",
+  "name": "SH-3 Black Lake, view 1",
+  "lat": 47.429,
+  "lon": -116.628,
+  "feed_url": "https://511.idaho.gov/map/Cctv/514",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 3"
+}

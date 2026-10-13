@@ -1,0 +1,19 @@
+{
+  "id": "achd-26th-hill-rd",
+  "name": "26th & Hill Rd",
+  "lat": 43.65566,
+  "lon": -116.23325,
+  "feed_url": "https://511.idaho.gov/map/Cctv/793",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z"
+}

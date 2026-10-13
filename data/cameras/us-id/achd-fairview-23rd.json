@@ -1,0 +1,19 @@
+{
+  "id": "achd-fairview-23rd",
+  "name": "Fairview & 23rd",
+  "lat": 43.620728,
+  "lon": -116.21827,
+  "feed_url": "https://511.idaho.gov/map/Cctv/839",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z"
+}

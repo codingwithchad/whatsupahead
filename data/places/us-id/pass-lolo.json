@@ -1,0 +1,11 @@
+{
+  "id": "pass-lolo",
+  "name": "Lolo Pass (US 12)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Lewiston and Kooskia to Missoula, Montana",
+  "lat": 46.63496,
+  "lon": -114.57963,
+  "radius_miles": 10,
+  "collection": "passes"
+}

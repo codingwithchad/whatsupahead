@@ -28,13 +28,15 @@ describe('lookupTown', () => {
 	});
 
 	it('leaves other states and unknown text to the online search', () => {
-		expect(lookupTown('Boise, Idaho')).toBeNull();
-		expect(lookupTown('83702')).toBeNull();
+		expect(lookupTown('Reno, Nevada')).toBeNull();
+		expect(lookupTown('89501')).toBeNull();
 		expect(lookupTown('Stevens Pass')).toBeNull();
 		expect(lookupTown('1600 Pennsylvania Ave')).toBeNull();
 	});
 
 	it('suggests towns from every region as you type', () => {
 		expect(suggestTowns('Hood R').map((t) => `${t.label}, ${t.sub}`)).toContain('Hood River, OR');
+		expect(lookupTown('Boise, Idaho')).not.toBeNull();
+		expect(lookupTown('83702')).not.toBeNull();
 	});
 });

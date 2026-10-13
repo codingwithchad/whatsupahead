@@ -1,0 +1,16 @@
+{
+  "id": "ski-tamarack",
+  "name": "Tamarack Resort",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Lake Cascade, on SH 55 between Boise and McCall",
+  "lat": 44.6846,
+  "lon": -116.1434,
+  "radius_miles": 12,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Tamarack Resort's website",
+    "url": "https://tamarackidaho.com/"
+  }
+}

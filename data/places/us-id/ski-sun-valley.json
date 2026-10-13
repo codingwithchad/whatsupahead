@@ -1,0 +1,16 @@
+{
+  "id": "ski-sun-valley",
+  "name": "Sun Valley",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Bald Mountain and Dollar Mountain, above Ketchum",
+  "lat": 43.6549,
+  "lon": -114.4092,
+  "radius_miles": 10,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Sun Valley's website",
+    "url": "https://www.sunvalley.com/"
+  }
+}

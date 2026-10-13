@@ -1,0 +1,11 @@
+{
+  "id": "pass-targee",
+  "name": "Targee Pass (US 20)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Island Park to West Yellowstone, Montana",
+  "lat": 44.67267,
+  "lon": -111.28122,
+  "radius_miles": 10,
+  "collection": "passes"
+}

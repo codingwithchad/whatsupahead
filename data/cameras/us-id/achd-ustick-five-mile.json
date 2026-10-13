@@ -1,0 +1,19 @@
+{
+  "id": "achd-ustick-five-mile",
+  "name": "Ustick & Five Mile",
+  "lat": 43.63408,
+  "lon": -116.31417,
+  "feed_url": "https://511.idaho.gov/map/Cctv/729",
+  "feed_type": "image",
+  "source": "ACHD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Ada County Highway District via Idaho 511",
+  "created_at": "2026-10-13T00:00:00Z"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "targee",
+  "name": "Targee Pass",
+  "route": "US 20",
+  "connects": "Island Park to West Yellowstone, Montana",
+  "group": "Idaho to Montana",
+  "lat": 44.67267,
+  "lon": -111.28122,
+  "elevation_ft": 7077,
+  "place": "pass-targee",
+  "report": {
+    "source": "itd",
+    "route": "US 20"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

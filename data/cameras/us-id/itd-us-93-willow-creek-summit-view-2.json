@@ -1,0 +1,20 @@
+{
+  "id": "itd-us-93-willow-creek-summit-view-2",
+  "name": "US-93 Willow Creek Summit, view 2",
+  "lat": 44.2308,
+  "lon": -113.975,
+  "feed_url": "https://511.idaho.gov/map/Cctv/369",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 93"
+}

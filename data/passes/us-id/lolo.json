@@ -1,0 +1,20 @@
+{
+  "id": "lolo",
+  "name": "Lolo Pass",
+  "route": "US 12",
+  "connects": "Lewiston and Kooskia to Missoula, Montana",
+  "group": "Idaho to Montana",
+  "lat": 46.63496,
+  "lon": -114.57963,
+  "elevation_ft": 5230,
+  "place": "pass-lolo",
+  "report": {
+    "source": "itd",
+    "route": "US 12",
+    "station": "221.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

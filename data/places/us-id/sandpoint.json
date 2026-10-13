@@ -1,0 +1,10 @@
+{
+  "id": "sandpoint",
+  "name": "Sandpoint",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "US 95 and the Long Bridge over Lake Pend Oreille",
+  "lat": 48.2761,
+  "lon": -116.5488,
+  "radius_miles": 6
+}

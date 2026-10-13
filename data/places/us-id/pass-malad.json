@@ -1,0 +1,11 @@
+{
+  "id": "pass-malad",
+  "name": "Malad Summit (I-15)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Pocatello to Utah (Logan and Salt Lake City)",
+  "lat": 42.34232,
+  "lon": -112.22652,
+  "radius_miles": 10,
+  "collection": "passes"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-kelly-canyon",
+  "name": "Kelly Canyon",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "East of Idaho Falls, past Ririe",
+  "lat": 43.6391,
+  "lon": -111.6217,
+  "radius_miles": 10,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Kelly Canyon's website",
+    "url": "https://www.skikelly.com/"
+  }
+}

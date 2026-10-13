@@ -1,0 +1,16 @@
+{
+  "id": "ski-pomerelle",
+  "name": "Pomerelle",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "South of Albion, above the Snake River Plain",
+  "lat": 42.3138,
+  "lon": -113.6143,
+  "radius_miles": 12,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Pomerelle's website",
+    "url": "https://pomerelle.com/"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "sweetzer",
+  "name": "Sweetzer Summit",
+  "route": "I-84",
+  "connects": "Burley to Utah (Ogden and Salt Lake City)",
+  "group": "Idaho to Utah",
+  "lat": 42.20776,
+  "lon": -113.04586,
+  "elevation_ft": 5522,
+  "place": "pass-sweetzer",
+  "report": {
+    "source": "itd",
+    "route": "I 84",
+    "station": "18.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

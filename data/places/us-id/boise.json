@@ -1,0 +1,10 @@
+{
+  "id": "boise",
+  "name": "Boise",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Downtown, the Connector (I-184) and the freeways",
+  "lat": 43.6166,
+  "lon": -116.2009,
+  "radius_miles": 4
+}

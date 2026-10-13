@@ -1,0 +1,16 @@
+{
+  "id": "ski-silver-mountain",
+  "name": "Silver Mountain",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Kellogg, off I-90: a gondola from town up to the slopes",
+  "lat": 47.5403,
+  "lon": -116.1326,
+  "radius_miles": 15,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Silver Mountain's website",
+    "url": "https://www.silvermt.com/"
+  }
+}

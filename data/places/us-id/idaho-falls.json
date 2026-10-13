@@ -1,0 +1,10 @@
+{
+  "id": "idaho-falls",
+  "name": "Idaho Falls",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "I-15 and US 20 through town",
+  "lat": 43.4888,
+  "lon": -112.0363,
+  "radius_miles": 6
+}

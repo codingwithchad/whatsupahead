@@ -1,0 +1,20 @@
+{
+  "id": "itd-i-84-i-84-us-95-view-1",
+  "name": "I-84 I-84/US-95, view 1",
+  "lat": 43.9697,
+  "lon": -116.912,
+  "feed_url": "https://511.idaho.gov/map/Cctv/345",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 84"
+}

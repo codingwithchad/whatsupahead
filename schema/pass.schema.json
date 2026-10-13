@@ -57,17 +57,18 @@
         "source",
         "route"
       ],
-      "description": "Oregon and California passes: which state feed the report comes from.",
+      "description": "Oregon, California and Idaho passes: which state feed the report comes from.",
       "properties": {
         "source": {
           "enum": [
             "odot",
-            "caltrans"
+            "caltrans",
+            "itd"
           ]
         },
         "route": {
           "type": "string",
-          "description": "The highway as the feed writes it, e.g. US20 (ODOT) or SR-89 (Caltrans)."
+          "description": "The highway as the feed writes it, e.g. US20 (ODOT), SR-89 (Caltrans) or I-90 (ITD)."
         },
         "radius_km": {
           "type": "number",
@@ -85,6 +86,10 @@
         "closures": {
           "type": "boolean",
           "description": "Also check Caltrans's lane-closure list for full closures (default true)."
+        },
+        "station": {
+          "type": "string",
+          "description": "Idaho: the summit weather station, by the camera id Idaho 511's pass list gives it (e.g. 246.C1)."
         }
       }
     },

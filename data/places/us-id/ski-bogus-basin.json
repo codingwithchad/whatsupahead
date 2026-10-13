@@ -1,0 +1,15 @@
+{
+  "id": "ski-bogus-basin",
+  "name": "Bogus Basin",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Boise's own ski area, 16 miles up the hill from town",
+  "lat": 43.7706,
+  "lon": -116.0909,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "link": {
+    "label": "Bogus Basin's website",
+    "url": "https://bogusbasin.org/"
+  }
+}

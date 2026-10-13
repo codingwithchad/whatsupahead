@@ -1,0 +1,11 @@
+{
+  "id": "pass-pine-creek",
+  "name": "Pine Creek Pass (SH 31)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Idaho Falls and Swan Valley to Victor and Driggs",
+  "lat": 43.5716,
+  "lon": -111.21617,
+  "radius_miles": 10,
+  "collection": "passes"
+}

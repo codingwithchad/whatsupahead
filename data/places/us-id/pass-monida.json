@@ -1,0 +1,11 @@
+{
+  "id": "pass-monida",
+  "name": "Monida Pass (I-15)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Idaho Falls to Dillon and Butte, Montana",
+  "lat": 44.5325,
+  "lon": -112.26997,
+  "radius_miles": 10,
+  "collection": "passes"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "pass-willow-creek",
+  "name": "Willow Creek Summit (US 93)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Arco and Mackay to Challis",
+  "lat": 44.2306,
+  "lon": -113.9748,
+  "radius_miles": 10,
+  "collection": "passes"
+}

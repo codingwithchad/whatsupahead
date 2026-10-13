@@ -1,0 +1,20 @@
+{
+  "id": "itd-i-84-hammett-hill-view-1",
+  "name": "I-84 Hammett Hill, view 1",
+  "lat": 43.0481,
+  "lon": -115.58,
+  "feed_url": "https://511.idaho.gov/map/Cctv/886",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "I 84"
+}

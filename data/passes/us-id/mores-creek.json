@@ -1,0 +1,19 @@
+{
+  "id": "mores-creek",
+  "name": "Mores Creek Summit",
+  "route": "SH 21",
+  "connects": "Boise and Idaho City to Lowman and Stanley",
+  "group": "Central Idaho",
+  "lat": 43.93234,
+  "lon": -115.66762,
+  "elevation_ft": 6132,
+  "place": "pass-mores-creek",
+  "report": {
+    "source": "itd",
+    "route": "SH 21"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

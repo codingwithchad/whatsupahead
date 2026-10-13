@@ -1,0 +1,20 @@
+{
+  "id": "new-meadows-brundage-mountain-resort",
+  "name": "New Meadows: Brundage Mountain Resort",
+  "lat": 45.00449,
+  "lon": -116.15557,
+  "feed_type": "image",
+  "source": "brundage.com via Windy.com",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "provider": "windy",
+  "provider_ref": "1738809434",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "page_url": "https://windy.com/webcams/1738809434",
+  "tags": [
+    "ski"
+  ],
+  "attribution_text": "brundage.com via Windy.com",
+  "created_at": "2026-10-13T00:00:00Z"
+}

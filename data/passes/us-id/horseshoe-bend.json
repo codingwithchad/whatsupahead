@@ -1,0 +1,20 @@
+{
+  "id": "horseshoe-bend",
+  "name": "Horseshoe Bend Hill",
+  "route": "SH 55",
+  "connects": "Boise to Horseshoe Bend, Cascade and McCall",
+  "group": "Central Idaho",
+  "lat": 43.83625,
+  "lon": -116.2451,
+  "elevation_ft": 4258,
+  "place": "pass-horseshoe-bend",
+  "report": {
+    "source": "itd",
+    "route": "SH 55",
+    "station": "167.C1"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

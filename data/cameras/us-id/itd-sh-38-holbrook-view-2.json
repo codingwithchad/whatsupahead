@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-38-holbrook-view-2",
+  "name": "SH-38 Holbrook, view 2",
+  "lat": 42.1678,
+  "lon": -112.655,
+  "feed_url": "https://511.idaho.gov/map/Cctv/299",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 38"
+}

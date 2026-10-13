@@ -1,0 +1,19 @@
+{
+  "id": "white-bird",
+  "name": "White Bird Hill",
+  "route": "US 95",
+  "connects": "Grangeville to Riggins and McCall",
+  "group": "US 95 grades",
+  "lat": 45.84493,
+  "lon": -116.23787,
+  "elevation_ft": 4383,
+  "place": "pass-white-bird",
+  "report": {
+    "source": "itd",
+    "route": "US 95"
+  },
+  "link": {
+    "label": "Idaho 511 road conditions",
+    "url": "https://511.idaho.gov/"
+  }
+}

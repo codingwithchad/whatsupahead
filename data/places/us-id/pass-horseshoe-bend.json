@@ -1,0 +1,11 @@
+{
+  "id": "pass-horseshoe-bend",
+  "name": "Horseshoe Bend Hill (SH 55)",
+  "region": "Idaho",
+  "state": "Idaho",
+  "blurb": "Boise to Horseshoe Bend, Cascade and McCall",
+  "lat": 43.83625,
+  "lon": -116.2451,
+  "radius_miles": 10,
+  "collection": "passes"
+}

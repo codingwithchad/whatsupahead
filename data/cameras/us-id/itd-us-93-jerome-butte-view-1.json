@@ -1,0 +1,20 @@
+{
+  "id": "itd-us-93-jerome-butte-view-1",
+  "name": "US-93 Jerome Butte, view 1",
+  "lat": 42.7313,
+  "lon": -114.441,
+  "feed_url": "https://511.idaho.gov/map/Cctv/859",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "US 93"
+}

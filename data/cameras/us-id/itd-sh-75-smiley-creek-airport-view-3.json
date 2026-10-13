@@ -1,0 +1,20 @@
+{
+  "id": "itd-sh-75-smiley-creek-airport-view-3",
+  "name": "SH-75 Smiley Creek Airport, view 3",
+  "lat": 43.9096,
+  "lon": -114.802,
+  "feed_url": "https://511.idaho.gov/map/Cctv/344",
+  "feed_type": "image",
+  "source": "ITD",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://511.idaho.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Idaho Transportation Department (Idaho 511)",
+  "created_at": "2026-10-13T00:00:00Z",
+  "route": "SH 75"
+}
