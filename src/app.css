@@ -2546,3 +2546,144 @@ div.image-button {
 .chains-one .pill {
 	white-space: normal;
 }
+
+/* Other ways over the mountains: one line, then a small drawn map and a list */
+:root {
+	--opt-1: #7c5cff;
+	--opt-2: #0f9d8a;
+	--opt-3: #c2410c;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--opt-1: #a993ff;
+		--opt-2: #3fd1bd;
+		--opt-3: #ff9a5a;
+	}
+}
+.route-options {
+	margin: 0.5rem 0 0;
+	border-radius: var(--radius);
+	background: var(--card);
+	border: 1px solid var(--line);
+}
+.route-options > summary {
+	cursor: pointer;
+	padding: 10px 14px;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 2px 8px;
+}
+.route-options > summary::-webkit-details-marker {
+	display: none;
+}
+.route-options > summary::after {
+	content: '▾';
+	margin-left: auto;
+	color: var(--accent);
+}
+.route-options[open] > summary::after {
+	content: '▴';
+}
+.ro-label {
+	color: var(--muted);
+	font-weight: 600;
+	font-size: var(--fs-sm);
+}
+.ro-sub {
+	color: var(--muted);
+	font-size: var(--fs-sm);
+}
+.ro-map {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+	background: var(--bg);
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+.ro-line {
+	fill: none;
+	stroke-width: 3;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	opacity: 0.85;
+}
+.ro-current {
+	stroke: var(--sun);
+	stroke-width: 5;
+	opacity: 1;
+}
+.ro-pass {
+	fill: var(--card);
+	stroke: var(--text);
+	stroke-width: 2;
+}
+.ro-pass.ro-mine {
+	fill: var(--sun);
+}
+.ro-end {
+	fill: var(--text);
+}
+.ro-text {
+	fill: var(--text);
+	font-size: 11px;
+	font-weight: 600;
+	paint-order: stroke;
+	stroke: var(--bg);
+	stroke-width: 3px;
+}
+.ro-list {
+	list-style: none;
+	margin: 0;
+	padding: 4px 14px;
+}
+.ro-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
+	padding: 8px 0;
+	border-top: 1px solid var(--line);
+}
+.ro-item:first-child {
+	border-top: 0;
+}
+.ro-swatch {
+	flex: none;
+	width: 14px;
+	height: 4px;
+	border-radius: 2px;
+}
+.ro-swatch-current {
+	background: var(--sun);
+	height: 6px;
+}
+.ro-what {
+	flex: 1 1 12rem;
+	min-width: 0;
+}
+.ro-what small {
+	display: block;
+	color: var(--muted);
+}
+.ro-item .pill {
+	white-space: normal;
+}
+.ro-go {
+	min-height: 36px;
+	padding: 4px 12px;
+	font-size: var(--fs-sm);
+}
+.route-options .ra-note {
+	padding: 0 14px 10px;
+	margin: 0;
+}
+.trip-top .route-options {
+	margin-top: 0.4rem;
+}
+.trip-top .route-options > summary {
+	padding: 8px 12px;
+}

@@ -20,6 +20,7 @@
 	import { timeZoneAt } from '../../lib/regions';
 	import VerdictCard from '../../lib/VerdictCard.svelte';
 	import VehiclePicker from '../../lib/VehiclePicker.svelte';
+	import RouteOptions from '../../lib/RouteOptions.svelte';
 	import type { RouteWeather as RouteWeatherData } from '../../lib/routeWeather';
 	import type { RoadWarnings } from '../../lib/roadAhead';
 	import type { LiveUpdate } from '../../lib/server/tripLive';
@@ -486,6 +487,25 @@
 					</select></label
 				>
 			</div>
+			{#await trip.options then { options, baseline }}
+				<RouteOptions
+					{options}
+					{baseline}
+					current={{
+						line: trip.mapLine,
+						minutes: trip.minutes,
+						passes: trip.road.passes,
+						from: short(trip.from),
+						to: short(trip.to)
+					}}
+					{vehicle}
+					link={(pass) =>
+						tripLink({
+							via: pass ? `${pass.lat.toFixed(4)},${pass.lon.toFixed(4)}` : null,
+							all: null
+						})}
+				/>
+			{/await}
 			{#if following}
 				<label class="speak-toggle"
 					><input type="checkbox" bind:checked={speak} onchange={saveSpeak} /> Read changes aloud</label

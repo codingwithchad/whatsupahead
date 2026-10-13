@@ -45,6 +45,8 @@ export interface RoadPass {
 	along: number;
 	heading: number | null;
 	report: PassReport | null;
+	lat: number;
+	lon: number;
 }
 
 export function roadPass({ pass, along, heading, report }: PassOnRoute): RoadPass {
@@ -58,7 +60,9 @@ export function roadPass({ pass, along, heading, report }: PassOnRoute): RoadPas
 			pass.pass_id !== undefined ? 'WSDOT' : pass.report?.source === 'odot' ? 'ODOT' : 'Caltrans',
 		along,
 		heading,
-		report
+		report,
+		lat: pass.lat,
+		lon: pass.lon
 	};
 }
 

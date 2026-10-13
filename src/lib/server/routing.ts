@@ -63,11 +63,17 @@ export function toDrivingRoute(route: OsrmRoute): DrivingRoute {
  * Driving route between two points, through any stops in between (in order). Azure Maps first when it is set up
  * (live traffic), otherwise or on failure the free public OSRM demo server. Results are cached.
  */
-export function drivingRoute(from: Point, to: Point, via: Point[] = []): Promise<DrivingRoute> {
+export function drivingRoute(
+	from: Point,
+	to: Point,
+	via: Point[] = [],
+	{ free = false }: { free?: boolean } = {}
+): Promise<DrivingRoute> {
 	const stops = [from, ...via, to];
-	const key = `route:${stops.map((p) => `${p.lat.toFixed(3)},${p.lon.toFixed(3)}`).join('>')}`;
+	// `free` (the other ways over the mountains a drive page offers) never spends Azure Maps' allowance.
+	const key = `route${free ? '-free' : ''}:${stops.map((p) => `${p.lat.toFixed(3)},${p.lon.toFixed(3)}`).join('>')}`;
 	return cached(key, 10 * 60 * 1000, async () => {
-		if (azureMapsKey()) {
+		if (azureMapsKey() && !free) {
 			try {
 				return await azureRoute(stops);
 			} catch (err) {

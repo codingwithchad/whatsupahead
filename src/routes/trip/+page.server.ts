@@ -10,6 +10,7 @@ import {
 import { previewSlot, tripShareParams, type ShareMeta } from '../../lib/sharing';
 import { withLiveLinks } from '../../lib/server/live';
 import { safeRoute } from '../../lib/server/safeRoute';
+import { routeOptions, thinLine } from '../../lib/server/routeOptions';
 import { roadWarnings } from '../../lib/server/roadAhead';
 import { snowAlong } from '../../lib/server/snow';
 import { weatherOnTheWay } from '../../lib/server/routeWeather';
@@ -112,6 +113,12 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				roughMiles: Math.round(route.roughMiles ?? 0),
 				passes: safe.passes.map(roadPass)
 			},
+			// Streamed: the same drive over the other passes across the same mountains (not for drives with stops).
+			options:
+				via.length > 1
+					? Promise.resolve({ baseline: null, options: [] })
+					: routeOptions(from, to, safe),
+			mapLine: thinLine(route.coords),
 			// Streamed: full road closures and weather warnings for when you get to each point.
 			warnings: roadWarnings(route.coords, route.minutes, startAt),
 			// For the page's refreshes while it stays open (/api/trip/live).
