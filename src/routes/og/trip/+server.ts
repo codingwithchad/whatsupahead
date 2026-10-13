@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { previewResponse, tripPreview } from '../../../lib/server/sharePictures';
+import { previewResponse, siteName, tripPreview } from '../../../lib/server/sharePictures';
 import { tripShareParams } from '../../../lib/sharing';
 import type { RequestHandler } from './$types';
 
@@ -7,5 +7,5 @@ import type { RequestHandler } from './$types';
 export const GET: RequestHandler = ({ url }) => {
 	const params = tripShareParams(url.searchParams);
 	if (!params.get('from') || !params.get('to')) error(404, 'Nothing to show');
-	return previewResponse(`trip:${params}`, () => tripPreview(params, url.host));
+	return previewResponse(`trip:${params}`, () => tripPreview(params, siteName(url)));
 };

@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getCatalog } from '../../../lib/server/catalog';
 import { geocode } from '../../../lib/server/geocode';
-import { placePreview, previewResponse } from '../../../lib/server/sharePictures';
+import { placePreview, previewResponse, siteName } from '../../../lib/server/sharePictures';
 import type { RequestHandler } from './$types';
 
 /** The picture a shared place page shows: one of our places (?place=) or a searched town (?q=). */
@@ -12,7 +12,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			placePreview(
 				{ lat: featured.lat, lon: featured.lon, label: featured.name },
 				featured,
-				url.host
+				siteName(url)
 			)
 		);
 	const q = url.searchParams.get('q')?.trim().slice(0, 200);
@@ -20,6 +20,6 @@ export const GET: RequestHandler = async ({ url }) => {
 	return previewResponse(`search:${q.toLowerCase()}`, async () => {
 		const place = await geocode(q);
 		if (!place) throw new Error('place not found');
-		return placePreview(place, undefined, url.host);
+		return placePreview(place, undefined, siteName(url));
 	});
 };

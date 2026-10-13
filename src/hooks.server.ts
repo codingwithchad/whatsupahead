@@ -66,11 +66,11 @@ const SECURITY_HEADERS: Record<string, string> = {
  * so they get a lower limit; pictures and small API calls come in bursts of 20 or more per page.
  * Generous on purpose: many people can share one address (a ferry's wifi, a phone carrier).
  */
-const PER_MINUTE: [prefix: string, limit: number][] = [
+const PER_MINUTE: [prefix: string, limit: number, method?: string][] = [
 	['/search', 60],
 	['/trip', 60],
-	// Saving a before-and-after writes to disk.
-	['/api/moments', 30],
+	// Saving a before-and-after writes to disk (looking at one is a picture like any other).
+	['/api/moments', 30, 'POST'],
 	// A drive page on the dash refreshes every 5 minutes (or on "Update now"); more than this is not a person.
 	['/api/trip', 12],
 	['/api/', 600],
@@ -78,6 +78,12 @@ const PER_MINUTE: [prefix: string, limit: number][] = [
 	// Share pictures take a moment to make; crawlers ask for one per shared link.
 	['/og/', 60]
 ];
+
+// The services that fetch a shared link's preview picture (Facebook, Messenger, X, Slack...) each ask from a
+// few addresses for everyone sharing links at once, so on a busy day they get ten times the picture limit.
+// Pretending to be one only buys more preview pictures, which are made at most once every ten minutes anyway.
+const LINK_PREVIEWERS =
+	/facebookexternalhit|facebot|twitterbot|slackbot|discordbot|whatsapp|linkedinbot|telegrambot|pinterest|redditbot|skypeuripreview|applebot|googlebot|bingbot/i;
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const who = visitorAddress(event.request, event.getClientAddress);
@@ -90,9 +96,16 @@ async function handleFor(
 	event: Parameters<Handle>[0]['event'],
 	resolve: Parameters<Handle>[0]['resolve']
 ): Promise<Response> {
-	const rule = PER_MINUTE.find(([prefix]) => event.url.pathname.startsWith(prefix));
+	const rule = PER_MINUTE.find(
+		([prefix, , method]) =>
+			event.url.pathname.startsWith(prefix) && (!method || event.request.method === method)
+	);
 	if (rule) {
-		if (!allow(`${rule[0]}:${who}`, rule[1]))
+		const limit =
+			rule[0] === '/og/' && LINK_PREVIEWERS.test(event.request.headers.get('user-agent') ?? '')
+				? rule[1] * 10
+				: rule[1];
+		if (!allow(`${rule[0]}:${who}`, limit))
 			return new Response('Too many requests. Please wait a minute and try again.', {
 				status: 429,
 				headers: { 'retry-after': '60', 'content-type': 'text/plain; charset=utf-8' }

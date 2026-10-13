@@ -113,9 +113,10 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				roughMiles: Math.round(route.roughMiles ?? 0),
 				passes: safe.passes.map(roadPass)
 			},
-			// Streamed: the same drive over the other passes across the same mountains (not for drives with stops).
+			// Streamed: the same drive over the other passes across the same mountains. Not for drives with stops:
+			// the other ways go straight from start to finish, so they would leave a stop out.
 			options:
-				via.length > 1
+				via.length > 0
 					? Promise.resolve({ baseline: null, options: [] })
 					: routeOptions(from, to, safe),
 			mapLine: thinLine(route.coords),

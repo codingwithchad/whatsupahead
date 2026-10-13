@@ -115,7 +115,7 @@ export async function placePage(
 		description: `${featured?.blurb ? `${sentence(featured.blurb)} ` : ''}${
 			fallback
 				? 'The nearest cameras'
-				: `${live.length} live ${live.length === 1 ? 'camera' : 'cameras'}`
+				: `${live.length} ${live.length === 1 ? 'camera' : 'cameras'}`
 		}, the forecast and conditions, on ${APP_NAME}.`,
 		image: `/og/search?${preview}&v=${previewSlot()}`,
 		imageAlt: `Camera pictures from ${place.label}`

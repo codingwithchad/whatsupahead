@@ -88,6 +88,13 @@ async function passLine(pass: PassInfo): Promise<string | null> {
 	return `${pass.name}: ${report.status === 'open' ? report.label || 'Open' : STATUS_LABEL[report.status]}`;
 }
 
+/**
+ * The address printed on a share picture: the site's main address when it has one (CANONICAL_HOST), so a
+ * request that arrives by another name (the host's own address, a stray header) never prints that name on a
+ * picture that is then kept for ten minutes and copied by Facebook. Otherwise the address asked for (local runs).
+ */
+export const siteName = (url: URL) => process.env.CANONICAL_HOST?.trim() || url.host;
+
 export async function cameraPreview(camera: Camera, site: string): Promise<Buffer> {
 	const near = whereIs(camera);
 	const back = isDormant(camera) ? returnLabel(camera.expected_return) : null;
@@ -132,7 +139,7 @@ export async function placePreview(
 			...(status ? [status] : []),
 			...(featured?.blurb ? [featured.blurb] : []),
 			around.length
-				? `${around.length} live ${around.length === 1 ? 'camera' : 'cameras'} and the forecast`
+				? `${around.length} ${around.length === 1 ? 'camera' : 'cameras'} and the forecast`
 				: 'The forecast and the nearest cameras'
 		],
 		credit,

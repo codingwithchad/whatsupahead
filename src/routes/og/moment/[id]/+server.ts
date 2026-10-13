@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { getMoment } from '../../../../lib/server/moments';
-import { momentPreview, previewResponse } from '../../../../lib/server/sharePictures';
+import { momentPreview, previewResponse, siteName } from '../../../../lib/server/sharePictures';
 import { getCatalog } from '../../../../lib/server/catalog';
 import type { RequestHandler } from './$types';
 
@@ -20,7 +20,7 @@ export const GET: RequestHandler = ({ params, url }) => {
 		.slice(0, 50);
 	return previewResponse(
 		`moment${tall ? '-tall' : ''}:${moment.id}`,
-		() => momentPreview(moment, url.host, { tall }),
+		() => momentPreview(moment, siteName(url), { tall }),
 		url.searchParams.has('save') ? `${name}-before-and-after.jpg` : undefined
 	);
 };

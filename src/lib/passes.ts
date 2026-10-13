@@ -151,7 +151,6 @@ const PART_OF_ROAD =
 // A closure for some hours: "from 6 p.m. to 6 a.m.", "nightly". A time alone ("as of Nov. 30 at 6 p.m.") is when it started.
 const TIMED =
 	/\bfrom\s+\d{1,2}(?::\d\d)?\s*[ap]\.?m\.?\s+(?:to|until)\b|\bbetween\s+\d{1,2}(?::\d\d)?\s*[ap]\.?m\b|\b(?:daily|nightly|overnight|each night)\b/i;
-/\b(?:from|until)\s+\d|\b\d{1,2}(?::\d\d)?\s*[ap]\.?m\b|\b(?:daily|nightly|overnight|each night)\b/i;
 const REOPENED = /\b(?:has reopened|reopened|is (?:now )?open|are (?:now )?open)\b/i;
 
 /** The sentences of a road report that say the road itself is closed (at least for a time). */
