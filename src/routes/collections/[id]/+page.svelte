@@ -79,6 +79,9 @@
 		/>
 	</div>
 	{#if data.snow}
+		<p class="powder-link">
+			<a href="/powder">Powder day: the most new snow within a few hours' drive of you →</a>
+		</p>
 		<div class="ski-controls">
 			<div class="chips" role="group" aria-label="Sort">
 				<button class="chip" aria-pressed={sort === 'snow'} onclick={() => setSort('snow')}

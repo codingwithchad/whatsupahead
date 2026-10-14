@@ -99,3 +99,26 @@ export function drivingRoute(
 		return toDrivingRoute(route);
 	});
 }
+
+/**
+ * Driving minutes from one place to many, in one request to the free OSRM server (its "table" service): real
+ * roads, not straight lines, so a ski area 10 miles away over a ridge with no road shows as the drive it is.
+ * Null for a place it can't reach. Kept 30 minutes.
+ */
+export function driveTimes(from: Point, to: Point[]): Promise<(number | null)[]> {
+	const key = `drive-times:${from.lat.toFixed(2)},${from.lon.toFixed(2)}>${to.map((p) => `${p.lat.toFixed(3)},${p.lon.toFixed(3)}`).join(';')}`;
+	return cached(key, 30 * 60 * 1000, async () => {
+		if (!to.length) return [];
+		if (!visitorAllowed('route', 20)) throw new Error('too many new routes from one visitor');
+		if (!allow('upstream:osrm', 30)) throw new Error('routing busy');
+		const coords = [from, ...to].map((p) => `${p.lon.toFixed(5)},${p.lat.toFixed(5)}`).join(';');
+		const res = await fetch(
+			`${OSRM.replace('/route/', '/table/')}/${coords}?sources=0&annotations=duration`,
+			{ headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(15000) }
+		);
+		if (!res.ok) throw new Error(`drive times ${res.status}`);
+		const body = (await res.json()) as { code: string; durations?: (number | null)[][] };
+		if (body.code !== 'Ok' || !body.durations?.[0]) throw new Error('no drive times');
+		return body.durations[0].slice(1).map((s) => (s === null ? null : Math.round(s / 60)));
+	});
+}

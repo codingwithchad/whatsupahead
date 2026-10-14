@@ -13,6 +13,7 @@ export const GET: RequestHandler = ({ url }) => {
 		'/',
 		'/passes',
 		'/tires',
+		'/powder',
 		'/places',
 		'/about',
 		...passes.map((p) => `/passes/${encodeURIComponent(p.id)}`),

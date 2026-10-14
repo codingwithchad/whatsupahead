@@ -46,9 +46,15 @@ function withStop(route: DrivingRoute, via: Point[], at: number, extra: Point): 
 	return [...before, extra, ...via.slice(before.length)];
 }
 
-export async function safeRoute(from: Point, to: Point, via: Point[] = []): Promise<SafeRoute> {
+export async function safeRoute(
+	from: Point,
+	to: Point,
+	via: Point[] = [],
+	{ free = false }: { free?: boolean } = {}
+): Promise<SafeRoute> {
 	const all = getCatalog().passes;
-	const first = await drivingRoute(from, to, via);
+	// `free`: only the free routing service (Powder day works out several drives at once).
+	const first = await drivingRoute(from, to, via, { free });
 	const crossed = onRoute(first, all);
 	if (!crossed.length) return { route: first, passes: [], avoided: [], blocked: [] };
 
@@ -82,7 +88,7 @@ export async function safeRoute(from: Point, to: Point, via: Point[] = []): Prom
 	const tries = await Promise.all(
 		candidates.map(async (p) => {
 			try {
-				const route = await drivingRoute(from, to, withStop(first, via, target.along, p));
+				const route = await drivingRoute(from, to, withStop(first, via, target.along, p), { free });
 				const over = onRoute(route, all);
 				if (over.some((o) => isBlocked(o.pass))) return null;
 				if (route.miles > Math.max(first.miles * 3, first.miles + 300)) return null;

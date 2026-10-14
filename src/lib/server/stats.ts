@@ -331,8 +331,14 @@ export function pageOf(url: URL): { page: string; place: string | null } | null 
 	if (pass) return { page: 'pass', place: `pass:${pass[1]}` };
 	if (/^\/cameras\/[a-z0-9-]+$/.test(p)) return { page: 'camera', place: null };
 	if (/^\/moments\/[a-z0-9-]+$/.test(p)) return { page: 'moment', place: null };
-	const named = ['/passes', '/places', '/nearby', '/about', '/contribute', '/tires'].find(
-		(n) => n === p
-	);
+	const named = [
+		'/passes',
+		'/places',
+		'/nearby',
+		'/about',
+		'/contribute',
+		'/tires',
+		'/powder'
+	].find((n) => n === p);
 	return named ? { page: named.slice(1), place: null } : null;
 }

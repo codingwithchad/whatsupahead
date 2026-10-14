@@ -70,6 +70,7 @@ const SECURITY_HEADERS: Record<string, string> = {
 const PER_MINUTE: [prefix: string, limit: number, method?: string][] = [
 	['/search', 60],
 	['/trip', 60],
+	['/powder', 30],
 	// Saving a before-and-after writes to disk (looking at one is a picture like any other).
 	['/api/moments', 30, 'POST'],
 	// A drive page on the dash refreshes every 5 minutes (or on "Update now"); more than this is not a person.

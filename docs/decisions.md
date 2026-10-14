@@ -361,3 +361,25 @@ over Snoqualmie wanting to miss it.
   and time; map labels near the right edge go left of their point; the replay shows its times under the slider,
   says how much earlier the "before" picture is, and shows "Make a video" on every camera (greyed out with the
   reason until there's an hour of pictures).
+
+## 2026-10-14: Why a road is closed, independent snow, and Powder day
+
+Looking at what people dislike in the ski apps (OpenSnow's paywall and storm hype, OnTheSnow's ads and stale
+numbers) and in the small road apps (iPhone-only, Tahoe-only, or paid), the gap is the drive to the snow, told
+plainly. Three changes:
+
+- **Why a road is closed.** Closures, closed passes and the answer card add a short reason read from the state's
+  own words: avalanche control, a crash, stuck or spun-out vehicles, closed for the winter, a slide, flooding, a
+  fire, trees down, road work, snow and weather (`closureCause`). Only what the text says; nothing when it gives no
+  reason. A crash clears in an hour, avalanche control in a morning, a winter closure in May.
+- **Independent snow.** A ski area's snow card marks the gauge numbers "Independent" (measured by the USDA, not
+  reported by the resort; resorts' own new-snow figures have been shown to run high on weekends) and puts the
+  resort's own report beside them to compare.
+- **Powder day** (`/powder`): the ski areas within 2 to 5 hours' drive of a place, most new snow first. Drive times
+  follow real roads: one request to the free OSRM "table" service gives the drive to every ski area at once (a ski
+  area 10 miles away over a ridge is the drive it is); straight-line distance only rules out what no drive could
+  reach. For the top five, the drive is planned as the drive page plans it, around closed passes (free routing
+  only), and shows its passes with the chain rules for your vehicle. Linked from the Ski areas list.
+
+Wording: the site says it is free and has no accounts, but no longer says "no ads". It may need ads or sponsors to
+pay for servers one day, and it should never promise otherwise.
