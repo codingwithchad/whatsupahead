@@ -38,6 +38,12 @@
 {#if full}
 	<section class="ski-snow card" aria-label="Snow">
 		<h2>Snow</h2>
+		{#if snow.station && snow.link}
+			<p class="ski-independent">
+				<span class="ski-tag">Independent</span> Measured by the USDA's own snow gauge, not reported by
+				the resort.
+			</p>
+		{/if}
 		{#if bits.length}
 			<p class="ski-snow-line" class:fresh>{bits.join(' · ')}</p>
 		{:else}
@@ -45,8 +51,7 @@
 		{/if}
 		<p class="sub">
 			{#if snow.station && snow.link}
-				From the USDA SNOTEL snow gauge <a href={snow.link} target="_blank" rel="noopener"
-					>{snow.station}</a
+				SNOTEL gauge <a href={snow.link} target="_blank" rel="noopener">{snow.station}</a
 				>{#if snow.stationFeet}&nbsp;({snow.stationFeet.toLocaleString()} ft{snow.miles !== null
 						? `, ${snow.miles} mi away`
 						: ''}){/if}{#if snow.at}, {localClock(snow.at, snow.timeZone)}{/if}.
@@ -54,11 +59,11 @@
 				No USDA snow gauge within 10 miles.
 			{/if}
 			{#if snow.forecastIn !== null}Forecast from Open-Meteo.{/if}
-			The resort's own snow report may differ.
+			A gauge is one spot; the resort measures its own, and the two can differ.
 		</p>
 		{#if report}
 			<p class="ski-report">
-				<a href={report} target="_blank" rel="noopener">The resort's own snow report ↗</a>
+				Compare: <a href={report} target="_blank" rel="noopener">the resort's own snow report ↗</a>
 			</p>
 		{/if}
 	</section>
