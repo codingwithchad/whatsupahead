@@ -4,6 +4,7 @@ import {
 	chainControlsOnRoute,
 	closuresOnRoute,
 	odotClosure,
+	ROAD_SOURCES,
 	samplePoints,
 	wsdotClosure,
 	type NwsAlert,
@@ -235,6 +236,9 @@ export async function roadWarnings(
 		chainControls: chainControlsOnRoute(checkpoints ?? [], route, cum),
 		surface: surfaceOnRoute([...(surface ?? []), ...(idSurface ?? [])], route, cum),
 		alerts: (alerts ?? []).map((a) => ({ ...a, near: nearestTown(a.at, 15) })),
-		unchecked
+		unchecked,
+		sources: Object.entries(ROAD_SOURCES)
+			.filter(([abbr]) => states.has(abbr))
+			.map(([, name]) => name)
 	};
 }

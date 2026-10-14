@@ -36,6 +36,9 @@
 		vehicle?: Vehicle | null;
 		picker?: boolean;
 	} = $props();
+	/** "WSDOT, ODOT and Caltrans". */
+	const list = (names: string[]) =>
+		names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names[0];
 	const short = $derived(VEHICLES.find((v) => v.id === vehicle)?.short ?? '');
 
 	const STATE_PAGE: Record<string, { label: string; url: string }> = {
@@ -233,8 +236,10 @@
 		{/if}
 	{/if}
 
-	<p class="ra-source">
-		From WSDOT, ODOT and Caltrans road reports and road sensors, and National Weather Service
-		warnings, for the time you reach each point.
-	</p>
+	{#await warnings then w}
+		<p class="ra-source">
+			From {w.sources?.length ? `${list(w.sources)} road reports and ` : ''}National Weather Service
+			warnings, for the time you reach each point.
+		</p>
+	{/await}
 </section>

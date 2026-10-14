@@ -168,7 +168,18 @@ export interface RoadWarnings {
 	alerts: (RouteAlert & { near: string | null })[];
 	/** Sources we could not reach for this drive, so the page never reads silence as an all-clear. */
 	unchecked: string[];
+	/** The state road departments whose reports this drive uses ("WSDOT", "ODOT"...), for the footnote. */
+	sources?: string[];
 }
+
+/** Each state's road department, as the footnote names it. */
+export const ROAD_SOURCES: Record<string, string> = {
+	WA: 'WSDOT',
+	OR: 'ODOT',
+	CA: 'Caltrans',
+	ID: 'Idaho 511 (ITD)',
+	NV: 'Nevada 511 (NDOT)'
+};
 
 // ---- Weather warnings ----------------------------------------------------------------------------------
 
