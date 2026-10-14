@@ -5,7 +5,7 @@
 	import { timeZoneAt } from './regions';
 	import { forDirection, NEED_TONE, needFor, passAnswer, VEHICLES, type Vehicle } from './vehicle';
 	import type { PassReport } from './passes';
-	import type { RoadWarnings } from './roadAhead';
+	import { closureCause, type RoadWarnings } from './roadAhead';
 	import { FREEZING_F, NEAR_FREEZING_F } from './roadSurface';
 
 	interface RoadPass {
@@ -107,7 +107,11 @@
 	{:then w}
 		{#each w.closures as c, i (i)}
 			<p class="ra-alert ra-danger">
-				<strong>Closed on your way</strong>
+				<strong
+					>Closed on your way{closureCause(c.headline)
+						? `: ${closureCause(c.headline)}`
+						: ''}</strong
+				>
 				<small>(mile {Math.round(c.along)})</small>: {c.headline}
 				<small
 					><a href={c.link} target="_blank" rel="noopener">{c.source}</a>{c.updated

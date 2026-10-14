@@ -1,5 +1,5 @@
 import type { PassReport } from './passes';
-import type { RoadWarnings } from './roadAhead';
+import { closureCause, type RoadWarnings } from './roadAhead';
 import { FREEZING_F } from './roadSurface';
 import type { StopWeather } from './routeWeather';
 import { passAnswer, type Need, type Vehicle } from './vehicle';
@@ -109,7 +109,8 @@ export function driveVerdict(d: DriveInput): Verdict {
 				: r.status === 'chains' || r.status === 'traction'
 					? 'ready'
 					: 'go';
-		const text = a ? a.text : r.label;
+		const cause = r.status === 'closed' ? passCause(r) : null;
+		const text = `${a ? a.text : r.label}${cause ? ` (${cause})` : ''}`;
 		add(l, l === 'go' ? null : `${p.name}: ${lower(text)}`, {
 			icon: l === 'go' ? 'pass' : 'chains',
 			text: `${p.name}: ${lower(l === 'go' && !a ? r.label : text)}`,
@@ -145,12 +146,14 @@ export function driveVerdict(d: DriveInput): Verdict {
 
 	const w = d.warnings;
 	if (w) {
-		for (const c of w.closures)
+		for (const c of w.closures) {
+			const cause = closureCause(c.headline);
 			add('stop', `a road is closed on the way (${c.headline})`, {
 				icon: 'closed',
-				text: 'Road closed on the way',
+				text: cause ? `Closed on the way: ${cause}` : 'Road closed on the way',
 				tone: 'stop'
 			});
+		}
 		for (const c of w.chainControls)
 			add('ready', `chain control ${c.level} at ${c.name}`, {
 				icon: 'chains',
@@ -250,7 +253,12 @@ export function passVerdict(p: PassInput): Verdict {
 			: r.status === 'chains' || r.status === 'traction' || r.notice
 				? 'ready'
 				: 'go';
-	const bits = [r.label, r.tempF !== null ? `${Math.round(r.tempF)}°F` : null, r.weather || null]
+	const cause = r.status === 'closed' ? passCause(r) : null;
+	const bits = [
+		cause ? `${r.label} (${cause})` : r.label,
+		r.tempF !== null ? `${Math.round(r.tempF)}°F` : null,
+		r.weather || null
+	]
 		.filter(Boolean)
 		.map((s) => lower(s as string));
 	const facts: Fact[] = [
@@ -272,6 +280,10 @@ export function passVerdict(p: PassInput): Verdict {
 		facts: facts.slice(0, 4)
 	};
 }
+
+/** Why a closed pass is closed, from the state's words in its report. */
+const passCause = (r: PassReport) =>
+	closureCause([r.label, r.road, r.notice ?? '', ...r.restrictions.map((x) => x.text)].join(' '));
 
 /** The highest pass among the forecast stops (the first one when no heights are known). */
 const highestPass = (stops: StopWeather[]) =>

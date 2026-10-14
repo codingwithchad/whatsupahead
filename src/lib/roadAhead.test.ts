@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	alertsOnRoute,
 	chainControlsOnRoute,
+	closureCause,
 	closuresOnRoute,
 	inGeometry,
 	odotClosure,
@@ -238,5 +239,26 @@ describe('toCheckpoint', () => {
 		expect(
 			toCheckpoint({ location: { latitude: '39.3', longitude: '-120.4' }, inService: 'false' })
 		).toBeNull();
+	});
+});
+
+describe('closureCause', () => {
+	it("reads why a road is closed from the state's words", () => {
+		expect(
+			closureCause('Westbound I-90 is closed at milepost 106 for avalanche control work')
+		).toBe('avalanche control');
+		expect(closureCause('SR 20 North Cascades Highway is closed for the season')).toBe(
+			'closed for the winter'
+		);
+		expect(
+			closureCause('Both directions blocked due to a collision involving a jackknifed semi')
+		).toBe('a crash');
+		expect(closureCause('Closed due to multiple spinouts')).toBe('stuck or spun-out vehicles');
+		expect(closureCause('Road closed: rockslide')).toBe('a slide or rockfall');
+		expect(closureCause('Closed due to heavy snow and low visibility')).toBe('snow and weather');
+	});
+
+	it('says nothing when the state gives no reason', () => {
+		expect(closureCause('US 395 closed between Bishop and Lee Vining')).toBeNull();
 	});
 });

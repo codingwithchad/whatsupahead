@@ -20,6 +20,32 @@ export interface RoadClosure {
 	link: string;
 }
 
+// Why a road is closed, in a few words, read from the state's own text: a crash clears in an hour, avalanche
+// control in a morning, a winter closure in May. Only what the text says; nothing when it gives no reason.
+const CAUSES: [RegExp, string][] = [
+	[/avalanche/i, 'avalanche control'],
+	[/seasonal|winter closure|closed for the (winter|season)|snow ?gate/i, 'closed for the winter'],
+	[/collision|crash|accident|rollover|overturned|fatal/i, 'a crash'],
+	[
+		/jack-?knif|spun[ -]?out|spin-?outs?|stuck|stranded|disabled (vehicle|truck|semi)/i,
+		'stuck or spun-out vehicles'
+	],
+	[/(rock|mud|land)\s?slide|rock ?fall|debris (flow|on)|slide/i, 'a slide or rockfall'],
+	[/flood|water over|washout|washed out/i, 'flooding'],
+	[/\bfire\b|wildfire|smoke/i, 'a fire'],
+	[/trees? down|downed (tree|power)|power lines?/i, 'trees or power lines down'],
+	[/construction|maintenance|paving|road ?work|bridge work|repairs?/i, 'road work'],
+	[
+		/snow|ice|icy|blizzard|whiteout|visibility|drift|winter (storm|weather)|weather/i,
+		'snow and weather'
+	]
+];
+
+/** Why a road is closed, from the state's words ("avalanche control"), or null when they don't say. */
+export function closureCause(text: string): string | null {
+	return CAUSES.find(([re]) => re.test(text))?.[1] ?? null;
+}
+
 export interface ClosureOnRoute extends RoadClosure {
 	along: number;
 }
