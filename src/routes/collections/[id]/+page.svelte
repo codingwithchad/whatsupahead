@@ -44,7 +44,11 @@
 			: -1;
 	const shownGroups = $derived(data.groups.filter((g) => !only || g.state === only));
 	const bySnow = $derived(
-		shownGroups.flatMap((g) => g.places).sort((a, b) => score(snow?.[b.id]) - score(snow?.[a.id]))
+		shownGroups
+			.flatMap((g) => g.places)
+			// Heavenly is under two states: once in the list.
+			.filter((p, i, all) => all.findIndex((q) => q.id === p.id) === i)
+			.sort((a, b) => score(snow?.[b.id]) - score(snow?.[a.id]))
 	);
 	const folds = $derived(data.groups.length > 1);
 	const isOpen = (name: string) => !folds || (opened[name] ?? false);

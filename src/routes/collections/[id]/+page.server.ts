@@ -32,13 +32,15 @@ export const load: PageServerLoad = ({ params }) => {
 				lat: p.lat,
 				lon: p.lon,
 				state: stateOf(p),
+				// A place on a state line (Heavenly) is listed under each of its states.
+				states: [stateOf(p), ...(p.also_states ?? [])],
 				name: p.name,
 				blurb: p.blurb,
 				liveCameras: live.length,
 				cover: coverPicture(live)
 			};
 		});
-	const states = [...new Set(list.map((p) => p.state))].sort((a, b) => rank(a) - rank(b));
+	const states = [...new Set(list.flatMap((p) => p.states))].sort((a, b) => rank(a) - rank(b));
 	// Ferry space and border waits on each card, so you can read them before opening a place. Streamed: the
 	// list shows at once and the lines fill in.
 	const live = weather.filter((w) => w.kind === 'ferry' || w.kind === 'border');
@@ -64,7 +66,10 @@ export const load: PageServerLoad = ({ params }) => {
 		snow,
 		crumbs: [{ name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }],
 		collection,
-		groups: states.map((state) => ({ state, places: list.filter((p) => p.state === state) })),
+		groups: states.map((state) => ({
+			state,
+			places: list.filter((p) => p.states.includes(state))
+		})),
 		glances
 	};
 };

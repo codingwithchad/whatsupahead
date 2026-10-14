@@ -3,6 +3,9 @@
   "name": "Heavenly",
   "region": "California",
   "state": "California",
+  "also_states": [
+    "Nevada"
+  ],
   "blurb": "Above South Lake Tahoe, on the California–Nevada line",
   "lat": 38.9362,
   "lon": -119.939,

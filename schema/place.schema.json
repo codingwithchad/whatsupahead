@@ -66,6 +66,11 @@
       "type": "string",
       "description": "A short note shown above the results, e.g. why there are no cameras yet."
     },
+    "also_states": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other states a place belongs to as well (a ski area on a state line), listed under each."
+    },
     "snow_report_url": {
       "type": "string",
       "format": "uri",

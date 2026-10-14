@@ -23,9 +23,12 @@ export const load: PageServerLoad = () => {
 	// Group by the state a place is in: its own "state" field, or the region its coordinates fall in.
 	const stateOf = (p: (typeof places)[number]) =>
 		p.state ?? regionAt(p.lat, p.lon)?.name ?? 'Other places';
+	// A place on a state line (Heavenly) is listed under each of its states.
+	const inState = (p: (typeof places)[number], name: string) =>
+		stateOf(p) === name || Boolean(p.also_states?.includes(name));
 	const regionNames = [...new Set(places.map(stateOf))].sort((a, b) => a.localeCompare(b));
 	const regions = regionNames.map((name) => {
-		const inRegion = places.filter((p) => stateOf(p) === name);
+		const inRegion = places.filter((p) => inState(p, name));
 		return {
 			name,
 			total: inRegion.length,
