@@ -348,9 +348,6 @@ dd {
 .lightbox {
 	width: min(96vw, 1100px);
 	max-height: 96vh;
-	/* The replay's buttons run below a tall picture on a phone: scroll to them rather than cut them off. */
-	overflow-y: auto;
-	overscroll-behavior: contain;
 	padding: 12px;
 	border: 0;
 	border-radius: var(--radius);
@@ -3152,10 +3149,10 @@ main.updating .grid {
 	justify-content: space-between;
 	margin: 2px 0 6px;
 	font-size: var(--fs-xs);
-	color: var(--muted);
 }
-.replay-marks strong {
-	color: var(--text);
+/* The viewer is always dark and the camera page follows the theme: use the surrounding text colour. */
+.replay-marks span {
+	opacity: 0.7;
 }
 .video-wait {
 	margin: 4px 0 0;
