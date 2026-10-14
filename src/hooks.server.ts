@@ -3,7 +3,7 @@ import { getCatalog } from './lib/server/catalog';
 import { startHistory } from './lib/server/history';
 import { startHealthChecks } from './lib/server/health';
 import { startPassHistory } from './lib/server/passHistory';
-import { allow, visitorAddress } from './lib/server/rateLimit';
+import { allow, tooManyRequests, visitorAddress } from './lib/server/rateLimit';
 import { withVisitor } from './lib/server/visitor';
 import {
 	isPerson,
@@ -105,11 +105,7 @@ async function handleFor(
 			rule[0] === '/og/' && LINK_PREVIEWERS.test(event.request.headers.get('user-agent') ?? '')
 				? rule[1] * 10
 				: rule[1];
-		if (!allow(`${rule[0]}:${who}`, limit))
-			return new Response('Too many requests. Please wait a minute and try again.', {
-				status: 429,
-				headers: { 'retry-after': '60', 'content-type': 'text/plain; charset=utf-8' }
-			});
+		if (!allow(`${rule[0]}:${who}`, limit)) return tooManyRequests(event.request);
 	}
 
 	if (

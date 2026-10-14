@@ -1,5 +1,5 @@
 import { cached } from './cache';
-import { allow } from './rateLimit';
+import { allow, visitorAllowed } from './rateLimit';
 import { COVERAGE, REGIONS } from '../regions';
 
 // Photon (by Komoot) is a free search service built on OpenStreetMap data that forgives typos and works as
@@ -53,8 +53,9 @@ export function toSuggestion(f: Feature): Suggestion | null {
 export async function photonSearch(query: string, limit = 5): Promise<Suggestion[]> {
 	const q = query.trim().slice(0, 120);
 	if (q.length < 2) return [];
-	return cached(`photon:${limit}:${q.toLowerCase()}`, HOUR, async () => {
-		// A free shared service: cap what the whole app sends it, whatever the number of visitors.
+	return cached(`photon:${limit}:${q.toLowerCase().replace(/\s+/g, ' ')}`, HOUR, async () => {
+		// A free shared service: cap what each visitor and the whole app send it.
+		if (!visitorAllowed('photon', 40)) throw new Error('place search busy');
 		if (!allow('upstream:photon', 120)) throw new Error('place search busy');
 		const url = new URL(URL_);
 		url.search = new URLSearchParams({

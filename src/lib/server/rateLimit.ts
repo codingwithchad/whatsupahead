@@ -1,4 +1,5 @@
 import { BlockList, isIP } from 'node:net';
+import { currentVisitor } from './visitor';
 
 const hits = new Map<string, { windowMs: number; times: number[] }>();
 
@@ -87,3 +88,68 @@ export function openMeteoAllowed(): boolean {
 		allow('upstream:open-meteo-forecast', 120) && allow('upstream:open-meteo-day', 8000, 86_400_000)
 	);
 }
+
+/**
+ * Whether the visitor this work is for may start one more fresh call to a free service everyone shares (routing,
+ * place search). Answers already kept in the cache don't count. Background jobs (no visitor) always may.
+ * Checked before the service's overall limit, so one visitor (or bot) can't use up what everyone else needs.
+ */
+export function visitorAllowed(service: string, limit: number, windowMs = 60_000): boolean {
+	const who = currentVisitor();
+	return !who || allow(`visitor:${service}:${who}`, limit, windowMs);
+}
+
+/**
+ * What a visitor over a limit gets: a short page with a way back when they opened a page, plain text for
+ * everything else (pictures, data the app fetches). Never kept by Cloudflare or the browser.
+ */
+export function tooManyRequests(request: Request): Response {
+	const headers: Record<string, string> = {
+		'retry-after': '60',
+		'cache-control': 'no-store',
+		'cdn-cache-control': 'no-store',
+		'x-content-type-options': 'nosniff'
+	};
+	const dest = request.headers.get('sec-fetch-dest');
+	const wantsPage =
+		(request.headers.get('accept') ?? '').includes('text/html') && (!dest || dest === 'document');
+	if (!wantsPage)
+		return new Response('Too many requests. Please wait a minute and try again.', {
+			status: 429,
+			headers: { ...headers, 'content-type': 'text/plain; charset=utf-8' }
+		});
+	return new Response(TOO_MANY_PAGE, {
+		status: 429,
+		headers: {
+			...headers,
+			'content-type': 'text/html; charset=utf-8',
+			'content-security-policy': "default-src 'none'; style-src 'unsafe-inline'"
+		}
+	});
+}
+
+const TOO_MANY_PAGE = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Slow down a moment · What's Up Ahead</title>
+<style>
+body { margin: 0; font: 17px/1.5 system-ui, sans-serif; background: #f6f7f9; color: #1d2430; }
+main { max-width: 32rem; margin: 15vh auto 0; padding: 0 16px; }
+h1 { font-size: 1.4rem; margin: 0 0 0.5rem; }
+a { color: #0b5cad; }
+@media (prefers-color-scheme: dark) { body { background: #12161c; color: #e6e9ee; } a { color: #7db7ff; } }
+</style>
+</head>
+<body>
+<main>
+<h1>That was a lot of pages at once</h1>
+<p>To keep the free road and weather services working for everyone, each address gets a limited number of new
+drives and searches a minute. Please wait a minute, then try again.</p>
+<p><a href="/">Back to What's Up Ahead</a></p>
+</main>
+</body>
+</html>
+`;

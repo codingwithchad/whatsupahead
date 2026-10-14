@@ -1,6 +1,6 @@
 import type { Point } from '../geo';
 import { cached } from './cache';
-import { allow } from './rateLimit';
+import { allow, visitorAllowed } from './rateLimit';
 import type { LatLon } from '../route';
 import { azureMapsKey, azureRoute } from './azureMaps';
 
@@ -73,6 +73,8 @@ export function drivingRoute(
 	// `free` (the other ways over the mountains a drive page offers) never spends Azure Maps' allowance.
 	const key = `route${free ? '-free' : ''}:${stops.map((p) => `${p.lat.toFixed(3)},${p.lon.toFixed(3)}`).join('>')}`;
 	return cached(key, 10 * 60 * 1000, async () => {
+		// A drive is up to five routes (more when a pass is closed), and its other ways five more.
+		if (!visitorAllowed('route', 20)) throw new Error('too many new routes from one visitor');
 		if (azureMapsKey() && !free) {
 			try {
 				return await azureRoute(stops);
@@ -81,6 +83,9 @@ export function drivingRoute(
 			}
 		}
 		// The demo server allows about one request a second for everyone using it; stay well under that.
+		// The other ways over the mountains get their own smaller share, so on a storm morning they can't use up
+		// what drive pages need for their own route.
+		if (free && !allow('upstream:osrm-other-ways', 15)) throw new Error('routing busy');
 		if (!allow('upstream:osrm', 30)) throw new Error('routing busy');
 		const url = `${OSRM}/${stops.map((p) => `${p.lon},${p.lat}`).join(';')}?overview=full&geometries=geojson&steps=true`;
 		const res = await fetch(url, {

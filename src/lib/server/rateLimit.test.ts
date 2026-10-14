@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { allow, isCloudflare, visitorAddress, withoutPort } from './rateLimit';
+import {
+	allow,
+	isCloudflare,
+	tooManyRequests,
+	visitorAddress,
+	visitorAllowed,
+	withoutPort
+} from './rateLimit';
+import { withVisitor } from './visitor';
 
 describe('allow', () => {
 	it('lets calls through up to the limit, then says no', () => {
@@ -84,5 +92,46 @@ describe('withoutPort', () => {
 		expect(withoutPort('[2001:db8::1]:51234')).toBe('2001:db8::1');
 		expect(withoutPort('203.0.113.5')).toBe('203.0.113.5');
 		expect(withoutPort('2001:db8::1')).toBe('2001:db8::1');
+	});
+});
+
+describe('visitorAllowed', () => {
+	it('counts each visitor on their own and never stops background work', () => {
+		withVisitor('198.51.100.1', () => {
+			expect(visitorAllowed('test-service', 2)).toBe(true);
+			expect(visitorAllowed('test-service', 2)).toBe(true);
+			expect(visitorAllowed('test-service', 2)).toBe(false);
+		});
+		withVisitor('198.51.100.2', () => expect(visitorAllowed('test-service', 2)).toBe(true));
+		for (let i = 0; i < 5; i++) expect(visitorAllowed('test-service', 2)).toBe(true);
+	});
+});
+
+describe('tooManyRequests', () => {
+	const ask = (headers: Record<string, string>) =>
+		tooManyRequests(new Request('http://x/trip?from=a&to=b', { headers }));
+
+	it('gives someone who opened a page a short page with a way back, not an error', async () => {
+		const res = ask({ accept: 'text/html,application/xhtml+xml', 'sec-fetch-dest': 'document' });
+		expect(res.status).toBe(429);
+		expect(res.headers.get('content-type')).toContain('text/html');
+		expect(res.headers.get('retry-after')).toBe('60');
+		expect(res.headers.get('cdn-cache-control')).toBe('no-store');
+		const page = await res.text();
+		expect(page).toContain('wait a minute');
+		expect(page).toContain('href="/"');
+	});
+
+	it('answers pictures and data the app fetches in plain text', async () => {
+		const asks: Record<string, string>[] = [
+			{ accept: 'image/avif,image/webp,*/*', 'sec-fetch-dest': 'image' },
+			{ accept: 'application/json' },
+			{ accept: 'text/html', 'sec-fetch-dest': 'empty' }
+		];
+		for (const headers of asks) {
+			const res = ask(headers);
+			expect(res.status).toBe(429);
+			expect(res.headers.get('content-type')).toContain('text/plain');
+		}
 	});
 });

@@ -1,7 +1,7 @@
 import { parseLatLon } from '../geo';
 import type { Place } from '../types';
 import { cached } from './cache';
-import { allow } from './rateLimit';
+import { allow, visitorAllowed } from './rateLimit';
 import { queryVariants, similarity } from '../queryVariants';
 import { lookupTown } from './gazetteer';
 import { COVERAGE } from '../regions';
@@ -51,7 +51,9 @@ export async function geocode(query: string): Promise<Place | null> {
 	const local = lookupTown(q);
 	if (local) return local;
 
-	return cached(`geo:${q.toLowerCase()}`, DAY, async () => {
+	return cached(`geo:${q.toLowerCase().replace(/\s+/g, ' ')}`, DAY, async () => {
+		// Each new place can take several searches; a person types a few, a script typing random ones is stopped.
+		if (!visitorAllowed('geocode', 20)) throw new Error('too many new place lookups');
 		// Main search (Azure Maps or Photon): forgives typos and prefers the Northwest. People write names differently from the map
 		// (split or joined words, "mall"), so try other spellings and keep the result that looks most like what was typed.
 		try {

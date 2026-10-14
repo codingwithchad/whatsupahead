@@ -258,3 +258,22 @@ Google now reads the sitemap. Pages tell search engines a little more: the home 
 Mountain passes › Stevens Pass"), which Google shows instead of an address like `/search?place=mukilteo`. The passes
 page has its own description. Typed searches, unknown places and shared before-and-afters are marked `noindex`: they
 are one-off pages that would only crowd the real ones out of results.
+
+## 2026-10-14: One visitor can't use up the free services, and suggestions show exactly as typed
+
+From the security part of the user-testing list. Drive pages, preview pictures and the replay already had limits per
+address, and place searches and routes were already kept for a while, so a script asking for random drives could
+not reach Azure Maps' allowance (it has its own hourly limit per visitor). It could still use up the free routing
+and place-search services everyone shares (the routing server takes 30 new routes a minute from the whole app). Now
+each visitor may start at most 20 new routes, 20 new place lookups and 40 new place searches a minute; answers
+already kept don't count, so going back to a drive costs nothing. The "Other ways" over the mountains get their own
+smaller share of routing (15 of the 30 a minute), so on a storm morning they can't crowd out drive pages' own routes.
+Someone over a limit who opened a page gets a short page saying to wait a minute, with a way back, instead of a line
+of plain text; pictures and data the app fetches still get plain text.
+
+The Add a camera form files a GitHub issue, and GitHub shows issue text as formatted text: a suggestion could
+@mention people, add pictures or links, hide text in HTML, or start a new line that looks like our own YouTube
+check. Everything the visitor typed (and the title and channel YouTube gives back) now goes in as code, shown
+exactly as typed, and every field but the owner's terms is kept to one line. The link must be an http or https
+address with a real host and no name or password in it. The form only suggests a camera to a person who checks it,
+so it is not checked against the camera schema; nothing it sends is added to the data or shown on the site.
