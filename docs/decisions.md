@@ -306,3 +306,17 @@ facts. Each is fixed:
   there, its report for your vehicle and its forecast) and the camera nearest its summit, in large text with a large
   Stop button, and says once "For the passenger. Driver, eyes on the road." Rule for any future sponsorship: nothing
   promotional ever goes on this screen.
+
+## 2026-10-14: Stats by day and by hour, and not counting our own phones
+
+The stats page showed the last week as one lump, which can't answer "did yesterday's 9 AM Facebook post bring
+anyone?". It now shows today, yesterday, the last 7 or 30 days, or any single day (from a date picker, or by
+tapping a day in the list), and for the days shown, when people came: how many visitors first arrived in each
+Pacific hour, with the pages in that hour a tap away (and as a table). Hours are counted from today on; days kept
+from before have no hours. "Came from other sites" comes first, since that's what a post is compared with.
+
+Testing the site on our own phones and in Chrome's device mode added to the counts. "Don't count this device" on
+`/stats` sets a cookie on that one browser (`wua_nocount`, holding only "1", kept 400 days, sent only to us), and
+page views and taps from it are skipped. Visitors who never tap it never get a cookie, so the counter stays
+cookieless for them, as the About page says. Each browser needs its own tap: the Pixel's Chrome, and the desktop
+Chrome used for device mode.

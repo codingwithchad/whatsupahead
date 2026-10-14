@@ -49,6 +49,10 @@ export interface Day {
 	sources: Record<string, number>;
 	events: Record<string, number>;
 	searches: { found: number; notFound: number };
+	/** Pages shown in each Pacific hour ("00" to "23"); days counted before 2026-10-14 have none. */
+	hours?: Record<string, number>;
+	/** Visitors by the hour they first came that day, to line a post up with the visits it brought. */
+	arrivals?: Record<string, number>;
 }
 
 interface Saved {
@@ -83,7 +87,9 @@ const emptyDay = (): Day => ({
 	flows: {},
 	sources: {},
 	events: {},
-	searches: { found: 0, notFound: 0 }
+	searches: { found: 0, notFound: 0 },
+	hours: {},
+	arrivals: {}
 });
 
 /** Add one set of day counts into another. */
@@ -91,8 +97,18 @@ export function addDays(into: Record<string, Day>, from: Record<string, Day>) {
 	for (const [day, d] of Object.entries(from)) {
 		const t = (into[day] ??= emptyDay());
 		t.visitors += d.visitors;
-		for (const k of ['views', 'places', 'flows', 'sources', 'events'] as const)
-			for (const [name, n] of Object.entries(d[k] ?? {})) t[k][name] = (t[k][name] ?? 0) + n;
+		for (const k of [
+			'views',
+			'places',
+			'flows',
+			'sources',
+			'events',
+			'hours',
+			'arrivals'
+		] as const) {
+			const table = (t[k] ??= {});
+			for (const [name, n] of Object.entries(d[k] ?? {})) table[name] = (table[name] ?? 0) + n;
+		}
 		t.searches.found += d.searches?.found ?? 0;
 		t.searches.notFound += d.searches?.notFound ?? 0;
 	}
@@ -102,6 +118,20 @@ export function addDays(into: Record<string, Day>, from: Record<string, Day>) {
 /** The day in Pacific time, so "today" matches the people using it. */
 export const dayOf = (ms = Date.now()) =>
 	new Date(ms).toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' });
+
+const HOUR = new Intl.DateTimeFormat('en-US', {
+	timeZone: 'America/Los_Angeles',
+	hour: '2-digit',
+	hourCycle: 'h23'
+});
+/** The hour in Pacific time, "00" to "23". */
+export const hourOf = (ms = Date.now()) => HOUR.format(ms).padStart(2, '0');
+
+/**
+ * The cookie a device gets when its owner asks not to be counted (on /stats), so testing the site on our own
+ * phones doesn't add to the visits. It holds no id, only "1", and visitors who never ask never get it.
+ */
+export const NO_COUNT_COOKIE = 'wua_nocount';
 
 function today(): Day {
 	const day = dayOf();
@@ -144,11 +174,14 @@ export function recordView(opts: {
 		.update(`${salt.value}|${opts.address}|${opts.userAgent}`)
 		.digest('hex')
 		.slice(0, 16);
+	const hour = hourOf();
 	if (!seen.has(visitor)) {
 		seen.add(visitor);
 		day.visitors++;
+		bump((day.arrivals ??= {}), hour);
 	}
 	bump(day.views, opts.page);
+	bump((day.hours ??= {}), hour);
 	if (opts.place) bump(day.places, opts.place);
 	if (opts.from && opts.from !== opts.page) bump(day.flows, `${opts.from} > ${opts.page}`);
 	if (opts.source) bump(day.sources, opts.source);

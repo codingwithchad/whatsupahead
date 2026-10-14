@@ -1763,7 +1763,7 @@ div.image-button {
 }
 .bars li {
 	display: grid;
-	grid-template-columns: 3.2em 1fr auto;
+	grid-template-columns: 6.6em 1fr auto;
 	align-items: center;
 	gap: 10px;
 	font-size: var(--fs-sm);
@@ -2841,4 +2841,129 @@ main.updating .grid {
 .follow + .speak-toggle input {
 	width: 24px;
 	height: 24px;
+}
+
+/* Stats: which days, the hourly chart, and not counting our own devices */
+.stat-counting {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 12px 14px;
+	margin: 0.75rem 0;
+}
+.stat-counting p {
+	margin: 0;
+	font-size: var(--fs-sm);
+}
+.stat-counting button {
+	min-height: 44px;
+	font: inherit;
+	font-weight: 600;
+}
+.stat-range {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin: 1rem 0 0.5rem;
+}
+.stat-range a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 40px;
+	padding: 0 14px;
+	border-radius: 999px;
+	border: 1px solid var(--line);
+	background: var(--card);
+	color: var(--text);
+	font-weight: 600;
+	text-decoration: none;
+}
+.stat-range a[aria-current='page'] {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: var(--on-accent);
+}
+.stat-range input {
+	min-height: 40px;
+	padding: 0 10px;
+	border-radius: 999px;
+	border: 1px solid var(--line);
+	background: var(--card);
+	color: var(--text);
+	font: inherit;
+}
+.hours {
+	display: grid;
+	grid-template-columns: repeat(24, 1fr);
+	align-items: end;
+	gap: 2px;
+	height: 150px;
+	padding-top: 18px;
+	border-bottom: 1px solid var(--muted);
+}
+.hour {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+}
+.hour-bar {
+	width: 100%;
+	max-width: 24px;
+	min-height: 2px;
+	border-radius: 4px 4px 0 0;
+	background: var(--accent);
+}
+.hour-bar.none {
+	background: var(--line);
+}
+.hour.tapped .hour-bar {
+	outline: 2px solid var(--text);
+	outline-offset: 1px;
+}
+.hour-n {
+	font-size: var(--fs-xs);
+	font-weight: 700;
+	color: var(--text);
+	line-height: 1.4;
+}
+.hour-axis {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	margin-top: 4px;
+	font-size: var(--fs-xs);
+	color: var(--muted);
+}
+.hour-readout {
+	margin: 0.5rem 0;
+	font-size: var(--fs-sm);
+}
+.hour-table table {
+	border-collapse: collapse;
+	font-size: var(--fs-sm);
+	margin-top: 6px;
+}
+.hour-table th,
+.hour-table td {
+	padding: 4px 12px 4px 0;
+	text-align: left;
+	border-top: 1px solid var(--line);
+}
+.bars .bar-day {
+	white-space: nowrap;
+}
+.hour-table {
+	margin-bottom: 1rem;
+}
+.bars a[aria-current='page'] {
+	font-weight: 700;
 }

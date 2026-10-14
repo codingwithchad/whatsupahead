@@ -7,6 +7,7 @@ import { allow, tooManyRequests, visitorAddress } from './lib/server/rateLimit';
 import { withVisitor } from './lib/server/visitor';
 import {
 	isPerson,
+	NO_COUNT_COOKIE,
 	pageOf,
 	recordSearch,
 	recordView,
@@ -148,6 +149,8 @@ function countVisit(event: Parameters<Handle>[0]['event']) {
 	const page = pageOf(event.url);
 	const userAgent = event.request.headers.get('user-agent') ?? '';
 	if (!page || !isPerson(userAgent)) return;
+	// Our own test phones and browsers, marked on /stats.
+	if (event.cookies.get(NO_COUNT_COOKIE)) return;
 	// A page someone opened, or moved to inside the app; not a background fetch (the offline helper refreshing
 	// its saved copy of the home page, for example). Older browsers send no Sec-Fetch-Dest: count those.
 	const dest = event.request.headers.get('sec-fetch-dest');

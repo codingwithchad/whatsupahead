@@ -1,7 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { StatsStore } from './statsStore';
 import {
+	addDays,
 	flushStats,
+	hourOf,
 	isPerson,
 	pageOf,
 	recordEvent,
@@ -9,7 +11,8 @@ import {
 	recordView,
 	resetStats,
 	siteName,
-	statsReport
+	statsReport,
+	type Day
 } from './stats';
 
 const PHONE =
@@ -147,5 +150,41 @@ describe('siteName', () => {
 		expect(siteName('out.reddit.com')).toBe('reddit.com');
 		expect(siteName('www.google.com')).toBe('google.com');
 		expect(siteName('www.example.org')).toBe('example.org');
+	});
+});
+
+describe('visits by the hour', () => {
+	it('counts pages each hour and each visitor in the hour they first came', () => {
+		recordView({ address: '198.51.100.7', userAgent: PHONE, page: 'home' });
+		recordView({ address: '198.51.100.7', userAgent: PHONE, page: 'trip' });
+		recordView({ address: '198.51.100.8', userAgent: PHONE, page: 'home' });
+		const [, day] = statsReport().days[0];
+		const hour = hourOf();
+		expect(day.hours).toEqual({ [hour]: 3 });
+		expect(day.arrivals).toEqual({ [hour]: 2 });
+	});
+
+	it('reads hours in Pacific time', () => {
+		// 3:30 PM Pacific daylight time.
+		expect(hourOf(Date.UTC(2026, 9, 14, 22, 30))).toBe('15');
+		expect(hourOf(Date.UTC(2026, 9, 14, 7, 5))).toBe('00');
+	});
+
+	it('adds days saved before hours were counted', () => {
+		const old: Day = {
+			visitors: 4,
+			views: { home: 5 },
+			places: {},
+			flows: {},
+			sources: {},
+			events: {},
+			searches: { found: 0, notFound: 0 }
+		};
+		const into = { '2026-10-13': structuredClone(old) };
+		addDays(into, {
+			'2026-10-13': { ...structuredClone(old), hours: { '09': 5 }, arrivals: { '09': 4 } }
+		});
+		expect(into['2026-10-13'].hours).toEqual({ '09': 5 });
+		expect(into['2026-10-13'].visitors).toBe(8);
 	});
 });
