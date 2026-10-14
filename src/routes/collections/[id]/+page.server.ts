@@ -3,6 +3,7 @@ import { isDormant, nearby } from '../../../lib/geo';
 import { coverPicture, forPlace } from '../../../lib/placeCameras';
 import { getCatalog } from '../../../lib/server/catalog';
 import { getGlance } from '../../../lib/server/conditions';
+import { skiSnow } from '../../../lib/server/skiSnow';
 import type { Glance } from '../../../lib/transit';
 import { REGIONS, regionAt } from '../../../lib/regions';
 import { APP_NAME } from '../../../lib/brand';
@@ -53,8 +54,14 @@ export const load: PageServerLoad = ({ params }) => {
 		image: `/og/collection/${encodeURIComponent(collection.id)}?v=${previewSlot()}`,
 		imageAlt: `Camera pictures from ${collection.name}`
 	};
+	// Ski areas: snow at each (the nearest gauge and today's forecast), streamed like the lines above.
+	const snow =
+		collection.id === 'ski-areas'
+			? skiSnow(list).catch(() => ({}) as Awaited<ReturnType<typeof skiSnow>>)
+			: null;
 	return {
 		share,
+		snow,
 		crumbs: [{ name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }],
 		collection,
 		groups: states.map((state) => ({ state, places: list.filter((p) => p.state === state) })),

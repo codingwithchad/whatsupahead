@@ -2967,3 +2967,37 @@ main.updating .grid {
 .bars a[aria-current='page'] {
 	font-weight: 700;
 }
+
+/* Ski areas: snow numbers, sort and state filter */
+.ski-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0.75rem 0;
+}
+.ski-controls .chip {
+	min-height: 40px;
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+.ski-snow {
+	padding: 12px 14px;
+	margin: 0.75rem 0;
+}
+.ski-snow h2 {
+	margin: 0 0 4px;
+	font-size: var(--fs-lg);
+}
+.ski-snow-line {
+	margin: 0 0 6px;
+	font-size: var(--fs-lg);
+	font-weight: 700;
+}
+.ski-snow-line.fresh,
+.ski-snow-glance.fresh {
+	color: var(--accent);
+}
+.ski-snow-glance {
+	font-weight: 600;
+}

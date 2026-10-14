@@ -1,6 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { getCatalog } from '../../lib/server/catalog';
 import { placePage } from '../../lib/server/placePage';
+import { skiSnow } from '../../lib/server/skiSnow';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, setHeaders, locals }) => {
@@ -26,6 +27,13 @@ export const load: PageServerLoad = async ({ url, setHeaders, locals }) => {
 	const collection = getCatalog().collections.find((c) => c.id === featured.collection);
 	return {
 		...result,
+		// Streamed: snow at a ski area (gauge and today's forecast).
+		skiSnow:
+			featured.collection === 'ski-areas'
+				? skiSnow([featured])
+						.then((all) => all[featured.id] ?? null)
+						.catch(() => null)
+				: null,
 		crumbs: [
 			collection
 				? { name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }

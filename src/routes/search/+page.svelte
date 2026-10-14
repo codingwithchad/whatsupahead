@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { APP_NAME } from '../../lib/brand';
 	import PlaceBody from '../../lib/PlaceBody.svelte';
+	import SkiSnowLine from '../../lib/SkiSnowLine.svelte';
 	import SearchBox from '../../lib/SearchBox.svelte';
 	import ShareButton from '../../lib/ShareButton.svelte';
 	import { rememberPlace } from '../../lib/lastPlace';
@@ -62,6 +63,11 @@
 			</nav>
 		</section>
 
+		{#if 'skiSnow' in data && data.skiSnow}
+			{#await data.skiSnow then snow}
+				{#if snow}<SkiSnowLine {snow} full />{/if}
+			{/await}
+		{/if}
 		<PlaceBody {data} {base} />
 	{/if}
 </main>

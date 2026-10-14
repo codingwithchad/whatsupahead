@@ -149,3 +149,23 @@ export function avalancheAt(zones: AvalancheZone[], p: Point): AvalancheDanger |
 		link: z.properties.link
 	};
 }
+
+/** The moment it is `hour`:00 today where `timeZone` is ("America/Los_Angeles"). */
+export function todayAt(hour: number, timeZone: string, now = Date.now()): number {
+	const ymd = new Date(now).toLocaleDateString('en-CA', { timeZone });
+	const guess = Date.parse(`${ymd}T${String(hour).padStart(2, '0')}:00:00Z`);
+	const shown = Date.parse(
+		`${new Date(guess).toLocaleString('sv-SE', { timeZone }).replace(' ', 'T')}Z`
+	);
+	return guess - (shown - guess);
+}
+
+/** New snow at the gauge since 6 AM today where it is; null before 6 AM or without readings. */
+export function snowSinceSix(
+	hourly: { t: number; in: number }[],
+	timeZone: string,
+	now = Date.now()
+): number | null {
+	const six = todayAt(6, timeZone, now);
+	return now > six + 3600_000 ? snowBetween(hourly, six, now) : null;
+}
