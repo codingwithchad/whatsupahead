@@ -35,7 +35,7 @@ Some live data needs free keys (WSDOT, ODOT TripCheck, Windy and others). Copy `
 
 ## How it's built
 
-SvelteKit and TypeScript on one small Node server. Cameras, places, drives, passes and weather sources live in `data/`, each file checked against a schema in `schema/`. See [docs/data-model.md](docs/data-model.md), [docs/decisions.md](docs/decisions.md) and [docs/sources.md](docs/sources.md) (where each camera feed comes from and why we're allowed to use it).
+SvelteKit and TypeScript on one small Node server, which runs on any host that runs Node and keeps a little on disk (visit counts, the camera replay and shared before-and-afters; see [docs/deploy.md](docs/deploy.md)). Cameras, places, drives, passes and weather sources live in `data/`, each file checked against a schema in `schema/`. See [docs/data-model.md](docs/data-model.md), [docs/decisions.md](docs/decisions.md) and [docs/sources.md](docs/sources.md) (where each camera feed comes from and why we're allowed to use it).
 
 ## About this project
 
