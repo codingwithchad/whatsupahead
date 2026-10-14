@@ -8,7 +8,14 @@
 
 	// A grid of camera cards. Tapping a picture opens the full-screen viewer at that camera.
 	// The open camera lives in the browser history, so the phone's Back button closes the viewer.
-	let { items }: { items: { camera: Nearby<Camera>; note?: string }[] } = $props();
+	// `ondead` hears which cameras have no picture or only a very old one (see CameraMedia).
+	let {
+		items,
+		ondead
+	}: {
+		items: { camera: Nearby<Camera>; note?: string }[];
+		ondead?: (id: string, dead: boolean) => void;
+	} = $props();
 
 	const index = $derived(page.state.camera ?? -1);
 </script>
@@ -18,6 +25,7 @@
 		<CameraCard
 			camera={item.camera}
 			note={item.note}
+			ondead={ondead && ((dead) => ondead(item.camera.id, dead))}
 			onopen={() => {
 				track('viewer-open');
 				pushState('', { camera: i });

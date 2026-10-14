@@ -5,17 +5,26 @@
 
 	// The picture or live player for one camera, kept fresh. Used by the camera cards and by the full-screen viewer.
 	// `onopen` makes a still picture tappable (to open the viewer); `large` shows it as big as the screen allows.
+	// `ondead` hears when the picture fails to load or is more than six hours old, so a drive can leave it out.
 	let {
 		camera,
 		onopen,
+		ondead,
 		large = false
-	}: { camera: Camera; onopen?: () => void; large?: boolean } = $props();
+	}: {
+		camera: Camera;
+		onopen?: () => void;
+		ondead?: (dead: boolean) => void;
+		large?: boolean;
+	} = $props();
 
 	const refreshMs = $derived((camera.refresh_seconds ?? 120) * 1000);
 	const isImage = $derived(camera.feed_type === 'image');
 	const view = $derived(camera.view);
 	let tick = $state(Date.now());
 	let modified = $state<string | null>(null);
+	// Whether the owner has been asked when the picture was taken (so "Time unknown" isn't shown while asking).
+	let checked = $state(false);
 	let providerUrl = $state<string | null>(null);
 	let watching = $state(false);
 	// A picture that fails to load gets one retry, then a clear "unavailable" tile until the next refresh.
@@ -52,6 +61,7 @@
 		if (next && modified && next !== modified) version = Date.parse(next);
 		else if (!next && modified === null) version = Math.floor(Date.now() / refreshMs);
 		modified = next ?? modified;
+		checked = true;
 	}
 
 	$effect(() => {
@@ -87,9 +97,11 @@
 	);
 	const shownModified = $derived(modified ?? view?.modified ?? null);
 	const age = $derived(shownModified ? ago(shownModified, tick) : null);
-	const stale = $derived(
-		shownModified ? tick - new Date(shownModified).getTime() > refreshMs * 5 : false
-	);
+	const oldMs = $derived(shownModified ? tick - new Date(shownModified).getTime() : 0);
+	// A dry road six hours ago looks just like a dry road now: say plainly when a picture is old.
+	const stale = $derived(oldMs > Math.max(30 * 60_000, refreshMs * 5));
+	const dead = $derived(failed || oldMs > 6 * 3_600_000);
+	$effect(() => ondead?.(dead));
 </script>
 
 {#snippet picture(lazy: boolean)}
@@ -105,7 +117,8 @@
 			onload={onOk}
 		/>
 	{/if}
-	{#if age}<span class="age" class:stale>{stale ? 'Stale · ' : ''}{age}</span>{/if}
+	{#if age}<span class="age" class:stale>{stale ? 'Old picture · ' : ''}{age}</span>
+	{:else if checked && !failed}<span class="age unknown">Time unknown</span>{/if}
 {/snippet}
 
 {#if view && onopen}

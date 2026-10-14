@@ -332,7 +332,11 @@ dd {
 	color: #fff;
 }
 .image-button .age.stale {
-	background: #8a5a00;
+	background: #b45309;
+	font-weight: 700;
+}
+.image-button .age.unknown {
+	background: rgb(0 0 0 / 0.5);
 }
 .lightbox {
 	width: min(96vw, 1100px);
@@ -594,7 +598,8 @@ button.wide {
 	color: #fff;
 }
 .image-link .age.stale {
-	background: #8a5a00;
+	background: #b45309;
+	font-weight: 700;
 }
 .courtesy {
 	margin: 22px 0 0;

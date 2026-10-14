@@ -2,12 +2,21 @@
 	import CameraMedia from './CameraMedia.svelte';
 	import type { Camera, Nearby } from './types';
 
-	let { camera, note, onopen }: { camera: Nearby<Camera>; note?: string; onopen?: () => void } =
-		$props();
+	let {
+		camera,
+		note,
+		onopen,
+		ondead
+	}: {
+		camera: Nearby<Camera>;
+		note?: string;
+		onopen?: () => void;
+		ondead?: (dead: boolean) => void;
+	} = $props();
 </script>
 
 <article class="card camera">
-	<CameraMedia {camera} {onopen} />
+	<CameraMedia {camera} {onopen} {ondead} />
 	<div class="meta">
 		<h3>{camera.name}</h3>
 		<p class="sub">

@@ -5,6 +5,7 @@
 	import { goto } from '$app/navigation';
 	import { untrack } from 'svelte';
 	import CameraList from '../../lib/CameraList.svelte';
+	import { SvelteSet } from 'svelte/reactivity';
 	import ConditionsBar from '../../lib/ConditionsBar.svelte';
 	import SnowLine from '../../lib/SnowLine.svelte';
 	import RouteWeather from '../../lib/RouteWeather.svelte';
@@ -351,8 +352,17 @@
 
 	$effect(() => () => stopFollowing());
 
+	// Key cameras whose picture won't load or is more than six hours old are left out (all of them still show
+	// under "Show all"): an old dry road is worse than no picture.
+	const dead = new SvelteSet<string>();
 	const ahead = $derived(
-		trip ? trip.stops.filter((s) => progress === null || s.along >= progress - 0.3) : []
+		trip
+			? trip.stops.filter(
+					(s) =>
+						(progress === null || s.along >= progress - 0.3) &&
+						(trip.showingAll || !dead.has(s.camera.id))
+				)
+			: []
 	);
 	const passed = $derived(
 		trip ? trip.stops.filter((s) => progress !== null && s.along < progress - 0.3) : []
@@ -629,6 +639,9 @@
 						camera: { ...stop.camera, distance: stop.along },
 						note: noteFor(stop.along)
 					}))}
+					ondead={(id, gone) => {
+						if (gone) dead.add(id);
+					}}
 				/>
 			</div>
 		{:else if trip.stops.length}
@@ -639,7 +652,9 @@
 
 		{#if !trip.showingAll}
 			<p class="thinned">
-				Showing {trip.stops.length} key cameras of {trip.totalCameras}.
+				Showing {trip.stops.length - dead.size} key cameras of {trip.totalCameras}{dead.size
+					? ` (${dead.size} with no new picture for hours left out)`
+					: ''}.
 				<a href={tripLink({ all: '1' })}>Show all {trip.totalCameras}</a>
 			</p>
 		{:else if trip.totalCameras > 40}
