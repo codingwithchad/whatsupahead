@@ -74,7 +74,9 @@
 	let firstWeather = $state<RouteWeatherData | null>(null);
 	let vehicle = $state<Vehicle | null>(null);
 	$effect(() => {
-		vehicle = loadVehicle();
+		// One choice is always picked, Car until someone says otherwise, so the chips never read as a list of
+		// vehicles that need chains.
+		vehicle = loadVehicle() ?? 'car';
 	});
 
 	const SPEAK_KEY = 'speak-changes';
@@ -455,7 +457,7 @@
 			{#if verdict}
 				<VerdictCard {verdict}>
 					{#if trip.road.passes.length}
-						<VehiclePicker bind:vehicle label="Chains for:" />
+						<VehiclePicker bind:vehicle label="I'm driving:" />
 					{/if}
 					<p class="verdict-asof">
 						{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now.{:else if updatedAt}As

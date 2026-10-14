@@ -33,7 +33,9 @@
 	// Chains for the visitor's vehicle, when they have picked one (kept on the device).
 	let vehicle = $state<Vehicle | null>(null);
 	$effect(() => {
-		vehicle = loadVehicle();
+		// One choice is always picked, Car until someone says otherwise, so the chips never read as a list of
+		// vehicles that need chains.
+		vehicle = loadVehicle() ?? 'car';
 	});
 	const short = $derived(VEHICLES.find((v) => v.id === vehicle)?.short ?? '');
 	// The first sentence of WSDOT's note, for passes that are not reporting right now.

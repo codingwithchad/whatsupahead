@@ -17,7 +17,8 @@
 				saveVehicle(v.id);
 				track('vehicle');
 			}}
-			title={v.label}>{v.pick}</button
+			title={v.label}
+			>{#if vehicle === v.id}<span aria-hidden="true">✓ </span>{/if}{v.pick}</button
 		>
 	{/each}
 </div>
