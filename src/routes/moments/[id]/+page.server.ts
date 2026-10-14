@@ -20,6 +20,8 @@ export const load: PageServerLoad = ({ params }) => {
 	};
 	return {
 		share,
+		// A shared before-and-after lasts 30 days: for the people it was sent to, not for search results.
+		noindex: true,
 		id: moment.id,
 		words,
 		credit: camera.attribution_text ?? camera.source,

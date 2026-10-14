@@ -250,3 +250,11 @@ One look across the app: a missing page now has the usual top bar and a way on (
 top bar of place and pass pages names the page, like every other page, instead of a search box squeezed to a few
 letters (wider screens keep the box); Share and Follow are pills like the other buttons in a row; and place cover
 pictures no longer carry a "Live" badge (only YouTube streams are live).
+
+## 2026-10-13: Easier to find in search
+
+Google now reads the sitemap. Pages tell search engines a little more: the home page names the site (schema.org
+`WebSite`), and pass, place, list and camera pages give their place in the site (`BreadcrumbList`, "Home ›
+Mountain passes › Stevens Pass"), which Google shows instead of an address like `/search?place=mukilteo`. The passes
+page has its own description. Typed searches, unknown places and shared before-and-afters are marked `noindex`: they
+are one-off pages that would only crowd the real ones out of results.

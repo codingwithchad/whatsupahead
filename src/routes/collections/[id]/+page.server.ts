@@ -55,6 +55,7 @@ export const load: PageServerLoad = ({ params }) => {
 	};
 	return {
 		share,
+		crumbs: [{ name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }],
 		collection,
 		groups: states.map((state) => ({ state, places: list.filter((p) => p.state === state) })),
 		glances

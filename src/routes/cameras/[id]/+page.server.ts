@@ -10,7 +10,7 @@ import type { PageServerLoad } from './$types';
 
 /** One camera on its own page, so it can be shared: its picture, where it is, and the cameras around it. */
 export const load: PageServerLoad = async ({ params, setHeaders }) => {
-	const { cameras, places } = getCatalog();
+	const { cameras, places, passes } = getCatalog();
 	const found = cameras.find((c) => c.id === params.id);
 	if (!found) error(404, 'Unknown camera');
 	const place = nearby(places, found, 6)[0] ?? null;
@@ -32,8 +32,21 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 		image: `/og/camera/${encodeURIComponent(found.id)}?v=${previewSlot()}`,
 		imageAlt: `Latest picture from the ${found.name} camera`
 	};
+	// Home › the place it's near (its pass page when it's a pass) › this camera.
+	const placePass = place && passes.find((p) => p.place === place.id);
+	const crumbs = [
+		...(place
+			? [
+					placePass
+						? { name: placePass.name, path: `/passes/${encodeURIComponent(placePass.id)}` }
+						: { name: place.name, path: `/search?place=${encodeURIComponent(place.id)}` }
+				]
+			: []),
+		{ name: found.name, path: `/cameras/${encodeURIComponent(found.id)}` }
+	];
 	return {
 		share,
+		crumbs,
 		camera,
 		back,
 		place: place ? { id: place.id, name: place.name } : null,

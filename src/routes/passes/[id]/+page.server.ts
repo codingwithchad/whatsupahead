@@ -68,6 +68,10 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 		...base,
 		share,
 		canonical: `/passes/${encodeURIComponent(pass.id)}`,
+		crumbs: [
+			{ name: 'Mountain passes', path: '/passes' },
+			{ name: pass.name, path: `/passes/${encodeURIComponent(pass.id)}` }
+		],
 		pageTitle: `${pass.name} Conditions Now: ${pass.route} Cameras, Chains & Weather · ${APP_NAME}`,
 		pass: {
 			id: pass.id,

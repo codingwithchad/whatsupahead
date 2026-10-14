@@ -21,5 +21,16 @@ export const load: PageServerLoad = async ({ url, setHeaders, locals }) => {
 		}
 		redirect(301, `/passes/${encodeURIComponent(pass.id)}${keep.size ? `?${keep}` : ''}`);
 	}
-	return placePage(featured, { url, setHeaders, locals });
+	const result = await placePage(featured, { url, setHeaders, locals });
+	if (!featured) return { ...result, noindex: true };
+	const collection = getCatalog().collections.find((c) => c.id === featured.collection);
+	return {
+		...result,
+		crumbs: [
+			collection
+				? { name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }
+				: { name: 'All places', path: '/places' },
+			{ name: featured.name, path: `/search?place=${encodeURIComponent(featured.id)}` }
+		]
+	};
 };

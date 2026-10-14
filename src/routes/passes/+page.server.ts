@@ -80,5 +80,11 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	const counts: Record<string, number> = {};
 	for (const r of rows)
 		counts[r.report?.status ?? 'unknown'] = (counts[r.report?.status ?? 'unknown'] ?? 0) + 1;
-	return { states, counts, reachable: live.size > 0 };
+	return {
+		states,
+		counts,
+		reachable: live.size > 0,
+		description: `Is the pass open? Chains, closures and cameras for ${passes.length} mountain passes in Washington, Oregon, California, Idaho and Nevada, from each state's own reports. Free, no app needed.`,
+		crumbs: [{ name: 'Mountain passes', path: '/passes' }]
+	};
 };

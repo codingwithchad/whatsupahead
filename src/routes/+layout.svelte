@@ -4,6 +4,7 @@
 	import '../app.css';
 	import { APP_NAME, REPO_URL, TAGLINE, WHERE } from '../lib/brand';
 	import OfflineBanner from '../lib/OfflineBanner.svelte';
+	import { breadcrumbData, jsonLd, websiteData } from '../lib/seo';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
@@ -12,7 +13,9 @@
 	const share = $derived(page.data.share);
 	const title = $derived(share?.title ?? APP_NAME);
 	const description = $derived(
-		share?.description ?? `${TAGLINE} ${WHERE} Free, no accounts, no ads. Works on any phone.`
+		share?.description ??
+			page.data.description ??
+			`${TAGLINE} ${WHERE} Free, no accounts, no ads. Works on any phone.`
 	);
 	const image = $derived(`${page.url.origin}${share?.image ?? '/og-image.png'}`);
 </script>
@@ -22,6 +25,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="theme-color" content="#0b2540" />
 	<meta name="description" content={description} />
+	<!-- Typed searches and unknown places are one-off pages: kept out of search results. -->
+	{#if page.data.noindex}<meta name="robots" content="noindex" />{/if}
+	{#if page.url.pathname === '/'}{@html jsonLd(websiteData(page.url.origin))}{/if}
+	{#if page.data.crumbs}{@html jsonLd(breadcrumbData(page.url.origin, page.data.crumbs))}{/if}
 	{#if page.data.canonical}<link
 			rel="canonical"
 			href="{page.url.origin}{page.data.canonical}"
