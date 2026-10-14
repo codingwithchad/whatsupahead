@@ -65,7 +65,7 @@
 
 		{#if 'skiSnow' in data && data.skiSnow}
 			{#await data.skiSnow then snow}
-				{#if snow}<SkiSnowLine {snow} full />{/if}
+				{#if snow}<SkiSnowLine {snow} full report={data.snowReport} />{/if}
 			{/await}
 		{/if}
 		<PlaceBody {data} {base} />

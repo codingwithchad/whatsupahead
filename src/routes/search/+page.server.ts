@@ -27,6 +27,7 @@ export const load: PageServerLoad = async ({ url, setHeaders, locals }) => {
 	const collection = getCatalog().collections.find((c) => c.id === featured.collection);
 	return {
 		...result,
+		snowReport: featured.snow_report_url ?? null,
 		// Streamed: snow at a ski area (gauge and today's forecast).
 		skiSnow:
 			featured.collection === 'ski-areas'

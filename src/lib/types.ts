@@ -82,6 +82,8 @@ export interface FeaturedPlace {
 	weather_radius_miles?: number;
 	note?: string;
 	link?: { label: string; url: string };
+	/** Ski areas: the resort's own snow report page. */
+	snow_report_url?: string;
 }
 
 export interface Collection {

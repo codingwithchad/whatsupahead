@@ -12,5 +12,6 @@
   "link": {
     "label": "Heavenly's website",
     "url": "https://www.skiheavenly.com/"
-  }
+  },
+  "snow_report_url": "https://www.skiheavenly.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx"
 }

@@ -3136,3 +3136,7 @@ main.updating .grid {
 	font-size: var(--fs-sm);
 	font-weight: 600;
 }
+.ski-report {
+	margin: 6px 0 0;
+	font-weight: 600;
+}

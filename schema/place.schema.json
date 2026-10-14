@@ -66,6 +66,12 @@
       "type": "string",
       "description": "A short note shown above the results, e.g. why there are no cameras yet."
     },
+    "snow_report_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Ski areas: the resort's own snow report (or mountain report) page, linked from the place page."
+    },
     "link": {
       "type": "object",
       "additionalProperties": false,

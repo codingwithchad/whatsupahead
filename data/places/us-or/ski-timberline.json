@@ -11,5 +11,6 @@
   "link": {
     "label": "Timberline's conditions page",
     "url": "https://www.timberlinelodge.com/conditions"
-  }
+  },
+  "snow_report_url": "https://timberlinelodge.com/conditions/"
 }

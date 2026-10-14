@@ -4,7 +4,11 @@
 
 	// Snow at a ski area: on the ground, new in 24 hours and since 6 AM (from the nearest USDA SNOTEL gauge), and
 	// still to fall today (Open-Meteo). `full` adds where each number comes from, for the ski area's own page.
-	let { snow, full = false }: { snow: SkiSnow; full?: boolean } = $props();
+	let {
+		snow,
+		full = false,
+		report = null
+	}: { snow: SkiSnow; full?: boolean; report?: string | null } = $props();
 
 	const plus = (n: number) => (n > 0 ? `+${n}` : `${n}`);
 	const bits = $derived(
@@ -52,6 +56,11 @@
 			{#if snow.forecastIn !== null}Forecast from Open-Meteo.{/if}
 			The resort's own snow report may differ.
 		</p>
+		{#if report}
+			<p class="ski-report">
+				<a href={report} target="_blank" rel="noopener">The resort's own snow report ↗</a>
+			</p>
+		{/if}
 	</section>
 {:else if bits.length}
 	<span class="glance ski-snow-glance" class:fresh>{bits.join(' · ')}</span>
