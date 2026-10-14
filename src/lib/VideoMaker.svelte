@@ -146,6 +146,12 @@
 			{/if}
 		</div>
 	{/if}
+{:else if type}
+	<!-- Shown on every camera with a replay, so it's clear why there's no video yet. -->
+	<button class="secondary video-open" disabled>Make a video</button>
+	<p class="sub video-wait">
+		A video needs about an hour of pictures. This camera's replay isn't that long yet.
+	</p>
 {/if}
 
 <style>

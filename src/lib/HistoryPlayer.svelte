@@ -163,6 +163,11 @@
 				aria-label="Scrub through the replay"
 			/>
 		</div>
+		<div class="replay-marks" aria-hidden="true">
+			<span>{localClock(frames[0].t)}</span>
+			<strong>{localClock(frames[idx].t)}</strong>
+			<span>{localClock(frames[frames.length - 1].t)}</span>
+		</div>
 		{#if canShare && choices.length}
 			<button class="secondary moment-open" onclick={openPicker} aria-expanded={picking}>
 				Share before and after
@@ -186,7 +191,11 @@
 						<div class="moment moment-small">
 							<figure>
 								<img src={src(before)} alt="Before" />
-								<figcaption>Before · {localClock(before)}</figcaption>
+								<figcaption>
+									Before · {localClock(before)} · {duration(
+										Math.round((all.at(-1)!.t - before) / 60_000)
+									)} earlier
+								</figcaption>
 							</figure>
 							<figure>
 								<img src={src(all.at(-1)!.t)} alt="After" />

@@ -348,6 +348,9 @@ dd {
 .lightbox {
 	width: min(96vw, 1100px);
 	max-height: 96vh;
+	/* The replay's buttons run below a tall picture on a phone: scroll to them rather than cut them off. */
+	overflow-y: auto;
+	overscroll-behavior: contain;
 	padding: 12px;
 	border: 0;
 	border-radius: var(--radius);
@@ -3141,4 +3144,19 @@ main.updating .grid {
 .ski-report {
 	margin: 6px 0 0;
 	font-weight: 600;
+}
+
+/* Replay: the time at each end of the slider and of the picture shown */
+.replay-marks {
+	display: flex;
+	justify-content: space-between;
+	margin: 2px 0 6px;
+	font-size: var(--fs-xs);
+	color: var(--muted);
+}
+.replay-marks strong {
+	color: var(--text);
+}
+.video-wait {
+	margin: 4px 0 0;
 }
