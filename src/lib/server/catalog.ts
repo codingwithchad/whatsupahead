@@ -1,3 +1,4 @@
+import { nearestTown } from './gazetteer';
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Camera, Collection, Drive, PassInfo, FeaturedPlace, WeatherSource } from '../types';
@@ -69,13 +70,24 @@ export function getCatalog() {
 			places: readFolder<FeaturedPlace>('places').sort(
 				(a, b) => (a.order ?? 100) - (b.order ?? 100) || a.name.localeCompare(b.name)
 			),
-			cameras: readFolder<Camera & { status: string }>('cameras').filter(
-				(c) => c.status === 'approved'
-			),
+			cameras: readFolder<Camera & { status: string }>('cameras')
+				.filter((c) => c.status === 'approved')
+				.map(withTown),
 			weather: readFolder<WeatherSource & { status: string }>('weather-sources').filter(
 				(w) => w.status === 'approved'
 			)
 		};
 	}
 	return cache;
+}
+
+// "I-84 at MP 267" says nothing to most people: name the nearest town too ("I-84 at MP 267 (near Pendleton)").
+const MILEPOST_ONLY =
+	/^(I|SR|US|OR|CA|ID|NV|Hwy|Highway)[- ]?\d+[A-Z]?( (at|@) ?| )(MP|milepost|mile post) ?[\d.]+$/i;
+
+/** A camera named only by its road and milepost, with the nearest town added. */
+export function withTown<T extends Camera>(c: T): T {
+	if (!MILEPOST_ONLY.test(c.name)) return c;
+	const town = nearestTown(c);
+	return town ? { ...c, name: `${c.name} (near ${town})` } : c;
 }

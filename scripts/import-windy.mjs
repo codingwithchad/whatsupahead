@@ -4,6 +4,7 @@
 // within about 100 m, such as a WSDOT camera Windy also shows) and anything outside data/regions.json.
 // Windy's terms: pictures are shown no larger than Windy provides and always link back to Windy (the app does this
 // for every camera with "provider": "windy").
+import { tidyWindyName } from '../src/lib/windyName.js';
 import { existsSync, writeFileSync } from 'node:fs';
 import { fileFor, loadAll, regionAt } from './lib/data.mjs';
 
@@ -91,8 +92,10 @@ for (const w of webcams) {
 		? 'ODOT TripCheck'
 		: (providerUrl.match(/^https?:\/\/(?:www\.)?([^/]+)/)?.[1] ?? 'Windy.com');
 	// Windy titles read "Town: view" or "Town › Direction: view"; keep them readable.
-	const name = w.title.replace(/\s*›\s*/g, ' – ').trim();
-	let id = slug(name) || `windy-${ref}`;
+	const title = w.title.replace(/\s*›\s*/g, ' – ').trim();
+	// The id keeps Windy's own wording (so ids never change); the name leads with what the camera looks at.
+	const name = tidyWindyName(title);
+	let id = slug(title) || `windy-${ref}`;
 	if (ids.has(id)) id = `${id}-${ref}`;
 	ids.add(id);
 	const camera = {

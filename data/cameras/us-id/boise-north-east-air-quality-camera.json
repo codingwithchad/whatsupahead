@@ -1,6 +1,6 @@
 {
   "id": "boise-north-east-air-quality-camera",
-  "name": "Boise – North-east: Air Quality Camera",
+  "name": "Air Quality Camera (Boise, looking north-east)",
   "lat": 43.68556,
   "lon": -116.30894,
   "feed_type": "image",

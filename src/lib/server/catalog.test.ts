@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readFolder } from './catalog';
+import { readFolder, withTown } from './catalog';
 import type { Camera, WeatherSource } from '../types';
 
 describe('data files', () => {
@@ -35,5 +35,15 @@ describe('places', () => {
 			expect(Math.abs(p.lat), p.id).toBeLessThanOrEqual(90);
 			expect(Math.abs(p.lon), p.id).toBeLessThanOrEqual(180);
 		}
+	});
+});
+
+describe('withTown', () => {
+	it('names the nearest town for a camera named only by road and milepost', () => {
+		const cam = (name: string) => ({ id: 'x', name, lat: 45.6721, lon: -118.7886 }) as Camera;
+		expect(withTown(cam('I-84 at MP 210')).name).toMatch(/^I-84 at MP 210 \(near .+\)$/);
+		expect(withTown(cam('I-84 at MP 210: Pendleton Exit')).name).toBe(
+			'I-84 at MP 210: Pendleton Exit'
+		);
 	});
 });

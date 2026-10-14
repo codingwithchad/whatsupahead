@@ -13,7 +13,10 @@ const miles = (a, b) =>
 const ski = dataFiles('places')
 	.map((f) => JSON.parse(readFileSync(f, 'utf8')))
 	.filter((p) => p.collection === 'ski-areas');
-const cameras = dataFiles('cameras').map((file) => ({ file, cam: JSON.parse(readFileSync(file, 'utf8')) }));
+const cameras = dataFiles('cameras').map((file) => ({
+	file,
+	cam: JSON.parse(readFileSync(file, 'utf8'))
+}));
 const wanted = cameras.filter(
 	({ cam }) =>
 		cam.elevation_m === undefined &&
