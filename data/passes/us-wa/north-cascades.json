@@ -9,5 +9,6 @@
   "lon": -120.711911906,
   "elevation_ft": 5477,
   "place": "pass-north-cascades",
-  "winter_closure": "Closed for the winter, usually from November until late April or May"
+  "winter_closure": "Closed for the winter, usually from November until late April or May",
+  "seasonal_closure": { "from": "11-01", "to": "05-31" }
 }

@@ -468,23 +468,40 @@ export const winterMonth = (now: number) => {
 	return m >= 11 || m <= 3; // December through April
 };
 
+/** Whether a day falls between a road's usual closing and opening days ("11-01" to "05-31", over the new year). */
+export function inClosedSeason(season: { from: string; to: string }, now: number): boolean {
+	const d = new Date(now);
+	const today = `${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+	return season.from <= season.to
+		? today >= season.from && today <= season.to
+		: today >= season.from || today <= season.to;
+}
+
+type SeasonalRoad = { winter_closure?: string; seasonal_closure?: { from: string; to: string } };
+
+/** Whether a road that closes for the winter is usually closed now (December to April when no days are given). */
+export const usuallyClosed = (pass: SeasonalRoad, now: number) =>
+	pass.seasonal_closure
+		? inClosedSeason(pass.seasonal_closure, now)
+		: Boolean(pass.winter_closure) && winterMonth(now);
+
 /**
  * Should a drive go around this pass? When it is closed, or when it is a road that closes for the winter, it is
- * winter, and nothing says it is open (no report is not an open road).
+ * usually closed by now, and nothing says it is open (no report is not an open road).
  */
 export function blocksRoad(
-	pass: { winter_closure?: string },
+	pass: SeasonalRoad,
 	report: Pick<PassReport, 'status'> | null | undefined,
 	now = Date.now()
 ): boolean {
 	if (report?.status === 'closed') return true;
 	const reportedOpen = report && ['open', 'traction', 'chains'].includes(report.status);
-	return Boolean(pass.winter_closure) && winterMonth(now) && !reportedOpen;
+	return usuallyClosed(pass, now) && !reportedOpen;
 }
 
 /** A California pass's report from Caltrans chain controls and full closures near its summit. */
 export function caltransPassReport(
-	pass: Pt & { id: string; report: PassReportSource; winter_closure?: string },
+	pass: Pt & { id: string; report: PassReportSource } & SeasonalRoad,
 	controls: CaltransChainControl[],
 	closures: CaltransClosure[],
 	{ now = Date.now() }: { now?: number } = {}
@@ -559,7 +576,7 @@ export function caltransPassReport(
 		};
 	}
 	// Caltrans may not list a seasonal closure as a lane closure: in deep winter, don't call these roads open.
-	if (pass.winter_closure && winterMonth(now)) return empty(pass.id, 'Usually closed in winter');
+	if (usuallyClosed(pass, now)) return empty(pass.id, 'Usually closed in winter');
 	if (!points.length) return empty(pass.id);
 	// "No chain controls" stands until Caltrans changes it: its date is when that was set, not a fresh reading.
 	return { ...empty(pass.id), status: 'open', label: 'No chain controls' };

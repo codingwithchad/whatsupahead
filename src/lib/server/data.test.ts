@@ -107,6 +107,13 @@ describe('data agrees with itself', () => {
 		expect(problems).toEqual([]);
 	});
 
+	it('roads that close for the winter give their usual closing days', () => {
+		const missing = data.passes
+			.filter(({ item }) => item.winter_closure && !item.seasonal_closure)
+			.map(({ file }) => file);
+		expect(missing).toEqual([]);
+	});
+
 	it('cameras that need a provider or are seasonal say so', () => {
 		const problems: string[] = [];
 		for (const { file, item } of data.cameras) {

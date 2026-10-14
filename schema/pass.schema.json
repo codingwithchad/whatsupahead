@@ -102,6 +102,16 @@
       "type": "string",
       "description": "For roads that close for the winter: when, in words."
     },
+    "seasonal_closure": {
+      "type": "object",
+      "description": "For roads that close for the winter: the usual closing and opening days (month-day, a little wide on purpose, since the real days change each year with the snow). Inside it, the road counts as closed unless its report says it is open.",
+      "additionalProperties": false,
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string", "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$" },
+        "to": { "type": "string", "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$" }
+      }
+    },
     "link": {
       "type": "object",
       "additionalProperties": false,

@@ -9,5 +9,6 @@
   "lon": -121.53611,
   "elevation_ft": 4675,
   "place": "pass-cayuse",
-  "winter_closure": "Closed for the winter, usually from November until late May"
+  "winter_closure": "Closed for the winter, usually from November until late May",
+  "seasonal_closure": { "from": "11-01", "to": "05-31" }
 }

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	blocksRoad,
 	caltransPassReport,
+	inClosedSeason,
 	checkpointName,
 	classifyPass,
 	classifyRestriction,
@@ -351,6 +352,23 @@ describe('blocksRoad', () => {
 	it('goes around closed passes', () => {
 		expect(blocksRoad({}, { status: 'closed' }, summer)).toBe(true);
 		expect(blocksRoad({}, { status: 'chains' }, winter)).toBe(false);
+	});
+	it('Chinook on Thanksgiving: usually closed by then, so a drive goes around it unless it is reported open', () => {
+		const chinook = {
+			winter_closure: 'Closed for the winter, usually from November until late May',
+			seasonal_closure: { from: '11-01', to: '05-31' }
+		};
+		const thanksgiving = Date.UTC(2026, 10, 26, 18);
+		expect(blocksRoad(chinook, null, thanksgiving)).toBe(true);
+		expect(blocksRoad(chinook, { status: 'off-season' }, thanksgiving)).toBe(true);
+		expect(blocksRoad(chinook, { status: 'open' }, thanksgiving)).toBe(false);
+		expect(blocksRoad(chinook, null, Date.UTC(2027, 4, 20))).toBe(true);
+		expect(blocksRoad(chinook, null, Date.UTC(2027, 5, 15))).toBe(false);
+		expect(blocksRoad(chinook, null, Date.UTC(2026, 9, 20))).toBe(false);
+	});
+	it('reads closing days within one year too', () => {
+		expect(inClosedSeason({ from: '03-01', to: '03-31' }, Date.UTC(2027, 2, 15))).toBe(true);
+		expect(inClosedSeason({ from: '03-01', to: '03-31' }, Date.UTC(2027, 3, 1))).toBe(false);
 	});
 	it('treats a winter road with no open report as closed in winter only', () => {
 		expect(blocksRoad(seasonal, null, winter)).toBe(true);

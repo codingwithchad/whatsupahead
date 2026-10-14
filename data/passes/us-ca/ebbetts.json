@@ -17,6 +17,7 @@
     ]
   },
   "winter_closure": "Closed for the winter past Bear Valley, usually from November until late May",
+  "seasonal_closure": { "from": "11-01", "to": "05-31" },
   "link": {
     "label": "Caltrans: Highway 4 conditions",
     "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=4"

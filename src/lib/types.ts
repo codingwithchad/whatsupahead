@@ -143,6 +143,11 @@ export interface Conditions {
 	glance?: { text: string; tone: 'ok' | 'busy' | 'full' | 'info' };
 }
 
+export interface SeasonalClosure {
+	from: string;
+	to: string;
+}
+
 export interface PassInfo {
 	id: string;
 	name: string;
@@ -152,6 +157,8 @@ export interface PassInfo {
 	report?: PassReportSource;
 	/** For roads that close for the winter, e.g. "Closed for the winter, usually November to late May". */
 	winter_closure?: string;
+	/** Its usual closing and opening days, "11-01" to "05-31" (a little wide on purpose). */
+	seasonal_closure?: SeasonalClosure;
 	/** The state's own page for this road. */
 	link?: { label: string; url: string };
 	route: string;

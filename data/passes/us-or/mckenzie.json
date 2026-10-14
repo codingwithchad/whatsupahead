@@ -13,6 +13,7 @@
     "route": "OR242"
   },
   "winter_closure": "Closed for the winter, usually from mid-November until June",
+  "seasonal_closure": { "from": "11-15", "to": "06-30" },
   "link": {
     "label": "TripCheck road conditions",
     "url": "https://tripcheck.com/"

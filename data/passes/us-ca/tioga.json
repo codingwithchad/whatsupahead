@@ -17,6 +17,7 @@
     ]
   },
   "winter_closure": "Closed for the winter, usually from November until late May or June",
+  "seasonal_closure": { "from": "11-01", "to": "06-30" },
   "link": {
     "label": "Caltrans: Highway 120 conditions",
     "url": "https://roads.dot.ca.gov/roadscell.php?roadnumber=120"

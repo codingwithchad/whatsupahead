@@ -75,8 +75,8 @@ export async function routeOptions(
 	const now = Date.now();
 	const tries = await Promise.all(
 		candidates
-			// A road closed for the winter is not a way across this time of year.
-			.filter((p) => !(p.winter_closure && blocksRoad(p, reports.get(p.id), now)))
+			// A road closed for the winter (by its report, or usually by now) is not a way across this time of year.
+			.filter((p) => !blocksRoad(p, reports.get(p.id), now))
 			.map(async (p) => {
 				try {
 					const route = await drivingRoute(from, to, [p], { free: true });
