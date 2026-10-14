@@ -50,6 +50,11 @@
 	// ---- The small map: every line drawn to one scale, north up ----
 	const W = 340;
 	const COLORS = ['var(--opt-1)', 'var(--opt-2)', 'var(--opt-3)'];
+	/** A label beside its point, on the left when the point is near the right edge, so it stays on the map. */
+	const label = (x: number) =>
+		x > W - 110
+			? { x: x - 7, 'text-anchor': 'end' as const }
+			: { x: x + 7, 'text-anchor': 'start' as const };
 	const box = $derived.by(() => {
 		const all = [current.line, ...options.map((o) => o.line)].flat();
 		const lats = all.map((p) => p[0]);
@@ -102,13 +107,13 @@
 			{#each [...current.passes.map( (p) => ({ name: p.name, at: p, mine: true }) ), ...options.map( (o) => ({ name: o.pass.name, at: o.pass, mine: false }) )] as m (m.name)}
 				{@const [x, y] = xy(m.at)}
 				<circle cx={x} cy={y} r="4" class:ro-mine={m.mine} class="ro-pass" />
-				<text x={x + 7} y={y + 4} class="ro-text">{m.name.replace(/ Pass$/, '')}</text>
+				<text {...label(x)} y={y + 4} class="ro-text">{m.name.replace(/ Pass$/, '')}</text>
 			{/each}
 			{#each [[current.line[0], current.from], [current.line.at(-1), current.to]] as [p, name] (name)}
 				{#if p}
 					{@const [x, y] = xy(p as LatLon)}
 					<rect x={x - 4} y={y - 4} width="8" height="8" class="ro-end" />
-					<text x={x + 7} y={y + 4} class="ro-text ro-end-text">{name}</text>
+					<text {...label(x)} y={y + 4} class="ro-text ro-end-text">{name}</text>
 				{/if}
 			{/each}
 		</svg>
