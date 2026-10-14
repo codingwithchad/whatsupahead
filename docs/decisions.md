@@ -277,3 +277,32 @@ check. Everything the visitor typed (and the title and channel YouTube gives bac
 exactly as typed, and every field but the owner's terms is kept to one line. The link must be an http or https
 address with a real host and no name or password in it. The form only suggests a camera to a person who checks it,
 so it is not checked against the camera schema; nothing it sends is added to the data or shown on the site.
+
+## 2026-10-14: Driver safety fixes from user testing
+
+A test drive from Yakima to Bellevue for Thanksgiving turned up answers that were wrong or more reassuring than the
+facts. Each is fixed:
+
+- **The summit.** Snow and weather on the way sampled the road every few miles and asked Open-Meteo for each point
+  at the height of its terrain map, which can land beside a road summit rather than on it: the drive said its highest
+  point was 2,680 ft, not Snoqualmie's 3,022. Every pass on a drive is now one of the points, forecast at its own
+  known height (Open-Meteo takes heights for all points in a request or none, so passes go in a second request). On
+  a calm day the answer card shows the highest pass, not the first one on the way.
+- **No report is not good news.** From November through March, or when snow or freezing is forecast at the pass, a
+  pass with no report makes the drive "Check before you go", not "Looks good". "No report" pills are grey
+  everywhere (they had a green outline).
+- **Roads closed for the winter.** These passes now give their usual closing and opening days (`seasonal_closure`,
+  a little wide on purpose). Inside those days a drive goes around them unless their report says they are open, and
+  Other ways leave them out. The old rule only counted December to April, so on Thanksgiving Other ways offered
+  Chinook and Cayuse.
+- **"Chains for: Car AWD/4WD Towing"** read as if all three needed chains. It is now "I'm driving:", with Car
+  picked until someone chooses (remembered on the phone), and a tick on the choice.
+- **Old pictures.** A picture more than 30 minutes old says "Old picture · 2 h ago" in a stronger colour, a camera
+  whose owner gives no time says "Time unknown", and a drive's key cameras leave out pictures that won't load or are
+  more than six hours old (Show all still shows them).
+- **Leave time.** For the few seconds a new leave time takes to load, the picker showed the new choice while the
+  weather still showed the old one. The page now fades and says "Updating…" until the new times arrive.
+- **Follow mode is for the passenger.** Following shows only the answer, the next pass (how far, when you'll get
+  there, its report for your vehicle and its forecast) and the camera nearest its summit, in large text with a large
+  Stop button, and says once "For the passenger. Driver, eyes on the road." Rule for any future sponsorship: nothing
+  promotional ever goes on this screen.

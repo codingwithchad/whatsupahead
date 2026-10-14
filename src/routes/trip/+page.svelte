@@ -21,6 +21,7 @@
 	import { timeZoneAt } from '../../lib/regions';
 	import VerdictCard from '../../lib/VerdictCard.svelte';
 	import VehiclePicker from '../../lib/VehiclePicker.svelte';
+	import FollowPanel from '../../lib/FollowPanel.svelte';
 	import RouteOptions from '../../lib/RouteOptions.svelte';
 	import type { RouteWeather as RouteWeatherData } from '../../lib/routeWeather';
 	import type { RoadWarnings } from '../../lib/roadAhead';
@@ -390,6 +391,7 @@
 			: []
 	);
 	let cameraList: HTMLElement | undefined = $state();
+
 	function jumpTo(index: number) {
 		track('jump-to-pass');
 		const card = cameraList?.querySelectorAll('.grid > .card')[index];
@@ -438,6 +440,38 @@
 			clock: (st) => localClock(asOf + st.minutesIn * 60_000, timeZoneAt(st.lat, st.lon))
 		});
 	});
+	// Follow mode shows only the next pass: its report, its forecast for when you get there and the camera
+	// nearest its summit.
+	const followPass = $derived(
+		trip && following
+			? ((live?.passes ?? trip.road.passes).find((x) => stillAhead(x.along)) ?? null)
+			: null
+	);
+	const followWeather = $derived(
+		followPass
+			? (weatherNow ?? firstWeather)?.stops.find(
+					(st) => st.kind === 'pass' && st.label === followPass.name
+				)
+			: undefined
+	);
+	const followCamera = $derived(
+		followPass
+			? ahead
+					.filter((st) => Math.abs(st.along - followPass.along) <= PASS_LEAD_MILES)
+					.sort(
+						(a, b) => Math.abs(a.along - followPass.along) - Math.abs(b.along - followPass.along)
+					)[0]?.camera
+			: undefined
+	);
+	const followEta = $derived(
+		followPass && trip
+			? clock(
+					Date.now() +
+						(trip.minutes * 60_000 * Math.max(0, followPass.along - (progress ?? 0))) /
+							Math.max(trip.miles, 0.1)
+				)
+			: null
+	);
 	const noteFor = (along: number) =>
 		progress !== null
 			? `${Math.max(0, along - progress).toFixed(1)} mi ahead`
@@ -460,97 +494,25 @@
 		{#if data.error}<p class="error">{data.error}</p>{/if}
 		<TripForm from={data.fromQ} to={data.toQ} places={[]} />
 	{:else}
-		<section class="summary trip-top">
-			<h1 class="trip-title">{short(trip.from)} → {short(trip.to)}</h1>
-			<p class="sub">
-				{trip.miles.toFixed(0)} mi · {duration(trip.minutes)}{trip.viaCount
-					? ` · ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
-					: ''} · {trip.totalCameras} cameras
-			</p>
-			{#if verdict}
-				<VerdictCard {verdict}>
-					{#if trip.road.passes.length}
-						<VehiclePicker bind:vehicle label="I'm driving:" />
-					{/if}
-					<p class="verdict-asof">
-						{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now.{:else if updatedAt}As
-							of {clock(updatedAt)}, updates every 5 min.{/if}
-						<button type="button" class="linkish" onclick={refresh} disabled={refreshing}
-							>Update</button
-						>
-					</p>
-				</VerdictCard>
-			{/if}
-			<div class="trip-tools">
-				{#if !following}
-					<button
-						class="tool-follow"
-						onclick={startFollowing}
-						title="Times from where you are, changes read aloud, screen kept on">▶ Follow</button
-					>
-				{:else}
-					<button class="secondary tool-follow" onclick={stopFollowing}>■ Stop</button>
-				{/if}
-				<ShareButton
-					compact
-					path="/trip?{tripShareParams(page.url.searchParams)}"
-					title="{trip.from} to {trip.to}"
-					text={verdict
-						? `${trip.from} to ${trip.to}: ${verdict.title.toLowerCase()}. ${verdict.sentence}`
-						: `Driving ${trip.from} to ${trip.to}: cameras, weather and passes on the way`}
-				/>
-				<a
-					class="chip"
-					href={reverseLink()}
-					onclick={() => track('reverse-trip')}
-					aria-label="Reverse this drive"
-					title="Reverse this drive">⇄</a
-				>
-				<label class="leave-pick"
-					><span class="visually-hidden">When are you leaving?</span>
-					<select
-						value={String(trip.leaveIn)}
-						onchange={(e) => {
-							const mins = (e.currentTarget as HTMLSelectElement).value;
-							if (mins !== '0') track('leave-later');
-							void goto(tripLink({ in: mins === '0' ? null : mins }));
-						}}
-					>
-						{#each [[0, 'Leave now'], [60, 'Leave in 1 h'], [120, 'Leave in 2 h'], [180, 'Leave in 3 h']] as [mins, text] (mins)}
-							<option value={String(mins)}>{text}</option>
-						{/each}
-						{#if ![0, 60, 120, 180].includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
-								>Leave in {duration(trip.leaveIn)}</option
-							>{/if}
-					</select></label
-				>
-				{#if updating}<span class="updating-note" role="status">Updating…</span>{/if}
-			</div>
-			{#await trip.options then { options, baseline }}
-				<RouteOptions
-					{options}
-					{baseline}
-					current={{
-						line: trip.mapLine,
-						minutes: trip.minutes,
-						passes: trip.road.passes,
-						from: short(trip.from),
-						to: short(trip.to)
-					}}
-					{vehicle}
-					link={(pass) =>
-						tripLink({
-							via: pass ? `${pass.lat.toFixed(4)},${pass.lon.toFixed(4)}` : null,
-							all: null
-						})}
-				/>
-			{/await}
+		{#if following}
+			<FollowPanel
+				{verdict}
+				pass={followPass}
+				milesTo={followPass ? Math.max(0, followPass.along - (progress ?? 0)) : null}
+				eta={followEta}
+				weather={followWeather}
+				camera={followCamera}
+				next={!followPass && ahead[0]
+					? { camera: ahead[0].camera, miles: Math.max(0, ahead[0].along - (progress ?? 0)) }
+					: null}
+				{vehicle}
+				onstop={stopFollowing}
+			/>
 			{#if following}
 				<label class="speak-toggle"
 					><input type="checkbox" bind:checked={speak} onchange={saveSpeak} /> Read changes aloud</label
 				>
 			{/if}
-			{#if gpsError}<p class="error">{gpsError}</p>{/if}
 			{#if following && gpsLost}<p class="sub">
 					No location signal right now. Still following.
 				</p>{/if}
@@ -565,15 +527,95 @@
 			{:else if replanned && following}
 				<p class="notice">Planned again from where you are.</p>
 			{/if}
-			{#if next}
-				<p class="next-up">
-					Next: <strong>{next.camera.name}</strong> in {Math.max(
-						0,
-						next.along - (progress ?? 0)
-					).toFixed(1)} mi
+		{:else}
+			<section class="summary trip-top">
+				<h1 class="trip-title">{short(trip.from)} → {short(trip.to)}</h1>
+				<p class="sub">
+					{trip.miles.toFixed(0)} mi · {duration(trip.minutes)}{trip.viaCount
+						? ` · ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
+						: ''} · {trip.totalCameras} cameras
 				</p>
-			{/if}
-		</section>
+				{#if verdict}
+					<VerdictCard {verdict}>
+						{#if trip.road.passes.length}
+							<VehiclePicker bind:vehicle label="I'm driving:" />
+						{/if}
+						<p class="verdict-asof">
+							{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now.{:else if updatedAt}As
+								of {clock(updatedAt)}, updates every 5 min.{/if}
+							<button type="button" class="linkish" onclick={refresh} disabled={refreshing}
+								>Update</button
+							>
+						</p>
+					</VerdictCard>
+				{/if}
+				<div class="trip-tools">
+					{#if !following}
+						<button
+							class="tool-follow"
+							onclick={startFollowing}
+							title="Times from where you are, changes read aloud, screen kept on">▶ Follow</button
+						>
+					{:else}
+						<button class="secondary tool-follow" onclick={stopFollowing}>■ Stop</button>
+					{/if}
+					<ShareButton
+						compact
+						path="/trip?{tripShareParams(page.url.searchParams)}"
+						title="{trip.from} to {trip.to}"
+						text={verdict
+							? `${trip.from} to ${trip.to}: ${verdict.title.toLowerCase()}. ${verdict.sentence}`
+							: `Driving ${trip.from} to ${trip.to}: cameras, weather and passes on the way`}
+					/>
+					<a
+						class="chip"
+						href={reverseLink()}
+						onclick={() => track('reverse-trip')}
+						aria-label="Reverse this drive"
+						title="Reverse this drive">⇄</a
+					>
+					<label class="leave-pick"
+						><span class="visually-hidden">When are you leaving?</span>
+						<select
+							value={String(trip.leaveIn)}
+							onchange={(e) => {
+								const mins = (e.currentTarget as HTMLSelectElement).value;
+								if (mins !== '0') track('leave-later');
+								void goto(tripLink({ in: mins === '0' ? null : mins }));
+							}}
+						>
+							{#each [[0, 'Leave now'], [60, 'Leave in 1 h'], [120, 'Leave in 2 h'], [180, 'Leave in 3 h']] as [mins, text] (mins)}
+								<option value={String(mins)}>{text}</option>
+							{/each}
+							{#if ![0, 60, 120, 180].includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
+									>Leave in {duration(trip.leaveIn)}</option
+								>{/if}
+						</select></label
+					>
+					{#if updating}<span class="updating-note" role="status">Updating…</span>{/if}
+				</div>
+				{#await trip.options then { options, baseline }}
+					<RouteOptions
+						{options}
+						{baseline}
+						current={{
+							line: trip.mapLine,
+							minutes: trip.minutes,
+							passes: trip.road.passes,
+							from: short(trip.from),
+							to: short(trip.to)
+						}}
+						{vehicle}
+						link={(pass) =>
+							tripLink({
+								via: pass ? `${pass.lat.toFixed(4)},${pass.lon.toFixed(4)}` : null,
+								all: null
+							})}
+					/>
+				{/await}
+				{#if gpsError}<p class="error">{gpsError}</p>{/if}
+			</section>
+		{/if}
 
 		{#if changes}
 			<section class="trip-changes" aria-live="polite" aria-label="What changed on the road ahead">
@@ -585,112 +627,115 @@
 			</section>
 		{/if}
 
-		<details class="trip-details">
-			<summary>More: road, chains, weather</summary>
-			<RoadAhead
-				road={roadNow ?? trip.road}
-				warnings={warningsNow ?? trip.warnings}
-				bind:vehicle
-				picker={false}
-			/>
+		{#if !following}
+			<details class="trip-details">
+				<summary>More: road, chains, weather</summary>
+				<RoadAhead
+					road={roadNow ?? trip.road}
+					warnings={warningsNow ?? trip.warnings}
+					bind:vehicle
+					picker={false}
+				/>
 
-			{#if live}
-				{#if live.snow}<SnowLine
-						snow={live.snow}
-						demo={trip.demoWinter}
-						miles={trip.miles}
-						minutes={trip.minutes}
-						stops={trip.stops}
-					/>{/if}
-				{#if weatherNow}<RouteWeather weather={weatherNow} asOf={live.at} />{/if}
-				<ConditionsBar conditions={live.conditions} mode="trip" />
-			{:else}
-				{#await trip.snow then snow}
-					{#if snow}<SnowLine
-							{snow}
+				{#if live}
+					{#if live.snow}<SnowLine
+							snow={live.snow}
 							demo={trip.demoWinter}
 							miles={trip.miles}
 							minutes={trip.minutes}
 							stops={trip.stops}
 						/>{/if}
-				{/await}
+					{#if weatherNow}<RouteWeather weather={weatherNow} asOf={live.at} />{/if}
+					<ConditionsBar conditions={live.conditions} mode="trip" />
+				{:else}
+					{#await trip.snow then snow}
+						{#if snow}<SnowLine
+								{snow}
+								demo={trip.demoWinter}
+								miles={trip.miles}
+								minutes={trip.minutes}
+								stops={trip.stops}
+							/>{/if}
+					{/await}
 
-				{#await trip.onTheWay then onTheWay}
-					{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
-				{/await}
+					{#await trip.onTheWay then onTheWay}
+						{#if onTheWay}<RouteWeather weather={onTheWay} leaveIn={trip.leaveIn} />{/if}
+					{/await}
 
-				{#await trip.conditions}
-					<p class="loading">Loading conditions…</p>
-				{:then conditions}
-					<ConditionsBar {conditions} mode="trip" />
-				{/await}
+					{#await trip.conditions}
+						<p class="loading">Loading conditions…</p>
+					{:then conditions}
+						<ConditionsBar {conditions} mode="trip" />
+					{/await}
+				{/if}
+			</details>
+
+			{#if jumps.length}
+				<nav class="radius way jump" aria-label="Jump to a pass">
+					<span class="vehicle-label">Jump to:</span>
+					{#each jumps as j (j.id)}
+						<button onclick={() => jumpTo(j.index)}>{j.name} ↓</button>
+					{/each}
+				</nav>
 			{/if}
-		</details>
 
-		{#if jumps.length}
-			<nav class="radius way jump" aria-label="Jump to a pass">
-				<span class="vehicle-label">Jump to:</span>
-				{#each jumps as j (j.id)}
-					<button onclick={() => jumpTo(j.index)}>{j.name} ↓</button>
-				{/each}
-			</nav>
-		{/if}
+			{#if ahead.length}
+				<div bind:this={cameraList}>
+					<CameraList
+						items={ahead.map((stop) => ({
+							camera: { ...stop.camera, distance: stop.along },
+							note: noteFor(stop.along)
+						}))}
+						ondead={(id, gone) => {
+							if (gone) dead.add(id);
+						}}
+					/>
+				</div>
+			{:else if trip.stops.length}
+				<p class="empty">You've passed every camera on this drive.</p>
+			{:else}
+				<p class="empty">No cameras along this drive yet.</p>
+			{/if}
 
-		{#if ahead.length}
-			<div bind:this={cameraList}>
-				<CameraList
-					items={ahead.map((stop) => ({
-						camera: { ...stop.camera, distance: stop.along },
-						note: noteFor(stop.along)
-					}))}
-					ondead={(id, gone) => {
-						if (gone) dead.add(id);
-					}}
-				/>
-			</div>
-		{:else if trip.stops.length}
-			<p class="empty">You've passed every camera on this drive.</p>
-		{:else}
-			<p class="empty">No cameras along this drive yet.</p>
-		{/if}
+			{#if !trip.showingAll}
+				<p class="thinned">
+					Showing {trip.stops.length - dead.size} key cameras of {trip.totalCameras}{dead.size
+						? ` (${dead.size} with no new picture for hours left out)`
+						: ''}.
+					<a href={tripLink({ all: '1' })}>Show all {trip.totalCameras}</a>
+				</p>
+			{:else if trip.totalCameras > 40}
+				<p class="thinned">
+					Showing all {trip.totalCameras} cameras. <a href={tripLink({ all: null })}>Show fewer</a>
+				</p>
+			{/if}
 
-		{#if !trip.showingAll}
-			<p class="thinned">
-				Showing {trip.stops.length - dead.size} key cameras of {trip.totalCameras}{dead.size
-					? ` (${dead.size} with no new picture for hours left out)`
-					: ''}.
-				<a href={tripLink({ all: '1' })}>Show all {trip.totalCameras}</a>
-			</p>
-		{:else if trip.totalCameras > 40}
-			<p class="thinned">
-				Showing all {trip.totalCameras} cameras. <a href={tripLink({ all: null })}>Show fewer</a>
-			</p>
-		{/if}
+			{#if passed.length}
+				<details class="passed">
+					<summary>Passed ({passed.length})</summary>
+					<ul>
+						{#each passed as stop (stop.camera.id)}<li>{stop.camera.name}</li>{/each}
+					</ul>
+				</details>
+			{/if}
 
-		{#if passed.length}
-			<details class="passed">
-				<summary>Passed ({passed.length})</summary>
-				<ul>
-					{#each passed as stop (stop.camera.id)}<li>{stop.camera.name}</li>{/each}
-				</ul>
+			<OfflineCameras cameras={trip.offline} />
+
+			{#if trip.stops.some((s) => s.camera.view)}
+				<p class="courtesy">
+					Webcams provided by <a href="https://www.windy.com/" target="_blank" rel="noopener"
+						>windy.com</a
+					>
+					&mdash;
+					<a href="https://www.windy.com/webcams/add" target="_blank" rel="noopener">add a webcam</a
+					>
+				</p>
+			{/if}
+
+			<details class="change-trip">
+				<summary>Change trip</summary>
+				<TripForm from={data.fromQ} to={data.toQ} places={[]} />
 			</details>
 		{/if}
-
-		<OfflineCameras cameras={trip.offline} />
-
-		{#if trip.stops.some((s) => s.camera.view)}
-			<p class="courtesy">
-				Webcams provided by <a href="https://www.windy.com/" target="_blank" rel="noopener"
-					>windy.com</a
-				>
-				&mdash;
-				<a href="https://www.windy.com/webcams/add" target="_blank" rel="noopener">add a webcam</a>
-			</p>
-		{/if}
-
-		<details class="change-trip">
-			<summary>Change trip</summary>
-			<TripForm from={data.fromQ} to={data.toQ} places={[]} />
-		</details>
 	{/if}
 </main>

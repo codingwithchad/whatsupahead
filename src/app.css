@@ -2739,3 +2739,106 @@ main.updating .grid {
 	font-weight: 600;
 	color: var(--muted);
 }
+
+/* Follow mode: read by the passenger in a moving car. Big text, big buttons, only what's next. */
+.follow {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	margin: 0.75rem 0;
+}
+.follow-warn {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0;
+	padding: 12px 14px;
+	border-radius: var(--radius);
+	background: var(--warn-bg);
+	font-size: var(--fs-lg);
+	font-weight: 700;
+}
+.follow-warn button {
+	min-width: 64px;
+	min-height: 48px;
+	font: inherit;
+}
+.follow-verdict {
+	--v: #1f8a4c;
+	--v-bg: var(--ok-bg);
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin: 0;
+	padding: 14px 16px;
+	border-radius: var(--radius-lg);
+	background: var(--v-bg);
+	border: 3px solid var(--v);
+	font-size: var(--fs-lg);
+}
+.follow-verdict strong {
+	font-size: 1.6rem;
+}
+.follow-ready {
+	--v: #d97706;
+	--v-bg: var(--warn-bg);
+}
+.follow-stop {
+	--v: var(--danger-line);
+	--v-bg: var(--danger-bg);
+}
+.follow-unknown {
+	--v: var(--muted);
+	--v-bg: var(--card);
+}
+.follow-pass {
+	margin: 0.4rem 0 0;
+	font-size: 1.9rem;
+	line-height: 1.15;
+}
+.follow-when,
+.follow-weather {
+	margin: 0;
+	font-size: 1.35rem;
+	font-weight: 600;
+}
+.follow-status {
+	margin: 0;
+}
+.follow-status .pill {
+	font-size: var(--fs-lg);
+	padding: 6px 14px;
+}
+.follow-camera .image-button {
+	width: 100%;
+}
+.follow-camera-name {
+	margin: 4px 0 0;
+	color: var(--muted);
+	font-size: var(--fs-sm);
+}
+.follow button.follow-end {
+	min-height: 60px;
+	margin-top: 0.4rem;
+	border-radius: var(--radius-lg);
+	font: inherit;
+	font-size: 1.3rem;
+	font-weight: 700;
+}
+/* State pictures fill the width; Windy's (an .image-link) stay at their own size, as Windy's terms ask. */
+.follow-camera .image-button img {
+	width: 100%;
+	height: auto;
+}
+.follow + .speak-toggle {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-height: 48px;
+	font-size: var(--fs-lg);
+}
+.follow + .speak-toggle input {
+	width: 24px;
+	height: 24px;
+}

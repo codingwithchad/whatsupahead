@@ -61,4 +61,6 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
 - This repository is public: keep hosting-provider and sponsor details out of it (they go in
   `CLAUDE.local.md` or the gitignored `ops/` folder).
 - Visit counting stays cookieless and anonymous.
+- Follow mode (the drive page while following) is read in a moving car: never put sponsors, ads or promotions
+  there, whatever else the site ever carries.
 - Write user-facing text and docs in plain words; match the surrounding code's style and comment density.
