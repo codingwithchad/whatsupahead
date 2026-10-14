@@ -2724,3 +2724,18 @@ div.image-button {
 .trip-top .route-options > summary {
 	padding: 8px 12px;
 }
+
+/* Drive page while a new leave time loads: the old times fade until the new ones arrive. */
+main.updating .verdict,
+main.updating .trip-details,
+main.updating .trip-changes,
+main.updating .grid {
+	opacity: 0.4;
+	transition: opacity 0.2s;
+}
+.updating-note {
+	align-self: center;
+	font-size: var(--fs-sm);
+	font-weight: 600;
+	color: var(--muted);
+}

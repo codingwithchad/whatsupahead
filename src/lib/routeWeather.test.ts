@@ -114,3 +114,23 @@ describe('weather sources', () => {
 		expect(headline([calm])).toBe('No weather trouble expected on the way.');
 	});
 });
+
+describe('one leave time for the whole drive', () => {
+	it('puts every stop at the leave time plus the drive to it, for leaving now and in an hour', () => {
+		const road: [number, number][] = Array.from({ length: 101 }, (_, i) => [
+			46.6 + i * 0.01,
+			-120.5
+		]);
+		const ends = {
+			from: { lat: 46.6, lon: -120.5, label: 'Yakima' },
+			to: { lat: 47.6, lon: -120.5, label: 'Bellevue' }
+		};
+		const pass = [{ lat: 47.1, lon: -120.5, name: 'Middle Pass', elevation_ft: 3000 }];
+		for (const leaveIn of [0, 60]) {
+			const stops = routeStops(road, 120, leaveIn, ends, pass);
+			expect(stops[0].minutesIn).toBe(leaveIn);
+			expect(stops.find((s) => s.kind === 'pass')!.minutesIn).toBeCloseTo(leaveIn + 60, 0);
+			expect(stops[stops.length - 1].minutesIn).toBeCloseTo(leaveIn + 120, 5);
+		}
+	});
+});

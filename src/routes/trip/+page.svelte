@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { track } from '../../lib/track';
 	import { APP_NAME } from '../../lib/brand';
-	import { page } from '$app/state';
+	import { navigating, page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import { untrack } from 'svelte';
 	import CameraList from '../../lib/CameraList.svelte';
@@ -355,6 +355,9 @@
 	// Key cameras whose picture won't load or is more than six hours old are left out (all of them still show
 	// under "Show all"): an old dry road is worse than no picture.
 	const dead = new SvelteSet<string>();
+	// A new leave time (or any change to the drive) takes a few seconds to work out. Until it arrives, the times
+	// on the page are for the old choice, so fade them and say so rather than show a mix of the two.
+	const updating = $derived(navigating.to?.url.pathname === '/trip');
 	const ahead = $derived(
 		trip
 			? trip.stops.filter(
@@ -450,7 +453,7 @@
 	<span class="top-title">Plan a drive</span>
 </header>
 
-<main>
+<main class:updating aria-busy={updating}>
 	{#if !trip}
 		<h1>Where to?</h1>
 		<p class="lede-dark">See the cameras along your drive, in the order you'll pass them.</p>
@@ -521,6 +524,7 @@
 							>{/if}
 					</select></label
 				>
+				{#if updating}<span class="updating-note" role="status">Updating…</span>{/if}
 			</div>
 			{#await trip.options then { options, baseline }}
 				<RouteOptions
