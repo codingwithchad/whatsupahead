@@ -15,7 +15,7 @@
 	const description = $derived(
 		share?.description ??
 			page.data.description ??
-			`${TAGLINE} ${WHERE} Free, no accounts, no ads. Works on any phone.`
+			`${TAGLINE} ${WHERE} Free, no accounts. Works on any phone.`
 	);
 	const image = $derived(`${page.url.origin}${share?.image ?? '/og-image.png'}`);
 </script>

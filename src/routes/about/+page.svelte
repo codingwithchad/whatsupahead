@@ -65,10 +65,10 @@
 
 	<h2>Your privacy</h2>
 	<p>
-		There are no accounts, no ads and no tracking. Your recent places and saved choices stay on your
-		own phone. If you press "Use my location" or "Follow my trip", your location is used to find
-		places and cameras near you and is not stored. Like any website, the host's server logs may
-		briefly record ordinary request details.
+		There are no accounts and no tracking. Your recent places and saved choices stay on your own
+		phone. If you press "Use my location" or "Follow my trip", your location is used to find places
+		and cameras near you and is not stored. Like any website, the host's server logs may briefly
+		record ordinary request details.
 	</p>
 	<p>
 		To learn which parts are useful, the site counts page views and a few taps (like "Next" in the

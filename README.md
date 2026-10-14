@@ -1,6 +1,6 @@
 # What's Up Ahead
 
-**Cameras, weather and waits along your way, for Washington, Oregon, California, Idaho and Nevada.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts, no ads.
+**Cameras, weather and waits along your way, for Washington, Oregon, California, Idaho and Nevada.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts.
 
 **Try it: https://whatsupahead.com**
 
