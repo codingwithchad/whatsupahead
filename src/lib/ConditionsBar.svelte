@@ -111,4 +111,6 @@
 		{/if}
 		{#if quietText}<p class="wx-quiet">{quietText}</p>{/if}
 	</section>
+{:else if mode === 'place'}
+	<p class="wx-quiet">No weather reports near here right now.</p>
 {/if}

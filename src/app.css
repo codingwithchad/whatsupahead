@@ -3128,3 +3128,11 @@ main.updating .grid {
 .crossing-key i.slot-clear {
 	background: var(--card);
 }
+
+/* "Change trip" beside the drive's title (the form is at the bottom, under the cameras) */
+.change-top {
+	display: inline-block;
+	margin: 0 0 4px;
+	font-size: var(--fs-sm);
+	font-weight: 600;
+}

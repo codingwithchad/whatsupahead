@@ -284,6 +284,16 @@
 
 	const cum = $derived(trip ? cumulativeMiles(trip.route) : []);
 
+	// "Change trip" at the top opens the form at the bottom (under all the cameras) and goes to it.
+	let changeTrip: HTMLDetailsElement | undefined = $state();
+	function openChange(e: MouseEvent) {
+		e.preventDefault();
+		if (!changeTrip) return;
+		changeTrip.open = true;
+		changeTrip.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		changeTrip.querySelector('input')?.focus({ preventScroll: true });
+	}
+
 	function stopFollowing() {
 		following = false;
 		progress = null;
@@ -553,6 +563,7 @@
 		{:else}
 			<section class="summary trip-top">
 				<h1 class="trip-title">{short(trip.from)} → {short(trip.to)}</h1>
+				<a class="change-top" href="#change-trip" onclick={openChange}>Change trip</a>
 				<p class="sub">
 					{trip.miles.toFixed(0)} mi · {duration(trip.minutes)}{trip.viaCount
 						? ` · ${trip.viaCount} ${trip.viaCount === 1 ? 'stop' : 'stops'}`
@@ -767,7 +778,7 @@
 				</p>
 			{/if}
 
-			<details class="change-trip">
+			<details class="change-trip" id="change-trip" bind:this={changeTrip}>
 				<summary>Change trip</summary>
 				<TripForm from={data.fromQ} to={data.toQ} places={[]} />
 			</details>
