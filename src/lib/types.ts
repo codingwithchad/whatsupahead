@@ -19,6 +19,8 @@ interface Located {
 
 export interface Camera extends Located {
 	feed_url?: string;
+	/** Ground height in meters (cameras near ski areas, from scripts/add-camera-heights.mjs). */
+	elevation_m?: number;
 	/** Serve a smaller copy of the picture (pixels wide) for very large sources. */
 	max_width?: number;
 	/** Serve our own periodically refreshed copy instead of linking the owner's picture (ODOT's terms). */

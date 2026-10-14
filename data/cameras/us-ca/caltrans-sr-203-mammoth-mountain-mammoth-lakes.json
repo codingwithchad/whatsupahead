@@ -16,5 +16,6 @@
   ],
   "attribution_text": "California Department of Transportation (Caltrans)",
   "created_at": "2026-10-12T00:00:00Z",
-  "route": "SR 203"
+  "route": "SR 203",
+  "elevation_m": 2238
 }

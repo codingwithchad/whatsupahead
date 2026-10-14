@@ -98,6 +98,10 @@ export async function placePage(
 	);
 	const offline = (c: Nearby<Camera>) => isDormant(c) || !c.feed_url;
 	let live = found.filter((c) => !offline(c));
+	// A ski area: cameras on the mountain first, then down the valley (highest first; heights from
+	// scripts/add-camera-heights.mjs), so the summit isn't lost among valley highway cameras.
+	if (featured?.collection === 'ski-areas')
+		live = live.sort((a, b) => (b.elevation_m ?? -1) - (a.elevation_m ?? -1));
 
 	// Never leave the page empty: if nothing is close, show the nearest working cameras, labelled by distance.
 	let fallback = false;

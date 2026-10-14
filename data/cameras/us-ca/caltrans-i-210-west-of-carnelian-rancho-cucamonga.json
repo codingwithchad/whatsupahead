@@ -16,5 +16,6 @@
   ],
   "attribution_text": "California Department of Transportation (Caltrans)",
   "created_at": "2026-10-12T00:00:00Z",
-  "route": "I 210"
+  "route": "I 210",
+  "elevation_m": 491
 }

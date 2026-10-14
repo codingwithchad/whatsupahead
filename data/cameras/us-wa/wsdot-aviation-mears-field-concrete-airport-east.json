@@ -17,5 +17,6 @@
     "airfield-mears-field"
   ],
   "attribution_text": "Camera courtesy of WSDOT Aviation (for pilots, not an official weather briefing)",
-  "created_at": "2026-10-07T00:00:00Z"
+  "created_at": "2026-10-07T00:00:00Z",
+  "elevation_m": 80
 }

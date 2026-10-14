@@ -22,6 +22,8 @@
 		<p class="sub">
 			{note ?? `${camera.distance.toFixed(1)} mi`}{camera.location_precision === 'approximate'
 				? ' (approx.)'
+				: ''}{camera.elevation_m !== undefined
+				? ` · ${Math.round(camera.elevation_m * 3.28084).toLocaleString()} ft`
 				: ''}
 			· {camera.attribution_text ?? camera.source}
 		</p>
