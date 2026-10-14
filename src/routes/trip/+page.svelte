@@ -22,6 +22,8 @@
 	import VerdictCard from '../../lib/VerdictCard.svelte';
 	import VehiclePicker from '../../lib/VehiclePicker.svelte';
 	import FollowPanel from '../../lib/FollowPanel.svelte';
+	import RouteStrip from '../../lib/RouteStrip.svelte';
+	import CrossingStrip from '../../lib/CrossingStrip.svelte';
 	import RouteOptions from '../../lib/RouteOptions.svelte';
 	import type { RouteWeather as RouteWeatherData } from '../../lib/routeWeather';
 	import type { RoadWarnings } from '../../lib/roadAhead';
@@ -425,6 +427,11 @@
 			: null
 	);
 
+	// The strip under the answer: start, passes and end, from the same forecast and clock as the answer.
+	const stripStops = $derived((weatherNow ?? firstWeather)?.stops ?? []);
+	const stopClock = (st: { minutesIn: number; lat: number; lon: number }) =>
+		localClock((live?.at ?? Date.now()) + st.minutesIn * 60_000, timeZoneAt(st.lat, st.lon));
+
 	// The answer at a glance, from the freshest of everything the page has.
 	const verdict = $derived.by(() => {
 		if (!trip || !roadNow) return null;
@@ -472,10 +479,26 @@
 				)
 			: null
 	);
-	const noteFor = (along: number) =>
-		progress !== null
-			? `${Math.max(0, along - progress).toFixed(1)} mi ahead`
-			: `${along.toFixed(0)} mi from start`;
+	/** When you'll pass a point: from the leave time, or from where you are while following. */
+	const arriveAt = (along: number) =>
+		trip
+			? progress !== null
+				? Date.now() +
+					(trip.minutes * 60_000 * Math.max(0, along - progress)) / Math.max(trip.miles, 0.1)
+				: trip.startAt + (trip.minutes * 60_000 * along) / Math.max(trip.miles, 0.1)
+			: Date.now();
+	/** "About 10:20 AM · in 1 h 25 min · 48 mi": when you'll be at a camera, then how far. */
+	const noteFor = (along: number, at: { lat: number; lon: number }) => {
+		const when = arriveAt(along);
+		const mins = Math.round((when - Date.now()) / 60_000);
+		const miles =
+			progress !== null
+				? `${Math.max(0, along - progress).toFixed(1)} mi ahead`
+				: `${along.toFixed(0)} mi`;
+		return `About ${localClock(when, timeZoneAt(at.lat, at.lon))} · ${mins < 1 ? 'now' : `in ${duration(mins)}`} · ${miles}`;
+	};
+	// Leave now or in up to 12 hours (as far as forecasts on the way are asked for), every half hour.
+	const LEAVE_OPTIONS = Array.from({ length: 25 }, (_, i) => i * 30);
 </script>
 
 <svelte:head>
@@ -549,6 +572,14 @@
 						</p>
 					</VerdictCard>
 				{/if}
+				{#if stripStops.length}<RouteStrip stops={stripStops} clock={stopClock} />{/if}
+				{#await trip.crossing then crossing}
+					{#if crossing}<CrossingStrip
+							{crossing}
+							leaveIn={trip.leaveIn}
+							link={(m) => tripLink({ in: m ? String(m) : null })}
+						/>{/if}
+				{/await}
 				<div class="trip-tools">
 					{#if !following}
 						<button
@@ -584,10 +615,14 @@
 								void goto(tripLink({ in: mins === '0' ? null : mins }));
 							}}
 						>
-							{#each [[0, 'Leave now'], [60, 'Leave in 1 h'], [120, 'Leave in 2 h'], [180, 'Leave in 3 h']] as [mins, text] (mins)}
-								<option value={String(mins)}>{text}</option>
+							{#each LEAVE_OPTIONS as mins (mins)}
+								<option value={String(mins)}
+									>{mins === 0
+										? 'Leave now'
+										: `Leave ${localClock(trip.startAt - trip.leaveIn * 60_000 + mins * 60_000)} (in ${duration(mins)})`}</option
+								>
 							{/each}
-							{#if ![0, 60, 120, 180].includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
+							{#if !LEAVE_OPTIONS.includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
 									>Leave in {duration(trip.leaveIn)}</option
 								>{/if}
 						</select></label
@@ -684,7 +719,7 @@
 					<CameraList
 						items={ahead.map((stop) => ({
 							camera: { ...stop.camera, distance: stop.along },
-							note: noteFor(stop.along)
+							note: noteFor(stop.along, stop.camera)
 						}))}
 						ondead={(id, gone) => {
 							if (gone) dead.add(id);

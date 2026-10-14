@@ -13,6 +13,7 @@ import { safeRoute } from '../../lib/server/safeRoute';
 import { routeOptions, thinLine } from '../../lib/server/routeOptions';
 import { roadWarnings } from '../../lib/server/roadAhead';
 import { snowAlong } from '../../lib/server/snow';
+import { crossingTimes } from '../../lib/server/crossing';
 import { weatherOnTheWay } from '../../lib/server/routeWeather';
 import { nearestTown } from '../../lib/server/gazetteer';
 import { routeStops } from '../../lib/routeWeather';
@@ -147,6 +148,15 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 					nearestTown
 				)
 			),
+			// Streamed: the highest pass's summit forecast for each time you could leave ("best time to cross").
+			crossing: (() => {
+				const top = [...safe.passes].sort(
+					(a, b) => (b.pass.elevation_ft ?? 0) - (a.pass.elevation_ft ?? 0)
+				)[0];
+				return top
+					? crossingTimes(top.pass, (route.minutes * top.along) / Math.max(total, 0.1))
+					: Promise.resolve(null);
+			})(),
 			// Streamed: the page shows cameras right away while live weather loads.
 			conditions: conditionsAt(sources, total, route.minutes, startAt)
 		}

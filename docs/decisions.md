@@ -320,3 +320,25 @@ Testing the site on our own phones and in Chrome's device mode added to the coun
 page views and taps from it are skipped. Visitors who never tap it never get a cookie, so the counter stays
 cookieless for them, as the About page says. Each browser needs its own tap: the Pixel's Chrome, and the desktop
 Chrome used for device mode.
+
+## 2026-10-14: Snow at ski areas, and when to leave
+
+From the second test: a snowboarder in San Francisco at 5 AM wanting the most new snow, and the family driving
+over Snoqualmie wanting to miss it.
+
+- **Ski areas show their snow.** Each ski area's page and card shows snow on the ground, new snow in 24 hours and
+  since 6 AM, from the nearest USDA SNOTEL gauge (within 10 miles; all gauges in one request to USDA), and the snow
+  Open-Meteo forecasts for the rest of the day there. The page names the gauge, its height and distance, and says
+  the resort's own report may differ. A gauge wobbles by an inch or so, so changes under 2 inches aren't shown or
+  ranked as new snow. The Ski areas list sorts by most new snow (the default November to April) and filters by
+  state. Not done: a "From" box adding the drive to every resort, which would ask the free routing service for
+  dozens of routes at once.
+- **The drive at a glance.** Under the answer, a strip shows the start, each pass and the end with when you'll be
+  there, the temperature and snow or freezing. The full list stays under "More".
+- **Best time to cross.** The highest pass's summit forecast (at its own height) for leaving now and in each of the
+  next 12 hours, marked snow, freezing or above freezing, so a storm shows as before, while or after you'd cross.
+  Tapping a time plans the drive for it. The two fill colours were checked for colour-blind separation in light and
+  dark, and every slot also shows its temperature or ❄, so colour is never the only sign.
+- **Leave times** come every half hour up to 12 hours, each with its clock time ("Leave 12:51 PM (in 1 h)").
+- **Cameras on a drive** say when you'll get there first ("About 12:56 PM · in 1 h 5 min · 4 mi"), from the leave
+  time, or from where you are while following.
