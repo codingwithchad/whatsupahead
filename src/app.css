@@ -1008,10 +1008,11 @@ button.wide {
 	background: #c92a2a;
 	color: #fff;
 }
+/* No report is not an all-clear: grey, never green. */
 .pill-off-season {
 	background: transparent;
-	color: var(--ok-text);
-	box-shadow: inset 0 0 0 1.5px #1f8a4c;
+	color: var(--muted);
+	box-shadow: inset 0 0 0 1.5px var(--muted);
 }
 .pass-summary {
 	margin: 0 0 6px;

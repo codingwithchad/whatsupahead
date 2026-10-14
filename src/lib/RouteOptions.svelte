@@ -40,7 +40,8 @@
 				? `${duration(d)} longer`
 				: `${duration(-d)} shorter`;
 	};
-	const ORDER = ['closed', 'chains', 'traction', 'open', 'off-season'];
+	// A pass with no report decides a way before an open one: not knowing is not the same as open.
+	const ORDER = ['closed', 'chains', 'traction', 'off-season', 'open'];
 	/** The way's strictest pass, which is what decides it. */
 	const worstPass = (o: RouteOption) =>
 		[...o.passes].sort((a, b) => ORDER.indexOf(status(a).tone) - ORDER.indexOf(status(b).tone))[0];

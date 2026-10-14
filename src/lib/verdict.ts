@@ -55,7 +55,23 @@ export interface DriveInput {
 	vehicle: Vehicle | null;
 	/** Formats a time ("7:10 PM") for a stop. */
 	clock?: (s: StopWeather) => string;
+	/** For tests: the time now. */
+	now?: number;
 }
+
+/** November through March: when snow can close a pass any day and a missing report matters. */
+export const reportSeason = (now: number) => {
+	const month = new Date(now).getMonth();
+	return month >= 10 || month < 3;
+};
+
+/** Snow, ice or freezing forecast at a stop for when you get there. */
+const wintry = (s: StopWeather | undefined) =>
+	!!s &&
+	((s.tempF !== null && s.tempF <= 32) ||
+		s.precip === 'snow' ||
+		s.precip === 'ice' ||
+		s.hazards.some((h) => /snow|ice/i.test(h)));
 
 /** The drive in one glance. */
 export function driveVerdict(d: DriveInput): Verdict {
@@ -109,10 +125,23 @@ export function driveVerdict(d: DriveInput): Verdict {
 				tone: 'ready'
 			});
 	const reported = d.passes.filter((p) => p.report && p.report.status !== 'off-season');
-	// A pass with no report isn't a pass with no rules: show that it wasn't reported.
+	// A pass with no report isn't a pass with no rules: show that it wasn't reported. In winter, or when snow or
+	// freezing is forecast there, not knowing is not "Looks good".
 	const silent = d.passes.filter((p) => !p.report || p.report.status === 'off-season');
-	for (const p of silent)
-		facts.push({ icon: 'pass', text: `${p.name}: no report yet`, tone: 'unknown' });
+	const season = reportSeason(d.now ?? Date.now());
+	for (const p of silent) {
+		const fact: Fact = { icon: 'pass', text: `${p.name}: no report yet`, tone: 'unknown' };
+		const cold = wintry(d.weather?.find((s) => s.kind === 'pass' && s.label === p.name));
+		if (season || cold)
+			add(
+				'unknown',
+				cold
+					? `${p.name} has no official report, and snow or freezing is forecast there`
+					: `${p.name} has no official report yet`,
+				fact
+			);
+		else facts.push(fact);
+	}
 
 	const w = d.warnings;
 	if (w) {

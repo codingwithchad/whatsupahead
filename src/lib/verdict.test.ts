@@ -52,6 +52,8 @@ const drive = (over: Partial<DriveInput> = {}): DriveInput => ({
 	weather: [stop()],
 	vehicle: null,
 	clock: () => '7:10 PM',
+	// A mild October day, before report season.
+	now: Date.UTC(2026, 9, 14, 18),
 	...over
 });
 
@@ -125,6 +127,31 @@ describe('driveVerdict', () => {
 			'No closures, chain rules or warnings on the way. Stevens Pass has no official report yet.'
 		);
 		expect(v.facts[0]).toMatchObject({ text: 'Stevens Pass: no report yet', tone: 'unknown' });
+	});
+
+	it('says check before you go, not looks good, for a pass with no report in winter', () => {
+		const offSeason = [
+			{ name: 'Stevens Pass', report: report('off-season', 'No report yet'), heading: 90 }
+		];
+		const v = driveVerdict(drive({ passes: offSeason, now: Date.UTC(2026, 10, 26, 18) }));
+		expect(v.level).toBe('unknown');
+		expect(v.title).toBe('Check before you go');
+		expect(v.sentence).toBe('Stevens Pass has no official report yet.');
+		expect(driveVerdict(drive({ passes: [], now: Date.UTC(2027, 1, 2) })).level).toBe('go');
+	});
+
+	it('says check before you go when freezing or snow is forecast at a pass with no report', () => {
+		const offSeason = [
+			{ name: 'Stevens Pass', report: report('off-season', 'No report yet'), heading: 90 }
+		];
+		for (const weather of [
+			[stop({ tempF: 31 })],
+			[stop({ precip: 'snow', phrase: 'Light snow' })]
+		]) {
+			const v = driveVerdict(drive({ passes: offSeason, weather }));
+			expect(v.level).toBe('unknown');
+			expect(v.sentence).toContain('snow or freezing is forecast there');
+		}
 	});
 
 	it('never says all clear when it knows nothing', () => {
