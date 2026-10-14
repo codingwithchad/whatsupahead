@@ -149,12 +149,13 @@ export function driveVerdict(d: DriveInput): Verdict {
 		}
 	}
 
-	// Weather when you get there: the worst stop, or the highest pass if all is calm.
+	// Weather when you get there: the worst stop, or the highest pass if all is calm (where snow and ice come
+	// first; not simply the first pass on the way, which from Yakima is Manastash Ridge rather than Snoqualmie).
 	if (d.weather?.length) {
 		const bad = d.weather.filter((s) => s.hazard >= 2);
 		const pick =
 			bad.sort((a, b) => b.hazard - a.hazard)[0] ??
-			d.weather.find((s) => s.kind === 'pass') ??
+			highestPass(d.weather) ??
 			d.weather.find((s) => s.kind === 'end');
 		if (pick) {
 			const when = d.clock?.(pick);
@@ -243,6 +244,14 @@ export function passVerdict(p: PassInput): Verdict {
 	};
 }
 
+/** The highest pass among the forecast stops (the first one when no heights are known). */
+const highestPass = (stops: StopWeather[]) =>
+	stops
+		.filter((s) => s.kind === 'pass')
+		.reduce<StopWeather | undefined>(
+			(high, s) => (!high || (s.elevation_ft ?? 0) > (high.elevation_ft ?? 0) ? s : high),
+			undefined
+		);
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** "Denny Creek on I-90 at mp 50.44" -> "Denny Creek". */
 const shortName = (s: string) => s.replace(/\s+on\s+(I-|SR |US ).*$/i, '');

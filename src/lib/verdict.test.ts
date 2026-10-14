@@ -150,3 +150,21 @@ describe('passVerdict', () => {
 		expect(passVerdict({ name: 'X', report: null }).level).toBe('unknown');
 	});
 });
+
+describe('driveVerdict weather pick', () => {
+	it('shows the highest pass when the weather is calm, not the first one on the way', () => {
+		const v = driveVerdict({
+			avoided: [],
+			blocked: [],
+			passes: [],
+			warnings: warnings(),
+			weather: [
+				stop({ label: 'Manastash Ridge', elevation_ft: 2672, along: 20, tempF: 41 }),
+				stop({ label: 'Snoqualmie Pass', elevation_ft: 3022, along: 90, tempF: 33 })
+			],
+			vehicle: null
+		});
+		expect(v.facts.some((f) => f.text.includes('Snoqualmie Pass'))).toBe(true);
+		expect(v.facts.some((f) => f.text.includes('Manastash'))).toBe(false);
+	});
+});

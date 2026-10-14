@@ -7,7 +7,7 @@ import {
 } from '../routeWeather';
 import { azureMapsKey, azureWeatherAlongRoute } from './azureMaps';
 import { cached } from './cache';
-import { openMeteoAllowed } from './rateLimit';
+import { forecastAt } from './openMeteo';
 
 /**
  * The weather at each stop for the time you'll be there. Azure Maps' Weather Along Route when it is set up (one
@@ -43,23 +43,22 @@ export async function weatherOnTheWay(
 }
 
 async function openMeteo(stops: RouteStop[]) {
-	if (!openMeteoAllowed()) throw new Error('open-meteo busy');
-	const url = new URL('https://api.open-meteo.com/v1/forecast');
-	url.searchParams.set('latitude', stops.map((s) => s.lat.toFixed(3)).join(','));
-	url.searchParams.set('longitude', stops.map((s) => s.lon.toFixed(3)).join(','));
-	url.searchParams.set(
-		'hourly',
-		'temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m,snowfall,precipitation'
+	// Passes are forecast at their summit's height (see forecastAt).
+	const list = await forecastAt<{ hourly: OpenMeteoHourly }>(
+		stops.map((s) => ({
+			lat: s.lat,
+			lon: s.lon,
+			feet: s.kind === 'pass' ? s.elevation_ft : undefined
+		})),
+		{
+			hourly: 'temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m,snowfall,precipitation',
+			temperature_unit: 'fahrenheit',
+			wind_speed_unit: 'mph',
+			precipitation_unit: 'inch',
+			timezone: 'GMT',
+			forecast_days: '3'
+		}
 	);
-	url.searchParams.set('temperature_unit', 'fahrenheit');
-	url.searchParams.set('wind_speed_unit', 'mph');
-	url.searchParams.set('precipitation_unit', 'inch');
-	url.searchParams.set('timezone', 'GMT');
-	url.searchParams.set('forecast_days', '3');
-	const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-	if (!res.ok) throw new Error(`open-meteo ${res.status}`);
-	const body = (await res.json()) as { hourly: OpenMeteoHourly } | { hourly: OpenMeteoHourly }[];
-	const list = Array.isArray(body) ? body : [body];
 	const now = Date.now();
 	const out = stops.map((s, i) => (list[i] ? fromOpenMeteo(s, list[i].hourly, now) : null));
 	if (out.some((x) => !x)) throw new Error('open-meteo: missing hours');
