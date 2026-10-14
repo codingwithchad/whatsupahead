@@ -21,6 +21,9 @@ describe('visit counter', () => {
 	it('names pages and the place they are about', () => {
 		const at = (p: string) => pageOf(new URL(`https://whatsupahead.com${p}`));
 		expect(at('/')).toEqual({ page: 'home', place: null });
+		expect(at('/passes/stevens?ref=fb')).toEqual({ page: 'pass', place: 'pass:stevens' });
+		expect(at('/passes')).toEqual({ page: 'passes', place: null });
+		expect(at('/cameras/wsdot-us2-mp63-big-windy')).toEqual({ page: 'camera', place: null });
 		expect(at('/search?place=stevens-pass')).toEqual({ page: 'place', place: 'stevens-pass' });
 		expect(at('/search/__data.json?q=Everett')).toEqual({ page: 'search', place: null });
 		expect(at('/trip?from=Seattle&to=mount-hood')).toEqual({ page: 'trip', place: null });

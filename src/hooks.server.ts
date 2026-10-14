@@ -168,6 +168,10 @@ function countVisit(event: Parameters<Handle>[0]['event']) {
 			// not a usable address
 		}
 	}
+	// A tagged link (whatsupahead.com/?ref=fb) names where it was posted, so a post can be counted even when the
+	// app it was opened in (Facebook's, Instagram's) sends no referrer. Only a short word, never anything personal.
+	const tag = event.isDataRequest ? null : event.url.searchParams.get('ref');
+	if (tag && /^[a-z0-9-]{1,20}$/i.test(tag)) source = `${tag.toLowerCase()} (tagged link)`;
 	recordView({
 		address: visitorAddress(event.request, event.getClientAddress),
 		userAgent,

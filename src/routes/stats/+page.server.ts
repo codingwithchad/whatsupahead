@@ -18,9 +18,10 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	setHeaders({ 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' });
 	await statsReady();
 	const { since, days, storage, lastSave } = statsReport();
-	const { places, collections } = getCatalog();
+	const { places, collections, passes } = getCatalog();
 	const names = new Map<string, string>([
 		...places.map((p) => [p.id, p.name] as [string, string]),
+		...passes.map((p) => [`pass:${p.id}`, `${p.name} (pass page)`] as [string, string]),
 		...collections.map((c) => [`collection:${c.id}`, `${c.name} (list)`] as [string, string])
 	]);
 	const week = days.slice(0, 7).map(([, d]) => d);

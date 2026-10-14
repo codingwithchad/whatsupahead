@@ -57,5 +57,6 @@ export const load: PageServerLoad = () => {
 	const storm = allPassReports(passes)
 		.then((reports) => rightNow(passes, reports))
 		.catch(() => []);
-	return { collections, drives, places: cards, popular, storm };
+	// One address for search engines, however the page was reached (a tagged link, ?ref=fb).
+	return { collections, drives, places: cards, popular, storm, canonical: '/' };
 };

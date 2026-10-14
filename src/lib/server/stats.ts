@@ -294,6 +294,12 @@ export function pageOf(url: URL): { page: string; place: string | null } | null 
 		return { page: q.get('from') && q.get('to') ? 'trip' : 'trip-form', place: null };
 	const collection = p.match(/^\/collections\/([a-z0-9-]+)$/);
 	if (collection) return { page: 'collection', place: `collection:${collection[1]}` };
-	const named = ['/passes', '/places', '/nearby', '/about', '/contribute'].find((n) => n === p);
+	const pass = p.match(/^\/passes\/([a-z0-9-]+)$/);
+	if (pass) return { page: 'pass', place: `pass:${pass[1]}` };
+	if (/^\/cameras\/[a-z0-9-]+$/.test(p)) return { page: 'camera', place: null };
+	if (/^\/moments\/[a-z0-9-]+$/.test(p)) return { page: 'moment', place: null };
+	const named = ['/passes', '/places', '/nearby', '/about', '/contribute', '/tires'].find(
+		(n) => n === p
+	);
 	return named ? { page: named.slice(1), place: null } : null;
 }
