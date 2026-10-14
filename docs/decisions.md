@@ -342,3 +342,22 @@ over Snoqualmie wanting to miss it.
 - **Leave times** come every half hour up to 12 hours, each with its clock time ("Leave 12:51 PM (in 1 h)").
 - **Cameras on a drive** say when you'll get there first ("About 12:56 PM · in 1 h 5 min · 4 mi"), from the leave
   time, or from where you are while following.
+
+## 2026-10-14: Smaller fixes from user testing
+
+- **Ski area cameras, mountain first.** The cameras near ski areas now carry their ground height (`elevation_m`,
+  from Open-Meteo's terrain map by `scripts/add-camera-heights.mjs`; rerun it after importing cameras near ski
+  areas), and a ski area's page lists them highest first, with the height on each card, so the summit cameras
+  aren't lost among valley highway ones.
+- **Camera names.** Windy titles lead with what the camera looks at ("Mt. Rose - Ski Tahoe (Incline Village,
+  looking north-west)"); the ids keep Windy's wording so links never change, and the importer uses the same rule
+  (`src/lib/windyName.js`). Cameras named only by road and milepost name the nearest town when the app loads them.
+- **Places on a state line** can list `also_states`: Heavenly is under California and Nevada.
+- **Snow report links.** Ski areas can carry `snow_report_url`, the resort's own snow report. 23 resorts have one,
+  each page checked to be a real snow or mountain report, not the home page. Resorts whose sites gave only a
+  generic page (or blocked the check) have none for now.
+- **Smaller things.** "Change trip" beside a drive's title; a place with no weather reports says so; the drive's
+  footnote names only the road departments it used; the picture age badge sits top right, off the agencies' name
+  and time; map labels near the right edge go left of their point; the replay shows its times under the slider,
+  says how much earlier the "before" picture is, and shows "Make a video" on every camera (greyed out with the
+  reason until there's an hour of pictures).
