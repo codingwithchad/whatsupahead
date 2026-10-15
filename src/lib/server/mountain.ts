@@ -1,6 +1,6 @@
 import {
 	avalancheAt,
-	nearestStation,
+	roadStation,
 	snowReading,
 	type AvalancheDanger,
 	type AvalancheZone,
@@ -34,10 +34,15 @@ export function stations(): Promise<SnotelStation[]> {
 	);
 }
 
-/** Snow on the ground at the SNOTEL station nearest the pass, or null if there is none near or no reading. */
-export async function snowAtPass(pass: PassInfo): Promise<SnowReading | null> {
+/**
+ * Snow at the road over a pass: the SNOTEL gauge closest to the road's height (within 1,000 feet), or null if there
+ * is none near or no reading. `roadFt` says how high the road is, so a page can say how far above it the gauge is.
+ */
+export async function snowAtPass(
+	pass: PassInfo
+): Promise<(SnowReading & { roadFt: number | null }) | null> {
 	try {
-		const station = nearestStation(await stations(), pass);
+		const station = roadStation(await stations(), pass);
 		if (!station) return null;
 		return await cached(`mountain:snow:${station.stationTriplet}`, 30 * 60 * 1000, async () => {
 			// Station clocks are behind UTC, so a begin date two days back in UTC always covers the last 24 hours.
@@ -46,7 +51,7 @@ export async function snowAtPass(pass: PassInfo): Promise<SnowReading | null> {
 				`${AWDB}/data?stationTriplets=${encodeURIComponent(station.stationTriplet)}&elements=SNWD,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`
 			);
 			return snowReading(station, body[0]?.data ?? []);
-		});
+		}).then((r) => (r ? { ...r, roadFt: pass.elevation_ft ?? null } : null));
 	} catch (err) {
 		console.warn(`[mountain] snow at ${pass.id}: ${(err as Error).message}`);
 		return null;

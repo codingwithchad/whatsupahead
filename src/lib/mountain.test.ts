@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { avalancheAt, nearestStation, snowBetween, snowReading, type AwdbSeries } from './mountain';
+import {
+	avalancheAt,
+	mountainStation,
+	nearestStation,
+	roadStation,
+	snowBetween,
+	snowReading,
+	type AwdbSeries
+} from './mountain';
 
 const olallie = {
 	stationTriplet: '672:WA:SNTL',
@@ -99,5 +107,34 @@ describe('snowBetween', () => {
 		expect(snowBetween(hourly, -2 * H, 3 * H)).toBeNull();
 		expect(snowBetween(hourly, 0, 6 * H)).toBeNull();
 		expect(snowBetween([], 0, H)).toBeNull();
+	});
+});
+
+describe('a gauge for the road, a gauge for the mountain', () => {
+	const gauge = (name: string, elevation: number, lat: number, lon: number) => ({
+		stationTriplet: name,
+		name,
+		elevation,
+		latitude: lat,
+		longitude: lon
+	});
+	// Around Snoqualmie Pass (I-90 at 3,022 ft): one gauge up the hill, one at road height a little farther off,
+	// and one high on the mountain.
+	const STATIONS = [
+		gauge('Olallie Meadows', 4010, 47.374, -121.442),
+		gauge('Tinkham Creek', 3000, 47.33, -121.47),
+		gauge('High Ridge', 5400, 47.42, -121.43)
+	];
+	const pass = { lat: 47.41, lon: -121.406, elevation_ft: 3022 };
+
+	it("gives a drive over the pass the gauge at the road's height, not the one up the hill", () => {
+		expect(roadStation(STATIONS, pass)?.name).toBe('Tinkham Creek');
+		// Nothing within 1,000 feet of the road: no gauge rather than a misleading one.
+		expect(roadStation([STATIONS[2]], pass)).toBeNull();
+		expect(roadStation(STATIONS, { lat: 47.41, lon: -121.406 })).toBeNull();
+	});
+
+	it('gives a ski area the highest gauge near, the snow on the slopes', () => {
+		expect(mountainStation(STATIONS, pass)?.name).toBe('High Ridge');
 	});
 });

@@ -40,8 +40,8 @@
 		<h2>Snow</h2>
 		{#if snow.station && snow.link}
 			<p class="ski-independent">
-				<span class="ski-tag">Independent</span> Measured by the USDA's own snow gauge, not reported by
-				the resort.
+				<span class="ski-tag">Independent</span> Measured on the mountain by the USDA's own snow gauge,
+				not reported by the resort.
 			</p>
 		{/if}
 		{#if bits.length}
@@ -51,15 +51,19 @@
 		{/if}
 		<p class="sub">
 			{#if snow.station && snow.link}
-				SNOTEL gauge <a href={snow.link} target="_blank" rel="noopener">{snow.station}</a
+				The highest SNOTEL gauge near: <a href={snow.link} target="_blank" rel="noopener"
+					>{snow.station}</a
 				>{#if snow.stationFeet}&nbsp;({snow.stationFeet.toLocaleString()} ft{snow.miles !== null
 						? `, ${snow.miles} mi away`
 						: ''}){/if}{#if snow.at}, {localClock(snow.at, snow.timeZone)}{/if}.
 			{:else}
 				No USDA snow gauge within 10 miles.
 			{/if}
-			{#if snow.forecastIn !== null}Forecast from Open-Meteo.{/if}
-			A gauge is one spot; the resort measures its own, and the two can differ.
+			{#if snow.forecastIn !== null}Forecast from Open-Meteo{snow.stationFeet
+					? ` for ${snow.stationFeet.toLocaleString()} ft`
+					: ''}.{/if}
+			The road below can be quite different: check the drive. A gauge is one spot; the resort measures
+			its own, and the two can differ.
 		</p>
 		{#if report}
 			<p class="ski-report">

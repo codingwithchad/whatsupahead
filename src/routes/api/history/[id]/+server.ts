@@ -32,7 +32,14 @@ export const GET: RequestHandler = async ({ params }) => {
 			place: pass?.name ?? null,
 			timeZone: camera ? timeZoneAt(camera.lat, camera.lon) : null,
 			snow: snow
-				? { station: snow.station, depthIn: snow.depthIn, hourly: snow.hourly, link: snow.link }
+				? {
+						station: snow.station,
+						depthIn: snow.depthIn,
+						hourly: snow.hourly,
+						link: snow.link,
+						feet: snow.elevation_ft,
+						roadFt: snow.roadFt
+					}
 				: null
 		},
 		{ headers: { 'cache-control': 'public, max-age=60' } }

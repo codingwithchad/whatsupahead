@@ -101,6 +101,14 @@
 			return `No. ${pass.source} reports it closed${updated ? ` (${updated})` : ''}.${report.road ? ` ${report.road}` : ''}`;
 		return `Yes. ${pass.source} reports: ${report.label}${updated ? ` (${updated})` : ''}.`;
 	});
+	/** ", 990 ft above the road" (or below, or "at road height"), for the gauge's line. */
+	const aboveRoad = (r: { elevation_ft: number; roadFt: number | null }) => {
+		if (r.roadFt === null) return '';
+		const d = Math.round((r.elevation_ft - r.roadFt) / 10) * 10;
+		return Math.abs(d) < 150
+			? ', about road height'
+			: `, ${Math.abs(d).toLocaleString()} ft ${d > 0 ? 'above' : 'below'} the road`;
+	};
 </script>
 
 <svelte:head>
@@ -270,16 +278,23 @@
 					<p class="mountain-big">
 						{snow.depthIn < 2 ? 'Bare (under 2 in)' : `${snow.depthIn} in`}
 					</p>
+					{#if snow.roadFt !== null && snow.elevation_ft - snow.roadFt >= 300}
+						<p class="mountain-sub">
+							Measured {(snow.elevation_ft - snow.roadFt).toLocaleString()} ft above the road, which can
+							get less snow (or rain).
+						</p>
+					{/if}
 					{#if snow.change24 !== null && Math.abs(snow.change24) >= 2}
 						<p class="mountain-sub">
 							{snow.change24 > 0 ? `+${snow.change24}` : snow.change24} in in 24 hours
 						</p>
 					{/if}
 					<p class="mountain-src">
-						<a href={snow.link} target="_blank" rel="noopener">{snow.station}</a> snow station, {snow.elevation_ft.toLocaleString()}
-						ft, {snow.miles.toFixed(0)} mi away · {localClock(snow.at, tz)}{snow.tempF !== null
-							? ` · ${Math.round(snow.tempF)}°F`
-							: ''}
+						<a href={snow.link} target="_blank" rel="noopener">{snow.station}</a> snow gauge, {snow.elevation_ft.toLocaleString()}
+						ft{aboveRoad(snow)}, {snow.miles.toFixed(0)} mi away · {localClock(
+							snow.at,
+							tz
+						)}{snow.tempF !== null ? ` · ${Math.round(snow.tempF)}°F` : ''}
 					</p>
 				</section>
 			{/if}

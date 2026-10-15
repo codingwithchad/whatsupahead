@@ -1,5 +1,5 @@
 import type { Point } from '../geo';
-import { nearestStation, snowReading, snowSinceSix, todayAt, type AwdbSeries } from '../mountain';
+import { mountainStation, snowReading, snowSinceSix, todayAt, type AwdbSeries } from '../mountain';
 import { timeZoneAt } from '../regions';
 import { cachedMany } from './cache';
 import { stations } from './mountain';
@@ -28,6 +28,8 @@ export interface SkiSnow {
 }
 
 type Place = Point & { id: string };
+/** A place to forecast, at the height of its gauge on the mountain when there is one. */
+type ForecastPlace = Place & { feet?: number };
 
 /** The hourly readings of many gauges in one request to USDA, each kept 30 minutes. */
 async function gaugeReadings(triplets: string[]): Promise<Map<string, AwdbSeries[]>> {
@@ -55,8 +57,11 @@ async function gaugeReadings(triplets: string[]): Promise<Map<string, AwdbSeries
 
 type Hourly = { time: string[]; snowfall: number[] };
 
-/** Open-Meteo's snowfall from now until midnight at each place, in one request, each kept 30 minutes. */
-async function snowForecast(places: Place[], now: number): Promise<Map<string, number>> {
+/**
+ * Open-Meteo's snowfall from now until midnight at each place, in one request, each kept 30 minutes. Asked for at
+ * the height of the ski area's gauge, so it is the mountain's snow, matching the gauge's numbers.
+ */
+async function snowForecast(places: ForecastPlace[], now: number): Promise<Map<string, number>> {
 	const byId = new Map(places.map((p) => [`ski-forecast:${p.id}`, p]));
 	const got = await cachedMany([...byId.keys()], 30 * 60_000, async (missing) => {
 		const asked = missing.map((k) => byId.get(k)!);
@@ -86,7 +91,8 @@ async function snowForecast(places: Place[], now: number): Promise<Map<string, n
 /** Snow at each ski area, by id. Parts that don't answer are left null; nothing is made up. */
 export async function skiSnow(places: Place[], now = Date.now()): Promise<Record<string, SkiSnow>> {
 	const list = await stations().catch(() => []);
-	const near = new Map(places.map((p) => [p.id, nearestStation(list, p)]));
+	// The highest gauge near: the snow on the slopes, not down at the road (see mountainStation).
+	const near = new Map(places.map((p) => [p.id, mountainStation(list, p)]));
 	const triplets = [...new Set([...near.values()].flatMap((s) => (s ? [s.stationTriplet] : [])))];
 	const [readings, forecast] = await Promise.all([
 		triplets.length
@@ -95,7 +101,10 @@ export async function skiSnow(places: Place[], now = Date.now()): Promise<Record
 					return new Map<string, AwdbSeries[]>();
 				})
 			: new Map<string, AwdbSeries[]>(),
-		snowForecast(places, now).catch((err) => {
+		snowForecast(
+			places.map((p) => ({ ...p, feet: near.get(p.id)?.elevation })),
+			now
+		).catch((err) => {
 			console.warn(`[ski-snow] forecast: ${(err as Error).message}`);
 			return new Map<string, number>();
 		})

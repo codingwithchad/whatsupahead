@@ -30,6 +30,8 @@ export interface SnowReading {
 
 const NEAR_MILES = 10;
 const NEAR_FEET = 2000;
+/** A gauge for the road: no more than this far above or below the road's height. */
+const ROAD_FEET = 1000;
 
 /** The nearest station within 10 miles whose height is within 2,000 feet of the pass (or null). */
 export function nearestStation(
@@ -37,14 +39,47 @@ export function nearestStation(
 	p: Point & { elevation_ft?: number }
 ): (SnotelStation & { miles: number }) | null {
 	return (
-		stations
-			.map((s) => ({ ...s, miles: distanceMiles(p, { lat: s.latitude, lon: s.longitude }) }))
+		withMiles(stations, p)
 			.filter(
-				(s) =>
-					s.miles <= NEAR_MILES &&
-					(p.elevation_ft === undefined || Math.abs(s.elevation - p.elevation_ft) <= NEAR_FEET)
+				(s) => p.elevation_ft === undefined || Math.abs(s.elevation - p.elevation_ft) <= NEAR_FEET
 			)
 			.sort((a, b) => a.miles - b.miles)[0] ?? null
+	);
+}
+
+const withMiles = (stations: SnotelStation[], p: Point) =>
+	stations
+		.map((s) => ({ ...s, miles: distanceMiles(p, { lat: s.latitude, lon: s.longitude }) }))
+		.filter((s) => s.miles <= NEAR_MILES);
+
+// Two kinds of people read snow numbers. Someone driving over a pass needs the snow at the road: a gauge 1,000 feet
+// up the hill can show a foot of new snow while the highway only got rain. Someone going skiing needs the snow on
+// the mountain, which is often well above the road. So each picks its own gauge, and the page says how high it is.
+
+/** For the road: the gauge closest in height to the road (within 10 miles and 1,000 feet of it), or null. */
+export function roadStation(
+	stations: SnotelStation[],
+	pass: Point & { elevation_ft?: number }
+): (SnotelStation & { miles: number }) | null {
+	const road = pass.elevation_ft;
+	if (road === undefined) return null;
+	return (
+		withMiles(stations, pass)
+			.filter((s) => Math.abs(s.elevation - road) <= ROAD_FEET)
+			.sort(
+				(a, b) => Math.abs(a.elevation - road) - Math.abs(b.elevation - road) || a.miles - b.miles
+			)[0] ?? null
+	);
+}
+
+/** For skiing: the highest gauge within 10 miles, the nearest to the snow on the slopes, or null. */
+export function mountainStation(
+	stations: SnotelStation[],
+	place: Point
+): (SnotelStation & { miles: number }) | null {
+	return (
+		withMiles(stations, place).sort((a, b) => b.elevation - a.elevation || a.miles - b.miles)[0] ??
+		null
 	);
 }
 

@@ -383,3 +383,22 @@ plainly. Three changes:
 
 Wording: the site says it is free and has no accounts, but no longer says "no ads". It may need ads or sponsors to
 pay for servers one day, and it should never promise otherwise.
+
+## 2026-10-14: Snow at the road for drivers, snow on the mountain for skiers
+
+Two kinds of people read our snow numbers. The family driving Yakima to Bellevue for Thanksgiving needs the snow
+on I-90: a gauge 1,000 feet up the hill can show a foot of new snow while the highway only got rain, which could
+scare them off an easy drive. The snowboarder needs the opposite: the slopes can be buried while the drive up is
+dry. Measured: pass pages had been using the nearest gauge within 2,000 feet of the road's height, so Snoqualmie
+Pass (I-90 at 3,022 ft) read Olallie Meadows at 4,010 ft, and three passes used gauges more than 1,000 feet above
+the road.
+
+- **For the road** (pass pages, and the snow line on pass-camera replays): the gauge closest to the road's height
+  within 10 miles, and never more than 1,000 feet off (`roadStation`). Snoqualmie now reads Tinkham Creek at
+  3,000 ft. Where no gauge is that close, the page shows none rather than a misleading one. Each line says the
+  gauge's height and how it compares with the road ("about road height", "700 ft above the road"). Drive pages
+  were already at road height: their snow and weather points and "best time to cross" are forecast at each pass's
+  road summit.
+- **For skiing** (ski area cards, Powder day): the highest gauge within 10 miles (`mountainStation`), with the
+  snowfall forecast asked for at that gauge's height, and the card says it is measured on the mountain and that
+  the road below can be quite different.

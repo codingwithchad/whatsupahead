@@ -65,4 +65,8 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
   no id, set only when someone taps it), for testing on our own phones.
 - Follow mode (the drive page while following) is read in a moving car: never put sponsors, ads or promotions
   there, whatever else the site ever carries.
+- Two kinds of user, two snow heights: someone driving over a pass gets snow at the road's height (drive pages
+  forecast at road and summit-road height; pass pages use the gauge closest to the road's height, within 1,000 ft);
+  someone going skiing gets snow on the mountain (the highest gauge near a ski area, forecast at its height). Never
+  show mountain snow as road snow; every snow number says the height it was measured or forecast at.
 - Write user-facing text and docs in plain words; match the surrounding code's style and comment density.

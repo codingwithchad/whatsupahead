@@ -16,7 +16,15 @@
 	let credit = $state('');
 	let place = $state<string | null>(null);
 	let timeZone = $state<string | undefined>(undefined);
-	let snow = $state<(VideoInput['snow'] & { depthIn: number; link: string }) | null>(null);
+	let snow = $state<
+		| (VideoInput['snow'] & {
+				depthIn: number;
+				link: string;
+				feet?: number;
+				roadFt?: number | null;
+		  })
+		| null
+	>(null);
 	let mode = $state<'loading' | 'none' | 'building' | 'ready'>('loading');
 	let idx = $state(0);
 	let playing = $state(true);
@@ -33,7 +41,14 @@
 					credit?: string;
 					place?: string | null;
 					timeZone?: string | null;
-					snow?: (VideoInput['snow'] & { depthIn: number; link: string }) | null;
+					snow?:
+						| (VideoInput['snow'] & {
+								depthIn: number;
+								link: string;
+								feet?: number;
+								roadFt?: number | null;
+						  })
+						| null;
 				};
 				if (cancelled) return;
 				all = body.frames;
@@ -139,7 +154,11 @@
 		{#if snowNow}
 			<p class="replay-snow">
 				{snowNow} at the
-				<a href={snow?.link} target="_blank" rel="noopener">{snow?.station} snow gauge</a>
+				<a href={snow?.link} target="_blank" rel="noopener">{snow?.station} snow gauge</a
+				>{#if snow?.feet}&nbsp;({snow.feet.toLocaleString()} ft{snow.roadFt &&
+					snow.feet - snow.roadFt >= 300
+						? `, ${(snow.feet - snow.roadFt).toLocaleString()} ft above the road`
+						: ''}){/if}
 			</p>
 		{/if}
 		<img src={src(frames[idx].t)} alt="Camera replay frame" />
