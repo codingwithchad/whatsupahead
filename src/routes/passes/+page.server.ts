@@ -85,6 +85,7 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 		counts,
 		reachable: live.size > 0,
 		description: `Is the pass open? Chains, closures and cameras for ${passes.length} mountain passes in Washington, Oregon, California, Idaho and Nevada, from each state's own reports. Free, no app needed.`,
-		crumbs: [{ name: 'Mountain passes', path: '/passes' }]
+		crumbs: [{ name: 'Mountain passes', path: '/passes' }],
+		canonical: '/passes'
 	};
 };

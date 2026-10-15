@@ -65,6 +65,7 @@ export const load: PageServerLoad = ({ params }) => {
 		share,
 		snow,
 		crumbs: [{ name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }],
+		canonical: `/collections/${encodeURIComponent(collection.id)}`,
 		collection,
 		groups: states.map((state) => ({
 			state,

@@ -37,5 +37,5 @@ export const load: PageServerLoad = () => {
 				.filter((g) => g.places.length)
 		};
 	});
-	return { regions, total: places.length };
+	return { regions, total: places.length, canonical: '/places' };
 };

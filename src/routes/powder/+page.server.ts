@@ -16,7 +16,8 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		choices: HOURS,
 		description:
 			'Ski areas within a few hours of you, most new snow first: real drive times, independent snow gauges and the passes on the way.',
-		crumbs: [{ name: 'Powder day', path: '/powder' }]
+		crumbs: [{ name: 'Powder day', path: '/powder' }],
+		canonical: '/powder'
 	};
 	if (!fromQ) return { ...base, from: null, error: null, spots: null, ways: null };
 
