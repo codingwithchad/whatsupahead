@@ -3,8 +3,8 @@
 	import type { Crossing } from './server/crossing';
 
 	// "Best time to cross": when to leave to miss the snow at the summit in the next day ("Leave before 5:30 AM
-	// tomorrow to cross ahead of it"), and the summit's forecast for each hour you could leave. Tapping an hour
-	// plans the drive for it.
+	// tomorrow to cross ahead of it"), and, folded away under "Pick a time to leave", the summit's forecast for
+	// each hour you could leave. Tapping an hour plans the drive for it and folds the hours away again.
 	let {
 		crossing,
 		leaveIn,
@@ -13,8 +13,10 @@
 
 	const tz = $derived(crossing.timeZone);
 	const now = Date.now();
-	// To the nearest minute, so a slot on the hour reads 6:00, not 5:59.
-	const leaveAt = (minutes: number) => Math.round((now + minutes * 60_000) / 60_000) * 60_000;
+	// Later slots are on the clock's hour; the forecast may be a few minutes older than this page, so round to the
+	// half hour (6:00, not 5:59).
+	const leaveAt = (minutes: number) => Math.round((now + minutes * 60_000) / 1_800_000) * 1_800_000;
+	let open = $state(false);
 	const when = (ms: number) => clockWithDay(ms, now, tz);
 	/** "5a", "12p": a slot's hour. */
 	const short = (ms: number) =>
@@ -59,31 +61,35 @@
 			{/if}
 		{/if}
 	</p>
-	<ol class="crossing-slots">
-		{#each crossing.slots as s (s.leaveIn)}
-			<li>
-				<a
-					class="slot slot-{s.level}"
-					href={link(s.leaveIn)}
-					aria-current={s.leaveIn === chosen ? 'true' : undefined}
-					aria-label="Leave {s.leaveIn === 0
-						? 'now'
-						: `at ${when(leaveAt(s.leaveIn))}`}: {s.tempF ?? '?'}°F and {word[
-						s.level
-					]} at the summit around {when(s.at)}"
-				>
-					<span class="slot-time">{s.leaveIn === 0 ? 'Now' : short(leaveAt(s.leaveIn))}</span>
-					<span class="slot-temp"
-						>{#if s.level === 'snow'}❄{:else}{s.tempF ?? '–'}°{/if}</span
+	<details class="crossing-hours" bind:open>
+		<summary>Pick a time to leave</summary>
+		<ol class="crossing-slots">
+			{#each crossing.slots as s (s.leaveIn)}
+				<li>
+					<a
+						class="slot slot-{s.level}"
+						href={link(s.leaveIn)}
+						onclick={() => (open = false)}
+						aria-current={s.leaveIn === chosen ? 'true' : undefined}
+						aria-label="Leave {s.leaveIn === 0
+							? 'now'
+							: `at ${when(leaveAt(s.leaveIn))}`}: {s.tempF ?? '?'}°F and {word[
+							s.level
+						]} at the summit around {when(s.at)}"
 					>
-				</a>
-			</li>
-		{/each}
-	</ol>
-	<p class="crossing-key">
-		<span>By when you leave:</span>
-		<span class="k"><i class="slot-snow"></i> ❄ snow</span>
-		<span class="k"><i class="slot-freezing"></i> freezing</span>
-		<span class="k"><i class="slot-clear"></i> above freezing</span>
-	</p>
+						<span class="slot-time">{s.leaveIn === 0 ? 'Now' : short(leaveAt(s.leaveIn))}</span>
+						<span class="slot-temp"
+							>{#if s.level === 'snow'}❄{:else}{s.tempF ?? '–'}°{/if}</span
+						>
+					</a>
+				</li>
+			{/each}
+		</ol>
+		<p class="crossing-key">
+			<span>By when you leave:</span>
+			<span class="k"><i class="slot-snow"></i> ❄ snow</span>
+			<span class="k"><i class="slot-freezing"></i> freezing</span>
+			<span class="k"><i class="slot-clear"></i> above freezing</span>
+		</p>
+	</details>
 </section>

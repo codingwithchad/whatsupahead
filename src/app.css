@@ -3062,6 +3062,26 @@ main.updating .grid {
 .crossing .sub {
 	margin: 2px 0 6px;
 }
+/* The hours fold away: the advice above is the answer, the hours are for picking another time. */
+.crossing-hours > summary {
+	cursor: pointer;
+	color: var(--accent);
+	font-weight: 600;
+	list-style: none;
+	padding: 4px 0;
+}
+.crossing-hours > summary::-webkit-details-marker {
+	display: none;
+}
+.crossing-hours > summary::after {
+	content: ' ▾';
+}
+.crossing-hours[open] > summary::after {
+	content: ' ▴';
+}
+.crossing-hours[open] > summary {
+	margin-bottom: 6px;
+}
 /* A day of hours in rows of nine: one row would not fit on a phone. */
 .crossing-slots {
 	display: grid;
