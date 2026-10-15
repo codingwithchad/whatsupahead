@@ -6,6 +6,7 @@ import {
 	type Restriction
 } from './passes';
 import type { RoadClosure } from './roadAhead';
+import { timeZoneAt } from './regions';
 import type { SurfaceReading } from './roadSurface';
 
 // Idaho 511 (the Idaho Transportation Department) has no pass report of its own: its pass list is only names and
@@ -146,12 +147,49 @@ const CLOSED = /\bclosed\b/i;
 const NOT_ADVISED = /travel not advised|impassable|no travel/i;
 const CHAINS = /\bchains? (are |is )?required\b|\btraction (tires? )?(law|required)\b/i;
 
-/** Whether a closure or restriction is in effect now: started, not ended, and on today's hours if it has hours. */
+// Hours written into the text: "closed from 7:30 PM to 5 AM", "nightly between 7 pm and 6 am", "9PM-5AM".
+const TEXT_HOURS =
+	/\b(\d{1,2})(?::(\d\d))?\s*([ap])\.?\s?m\.?\s*(?:-|–|to|and|until)\s*(\d{1,2})(?::(\d\d))?\s*([ap])\.?\s?m\b/i;
+
+/** The hours a closure's text gives, in minutes after midnight, or null when it gives none. */
+export function hoursInText(text: string | null | undefined): { from: number; to: number } | null {
+	const m = (text ?? '').match(TEXT_HOURS);
+	if (!m) return null;
+	const clock = (h: string, min: string | undefined, ap: string) =>
+		((Number(h) % 12) + (ap.toLowerCase() === 'p' ? 12 : 0)) * 60 + Number(min ?? 0);
+	return { from: clock(m[1], m[2], m[3]), to: clock(m[4], m[5], m[6]) };
+}
+
+const within = (minutes: number, from: number, to: number) =>
+	// Overnight hours ("20:00 to 06:00") wrap past midnight.
+	from <= to ? minutes >= from && minutes <= to : minutes >= from || minutes <= to;
+
+const ALL_DAY = (t: { StartTime?: string | null; EndTime?: string | null }) =>
+	/^00:00/.test(t.StartTime ?? '') && /^23:59/.test(t.EndTime ?? '');
+
+/**
+ * Whether a closure or restriction is in effect at a time: started, not ended, and on that day's hours if it
+ * has hours. Nevada's schedules say "all day" for night work and give the real hours only in the text ("Off-ramp
+ * closed from 7:30 PM to 5 AM"), so the text's hours count when the schedule has none of its own.
+ */
 export function eventInEffect(e: IdahoEvent, now = Date.now()): boolean {
 	if (e.StartDate && e.StartDate * 1000 > now) return false;
 	if (e.PlannedEndDate && e.PlannedEndDate * 1000 < now) return false;
 	const schedules = e.RecurrenceSchedules ?? [];
-	if (!schedules.length) return true;
+	const written = hoursInText(e.Description);
+	if (!schedules.length) {
+		if (!written || typeof e.Latitude !== 'number' || typeof e.Longitude !== 'number') return true;
+		const [h, m] = new Date(now)
+			.toLocaleTimeString('en-GB', {
+				timeZone: timeZoneAt(e.Latitude, e.Longitude),
+				hour: '2-digit',
+				minute: '2-digit',
+				hourCycle: 'h23'
+			})
+			.split(':')
+			.map(Number);
+		return within(h * 60 + m, written.from, written.to);
+	}
 	return schedules.some((s) => {
 		// Times carry their own offset: "06:00:00-06:00:00" is 6 AM Mountain daylight time.
 		const offset = (s.Times?.[0]?.StartTime ?? '').match(/([+-])(\d\d):(\d\d):\d\d$/);
@@ -167,13 +205,13 @@ export function eventInEffect(e: IdahoEvent, now = Date.now()): boolean {
 			return m ? Number(m[1]) * 60 + Number(m[2]) : null;
 		};
 		const times = s.Times ?? [];
+		if (written && times.every(ALL_DAY)) return within(minutes, written.from, written.to);
 		if (!times.length) return true;
 		return times.some((t) => {
 			const from = clock(t.StartTime);
 			const to = clock(t.EndTime);
 			if (from === null || to === null) return true;
-			// Overnight hours ("20:00 to 06:00") wrap past midnight.
-			return from <= to ? minutes >= from && minutes <= to : minutes >= from || minutes <= to;
+			return within(minutes, from, to);
 		});
 	});
 }
@@ -309,19 +347,23 @@ export const worse = (a: PassStatus, b: PassStatus) =>
  */
 export function idahoClosure(
 	e: IdahoEvent,
-	now = Date.now(),
+	/** Null: whenever it is in effect (the caller checks the time you get there). */
+	now: number | null = Date.now(),
 	by: { source: RoadClosure['source']; link: string } = {
 		source: 'ITD',
 		link: 'https://511.idaho.gov/'
 	}
 ): RoadClosure | null {
-	if (!e.IsFullClosure || !eventInEffect(e, now)) return null;
+	if (!e.IsFullClosure || (now !== null && !eventInEffect(e, now))) return null;
 	// Only state highways: the 511 sites also list county and city streets, which a drive crosses rather than uses.
 	if (!/^\s*(I|US|SH|ID|SR|NV)[- ]?\d/i.test(e.RoadwayName ?? '')) return null;
 	const [start, end = start] = eventPoints(e);
 	if (!start) return null;
 	const headline = tidy(e.Description);
 	if (!headline) return null;
+	// A ramp closed ("on ramp from US-395 to I-80. All lanes blocked", "All Ramps Closed") is not the road: a drive
+	// that goes past it is not blocked. Only the event's own words, not the details (which may name a detour ramp).
+	if (/\bramps?\b/i.test(headline.split(/Public Details:|Activities:/i)[0])) return null;
 	return {
 		source: by.source,
 		headline,

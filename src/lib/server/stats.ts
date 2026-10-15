@@ -22,6 +22,7 @@ export const EVENTS = [
 	'watch-live',
 	'follow-trip',
 	'reverse-trip',
+	'way-around',
 	'leave-later',
 	'install',
 	'use-location',

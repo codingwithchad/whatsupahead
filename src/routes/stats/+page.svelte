@@ -58,6 +58,7 @@
 		'watch-live': 'Watch live (YouTube)',
 		'follow-trip': 'Follow my trip',
 		'reverse-trip': 'Reverse this drive',
+		'way-around': 'Way around a closed road',
 		'leave-later': 'Leave in 1–3 h',
 		install: 'Install now',
 		'use-location': 'Use my location',

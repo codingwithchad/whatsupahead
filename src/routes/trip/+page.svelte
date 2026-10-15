@@ -27,6 +27,7 @@
 	import RouteOptions from '../../lib/RouteOptions.svelte';
 	import type { RouteWeather as RouteWeatherData } from '../../lib/routeWeather';
 	import type { RoadWarnings } from '../../lib/roadAhead';
+	import type { WayAround } from '../../lib/server/routeOptions';
 	import type { LiveUpdate } from '../../lib/server/tripLive';
 	import { rememberPlace } from '../../lib/lastPlace';
 	import { rememberRecent } from '../../lib/recents';
@@ -75,6 +76,8 @@
 	let lastSnapshot: Snapshot | null = null;
 	// What the page loaded with, once the streamed parts arrive (the at-a-glance card needs the values).
 	let firstWarnings = $state<RoadWarnings | null>(null);
+	/** With a road closed on the way: the other way across that misses it. */
+	let around = $state<WayAround | null>(null);
 	let firstWeather = $state<RouteWeatherData | null>(null);
 	let vehicle = $state<Vehicle | null>(null);
 	$effect(() => {
@@ -107,6 +110,7 @@
 		lastSnapshot = null;
 		firstWarnings = null;
 		firstWeather = null;
+		around = null;
 		refreshFailed = false;
 		updatedAt = Date.now();
 		if (!t) return;
@@ -123,6 +127,11 @@
 				lastSnapshot ??= { passes: t.road.passes, warnings, onTheWay };
 				firstWarnings = warnings;
 				firstWeather = onTheWay;
+			})
+			.catch(() => {});
+		t.around
+			.then((a) => {
+				if (data.trip === t) around = a;
 			})
 			.catch(() => {});
 	});
@@ -452,6 +461,7 @@
 			blocked: trip.road.blocked,
 			passes: roadNow.passes,
 			warnings: warningsNow ?? firstWarnings,
+			around,
 			weather: stops,
 			vehicle,
 			clock: (st) => localClock(asOf + st.minutesIn * 60_000, timeZoneAt(st.lat, st.lon))
@@ -589,6 +599,21 @@
 					<VerdictCard {verdict}>
 						{#if trip.road.passes.length}
 							<VehiclePicker bind:vehicle label="I'm driving:" />
+						{/if}
+						{@const closed = (warningsNow ?? firstWarnings)?.closures[0]}
+						{#if closed && around}
+							<a
+								class="verdict-around"
+								href={tripLink({
+									via: `${around.pass.lat.toFixed(4)},${around.pass.lon.toFixed(4)}`,
+									all: null
+								})}
+								onclick={() => track('way-around')}>Go over {around.label} instead</a
+							>
+						{:else if closed}
+							<a class="verdict-around" href={closed.link} target="_blank" rel="noopener"
+								>Detours on {closed.source}'s map</a
+							>
 						{/if}
 						<p class="verdict-asof">
 							{#if refreshing}Updating…{:else if refreshFailed}Couldn't update just now.{:else if updatedAt}As

@@ -79,12 +79,19 @@ const pt = (lat: unknown, lon: unknown): Point | null =>
 	typeof lat === 'number' && typeof lon === 'number' && lat && lon ? { lat, lon } : null;
 const dotNet = (s?: string | null) => (s ? parseDotNetDate(s) : null);
 
+/** Whether a WSDOT closure is on at a time: begun (or no start given) and not yet ended. */
+export function wsdotInEffect(a: WsdotAlert, at: number): boolean {
+	const begins = dotNet(a.StartTime);
+	const ends = dotNet(a.EndTime);
+	return (begins === null || begins <= at) && (ends === null || ends >= at);
+}
+
 export function wsdotClosure(a: WsdotAlert, now = Date.now()): RoadClosure | null {
 	const headline = (a.HeadlineDescription ?? '').replace(/\s+/g, ' ').trim();
 	if (!wholeRoadClosed(headline)) return null;
 	const begins = dotNet(a.StartTime);
 	const ends = dotNet(a.EndTime);
-	if ((begins !== null && begins > now + 12 * 3600_000) || (ends !== null && ends < now))
+	if ((begins !== null && begins > now + 36 * 3600_000) || (ends !== null && ends < now))
 		return null;
 	const start = pt(a.StartRoadwayLocation?.Latitude, a.StartRoadwayLocation?.Longitude);
 	if (!start) return null;
@@ -142,13 +149,13 @@ export function caltransClosure(c: CaltransClosure, now = Date.now()): RoadClosu
 }
 
 /** Closures with an end on the road you will drive (within about a fifth of a mile), in driving order. */
-export function closuresOnRoute(
-	closures: RoadClosure[],
+export function closuresOnRoute<T extends RoadClosure>(
+	closures: T[],
 	route: LatLon[],
 	cum: number[],
 	miles = 0.2
-): ClosureOnRoute[] {
-	const out: ClosureOnRoute[] = [];
+): (T & { along: number })[] {
+	const out: (T & { along: number })[] = [];
 	for (const c of closures) {
 		const hits = [c.start, c.end]
 			.map((p) => projectNear(p, route, cum, miles))

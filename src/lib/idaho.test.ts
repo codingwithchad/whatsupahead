@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	decodePolyline,
 	eventInEffect,
+	hoursInText,
 	idahoClosure,
 	idahoPassReport,
 	idahoSurface,
@@ -239,6 +240,40 @@ describe('eventInEffect', () => {
 		expect(eventInEffect(nightly, Date.UTC(2026, 11, 16, 4, 0))).toBe(true);
 	});
 
+	it("reads the hours from the text when Nevada's schedule says all day", () => {
+		const ramp: IdahoEvent = {
+			ID: 4,
+			Description:
+				'Road work on US-395 Northbound. All lanes blocked. Public Details: Closed from 7:30 PM to 5 AM, Sunday through Friday.',
+			StartDate: NOW / 1000 - 86400,
+			RecurrenceSchedules: [
+				{
+					Times: [{ StartTime: '00:00:00-07:00:00', EndTime: '23:59:59-07:00:00' }],
+					DaysOfWeek: []
+				}
+			]
+		};
+		// 1 PM at UTC-7: open; 9 PM: closed.
+		expect(eventInEffect(ramp, NOW)).toBe(false);
+		expect(eventInEffect(ramp, Date.UTC(2026, 11, 16, 4, 0))).toBe(true);
+		// No schedule at all: the hours where the event is (Reno, Pacific time; 8 PM there).
+		const plain = { ...ramp, RecurrenceSchedules: [], Latitude: 39.5, Longitude: -119.8 };
+		expect(eventInEffect(plain, NOW)).toBe(false);
+		expect(eventInEffect(plain, Date.UTC(2026, 11, 16, 4, 0))).toBe(true);
+	});
+
+	it('reads closing hours written in words', () => {
+		expect(hoursInText('Off-ramp closed from 7:30 PM to 5 AM')).toEqual({ from: 1170, to: 300 });
+		expect(hoursInText('Ramp closed nightly between 7 pm and 6 am.')).toEqual({
+			from: 1140,
+			to: 360
+		});
+		expect(hoursInText('ramps closed from 9PM-5AM.')).toEqual({ from: 1260, to: 300 });
+		expect(
+			hoursInText('Start time: 10/12/2026 7:30 PM.  End time: 10/30/2026 5:00 AM.')
+		).toBeNull();
+	});
+
 	it('checks start and planned end', () => {
 		expect(eventInEffect({ ID: 2, StartDate: NOW / 1000 + 3600 }, NOW)).toBe(false);
 		expect(eventInEffect({ ID: 3, StartDate: NOW / 1000 - 3600 }, NOW)).toBe(true);
@@ -259,6 +294,16 @@ describe('idahoClosure and idahoSurface', () => {
 		expect(idahoClosure(base, NOW)?.source).toBe('ITD');
 		expect(idahoClosure({ ...base, RoadwayName: 'N McDermott Rd' }, NOW)).toBeNull();
 		expect(idahoClosure({ ...base, IsFullClosure: false }, NOW)).toBeNull();
+		// A ramp is not the road.
+		const ramp = 'Overnight Roadwork on ramp from US-395 Southbound to SR-430. All lanes blocked.';
+		expect(idahoClosure({ ...base, Description: ramp }, NOW)).toBeNull();
+		expect(
+			idahoClosure({ ...base, Description: 'Road work on US-395. All Ramps Closed.' }, NOW)
+		).toBeNull();
+		// Not yet started, but asked for whenever it is on (the caller checks the time you get there).
+		const later = { ...base, StartDate: NOW / 1000 + 3600 };
+		expect(idahoClosure(later, NOW)).toBeNull();
+		expect(idahoClosure(later, null)?.source).toBe('ITD');
 	});
 
 	it("reads a station's pavement temperature, and leaves out old readings", () => {

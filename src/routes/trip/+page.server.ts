@@ -10,7 +10,7 @@ import {
 import { previewSlot, tripShareParams, type ShareMeta } from '../../lib/sharing';
 import { withLiveLinks } from '../../lib/server/live';
 import { safeRoute } from '../../lib/server/safeRoute';
-import { routeOptions, thinLine } from '../../lib/server/routeOptions';
+import { forPage, routeOptions, thinLine, wayAround } from '../../lib/server/routeOptions';
 import { roadWarnings } from '../../lib/server/roadAhead';
 import { snowAlong } from '../../lib/server/snow';
 import { crossingTimes } from '../../lib/server/crossing';
@@ -88,6 +88,12 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const startAt = Date.now() + leaveIn * 60_000;
 	const sources = conditionSources(route.coords, to, to.featured, destRadius);
 
+	// Streamed: full road closures and weather warnings for when you get to each point, and the same drive over
+	// the other passes across the same mountains. Not for drives with stops: the other ways go straight from start
+	// to finish, so they would leave a stop out.
+	const warnings = roadWarnings(route.coords, route.minutes, startAt);
+	const ways = via.length > 0 ? null : routeOptions(from, to, safe).catch(() => null);
+
 	const passNames = safe.passes.map((p) => p.pass.name);
 	const share: ShareMeta = {
 		title: `${from.label} to ${to.label}`,
@@ -114,15 +120,15 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				roughMiles: Math.round(route.roughMiles ?? 0),
 				passes: safe.passes.map(roadPass)
 			},
-			// Streamed: the same drive over the other passes across the same mountains. Not for drives with stops:
-			// the other ways go straight from start to finish, so they would leave a stop out.
-			options:
-				via.length > 0
-					? Promise.resolve({ baseline: null, options: [] })
-					: routeOptions(from, to, safe),
+			options: (ways ?? Promise.resolve(null)).then((w) =>
+				w ? forPage(w) : { baseline: null, options: [] }
+			),
+			// Streamed: with a road closed on the way, the other way across that misses it.
+			around: Promise.all([ways, warnings])
+				.then(([w, warn]) => (w ? wayAround(w, warn.closures) : null))
+				.catch(() => null),
 			mapLine: thinLine(route.coords),
-			// Streamed: full road closures and weather warnings for when you get to each point.
-			warnings: roadWarnings(route.coords, route.minutes, startAt),
+			warnings,
 			// For the page's refreshes while it stays open (/api/trip/live).
 			startAt,
 			fromPoint: { lat: from.lat, lon: from.lon, label: from.label },

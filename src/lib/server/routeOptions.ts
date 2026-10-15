@@ -1,6 +1,7 @@
 import { distanceMiles, type Point } from '../geo';
 import { blocksRoad } from '../passes';
-import type { LatLon } from '../route';
+import { closuresOnRoute, type RoadClosure } from '../roadAhead';
+import { cumulativeMiles, type LatLon } from '../route';
 import type { PassInfo } from '../types';
 import { getCatalog } from './catalog';
 import { allPassReports } from './passes';
@@ -24,10 +25,20 @@ export interface RouteOption {
 	line: LatLon[];
 }
 
-export interface RouteOptions {
+export interface RouteOptions<T extends RouteOption = RouteOption> {
 	/** The drive's own time from the same routing service as the options, so the difference is fair. */
 	baseline: number | null;
-	options: RouteOption[];
+	options: T[];
+}
+
+/** An option with its whole road, kept on the server to check it against closures (too big for the page). */
+export type RouteWay = RouteOption & { coords: LatLon[] };
+
+/** The other way that goes around the drive's road closures: its pass and how much longer it is. */
+export interface WayAround {
+	pass: { name: string; lat: number; lon: number };
+	label: string;
+	extraMinutes: number | null;
 }
 
 const MAX_OPTIONS = 3;
@@ -45,7 +56,7 @@ export async function routeOptions(
 	from: Point,
 	to: Point,
 	current: { passes: { pass: PassInfo }[] }
-): Promise<RouteOptions> {
+): Promise<RouteOptions<RouteWay>> {
 	const none = { baseline: null, options: [] };
 	const crossed = current.passes.map((p) => p.pass);
 	if (!crossed.length) return none;
@@ -90,21 +101,21 @@ export async function routeOptions(
 						miles: route.miles,
 						minutes: route.minutes,
 						passes: over,
-						line: thinLine(route.coords)
-					} satisfies RouteOption;
+						line: thinLine(route.coords),
+						coords: route.coords
+					} satisfies RouteWay;
 				} catch {
 					return null;
 				}
 			})
 	);
 	// Two stops can give the same road (Blewett and Snoqualmie from Seattle both cross both): keep one of each.
-	// A way more than an hour (or half the drive) longer isn't one anybody would take.
+	// Every way is kept here, however long: with the road closed, the long way round is the way (forPage trims).
 	const seen = new Set<string>();
-	const longest = baseline === null ? Infinity : baseline + Math.max(60, baseline / 2);
 	return {
 		baseline,
 		options: tries
-			.filter((t): t is RouteOption => t !== null && t.minutes <= longest)
+			.filter((t): t is RouteWay => t !== null)
 			.sort((a, b) => a.minutes - b.minutes)
 			.filter((t) => {
 				// The same passes as a faster way, or those passes plus a detour, is not another way.
@@ -113,7 +124,6 @@ export async function routeOptions(
 				seen.add([...ids].sort().join('+'));
 				return true;
 			})
-			.slice(0, MAX_OPTIONS)
 	};
 }
 
@@ -127,4 +137,39 @@ export function crossingLabel(
 	const names = over.filter((o) => groups.has(group.get(o.id) ?? '')).map((o) => o.name);
 	const list = names.length ? names : [fallback];
 	return list.length > 1 ? `${list.slice(0, -1).join(', ')} and ${list[list.length - 1]}` : list[0];
+}
+
+/**
+ * The options for the page, without their whole roads: the quickest few, and none more than an hour (or half the
+ * drive) longer, which nobody would take on an ordinary day.
+ */
+export function forPage({ baseline, options }: RouteOptions<RouteWay>): RouteOptions {
+	const longest = baseline === null ? Infinity : baseline + Math.max(60, baseline / 2);
+	return {
+		baseline,
+		options: options
+			.filter((o) => o.minutes <= longest)
+			.slice(0, MAX_OPTIONS)
+			.map(({ coords: _, ...o }) => o)
+	};
+}
+
+/**
+ * When a road on the drive is closed, the quickest other way across that misses every closure, or null when
+ * there are no closures or no other way misses them.
+ */
+export function wayAround(
+	{ baseline, options }: RouteOptions<RouteWay>,
+	closures: RoadClosure[]
+): WayAround | null {
+	if (!closures.length) return null;
+	const clear = options.find(
+		(o) => !closuresOnRoute(closures, o.coords, cumulativeMiles(o.coords)).length
+	);
+	if (!clear) return null;
+	return {
+		pass: { name: clear.pass.name, lat: clear.pass.lat, lon: clear.pass.lon },
+		label: clear.label,
+		extraMinutes: baseline === null ? null : Math.max(0, Math.round(clear.minutes - baseline))
+	};
 }

@@ -59,7 +59,15 @@ vi.mock('./routing', () => ({
 	}
 }));
 
-const { routeOptions, thinLine } = await import('./routeOptions');
+const { forPage, routeOptions, thinLine, wayAround } = await import('./routeOptions');
+const CLOSED = {
+	source: 'WSDOT' as const,
+	headline: 'Road closed',
+	start: { lat: 47.3, lon: -121 },
+	end: { lat: 47.3, lon: -121 },
+	updated: null,
+	link: ''
+};
 
 describe('routeOptions', () => {
 	it('offers the other passes across the same range, with free routing only', async () => {
@@ -91,16 +99,64 @@ describe('routeOptions', () => {
 	});
 	it('leaves out ways much longer than the drive', async () => {
 		vi.useFakeTimers({ now: Date.UTC(2026, 6, 10) });
-		const out = await routeOptions(
-			{ lat: 47.6, lon: -122 },
-			{ lat: 47.6, lon: -120 },
-			{ passes: [{ pass: NORTH }] }
+		const out = forPage(
+			await routeOptions(
+				{ lat: 47.6, lon: -122 },
+				{ lat: 47.6, lon: -120 },
+				{ passes: [{ pass: NORTH }] }
+			)
 		);
 		vi.useRealTimers();
 		// The drive takes 100 min; South adds 54 (fine), and nothing here adds more than an hour.
 		expect(out.baseline).toBe(100);
 		expect(out.options.every((o) => o.minutes <= 160)).toBe(true);
 		expect(out.options[0].label).toBe('Winter Pass');
+	});
+
+	it('finds the other way that misses a closed road', async () => {
+		vi.useFakeTimers({ now: Date.UTC(2026, 6, 10) });
+		const out = await routeOptions(
+			{ lat: 47.6, lon: -122 },
+			{ lat: 47.6, lon: -120 },
+			{ passes: [{ pass: NORTH }] }
+		);
+		vi.useRealTimers();
+		const closure = (lat: number) => ({
+			source: 'WSDOT' as const,
+			headline: 'Road closed',
+			start: { lat, lon: -121 },
+			end: { lat, lon: -121 },
+			updated: null,
+			link: ''
+		});
+		// Closed on the Winter way: South goes around it, 54 minutes longer than the drive.
+		expect(wayAround(out, [closure(47.3)])).toEqual({
+			pass: { name: 'South Pass', lat: 47.0, lon: -121 },
+			label: 'South Pass',
+			extraMinutes: 54
+		});
+		// Closed on both ways, or nothing closed: nothing to offer.
+		expect(wayAround(out, [closure(47.3), closure(47.0)])).toBeNull();
+		expect(wayAround(out, [])).toBeNull();
+	});
+
+	it('keeps a long way round for a closed road, but not on the page list', () => {
+		const way = (id: string, minutes: number) => ({
+			pass: { id, name: `${id} Pass`, route: 'US 2', lat: 47.7, lon: -121.1 },
+			label: `${id} Pass`,
+			miles: minutes,
+			minutes,
+			passes: [],
+			line: [],
+			coords: [[47.7, -121.1] as [number, number]]
+		});
+		// The drive takes 110 min; Stevens takes 200, an hour and a half longer.
+		const all = { baseline: 110, options: [way('Stevens', 200)] };
+		expect(forPage(all).options).toEqual([]);
+		expect(wayAround(all, [{ ...CLOSED, start: { lat: 47.4, lon: -121.4 } }])).toMatchObject({
+			label: 'Stevens Pass',
+			extraMinutes: 90
+		});
 	});
 
 	it('thins a line and keeps both ends', () => {

@@ -95,6 +95,35 @@ describe('driveVerdict', () => {
 		expect(driveVerdict(drive({ warnings: warnings({ closures: [closure] }) })).level).toBe('stop');
 	});
 
+	it('says a closed road in a short sentence, and the way around it', () => {
+		const closure = {
+			source: 'NDOT' as const,
+			headline:
+				'Road closed due to flooding on US-95 Southbound Near California Nevada Border. All lanes blocked - use other routes. Start time: 10/11/2026 2:01 AM.',
+			start: { lat: 39, lon: -118 },
+			end: { lat: 39, lon: -118 },
+			updated: null,
+			link: '',
+			along: 60
+		};
+		const v = driveVerdict(
+			drive({
+				warnings: warnings({ closures: [closure] }),
+				around: { label: 'Santiam Pass', extraMinutes: 41 }
+			})
+		);
+		expect(v.level).toBe('stop');
+		expect(v.sentence).toBe(
+			'A road is closed on the way: Road closed due to flooding on US-95 Southbound Near California Nevada Border. Going over Santiam Pass gets around it (41 min longer).'
+		);
+		expect(v.facts.map((f) => f.text)).toContain('Closed on the way: flooding');
+		// With a detour posted it slows the drive down rather than stopping it.
+		const detour = { ...closure, headline: 'US 2 is closed at milepost 60. Detour in place.' };
+		const d = driveVerdict(drive({ warnings: warnings({ closures: [detour] }) }));
+		expect(d.level).toBe('ready');
+		expect(d.facts.map((f) => f.text)).toContain('Detour on the way');
+	});
+
 	it('says go prepared for ice, freezing pavement and a rerouted drive', () => {
 		const icy = driveVerdict(drive({ weather: [stop({ hazard: 2, hazards: ['Ice possible'] })] }));
 		expect(icy.level).toBe('ready');

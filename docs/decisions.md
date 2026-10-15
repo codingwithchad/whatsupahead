@@ -416,3 +416,15 @@ so. Leave times run on the clock's half hours for 6 hours, then on the hour, and
 
 Alerts for a saved drive ("tell me if this changes before I leave") are left for a possible paid, signed-in
 version later; the free site keeps no accounts and nothing per device on the server.
+
+## 2026-10-14: A closed road: is it the road, is it closed when you get there, and the way round
+
+A Reno to Seattle drive said "Not now" for two ramps in Reno closed at night for road work. Nevada and Idaho 511
+mark ramp closures as full closures, and Nevada's schedules say "all day" for night work, giving the real hours
+only in the text ("Off-ramp closed from 7:30 PM to 5 AM"). Now, as for the other states, a ramp is not the road;
+hours written in the text count when the schedule has none of its own; and every closure is checked for the time
+you reach it, not the time you look. A closure with a detour posted says "go prepared" rather than "not now",
+and the answer quotes the closure's first sentence, not the whole notice. With a road closed on the drive, the
+answer names the quickest other way across that misses it ("Going over Stevens Pass and Blewett Pass gets around
+it, 1 h 54 min longer") with a link to drive it; that way may be longer than the hour the "Other ways" list
+allows, since on a closed day the long way is the way. With none, it links to the state's map for the detour.

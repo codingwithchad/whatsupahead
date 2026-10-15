@@ -3238,3 +3238,9 @@ main.updating .grid {
 	margin: 0.75rem 0 0;
 	font-weight: 600;
 }
+/* With a road closed on the way: the other way across, as a plain link under the answer. */
+.verdict-around {
+	display: inline-block;
+	margin-top: 0.5rem;
+	font-weight: 600;
+}

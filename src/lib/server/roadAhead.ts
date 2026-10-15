@@ -12,7 +12,8 @@ import {
 	type RoadWarnings,
 	type RouteAlert,
 	type Sample,
-	type WsdotAlert
+	type WsdotAlert,
+	wsdotInEffect
 } from '../roadAhead';
 import { regionAt } from '../regions';
 import {
@@ -24,7 +25,7 @@ import {
 import { cumulativeMiles, type LatLon } from '../route';
 import { cached, cachedStale } from './cache';
 import { allow } from './rateLimit';
-import { idahoClosure, idahoSurface } from '../idaho';
+import { eventInEffect, idahoClosure, idahoSurface, type IdahoEvent } from '../idaho';
 import {
 	caltransCheckpoints,
 	caltransClosures,
@@ -68,8 +69,12 @@ async function getJson<T>(
 	return (await res.json()) as T;
 }
 
+// A closure counts when it is on at the time you get to it: Nevada closes ramps and roads at night, and a drive
+// that reaches them in daylight is not blocked. Each closure carries its own check of a time.
+type Timed = RoadClosure & { at: (t: number) => boolean };
+
 /** WSDOT's highway alerts that close the whole road, or null when WSDOT can't be reached. */
-async function wsdotClosures(): Promise<RoadClosure[] | null> {
+async function wsdotClosures(): Promise<Timed[] | null> {
 	const key = process.env.WSDOT_CODE;
 	if (!key) return null;
 	try {
@@ -77,7 +82,10 @@ async function wsdotClosures(): Promise<RoadClosure[] | null> {
 			getJson<WsdotAlert[]>(`${WSDOT_ALERTS}?AccessCode=${encodeURIComponent(key)}`)
 		);
 		const now = Date.now();
-		return alerts.map((a) => wsdotClosure(a, now)).filter((c): c is RoadClosure => c !== null);
+		return alerts.flatMap((a) => {
+			const c = wsdotClosure(a, now);
+			return c ? [{ ...c, at: (t: number) => wsdotInEffect(a, t) }] : [];
+		});
 	} catch (err) {
 		console.warn(`[road] wsdot alerts: ${(err as Error).message}`);
 		return null;
@@ -165,44 +173,38 @@ export async function roadWarnings(
 	departAt: number
 ): Promise<RoadWarnings> {
 	const cum = cumulativeMiles(route);
+	const total = cum.at(-1) || 1;
 	const states = new Set(
 		route
 			.filter((_, i) => i % 20 === 0 || i === route.length - 1)
 			.map(([lat, lon]) => regionAt(lat, lon)?.abbr)
 	);
+	const always = (c: RoadClosure | null): Timed[] => (c ? [{ ...c, at: () => true }] : []);
+	const events511 = (events: IdahoEvent[], by?: { source: RoadClosure['source']; link: string }) =>
+		events.flatMap((e): Timed[] => {
+			const c = idahoClosure(e, null, by);
+			return c ? [{ ...c, at: (t: number) => eventInEffect(e, t) }] : [];
+		});
 	const [wa, or, ca, id, nv, checkpoints, alerts, surface, idSurface] = await Promise.all([
 		states.has('WA') ? wsdotClosures() : [],
 		states.has('OR')
-			? odotFeeds().then((f) =>
-					f ? f.incidents.map(odotClosure).filter((c): c is RoadClosure => c !== null) : null
-				)
+			? odotFeeds().then((f) => (f ? f.incidents.flatMap((i) => always(odotClosure(i))) : null))
 			: [],
 		states.has('CA')
 			? caltransClosures().then((list) =>
 					list
-						? list.map((c) => caltransClosure(c)).filter((c): c is RoadClosure => c !== null)
+						? list.flatMap((c): Timed[] => {
+								const closure = caltransClosure(c);
+								const end = Number(c.closure.closureTimestamp?.closureEndEpoch) * 1000;
+								return closure ? [{ ...closure, at: (t: number) => !end || end >= t }] : [];
+							})
 						: null
 				)
 			: [],
-		states.has('ID')
-			? idahoFeeds().then((f) =>
-					f
-						? f.events.map((e) => idahoClosure(e)).filter((c): c is RoadClosure => c !== null)
-						: null
-				)
-			: [],
+		states.has('ID') ? idahoFeeds().then((f) => (f ? events511(f.events) : null)) : [],
 		states.has('NV')
 			? nevadaFeeds().then((f) =>
-					f
-						? f.events
-								.map((e) =>
-									idahoClosure(e, Date.now(), {
-										source: 'NDOT',
-										link: 'https://www.nvroads.com/'
-									})
-								)
-								.filter((c): c is RoadClosure => c !== null)
-						: null
+					f ? events511(f.events, { source: 'NDOT', link: 'https://www.nvroads.com/' }) : null
 				)
 			: [],
 		states.has('CA') ? caltransCheckpoints() : [],
@@ -232,7 +234,9 @@ export async function roadWarnings(
 			[...(wa ?? []), ...(or ?? []), ...(ca ?? []), ...(id ?? []), ...(nv ?? [])],
 			route,
 			cum
-		),
+		)
+			.filter((c) => c.at(departAt + (c.along / total) * minutes * 60_000))
+			.map(({ at: _, ...c }) => c),
 		chainControls: chainControlsOnRoute(checkpoints ?? [], route, cum),
 		surface: surfaceOnRoute([...(surface ?? []), ...(idSurface ?? [])], route, cum),
 		alerts: (alerts ?? []).map((a) => ({ ...a, near: nearestTown(a.at, 15) })),

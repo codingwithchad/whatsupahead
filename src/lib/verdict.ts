@@ -1,5 +1,6 @@
 import type { PassReport } from './passes';
 import { closureCause, type RoadWarnings } from './roadAhead';
+import { duration } from './format';
 import { FREEZING_F } from './roadSurface';
 import type { StopWeather } from './routeWeather';
 import { passAnswer, type Need, type Vehicle } from './vehicle';
@@ -50,6 +51,8 @@ export interface DriveInput {
 	passes: { name: string; report: PassReport | null; heading: number | null }[];
 	/** Null while still loading. */
 	warnings: RoadWarnings | null;
+	/** With a road closed on the way: the other way across that misses it, when there is one. */
+	around?: { label: string; extraMinutes: number | null } | null;
 	/** The forecast stops still ahead, null while loading. */
 	weather: StopWeather[] | null;
 	vehicle: Vehicle | null;
@@ -148,11 +151,17 @@ export function driveVerdict(d: DriveInput): Verdict {
 	if (w) {
 		for (const c of w.closures) {
 			const cause = closureCause(c.headline);
-			add('stop', `a road is closed on the way (${c.headline})`, {
-				icon: 'closed',
-				text: cause ? `Closed on the way: ${cause}` : 'Road closed on the way',
-				tone: 'stop'
-			});
+			// A closure with a detour posted slows you down; one without stops the drive.
+			const detour = DETOUR.test(c.headline);
+			add(
+				detour ? 'ready' : 'stop',
+				`a road is closed on the way: ${firstSentence(c.headline)}${detour ? ', with a detour posted' : ''}`,
+				{
+					icon: 'closed',
+					text: `${detour ? 'Detour' : 'Closed'} on the way${cause ? `: ${cause}` : ''}`,
+					tone: detour ? 'ready' : 'stop'
+				}
+			);
 		}
 		for (const c of w.chainControls)
 			add('ready', `chain control ${c.level} at ${c.name}`, {
@@ -216,9 +225,13 @@ export function driveVerdict(d: DriveInput): Verdict {
 	if (level === 'go' && nothingKnown) level = 'unknown';
 	if (w?.unchecked.length && level === 'go') level = 'unknown';
 
+	const around =
+		w?.closures.length && d.around
+			? ` Going over ${d.around.label} gets around it${d.around.extraMinutes ? ` (${duration(d.around.extraMinutes)} longer)` : ''}.`
+			: '';
 	const sentence =
 		reasons.length > 0
-			? `${capital(reasons.slice(0, 2).join('; '))}.`
+			? `${capital(reasons.slice(0, 2).join('; '))}.${around}`
 			: level === 'unknown'
 				? w?.unchecked.length
 					? `Couldn't check ${w.unchecked.length > 1 ? 'some reports' : lower(w.unchecked[0])} just now. Look at the cameras below.`
@@ -293,6 +306,13 @@ const highestPass = (stops: StopWeather[]) =>
 			(high, s) => (!high || (s.elevation_ft ?? 0) > (high.elevation_ft ?? 0) ? s : high),
 			undefined
 		);
+const DETOUR =
+	/\bdetours? (?:is |are |will be )?(?:available|in place|posted|marked|signed)\b|\bfollow (?:the )?detour/i;
+/** A closure's first sentence, short enough for the answer ("Road closed due to flooding on US-95 ..."). */
+const firstSentence = (s: string) => {
+	const first = s.split(/(?<=[.!])\s/)[0].replace(/[.!\s]+$/, '');
+	return first.length <= 110 ? first : `${first.slice(0, 110).replace(/\s+\S*$/, '')}…`;
+};
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** "Denny Creek on I-90 at mp 50.44" -> "Denny Creek". */
 const shortName = (s: string) => s.replace(/\s+on\s+(I-|SR |US ).*$/i, '');
