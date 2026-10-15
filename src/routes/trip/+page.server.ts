@@ -33,7 +33,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	const demoWinter = url.searchParams.get('demo') === 'winter';
 	const showAll = url.searchParams.get('all') === '1';
 	// Minutes until you leave (0 = now), so forecasts can be for the time you will actually be there.
-	const leaveIn = Math.min(Math.max(Number(url.searchParams.get('in')) || 0, 0), 12 * 60);
+	const leaveIn = Math.min(Math.max(Number(url.searchParams.get('in')) || 0, 0), 24 * 60);
 	const base = { fromQ: fromLabel || fromQ, toQ: toLabel || toQ, error: null as string | null };
 	if (!fromQ || !toQ) return { ...base, trip: null };
 

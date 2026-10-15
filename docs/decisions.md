@@ -402,3 +402,17 @@ the road.
 - **For skiing** (ski area cards, Powder day): the highest gauge within 10 miles (`mountainStation`), with the
   snowfall forecast asked for at that gauge's height, and the card says it is measured on the mountain and that
   the road below can be quite different.
+
+## 2026-10-14: Plan a day ahead: when to leave to miss the snow
+
+People rarely plan ahead, but the one who does looks it up the night before: at 10 PM, 90 minutes from Snoqualmie,
+with snow reaching the summit at 7 AM, the answer is "leave before 5:30 AM". Drive pages now plan up to 24 hours
+ahead (they stopped at 12). "Best time to cross" shows the summit for leaving now and on each hour of the next day,
+and says when to leave in words: when the first stretch of snow a crossing would meet starts and ends at the
+summit (an hour without snow inside a storm doesn't end it), minus the drive to the summit, rounded to the quarter
+hour ("Leave before 5:30 AM tomorrow to cross ahead of it, or leave after 12:30 PM once it has passed"). When it
+is already snowing by the time you could get there, it says only when it passes; when it snows all day, it says
+so. Leave times run on the clock's half hours for 6 hours, then on the hour, and say "tomorrow".
+
+Alerts for a saved drive ("tell me if this changes before I leave") are left for a possible paid, signed-in
+version later; the free site keeps no accounts and nothing per device on the server.

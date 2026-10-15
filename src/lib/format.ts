@@ -33,3 +33,17 @@ export function localClock(ms: number, timeZone: string = DEFAULT_TIME_ZONE): st
 		timeZone
 	}).format(new Date(ms));
 }
+
+/** "5:30 AM", or "5:30 AM tomorrow" when it falls on the next day there (looked up the night before). */
+export function clockWithDay(
+	ms: number,
+	now: number = Date.now(),
+	timeZone: string = DEFAULT_TIME_ZONE
+): string {
+	const day = (t: number) => new Date(t).toLocaleDateString('en-CA', { timeZone });
+	const clock = localClock(ms, timeZone);
+	if (day(ms) === day(now)) return clock;
+	return day(ms) === day(now + 86_400_000)
+		? `${clock} tomorrow`
+		: `${new Date(ms).toLocaleDateString('en-US', { timeZone, weekday: 'short' })} ${clock}`;
+}

@@ -14,7 +14,7 @@
 	import TripForm from '../../lib/TripForm.svelte';
 	import ShareButton from '../../lib/ShareButton.svelte';
 	import { tripShareParams } from '../../lib/sharing';
-	import { duration, localClock } from '../../lib/format';
+	import { clockWithDay, duration, localClock } from '../../lib/format';
 	import { tripChanges, type Change, type Snapshot } from '../../lib/tripChanges';
 	import { driveVerdict } from '../../lib/verdict';
 	import { loadVehicle, type Vehicle } from '../../lib/vehicle';
@@ -507,8 +507,24 @@
 				: `${along.toFixed(0)} mi`;
 		return `About ${localClock(when, timeZoneAt(at.lat, at.lon))} · ${mins < 1 ? 'now' : `in ${duration(mins)}`} · ${miles}`;
 	};
-	// Leave now or in up to 12 hours (as far as forecasts on the way are asked for), every half hour.
-	const LEAVE_OPTIONS = Array.from({ length: 25 }, (_, i) => i * 30);
+	// Leave now, then on the clock's half hours for 6 hours and its hours up to a day ahead (looked up at 10 PM,
+	// "Leave 5:30 AM tomorrow"), as minutes from when the page was planned.
+	const plannedAt = $derived(trip ? trip.startAt - trip.leaveIn * 60_000 : Date.now());
+	const leaveOptions = $derived.by(() => {
+		const out = [0];
+		const half = 30 * 60_000;
+		let t = Math.ceil((plannedAt + 60_000) / half) * half;
+		for (; t - plannedAt <= 6 * 3_600_000; t += half)
+			out.push(Math.round((t - plannedAt) / 60_000));
+		t = Math.ceil(t / 3_600_000) * 3_600_000;
+		for (; t - plannedAt <= 24 * 3_600_000; t += 3_600_000)
+			out.push(Math.round((t - plannedAt) / 60_000));
+		return out;
+	});
+	const leaveLabel = (mins: number) =>
+		mins === 0
+			? 'Leave now'
+			: `Leave ${clockWithDay(Math.round((plannedAt + mins * 60_000) / 60_000) * 60_000, plannedAt)}`;
 </script>
 
 <svelte:head>
@@ -626,15 +642,11 @@
 								void goto(tripLink({ in: mins === '0' ? null : mins }));
 							}}
 						>
-							{#each LEAVE_OPTIONS as mins (mins)}
-								<option value={String(mins)}
-									>{mins === 0
-										? 'Leave now'
-										: `Leave ${localClock(trip.startAt - trip.leaveIn * 60_000 + mins * 60_000)} (in ${duration(mins)})`}</option
-								>
+							{#each leaveOptions as mins (mins)}
+								<option value={String(mins)}>{leaveLabel(mins)}</option>
 							{/each}
-							{#if !LEAVE_OPTIONS.includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
-									>Leave in {duration(trip.leaveIn)}</option
+							{#if !leaveOptions.includes(trip.leaveIn)}<option value={String(trip.leaveIn)}
+									>{leaveLabel(trip.leaveIn)}</option
 								>{/if}
 						</select></label
 					>

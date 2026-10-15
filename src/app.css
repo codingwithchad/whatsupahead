@@ -3052,6 +3052,9 @@ main.updating .grid {
 .crossing {
 	margin: 0.75rem 0 0;
 }
+.crossing-advice {
+	margin: 4px 0 8px;
+}
 .crossing h2 {
 	margin: 0;
 	font-size: var(--fs-lg);
@@ -3059,10 +3062,10 @@ main.updating .grid {
 .crossing .sub {
 	margin: 2px 0 6px;
 }
-/* Two rows of seven on a phone: 13 times in one row would not fit. */
+/* A day of hours in rows of nine: one row would not fit on a phone. */
 .crossing-slots {
 	display: grid;
-	grid-template-columns: repeat(7, minmax(0, 1fr));
+	grid-template-columns: repeat(9, minmax(0, 1fr));
 	gap: 2px;
 	list-style: none;
 	margin: 0;
