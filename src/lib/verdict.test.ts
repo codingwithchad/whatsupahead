@@ -62,7 +62,7 @@ describe('driveVerdict', () => {
 		const v = driveVerdict(drive());
 		expect(v.level).toBe('go');
 		expect(v.title).toBe('Looks good');
-		expect(v.facts.map((f) => f.text)).toContain('38°F cloudy at Stevens Pass 7:10 PM');
+		expect(v.facts.map((f) => f.text)).toContain('Stevens Pass · 7:10 PM · open · 38°F cloudy');
 	});
 
 	it('answers for your vehicle', () => {
@@ -78,7 +78,9 @@ describe('driveVerdict', () => {
 		expect(driveVerdict(drive({ passes, vehicle: 'car' })).level).toBe('ready');
 		const awd = driveVerdict(drive({ passes, vehicle: 'awd' }));
 		expect(awd.level).toBe('ready');
-		expect(awd.facts[0].text).toBe('Stevens Pass: AWD with traction tires: no chains. Carry them');
+		expect(awd.facts[0].text).toBe(
+			'Stevens Pass · 7:10 PM · AWD with traction tires: no chains. Carry them · 38°F cloudy'
+		);
 	});
 
 	it('says stop for a closed pass with no way around, or a closed road', () => {
@@ -155,7 +157,10 @@ describe('driveVerdict', () => {
 		expect(v.sentence).toBe(
 			'No closures, chain rules or warnings on the way. Stevens Pass has no official report yet.'
 		);
-		expect(v.facts[0]).toMatchObject({ text: 'Stevens Pass: no report yet', tone: 'unknown' });
+		expect(v.facts[0]).toMatchObject({
+			text: 'Stevens Pass · 7:10 PM · no report yet · 38°F cloudy',
+			tone: 'unknown'
+		});
 	});
 
 	it('says check before you go, not looks good, for a pass with no report in winter', () => {
@@ -181,6 +186,52 @@ describe('driveVerdict', () => {
 			expect(v.level).toBe('unknown');
 			expect(v.sentence).toContain('snow or freezing is forecast there');
 		}
+	});
+
+	it('gives each pass its own line, in road order, with its own forecast', () => {
+		const v = driveVerdict(
+			drive({
+				passes: [
+					{ name: 'Snoqualmie Pass', report: report('off-season', 'No report yet'), heading: 90 },
+					{ name: 'Blewett Pass', report: report('off-season', 'No report yet'), heading: 0 }
+				],
+				weather: [
+					stop({ label: 'Snoqualmie Pass', along: 40, tempF: 50 }),
+					stop({
+						label: 'Blewett Pass',
+						along: 110,
+						tempF: 30,
+						precip: 'snow',
+						phrase: 'Light snow'
+					})
+				],
+				clock: (s) => (s.label === 'Blewett Pass' ? '12:20 PM' : '11:10 AM')
+			})
+		);
+		expect(v.facts.map((f) => f.text)).toEqual([
+			'Snoqualmie Pass · 11:10 AM · no report yet · 50°F cloudy',
+			'Blewett Pass · 12:20 PM · no report yet · 30°F light snow'
+		]);
+		expect(v.sentence).toBe(
+			'Blewett Pass has no official report, and snow or freezing is forecast there.'
+		);
+	});
+
+	it('shows the worst two of four passes and folds the rest into one line', () => {
+		const passes = ['A Pass', 'B Pass', 'C Pass', 'D Pass'].map((name) => ({
+			name,
+			report: report(
+				name === 'C Pass' ? 'chains' : 'open',
+				name === 'C Pass' ? 'Chains required' : 'Open'
+			),
+			heading: 90
+		}));
+		const v = driveVerdict(drive({ passes, weather: [] }));
+		expect(v.facts.map((f) => f.text)).toEqual([
+			'A Pass · open',
+			'C Pass · chains required',
+			'2 more passes look fine'
+		]);
 	});
 
 	it('never says all clear when it knows nothing', () => {

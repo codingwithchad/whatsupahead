@@ -154,15 +154,17 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 					nearestTown
 				)
 			),
-			// Streamed: the highest pass's summit forecast for each time you could leave ("best time to cross").
-			crossing: (() => {
-				const top = [...safe.passes].sort(
-					(a, b) => (b.pass.elevation_ft ?? 0) - (a.pass.elevation_ft ?? 0)
-				)[0];
-				return top
-					? crossingTimes(top.pass, (route.minutes * top.along) / Math.max(total, 0.1))
-					: Promise.resolve(null);
-			})(),
+			// Streamed: every pass's summit forecast for each time you could leave ("best time to cross").
+			crossing: safe.passes.length
+				? crossingTimes(
+						[...safe.passes]
+							.sort((x, y) => x.along - y.along)
+							.map((p) => ({
+								pass: p.pass,
+								minutesToPass: (route.minutes * p.along) / Math.max(total, 0.1)
+							}))
+					)
+				: Promise.resolve(null),
 			// Streamed: the page shows cameras right away while live weather loads.
 			conditions: conditionsAt(sources, total, route.minutes, startAt)
 		}

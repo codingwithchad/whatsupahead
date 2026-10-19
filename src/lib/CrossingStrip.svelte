@@ -2,8 +2,8 @@
 	import { clockWithDay, localClock } from './format';
 	import type { Crossing } from './server/crossing';
 
-	// "Best time to cross": when to leave to miss the snow at the summit in the next day ("Leave before 5:30 AM
-	// tomorrow to cross ahead of it"), and, folded away under "Pick a time to leave", the summit's forecast for
+	// "Best time to cross": when to leave to miss the snow at the summits in the next day ("Leave before 5:30 AM
+	// tomorrow to cross ahead of it"), and, folded away under "Pick a time to leave", the worst summit's forecast for
 	// each hour you could leave. Tapping an hour plans the drive for it and folds the hours away again.
 	let {
 		crossing,
@@ -29,22 +29,29 @@
 	);
 	const word = { snow: 'snow', freezing: 'freezing', clear: 'above freezing' } as const;
 	const a = $derived(crossing.advice);
+	const one = $derived(crossing.passes.length === 1);
+	// "Blewett Pass (4,102 ft)", "Snoqualmie Pass and Blewett Pass", "the 3 passes".
+	const title = $derived(
+		one
+			? `${crossing.passes[0].name}${crossing.passes[0].feet ? ` (${crossing.passes[0].feet.toLocaleString()} ft)` : ''}`
+			: crossing.passes.length === 2
+				? crossing.passes.map((p) => p.name).join(' and ')
+				: `the ${crossing.passes.length} passes`
+	);
+	const summit = $derived(
+		one ? 'the summit' : crossing.passes.length === 2 ? 'either summit' : 'any summit'
+	);
 </script>
 
-<section class="crossing" aria-label="Best time to cross {crossing.pass}">
-	<h2>
-		Best time to cross {crossing.pass}{crossing.feet
-			? ` (${crossing.feet.toLocaleString()} ft)`
-			: ''}
-	</h2>
+<section class="crossing" aria-label="Best time to cross {title}">
+	<h2>Best time to cross {title}</h2>
 	<p class="crossing-advice">
-		{#if a.snowFrom === null}
-			No snow forecast at the summit for a crossing in the next 24 hours.{#if a.freezing}
+		{#if !a.snow.length}
+			No snow forecast at {summit} for a crossing in the next 24 hours.{#if a.freezing}
 				It drops to freezing at times: watch for ice.{/if}
 		{:else}
-			Snow at the summit from about {when(a.snowFrom)}{a.snowUntil
-				? ` until about ${when(a.snowUntil)}`
-				: ''}.
+			{#each a.snow as s, i (s.pass)}{i === 0 ? 'Snow' : ', and'} at {one ? 'the summit' : s.pass} from
+				about {when(s.from)}{s.until ? ` until about ${when(s.until)}` : ''}{/each}.
 			{#if a.leaveBefore !== null}
 				<strong>Leave before {when(a.leaveBefore)}</strong> to cross ahead of it{a.leaveAfter !==
 				null
@@ -73,9 +80,9 @@
 						aria-current={s.leaveIn === chosen ? 'true' : undefined}
 						aria-label="Leave {s.leaveIn === 0
 							? 'now'
-							: `at ${when(leaveAt(s.leaveIn))}`}: {s.tempF ?? '?'}°F and {word[
-							s.level
-						]} at the summit around {when(s.at)}"
+							: `at ${when(leaveAt(s.leaveIn))}`}: {s.tempF ?? '?'}°F and {word[s.level]} at {one
+							? 'the summit'
+							: s.pass} around {when(s.at)}"
 					>
 						<span class="slot-time">{s.leaveIn === 0 ? 'Now' : short(leaveAt(s.leaveIn))}</span>
 						<span class="slot-temp"

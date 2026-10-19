@@ -33,6 +33,8 @@ export const TITLES: Record<Level, string> = {
 };
 
 const ORDER: Level[] = ['stop', 'ready', 'unknown', 'go'];
+/** Pass lines in the answer before the rest fold into one. */
+const MAX_PASS_ROWS = 3;
 const worst = (a: Level, b: Level) => (ORDER.indexOf(a) <= ORDER.indexOf(b) ? a : b);
 // Lower-case the first letter for the middle of a sentence, but not in a short form like "AWD" or "SR 20".
 const lower = (s: string) => (/^[A-Z]{2}/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1));
@@ -100,52 +102,85 @@ export function driveVerdict(d: DriveInput): Verdict {
 			tone: 'stop'
 		});
 
-	// Each pass: what it means for your vehicle (or, before you say, the state's own status).
-	for (const p of d.passes) {
-		const r = p.report;
-		if (!r || r.status === 'off-season') continue;
-		const a = d.vehicle ? passAnswer(r, d.vehicle, p.heading) : null;
-		const l: Level = a
-			? NEED_LEVEL[a.need]
-			: r.status === 'closed'
-				? 'stop'
-				: r.status === 'chains' || r.status === 'traction'
-					? 'ready'
-					: 'go';
-		const cause = r.status === 'closed' ? passCause(r) : null;
-		const text = `${a ? a.text : r.label}${cause ? ` (${cause})` : ''}`;
-		add(l, l === 'go' ? null : `${p.name}: ${lower(text)}`, {
-			icon: l === 'go' ? 'pass' : 'chains',
-			text: `${p.name}: ${lower(l === 'go' && !a ? r.label : text)}`,
-			tone: l
-		});
-	}
-	// A closure in the notes of an open pass (a night closure, a gate past the summit): worth a look.
-	for (const p of d.passes)
-		if (p.report?.notice)
-			add('ready', `${p.name}: ${lower(p.report.notice)}`, {
-				icon: 'closed',
-				text: `${p.name}: closure noted`,
-				tone: 'ready'
-			});
+	// Each pass in road order, one line ("Snoqualmie Pass · 11:10 AM · chains required · 28°F snow"): when you get
+	// there, what its report means for your vehicle (or, before you say, the
+	// state's own status) and its forecast for then. A drive over two passes gets two lines, not one.
 	const reported = d.passes.filter((p) => p.report && p.report.status !== 'off-season');
 	// A pass with no report isn't a pass with no rules: show that it wasn't reported. In winter, or when snow or
 	// freezing is forecast there, not knowing is not "Looks good".
 	const silent = d.passes.filter((p) => !p.report || p.report.status === 'off-season');
 	const season = reportSeason(d.now ?? Date.now());
-	for (const p of silent) {
-		const fact: Fact = { icon: 'pass', text: `${p.name}: no report yet`, tone: 'unknown' };
-		const cold = wintry(d.weather?.find((s) => s.kind === 'pass' && s.label === p.name));
-		if (season || cold)
-			add(
-				'unknown',
-				cold
-					? `${p.name} has no official report, and snow or freezing is forecast there`
-					: `${p.name} has no official report yet`,
-				fact
-			);
-		else facts.push(fact);
+	const rows: Fact[] = [];
+	for (const p of d.passes) {
+		const r = p.report;
+		const there = d.weather?.find((s) => s.kind === 'pass' && s.label === p.name);
+		const when = there ? d.clock?.(there) : undefined;
+		const row: Fact = { icon: 'pass', text: '', tone: 'unknown' };
+		const said: string[] = [];
+		if (!r || r.status === 'off-season') {
+			said.push('no report yet');
+			const cold = wintry(there);
+			if (season || cold)
+				add(
+					'unknown',
+					cold
+						? `${p.name} has no official report, and snow or freezing is forecast there`
+						: `${p.name} has no official report yet`
+				);
+		} else {
+			const a = d.vehicle ? passAnswer(r, d.vehicle, p.heading) : null;
+			const l: Level = a
+				? NEED_LEVEL[a.need]
+				: r.status === 'closed'
+					? 'stop'
+					: r.status === 'chains' || r.status === 'traction'
+						? 'ready'
+						: 'go';
+			const cause = r.status === 'closed' ? passCause(r) : null;
+			const text = `${a ? a.text : r.label}${cause ? ` (${cause})` : ''}`;
+			add(l, l === 'go' ? null : `${p.name}: ${lower(text)}`);
+			said.push(lower(l === 'go' && !a ? r.label : text));
+			row.tone = l;
+			if (l !== 'go') row.icon = 'chains';
+			// A closure in the notes of an open pass (a night closure, a gate past the summit): worth a look.
+			if (r.notice) {
+				add('ready', `${p.name}: ${lower(r.notice)}`);
+				said.push('closure noted');
+				row.tone = worst(row.tone, 'ready');
+			}
+		}
+		if (there && there.hazard >= 2) {
+			const what = there.hazards[0] ?? there.phrase;
+			add('ready', `${lower(what)} expected at ${p.name}${when ? ` around ${when}` : ''}`);
+			said.push(lower(what));
+			row.tone = worst(row.tone, 'ready');
+			row.icon = /ice/i.test(what) ? 'ice' : /snow/i.test(what) ? 'snow' : 'warning';
+		} else if (there) {
+			const weather = [there.tempF !== null ? `${there.tempF}°F` : '', lower(there.phrase ?? '')]
+				.filter(Boolean)
+				.join(' ');
+			if (weather) said.push(weather);
+		}
+		row.text = [p.name, when, ...said].filter(Boolean).join(' · ');
+		rows.push(row);
 	}
+	// Four passes or more: the worst two, and a line for the rest (they are all in "More" below).
+	if (rows.length > MAX_PASS_ROWS) {
+		const keep = new Set(
+			rows
+				.map((f, i) => ({ f, i }))
+				.sort((a, b) => ORDER.indexOf(a.f.tone) - ORDER.indexOf(b.f.tone) || a.i - b.i)
+				.slice(0, MAX_PASS_ROWS - 1)
+				.map((x) => x.i)
+		);
+		const rest = rows.filter((_, i) => !keep.has(i));
+		facts.push(...rows.filter((_, i) => keep.has(i)));
+		facts.push({
+			icon: 'pass',
+			text: `${rest.length} more passes ${rest.every((f) => f.tone === 'go') ? 'look fine' : 'on the way'}`,
+			tone: rest.reduce<Level>((l, f) => worst(l, f.tone), 'go')
+		});
+	} else facts.push(...rows);
 
 	const w = d.warnings;
 	if (w) {
@@ -190,14 +225,17 @@ export function driveVerdict(d: DriveInput): Verdict {
 		}
 	}
 
-	// Weather when you get there: the worst stop, or the highest pass if all is calm (where snow and ice come
-	// first; not simply the first pass on the way, which from Yakima is Manastash Ridge rather than Snoqualmie).
-	if (d.weather?.length) {
-		const bad = d.weather.filter((s) => s.hazard >= 2);
+	// Weather when you get there, beyond the passes' own lines: the worst other stop, or with no pass on the drive
+	// the highest one if all is calm (where snow and ice come first; not simply the first on the way, which from
+	// Yakima is Manastash Ridge rather than Snoqualmie), else the end.
+	const others = d.weather?.filter(
+		(s) => s.kind !== 'pass' || !d.passes.some((p) => p.name === s.label)
+	);
+	if (others?.length) {
+		const bad = others.filter((s) => s.hazard >= 2);
 		const pick =
 			bad.sort((a, b) => b.hazard - a.hazard)[0] ??
-			highestPass(d.weather) ??
-			d.weather.find((s) => s.kind === 'end');
+			(d.passes.length ? undefined : (highestPass(others) ?? others.find((s) => s.kind === 'end')));
 		if (pick) {
 			const when = d.clock?.(pick);
 			const temp = pick.tempF !== null ? `${pick.tempF}°F` : '';

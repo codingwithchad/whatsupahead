@@ -1,6 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { clearCache } from './cache';
-import { crossingTimes, leaveAdvice, leaveTimes } from './crossing';
+import {
+	combineAdvice,
+	crossingTimes,
+	leaveAdvice,
+	leaveTimes,
+	type LeaveAdvice
+} from './crossing';
 
 afterEach(() => {
 	vi.unstubAllGlobals();
@@ -35,8 +41,18 @@ describe('crossingTimes', () => {
 			})
 		);
 		const c = await crossingTimes(
-			{ id: 'snoqualmie', name: 'Snoqualmie Pass', lat: 47.41, lon: -121.41, elevation_ft: 3022 },
-			110,
+			[
+				{
+					pass: {
+						id: 'snoqualmie',
+						name: 'Snoqualmie Pass',
+						lat: 47.41,
+						lon: -121.41,
+						elevation_ft: 3022
+					},
+					minutesToPass: 110
+				}
+			],
 			NOW
 		);
 		expect(asked!.searchParams.get('elevation')).toBe('921.1');
@@ -50,12 +66,58 @@ describe('crossingTimes', () => {
 		expect(c!.slots[4]).toMatchObject({ level: 'clear', tempF: 36 });
 	});
 
+	it('takes the worst summit for each time you could leave, over every pass on the drive', async () => {
+		const time = Array.from({ length: 72 }, (_, h) =>
+			new Date(Date.UTC(2026, 10, 26) + h * 3600_000).toISOString().slice(0, 16)
+		);
+		vi.stubGlobal(
+			'fetch',
+			vi.fn(async (url: URL) => {
+				// The lower pass (first on the way) gets snow from 10 AM to noon Pacific; the higher one stays dry.
+				const lower = url.searchParams.get('latitude') === '47.410';
+				return new Response(
+					JSON.stringify({
+						hourly: {
+							time,
+							temperature_2m: time.map(() => (lower ? 31 : 28)),
+							snowfall: time.map((_, i) => (lower && i >= 19 && i <= 21 ? 0.4 : 0))
+						}
+					})
+				);
+			})
+		);
+		const c = await crossingTimes(
+			[
+				{
+					pass: { id: 'snoqualmie', name: 'Snoqualmie Pass', lat: 47.41, lon: -121.41 },
+					minutesToPass: 60
+				},
+				{
+					pass: { id: 'blewett', name: 'Blewett Pass', lat: 47.33, lon: -120.58 },
+					minutesToPass: 130
+				}
+			],
+			NOW
+		);
+		expect(c!.passes.map((p) => p.name)).toEqual(['Snoqualmie Pass', 'Blewett Pass']);
+		// Leave now: dry at both, Blewett the colder.
+		expect(c!.slots[0]).toMatchObject({ level: 'freezing', pass: 'Blewett Pass', tempF: 28 });
+		// Leave at 9 AM: Snoqualmie at 10 AM, in the snow there, though Blewett is dry.
+		expect(c!.slots[1]).toMatchObject({ level: 'snow', pass: 'Snoqualmie Pass' });
+		expect(c!.advice.snow.map((s) => s.pass)).toEqual(['Snoqualmie Pass']);
+	});
+
 	it('is left out when the forecast does not answer', async () => {
 		vi.stubGlobal(
 			'fetch',
 			vi.fn(async () => new Response('down', { status: 503 }))
 		);
-		expect(await crossingTimes({ id: 'x', name: 'X', lat: 47, lon: -121 }, 60, NOW)).toBeNull();
+		expect(
+			await crossingTimes(
+				[{ pass: { id: 'x', name: 'X', lat: 47, lon: -121 }, minutesToPass: 60 }],
+				NOW
+			)
+		).toBeNull();
 	});
 });
 
@@ -110,5 +172,62 @@ describe('leaveTimes', () => {
 		expect(t[1]).toBe(48);
 		expect(t).toHaveLength(25);
 		expect(t.at(-1)).toBe(48 + 23 * 60);
+	});
+});
+
+describe('combineAdvice', () => {
+	const HOUR = 3_600_000;
+	const advice = (over: Partial<LeaveAdvice>): LeaveAdvice => ({
+		snowFrom: null,
+		snowUntil: null,
+		leaveBefore: null,
+		leaveAfter: null,
+		freezing: false,
+		...over
+	});
+
+	it('leaves before the snow at the first summit it reaches, and after it has passed the last', () => {
+		const a = combineAdvice([
+			{
+				pass: 'Snoqualmie Pass',
+				advice: advice({
+					snowFrom: 7 * HOUR,
+					snowUntil: 10 * HOUR,
+					leaveBefore: 6 * HOUR,
+					leaveAfter: 9 * HOUR
+				})
+			},
+			{
+				pass: 'Blewett Pass',
+				advice: advice({
+					snowFrom: 5 * HOUR,
+					snowUntil: 8 * HOUR,
+					leaveBefore: 3 * HOUR,
+					leaveAfter: 6 * HOUR
+				})
+			}
+		]);
+		expect(a.leaveBefore).toBe(3 * HOUR);
+		expect(a.leaveAfter).toBe(9 * HOUR);
+		expect(a.snow.map((s) => s.pass)).toEqual(['Snoqualmie Pass', 'Blewett Pass']);
+	});
+
+	it('gives no "before" when one pass is snowing by the time you get there, nor "after" when one keeps on', () => {
+		const a = combineAdvice([
+			{
+				pass: 'A',
+				advice: advice({ snowFrom: 1, snowUntil: 2, leaveBefore: null, leaveAfter: 5 })
+			},
+			{ pass: 'B', advice: advice({ snowFrom: 3, snowUntil: 4, leaveBefore: 2, leaveAfter: null }) }
+		]);
+		expect(a).toMatchObject({ leaveBefore: null, leaveAfter: null });
+	});
+
+	it('says nothing to miss when no pass has snow, but keeps the ice warning', () => {
+		const a = combineAdvice([
+			{ pass: 'A', advice: advice({}) },
+			{ pass: 'B', advice: advice({ freezing: true }) }
+		]);
+		expect(a).toEqual({ snow: [], leaveBefore: null, leaveAfter: null, freezing: true });
 	});
 });

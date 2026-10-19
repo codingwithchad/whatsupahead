@@ -84,10 +84,6 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 		.filter(Boolean)
 		.join(' ');
 
-	// The highest pass on the way, as the drive page picks it, with the drive there from the start.
-	const top = safe
-		? [...safe.passes].sort((a, b) => (b.pass.elevation_ft ?? 0) - (a.pass.elevation_ft ?? 0))[0]
-		: undefined;
 	return {
 		drive: { id: drive.id, name: drive.name, blurb: drive.blurb ?? '' },
 		tripLink: driveTripLink(drive),
@@ -98,13 +94,16 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 		passes,
 		avoided: safe?.avoided ?? [],
 		blocked: safe?.blocked ?? [],
-		crossing:
-			safe && top
-				? crossingTimes(
-						top.pass,
-						(safe.route.minutes * top.along) / Math.max(safe.route.miles, 0.1)
-					).catch(() => null)
-				: Promise.resolve(null),
+		crossing: safe?.passes.length
+			? crossingTimes(
+					[...safe.passes]
+						.sort((x, y) => x.along - y.along)
+						.map((p) => ({
+							pass: p.pass,
+							minutesToPass: (safe.route.minutes * p.along) / Math.max(safe.route.miles, 0.1)
+						}))
+				)
+			: Promise.resolve(null),
 		crumbs: [
 			{ name: 'Popular drives', path: '/drives' },
 			{ name: drive.name, path: `/drives/${encodeURIComponent(drive.id)}` }

@@ -428,3 +428,17 @@ and the answer quotes the closure's first sentence, not the whole notice. With a
 answer names the quickest other way across that misses it ("Going over Stevens Pass and Blewett Pass gets around
 it, 1 h 54 min longer") with a link to drive it; that way may be longer than the hour the "Other ways" list
 allows, since on a closed day the long way is the way. With none, it links to the state's map for the detour.
+
+## 2026-10-19: Popular drives Google can find, and every pass on a drive
+
+Drive pages are kept out of search results (each pair of places is a page, and each costs a route), so the features
+only they had (when to leave, chains for your car, the way around a closure) could not be found by search. The
+featured drives now have their own pages (`/drives/seattle-leavenworth`), named the way people search ("Seattle to
+Leavenworth Road Conditions"), with the passes on the way, the best time to cross and a link to the live drive. They
+route with the free service only and keep the last route for when it is busy.
+
+A drive over two passes (Bellevue to Wenatchee: Snoqualmie, then Blewett) showed the weather for one, and the best
+time to cross only for the highest. Now the answer has one line per pass in road order, with when you get there,
+its report and its forecast for then, in place of the separate pass and weather lines; four passes or more show the
+worst two and "2 more passes look fine". The best time to cross checks every pass: leave before the snow reaches
+the first summit it reaches, or after it has passed the last, and each hour shows the worst summit.
