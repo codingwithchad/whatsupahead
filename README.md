@@ -1,6 +1,6 @@
 # What's Up Ahead
 
-**Cameras, weather and waits along your way, for Washington, Oregon, California, Idaho and Nevada.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts.
+**Cameras, weather and waits along your way, for Washington, Oregon, California, Idaho, Nevada and Utah.** The public cameras, forecasts, pass conditions and ferry, border and airport waits for the place you're headed, or for the whole drive. Works on iPhone and Android in the browser, nothing to install, free, no accounts.
 
 **Try it: https://whatsupahead.com**
 
@@ -12,7 +12,7 @@
 - **Share:** every camera, place, list and drive has a Share button, and a shared link shows a preview picture: the camera's latest view (from public agencies whose pictures may be reused, credited), a place's cameras, or the drive on a map with the passes on the way.
 - **Cameras are data, not code.** Adding one is a small JSON file, so you don't need to write any code to help.
 
-It covers Washington, Oregon, California, Idaho and Nevada (about 7,600 cameras). The design (data files plus small adapters) is meant to grow to other states.
+It covers Washington, Oregon, California, Idaho, Nevada and Utah (about 8,900 cameras). The design (data files plus small adapters) is meant to grow to other states.
 
 ## Help wanted
 
@@ -35,7 +35,7 @@ Some live data needs free keys (WSDOT, ODOT TripCheck, Windy and others). Copy `
 
 ## How it's built
 
-SvelteKit and TypeScript on one small Node server, which runs on any host that runs Node and keeps a little on disk (visit counts, the camera replay and shared before-and-afters; see [docs/deploy.md](docs/deploy.md)). Cameras, places, drives, passes and weather sources live in `data/`, each file checked against a schema in `schema/`. See [docs/data-model.md](docs/data-model.md), [docs/decisions.md](docs/decisions.md) and [docs/sources.md](docs/sources.md) (where each camera feed comes from and why we're allowed to use it).
+SvelteKit and TypeScript on one small Node server, which runs on any host that runs Node and keeps a little on disk (visit counts, the camera replay and shared before-and-afters; see [docs/deploy.md](docs/deploy.md)). Cameras, places, drives, passes and weather sources live in `data/`, each file checked against a schema in `schema/`. See [docs/data-model.md](docs/data-model.md), [docs/decisions.md](docs/decisions.md) [docs/sources.md](docs/sources.md) (where each camera feed comes from and why we're allowed to use it) and [docs/source-rules.md](docs/source-rules.md) (each outside service's own rules, and how we keep to them).
 
 ## About this project
 

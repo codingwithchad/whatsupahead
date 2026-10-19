@@ -1,0 +1,20 @@
+{
+  "id": "udot-zion-park-blvd-sr-9-quail-ridge-rd-sdl",
+  "name": "Zion Park Blvd / SR-9 @ Quail Ridge Rd, SDL",
+  "lat": 37.17704,
+  "lon": -113.00914,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165057",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 9"
+}

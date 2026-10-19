@@ -18,6 +18,7 @@ import {
 	type IdahoStation
 } from '../idaho';
 import { nevadaPassReport, type NevadaRoadReport, type NevadaStation } from '../nevada';
+import { utahPassReport, type UtahRoadReport, type UtahStation } from '../utah';
 import type { PassInfo } from '../types';
 import { cachedStale } from './cache';
 import { getCatalog } from './catalog';
@@ -77,7 +78,7 @@ export async function odotFeeds(): Promise<{
 	}
 }
 
-// Idaho 511 and Nevada 511 are the same system: one key each, ten calls a minute each.
+// Idaho 511, Nevada 511 and UDOT Traffic are the same system: one key each, ten calls a minute each.
 const FEEDS_511 = {
 	idaho: {
 		base: 'https://511.idaho.gov/api',
@@ -88,9 +89,14 @@ const FEEDS_511 = {
 		base: 'https://www.nvroads.com/api',
 		key: 'NV_511_DOT_API_KEY',
 		roads: 'v3/get/roadconditions'
+	},
+	utah: {
+		base: 'https://www.udottraffic.utah.gov/api',
+		key: 'UT_511_DOT_API_KEY',
+		roads: 'v2/get/roadconditions'
 	}
 } as const;
-const failedAt: Record<keyof typeof FEEDS_511, number> = { idaho: 0, nevada: 0 };
+const failedAt: Record<keyof typeof FEEDS_511, number> = { idaho: 0, nevada: 0, utah: 0 };
 
 /**
  * A 511 site's road reports, traffic events and road weather stations, or null when it can't be reached.
@@ -134,6 +140,9 @@ export const idahoFeeds = () => feeds511<IdahoRoadReport, IdahoStation>('idaho')
 
 /** Nevada 511's road reports (with NDOT's chain controls), events and weather stations, or null. */
 export const nevadaFeeds = () => feeds511<NevadaRoadReport, NevadaStation>('nevada');
+
+/** UDOT Traffic's road reports (with UDOT's chain and traction rules), events and weather stations, or null. */
+export const utahFeeds = () => feeds511<UtahRoadReport, UtahStation>('utah');
 
 /** Caltrans chain controls and lane closures for the districts our passes are in, or null if unreachable. */
 async function caltransFeeds(
@@ -235,12 +244,13 @@ export async function allPassReports(
 	passes: PassInfo[] = getCatalog().passes
 ): Promise<Map<string, PassReport>> {
 	const { districts, closureDistricts } = caltransDistricts(passes);
-	const [wsdot, odot, caltrans, idaho, nevada] = await Promise.all([
+	const [wsdot, odot, caltrans, idaho, nevada, utah] = await Promise.all([
 		livePasses(),
 		passes.some((p) => p.report?.source === 'odot') ? odotFeeds() : null,
 		caltransFeeds(districts, closureDistricts),
 		passes.some((p) => p.report?.source === 'itd') ? idahoFeeds() : null,
-		passes.some((p) => p.report?.source === 'ndot') ? nevadaFeeds() : null
+		passes.some((p) => p.report?.source === 'ndot') ? nevadaFeeds() : null,
+		passes.some((p) => p.report?.source === 'udot') ? utahFeeds() : null
 	]);
 	const out = new Map<string, PassReport>();
 	for (const p of passes) {
@@ -262,6 +272,8 @@ export async function allPassReports(
 				p.id,
 				nevadaPassReport({ ...p, report: r }, nevada.roads, nevada.events, nevada.stations)
 			);
+		else if (r?.source === 'udot' && utah)
+			out.set(p.id, utahPassReport({ ...p, report: r }, utah.roads, utah.events, utah.stations));
 	}
 	return out;
 }

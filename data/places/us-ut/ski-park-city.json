@@ -1,0 +1,17 @@
+{
+  "id": "ski-park-city",
+  "name": "Park City Mountain",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "In Park City, off I-80 over Parleys Summit",
+  "lat": 40.6514,
+  "lon": -111.508,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Park City Mountain's website",
+    "url": "https://www.parkcitymountain.com/"
+  },
+  "snow_report_url": "https://www.parkcitymountain.com/the-mountain/mountain-conditions/snow-and-weather-report.aspx"
+}

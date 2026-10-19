@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-51-spanish-fork-pkwy-spf",
+  "name": "SR-51 @ Spanish Fork Pkwy, SPF",
+  "lat": 40.12758,
+  "lon": -111.62469,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165957",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 51"
+}

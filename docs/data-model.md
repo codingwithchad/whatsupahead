@@ -6,7 +6,7 @@ Each camera is one JSON file in `data/cameras/<region>/`, named `<id>.json`, val
 
 ## Regions
 
-The app covers the regions listed in `data/regions.json` (today Washington `us-wa`, Oregon `us-or` and California `us-ca`): name, bounds (and an
+The app covers the regions listed in `data/regions.json` (today Washington `us-wa`, Oregon `us-or`, California `us-ca`, Idaho `us-id`, Nevada `us-nv` and Utah `us-ut`): name, bounds (and an
 outline where the border is a river), time zone and ZIP code pattern. Cameras, weather sources, places and passes live in a
 folder per region (`data/cameras/us-or/...`); drives and collections can cross borders and stay at the top level. The tests
 check every file sits inside its region.

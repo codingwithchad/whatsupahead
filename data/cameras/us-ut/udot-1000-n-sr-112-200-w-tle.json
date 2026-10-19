@@ -1,0 +1,20 @@
+{
+  "id": "udot-1000-n-sr-112-200-w-tle",
+  "name": "1000 N / SR-112 @ 200 W, TLE",
+  "lat": 40.55094,
+  "lon": -112.3025,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164865",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 112"
+}

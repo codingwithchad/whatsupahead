@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-milepost-24-32-led",
+  "name": "I-15 NB @ Milepost 24.32, LED",
+  "lat": 37.249023,
+  "lon": -113.345271,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165149",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-120-300-s-rfd",
+  "name": "Main St / SR-120 @ 300 S, RFD",
+  "lat": 38.76381,
+  "lon": -112.08463,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165509",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 120"
+}

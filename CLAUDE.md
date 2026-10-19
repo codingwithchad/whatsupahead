@@ -1,7 +1,7 @@
 # What's Up Ahead: notes for Claude
 
 Public cameras, weather and pass reports around a place and along a drive, for Washington, Oregon, California,
-Idaho and Nevada. A SvelteKit web app (no install, no accounts) at whatsupahead.com. Free today; never promise "always free" or
+Idaho, Nevada and Utah. A SvelteKit web app (no install, no accounts) at whatsupahead.com. Free today; never promise "always free" or
 "no ads" anywhere (the owner may need ads or sponsors to pay for servers one day).
 
 ## Start of every session: catch up before suggesting anything
@@ -48,11 +48,12 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
 - `scripts/`: importers (`import-caltrans.mjs`, `import-tripcheck.mjs`, `import-wsdot-route.mjs`,
   `import-windy.mjs`, ...).
 - `docs/`: `decisions.md` (why things are the way they are, newest last), `data-model.md`, `sources.md`
-  (every source's terms), `deploy.md` (running your own copy).
+  (every camera source's terms), `source-rules.md` (each service's rate limits, credit and rules), `deploy.md` (running your own copy).
 
 ## Rules
 
-- Respect each camera source's terms (`docs/sources.md`). Windy pictures: unchanged, linked, never enlarged.
+- Respect each source's terms (`docs/sources.md` for cameras, `docs/source-rules.md` for every service's limits and
+  credit; update it when adding a source or changing how often we call one). Windy pictures: unchanged, linked, never enlarged.
   ODOT: serve our own copy (`mirror`), never keep past ones. WSDOT: credit "Camera courtesy of WSDOT", never call
   a picture "live" (only real video streams are live), go easy on its servers. Link previews: only sources in
   `src/lib/sharing.ts`.

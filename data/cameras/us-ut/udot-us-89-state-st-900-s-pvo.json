@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-state-st-900-s-pvo",
+  "name": "US-89 / State St @ 900 S, PVO",
+  "lat": 40.22225,
+  "lon": -111.64068,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166741",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

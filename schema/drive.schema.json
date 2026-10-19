@@ -68,7 +68,10 @@
       "enum": [
         "WA",
         "OR",
-        "CA"
+        "CA",
+        "ID",
+        "NV",
+        "UT"
       ],
       "description": "So the home page can mix states."
     }

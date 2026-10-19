@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-130-600-s-cdc",
+  "name": "Main St / SR-130 @ 600 S, CDC",
+  "lat": 37.66578,
+  "lon": -113.06456,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165752",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 130"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-washington-blvd-us-89-4400-s-sog",
+  "name": "Washington Blvd / US-89 @ 4400 S, SOG",
+  "lat": 41.181491,
+  "lon": -111.971551,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166898",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

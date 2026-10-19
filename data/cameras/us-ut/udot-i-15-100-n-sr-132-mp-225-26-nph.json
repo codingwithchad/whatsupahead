@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-100-n-sr-132-mp-225-26-nph",
+  "name": "I-15 @ 100 N / SR-132 / MP 225.26, NPH",
+  "lat": 39.71043,
+  "lon": -111.8168,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165422",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

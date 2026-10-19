@@ -1,0 +1,20 @@
+{
+  "id": "udot-center-st-sr-114-independence-ave-pvo",
+  "name": "Center St / SR-114 @ Independence Ave, PVO",
+  "lat": 40.23361,
+  "lon": -111.67824,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164962",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 114"
+}

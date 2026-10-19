@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-2100-w-mp-14-82-slc",
+  "name": "SR-201 @ 2100 W / MP 14.82, SLC",
+  "lat": 40.72496,
+  "lon": -111.94709,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164241",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

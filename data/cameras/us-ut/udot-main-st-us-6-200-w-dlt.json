@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-6-200-w-dlt",
+  "name": "Main St / US-6 @ 200 W, DLT",
+  "lat": 39.35258,
+  "lon": -112.57943,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165360",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 6"
+}

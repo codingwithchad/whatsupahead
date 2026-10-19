@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-wb-silver-creek-jct-us-40-mp-146-84-su",
+  "name": "I-80 WB @ Silver Creek Jct / US-40 / MP 146.84, SU",
+  "lat": 40.7319,
+  "lon": -111.49834,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166806",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

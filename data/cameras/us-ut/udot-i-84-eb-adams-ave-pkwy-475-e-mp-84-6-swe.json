@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-84-eb-adams-ave-pkwy-475-e-mp-84-6-swe",
+  "name": "I-84 EB @ Adams Ave Pkwy / 475 E / MP 84.6, SWE",
+  "lat": 41.14881,
+  "lon": -111.96916,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164971",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 84"
+}

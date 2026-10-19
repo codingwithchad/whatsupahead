@@ -1,0 +1,20 @@
+{
+  "id": "udot-2100-s-sr-201-400-w-i-15-nb-mp-17-46-slc",
+  "name": "2100 S / SR-201 @ 400 W / I-15 NB / MP 17.46, SLC",
+  "lat": 40.72571,
+  "lon": -111.9023,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167030",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

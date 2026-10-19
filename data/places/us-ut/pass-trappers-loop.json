@@ -1,0 +1,11 @@
+{
+  "id": "pass-trappers-loop",
+  "name": "Trappers Loop (SR 167)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "I-84 at Mountain Green to Huntsville and the Ogden Valley",
+  "lat": 41.2051,
+  "lon": -111.8162,
+  "radius_miles": 10,
+  "collection": "passes"
+}

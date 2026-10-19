@@ -1,0 +1,20 @@
+{
+  "id": "udot-redwood-rd-sr-68-400-s-ssp",
+  "name": "Redwood Rd / SR-68 @ 400 S, SSP",
+  "lat": 40.354768,
+  "lon": -111.916544,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165425",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 68"
+}

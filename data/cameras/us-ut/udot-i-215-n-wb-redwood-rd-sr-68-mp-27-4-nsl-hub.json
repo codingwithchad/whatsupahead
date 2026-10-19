@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-n-wb-redwood-rd-sr-68-mp-27-4-nsl-hub",
+  "name": "I-215 N WB @ Redwood Rd / SR-68 / MP 27.4, NSL (HUB)",
+  "lat": 40.83432,
+  "lon": -111.93618,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167135",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

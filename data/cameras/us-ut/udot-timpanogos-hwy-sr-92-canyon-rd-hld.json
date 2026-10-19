@@ -1,0 +1,20 @@
+{
+  "id": "udot-timpanogos-hwy-sr-92-canyon-rd-hld",
+  "name": "Timpanogos Hwy / SR-92 @ Canyon Rd, HLD",
+  "lat": 40.43214,
+  "lon": -111.75179,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164916",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 92"
+}

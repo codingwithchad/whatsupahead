@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-milepost-134-96-md",
+  "name": "I-15 SB @ Milepost 134.96, MD",
+  "lat": 38.61694,
+  "lon": -112.60989,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164249",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-point-of-the-mountain-mp-285-78-ut",
+  "name": "I-15 SB @ Point of the Mountain / MP 285.78, UT",
+  "lat": 40.45056,
+  "lon": -111.91364,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164928",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-southern-pkwy-sr-7-3000-s-mp-22-5-hrc",
+  "name": "Southern Pkwy / SR-7 @ 3000 S / MP 22.5, HRC",
+  "lat": 37.12687,
+  "lon": -113.34667,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164910",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 7"
+}

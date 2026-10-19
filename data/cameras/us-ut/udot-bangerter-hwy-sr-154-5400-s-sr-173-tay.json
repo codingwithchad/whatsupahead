@@ -1,0 +1,20 @@
+{
+  "id": "udot-bangerter-hwy-sr-154-5400-s-sr-173-tay",
+  "name": "Bangerter Hwy / SR-154 @ 5400 S / SR-173, TAY",
+  "lat": 40.65283,
+  "lon": -111.98173,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165230",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 154"
+}

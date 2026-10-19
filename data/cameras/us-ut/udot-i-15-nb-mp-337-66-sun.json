@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-mp-337-66-sun",
+  "name": "I-15 NB @ MP 337.66, SUN",
+  "lat": 41.145751,
+  "lon": -112.023798,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166969",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

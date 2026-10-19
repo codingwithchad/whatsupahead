@@ -1,0 +1,16 @@
+{
+  "id": "ski-cherry-peak",
+  "name": "Cherry Peak",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Above Richmond, north of Logan",
+  "lat": 41.9267,
+  "lon": -111.7566,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Cherry Peak's website",
+    "url": "https://www.cherrypeakresort.com/"
+  }
+}

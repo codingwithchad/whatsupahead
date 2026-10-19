@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-51-1600-s-spv",
+  "name": "SR-51 @ 1600 S, SPV",
+  "lat": 40.14488,
+  "lon": -111.61137,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165266",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 51"
+}

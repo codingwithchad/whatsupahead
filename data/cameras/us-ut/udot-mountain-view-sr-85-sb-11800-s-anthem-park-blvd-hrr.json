@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-sb-11800-s-anthem-park-blvd-hrr",
+  "name": "Mountain View / SR-85 SB @ 11800 S / Anthem Park Blvd, HRR",
+  "lat": 40.53524,
+  "lon": -112.01437,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165125",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

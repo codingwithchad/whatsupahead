@@ -1,0 +1,20 @@
+{
+  "id": "udot-5400-s-sr-173-2700-w-tay",
+  "name": "5400 S / SR-173 @ 2700 W, TAY",
+  "lat": 40.65302,
+  "lon": -111.95788,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164584",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 173"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-beaver-mountain",
+  "name": "Beaver Mountain",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Up Logan Canyon on US 89",
+  "lat": 41.9682,
+  "lon": -111.5441,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Beaver Mountain's website",
+    "url": "https://www.skithebeav.com/"
+  }
+}

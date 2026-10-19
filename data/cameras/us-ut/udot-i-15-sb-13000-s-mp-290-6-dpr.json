@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-13000-s-mp-290-6-dpr",
+  "name": "I-15 SB @ 13000 S / MP 290.6, DPR",
+  "lat": 40.51511,
+  "lon": -111.89189,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164734",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

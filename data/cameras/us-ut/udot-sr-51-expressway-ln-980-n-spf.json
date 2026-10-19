@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-51-expressway-ln-980-n-spf",
+  "name": "SR-51 @ Expressway Ln / 980 N, SPF",
+  "lat": 40.1224,
+  "lon": -111.62942,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165165",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 51"
+}

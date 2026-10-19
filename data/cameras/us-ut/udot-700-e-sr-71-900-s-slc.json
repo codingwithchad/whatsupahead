@@ -1,0 +1,20 @@
+{
+  "id": "udot-700-e-sr-71-900-s-slc",
+  "name": "700 E / SR-71 @ 900 S, SLC",
+  "lat": 40.74979,
+  "lon": -111.87086,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167126",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 71"
+}

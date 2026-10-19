@@ -553,6 +553,48 @@
 					35.0
 				]
 			]
+		},
+		{
+			"code": "US-UT",
+			"folder": "us-ut",
+			"name": "Utah",
+			"abbr": "UT",
+			"country": "US",
+			"bbox": [
+				-114.06,
+				36.99,
+				-109.04,
+				42.01
+			],
+			"time_zone": "America/Denver",
+			"zip": "^84\\d{3}$",
+			"outline": [
+				[
+					-114.06,
+					42.01
+				],
+				[
+					-111.046,
+					42.01
+				],
+				[
+					-111.046,
+					41.0
+				],
+				[
+					-109.04,
+					41.0
+				],
+				[
+					-109.04,
+					36.99
+				],
+				[
+					-114.06,
+					36.99
+				]
+			],
+			"outline_note": "Utah's straight state lines, with Wyoming's corner cut out of the northeast. Nevada and Idaho come first in this list, so their side of the line stays theirs."
 		}
 	]
 }

@@ -1,0 +1,20 @@
+{
+  "id": "logan-summit",
+  "name": "Logan Summit",
+  "route": "US 89",
+  "connects": "Logan to Bear Lake, past Beaver Mountain",
+  "group": "Northern Utah",
+  "lat": 41.92546,
+  "lon": -111.4733,
+  "elevation_ft": 7800,
+  "place": "pass-logan-summit",
+  "report": {
+    "source": "udot",
+    "route": "US 89"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "q|q}FlrriTgOqOcPcGkeCiB~Ac{BaNup@gMkYqAkNc@uf@fEop@yAoMdDgKtDkr@kJqqAgBqGk@mWsGu`@eFiLm@a]eHgg@`@}\\e^qg@eDaw@qTcc@kQmNiKw_@uC_b@`@yN}JoNjAsQ_HyZ~ByTa@mT`GsRcBwe@cN}KyA}JaQsc@wPmC}C{ZmIgHcGuTaOgRuIeReFcDyMYkKhG}DxKaInImP{EsLfFsGsHaLoBsB_FuBcXuJe\\kKsSsSyB}NwSoP_LuKmAkBwKDoVwXiJ_IkWaMyA}Iq`@FyRwIePwJ^iOjRaJaIkBcVqFsLtDyPkA{FkIc@oKhPgDDwEsXcNw^uDqDoDz@yDzKiDhBoa@mXiFXqHbJgR{A_CeGfBwQwD{MuGmNc^m_@sp@k[g}@qXsLT_b@nL}VnBo_AeQ_kAuAup@qKkv@~EgQeJiJ{J{]yy@gFgGgk@{Jkk@{Ykm@mjAeDqSz@sUtE}GzPy@zH{OlAsJAycAxDmOpIuMj\\qZsA}k@`B_NzDmJjHiH~H_CnbAkBtPxEjO}MlRiJfOsXjC_R`HkQHiRhKi_@}BqJ}`@_RmCsXkEsE}JeBoCsHdB{HxJqH`BcFsAmMuMg_@ZqIbEeDbW{B~GaPrLg@rC}BPmLoDkDyUKuSmFuBwGYk[c\\sg@gOoIiZiFcUgQ}BsIB}\\w~@?mCqEeSdHib@{FwXpQyn@|Ck]jf@yGhEeWzCq\\D_l@uN_]jBgc@cGcn@rA_z@ma@kj@qh@ytBeLuSiHs_@mUcRwCicIpBa|@`R{`CrZs_Fx]"
+}

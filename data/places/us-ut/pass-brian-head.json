@@ -1,0 +1,11 @@
+{
+  "id": "pass-brian-head",
+  "name": "Brian Head Road (SR 143)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Parowan to Brian Head",
+  "lat": 37.65555,
+  "lon": -112.8227,
+  "radius_miles": 10,
+  "collection": "passes"
+}

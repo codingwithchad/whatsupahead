@@ -1,0 +1,20 @@
+{
+  "id": "udot-west-davis-hwy-sr-177-nb-450-s-sr-193-mp-15-57-wpt",
+  "name": "West Davis Hwy / SR-177 NB @ 450 S / SR-193 / MP 15.57, WPT",
+  "lat": 41.10703,
+  "lon": -112.09535,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167320",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 177"
+}

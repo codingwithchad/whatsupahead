@@ -1,0 +1,20 @@
+{
+  "id": "udot-bangerter-hwy-sr-154-nb-7000-s-wjd",
+  "name": "Bangerter Hwy / SR-154 NB @ 7000 S, WJD",
+  "lat": 40.6242,
+  "lon": -111.97584,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167041",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 154"
+}

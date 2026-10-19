@@ -1,0 +1,20 @@
+{
+  "id": "udot-north-campus-dr-medical-dr-sr-282-mario-capecchi-dr-sr-282-s",
+  "name": "North Campus Dr / Medical Dr / SR-282 @  Mario Capecchi Dr / SR-282, SLC",
+  "lat": 40.77307,
+  "lon": -111.84074,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165415",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 282"
+}

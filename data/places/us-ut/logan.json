@@ -1,0 +1,10 @@
+{
+  "id": "logan",
+  "name": "Logan",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "US 89 and US 91 in Cache Valley",
+  "lat": 41.737,
+  "lon": -111.8338,
+  "radius_miles": 4
+}

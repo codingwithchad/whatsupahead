@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-40-silver-summit-pkwy-mp-1-31-su",
+  "name": "US-40 @ Silver Summit Pkwy / MP 1.31, SU",
+  "lat": 40.71863,
+  "lon": -111.48586,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166855",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

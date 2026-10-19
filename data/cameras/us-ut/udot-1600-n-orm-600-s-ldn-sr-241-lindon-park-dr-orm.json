@@ -1,0 +1,20 @@
+{
+  "id": "udot-1600-n-orm-600-s-ldn-sr-241-lindon-park-dr-orm",
+  "name": "1600 N/ORM / 600 S/LDN / SR-241 @ Lindon Park Dr, ORM",
+  "lat": 40.32616,
+  "lon": -111.72959,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166837",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 241"
+}

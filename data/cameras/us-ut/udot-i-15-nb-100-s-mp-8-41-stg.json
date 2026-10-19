@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-100-s-mp-8-41-stg",
+  "name": "I-15 NB @ 100 S / MP 8.41, STG",
+  "lat": 37.10607,
+  "lon": -113.55897,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164623",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

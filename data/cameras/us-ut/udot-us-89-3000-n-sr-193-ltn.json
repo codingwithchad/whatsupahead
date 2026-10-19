@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-3000-n-sr-193-ltn",
+  "name": "US-89 @ 3000 N / SR-193, LTN",
+  "lat": 41.10798,
+  "lon": -111.90922,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164455",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

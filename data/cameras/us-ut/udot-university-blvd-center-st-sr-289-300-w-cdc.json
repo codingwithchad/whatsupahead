@@ -1,0 +1,20 @@
+{
+  "id": "udot-university-blvd-center-st-sr-289-300-w-cdc",
+  "name": "University Blvd / Center St / SR-289 @ 300 W, CDC",
+  "lat": 37.67747,
+  "lon": -113.06675,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165518",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 289"
+}

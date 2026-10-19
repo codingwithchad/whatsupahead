@@ -1,0 +1,20 @@
+{
+  "id": "mayflower",
+  "name": "Mayflower Summit",
+  "route": "US 40",
+  "connects": "Park City and I-80 to Heber City",
+  "group": "Wasatch Front and Park City",
+  "lat": 40.6533,
+  "lon": -111.4567,
+  "elevation_ft": 6900,
+  "place": "pass-mayflower",
+  "report": {
+    "source": "udot",
+    "route": "US 40"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "iogtFh}ydTyaAhoEqLv|@oEbKaIvHmNjCq_@aF}WkIgq@tJgUzKyMdWo\\xdAkD|j@oCdMu\\r]ep@lcDc@h`@~TrlAIrKoD|MqfCh}CmPbJaq@nRqOnLaIbPuQr~@gGdm@gh@daAmOlMad@`Rkb@r_@{JpEeKEgSqJeHYcr@tKcZ`RgTsEet@`@cF|AwNfNwZfKir@x~@uZfk@c`A`m@}TpU}^~Dy`@b`@s^~Oek@{Die@~Rkk@bo@gWtm@iFza@qQ`a@aWbXaWrt@{qAxnAw_@dWq}HheIgKpBsyBm@}d@eMmc@qGun@u@{OtGksAzaAoz@j_@wy@bTun@j]}XlFekA~A{eA_n@sKiBaK`AeXvJuh@la@kc@lU{h@tk@qUzM{}@`[{|@xQa~CbZcVbForBfnAmdAnt@_MpGmPdC"
+}

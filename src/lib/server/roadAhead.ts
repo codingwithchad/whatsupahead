@@ -26,11 +26,13 @@ import { cumulativeMiles, type LatLon } from '../route';
 import { cached, cachedStale } from './cache';
 import { allow } from './rateLimit';
 import { eventInEffect, idahoClosure, idahoSurface, type IdahoEvent } from '../idaho';
+import { utahSurface } from '../utah';
 import {
 	caltransCheckpoints,
 	caltransClosures,
 	idahoFeeds,
 	nevadaFeeds,
+	utahFeeds,
 	odotFeeds
 } from './passes';
 import { nearestTown } from './gazetteer';
@@ -185,60 +187,83 @@ export async function roadWarnings(
 			const c = idahoClosure(e, null, by);
 			return c ? [{ ...c, at: (t: number) => eventInEffect(e, t) }] : [];
 		});
-	const [wa, or, ca, id, nv, checkpoints, alerts, surface, idSurface] = await Promise.all([
-		states.has('WA') ? wsdotClosures() : [],
-		states.has('OR')
-			? odotFeeds().then((f) => (f ? f.incidents.flatMap((i) => always(odotClosure(i))) : null))
-			: [],
-		states.has('CA')
-			? caltransClosures().then((list) =>
-					list
-						? list.flatMap((c): Timed[] => {
-								const closure = caltransClosure(c);
-								const end = Number(c.closure.closureTimestamp?.closureEndEpoch) * 1000;
-								return closure ? [{ ...closure, at: (t: number) => !end || end >= t }] : [];
-							})
-						: null
-				)
-			: [],
-		states.has('ID') ? idahoFeeds().then((f) => (f ? events511(f.events) : null)) : [],
-		states.has('NV')
-			? nevadaFeeds().then((f) =>
-					f ? events511(f.events, { source: 'NDOT', link: 'https://www.nvroads.com/' }) : null
-				)
-			: [],
-		states.has('CA') ? caltransCheckpoints() : [],
-		weatherAlerts(route, cum, minutes, departAt),
-		states.has('WA') ? wsdotSurface() : [],
-		states.has('ID')
-			? idahoFeeds().then((f) =>
-					f
-						? f.stations.map((s) => idahoSurface(s)).filter((r): r is SurfaceReading => r !== null)
-						: null
-				)
-			: []
-	]);
+	const [wa, or, ca, id, nv, ut, checkpoints, alerts, surface, idSurface, utSurface] =
+		await Promise.all([
+			states.has('WA') ? wsdotClosures() : [],
+			states.has('OR')
+				? odotFeeds().then((f) => (f ? f.incidents.flatMap((i) => always(odotClosure(i))) : null))
+				: [],
+			states.has('CA')
+				? caltransClosures().then((list) =>
+						list
+							? list.flatMap((c): Timed[] => {
+									const closure = caltransClosure(c);
+									const end = Number(c.closure.closureTimestamp?.closureEndEpoch) * 1000;
+									return closure ? [{ ...closure, at: (t: number) => !end || end >= t }] : [];
+								})
+							: null
+					)
+				: [],
+			states.has('ID') ? idahoFeeds().then((f) => (f ? events511(f.events) : null)) : [],
+			states.has('NV')
+				? nevadaFeeds().then((f) =>
+						f ? events511(f.events, { source: 'NDOT', link: 'https://www.nvroads.com/' }) : null
+					)
+				: [],
+			states.has('UT')
+				? utahFeeds().then((f) =>
+						f
+							? events511(f.events, { source: 'UDOT', link: 'https://www.udottraffic.utah.gov/' })
+							: null
+					)
+				: [],
+			states.has('CA') ? caltransCheckpoints() : [],
+			weatherAlerts(route, cum, minutes, departAt),
+			states.has('WA') ? wsdotSurface() : [],
+			states.has('ID')
+				? idahoFeeds().then((f) =>
+						f
+							? f.stations
+									.map((s) => idahoSurface(s))
+									.filter((r): r is SurfaceReading => r !== null)
+							: null
+					)
+				: [],
+			states.has('UT')
+				? utahFeeds().then((f) =>
+						f
+							? f.stations.map((s) => utahSurface(s)).filter((r): r is SurfaceReading => r !== null)
+							: null
+					)
+				: []
+		]);
 	const unchecked = [
 		wa === null ? 'WSDOT closures' : null,
 		or === null ? 'ODOT closures' : null,
 		ca === null ? 'Caltrans closures' : null,
 		id === null ? 'Idaho closures' : null,
 		nv === null ? 'Nevada closures' : null,
+		ut === null ? 'Utah closures' : null,
 		checkpoints === null ? 'Caltrans chain controls' : null,
 		alerts === null ? 'National Weather Service warnings' : null,
 		surface === null ? 'WSDOT road surface temperatures' : null,
-		idSurface === null ? 'Idaho road surface temperatures' : null
+		idSurface === null ? 'Idaho road surface temperatures' : null,
+		utSurface === null ? 'Utah road surface temperatures' : null
 	].filter((s): s is string => s !== null);
 	return {
 		closures: closuresOnRoute(
-			[...(wa ?? []), ...(or ?? []), ...(ca ?? []), ...(id ?? []), ...(nv ?? [])],
+			[...(wa ?? []), ...(or ?? []), ...(ca ?? []), ...(id ?? []), ...(nv ?? []), ...(ut ?? [])],
 			route,
 			cum
 		)
 			.filter((c) => c.at(departAt + (c.along / total) * minutes * 60_000))
 			.map(({ at: _, ...c }) => c),
 		chainControls: chainControlsOnRoute(checkpoints ?? [], route, cum),
-		surface: surfaceOnRoute([...(surface ?? []), ...(idSurface ?? [])], route, cum),
+		surface: surfaceOnRoute(
+			[...(surface ?? []), ...(idSurface ?? []), ...(utSurface ?? [])],
+			route,
+			cum
+		),
 		alerts: (alerts ?? []).map((a) => ({ ...a, near: nearestTown(a.at, 15) })),
 		unchecked,
 		sources: Object.entries(ROAD_SOURCES)

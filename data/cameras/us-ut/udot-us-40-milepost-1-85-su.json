@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-40-milepost-1-85-su",
+  "name": "US-40 @ Milepost 1.85, SU",
+  "lat": 40.71104,
+  "lon": -111.48142,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164238",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

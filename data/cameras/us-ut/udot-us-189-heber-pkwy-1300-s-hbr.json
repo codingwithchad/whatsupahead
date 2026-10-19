@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-189-heber-pkwy-1300-s-hbr",
+  "name": "US-189 @ Heber Pkwy / 1300 S, HBR",
+  "lat": 40.49054,
+  "lon": -111.41688,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165018",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

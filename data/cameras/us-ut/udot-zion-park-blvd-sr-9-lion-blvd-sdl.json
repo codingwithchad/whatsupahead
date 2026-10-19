@@ -1,0 +1,20 @@
+{
+  "id": "udot-zion-park-blvd-sr-9-lion-blvd-sdl",
+  "name": "Zion Park Blvd / SR-9 @ Lion Blvd, SDL",
+  "lat": 37.19393,
+  "lon": -112.99307,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165167",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 9"
+}

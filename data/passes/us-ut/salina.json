@@ -1,0 +1,19 @@
+{
+  "id": "salina",
+  "name": "Salina Summit",
+  "route": "I 70",
+  "connects": "Salina to Green River on I-70",
+  "group": "Southern Utah (I-15 and I-70)",
+  "lat": 38.77891,
+  "lon": -111.4846,
+  "elevation_ft": 7864,
+  "place": "pass-salina",
+  "report": {
+    "source": "udot",
+    "route": "I 70"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

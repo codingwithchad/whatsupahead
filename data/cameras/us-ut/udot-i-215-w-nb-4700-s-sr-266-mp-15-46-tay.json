@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-nb-4700-s-sr-266-mp-15-46-tay",
+  "name": "I-215 W NB @ 4700 S / SR-266 / MP 15.46, TAY",
+  "lat": 40.66637,
+  "lon": -111.95225,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166710",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

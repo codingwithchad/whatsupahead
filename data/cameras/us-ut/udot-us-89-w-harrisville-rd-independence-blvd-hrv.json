@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-w-harrisville-rd-independence-blvd-hrv",
+  "name": "US-89 @ W Harrisville Rd / Independence Blvd, HRV",
+  "lat": 41.28159,
+  "lon": -111.98566,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165925",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

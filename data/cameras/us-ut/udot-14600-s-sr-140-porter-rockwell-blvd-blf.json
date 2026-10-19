@@ -1,0 +1,20 @@
+{
+  "id": "udot-14600-s-sr-140-porter-rockwell-blvd-blf",
+  "name": "14600 S / SR-140 @ Porter Rockwell Blvd, BLF",
+  "lat": 40.486269,
+  "lon": -111.905463,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166722",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 140"
+}

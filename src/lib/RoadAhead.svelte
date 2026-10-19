@@ -46,7 +46,8 @@
 		ODOT: { label: 'TripCheck', url: 'https://tripcheck.com/' },
 		Caltrans: { label: 'QuickMap', url: 'https://quickmap.dot.ca.gov/' },
 		ITD: { label: 'Idaho 511', url: 'https://511.idaho.gov/' },
-		NDOT: { label: 'Nevada 511', url: 'https://www.nvroads.com/' }
+		NDOT: { label: 'Nevada 511', url: 'https://www.nvroads.com/' },
+		UDOT: { label: 'UDOT Traffic', url: 'https://www.udottraffic.utah.gov/' }
 	};
 	const statePage = (p: RoadPass) => p.link ?? STATE_PAGE[p.source];
 	const names = (list: string[]) =>

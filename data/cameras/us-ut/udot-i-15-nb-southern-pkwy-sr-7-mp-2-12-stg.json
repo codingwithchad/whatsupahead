@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-southern-pkwy-sr-7-mp-2-12-stg",
+  "name": "I-15 NB @ Southern Pkwy / SR-7 / MP 2.12, STG",
+  "lat": 37.02736,
+  "lon": -113.60482,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164457",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

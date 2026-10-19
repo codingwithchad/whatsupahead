@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-sb-parkway-blvd-2700-s-wvc",
+  "name": "Mountain View / SR-85 SB @ Parkway Blvd / 2700 S, WVC",
+  "lat": 40.711613,
+  "lon": -112.031364,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166736",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

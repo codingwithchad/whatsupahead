@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-800-s-sr-178-mp-248-81-psn",
+  "name": "I-15 SB @ 800 S / SR-178 / MP 248.81, PSN",
+  "lat": 40.03128,
+  "lon": -111.7576,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164413",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

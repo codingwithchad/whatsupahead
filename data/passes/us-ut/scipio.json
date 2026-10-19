@@ -1,0 +1,20 @@
+{
+  "id": "scipio",
+  "name": "Scipio Summit",
+  "route": "I 15",
+  "connects": "Nephi to Fillmore on I-15",
+  "group": "Southern Utah (I-15 and I-70)",
+  "lat": 39.2039,
+  "lon": -112.171,
+  "elevation_ft": 5960,
+  "place": "pass-scipio",
+  "report": {
+    "source": "udot",
+    "route": "I 15"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "ybrjF~yhnT_fCdFeo@yH{Y~F}Rw@urDg{BsNwDcNXyM`FeYfX_WdOcO~VqKhHwMfAgYyEyd@bIoq@oLulAyLmqA}o@aW{SklPkeR_rC}mCqqPodTo\\i[ah@{Vq`C}h@u]yLwh@s_@so@ww@ie@qe@kdAyr@c_Bwt@ucJuxCaf@sZqy@cbAg]oWmcGofC_x@sc@mhFu|E{g@qs@k^cr@_Rag@oPen@_Q_\\{UiR}e@aNiUiOk`CmoDklCynCu`@mZml@aT}xHsfAs~@_I{~EmG_b@aIuRgMszCmlC{rBcbAuPwLuwIefKgj@ud@skB_t@aqB}e@kkCmc@s[aLupAk|@ofBq|@oZkW}r@}_A_p@c`@mUoFy~Dmd@u]mJsVeMma@m]w[sf@ih@kqAsd@yfBcMeZqa@aj@eb@k~@kcAu_Aak@kJsi@uc@a\\sFiQ~Bg`AzYaiA`g@q~@rg@eQlCoh@Sej@|VqXdF_QK{}@mMg~AhDy|AaXyo@uDsl@v@cjBlMk]YewCkk@kj@mCunAd@ec@yEuTgGaZeOobB_iAaZaEeh@xFkZ{@k\\eMwo@oj@mC~GnP|Gpe@x]`WfJtY|Atm@iGpY~E~lBxpAnj@fQv\\vC|kBJbg@~FlgBha@nc@pDr}CyO"
+}

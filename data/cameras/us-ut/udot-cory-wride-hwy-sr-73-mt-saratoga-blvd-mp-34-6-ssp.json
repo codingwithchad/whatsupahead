@@ -1,0 +1,20 @@
+{
+  "id": "udot-cory-wride-hwy-sr-73-mt-saratoga-blvd-mp-34-6-ssp",
+  "name": "Cory Wride Hwy / SR-73 @ Mt Saratoga Blvd / MP 34.6, SSP",
+  "lat": 40.38485,
+  "lon": -111.950116,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166717",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 73"
+}

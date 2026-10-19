@@ -1,0 +1,20 @@
+{
+  "id": "udot-8400-w-bacchus-hwy-sr-111-2700-s-main-st-mag",
+  "name": "8400 W / Bacchus Hwy / SR-111 @ 2700 S / Main St, MAG",
+  "lat": 40.71132,
+  "lon": -112.09205,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165074",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 111"
+}

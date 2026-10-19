@@ -29,7 +29,7 @@ async function getJson<T>(url: string): Promise<T> {
 export function stations(): Promise<SnotelStation[]> {
 	return cached('mountain:snotel-stations', 24 * HOUR, () =>
 		getJson<SnotelStation[]>(
-			`${AWDB}/stations?stationTriplets=*:WA:SNTL,*:OR:SNTL,*:CA:SNTL,*:NV:SNTL,*:ID:SNTL&activeOnly=true`
+			`${AWDB}/stations?stationTriplets=*:WA:SNTL,*:OR:SNTL,*:CA:SNTL,*:NV:SNTL,*:ID:SNTL,*:UT:SNTL&activeOnly=true`
 		)
 	);
 }

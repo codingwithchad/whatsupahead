@@ -1,0 +1,20 @@
+{
+  "id": "udot-200-n-us-40-7500-e-mp-121-41-ftd",
+  "name": "200 N / US-40 @ 7500 E / MP 121.41, FTD",
+  "lat": 40.302,
+  "lon": -109.85906,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164906",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

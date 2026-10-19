@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-1400-s-mp-321-98-frm",
+  "name": "I-15 SB @ 1400 S / MP 321.98, FRM",
+  "lat": 40.95706,
+  "lon": -111.89156,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165298",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-big-cottonwood-canyon-rd-sr-190-solitude-mp-14-53-sl",
+  "name": "Big Cottonwood Canyon Rd / SR-190 @ Solitude / MP 14.53, SL",
+  "lat": 40.62125,
+  "lon": -111.5917,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165123",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 190"
+}

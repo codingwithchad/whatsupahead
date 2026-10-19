@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-north-of-poe-mp-1-17-stg",
+  "name": "I-15 NB @ North of POE / MP 1.17, STG",
+  "lat": 37.0148,
+  "lon": -113.61267,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164565",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

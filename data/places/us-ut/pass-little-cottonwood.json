@@ -1,0 +1,11 @@
+{
+  "id": "pass-little-cottonwood",
+  "name": "Little Cottonwood Canyon (SR 210)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Salt Lake Valley to Snowbird and Alta",
+  "lat": 40.592,
+  "lon": -111.6279,
+  "radius_miles": 10,
+  "collection": "passes"
+}

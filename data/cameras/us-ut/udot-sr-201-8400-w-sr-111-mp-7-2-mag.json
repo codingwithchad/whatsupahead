@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-8400-w-sr-111-mp-7-2-mag",
+  "name": "SR-201 @ 8400 W / SR-111 / MP 7.2, MAG",
+  "lat": 40.71742,
+  "lon": -112.09153,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166909",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

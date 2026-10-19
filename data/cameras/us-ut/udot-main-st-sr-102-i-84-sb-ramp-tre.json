@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-102-i-84-sb-ramp-tre",
+  "name": "Main St / SR 102 @ I-84 SB Ramp TRE",
+  "lat": 41.710615,
+  "lon": -112.207478,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166932",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 102"
+}

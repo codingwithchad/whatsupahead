@@ -1,0 +1,20 @@
+{
+  "id": "udot-logan-rd-us-89-eb-mp-497-15-grc",
+  "name": "Logan Rd / US-89 EB @ MP 497.15, GRC",
+  "lat": 41.946639,
+  "lon": -111.401776,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166657",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

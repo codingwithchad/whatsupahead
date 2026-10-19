@@ -1,0 +1,17 @@
+{
+  "id": "ski-brighton",
+  "name": "Brighton",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "At the top of Big Cottonwood Canyon (SR 190)",
+  "lat": 40.598,
+  "lon": -111.5832,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Brighton's website",
+    "url": "https://www.brightonresort.com/"
+  },
+  "snow_report_url": "https://www.brightonresort.com/conditions"
+}

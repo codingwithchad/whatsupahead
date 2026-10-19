@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-84-off-ramp-eb-300-n-sr-66-mp-103-5-mgn",
+  "name": "I-84 Off-ramp EB @ 300 N / SR-66 / MP 103.5, MGN",
+  "lat": 41.046282,
+  "lon": -111.675197,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166961",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 84"
+}

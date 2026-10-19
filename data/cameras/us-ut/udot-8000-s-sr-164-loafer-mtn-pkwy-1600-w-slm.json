@@ -1,0 +1,20 @@
+{
+  "id": "udot-8000-s-sr-164-loafer-mtn-pkwy-1600-w-slm",
+  "name": "8000 S / SR-164 @ Loafer Mtn Pkwy / 1600 W, SLM",
+  "lat": 40.08503,
+  "lon": -111.69308,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165447",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 164"
+}

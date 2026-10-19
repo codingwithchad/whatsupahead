@@ -1,0 +1,11 @@
+{
+  "id": "pass-big-cottonwood",
+  "name": "Big Cottonwood Canyon (SR 190)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Salt Lake Valley to Solitude and Brighton",
+  "lat": 40.59915,
+  "lon": -111.5841,
+  "radius_miles": 10,
+  "collection": "passes"
+}

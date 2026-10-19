@@ -1,0 +1,20 @@
+{
+  "id": "udot-15200-n-sr-30-garland-rd-4400-w-sr-81-be",
+  "name": "15200 N / SR-30 @ Garland Rd / 4400 W / SR-81, BE",
+  "lat": 41.785589,
+  "lon": -112.124955,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166681",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 30"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-70-eb-sage-flat-rd-mp-54-4-sla",
+  "name": "I-70 EB @ Sage Flat Rd / MP 54.4, SLA",
+  "lat": 38.91192,
+  "lon": -111.88812,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164417",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 70"
+}

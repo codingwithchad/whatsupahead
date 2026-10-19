@@ -1,0 +1,20 @@
+{
+  "id": "udot-provo-canyon-rd-us-189-alpine-scenic-hwy-sr-92-mp-14-26-ut",
+  "name": "Provo Canyon Rd / US-189 @ Alpine Scenic Hwy / SR-92 / MP 14.26, UT",
+  "lat": 40.36426,
+  "lon": -111.55762,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166586",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

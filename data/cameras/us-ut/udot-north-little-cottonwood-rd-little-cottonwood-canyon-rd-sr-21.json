@@ -1,0 +1,20 @@
+{
+  "id": "udot-north-little-cottonwood-rd-little-cottonwood-canyon-rd-sr-21",
+  "name": "North Little Cottonwood Rd / Little Cottonwood Canyon Rd / SR-210 @ Little Cottonwood Rd / SR-209, SL",
+  "lat": 40.57186,
+  "lon": -111.77614,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166834",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 210"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-4200-n-mp-284-65-lhi",
+  "name": "I-15 NB @ 4200 N / MP 284.65, LHI",
+  "lat": 40.43892,
+  "lon": -111.89791,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164801",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-eb-3200-w-north-temple-st-mp-116-33-slc",
+  "name": "I-80 EB @ 3200 W / North Temple St / MP 116.33, SLC",
+  "lat": 40.76394,
+  "lon": -111.97056,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167039",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-72-rwis-nb-hogan-pass-mp-17-32-se",
+  "name": "SR-72 RWIS NB @ Hogan Pass / MP 17.32, SE",
+  "lat": 38.5829,
+  "lon": -111.4778,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166338",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 72"
+}

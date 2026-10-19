@@ -1,0 +1,20 @@
+{
+  "id": "udot-north-county-blvd-900-e-sr-129-1100-n-afk",
+  "name": "North County Blvd / 900 E / SR-129 @ 1100 N, AFK",
+  "lat": 40.39898,
+  "lon": -111.77348,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164834",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 129"
+}

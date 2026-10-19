@@ -1,0 +1,20 @@
+{
+  "id": "udot-4000-s-sr-37-3500-w-whv",
+  "name": "4000 S / SR-37 @ 3500 W, WHV",
+  "lat": 41.19056,
+  "lon": -112.0645,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164262",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 37"
+}

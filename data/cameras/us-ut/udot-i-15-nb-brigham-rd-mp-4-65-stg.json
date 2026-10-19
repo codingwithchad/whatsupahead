@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-brigham-rd-mp-4-65-stg",
+  "name": "I-15 NB @ Brigham Rd / MP 4.65, STG",
+  "lat": 37.05905,
+  "lon": -113.58393,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164531",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

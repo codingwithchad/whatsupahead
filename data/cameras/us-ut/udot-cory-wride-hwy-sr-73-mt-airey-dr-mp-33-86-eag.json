@@ -1,0 +1,20 @@
+{
+  "id": "udot-cory-wride-hwy-sr-73-mt-airey-dr-mp-33-86-eag",
+  "name": "Cory Wride Hwy / SR-73 @ Mt Airey Dr / MP 33.86, EAG",
+  "lat": 40.38215,
+  "lon": -111.96428,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166267",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 73"
+}

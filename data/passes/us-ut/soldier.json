@@ -1,0 +1,20 @@
+{
+  "id": "soldier",
+  "name": "Soldier Summit",
+  "route": "US 6",
+  "connects": "Spanish Fork to Price, and on to Moab",
+  "group": "Central and eastern Utah",
+  "lat": 39.9285,
+  "lon": -111.0835,
+  "elevation_ft": 7490,
+  "place": "pass-soldier",
+  "report": {
+    "source": "udot",
+    "route": "US 6"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "cbzrF|lijTiC{pH_C}rAsl@gkDc|AiyBm~@ulDAiVrCeQfw@moBh@mmCqj@}[kj@yOklBoJq}ATeV{EoRqKagCcgCe]ca@{a@o]mzAwzAqy@e_AouAcqAegCanDwd@}aA]kIhr@caAjl@k[pIoIh|BufF|HaGhZkJlOac@l`Ao{@t]kPdN}SnQeMpKyZhLqQzIay@|EiMfPcHtQ`DdJe@zRgPjZo_AtUsjAtDai@rV}b@zFad@nEuMtHqHfSsGr_@mU`VyT`z@oAtJaGhEcIjFuf@rYqz@vCa[lAu[kAe_@tBo_@{Hmm@`Cgi@i@or@eFiw@{@eg@bDocAvNeVzLeb@Gei@zCk{@xJsYWoVb^kaA`LoP`V_l@f{@sqCfTkj@|@mO_D{^lBwOxOeT`]{UlKaPrFaNpNcn@|Bcw@Yin@sAmJqKuVxC}i@iTylAZi\\zJ{]|@ug@dDyV`c@_yAxHqh@tFeNnZe^fSgDlUlEjHYfIwFhEyNvDg}@SiTsOsoB}K}k@x@yZaIqXsIiiAtBoV|GaRtC_UC}X}ByUnGebA{DyZhC}}@`Lab@dOaV~Aat@~Tye@xc@w]bpAs_@fpAsl@xm@gRjM{L|r@{fAty@wd@d`@qYzxAsiC`Qc}@nx@keCn\\emAvg@iuA|`@kb@nHsC`I~@pb@bYhNT~GuF`OeXfGs[bEcGxE}AvLxAx\\cCl_@oVtTkd@ra@{d@dHkRfOkG|IeOtNcGpYkY|BmGxC_`@|To]nOgMdYeL`KqKpTgE~JaOnM{JlSu]~ZyFpi@ed@nSShT{NxGbAfXfSpY_F~ZdL~|@aL|JoFjGoIvPyh@xMoHpUbAfi@hVhXrEbsD}HzWuClKz@ta@vMjPr@l]_Hxq@}c@tGuHjEoLfD{x@~GySfgCsoBpKmOnXk~@~DsXg@s\\yKkn@~AaM~EcE`XwC~g@iQz]uWfbD_aFfJqb@p@q["
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-900-e-sr-71-5600-s-mur",
+  "name": "900 E / SR-71 @ 5600 S, MUR",
+  "lat": 40.64968,
+  "lon": -111.86613,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165060",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 71"
+}

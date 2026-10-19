@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-pioneer-crossing-main-st-sr-145-mp-278-6-afk",
+  "name": "I-15 SB @ Pioneer Crossing / Main St / SR-145 / MP 278.6, AFK",
+  "lat": 40.37689,
+  "lon": -111.82063,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164686",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

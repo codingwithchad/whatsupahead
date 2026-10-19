@@ -1,0 +1,20 @@
+{
+  "id": "udot-park-ave-sr-224-kearns-blvd-sr-248-pkc",
+  "name": "Park Ave / SR-224 @ Kearns Blvd / SR-248, PKC",
+  "lat": 40.66042,
+  "lon": -111.50944,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167012",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 224"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "pass-provo-canyon",
+  "name": "Provo Canyon (US 189)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Orem and Provo to Heber City, past Sundance",
+  "lat": 40.41105,
+  "lon": -111.5089,
+  "radius_miles": 10,
+  "collection": "passes"
+}

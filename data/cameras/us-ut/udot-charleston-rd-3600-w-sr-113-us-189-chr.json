@@ -1,0 +1,20 @@
+{
+  "id": "udot-charleston-rd-3600-w-sr-113-us-189-chr",
+  "name": "Charleston Rd / 3600 W / SR-113 @ US-189, CHR",
+  "lat": 40.45804,
+  "lon": -111.47188,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164717",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 113"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "pass-logan-summit",
+  "name": "Logan Summit (US 89)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Logan to Bear Lake, past Beaver Mountain",
+  "lat": 41.92546,
+  "lon": -111.4733,
+  "radius_miles": 10,
+  "collection": "passes"
+}

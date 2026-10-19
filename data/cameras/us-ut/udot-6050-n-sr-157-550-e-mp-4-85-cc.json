@@ -1,0 +1,20 @@
+{
+  "id": "udot-6050-n-sr-157-550-e-mp-4-85-cc",
+  "name": "6050 N / SR-157 @ 550 E / MP 4.85, CC",
+  "lat": 39.68833,
+  "lon": -110.80515,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165317",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 157"
+}

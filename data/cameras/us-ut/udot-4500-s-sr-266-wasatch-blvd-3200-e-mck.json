@@ -1,0 +1,20 @@
+{
+  "id": "udot-4500-s-sr-266-wasatch-blvd-3200-e-mck",
+  "name": "4500 S / SR-266 @ Wasatch Blvd / 3200 E, MCK",
+  "lat": 40.67409,
+  "lon": -111.80154,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164239",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 266"
+}

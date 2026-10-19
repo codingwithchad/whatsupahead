@@ -1,0 +1,17 @@
+{
+  "id": "ski-solitude",
+  "name": "Solitude",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "In Big Cottonwood Canyon (SR 190), below Brighton",
+  "lat": 40.6199,
+  "lon": -111.5919,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Solitude's website",
+    "url": "https://www.solitudemountain.com/"
+  },
+  "snow_report_url": "https://www.solitudemountain.com/mountain-and-village/conditions-and-maps"
+}

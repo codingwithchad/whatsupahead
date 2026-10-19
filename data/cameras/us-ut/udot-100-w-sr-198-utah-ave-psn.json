@@ -1,0 +1,20 @@
+{
+  "id": "udot-100-w-sr-198-utah-ave-psn",
+  "name": "100 W / SR-198 @ Utah Ave, PSN",
+  "lat": 40.04372,
+  "lon": -111.73402,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164968",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 198"
+}

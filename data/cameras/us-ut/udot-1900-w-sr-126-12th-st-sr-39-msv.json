@@ -1,0 +1,20 @@
+{
+  "id": "udot-1900-w-sr-126-12th-st-sr-39-msv",
+  "name": "1900 W / SR-126 @ 12th St / SR-39, MSV",
+  "lat": 41.24478,
+  "lon": -112.02516,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166302",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 126"
+}

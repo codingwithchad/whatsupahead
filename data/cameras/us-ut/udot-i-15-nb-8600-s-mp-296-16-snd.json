@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-8600-s-mp-296-16-snd",
+  "name": "I-15 NB @ 8600 S / MP 296.16, SND",
+  "lat": 40.59514,
+  "lon": -111.90235,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165193",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

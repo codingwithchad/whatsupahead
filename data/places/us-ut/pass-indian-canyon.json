@@ -1,0 +1,11 @@
+{
+  "id": "pass-indian-canyon",
+  "name": "Indian Canyon Summit (US 191)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Duchesne to Helper and Price",
+  "lat": 39.886,
+  "lon": -110.7479,
+  "radius_miles": 10,
+  "collection": "passes"
+}

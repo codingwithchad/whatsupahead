@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-1500-n-mp-332-22-ltn",
+  "name": "I-15 NB @ 1500 N / MP 332.22, LTN",
+  "lat": 41.08151,
+  "lon": -111.98324,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165124",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

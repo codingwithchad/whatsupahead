@@ -1,0 +1,19 @@
+{
+  "id": "powder-mountain",
+  "name": "Powder Mountain Road",
+  "route": "SR 158",
+  "connects": "Eden to Powder Mountain",
+  "group": "Northern Utah",
+  "lat": 41.37967,
+  "lon": -111.7817,
+  "elevation_ft": 8252,
+  "place": "pass-powder-mountain",
+  "report": {
+    "source": "udot",
+    "route": "SR 158"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

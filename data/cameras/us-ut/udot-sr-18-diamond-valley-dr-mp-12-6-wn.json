@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-18-diamond-valley-dr-mp-12-6-wn",
+  "name": "SR-18 @ Diamond Valley Dr / MP 12.6, WN",
+  "lat": 37.247801,
+  "lon": -113.627047,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166927",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 18"
+}

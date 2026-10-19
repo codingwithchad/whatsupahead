@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-130-1045-n-knoll-st-cdc",
+  "name": "Main St / SR-130 @ 1045 N / Knoll St, CDC",
+  "lat": 37.69512,
+  "lon": -113.06255,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164261",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 130"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-wb-kimball-jct-sr-224-mp-144-22-su",
+  "name": "I-80 WB @ Kimball Jct / SR-224 / MP 144.22, SU",
+  "lat": 40.7273,
+  "lon": -111.54285,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166795",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

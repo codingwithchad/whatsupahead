@@ -1,0 +1,20 @@
+{
+  "id": "udot-5600-s-sr-97-mp-4-08-2700-w-roy",
+  "name": "5600 S / SR-97 @ MP 4.08 / 2700 W, ROY",
+  "lat": 41.161521,
+  "lon": -112.045388,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167319",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 97"
+}

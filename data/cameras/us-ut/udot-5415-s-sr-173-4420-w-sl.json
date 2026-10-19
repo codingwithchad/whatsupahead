@@ -1,0 +1,20 @@
+{
+  "id": "udot-5415-s-sr-173-4420-w-sl",
+  "name": "5415 S / SR-173 @ 4420 W, SL",
+  "lat": 40.65256,
+  "lon": -111.99658,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164409",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 173"
+}

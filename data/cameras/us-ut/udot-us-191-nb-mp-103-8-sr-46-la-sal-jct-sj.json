@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-191-nb-mp-103-8-sr-46-la-sal-jct-sj",
+  "name": "US-191 NB @ MP 103.8, SR-46 / La Sal Jct, SJ",
+  "lat": 38.31054,
+  "lon": -109.40511,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166505",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 191"
+}

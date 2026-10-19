@@ -1,0 +1,20 @@
+{
+  "id": "udot-wasatch-blvd-3650-e-sr-210-7800-s-bengal-blvd-honeywood-cove",
+  "name": "Wasatch Blvd / 3650 E / SR-210 @ 7800 S / Bengal Blvd / Honeywood Cove Dr, CWH",
+  "lat": 40.60957,
+  "lon": -111.79214,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164804",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 210"
+}

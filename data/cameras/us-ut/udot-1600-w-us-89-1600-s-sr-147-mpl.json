@@ -1,0 +1,20 @@
+{
+  "id": "udot-1600-w-us-89-1600-s-sr-147-mpl",
+  "name": "1600 W / US-89 @ 1600 S / SR-147, MPL",
+  "lat": 40.115422,
+  "lon": -111.597465,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165305",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

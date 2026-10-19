@@ -1,0 +1,17 @@
+{
+  "id": "ski-snowbasin",
+  "name": "Snowbasin",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Above Huntsville, off Trappers Loop (SR 167) and SR 226",
+  "lat": 41.216,
+  "lon": -111.8569,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Snowbasin's website",
+    "url": "https://www.snowbasin.com/"
+  },
+  "snow_report_url": "https://www.snowbasin.com/the-mountain/mountain-report/"
+}

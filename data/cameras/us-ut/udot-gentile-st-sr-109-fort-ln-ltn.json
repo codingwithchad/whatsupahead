@@ -1,0 +1,20 @@
+{
+  "id": "udot-gentile-st-sr-109-fort-ln-ltn",
+  "name": "Gentile St / SR-109 @ Fort Ln, LTN",
+  "lat": 41.0602,
+  "lon": -111.95747,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166900",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 109"
+}

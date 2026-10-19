@@ -1,0 +1,20 @@
+{
+  "id": "udot-bacchus-hwy-sr-111-7800-s-wjd",
+  "name": "Bacchus Hwy / SR-111 @ 7800 S, WJD",
+  "lat": 40.60927,
+  "lon": -112.0554,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166911",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 111"
+}

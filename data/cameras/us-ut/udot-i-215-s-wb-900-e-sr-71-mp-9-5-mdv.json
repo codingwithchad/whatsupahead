@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-s-wb-900-e-sr-71-mp-9-5-mdv",
+  "name": "I-215 S WB @ 900 E / SR-71 / MP 9.5, MDV",
+  "lat": 40.6306,
+  "lon": -111.8662,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167025",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

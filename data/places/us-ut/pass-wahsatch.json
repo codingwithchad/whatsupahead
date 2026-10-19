@@ -1,0 +1,11 @@
+{
+  "id": "pass-wahsatch",
+  "name": "Wahsatch Summit (I 80)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Echo to Evanston, Wyoming",
+  "lat": 41.19965,
+  "lon": -111.1094,
+  "radius_miles": 10,
+  "collection": "passes"
+}

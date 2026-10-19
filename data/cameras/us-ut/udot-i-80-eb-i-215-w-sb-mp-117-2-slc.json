@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-eb-i-215-w-sb-mp-117-2-slc",
+  "name": "I-80 EB @ I-215 W SB / MP 117.2, SLC",
+  "lat": 40.76477,
+  "lon": -111.95267,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166659",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

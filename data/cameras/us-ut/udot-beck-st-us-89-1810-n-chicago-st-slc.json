@@ -1,0 +1,20 @@
+{
+  "id": "udot-beck-st-us-89-1810-n-chicago-st-slc",
+  "name": "Beck St / US-89 @ 1810 N / Chicago St, SLC",
+  "lat": 40.8065,
+  "lon": -111.91816,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165121",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

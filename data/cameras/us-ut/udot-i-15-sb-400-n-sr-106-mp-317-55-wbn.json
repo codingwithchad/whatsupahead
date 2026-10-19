@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-400-n-sr-106-mp-317-55-wbn",
+  "name": "I-15 SB @ 400 N / SR-106 / MP 317.55, WBN",
+  "lat": 40.89428,
+  "lon": -111.89616,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165660",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

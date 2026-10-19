@@ -1,0 +1,20 @@
+{
+  "id": "udot-12300-s-sr-71-265-w-dpr",
+  "name": "12300 S / SR-71 @ 265 W, DPR",
+  "lat": 40.526587,
+  "lon": -111.899143,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164690",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 71"
+}

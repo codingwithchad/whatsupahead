@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-man-o-war-rd-mp-3-96-stg",
+  "name": "I-15 NB @ Man O War Rd / MP 3.96, STG",
+  "lat": 37.05043,
+  "lon": -113.58791,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164490",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-nb-south-jordan-pkwy-11000-s-sjo",
+  "name": "Mountain View / SR-85 NB @ South Jordan Pkwy / 11000 S, SJO",
+  "lat": 40.55163,
+  "lon": -112.02893,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164802",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

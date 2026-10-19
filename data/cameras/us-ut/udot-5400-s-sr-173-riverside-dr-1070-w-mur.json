@@ -1,0 +1,20 @@
+{
+  "id": "udot-5400-s-sr-173-riverside-dr-1070-w-mur",
+  "name": "5400 S / SR-173 @ Riverside Dr / 1070 W, MUR",
+  "lat": 40.65325,
+  "lon": -111.92216,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166705",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 173"
+}

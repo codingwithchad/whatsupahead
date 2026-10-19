@@ -1,0 +1,13 @@
+{
+  "id": "salt-lake-city-park-city",
+  "name": "Salt Lake City to Park City",
+  "blurb": "Ski season in Park City, over Parleys Summit on I-80",
+  "from": "Salt Lake City",
+  "to": "park-city",
+  "season": {
+    "from": "11-15",
+    "to": "04-15"
+  },
+  "state": "UT",
+  "order": 1
+}

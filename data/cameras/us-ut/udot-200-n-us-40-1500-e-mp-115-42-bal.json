@@ -1,0 +1,20 @@
+{
+  "id": "udot-200-n-us-40-1500-e-mp-115-42-bal",
+  "name": "200 N / US-40 @ 1500 E / MP 115.42, BAL",
+  "lat": 40.30212,
+  "lon": -109.97274,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164881",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

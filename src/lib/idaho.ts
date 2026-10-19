@@ -116,15 +116,16 @@ export function reportLines(field: IdahoRoadReport['EncodedPolyline']): Pt[][] {
 
 /**
  * "I-90", "I 90" and "US-95", "US 95" are the same road; so are a state's own names for its highways ("SH-21",
- * "ID-21"; Nevada's "SR-431", "NV-431"). Used for Idaho 511 and Nevada 511, which are the same system.
+ * "ID-21"; Nevada's "SR-431", "NV-431"; Utah's "SR-210", "UT-210"). Used for Idaho 511, Nevada 511 and UDOT
+ * Traffic, which are the same system.
  */
 export const sameIdahoRoad = (a: string | null | undefined, b: string) => {
 	const norm = (s: string) =>
 		s
 			.toUpperCase()
-			.replace(/^(SH|ID|SR|NV)\b/, 'SH')
+			.replace(/^(SH|ID|SR|NV|UT)\b/, 'SH')
 			.replace(/[^A-Z0-9]/g, '');
-	const road = (a ?? '').match(/^\s*((?:I|US|SH|ID|SR|NV)[- ]?\d+)/i)?.[1];
+	const road = (a ?? '').match(/^\s*((?:I|US|SH|ID|SR|NV|UT)[- ]?\d+)/i)?.[1];
 	return road !== undefined && norm(road) === norm(b);
 };
 
@@ -356,7 +357,7 @@ export function idahoClosure(
 ): RoadClosure | null {
 	if (!e.IsFullClosure || (now !== null && !eventInEffect(e, now))) return null;
 	// Only state highways: the 511 sites also list county and city streets, which a drive crosses rather than uses.
-	if (!/^\s*(I|US|SH|ID|SR|NV)[- ]?\d/i.test(e.RoadwayName ?? '')) return null;
+	if (!/^\s*(I|US|SH|ID|SR|NV|UT)[- ]?\d/i.test(e.RoadwayName ?? '')) return null;
 	const [start, end = start] = eventPoints(e);
 	if (!start) return null;
 	const headline = tidy(e.Description);

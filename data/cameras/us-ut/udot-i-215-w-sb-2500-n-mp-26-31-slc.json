@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-sb-2500-n-mp-26-31-slc",
+  "name": "I-215 W SB @ 2500 N / MP 26.31, SLC",
+  "lat": 40.82182,
+  "lon": -111.94975,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167136",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

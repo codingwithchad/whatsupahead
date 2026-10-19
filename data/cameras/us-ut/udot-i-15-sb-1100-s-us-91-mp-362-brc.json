@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-1100-s-us-91-mp-362-brc",
+  "name": "I-15 SB @ 1100 S / US-91 / MP 362, BRC",
+  "lat": 41.4861,
+  "lon": -112.05331,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164791",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

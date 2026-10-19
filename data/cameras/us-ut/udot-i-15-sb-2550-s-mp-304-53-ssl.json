@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-2550-s-mp-304-53-ssl",
+  "name": "I-15 SB @ 2550 S / MP 304.53, SSL",
+  "lat": 40.71547,
+  "lon": -111.90472,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167033",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

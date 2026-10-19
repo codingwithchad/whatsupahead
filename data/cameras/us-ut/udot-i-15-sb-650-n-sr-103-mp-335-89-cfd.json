@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-650-n-sr-103-mp-335-89-cfd",
+  "name": "I-15 SB @ 650 N / SR-103 / MP 335.89, CFD",
+  "lat": 41.12438,
+  "lon": -112.02473,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166724",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

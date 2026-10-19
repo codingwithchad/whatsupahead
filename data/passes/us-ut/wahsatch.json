@@ -1,0 +1,20 @@
+{
+  "id": "wahsatch",
+  "name": "Wahsatch Summit",
+  "route": "I 80",
+  "connects": "Echo to Evanston, Wyoming",
+  "group": "Northern Utah",
+  "lat": 41.19965,
+  "lon": -111.1094,
+  "elevation_ft": 6854,
+  "place": "pass-wahsatch",
+  "report": {
+    "source": "udot",
+    "route": "I 80"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "mtnwFb`oiTKkMyIsSu@eI~Aqi@xRky@oFmr@gPi[{RuHiDwEwGoXyYud@gHuVwJsL}Hw[qMyXkJgw@{Wm]wM{EoGeHsH{u@yb@wdAwNwQiBoK|@cNpM{VbBgJs@sb@`AeKlNwY~Pki@jCaUEii@pRgb@`BeQ{BmQuVwv@kEaj@}Luj@iHqq@}Vip@cIk`@Gec@pRwr@bCy]gD_`@o\\cjAgCyUPsY|EiZxP_]bjCkdCxYiw@`Vk|Ar@{OgF{`@gjBkfFaZ{l@oKaHeWAeUcFqYlKmh@cFwR{LuUpGeb@_LkMec@kIiLoR}KcO}VqSoEgLgPwNgEqQiMcf@am@}Kwf@uG{g@sHwhAVal@mKeXaxAe`AglBac@iLR{`@fL}e@sLeSQy`Gtv@ek@pRwWrN{n@pi@eXfMqT\\ms@}McKf@qZrSc[zKu]|j@em@~Yit@|nAyLfDmJ}BcfAmxBgYez@mPy]yu@qaAcYyf@oi@yu@aDuHyFi_@uEiK{JyHeTwH}LyP}bAmkD}JsOe]gXoTia@oTu{@{Iwr@qGiRqTg]sm@_o@_b@ct@oJa]}Iar@snAarCuY}f@aPyp@mYkh@wy@}eA_i@gi@uXob@}d@{j@wLqTmPol@wHcjAuc@yhAuPyOiqBceAmf@{Pug@w]ky@{M_bAw[iLoMcVcr@u|@ibA"
+}

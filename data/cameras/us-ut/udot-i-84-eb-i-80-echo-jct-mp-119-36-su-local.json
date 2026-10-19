@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-84-eb-i-80-echo-jct-mp-119-36-su-local",
+  "name": "I-84 EB @ I-80 / Echo Jct / MP 119.36, SU (Local)",
+  "lat": 40.9717,
+  "lon": -111.44275,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166046",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 84"
+}

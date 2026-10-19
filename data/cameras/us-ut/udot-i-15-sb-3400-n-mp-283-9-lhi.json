@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-3400-n-mp-283-9-lhi",
+  "name": "I-15 SB @ 3400 N / MP 283.9, LHI",
+  "lat": 40.4298,
+  "lon": -111.89002,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165504",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

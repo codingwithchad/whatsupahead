@@ -1,0 +1,20 @@
+{
+  "id": "udot-state-st-us-89-2820-s-ssl",
+  "name": "State St / US-89 @ 2820 S, SSL",
+  "lat": 40.710095,
+  "lon": -111.888097,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166782",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

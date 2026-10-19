@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-89-750-n-sr-315-wil",
+  "name": "Main St / US-89 @ 750 N / SR-315, WIL",
+  "lat": 41.42231,
+  "lon": -112.03603,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165078",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

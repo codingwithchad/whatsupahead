@@ -1,0 +1,16 @@
+{
+  "id": "ski-woodward-park-city",
+  "name": "Woodward Park City",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "At Kimball Junction, just off I-80",
+  "lat": 40.7517,
+  "lon": -111.5767,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Woodward Park City's website",
+    "url": "https://www.woodwardparkcity.com/"
+  }
+}

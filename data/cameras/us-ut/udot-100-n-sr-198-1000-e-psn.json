@@ -1,0 +1,20 @@
+{
+  "id": "udot-100-n-sr-198-1000-e-psn",
+  "name": "100 N / SR-198 @ 1000 E, PSN",
+  "lat": 40.04445,
+  "lon": -111.71614,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165301",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 198"
+}

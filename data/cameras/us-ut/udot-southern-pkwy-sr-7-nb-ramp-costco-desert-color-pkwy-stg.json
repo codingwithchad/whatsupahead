@@ -1,0 +1,20 @@
+{
+  "id": "udot-southern-pkwy-sr-7-nb-ramp-costco-desert-color-pkwy-stg",
+  "name": "Southern Pkwy / SR-7 NB Ramp (Costco) @ Desert Color Pkwy, STG",
+  "lat": 37.026318,
+  "lon": -113.601194,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166918",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 7"
+}

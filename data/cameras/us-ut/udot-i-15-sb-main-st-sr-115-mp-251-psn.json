@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-main-st-sr-115-mp-251-psn",
+  "name": "I-15 SB @ Main St / SR-115 / MP 251, PSN",
+  "lat": 40.05609,
+  "lon": -111.73203,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164813",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-state-st-sr-9-2600-w-hrc",
+  "name": "State St / SR-9 @ 2600 W, HRC",
+  "lat": 37.17537,
+  "lon": -113.33806,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165004",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 9"
+}

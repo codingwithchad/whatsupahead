@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-6300-s-150-e-mp-407-72-uin",
+  "name": "US-89 @ 6300 S / 150 E / MP 407.72, UIN",
+  "lat": 41.14823,
+  "lon": -111.93079,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167332",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

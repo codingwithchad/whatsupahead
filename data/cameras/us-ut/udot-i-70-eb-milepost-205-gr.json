@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-70-eb-milepost-205-gr",
+  "name": "I-70 EB @ Milepost 205, GR",
+  "lat": 38.93858,
+  "lon": -109.40626,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166740",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 70"
+}

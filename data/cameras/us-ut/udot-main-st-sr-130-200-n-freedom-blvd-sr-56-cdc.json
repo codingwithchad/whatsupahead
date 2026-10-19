@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-130-200-n-freedom-blvd-sr-56-cdc",
+  "name": "Main St / SR-130 @ 200 N / Freedom Blvd / SR-56, CDC",
+  "lat": 37.68082,
+  "lon": -113.06173,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167294",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 130"
+}

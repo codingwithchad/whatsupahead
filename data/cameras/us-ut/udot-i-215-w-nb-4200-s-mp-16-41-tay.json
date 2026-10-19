@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-nb-4200-s-mp-16-41-tay",
+  "name": "I-215 W NB @ 4200 S / MP 16.41, TAY",
+  "lat": 40.679916,
+  "lon": -111.951382,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166844",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

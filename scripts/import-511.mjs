@@ -1,8 +1,8 @@
-// Add road cameras from a state's 511 site (Idaho 511, Nevada 511: the same system) as camera data files.
-// Usage: node scripts/import-511.mjs <idaho|nevada> [--write]   (run through ops/vault-run.mjs for the key)
+// Add road cameras from a state's 511 site (Idaho 511, Nevada 511, UDOT Traffic: the same system) as camera data files.
+// Usage: node scripts/import-511.mjs <idaho|nevada|utah> [--write]   (run through ops/vault-run.mjs for the key)
 // Needs the state's developer key (ID_511_DOT_API_KEY from https://511.idaho.gov/developers/doc,
-// NV_511_DOT_API_KEY from https://www.nvroads.com/developers/doc). Each allows ten API calls a minute; this makes
-// one. Only the agency's own cameras (and, in Idaho, the Ada County Highway District's) are added: the lists also
+// NV_511_DOT_API_KEY from https://www.nvroads.com/developers/doc, UT_511_DOT_API_KEY from
+// https://www.udottraffic.utah.gov/developers/doc). Each allows ten API calls a minute; this makes one. Only the agency's own cameras (and, in Idaho, the Ada County Highway District's) are added: the lists also
 // carry other states' and private cameras, which have their own terms. Only views marked enabled whose picture
 // actually loads as a JPEG are added (Nevada sends a PNG notice for a camera that is down); ones we have are skipped.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -31,12 +31,23 @@ const STATES = {
 		owners: {
 			Cameleon: { source: 'NDOT', credit: 'Nevada Department of Transportation (Nevada 511)' }
 		}
+	},
+	utah: {
+		abbr: 'UT',
+		base: 'https://www.udottraffic.utah.gov',
+		keyVar: 'UT_511_DOT_API_KEY',
+		page: 'https://www.udottraffic.utah.gov/',
+		owners: {
+			ADX: { source: 'UDOT', credit: 'Utah Department of Transportation (UDOT Traffic)' }
+		},
+		// UDOT also runs about 450 city intersection cameras with no highway named; those are left out.
+		highwaysOnly: true
 	}
 };
 
 const state = STATES[process.argv[2]];
 if (!state) {
-	console.error('Usage: node scripts/import-511.mjs <idaho|nevada> [--write]');
+	console.error('Usage: node scripts/import-511.mjs <idaho|nevada|utah> [--write]');
 	process.exit(1);
 }
 const OWNERS = state.owners;
@@ -73,6 +84,7 @@ const ids = new Set(files.map((cam) => cam.id));
 
 const candidates = list
 	.filter((c) => OWNERS[c.Source] && regionAt(c.Latitude, c.Longitude)?.abbr === state.abbr)
+	.filter((c) => !state.highwaysOnly || route(c.Roadway))
 	.flatMap((c) => {
 		const views = (c.Views ?? []).filter((v) => v.Status === 'Enabled' && v.Url);
 		// A weather station's camera can have a view in each direction, with no description: number them.

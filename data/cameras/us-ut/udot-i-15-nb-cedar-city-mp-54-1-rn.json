@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-cedar-city-mp-54-1-rn",
+  "name": "I-15 NB @ Cedar City / MP 54.1, RN",
+  "lat": 37.62717,
+  "lon": -113.12225,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165916",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

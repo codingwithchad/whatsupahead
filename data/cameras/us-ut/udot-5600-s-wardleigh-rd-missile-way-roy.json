@@ -1,0 +1,20 @@
+{
+  "id": "udot-5600-s-wardleigh-rd-missile-way-roy",
+  "name": "5600 S / Wardleigh Rd @ Missile Way, ROY",
+  "lat": 41.159162,
+  "lon": -112.020325,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166920",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 97"
+}

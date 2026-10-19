@@ -1,0 +1,20 @@
+{
+  "id": "udot-500-w-us-89-400-n-sr-106-btf",
+  "name": "500 W / US-89 @ 400 N / SR-106, BTF",
+  "lat": 40.89401,
+  "lon": -111.89221,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165755",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

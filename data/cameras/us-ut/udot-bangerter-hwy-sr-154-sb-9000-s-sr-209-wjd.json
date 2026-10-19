@@ -1,0 +1,20 @@
+{
+  "id": "udot-bangerter-hwy-sr-154-sb-9000-s-sr-209-wjd",
+  "name": "Bangerter Hwy / SR-154 SB @ 9000 S / SR-209, WJD",
+  "lat": 40.58764,
+  "lon": -111.97814,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167145",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 154"
+}

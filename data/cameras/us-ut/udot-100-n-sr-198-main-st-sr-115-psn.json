@@ -1,0 +1,20 @@
+{
+  "id": "udot-100-n-sr-198-main-st-sr-115-psn",
+  "name": "100 N / SR-198 @ Main St / SR-115, PSN",
+  "lat": 40.04467,
+  "lon": -111.73248,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165223",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 198"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-10-100-n-htn",
+  "name": "Main St / SR-10 @ 100 N, HTN",
+  "lat": 39.32835,
+  "lon": -110.9644,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165502",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 10"
+}

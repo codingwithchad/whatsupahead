@@ -1,0 +1,11 @@
+{
+  "id": "pass-clear-creek",
+  "name": "Clear Creek Summit (I 70)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "I-15 at Cove Fort to Richfield on I-70",
+  "lat": 38.591,
+  "lon": -112.4974,
+  "radius_miles": 10,
+  "collection": "passes"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-center-st-mp-313-73-nsl",
+  "name": "I-15 SB @ Center St / MP 313.73, NSL",
+  "lat": 40.84219,
+  "lon": -111.91578,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166999",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

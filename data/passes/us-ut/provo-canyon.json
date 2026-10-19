@@ -1,0 +1,20 @@
+{
+  "id": "provo-canyon",
+  "name": "Provo Canyon",
+  "route": "US 189",
+  "connects": "Orem and Provo to Heber City, past Sundance",
+  "group": "Wasatch Front and Park City",
+  "lat": 40.41105,
+  "lon": -111.5089,
+  "elevation_ft": 5440,
+  "place": "pass-provo-canyon",
+  "report": {
+    "source": "udot",
+    "route": "US 189"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "{lmtF~iohTinH]sl@kImgBxI{_@oBopAoPag@pBcOwFsGgNkLuM{RsE}Ooa@mTwJcF_Iu@cVzFcZmEg^cByj@cQkSkHkQk`@sYkOg`@cQ}PyHuMwKe[iFk\\gI{KyDoOm[il@eCkd@}IcNsQ{i@kKgP}EoR}GmFsGg@{p@hEyOeHgOmRuTxAsJgEaZmUsFuWuDqGs^aNcQyYe_@uY{AwJrCeQ[eNmOyTsRgx@j@}Kj\\ciBmAyXsPcv@oJmEkJpCeEfIkHv]_PfSwKxCyu@~Bsg@vQkJiAcSwV}FaUkD_d@sFsJkLkDa[vEgIcCyEeFwK}\\qW{XeuAgpCkkBihD"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-sr-17-mp-27-5-toq",
+  "name": "I-15 NB @ SR-17 / MP 27.5, TOQ",
+  "lat": 37.28387,
+  "lon": -113.30583,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165932",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

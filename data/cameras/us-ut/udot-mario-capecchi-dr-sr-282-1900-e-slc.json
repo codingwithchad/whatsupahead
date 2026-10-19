@@ -1,0 +1,20 @@
+{
+  "id": "udot-mario-capecchi-dr-sr-282-1900-e-slc",
+  "name": "Mario Capecchi Dr / SR-282 @ 1900 E, SLC",
+  "lat": 40.76765,
+  "lon": -111.83608,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164939",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 282"
+}

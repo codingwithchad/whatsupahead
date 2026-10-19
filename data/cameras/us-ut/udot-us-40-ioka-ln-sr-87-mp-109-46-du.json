@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-40-ioka-ln-sr-87-mp-109-46-du",
+  "name": "US-40 @ Ioka Ln / SR-87 / MP 109.46, DU",
+  "lat": 40.257935,
+  "lon": -110.060914,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165962",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

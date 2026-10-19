@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-84-weber-canyon-eb-mp-86-68-swe",
+  "name": "I-84 / Weber Canyon EB @ MP 86.68, SWE",
+  "lat": 41.136524,
+  "lon": -111.935612,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167203",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 84"
+}

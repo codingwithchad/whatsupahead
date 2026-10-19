@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-wb-milepost-105-5-sl",
+  "name": "I-80 WB @ Milepost 105.5, SL",
+  "lat": 40.75846,
+  "lon": -112.16758,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166296",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-1900-w-sr-126-5600-s-sr-97-roy",
+  "name": "1900 W / SR-126 @ 5600 S / SR-97, ROY",
+  "lat": 41.16185,
+  "lon": -112.02625,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165313",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 126"
+}

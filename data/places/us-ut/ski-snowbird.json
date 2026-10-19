@@ -1,0 +1,17 @@
+{
+  "id": "ski-snowbird",
+  "name": "Snowbird",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "In Little Cottonwood Canyon (SR 210), below Alta",
+  "lat": 40.581,
+  "lon": -111.6566,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Snowbird's website",
+    "url": "https://www.snowbird.com/"
+  },
+  "snow_report_url": "https://www.snowbird.com/mountain-report/"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-north-county-blvd-1100-e-afk-2000-w-plg-sr-129-50-s-afk-1100",
+  "name": "North County Blvd / 1100 E, AFK / 2000 W, PLG / SR-129 @ 50 S, AFK / 1100 N, PLG, AFK",
+  "lat": 40.37567,
+  "lon": -111.76914,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164765",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 129"
+}

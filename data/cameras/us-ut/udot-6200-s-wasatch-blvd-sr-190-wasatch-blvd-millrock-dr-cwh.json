@@ -1,0 +1,20 @@
+{
+  "id": "udot-6200-s-wasatch-blvd-sr-190-wasatch-blvd-millrock-dr-cwh",
+  "name": "6200 S / Wasatch Blvd / SR-190 @ Wasatch Blvd / Millrock Dr, CWH",
+  "lat": 40.631086,
+  "lon": -111.799814,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166816",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 190"
+}

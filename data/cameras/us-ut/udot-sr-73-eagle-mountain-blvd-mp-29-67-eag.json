@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-73-eagle-mountain-blvd-mp-29-67-eag",
+  "name": "SR-73 @ Eagle Mountain Blvd / MP 29.67, EAG",
+  "lat": 40.364742,
+  "lon": -112.039142,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164708",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 73"
+}

@@ -1,7 +1,7 @@
 {
   "id": "passes",
   "name": "Mountain passes",
-  "blurb": "Open or closed, chains, snow and recent camera history for passes in Washington, Oregon and California",
+  "blurb": "Open or closed, chains, snow and recent camera history for passes in Washington, Oregon, California, Idaho, Nevada and Utah",
   "icon": "pass",
   "order": 0,
   "also": [

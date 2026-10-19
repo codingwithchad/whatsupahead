@@ -1,0 +1,20 @@
+{
+  "id": "udot-200-n-us-40-5750-e-whiterocks-hwy-mp-119-66-ftd",
+  "name": "200 N / US-40 @ 5750 E / Whiterocks Hwy / MP 119.66, FTD",
+  "lat": 40.30202,
+  "lon": -109.89227,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164666",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

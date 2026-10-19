@@ -1,0 +1,19 @@
+{
+  "id": "brian-head",
+  "name": "Brian Head Road",
+  "route": "SR 143",
+  "connects": "Parowan to Brian Head",
+  "group": "Southern Utah (I-15 and I-70)",
+  "lat": 37.65555,
+  "lon": -112.8227,
+  "elevation_ft": 10620,
+  "place": "pass-brian-head",
+  "report": {
+    "source": "udot",
+    "route": "SR 143"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

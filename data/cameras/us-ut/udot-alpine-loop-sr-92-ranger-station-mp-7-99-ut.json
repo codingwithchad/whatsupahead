@@ -1,0 +1,20 @@
+{
+  "id": "udot-alpine-loop-sr-92-ranger-station-mp-7-99-ut",
+  "name": "Alpine Loop / SR-92 @ Ranger Station / MP  7.99, UT",
+  "lat": 40.43342,
+  "lon": -111.74489,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164232",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 92"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-riverdale-rd-sr-26-300-w-rdl",
+  "name": "Riverdale Rd / SR-26 @ 300 W, RDL",
+  "lat": 41.18869,
+  "lon": -111.98313,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166908",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 26"
+}

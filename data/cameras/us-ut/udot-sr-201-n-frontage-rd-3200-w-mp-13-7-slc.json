@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-n-frontage-rd-3200-w-mp-13-7-slc",
+  "name": "SR-201 / N Frontage Rd @ 3200 W / MP 13.7, SLC",
+  "lat": 40.728787,
+  "lon": -111.967163,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167327",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

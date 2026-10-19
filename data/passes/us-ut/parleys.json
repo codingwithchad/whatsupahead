@@ -1,0 +1,20 @@
+{
+  "id": "parleys",
+  "name": "Parleys Summit",
+  "route": "I 80",
+  "connects": "Salt Lake City to Park City and on to Wyoming",
+  "group": "Wasatch Front and Park City",
+  "lat": 40.75395,
+  "lon": -111.6225,
+  "elevation_ft": 7016,
+  "place": "pass-parleys",
+  "report": {
+    "source": "udot",
+    "route": "I 80"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "}dbzFpkleTspAqr@}@hGnMfBzjBn`AhYdWr`@`dAzFtdAtEjWxMx_@rjAv_Bnf@le@vv@fbAr`@~q@`Ntn@h\\nk@fmA`nCxKbz@dJjW`b@vs@bk@pk@|Y~g@lNj`AdPjp@lUje@p^bZzLlRtaAfhDlOdS`U~HnIfIrNjo@xoAzoBj^|a@dN|Tpe@bnA~hAv}B~L`DdNmE|s@smAvp@qYtf@{i@f_@gYrRwCry@|KtLi@z[wOpv@yn@bWkMvf@uOf}Fou@dU^x`@fLrp@iMjkA|U~o@pUb`Azn@xKbMtF`TUzl@lJprAbSrbAvf@nm@h]xUlJjO~S`HtTpY~O~GxKrQvIn\\jh@lNhUgG|PpLrf@lEzEIxPwKxDHpe@dJlZtXpN|TplBtkFxCtWaArTiS~rAuUls@qLfQ_dCd}BoPl]kF|j@`Dv`@p\\fiAhCdUkAlb@cTvx@Vdc@tMbk@xQtc@pJp~@xKfc@zDth@fXhx@lAjMqC~TgO`UyCnJwCvz@{g@hrA[|k@}FzZJdQdD`KzOjS|_@h`A|Dvj@xBvInEtFlR~I`UnZ`Jrw@nNhZ~FrWfMbQtHfWtU|]dJl\\nD|EdRpHhNdUxHlr@YdI}O`m@oB~Pc@hd@fHtZLdR{Mxw@iKj\\aMjdAb@btBbFny@Tj_DaCtKuKpG}qCCmJxEc]t^sUzDe^fMeSk@oHdLq@zkAsHhcA`IxxDEl{BqE`a@kYbiAsFlv@x@v}XbCjYzG~PbfDfkEnVza@lp@v~Axm@rrBf_BncDvK~Mjd@hYtPzX|KvBdRyAaA`GoGqF"
+}

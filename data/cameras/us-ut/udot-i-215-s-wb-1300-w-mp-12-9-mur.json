@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-s-wb-1300-w-mp-12-9-mur",
+  "name": "I-215 S WB @ 1300 W / MP 12.9, MUR",
+  "lat": 40.64432,
+  "lon": -111.92868,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166979",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

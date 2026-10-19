@@ -1,0 +1,20 @@
+{
+  "id": "udot-300-s-us-89-200-e-pvo",
+  "name": "300 S / US-89 @ 200 E, PVO",
+  "lat": 40.229547,
+  "lon": -111.655301,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165152",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

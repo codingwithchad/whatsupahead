@@ -1,0 +1,20 @@
+{
+  "id": "udot-bluff-st-sr-18-700-s-stg",
+  "name": "Bluff St / SR-18 @ 700 S, STG",
+  "lat": 37.09632,
+  "lon": -113.58695,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164493",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 18"
+}

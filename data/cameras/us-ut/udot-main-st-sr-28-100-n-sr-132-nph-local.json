@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-28-100-n-sr-132-nph-local",
+  "name": "Main St / SR-28 @ 100 N / SR-132, NPH (Local)",
+  "lat": 39.70985,
+  "lon": -111.83639,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164970",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 28"
+}

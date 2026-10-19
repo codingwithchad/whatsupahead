@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-70-wb-convulsion-rd-mp-73-52-se",
+  "name": "I-70 WB @ Convulsion Rd / MP 73.52, SE",
+  "lat": 38.88169,
+  "lon": -111.57172,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165362",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 70"
+}

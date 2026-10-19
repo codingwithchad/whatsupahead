@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-12th-st-1200-s-sr-39-mp-344-96-msv",
+  "name": "I-15 NB @ 12th St / 1200 S / SR-39 / MP 344.96, MSV",
+  "lat": 41.2442,
+  "lon": -112.01543,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164338",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

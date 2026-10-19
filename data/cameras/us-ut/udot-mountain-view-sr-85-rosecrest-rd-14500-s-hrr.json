@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-rosecrest-rd-14500-s-hrr",
+  "name": "Mountain View / SR-85 @ Rosecrest Rd / 14500 S, HRR",
+  "lat": 40.48856,
+  "lon": -112.00015,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165283",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

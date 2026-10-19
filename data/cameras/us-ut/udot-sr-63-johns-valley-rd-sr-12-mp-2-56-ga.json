@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-63-johns-valley-rd-sr-12-mp-2-56-ga",
+  "name": "SR-63 / Johns Valley Rd @ SR-12 / MP 2.56, GA",
+  "lat": 37.69153,
+  "lon": -112.15249,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165289",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 63"
+}

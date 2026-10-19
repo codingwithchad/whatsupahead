@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-40-2000-w-hancock-cove-rd-mp-111-5-rsv",
+  "name": "Main St / US-40 @ 2000 W / Hancock Cove Rd / MP 111.5, RSV",
+  "lat": 40.2741,
+  "lon": -110.02858,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164842",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

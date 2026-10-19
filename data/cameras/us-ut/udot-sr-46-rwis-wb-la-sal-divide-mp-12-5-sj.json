@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-46-rwis-wb-la-sal-divide-mp-12-5-sj",
+  "name": "SR-46 RWIS WB @ La Sal Divide / MP 12.5, SJ",
+  "lat": 38.342095,
+  "lon": -109.208717,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166397",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 46"
+}

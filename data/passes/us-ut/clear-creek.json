@@ -1,0 +1,20 @@
+{
+  "id": "clear-creek",
+  "name": "Clear Creek Summit",
+  "route": "I 70",
+  "connects": "I-15 at Cove Fort to Richfield on I-70",
+  "group": "Southern Utah (I-15 and I-70)",
+  "lat": 38.591,
+  "lon": -112.4974,
+  "elevation_ft": 7180,
+  "place": "pass-clear-creek",
+  "report": {
+    "source": "udot",
+    "route": "I 70"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "qxrlF|tniTrDbl@R`i@cCbd@mNtdAgApXpBta@xHz\\rOfZfuAlxAf_AtoBbTrOfw@tMxQrQjRni@pg@zeAvDxNdBlZiFxt@x@`c@rCpR|g@bpBlLdUz~@zhAbnCflGnfExzEvnAz{A~H|O~Rbo@hb@t`@|cA|a@zt@j_@vaA~Ad_@zM~b@bX|h@pe@p^`u@xKnM~yBb_Anw@lg@rZ`MzOdP`|AfcA`i@tq@zf@vg@fMzUjHr_@vBlxAzSzs@vHhOxfA|v@jkEdqA`RfJdOdZt\\dtBzGhXlnBdzB`CrOwBny@|ArXqDzc@|NthBeFfj@xN~k@S`z@tAjMlJtOln@p\\|M`\\|LvP~M~GbYlDfJnFp`@zn@`EnXo@dKeWjlAFveAuNjdAeChp@_HbPm`@`RaKfOoKrv@wl@xeBmNboA}]fqAsG`Lyw@~|@eCjJcAj_@cK`RoJxZaNnEc]wJgLLoKdGcHpPo@t\\rAx]fPztAgAhcA|Cd[jJ`]taAn~B"
+}

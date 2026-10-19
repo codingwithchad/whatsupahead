@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-3750-s-mp-302-75-ssl",
+  "name": "I-15 NB @ 3750 S / MP 302.75, SSL",
+  "lat": 40.68973,
+  "lon": -111.90266,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167094",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

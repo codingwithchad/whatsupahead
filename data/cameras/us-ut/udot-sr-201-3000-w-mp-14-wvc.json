@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-3000-w-mp-14-wvc",
+  "name": "SR-201 @ 3000 W / MP 14, WVC",
+  "lat": 40.72566,
+  "lon": -111.96314,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166788",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

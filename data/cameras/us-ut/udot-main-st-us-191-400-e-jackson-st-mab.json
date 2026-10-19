@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-191-400-e-jackson-st-mab",
+  "name": "Main St / US-191 @ 400 E / Jackson St, MAB",
+  "lat": 38.55745,
+  "lon": -109.54278,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165474",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 191"
+}

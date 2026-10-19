@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-130-cedar-knolls-cdc",
+  "name": "Main St / SR-130 @ Cedar Knolls, CDC",
+  "lat": 37.657001,
+  "lon": -113.076292,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167301",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 130"
+}

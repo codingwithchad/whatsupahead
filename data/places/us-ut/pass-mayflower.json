@@ -1,0 +1,11 @@
+{
+  "id": "pass-mayflower",
+  "name": "Mayflower Summit (US 40)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Park City and I-80 to Heber City",
+  "lat": 40.6533,
+  "lon": -111.4567,
+  "radius_miles": 10,
+  "collection": "passes"
+}

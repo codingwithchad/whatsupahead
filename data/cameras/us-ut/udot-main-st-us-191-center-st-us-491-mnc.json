@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-191-center-st-us-491-mnc",
+  "name": "Main St / US-191 @ Center St / US-491, MNC",
+  "lat": 37.87251,
+  "lon": -109.34311,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164886",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 191"
+}

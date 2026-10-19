@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-126-gentile-st-sr-109-ltn",
+  "name": "Main St / SR-126 @ Gentile St / SR-109, LTN",
+  "lat": 41.06031,
+  "lon": -111.96607,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165226",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 126"
+}

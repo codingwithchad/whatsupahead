@@ -1,0 +1,16 @@
+{
+  "id": "ski-nordic-valley",
+  "name": "Nordic Valley",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Above Eden in the Ogden Valley",
+  "lat": 41.3105,
+  "lon": -111.8647,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Nordic Valley's website",
+    "url": "https://www.nordicvalley.ski/"
+  }
+}

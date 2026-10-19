@@ -1,0 +1,20 @@
+{
+  "id": "udot-taylorsville-expwy-4530-s-sr-266-atherton-dr-1050-w-tay",
+  "name": "Taylorsville Expwy / 4530 S / SR-266 @ Atherton Dr / 1050 W, TAY",
+  "lat": 40.6722,
+  "lon": -111.92278,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165754",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 266"
+}

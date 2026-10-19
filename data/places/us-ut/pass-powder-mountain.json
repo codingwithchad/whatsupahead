@@ -1,0 +1,11 @@
+{
+  "id": "pass-powder-mountain",
+  "name": "Powder Mountain Road (SR 158)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Eden to Powder Mountain",
+  "lat": 41.37967,
+  "lon": -111.7817,
+  "radius_miles": 10,
+  "collection": "passes"
+}

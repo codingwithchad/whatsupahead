@@ -1,0 +1,20 @@
+{
+  "id": "udot-10600-s-south-jordan-pkwy-sr-151-river-front-pkwy-700-w-sjo",
+  "name": "10600 S / South Jordan Pkwy / SR-151 @ River Front Pkwy / 700 W, SJO",
+  "lat": 40.55874,
+  "lon": -111.91042,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164844",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 151"
+}

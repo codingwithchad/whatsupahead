@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-920-s-mp-264-54-pvo",
+  "name": "I-15 NB @ 920 S / MP 264.54, PVO",
+  "lat": 40.22174,
+  "lon": -111.67186,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164855",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

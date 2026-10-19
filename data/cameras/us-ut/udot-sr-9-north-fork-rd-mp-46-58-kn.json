@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-9-north-fork-rd-mp-46-58-kn",
+  "name": "SR-9 @ North Fork Rd / MP 46.58, KN",
+  "lat": 37.23944,
+  "lon": -112.83123,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166931",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 9"
+}

@@ -442,3 +442,20 @@ time to cross only for the highest. Now the answer has one line per pass in road
 its report and its forecast for then, in place of the separate pass and weather lines; four passes or more show the
 worst two and "2 more passes look fine". The best time to cross checks every pass: leave before the snow reaches
 the first summit it reaches, or after it has passed the last, and each hour shows the worst summit.
+
+## 2026-10-19: Utah, and every source's rules in one place
+
+Utah is the sixth state: UDOT Traffic runs on the same system as Idaho 511 and Nevada 511, so it uses the same
+importer and feed reader (three calls every five minutes, under its ten a minute). About 1,245 highway and canyon
+cameras (UDOT's city intersection cameras, with no highway named, are left out), 19 passes from UDOT's own list
+(Parleys, both Cottonwood canyons, Provo Canyon, the I-15 and I-70 summits, the ski roads), 15 ski areas, nine
+towns, SNOTEL gauges, closures and pavement temperatures on drives. UDOT's road reports carry its restriction in its
+own words; some quiet stretches haven't been updated in a year, so a report more than three days old counts as no
+report. Utah's traction rule (four- or all-wheel drive with snow tires, or chains) reads as "AWD with snow tires: no
+chains" for an AWD and "chains" for the rest. UDOT publishes no picture terms, so its pictures stay out of previews
+and the replay, as Idaho's and Nevada's do. Winter wording is untested: check real reports at the first storm.
+
+`docs/source-rules.md` now gives every outside service's own rules (limits, keys, credit, what may be copied) and
+what we do to keep to them. Writing it turned up two things: OSRM's demo server asks for a "fix the map" link (now
+on the About page), and Open-Meteo's free plan is for non-commercial sites only, which it defines as no ads and no
+subscriptions; the site needs an Open-Meteo paid plan before it ever shows ads or sells anything.

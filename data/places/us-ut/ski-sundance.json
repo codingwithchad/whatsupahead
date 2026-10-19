@@ -1,0 +1,17 @@
+{
+  "id": "ski-sundance",
+  "name": "Sundance",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Up Provo Canyon (US 189) on the Alpine Loop",
+  "lat": 40.3934,
+  "lon": -111.5888,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Sundance's website",
+    "url": "https://www.sundanceresort.com/"
+  },
+  "snow_report_url": "https://www.sundanceresort.com/mountain-report/"
+}

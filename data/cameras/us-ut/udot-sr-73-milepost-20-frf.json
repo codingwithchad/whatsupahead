@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-73-milepost-20-frf",
+  "name": "SR-73 @ Milepost 20, FRF",
+  "lat": 40.25522,
+  "lon": -112.10587,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166445",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 73"
+}

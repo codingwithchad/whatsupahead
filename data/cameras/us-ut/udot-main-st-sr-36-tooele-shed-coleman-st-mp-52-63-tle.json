@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-36-tooele-shed-coleman-st-mp-52-63-tle",
+  "name": "Main St / SR-36 @ Tooele Shed / Coleman St / MP 52.63, TLE",
+  "lat": 40.51117,
+  "lon": -112.31385,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164944",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 36"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-200-n-sr-56-airport-rd-college-way-cdc",
+  "name": "200 N / SR-56 @ Airport Rd / College Way, CDC",
+  "lat": 37.68115,
+  "lon": -113.08615,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164228",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 56"
+}

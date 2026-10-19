@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-wanship-sr-32-mp-155-46-su",
+  "name": "I-80 @ Wanship / SR-32 / MP 155.46, SU",
+  "lat": 40.81299,
+  "lon": -111.40143,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164888",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

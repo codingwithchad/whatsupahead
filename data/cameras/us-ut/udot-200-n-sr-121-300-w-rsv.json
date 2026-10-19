@@ -1,0 +1,20 @@
+{
+  "id": "udot-200-n-sr-121-300-w-rsv",
+  "name": "200 N / SR-121 @ 300 W, RSV",
+  "lat": 40.30221,
+  "lon": -109.99724,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166330",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 121"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-sr-202-mp-2-78-sl",
+  "name": "SR-201 @ SR-202 / MP 2.78, SL",
+  "lat": 40.72782,
+  "lon": -112.17113,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164828",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

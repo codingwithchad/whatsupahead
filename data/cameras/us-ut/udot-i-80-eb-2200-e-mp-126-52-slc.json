@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-eb-2200-e-mp-126-52-slc",
+  "name": "I-80 EB @ 2200 E / MP 126.52, SLC",
+  "lat": 40.714082,
+  "lon": -111.827532,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167119",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-state-st-us-89-11000-s-snd",
+  "name": "State St / US-89 @ 11000 S, SND",
+  "lat": 40.55179,
+  "lon": -111.89103,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165080",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

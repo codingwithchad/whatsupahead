@@ -1,0 +1,19 @@
+{
+  "id": "indian-canyon",
+  "name": "Indian Canyon Summit",
+  "route": "US 191",
+  "connects": "Duchesne to Helper and Price",
+  "group": "Central and eastern Utah",
+  "lat": 39.886,
+  "lon": -110.7479,
+  "elevation_ft": 9114,
+  "place": "pass-indian-canyon",
+  "report": {
+    "source": "udot",
+    "route": "US 191"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

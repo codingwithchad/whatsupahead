@@ -1,0 +1,20 @@
+{
+  "id": "udot-timpanogos-hwy-3500-n-sr-92-500-w-lhi",
+  "name": "Timpanogos Hwy / 3500 N / SR-92 @ 500 W, LHI",
+  "lat": 40.43236,
+  "lon": -111.857,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165012",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 92"
+}

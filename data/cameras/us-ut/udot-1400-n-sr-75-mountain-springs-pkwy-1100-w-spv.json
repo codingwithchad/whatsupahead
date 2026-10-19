@@ -1,0 +1,20 @@
+{
+  "id": "udot-1400-n-sr-75-mountain-springs-pkwy-1100-w-spv",
+  "name": "1400 N / SR-75 @ Mountain Springs Pkwy / 1100 W, SPV",
+  "lat": 40.18752,
+  "lon": -111.63083,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164993",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 75"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-washington-blvd-us-89-31st-st-sr-79-ogd",
+  "name": "Washington Blvd / US-89 @ 31st ST / SR-79, OGD",
+  "lat": 41.20804,
+  "lon": -111.97096,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165040",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

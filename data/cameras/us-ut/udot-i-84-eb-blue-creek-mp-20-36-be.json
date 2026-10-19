@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-84-eb-blue-creek-mp-20-36-be",
+  "name": "I-84 EB @ Blue Creek / MP 20.36, BE",
+  "lat": 41.88455,
+  "lon": -112.48962,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164236",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 84"
+}

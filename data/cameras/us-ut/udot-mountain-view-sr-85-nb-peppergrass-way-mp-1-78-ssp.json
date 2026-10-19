@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-nb-peppergrass-way-mp-1-78-ssp",
+  "name": "Mountain View / SR-85 NB @ Peppergrass Way / MP 1.78, SSP",
+  "lat": 40.410863,
+  "lon": -111.934166,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167238",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

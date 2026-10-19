@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-91-hyde-park-ln-hyd",
+  "name": "Main St / US-91 @ Hyde Park Ln, HYD",
+  "lat": 41.79913,
+  "lon": -111.83371,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164269",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 91"
+}

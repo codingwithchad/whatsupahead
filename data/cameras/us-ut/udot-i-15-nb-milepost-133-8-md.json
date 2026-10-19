@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-milepost-133-8-md",
+  "name": "I-15 NB @ Milepost 133.8, MD",
+  "lat": 38.6003,
+  "lon": -112.60835,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164923",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

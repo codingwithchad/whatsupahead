@@ -1,0 +1,20 @@
+{
+  "id": "udot-big-cottonwood-canyon-rd-sr-190-butler-mp-10-sl",
+  "name": "Big Cottonwood Canyon Rd / SR-190 @ Butler / MP 10, SL",
+  "lat": 40.64824,
+  "lon": -111.66244,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164789",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 190"
+}

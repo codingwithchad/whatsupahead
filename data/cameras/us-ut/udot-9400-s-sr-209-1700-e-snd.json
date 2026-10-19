@@ -1,0 +1,20 @@
+{
+  "id": "udot-9400-s-sr-209-1700-e-snd",
+  "name": "9400 S / SR-209 @ 1700 E, SND",
+  "lat": 40.58055,
+  "lon": -111.84392,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166679",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 209"
+}

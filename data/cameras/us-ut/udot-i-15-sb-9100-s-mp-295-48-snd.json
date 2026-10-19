@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-9100-s-mp-295-48-snd",
+  "name": "I-15 SB @ 9100 S / MP 295.48, SND",
+  "lat": 40.5859,
+  "lon": -111.90085,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167064",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-400-n-sr-56-westview-dr-lund-hwy-3100-w-cdc",
+  "name": "400 N / SR-56 @ Westview Dr / Lund Hwy / 3100 W, CDC",
+  "lat": 37.68489,
+  "lon": -113.1108,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165389",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 56"
+}

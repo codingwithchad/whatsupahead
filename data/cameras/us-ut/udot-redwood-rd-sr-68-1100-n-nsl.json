@@ -1,0 +1,20 @@
+{
+  "id": "udot-redwood-rd-sr-68-1100-n-nsl",
+  "name": "Redwood Rd / SR-68 @ 1100 N, NSL",
+  "lat": 40.86174,
+  "lon": -111.93012,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166560",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 68"
+}

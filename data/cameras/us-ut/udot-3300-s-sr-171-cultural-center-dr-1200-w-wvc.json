@@ -1,0 +1,20 @@
+{
+  "id": "udot-3300-s-sr-171-cultural-center-dr-1200-w-wvc",
+  "name": "3300 S / SR-171 @ Cultural Center Dr / 1200 W, WVC",
+  "lat": 40.699739,
+  "lon": -111.925964,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166739",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 171"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-28-milepost-28-67-ju",
+  "name": "SR-28 @ Milepost 28.67, JU",
+  "lat": 39.539857,
+  "lon": -111.863894,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166892",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 28"
+}

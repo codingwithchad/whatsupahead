@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-70-wb-milepost-44-9-se",
+  "name": "I-70 WB @ Milepost 44.9, SE",
+  "lat": 38.83995,
+  "lon": -112.02694,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164764",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 70"
+}

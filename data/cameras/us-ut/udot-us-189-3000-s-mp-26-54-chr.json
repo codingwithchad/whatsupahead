@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-189-3000-s-mp-26-54-chr",
+  "name": "US-189 @ 3000 S / MP 26.54, CHR",
+  "lat": 40.47113,
+  "lon": -111.44792,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165030",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-sb-2300-s-mp-19-25-wvc",
+  "name": "I-215 W SB @ 2300 S / MP 19.25, WVC",
+  "lat": 40.72103,
+  "lon": -111.95302,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167091",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

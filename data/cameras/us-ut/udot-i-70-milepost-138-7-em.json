@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-70-milepost-138-7-em",
+  "name": "I-70 @ Milepost 138.7, EM",
+  "lat": 38.914544,
+  "lon": -110.500831,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167202",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 70"
+}

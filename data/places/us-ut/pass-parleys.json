@@ -1,0 +1,11 @@
+{
+  "id": "pass-parleys",
+  "name": "Parleys Summit (I 80)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Salt Lake City to Park City and on to Wyoming",
+  "lat": 40.75395,
+  "lon": -111.6225,
+  "radius_miles": 10,
+  "collection": "passes"
+}

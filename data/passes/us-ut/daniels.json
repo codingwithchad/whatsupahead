@@ -1,0 +1,20 @@
+{
+  "id": "daniels",
+  "name": "Daniels Summit",
+  "route": "US 40",
+  "connects": "Heber City to Duchesne and Vernal",
+  "group": "Central and eastern Utah",
+  "lat": 40.2993,
+  "lon": -111.2536,
+  "elevation_ft": 8020,
+  "place": "pass-daniels",
+  "report": {
+    "source": "udot",
+    "route": "US 40"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "afctFv_x`T}DpSc@znBmJh|@fFxgAAt~CaHzyAsG`k@qYtb@aFzMkLtmA_Srr@yCv[XjeB`F~[`Xx|@zHtyAnA~}@{FntAiGr`@yXlr@aIzb@mLrgHuF|t@iRdx@{iArsC_I|XicAhiJfBtf@pIl^`S|\\n^b[pCrFrApL_AvJsStk@ud@bvEeUzpA[l}C~CzUxG~Qvt@reAnOht@TvgA}Ft^c@hXdH|v@jL|^f@xe@lMld@_Bv}@xJfe@dA~\\}AzSaPle@yGdI{e@vSyH~Qe@|SpYfnAnKdcAlf@vjAdv@nxAzFnT|AjQ}Dv_ByDtf@afA~_FeN`aA}JpNmQjEq_@aF}T{HcJFmr@bMcSpQcd@btAkD|j@oCdMu\\r]ep@lcDc@h`@fTnfAZtM}B~McTf[msB`eCmPbJaq@nRqOnLaIbPuQr~@gGdm@gh@daAmOlMad@`Rkb@r_@{JpEeKEgSqJeHYcr@tKcZ`RgTsEet@`@cF|AwNfNwZfKir@x~@uZfk@c`A`m@}TpU}^~Dy`@b`@s^~Oek@{Die@~Rkk@bo@gWtm@iFza@qQ`a@aWbXaWrt@{qAxnAw_@dWq}HheIgKpBsyBm@}d@eMmc@qGun@u@{OtGksAzaAoz@j_@wy@bTun@j]}XlFekA~A{eA_n@sKiBaK`AeXvJuh@la@kc@lU{h@tk@qUzM{}@`[{|@xQa~CbZcVbForBfnAmdAnt@_MpGmPdC"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "little-cottonwood",
+  "name": "Little Cottonwood Canyon",
+  "route": "SR 210",
+  "connects": "Salt Lake Valley to Snowbird and Alta",
+  "group": "Wasatch Front and Park City",
+  "lat": 40.592,
+  "lon": -111.6279,
+  "elevation_ft": 8771,
+  "place": "pass-little-cottonwood",
+  "report": {
+    "source": "udot",
+    "route": "SR 210"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "opzvFzjiiTxeAfd@beA}a@pg@k@lUoW`Rmz@dGqOzCcZ{@kMhAkL{AeM`A_b@mAaNbDie@kDgUzE_MPqFeEmQtAuNQqd@uBsJlBaNgEmL~H}~@q@sM|CgYwB}KzAmYiBiHaN}HPoKkDmTByTgDwO]mVwCuLp@gJgA}KeCoHsKuL~CePc@yO}JoQKkJyG{]{Oa\\wRkT_G}XmDwt@aOws@z@yM"
+}

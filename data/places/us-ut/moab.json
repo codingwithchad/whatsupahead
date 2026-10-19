@@ -1,0 +1,10 @@
+{
+  "id": "moab",
+  "name": "Moab",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "US 191 near Arches",
+  "lat": 38.5733,
+  "lon": -109.5498,
+  "radius_miles": 4
+}

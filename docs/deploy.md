@@ -31,6 +31,7 @@ environment variables. Never commit keys.
 | `ORDOT_CODE_PRIMARY` | Oregon pass reports (ODOT crew reports and closures) | [ODOT API portal](https://apiportal.odot.state.or.us/) |
 | `ID_511_DOT_API_KEY` | Idaho pass reports, closures and road surface temperatures (Idaho 511); Idaho cameras need no key | [Idaho 511 developer page](https://511.idaho.gov/developers/doc) |
 | `NV_511_DOT_API_KEY` | Nevada chain controls, closures and pass temperatures (Nevada 511); Nevada cameras need no key | [Nevada 511 developer page](https://www.nvroads.com/developers/doc) |
+| `UT_511_DOT_API_KEY` | Utah pass reports, chain and traction rules, closures and road surface temperatures (UDOT Traffic); Utah cameras need no key | [UDOT Traffic developer page](https://www.udottraffic.utah.gov/developers/doc) |
 | `WINDY_API_KEY` | Cameras that come through Windy.com | [Windy Webcams API](https://api.windy.com/keys) |
 | `YOU_TUBE_DATA_API_KEY` | Checks that YouTube live cameras are still live | Google Cloud, YouTube Data API v3 |
 | `AZURE_MAPS_KEY` | Optional routing and place search with live traffic, and weather along a drive; without it, routes use OSRM, place search uses Photon and Nominatim, and weather along a drive uses Open-Meteo | Azure Maps account |

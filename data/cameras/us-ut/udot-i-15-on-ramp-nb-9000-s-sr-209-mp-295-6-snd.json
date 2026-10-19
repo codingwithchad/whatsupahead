@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-on-ramp-nb-9000-s-sr-209-mp-295-6-snd",
+  "name": "I-15 On-ramp NB @ 9000 S / SR-209 / MP 295.6, SND",
+  "lat": 40.5882,
+  "lon": -111.89968,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165006",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

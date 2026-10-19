@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-6-main-st-mp-232-7-hlp",
+  "name": "US-6 @ Main St / MP 232.7, HLP",
+  "lat": 39.69141,
+  "lon": -110.85715,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164731",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 6"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-sb-450-n-mp-23-31-slc",
+  "name": "I-215 W SB @ 450 N / MP 23.31, SLC",
+  "lat": 40.77945,
+  "lon": -111.94969,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167059",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "beaver-ridge",
+  "name": "Beaver Ridge",
+  "route": "I 15",
+  "connects": "Beaver to Cedar City on I-15",
+  "group": "Southern Utah (I-15 and I-70)",
+  "lat": 38.1564,
+  "lon": -112.6123,
+  "elevation_ft": 6500,
+  "place": "pass-beaver-ridge",
+  "report": {
+    "source": "udot",
+    "route": "I 15"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "_dtdFnfmqT}CeQv@}Y{E}Ycj@amAy[ig@mRoSuf@u_@eMuNmCmHaEf@c@dI_E\\yy@_JkxBm@wu@aJo_AyYee@mVae@q]_~CmxC}lAitA{o@}~@ao@chAmgBi~Ds_DifGij@kkAw~@cfCujBkfH{Tqp@sT}e@eZqf@w`@ag@evF{_G_f@_`@}b@{V}m^kaPkZ_W}}E{aG}rEkzDaR_CqPvCsu@vs@{{@|WykBvlB{WjOuVtGqmEvZq{JrEm{LjeAweApA_z@iIuuEm_AcTcKmOoMmo@g{@w`@{[a[}Nse@wLec@iVsaAc^kg@y]gMaDsQxAo[vQ_TtGeZfAk|OkzAsa@zA}`BpXmf@tEutBzCeo@yHod@jGsPoEkjD{vB_TeEqWhGeYfX_WdOiS`[qNpFy`@{E{h@xHmm@eLceAwJ}YgKqx@{a@{RsNmcDsrD_Vs_@wExItf@jc@jxC`fDtSbOhdAth@~o@bJ"
+}

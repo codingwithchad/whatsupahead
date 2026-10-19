@@ -1,0 +1,20 @@
+{
+  "id": "udot-provo-canyon-rd-us-189-lower-deer-creek-rd-mp-17-14-wa",
+  "name": "Provo Canyon Rd / US-189 @ Lower Deer Creek Rd / MP 17.14, WA",
+  "lat": 40.40155,
+  "lon": -111.53404,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164365",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-800-n-sr-52-palisade-dr-1300-e-orm",
+  "name": "800 N / SR-52 @ Palisade Dr / 1300 E, ORM",
+  "lat": 40.311784,
+  "lon": -111.665095,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164787",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 52"
+}

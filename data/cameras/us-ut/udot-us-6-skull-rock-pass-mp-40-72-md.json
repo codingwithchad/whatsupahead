@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-6-skull-rock-pass-mp-40-72-md",
+  "name": "US-6 @ Skull Rock Pass / MP 40.72, MD",
+  "lat": 39.03397,
+  "lon": -113.34099,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165367",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 6"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-70-eb-milepost-24-4-se",
+  "name": "I-70 EB @ Milepost 24.4, SE",
+  "lat": 38.606,
+  "lon": -112.2341,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166460",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 70"
+}

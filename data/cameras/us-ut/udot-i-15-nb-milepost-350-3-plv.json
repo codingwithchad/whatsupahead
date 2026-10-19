@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-milepost-350-3-plv",
+  "name": "I-15 NB @ Milepost 350.3, PLV",
+  "lat": 41.319124,
+  "lon": -112.026269,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167306",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

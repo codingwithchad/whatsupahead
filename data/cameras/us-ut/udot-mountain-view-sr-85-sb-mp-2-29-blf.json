@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-sb-mp-2-29-blf",
+  "name": "Mountain View / SR-85 SB @ MP 2.29, BLF",
+  "lat": 40.417795,
+  "lon": -111.934005,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167317",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

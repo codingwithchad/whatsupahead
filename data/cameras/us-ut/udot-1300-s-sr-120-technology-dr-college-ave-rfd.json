@@ -1,0 +1,20 @@
+{
+  "id": "udot-1300-s-sr-120-technology-dr-college-ave-rfd",
+  "name": "1300 S / SR-120 @ Technology Dr / College Ave, RFD",
+  "lat": 38.7498,
+  "lon": -112.10182,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166629",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 120"
+}

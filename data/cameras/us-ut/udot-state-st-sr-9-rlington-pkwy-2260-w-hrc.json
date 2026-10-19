@@ -1,0 +1,20 @@
+{
+  "id": "udot-state-st-sr-9-rlington-pkwy-2260-w-hrc",
+  "name": "State St / SR-9 @ Rlington Pkwy / 2260 W, HRC",
+  "lat": 37.176536,
+  "lon": -113.329351,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165299",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 9"
+}

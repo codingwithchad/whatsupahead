@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-parrish-ln-400-n-sr-105-mp-319-51-cvl",
+  "name": "I-15 SB @ Parrish Ln / 400 N / SR-105 / MP 319.51, CVL",
+  "lat": 40.9211,
+  "lon": -111.89134,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167171",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

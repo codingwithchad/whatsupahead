@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-40-500-e-mp-87-dch",
+  "name": "US-40 @ 500 E / MP 87, DCH",
+  "lat": 40.16252,
+  "lon": -110.39237,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166051",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-1000-w-sr-252-airport-rd-2500-n-sr-252-lgn",
+  "name": "1000 W / SR-252 @ Airport Rd / 2500 N / SR-252, LGN",
+  "lat": 41.77821,
+  "lon": -111.85831,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165403",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 252"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-geneva-rd-sr-114-1390-n-pvo",
+  "name": "Geneva Rd / SR-114 @ 1390 N, PVO",
+  "lat": 40.25206,
+  "lon": -111.70578,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164496",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 114"
+}

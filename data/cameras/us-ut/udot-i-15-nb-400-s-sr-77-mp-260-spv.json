@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-400-s-sr-77-mp-260-spv",
+  "name": "I-15 NB @ 400 S / SR-77 / MP 260, SPV",
+  "lat": 40.16179,
+  "lon": -111.64602,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164222",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

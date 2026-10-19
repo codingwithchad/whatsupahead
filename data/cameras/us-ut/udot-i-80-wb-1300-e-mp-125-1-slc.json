@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-wb-1300-e-mp-125-1-slc",
+  "name": "I-80 WB @ 1300 E / MP 125.1, SLC",
+  "lat": 40.72004,
+  "lon": -111.85391,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166048",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

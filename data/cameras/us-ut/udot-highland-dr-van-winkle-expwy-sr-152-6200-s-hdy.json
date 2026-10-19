@@ -1,0 +1,20 @@
+{
+  "id": "udot-highland-dr-van-winkle-expwy-sr-152-6200-s-hdy",
+  "name": "Highland Dr / Van Winkle Expwy / SR-152 @ 6200 S, HDY",
+  "lat": 40.63837,
+  "lon": -111.83419,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165034",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 152"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ski-deer-valley",
+  "name": "Deer Valley",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Above Park City, off US 40 and I-80",
+  "lat": 40.6374,
+  "lon": -111.4783,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Deer Valley's website",
+    "url": "https://www.deervalley.com/"
+  }
+}

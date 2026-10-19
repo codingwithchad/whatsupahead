@@ -1,0 +1,20 @@
+{
+  "id": "udot-8000-s-sr-164-460-w-slm-1200-w-spf-slm",
+  "name": "8000 S / SR-164 @ 460 W/SLM / 1200 W/SPF, SLM",
+  "lat": 40.08516,
+  "lon": -111.68337,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165450",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 164"
+}

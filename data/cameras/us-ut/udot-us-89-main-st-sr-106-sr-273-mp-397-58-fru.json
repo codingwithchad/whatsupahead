@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-main-st-sr-106-sr-273-mp-397-58-fru",
+  "name": "US-89 @ Main St / SR-106 / SR-273 / MP 397.58, FRU",
+  "lat": 41.01144,
+  "lon": -111.9127,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167137",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

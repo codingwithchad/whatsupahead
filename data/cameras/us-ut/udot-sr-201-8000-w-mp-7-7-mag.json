@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-8000-w-mp-7-7-mag",
+  "name": "SR-201 @ 8000 W / MP 7.7, MAG",
+  "lat": 40.71858,
+  "lon": -112.08214,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165667",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

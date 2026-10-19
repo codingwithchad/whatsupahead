@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-university-ave-us-189-1860-s-mp-263-4-pvo",
+  "name": "I-15 NB @ University Ave / US-189 / 1860 S / MP 263.4, PVO",
+  "lat": 40.20852,
+  "lon": -111.65896,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166729",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

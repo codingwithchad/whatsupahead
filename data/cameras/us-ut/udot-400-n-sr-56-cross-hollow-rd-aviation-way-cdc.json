@@ -1,0 +1,20 @@
+{
+  "id": "udot-400-n-sr-56-cross-hollow-rd-aviation-way-cdc",
+  "name": "400 N / SR-56 @ Cross Hollow Rd / Aviation Way, CDC",
+  "lat": 37.6849,
+  "lon": -113.10622,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165109",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 56"
+}

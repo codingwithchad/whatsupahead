@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-milepost-114-35-bv",
+  "name": "I-15 NB @ Milepost 114.35, BV",
+  "lat": 38.33038,
+  "lon": -112.65636,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164820",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

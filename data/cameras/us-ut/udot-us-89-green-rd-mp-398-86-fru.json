@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-green-rd-mp-398-86-fru",
+  "name": "US-89 @ Green Rd / MP 398.86, FRU",
+  "lat": 41.02982,
+  "lon": -111.90898,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166983",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

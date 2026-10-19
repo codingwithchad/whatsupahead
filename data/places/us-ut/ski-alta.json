@@ -1,0 +1,17 @@
+{
+  "id": "ski-alta",
+  "name": "Alta",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "At the top of Little Cottonwood Canyon (SR 210)",
+  "lat": 40.5884,
+  "lon": -111.6386,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Alta's website",
+    "url": "https://www.alta.com/"
+  },
+  "snow_report_url": "https://www.alta.com/weather"
+}

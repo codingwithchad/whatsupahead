@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-i-84-eb-exit-ramp-swe",
+  "name": "US-89 @ I-84 EB Exit Ramp, SWE",
+  "lat": 41.13566,
+  "lon": -111.91329,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164499",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

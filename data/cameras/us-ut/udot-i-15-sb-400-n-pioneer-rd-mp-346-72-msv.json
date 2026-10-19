@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-400-n-pioneer-rd-mp-346-72-msv",
+  "name": "I-15 SB @ 400 N / Pioneer Rd / MP 346.72, MSV",
+  "lat": 41.26815,
+  "lon": -112.02668,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164541",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

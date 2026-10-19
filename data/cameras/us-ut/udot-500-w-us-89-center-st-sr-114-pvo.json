@@ -1,0 +1,20 @@
+{
+  "id": "udot-500-w-us-89-center-st-sr-114-pvo",
+  "name": "500 W / US-89 @ Center St / SR-114, PVO",
+  "lat": 40.23376,
+  "lon": -111.6675,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167157",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-sb-1900-s-mp-19-82-slc",
+  "name": "I-215 W SB @ 1900 S / MP 19.82, SLC",
+  "lat": 40.72967,
+  "lon": -111.95036,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166973",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

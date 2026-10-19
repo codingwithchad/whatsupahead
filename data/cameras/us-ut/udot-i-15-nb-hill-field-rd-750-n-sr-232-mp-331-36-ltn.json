@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-hill-field-rd-750-n-sr-232-mp-331-36-ltn",
+  "name": "I-15 NB @ Hill Field Rd / 750 N / SR-232 / MP 331.36, LTN",
+  "lat": 41.07096,
+  "lon": -111.97355,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166751",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

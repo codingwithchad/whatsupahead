@@ -1,0 +1,19 @@
+{
+  "id": "snowbasin",
+  "name": "Snowbasin Road",
+  "route": "SR 226",
+  "connects": "Huntsville and Trappers Loop to Snowbasin",
+  "group": "Northern Utah",
+  "lat": 41.2196,
+  "lon": -111.851,
+  "elevation_ft": 6600,
+  "place": "pass-snowbasin",
+  "report": {
+    "source": "udot",
+    "route": "SR 226"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

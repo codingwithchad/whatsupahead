@@ -1,0 +1,20 @@
+{
+  "id": "udot-400-n-sr-147-spanish-fork-pkwy-2550-e-spf",
+  "name": "400 N / SR-147 @ Spanish Fork Pkwy / 2550 E, SPF",
+  "lat": 40.11534,
+  "lon": -111.61219,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165265",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 147"
+}

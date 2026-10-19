@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-bangerter-hwy-sr-154-mp-289-83-dpr",
+  "name": "I-15 SB @ Bangerter Hwy / SR-154 / MP 289.83, DPR",
+  "lat": 40.5039,
+  "lon": -111.89173,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167015",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

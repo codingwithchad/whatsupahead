@@ -72,6 +72,12 @@ export function needFor(text: string, v: Vehicle): Answer {
 	// Caltrans R-1: snow tires instead of chains on vehicles under 6,000 lb. NDOT: "Chains or Snow Tires Required".
 	if (/snow tires allowed|chains or snow tires required/i.test(t))
 		return v === 'tow' ? answer('chains') : answer('tires', 'Snow tires, or chains. Carry chains');
+	// UDOT's traction rule (the Cottonwood canyons and other roads in a storm): four- or all-wheel drive with snow
+	// tires (M+S or the snowflake mark), or chains; "4WD/AWD or Chains Required".
+	if (/traction (law|device)|(4wd|awd|4x4|(four|all)[- ]wheel drive)[^.]{0,40}\bor chains/i.test(t))
+		return v === 'awd'
+			? answer('tires', 'AWD or 4WD with snow tires: no chains. Carry them')
+			: answer('chains');
 	// ODOT C: traction tires instead of chains under 10,000 lb and not towing.
 	if (/traction tires allowed in place of chains/i.test(t))
 		return v === 'tow'

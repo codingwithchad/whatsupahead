@@ -1,0 +1,20 @@
+{
+  "id": "udot-100-e-alpine-hwy-sr-74-300-n-afk",
+  "name": "100 E / Alpine Hwy / SR-74 @ 300 N, AFK",
+  "lat": 40.38316,
+  "lon": -111.79596,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165348",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 74"
+}

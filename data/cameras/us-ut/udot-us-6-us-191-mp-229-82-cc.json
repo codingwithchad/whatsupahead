@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-6-us-191-mp-229-82-cc",
+  "name": "US-6 @ US-191 / MP 229.82, CC",
+  "lat": 39.725804,
+  "lon": -110.867521,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166292",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 6"
+}

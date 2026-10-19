@@ -1,0 +1,20 @@
+{
+  "id": "udot-university-ave-us-189-east-bay-blvd-town-center-dr-1420-s-pv",
+  "name": "University Ave / US-189 @ East Bay Blvd / Town Center Dr / 1420 S, PVO",
+  "lat": 40.214815,
+  "lon": -111.658719,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165417",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

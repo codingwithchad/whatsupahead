@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-parleys-canyon-wb-east-quarry-mp-130-38-sl",
+  "name": "I-80 / Parleys Canyon WB @ East Quarry / MP 130.38, SL",
+  "lat": 40.72914,
+  "lon": -111.76554,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167108",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

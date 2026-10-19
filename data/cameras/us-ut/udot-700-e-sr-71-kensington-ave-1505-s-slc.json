@@ -1,0 +1,20 @@
+{
+  "id": "udot-700-e-sr-71-kensington-ave-1505-s-slc",
+  "name": "700 E / SR-71 @ Kensington Ave / 1505 S, SLC",
+  "lat": 40.736329,
+  "lon": -111.870923,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166662",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 71"
+}

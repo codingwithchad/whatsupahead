@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-main-st-sr-156-mp-257-35-spf",
+  "name": "I-15 NB @ Main St / SR-156 / MP 257.35, SPF",
+  "lat": 40.12391,
+  "lon": -111.65523,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164408",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

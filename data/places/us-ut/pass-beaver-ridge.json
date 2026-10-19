@@ -1,0 +1,11 @@
+{
+  "id": "pass-beaver-ridge",
+  "name": "Beaver Ridge (I 15)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Beaver to Cedar City on I-15",
+  "lat": 38.1564,
+  "lon": -112.6123,
+  "radius_miles": 10,
+  "collection": "passes"
+}

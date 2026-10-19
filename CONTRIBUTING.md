@@ -12,7 +12,7 @@ Thanks for helping. You can contribute without writing any code, and nothing you
 
 ## The one rule for cameras: only feeds the owner publishes for public use
 
-Add a camera only if its owner publishes it for public reuse: a government data feed (state DOT, National Park Service, NOAA, a state or county open-data program), or a service whose terms allow it. Do **not** add cameras that are private, belong to a business or TV station, or that you found by guessing a URL. Explain in your pull request where the feed comes from and why reuse is allowed. See [docs/sources.md](docs/sources.md) for what we already use. When in doubt, open an issue first.
+Add a camera only if its owner publishes it for public reuse: a government data feed (state DOT, National Park Service, NOAA, a state or county open-data program), or a service whose terms allow it. Do **not** add cameras that are private, belong to a business or TV station, or that you found by guessing a URL. Explain in your pull request where the feed comes from and why reuse is allowed. See [docs/sources.md](docs/sources.md) for what we already use, and [docs/source-rules.md](docs/source-rules.md) for each service's own rules (rate limits, credit, what may be copied). When in doubt, open an issue first.
 
 Submit new cameras with `"status": "pending"`. The app only shows `approved` cameras; a maintainer flips it to `approved` after checking the source.
 

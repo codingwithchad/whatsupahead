@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-eb-bangerter-hwy-4000-w-sr-154-mp-115-35-slc",
+  "name": "I-80 EB @ Bangerter Hwy / 4000 W / SR-154 / MP 115.35, SLC",
+  "lat": 40.76389,
+  "lon": -111.98733,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167217",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

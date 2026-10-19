@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-layton-pkwy-sr-126-mp-330-12-ltn",
+  "name": "I-15 NB @ Layton Pkwy / SR-126 / MP 330.12, LTN",
+  "lat": 41.05634,
+  "lon": -111.96043,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164633",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-14-eb-mammoth-creek-rd-duck-creek-ridge-rd-mp-31-06-kn",
+  "name": "SR-14 EB @ Mammoth Creek Rd / Duck Creek Ridge Rd / MP 31.06, KN",
+  "lat": 37.51729,
+  "lon": -112.6461,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166684",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 14"
+}

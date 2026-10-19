@@ -1,0 +1,13 @@
+{
+  "id": "salt-lake-city-alta",
+  "name": "Salt Lake City to Alta",
+  "blurb": "Up Little Cottonwood Canyon to Snowbird and Alta",
+  "from": "Salt Lake City",
+  "to": "ski-alta",
+  "season": {
+    "from": "11-15",
+    "to": "04-15"
+  },
+  "state": "UT",
+  "order": 2
+}

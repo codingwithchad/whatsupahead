@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-350-s-mp-334-52-cfd",
+  "name": "I-15 NB @ 350 S / MP 334.52, CFD",
+  "lat": 41.10859,
+  "lon": -112.00833,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165224",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

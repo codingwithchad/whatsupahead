@@ -32,15 +32,21 @@
 			<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
 				>OpenStreetMap contributors</a
 			>, through the open-source
-			<a href="https://project-osrm.org/" target="_blank" rel="noopener">OSRM</a> routing service and
-			Nominatim and Photon (by Komoot), and town and ZIP locations from the US Census Bureau. The app
-			uses a route only as a line on the map to find the cameras along it; it doesn't give turn-by-turn
-			directions.
+			<a href="https://project-osrm.org/" target="_blank" rel="noopener">OSRM</a> routing service
+			and Nominatim and Photon (by Komoot), and town and ZIP locations from the US Census Bureau.
+			The app uses a route only as a line on the map to find the cameras along it; it doesn't give
+			turn-by-turn directions. A road missing or wrong on the map?
+			<a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener"
+				>Fix the map</a
+			>.
 		</li>
 		<li>
 			Cameras and road reports: the Washington State Department of Transportation (WSDOT), WSDOT
 			Aviation, the Oregon Department of Transportation (TripCheck), the California Department of
-			Transportation (Caltrans) and the National Park Service.
+			Transportation (Caltrans), the Idaho Transportation Department (Idaho 511), the Nevada
+			Department of Transportation (Nevada 511), the Utah Department of Transportation (UDOT
+			Traffic), the National Park Service and USGS. Snow depth from the USDA's SNOTEL gauges, and
+			avalanche danger from the avalanche centers through avalanche.org.
 		</li>
 		<li>
 			Weather, rivers, tides and flights: the National Weather Service, NOAA, USGS and the FAA.

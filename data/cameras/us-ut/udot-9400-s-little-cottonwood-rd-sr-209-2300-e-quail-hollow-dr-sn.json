@@ -1,0 +1,20 @@
+{
+  "id": "udot-9400-s-little-cottonwood-rd-sr-209-2300-e-quail-hollow-dr-sn",
+  "name": "9400 S / Little Cottonwood Rd / SR-209 @ 2300 E / Quail Hollow Dr, SND",
+  "lat": 40.57908,
+  "lon": -111.82393,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164812",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 209"
+}

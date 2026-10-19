@@ -61,19 +61,20 @@
         "source",
         "route"
       ],
-      "description": "Oregon, California, Idaho and Nevada passes: which state feed the report comes from.",
+      "description": "Oregon, California, Idaho, Nevada and Utah passes: which state feed the report comes from.",
       "properties": {
         "source": {
           "enum": [
             "odot",
             "caltrans",
             "itd",
-            "ndot"
+            "ndot",
+            "udot"
           ]
         },
         "route": {
           "type": "string",
-          "description": "The highway as the feed writes it, e.g. US20 (ODOT), SR-89 (Caltrans), I 90 (ITD) or SR 431 (NDOT)."
+          "description": "The highway as the feed writes it, e.g. US20 (ODOT), SR-89 (Caltrans), I 90 (ITD), SR 431 (NDOT) or SR 210 (UDOT)."
         },
         "radius_km": {
           "type": "number",

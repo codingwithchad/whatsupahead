@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-beck-st-us-89-mp-312-8-nsl",
+  "name": "I-15 SB @ Beck St / US-89 / MP 312.8, NSL",
+  "lat": 40.82844,
+  "lon": -111.91606,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167272",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

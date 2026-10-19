@@ -1,0 +1,20 @@
+{
+  "id": "udot-university-ave-us-189-3300-n-pvo",
+  "name": "University Ave / US-189 @ 3300 N, PVO",
+  "lat": 40.277309,
+  "lon": -111.657506,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165421",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

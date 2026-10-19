@@ -1,0 +1,16 @@
+{
+  "id": "ski-brian-head",
+  "name": "Brian Head",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "At the top of SR 143 from Parowan, off I-15",
+  "lat": 37.7021,
+  "lon": -112.8499,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Brian Head's website",
+    "url": "https://www.brianhead.com/"
+  }
+}

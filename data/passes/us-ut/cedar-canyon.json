@@ -1,0 +1,19 @@
+{
+  "id": "cedar-canyon",
+  "name": "Cedar Canyon Summit",
+  "route": "SR 14",
+  "connects": "Cedar City to Duck Creek and Long Valley Junction",
+  "group": "Southern Utah (I-15 and I-70)",
+  "lat": 37.56764,
+  "lon": -112.8493,
+  "elevation_ft": 9920,
+  "place": "pass-cedar-canyon",
+  "report": {
+    "source": "udot",
+    "route": "SR 14"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

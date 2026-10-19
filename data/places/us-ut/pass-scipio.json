@@ -1,0 +1,11 @@
+{
+  "id": "pass-scipio",
+  "name": "Scipio Summit (I 15)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Nephi to Fillmore on I-15",
+  "lat": 39.2039,
+  "lon": -112.171,
+  "radius_miles": 10,
+  "collection": "passes"
+}

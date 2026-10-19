@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-89-nb-shepard-ln-frm",
+  "name": "US-89 NB @ Shepard Ln, FRM",
+  "lat": 41.00102,
+  "lon": -111.90746,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167150",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

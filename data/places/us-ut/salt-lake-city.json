@@ -1,0 +1,10 @@
+{
+  "id": "salt-lake-city",
+  "name": "Salt Lake City",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "I-15, I-80 and I-215",
+  "lat": 40.7608,
+  "lon": -111.891,
+  "radius_miles": 5
+}

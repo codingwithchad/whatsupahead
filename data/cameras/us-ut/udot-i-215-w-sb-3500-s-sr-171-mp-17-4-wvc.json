@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-w-sb-3500-s-sr-171-mp-17-4-wvc",
+  "name": "I-215 W SB @ 3500 S / SR-171 / MP 17.4, WVC",
+  "lat": 40.69454,
+  "lon": -111.95258,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166774",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

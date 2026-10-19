@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-130-minersville-hwy-3000-n-cdc",
+  "name": "SR-130 / Minersville Hwy @ 3000 N, CDC",
+  "lat": 37.73148,
+  "lon": -113.05543,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165182",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 130"
+}

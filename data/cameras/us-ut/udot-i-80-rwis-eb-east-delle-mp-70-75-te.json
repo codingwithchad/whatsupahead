@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-rwis-eb-east-delle-mp-70-75-te",
+  "name": "I-80 RWIS EB @ East Delle / MP 70.75, TE",
+  "lat": 40.75603,
+  "lon": -112.76008,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165262",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

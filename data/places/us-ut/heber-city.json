@@ -1,0 +1,10 @@
+{
+  "id": "heber-city",
+  "name": "Heber City",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "US 40 and US 189",
+  "lat": 40.5069,
+  "lon": -111.4133,
+  "radius_miles": 4
+}

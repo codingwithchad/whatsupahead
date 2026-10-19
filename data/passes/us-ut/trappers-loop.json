@@ -1,0 +1,19 @@
+{
+  "id": "trappers-loop",
+  "name": "Trappers Loop",
+  "route": "SR 167",
+  "connects": "I-84 at Mountain Green to Huntsville and the Ogden Valley",
+  "group": "Northern Utah",
+  "lat": 41.2051,
+  "lon": -111.8162,
+  "elevation_ft": 6050,
+  "place": "pass-trappers-loop",
+  "report": {
+    "source": "udot",
+    "route": "SR 167"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  }
+}

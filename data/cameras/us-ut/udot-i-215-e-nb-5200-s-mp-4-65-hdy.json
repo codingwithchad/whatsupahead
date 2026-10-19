@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-e-nb-5200-s-mp-4-65-hdy",
+  "name": "I-215 E NB @ 5200 S / MP 4.65, HDY",
+  "lat": 40.65701,
+  "lon": -111.80678,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166972",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

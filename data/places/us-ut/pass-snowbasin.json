@@ -1,0 +1,11 @@
+{
+  "id": "pass-snowbasin",
+  "name": "Snowbasin Road (SR 226)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Huntsville and Trappers Loop to Snowbasin",
+  "lat": 41.2196,
+  "lon": -111.851,
+  "radius_miles": 10,
+  "collection": "passes"
+}

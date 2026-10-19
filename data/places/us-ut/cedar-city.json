@@ -1,0 +1,10 @@
+{
+  "id": "cedar-city",
+  "name": "Cedar City",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "I-15 and SR 14",
+  "lat": 37.6775,
+  "lon": -113.0619,
+  "radius_miles": 4
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-eb-6200-w-mp-10-04-wvc",
+  "name": "SR-201 EB @ 6200 W / MP 10.04, WVC",
+  "lat": 40.72492,
+  "lon": -112.03934,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166279",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

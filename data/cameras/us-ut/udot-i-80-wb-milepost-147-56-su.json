@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-wb-milepost-147-56-su",
+  "name": "I-80 WB @ Milepost 147.56, SU",
+  "lat": 40.73694,
+  "lon": -111.48655,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165064",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

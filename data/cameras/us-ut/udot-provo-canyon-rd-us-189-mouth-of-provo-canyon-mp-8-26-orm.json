@@ -1,0 +1,20 @@
+{
+  "id": "udot-provo-canyon-rd-us-189-mouth-of-provo-canyon-mp-8-26-orm",
+  "name": "Provo Canyon Rd / US-189 @ Mouth of Provo Canyon / MP 8.26, ORM",
+  "lat": 40.32251,
+  "lon": -111.64705,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164897",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 189"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-11400-s-sr-175-andover-rd-1500-w-sjo",
+  "name": "11400 S / SR-175 @ Andover Rd / 1500 W, SJO",
+  "lat": 40.544046,
+  "lon": -111.934046,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166840",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 175"
+}

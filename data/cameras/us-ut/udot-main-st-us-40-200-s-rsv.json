@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-40-200-s-rsv",
+  "name": "Main St / US-40 @ 200 S, RSV",
+  "lat": 40.296883,
+  "lon": -109.988671,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167297",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

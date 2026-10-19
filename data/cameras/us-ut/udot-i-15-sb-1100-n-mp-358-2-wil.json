@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-1100-n-mp-358-2-wil",
+  "name": "I-15 SB @ 1100 N / MP 358.2, WIL",
+  "lat": 41.43054,
+  "lon": -112.05834,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165943",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

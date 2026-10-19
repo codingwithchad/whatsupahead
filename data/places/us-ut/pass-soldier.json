@@ -1,0 +1,11 @@
+{
+  "id": "pass-soldier",
+  "name": "Soldier Summit (US 6)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Spanish Fork to Price, and on to Moab",
+  "lat": 39.9285,
+  "lon": -111.0835,
+  "radius_miles": 10,
+  "collection": "passes"
+}

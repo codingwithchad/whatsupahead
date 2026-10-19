@@ -1,0 +1,20 @@
+{
+  "id": "udot-800-s-sr-178-1270-w-turf-farm-rd-psn",
+  "name": "800 S / SR-178 @ 1270 W / Turf Farm Rd, PSN",
+  "lat": 40.03122,
+  "lon": -111.75389,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165355",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 178"
+}

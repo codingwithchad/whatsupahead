@@ -1,0 +1,20 @@
+{
+  "id": "udot-bangerter-hwy-sr-154-sb-12600-s-sr-71-rvt",
+  "name": "Bangerter Hwy / SR-154 SB @ 12600 S / SR-71, RVT",
+  "lat": 40.52235,
+  "lon": -111.98434,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164965",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 154"
+}

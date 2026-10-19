@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-plymouth-sr-13-mp-392-7-be",
+  "name": "I-15 NB @ Plymouth / SR-13 / MP 392.7, BE",
+  "lat": 41.88622,
+  "lon": -112.17007,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167208",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

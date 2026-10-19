@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-manderfield-rd-mp-120-15-bv",
+  "name": "I-15 SB @ Manderfield Rd / MP 120.15, BV",
+  "lat": 38.41313,
+  "lon": -112.65361,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164420",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

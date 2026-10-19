@@ -1,0 +1,10 @@
+{
+  "id": "ogden",
+  "name": "Ogden",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "I-15 and Ogden Canyon",
+  "lat": 41.223,
+  "lon": -111.9738,
+  "radius_miles": 4
+}

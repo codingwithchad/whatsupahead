@@ -1,0 +1,20 @@
+{
+  "id": "udot-state-st-us-89-8375-s-princeton-dr-snd",
+  "name": "State St / US-89 @ 8375 S / Princeton Dr, SND",
+  "lat": 40.59909,
+  "lon": -111.89063,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165079",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

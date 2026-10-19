@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-30-6000-w-sr-23-ca",
+  "name": "SR-30 @ 6000 W / SR-23, CA",
+  "lat": 41.7504,
+  "lon": -111.979033,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166706",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 30"
+}

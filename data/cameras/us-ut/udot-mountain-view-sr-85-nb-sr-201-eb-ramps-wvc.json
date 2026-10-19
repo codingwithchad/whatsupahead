@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-nb-sr-201-eb-ramps-wvc",
+  "name": "Mountain View / SR-85 NB @ SR-201 EB Ramps, WVC",
+  "lat": 40.72473,
+  "lon": -112.02887,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164256",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

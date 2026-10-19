@@ -1,0 +1,20 @@
+{
+  "id": "udot-little-cottonwood-rd-sr-210-lisa-falls-mp-6-5-sl",
+  "name": "Little Cottonwood Rd / SR-210 @ Lisa Falls / MP 6.5, SL",
+  "lat": 40.57169,
+  "lon": -111.72864,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164768",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 210"
+}

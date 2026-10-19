@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-s-eb-300-e-mp-10-18-mdv",
+  "name": "I-215 S EB @ 300 E / MP 10.18, MDV",
+  "lat": 40.63072,
+  "lon": -111.88173,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167061",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

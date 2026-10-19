@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-4500-s-sr-266-mp-301-65-mur",
+  "name": "I-15 SB @ 4500 S / SR-266 / MP 301.65, MUR",
+  "lat": 40.6739,
+  "lon": -111.90247,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167029",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

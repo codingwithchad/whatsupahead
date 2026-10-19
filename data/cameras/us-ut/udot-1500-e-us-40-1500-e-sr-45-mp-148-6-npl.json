@@ -1,0 +1,20 @@
+{
+  "id": "udot-1500-e-us-40-1500-e-sr-45-mp-148-6-npl",
+  "name": "1500 E / US-40 @ 1500 E / SR-45 / MP 148.6, NPL",
+  "lat": 40.414335,
+  "lon": -109.498606,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165418",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 40"
+}

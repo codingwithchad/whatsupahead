@@ -1,0 +1,20 @@
+{
+  "id": "big-cottonwood",
+  "name": "Big Cottonwood Canyon",
+  "route": "SR 190",
+  "connects": "Salt Lake Valley to Solitude and Brighton",
+  "group": "Wasatch Front and Park City",
+  "lat": 40.59915,
+  "lon": -111.5841,
+  "elevation_ft": 8775,
+  "place": "pass-big-cottonwood",
+  "report": {
+    "source": "udot",
+    "route": "SR 190"
+  },
+  "link": {
+    "label": "UDOT Traffic road conditions",
+    "url": "https://www.udottraffic.utah.gov/"
+  },
+  "road": "uv_wFn`liTaFlImk@rEwq@eCmaAgM{j@m@emAws@do@nYlDlC}BjH|[rMdj@z@haAzL~wAvD~C{@jGuMhE{ZhCoFhGgCjYg@d]e[zRw^vHyCzCgb@o@ye@kRal@qPwWjIai@Ds]eGqVjAiBjKYZqMsE_JkDkQgIe@oCgEkH]sFcGgEkI_DsSuYmg@KiO`GcO_Aq@gA|Cq@uA~H_NeFwmAhFeWiHsIkQel@yLyRcCkTgLu^Min@iQe]Lk^iM{P_CuLqGgEoJka@]yN~CyOtj@cfAbUav@jLku@zb@}lAfJ}MxDi\\`EmMhQeIxJwS`PaTjUqHbU}i@`TaQbKqBpN|CpXlZ|MRvByC"
+}

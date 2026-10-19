@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-63-center-st-bcc",
+  "name": "Main St / SR-63 @ Center St, BCC",
+  "lat": 37.67406,
+  "lon": -112.15626,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164996",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 63"
+}

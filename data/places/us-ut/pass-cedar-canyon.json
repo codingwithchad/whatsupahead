@@ -1,0 +1,11 @@
+{
+  "id": "pass-cedar-canyon",
+  "name": "Cedar Canyon Summit (SR 14)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Cedar City to Duck Creek and Long Valley Junction",
+  "lat": 37.56764,
+  "lon": -112.8493,
+  "radius_miles": 10,
+  "collection": "passes"
+}

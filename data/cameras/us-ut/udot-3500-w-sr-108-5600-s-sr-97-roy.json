@@ -1,0 +1,20 @@
+{
+  "id": "udot-3500-w-sr-108-5600-s-sr-97-roy",
+  "name": "3500 W / SR-108 @ 5600 S / SR-97, ROY",
+  "lat": 41.16141,
+  "lon": -112.06425,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166002",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 108"
+}

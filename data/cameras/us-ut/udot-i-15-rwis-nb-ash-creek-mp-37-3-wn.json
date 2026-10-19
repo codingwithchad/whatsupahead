@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-rwis-nb-ash-creek-mp-37-3-wn",
+  "name": "I-15 RWIS NB @ Ash Creek / MP 37.3, WN",
+  "lat": 37.412479,
+  "lon": -113.234523,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165393",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

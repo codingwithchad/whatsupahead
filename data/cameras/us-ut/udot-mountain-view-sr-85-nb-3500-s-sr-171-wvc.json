@@ -1,0 +1,20 @@
+{
+  "id": "udot-mountain-view-sr-85-nb-3500-s-sr-171-wvc",
+  "name": "Mountain View / SR-85 NB @ 3500 S / SR-171, WVC",
+  "lat": 40.69677,
+  "lon": -112.02822,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165553",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 85"
+}

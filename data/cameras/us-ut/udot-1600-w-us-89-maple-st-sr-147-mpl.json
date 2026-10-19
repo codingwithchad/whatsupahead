@@ -1,0 +1,20 @@
+{
+  "id": "udot-1600-w-us-89-maple-st-sr-147-mpl",
+  "name": "1600 W / US-89 @ Maple St / SR-147, MPL",
+  "lat": 40.130268,
+  "lon": -111.597585,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165454",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

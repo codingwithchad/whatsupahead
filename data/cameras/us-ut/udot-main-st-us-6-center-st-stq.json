@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-us-6-center-st-stq",
+  "name": "Main St / US-6 @ Center St, STQ",
+  "lat": 39.97571,
+  "lon": -111.78539,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166897",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 6"
+}

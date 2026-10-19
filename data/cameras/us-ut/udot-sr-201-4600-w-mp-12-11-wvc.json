@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-4600-w-mp-12-11-wvc",
+  "name": "SR-201 @ 4600 W / MP 12.11, WVC",
+  "lat": 40.72495,
+  "lon": -111.99979,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166761",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-us-6-center-st-1430-e-spf",
+  "name": "US-6 @ Center St / 1430 E, SPF",
+  "lat": 40.10962,
+  "lon": -111.63167,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166752",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 6"
+}

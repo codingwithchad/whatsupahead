@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-eb-2400-e-mp-126-82-slc-tunnel",
+  "name": "I-80 EB @ 2400 E / MP 126.82, SLC (Tunnel)",
+  "lat": 40.71243,
+  "lon": -111.82251,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165400",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

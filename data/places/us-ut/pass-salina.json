@@ -1,0 +1,11 @@
+{
+  "id": "pass-salina",
+  "name": "Salina Summit (I 70)",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "Salina to Green River on I-70",
+  "lat": 38.77891,
+  "lon": -111.4846,
+  "radius_miles": 10,
+  "collection": "passes"
+}

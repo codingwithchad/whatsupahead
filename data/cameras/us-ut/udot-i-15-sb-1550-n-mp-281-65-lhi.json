@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-1550-n-mp-281-65-lhi",
+  "name": "I-15 SB @ 1550 N / MP 281.65, LHI",
+  "lat": 40.40705,
+  "lon": -111.85912,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165907",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-55-700-e-prc",
+  "name": "Main St / SR-55 @ 700 E, PRC",
+  "lat": 39.59968,
+  "lon": -110.79809,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165028",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 55"
+}

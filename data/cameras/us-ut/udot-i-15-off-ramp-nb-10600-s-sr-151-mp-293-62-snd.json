@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-off-ramp-nb-10600-s-sr-151-mp-293-62-snd",
+  "name": "I-15 Off-ramp NB @ 10600 S / SR-151 / MP 293.62, SND",
+  "lat": 40.55878,
+  "lon": -111.8966,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165107",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

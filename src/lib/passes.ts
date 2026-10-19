@@ -168,7 +168,7 @@ export function closureSentences(road: string): string[] {
 
 /** Where a non-WSDOT pass gets its report: the state's feed, the highway as that feed writes it, how far to look. */
 export interface PassReportSource {
-	source: 'odot' | 'caltrans' | 'itd' | 'ndot';
+	source: 'odot' | 'caltrans' | 'itd' | 'ndot' | 'udot';
 	route: string;
 	radius_km?: number;
 	/** Caltrans districts the pass's checkpoints are in, so the server fetches only what it needs. */
@@ -191,9 +191,15 @@ interface Pt {
 export function reportSource(pass: {
 	pass_id?: number;
 	report?: Pick<PassReportSource, 'source'>;
-}): 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD' | 'NDOT' {
+}): 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD' | 'NDOT' | 'UDOT' {
 	if (pass.pass_id !== undefined) return 'WSDOT';
-	const names = { odot: 'ODOT', caltrans: 'Caltrans', itd: 'ITD', ndot: 'NDOT' } as const;
+	const names = {
+		odot: 'ODOT',
+		caltrans: 'Caltrans',
+		itd: 'ITD',
+		ndot: 'NDOT',
+		udot: 'UDOT'
+	} as const;
 	return names[pass.report?.source ?? 'caltrans'];
 }
 

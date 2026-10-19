@@ -1,0 +1,20 @@
+{
+  "id": "udot-205-s-sr-193-3000-w-syr",
+  "name": "205 S / SR-193 @ 3000 W, SYR",
+  "lat": 41.11091,
+  "lon": -112.08388,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165416",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 193"
+}

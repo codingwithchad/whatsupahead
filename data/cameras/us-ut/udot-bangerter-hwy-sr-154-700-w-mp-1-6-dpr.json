@@ -1,0 +1,20 @@
+{
+  "id": "udot-bangerter-hwy-sr-154-700-w-mp-1-6-dpr",
+  "name": "Bangerter Hwy / SR-154 @ 700 W / MP 1.6, DPR",
+  "lat": 40.4992,
+  "lon": -111.91008,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164955",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 154"
+}

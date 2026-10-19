@@ -1,0 +1,20 @@
+{
+  "id": "udot-bacchus-hwy-sr-111-5400-s-sr-173-wvc",
+  "name": "Bacchus Hwy / SR-111 @ 5400 S / SR-173, WVC",
+  "lat": 40.65405,
+  "lon": -112.07576,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165464",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 111"
+}

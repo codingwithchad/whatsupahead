@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-3400-s-mp-359-5-pry",
+  "name": "I-15 NB @ 3400 S / MP 359.5, PRY",
+  "lat": 41.44924,
+  "lon": -112.05529,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164783",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

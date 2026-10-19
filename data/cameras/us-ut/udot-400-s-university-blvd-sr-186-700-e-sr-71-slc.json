@@ -1,0 +1,20 @@
+{
+  "id": "udot-400-s-university-blvd-sr-186-700-e-sr-71-slc",
+  "name": "400 S / University Blvd / SR-186 @ 700 E / SR-71, SLC",
+  "lat": 40.76072,
+  "lon": -111.87103,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166991",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 186"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-39-1150-s-sr-134-4700-w-wb",
+  "name": "SR-39 / 1150 S @ SR-134 / 4700 W, WB",
+  "lat": 41.246758,
+  "lon": -112.092758,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167206",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 39"
+}

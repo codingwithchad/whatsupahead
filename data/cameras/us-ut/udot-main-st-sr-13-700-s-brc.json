@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-13-700-s-brc",
+  "name": "Main St / SR-13 @ 700 S, BRC",
+  "lat": 41.49609,
+  "lon": -112.01623,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/155349",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 13"
+}

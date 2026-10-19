@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-84-wb-sr-167-mp-92-42-mn",
+  "name": "I-84 WB @ SR-167 / MP 92.42, MN",
+  "lat": 41.13858,
+  "lon": -111.82744,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164722",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 84"
+}

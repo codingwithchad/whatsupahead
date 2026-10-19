@@ -12,7 +12,7 @@ import { headingAt, projectNear, type LatLon } from './route';
 // Service warnings (winter storms, floods, wind) for the places on the way at the time you get there.
 
 export interface RoadClosure {
-	source: 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD' | 'NDOT';
+	source: 'WSDOT' | 'ODOT' | 'Caltrans' | 'ITD' | 'NDOT' | 'UDOT';
 	headline: string;
 	start: Point;
 	end: Point;
@@ -211,7 +211,8 @@ export const ROAD_SOURCES: Record<string, string> = {
 	OR: 'ODOT',
 	CA: 'Caltrans',
 	ID: 'Idaho 511 (ITD)',
-	NV: 'Nevada 511 (NDOT)'
+	NV: 'Nevada 511 (NDOT)',
+	UT: 'UDOT Traffic'
 };
 
 // ---- Weather warnings ----------------------------------------------------------------------------------

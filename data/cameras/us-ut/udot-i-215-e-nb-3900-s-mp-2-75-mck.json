@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-215-e-nb-3900-s-mp-2-75-mck",
+  "name": "I-215 E NB @ 3900 S / MP 2.75, MCK",
+  "lat": 40.68648,
+  "lon": -111.79722,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166759",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 215"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-201-900-w-mp-16-6-ssl",
+  "name": "SR-201 @ 900 W / MP 16.6, SSL",
+  "lat": 40.72512,
+  "lon": -111.91726,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167100",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 201"
+}

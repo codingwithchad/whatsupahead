@@ -1,0 +1,20 @@
+{
+  "id": "udot-state-st-us-89-800-n-sr-52-orm",
+  "name": "State St / US-89 @ 800 N / SR-52, ORM",
+  "lat": 40.31185,
+  "lon": -111.70143,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167189",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

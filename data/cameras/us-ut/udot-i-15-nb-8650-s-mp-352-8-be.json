@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-nb-8650-s-mp-352-8-be",
+  "name": "I-15 NB @ 8650 S / MP 352.8, BE",
+  "lat": 41.35402,
+  "lon": -112.0412,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164590",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "udot-sr-126-state-st-200-s-cfd",
+  "name": "SR-126 / State St @ 200 S, CFD",
+  "lat": 41.11101,
+  "lon": -112.02314,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166871",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 126"
+}

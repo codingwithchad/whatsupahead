@@ -1,0 +1,20 @@
+{
+  "id": "udot-400-n-us-89-600-e-lgn",
+  "name": "400 N / US-89 @ 600 E, LGN",
+  "lat": 41.738862,
+  "lon": -111.819497,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167228",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "US 89"
+}

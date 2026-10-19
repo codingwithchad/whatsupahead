@@ -17,9 +17,18 @@ describe('regions', () => {
 		expect(regionAt(36.17, -115.14)?.abbr).toBe('NV'); // Las Vegas
 		expect(regionAt(35.165, -114.573)?.abbr).toBe('NV'); // Laughlin
 		expect(regionAt(35.147, -114.56)).toBeUndefined(); // Bullhead City, Arizona
-		expect(regionAt(37.1, -113.58)).toBeUndefined(); // St. George, Utah
+		expect(regionAt(37.1, -113.58)?.abbr).toBe('UT'); // St. George, Utah
 		expect(timeZoneAt(39.53, -119.81)).toBe('America/Los_Angeles');
 		expect(timeZoneAt(40.737, -114.07)).toBe('America/Denver'); // West Wendover
+	});
+
+	it("puts Utah on Mountain time, with Wyoming's corner left out", () => {
+		expect(regionAt(40.76, -111.89)?.abbr).toBe('UT'); // Salt Lake City
+		expect(regionAt(40.65, -111.5)?.abbr).toBe('UT'); // Park City
+		expect(regionAt(41.3, -110.96)).toBeUndefined(); // Evanston, Wyoming
+		expect(regionAt(40.74, -114.07)?.abbr).toBe('NV'); // West Wendover stays Nevada
+		expect(regionAt(42.1, -111.9)?.abbr).toBe('ID'); // Preston, Idaho
+		expect(timeZoneAt(40.76, -111.89)).toBe('America/Denver');
 	});
 
 	it('follows the Snake River between Oregon and Idaho', () => {

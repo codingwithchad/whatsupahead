@@ -1,0 +1,20 @@
+{
+  "id": "udot-main-st-sr-160-center-st-sr-21-bvr",
+  "name": "Main St / SR-160 @ Center St / SR-21, BVR",
+  "lat": 38.27406,
+  "lon": -112.64106,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164915",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 160"
+}

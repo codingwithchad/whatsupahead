@@ -1,0 +1,10 @@
+{
+  "id": "park-city",
+  "name": "Park City",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "I-80 over Parleys Summit, and the ski areas",
+  "lat": 40.6461,
+  "lon": -111.498,
+  "radius_miles": 4
+}

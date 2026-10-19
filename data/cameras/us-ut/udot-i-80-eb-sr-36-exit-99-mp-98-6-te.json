@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-80-eb-sr-36-exit-99-mp-98-6-te",
+  "name": "I-80 EB @ SR-36 / Exit 99 / MP 98.6, TE",
+  "lat": 40.69311,
+  "lon": -112.26367,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164691",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 80"
+}

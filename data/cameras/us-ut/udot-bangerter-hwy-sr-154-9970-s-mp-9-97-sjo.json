@@ -1,0 +1,20 @@
+{
+  "id": "udot-bangerter-hwy-sr-154-9970-s-mp-9-97-sjo",
+  "name": "Bangerter Hwy / SR-154 @ 9970 S / MP 9.97, SJO",
+  "lat": 40.5701,
+  "lon": -111.977554,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/166869",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 154"
+}

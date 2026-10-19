@@ -1,0 +1,20 @@
+{
+  "id": "udot-van-winkle-expwy-sr-152-1300-e-hdy",
+  "name": "Van Winkle Expwy / SR-152 @ 1300 E, HDY",
+  "lat": 40.65858,
+  "lon": -111.85431,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/165409",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 152"
+}

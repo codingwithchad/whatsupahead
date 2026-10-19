@@ -1,0 +1,20 @@
+{
+  "id": "udot-i-15-sb-2600-s-sr-93-mp-315-24-wxs",
+  "name": "I-15 SB @ 2600 S  / SR-93 / MP 315.24, WXS",
+  "lat": 40.86144,
+  "lon": -111.90256,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/167000",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "I 15"
+}

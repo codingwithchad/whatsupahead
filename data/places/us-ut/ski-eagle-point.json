@@ -1,0 +1,16 @@
+{
+  "id": "ski-eagle-point",
+  "name": "Eagle Point",
+  "region": "Utah",
+  "state": "Utah",
+  "blurb": "East of Beaver on SR 153",
+  "lat": 38.3205,
+  "lon": -112.3838,
+  "radius_miles": 8,
+  "collection": "ski-areas",
+  "note": "The resort's own cameras are on its website but are not published for reuse; these are the road cameras nearby.",
+  "link": {
+    "label": "Eagle Point's website",
+    "url": "https://www.eaglepointresort.com/"
+  }
+}

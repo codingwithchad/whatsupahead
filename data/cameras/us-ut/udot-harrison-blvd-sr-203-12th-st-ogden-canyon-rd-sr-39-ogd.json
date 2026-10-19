@@ -1,0 +1,20 @@
+{
+  "id": "udot-harrison-blvd-sr-203-12th-st-ogden-canyon-rd-sr-39-ogd",
+  "name": "Harrison Blvd / SR-203 @ 12th St / Ogden Canyon Rd / SR-39, OGD",
+  "lat": 41.2417,
+  "lon": -111.9452,
+  "feed_url": "https://www.udottraffic.utah.gov/map/Cctv/164935",
+  "feed_type": "image",
+  "source": "UDOT",
+  "status": "approved",
+  "approved_by": "codingwithchad",
+  "page_url": "https://www.udottraffic.utah.gov/",
+  "embed_mode": "direct",
+  "refresh_seconds": 300,
+  "tags": [
+    "road"
+  ],
+  "attribution_text": "Utah Department of Transportation (UDOT Traffic)",
+  "created_at": "2026-10-19T00:00:00Z",
+  "route": "SR 203"
+}
