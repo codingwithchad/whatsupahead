@@ -459,3 +459,10 @@ and the replay, as Idaho's and Nevada's do. Winter wording is untested: check re
 what we do to keep to them. Writing it turned up two things: OSRM's demo server asks for a "fix the map" link (now
 on the About page), and Open-Meteo's free plan is for non-commercial sites only, which it defines as no ads and no
 subscriptions; the site needs an Open-Meteo paid plan before it ever shows ads or sells anything.
+
+## 2026-10-19: One host
+
+The site started on Render's free plan and moved to Azure App Service on 2026-10-10. After a week on Azure, Render is
+gone from the code and docs: the commit id now comes only from git, `onrender.com` is no longer one of our own
+addresses, and the rate limits assume one proxy in front of the app (Azure's) unless `TRUSTED_PROXIES` says
+otherwise. Old `*.onrender.com` links stop working once the Render app is deleted.

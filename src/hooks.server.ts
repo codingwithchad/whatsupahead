@@ -49,7 +49,7 @@ for (const [name, what] of [
 
 /**
  * The address people should use, for example "whatsupahead.com". When set, every other address (such as the
- * free host's own *.onrender.com address, or www.) forwards there, so old links and posts keep working.
+ * host's own address, or www.) forwards there, so old links and posts keep working.
  * Set it only after the domain is connected and its HTTPS certificate is ready.
  */
 const CANONICAL_HOST = process.env.CANONICAL_HOST?.trim().toLowerCase();
@@ -143,7 +143,7 @@ async function handleFor(
 
 // Our own hosts (and bare addresses, which are tests, not sites) never count as "came from another site".
 const OWN_HOSTS =
-	/(^|\.)(whatsupahead\.com|whatsupahead\.app|onrender\.com|azurewebsites\.net|localhost)$|^[\d.]+$|^\[/;
+	/(^|\.)(whatsupahead\.com|whatsupahead\.app|azurewebsites\.net|localhost)$|^[\d.]+$|^\[/;
 
 /** Count a page view (full page loads and in-app moves, which fetch the page's data). */
 function countVisit(event: Parameters<Handle>[0]['event']) {

@@ -36,11 +36,19 @@ describe('visitorAddress', () => {
 	const socket = () => '10.0.0.1';
 
 	it('uses the entry the proxy added, not one the visitor made up', () => {
-		// Render's proxies add three entries: the visitor, then two of their own.
-		expect(visitorAddress(req('203.0.113.9, 10.1.1.1, 10.2.2.2'), socket)).toBe('203.0.113.9');
-		expect(visitorAddress(req('6.6.6.6, 203.0.113.9, 10.1.1.1, 10.2.2.2'), socket)).toBe(
-			'203.0.113.9'
-		);
+		// Azure's proxy adds one entry, with a port.
+		expect(visitorAddress(req('203.0.113.9:51234'), socket)).toBe('203.0.113.9');
+		expect(visitorAddress(req('6.6.6.6, 203.0.113.9:51234'), socket)).toBe('203.0.113.9');
+		// A host whose proxies add three entries: the visitor, then two of their own.
+		const old = process.env.TRUSTED_PROXIES;
+		process.env.TRUSTED_PROXIES = '3';
+		try {
+			expect(visitorAddress(req('6.6.6.6, 203.0.113.9, 10.1.1.1, 10.2.2.2'), socket)).toBe(
+				'203.0.113.9'
+			);
+		} finally {
+			process.env.TRUSTED_PROXIES = old;
+		}
 	});
 
 	it("trusts Cloudflare's CF-Connecting-IP only when the request came from Cloudflare", () => {

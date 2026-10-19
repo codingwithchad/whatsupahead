@@ -46,7 +46,7 @@ answering, so you can check a new deploy.
 
 | Variable | Use |
 |---|---|
-| `TRUSTED_PROXIES` | How many `X-Forwarded-For` entries your proxies add (often 1). The rate limits use it to find the visitor's address; `/healthz` shows `forwarded_hops` so you can measure it. |
+| `TRUSTED_PROXIES` | How many `X-Forwarded-For` entries your proxies add (1 if not set). The rate limits use it to find the visitor's address; `/healthz` shows `forwarded_hops` so you can measure it. |
 | `PROTOCOL_HEADER=x-forwarded-proto` | Tells the server the visitor used https, so forms pass the same-site check. (`ORIGIN=https://your.site` works too.) |
 | `CANONICAL_HOST` | Your main address, for example `example.com`. Every other address (www, the host's own default address) forwards there. Set it only once that address works with https. |
 

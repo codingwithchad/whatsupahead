@@ -55,14 +55,14 @@ export function isCloudflare(address: string): boolean {
 /**
  * The visitor's address, for rate limits. Behind a proxy the left of X-Forwarded-For is whatever the visitor
  * chose to send, so count from the right instead: each proxy we sit behind adds one real entry there.
- * TRUSTED_PROXIES is how many entries the proxies in front of the app add. Render adds 3 (measured on the live
- * site through /healthz "forwarded_hops", 2026-10-09); Azure App Service adds 1 (2026-10-10). Check it again after moving hosts.
+ * TRUSTED_PROXIES is how many entries the proxies in front of the app add (1 unless set): Azure App Service adds 1
+ * (measured through /healthz "forwarded_hops", 2026-10-10). Check it again after moving hosts.
  * Without enough entries (local runs), the connection's own address is used.
  * Through Cloudflare, that entry is a Cloudflare address shared by many visitors; Cloudflare's CF-Connecting-IP
  * names the visitor, and is trusted only then (anyone reaching the app directly could send one).
  */
 export function visitorAddress(request: Request, connection: () => string): string {
-	const proxies = Math.max(1, Number(process.env.TRUSTED_PROXIES) || 3);
+	const proxies = Math.max(1, Number(process.env.TRUSTED_PROXIES) || 1);
 	const list = (request.headers.get('x-forwarded-for') ?? '')
 		.split(',')
 		.map((s) => s.trim())
