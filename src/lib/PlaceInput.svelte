@@ -2,6 +2,8 @@
 	interface Suggestion {
 		label: string;
 		sub: string;
+		/** What goes in the box when picked, when not "label, sub" (our own places: their exact name). */
+		value?: string;
 	}
 
 	let {
@@ -51,7 +53,7 @@
 	}
 
 	function pick(s: Suggestion) {
-		value = s.sub ? `${s.label}, ${s.sub}` : s.label;
+		value = s.value ?? (s.sub ? `${s.label}, ${s.sub}` : s.label);
 		open = false;
 		items = [];
 		sequence++;

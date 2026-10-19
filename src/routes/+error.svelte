@@ -22,6 +22,9 @@
 			: 'One of our sources may be slow or down. Try again in a minute.'}
 	</p>
 	<nav class="radius" aria-label="Where to go">
+		{#if !missing}<button type="button" class="chip" onclick={() => location.reload()}
+				>Try again</button
+			>{/if}
 		<a href="/">Home</a>
 		<a href="/passes">Mountain passes</a>
 		<a href="/places">All places</a>
