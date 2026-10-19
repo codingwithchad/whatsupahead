@@ -59,7 +59,10 @@
 	</div>
 {/snippet}
 
-<svelte:head><title>Powder day · What's Up Ahead</title></svelte:head>
+<svelte:head
+	><title>Powder Day: Ski Areas With the Most New Snow Near You · What's Up Ahead</title
+	></svelte:head
+>
 
 <header class="top">
 	<a class="brand" href="/">What's Up Ahead</a>

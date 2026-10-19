@@ -52,6 +52,7 @@
 	<nav aria-label="About">
 		<a href="/about">About</a>
 		<a href="/passes">Passes</a>
+		<a href="/drives">Popular drives</a>
 		<a href="/tires">Tires and chains</a>
 		<a href="/contribute">Add a camera</a>
 		<a href="{REPO_URL}/blob/main/docs/sources.md" target="_blank" rel="noopener">Sources</a>

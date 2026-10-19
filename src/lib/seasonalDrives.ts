@@ -3,6 +3,10 @@ import type { Drive } from './types';
 // The home page's "Drives this season": what people drive now (Leavenworth for Oktoberfest, the airport at
 // Thanksgiving, the ski roads in winter), mixed across the states, instead of one fixed list.
 
+/** The drive page for a featured drive (the live one, worked out when it loads). */
+export const driveTripLink = (d: Drive) =>
+	`/trip?from=${encodeURIComponent(d.from)}&to=${encodeURIComponent(d.to)}${d.from_label ? `&fl=${encodeURIComponent(d.from_label)}` : ''}${d.to_label ? `&tl=${encodeURIComponent(d.to_label)}` : ''}`;
+
 /** Is "MM-DD" inside the season? A season may wrap past New Year ("11-15" to "01-05"). */
 export function inSeason(season: Drive['season'], monthDay: string): boolean {
 	if (!season) return true;

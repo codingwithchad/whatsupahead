@@ -2,24 +2,27 @@ import { getCatalog } from '../../lib/server/catalog';
 import type { RequestHandler } from './$types';
 
 // The pages search engines should know about: the main pages, every pass, every place and every list.
-// Drive pages are left out (robots.txt keeps search engines off them), and so are single cameras.
+// Drive pages are left out (robots.txt keeps search engines off them), except the featured drives' own pages, and
+// so are single cameras.
 const escape = (s: string) =>
 	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 export const GET: RequestHandler = ({ url }) => {
-	const { passes, places, collections } = getCatalog();
+	const { passes, places, collections, drives } = getCatalog();
 	const passPlaces = new Set(passes.map((p) => p.place));
 	const paths = [
 		'/',
 		'/passes',
 		'/tires',
 		'/powder',
+		'/drives',
 		'/places',
 		'/about',
 		...passes.map((p) => `/passes/${encodeURIComponent(p.id)}`),
 		...places
 			.filter((p) => !passPlaces.has(p.id))
 			.map((p) => `/search?place=${encodeURIComponent(p.id)}`),
+		...drives.map((d) => `/drives/${encodeURIComponent(d.id)}`),
 		...collections.map((c) => `/collections/${encodeURIComponent(c.id)}`)
 	];
 	const body = `<?xml version="1.0" encoding="UTF-8"?>

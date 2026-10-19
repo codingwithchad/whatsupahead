@@ -4,6 +4,7 @@
 	import SearchBox from './SearchBox.svelte';
 	import TripForm from './TripForm.svelte';
 	import type { Drive } from './types';
+	import { driveTripLink } from './seasonalDrives';
 
 	let {
 		chips = [],
@@ -57,9 +58,6 @@
 			{ timeout: 10000 }
 		);
 	}
-
-	const driveLink = (d: Drive) =>
-		`/trip?from=${encodeURIComponent(d.from)}&to=${encodeURIComponent(d.to)}${d.from_label ? `&fl=${encodeURIComponent(d.from_label)}` : ''}${d.to_label ? `&tl=${encodeURIComponent(d.to_label)}` : ''}`;
 </script>
 
 <section class="start-card" aria-label="Start here">
@@ -114,7 +112,7 @@
 			<h3 class="mini-title">Drives this season</h3>
 			<nav class="drives" aria-label="Drives this season">
 				{#each drives as d (d.id)}
-					<a class="drive" href={driveLink(d)}>
+					<a class="drive" href={driveTripLink(d)}>
 						<span class="place-name">{d.name}</span>
 						{#if d.blurb}<span class="place-sub">{d.blurb}</span>{/if}
 					</a>
