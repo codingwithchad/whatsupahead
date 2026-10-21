@@ -315,6 +315,42 @@ export function resetStats(testStore: StatsStore<Saved> | null = null) {
 	lastSave = { at: null, ok: true, error: null };
 }
 
+// Our own hosts (and bare addresses, which are tests, not sites) never count as "came from another site".
+const OWN_HOSTS =
+	/(^|\.)(whatsupahead\.com|whatsupahead\.app|azurewebsites\.net|localhost)$|^[\d.]+$|^\[/;
+
+/**
+ * What a page view reported by the page itself (/api/view) counts as: the page, the place it is about, the page
+ * of ours it came from or the other site that sent it. `first` is the first page of a visit, whose referrer is
+ * another site; later moves inside the app give our own previous page. Null for pages we do not count.
+ */
+export function viewOf(
+	path: string,
+	referrer: string | null,
+	first: boolean
+): { page: string; place: string | null; from: string | null; source: string | null } | null {
+	if (!path.startsWith('/') || path.startsWith('//')) return null;
+	const url = new URL(path, 'https://whatsupahead.com');
+	const page = pageOf(url);
+	if (!page) return null;
+	let from: string | null = null;
+	let source: string | null = null;
+	if (referrer) {
+		try {
+			const ref = new URL(referrer);
+			if (OWN_HOSTS.test(ref.hostname)) from = pageOf(ref)?.page ?? null;
+			else if (first) source = siteName(ref.hostname);
+		} catch {
+			// not a usable address
+		}
+	}
+	// A tagged link (whatsupahead.com/?ref=fb) names where it was posted, so a post can be counted even when the
+	// app it was opened in (Facebook's, Instagram's) sends no referrer. Only a short word, never anything personal.
+	const tag = first ? url.searchParams.get('ref') : null;
+	if (tag && /^[a-z0-9-]{1,20}$/i.test(tag)) source = `${tag.toLowerCase()} (tagged link)`;
+	return { ...page, from, source };
+}
+
 /** A short name for a page of the site, and the place or collection it is about. Null for pages we do not count. */
 export function pageOf(url: URL): { page: string; place: string | null } | null {
 	const p = url.pathname.replace(/\/__data\.json$/, '').replace(/\/$/, '') || '/';

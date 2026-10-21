@@ -13,3 +13,20 @@ export function track(name: string) {
 		// counting is never worth an error
 	}
 }
+
+/**
+ * Count this page view (/api/view): the page's address and the page or site it came from. Sent from the page once
+ * it runs, so programs that only download pages are not counted. Fire and forget.
+ */
+export function trackView(url: URL, referrer: string | null, first: boolean) {
+	try {
+		navigator.sendBeacon?.(
+			'/api/view',
+			new Blob([JSON.stringify({ path: url.pathname + url.search, referrer, first })], {
+				type: 'application/json'
+			})
+		);
+	} catch {
+		// counting is never worth an error
+	}
+}

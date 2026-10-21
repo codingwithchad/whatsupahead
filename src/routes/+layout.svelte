@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { afterNavigate } from '$app/navigation';
+	import { trackView } from '../lib/track';
 	import favicon from '../lib/assets/favicon.svg';
 	import '../app.css';
 	import { APP_NAME, REPO_URL, TAGLINE, WHERE } from '../lib/brand';
@@ -8,6 +10,16 @@
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
+	// Count each page once it has shown in a browser (the first page with the site that sent it, later ones with
+	// the page before). A change that only moves within the page (a #part) is not a new page.
+	afterNavigate((nav) => {
+		const to = nav.to?.url;
+		if (!to) return;
+		const from = nav.from?.url;
+		if (from && from.pathname === to.pathname && from.search === to.search) return;
+		const first = nav.type === 'enter';
+		trackView(to, first ? document.referrer || null : (from?.href ?? null), first);
+	});
 	// Shared links (Facebook, messages, Reddit) show this. Pages with their own picture (a camera, a place, a
 	// drive, a list) set `share` in their data; every other page shows the app's general card.
 	const share = $derived(page.data.share);

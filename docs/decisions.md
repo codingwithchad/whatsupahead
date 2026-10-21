@@ -477,3 +477,12 @@ takes in Geiger Summit above Reno, which is fine for a storm post). Both pages n
 two sort buttons (ski areas: Most new snow or By state; passes: Worst first or By state, worst first being the default
 November to April) and a Show menu that puts the area in the address, so the list on screen is the list shared. Each
 area's address is its own canonical page.
+
+## 2026-10-21: Count a page once it has run
+
+On 2026-10-21 a scraper fetched every pass and place page once each from a new address every time, between 4 and 8 AM,
+with a browser's name and our home page as the referrer: 585 "people", one page each, no taps. The counter skipped
+anything that calls itself a bot, so it counted them. Page views are now sent by the page itself once it has run in a
+browser (`/api/view`, a beacon like the tap counter), not counted when the server sends a page; programs that only
+download pages no longer count. The same rules apply as before (no cookies, nothing kept about who anyone is, the
+page's short name and where it came from). Searches are still counted on the server, where the answer is known.

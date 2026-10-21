@@ -12,6 +12,7 @@ import {
 	resetStats,
 	siteName,
 	statsReport,
+	viewOf,
 	type Day
 } from './stats';
 
@@ -33,6 +34,26 @@ describe('visit counter', () => {
 		expect(at('/collections/ferries')).toEqual({ page: 'collection', place: 'collection:ferries' });
 		expect(at('/stats')).toBeNull();
 		expect(at('/img/some-camera')).toBeNull();
+	});
+
+	it('reads a view the page reported: where it came from, a tagged link only on the first page', () => {
+		expect(viewOf('/passes/stevens?ref=fb', 'https://l.facebook.com/x', true)).toEqual({
+			page: 'pass',
+			place: 'pass:stevens',
+			from: null,
+			source: 'fb (tagged link)'
+		});
+		expect(viewOf('/search?place=x', 'https://www.reddit.com/r/x', true)?.source).toBe(
+			'reddit.com'
+		);
+		expect(viewOf('/search?place=x', 'https://whatsupahead.com/', false)).toMatchObject({
+			page: 'place',
+			from: 'home',
+			source: null
+		});
+		expect(viewOf('/passes?ref=fb', 'https://whatsupahead.com/', false)?.source).toBeNull();
+		expect(viewOf('//evil.example/', null, true)).toBeNull();
+		expect(viewOf('/stats', null, true)).toBeNull();
 	});
 
 	it('counts each visitor once a day, and keeps nothing that identifies them', () => {

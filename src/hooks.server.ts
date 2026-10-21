@@ -5,15 +5,7 @@ import { startHealthChecks } from './lib/server/health';
 import { startPassHistory } from './lib/server/passHistory';
 import { allow, tooManyRequests, visitorAddress } from './lib/server/rateLimit';
 import { withVisitor } from './lib/server/visitor';
-import {
-	isPerson,
-	NO_COUNT_COOKIE,
-	pageOf,
-	recordSearch,
-	recordView,
-	siteName,
-	startStats
-} from './lib/server/stats';
+import { isPerson, NO_COUNT_COOKIE, recordSearch, startStats } from './lib/server/stats';
 import { dev } from '$app/env';
 
 // Load secrets (e.g. WSDOT_CODE) from a local .env file when present. In production, set real environment variables.
@@ -128,9 +120,9 @@ async function handleFor(
 		}
 	}
 	const response = await resolve(event);
-	if (event.request.method === 'GET' && response.status === 200) countVisit(event);
+	if (event.request.method === 'GET' && response.status === 200) countSearch(event);
 	// Pictures may be kept by Cloudflare in front of the app (a shared link's preview is then made once, not for
-	// every visitor), but pages never: each page view must reach the app to be counted, and pages are cheap.
+	// every visitor), but pages never: they carry live reports, and a page's search must reach the app to be counted.
 	if (
 		(event.isDataRequest || response.headers.get('content-type')?.startsWith('text/html')) &&
 		!response.headers.has('cdn-cache-control')
@@ -141,44 +133,13 @@ async function handleFor(
 	return response;
 }
 
-// Our own hosts (and bare addresses, which are tests, not sites) never count as "came from another site".
-const OWN_HOSTS =
-	/(^|\.)(whatsupahead\.com|whatsupahead\.app|azurewebsites\.net|localhost)$|^[\d.]+$|^\[/;
-
-/** Count a page view (full page loads and in-app moves, which fetch the page's data). */
-function countVisit(event: Parameters<Handle>[0]['event']) {
-	const page = pageOf(event.url);
-	const userAgent = event.request.headers.get('user-agent') ?? '';
-	if (!page || !isPerson(userAgent)) return;
-	// Our own test phones and browsers, marked on /stats.
+/**
+ * Page views are counted by the page itself once it runs in a browser (/api/view), so programs that only download
+ * pages (scrapers with a browser's name) are not counted. Searches are still counted here, where the answer is known.
+ */
+function countSearch(event: Parameters<Handle>[0]['event']) {
+	if (event.locals.searchFound === undefined) return;
+	if (!isPerson(event.request.headers.get('user-agent') ?? '')) return;
 	if (event.cookies.get(NO_COUNT_COOKIE)) return;
-	// A page someone opened, or moved to inside the app; not a background fetch (the offline helper refreshing
-	// its saved copy of the home page, for example). Older browsers send no Sec-Fetch-Dest: count those.
-	const dest = event.request.headers.get('sec-fetch-dest');
-	if (!event.isDataRequest && dest && dest !== 'document') return;
-	let from: string | null = null;
-	let source: string | null = null;
-	const referer = event.request.headers.get('referer');
-	if (referer) {
-		try {
-			const ref = new URL(referer);
-			if (OWN_HOSTS.test(ref.hostname)) from = pageOf(ref)?.page ?? null;
-			else if (!event.isDataRequest) source = siteName(ref.hostname);
-		} catch {
-			// not a usable address
-		}
-	}
-	// A tagged link (whatsupahead.com/?ref=fb) names where it was posted, so a post can be counted even when the
-	// app it was opened in (Facebook's, Instagram's) sends no referrer. Only a short word, never anything personal.
-	const tag = event.isDataRequest ? null : event.url.searchParams.get('ref');
-	if (tag && /^[a-z0-9-]{1,20}$/i.test(tag)) source = `${tag.toLowerCase()} (tagged link)`;
-	recordView({
-		address: visitorAddress(event.request, event.getClientAddress),
-		userAgent,
-		page: page.page,
-		place: page.place,
-		from,
-		source
-	});
-	if (event.locals.searchFound !== undefined) recordSearch(event.locals.searchFound);
+	recordSearch(event.locals.searchFound);
 }
