@@ -15,6 +15,11 @@ Adding a region: add it to `data/regions.json`, run `node scripts/build-gazettee
 add data files (or an import script for that state's DOT feed) under its folder. Place search, local times and
 automatic NWS forecasts follow from the regions file.
 
+`data/areas.json` lists mountain areas (the Sierra Nevada and Tahoe, the Wasatch...): an id, a name and a box
+(`[west, south, east, north]`). With the states, they are what the passes and ski areas lists can be narrowed to
+(`/passes?in=sierra`, `/collections/ski-areas?in=utah`), so one storm can be shared on its own. A place is in an area when
+it sits inside the box; a state goes by the state each place is in. The tests check each area holds a pass or ski area.
+
 | Field | Required | Notes |
 |---|---|---|
 | id | yes | Slug, matches filename |

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { loadOpenStates, saveOpenState } from '../../../lib/openStates';
+	import ListControls from '../../../lib/ListControls.svelte';
 	import ShareButton from '../../../lib/ShareButton.svelte';
 	import SkiSnowLine from '../../../lib/SkiSnowLine.svelte';
 	import type { SkiSnow } from '../../../lib/server/skiSnow';
@@ -11,29 +12,14 @@
 	$effect(() => {
 		opened = loadOpenStates();
 	});
-	// Ski areas: sort by the most new snow (the default November to April) and pick a state.
-	const SORT_KEY = 'ski-sort';
+	// Ski areas: sort by the most new snow (the default November to April); Show narrows the list to one state or
+	// mountain area, in the address.
 	const month = new Date().getMonth();
-	let sort = $state<'snow' | 'state'>(month >= 10 || month <= 3 ? 'snow' : 'state');
-	let only = $state<string | null>(null);
+	let sort = $state(month >= 10 || month <= 3 ? 'snow' : 'state');
 	let snow = $state<Record<string, SkiSnow> | null>(null);
 	$effect(() => {
-		try {
-			const saved = localStorage.getItem(SORT_KEY);
-			if (saved === 'snow' || saved === 'state') sort = saved;
-		} catch {
-			// remembering is optional
-		}
 		void data.snow?.then((s) => (snow = s));
 	});
-	function setSort(to: 'snow' | 'state') {
-		sort = to;
-		try {
-			localStorage.setItem(SORT_KEY, to);
-		} catch {
-			// remembering is optional
-		}
-	}
 	/** New snow first: the last 24 hours, then since 6 AM, then what's still to fall today. */
 	// Changes under 2 inches are a gauge wobbling, not snow (as on the cards).
 	const score = (s: SkiSnow | undefined) =>
@@ -42,9 +28,8 @@
 				((s.sinceSix ?? 0) >= 1 && (s.depthIn ?? 0) >= 2 ? s.sinceSix! : 0) * 10 +
 				(s.forecastIn ?? 0)
 			: -1;
-	const shownGroups = $derived(data.groups.filter((g) => !only || g.state === only));
 	const bySnow = $derived(
-		shownGroups
+		data.groups
 			.flatMap((g) => g.places)
 			// Heavenly is under two states: once in the list.
 			.filter((p, i, all) => all.findIndex((q) => q.id === p.id) === i)
@@ -61,7 +46,7 @@
 	};
 </script>
 
-<svelte:head><title>{data.collection.name} · What's Up Ahead</title></svelte:head>
+<svelte:head><title>{data.title} · What's Up Ahead</title></svelte:head>
 
 <header class="top">
 	<a class="brand" href="/">What's Up Ahead</a>
@@ -69,37 +54,26 @@
 </header>
 
 <main>
-	<h1>{data.collection.name}</h1>
-	{#if data.collection.blurb}<p class="lede-dark">{data.collection.blurb}</p>{/if}
+	<h1>{data.title}</h1>
+	{#if data.collection.blurb && !data.area}<p class="lede-dark">{data.collection.blurb}</p>{/if}
 	<div class="page-actions">
-		<ShareButton
-			path="/collections/{data.collection.id}"
-			title={data.collection.name}
-			text="{data.collection.name}: cameras and weather"
-		/>
+		<ShareButton path={data.path} title={data.title} text="{data.title}: cameras and weather" />
 	</div>
 	{#if data.snow}
 		<p class="powder-link">
 			<a href="/powder">Powder day: the most new snow within a few hours' drive of you →</a>
 		</p>
-		<div class="ski-controls">
-			<div class="chips" role="group" aria-label="Sort">
-				<button class="chip" aria-pressed={sort === 'snow'} onclick={() => setSort('snow')}
-					>Most new snow</button
-				>
-				<button class="chip" aria-pressed={sort === 'state'} onclick={() => setSort('state')}
-					>By state</button
-				>
-			</div>
-			<div class="chips" role="group" aria-label="State">
-				<button class="chip" aria-pressed={only === null} onclick={() => (only = null)}>All</button>
-				{#each data.groups as g (g.state)}
-					<button class="chip" aria-pressed={only === g.state} onclick={() => (only = g.state)}
-						>{g.state}</button
-					>
-				{/each}
-			</div>
-		</div>
+		<ListControls
+			sorts={[
+				{ id: 'snow', label: 'Most new snow' },
+				{ id: 'state', label: 'By state' }
+			]}
+			bind:sort
+			storageKey="ski-sort"
+			areas={data.areas}
+			area={data.area}
+			base="/collections/{data.collection.id}"
+		/>
 	{/if}
 
 	{#snippet card(place: (typeof data.groups)[number]['places'][number])}
@@ -140,11 +114,11 @@
 			{#each bySnow as place (place.id)}{@render card(place)}{/each}
 		</nav>
 	{:else}
-		{#each shownGroups as group (group.state)}
+		{#each data.groups as group (group.state)}
 			<details
 				class="tree-region state-fold"
-				class:single={!folds || only !== null}
-				open={only !== null || isOpen(group.state)}
+				class:single={!folds || data.area !== null}
+				open={data.area !== null || isOpen(group.state)}
 				ontoggle={toggled(group.state)}
 			>
 				<summary>

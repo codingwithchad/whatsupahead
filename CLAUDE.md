@@ -40,7 +40,8 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
 
 - `data/`: everything the app shows is data, one JSON file each, in per-state folders (`us-wa`, `us-or`,
   `us-ca`): `cameras`, `places`, `collections`, `passes`, `weather-sources`, `drives`, `gazetteer`, and
-  `regions.json`. Checked against `schema/` by `src/lib/server/data.test.ts` (file name = id, ids unique).
+  `regions.json`, `areas.json` (mountain areas a list can be narrowed to). Checked against `schema/` by
+  `src/lib/server/data.test.ts` (file name = id, ids unique).
 - `src/routes/`: pages (`search` is a place page, `trip`, `passes`, `collections/[id]`, `cameras/[id]`,
   `moments/[id]`), `og/*` (link-preview pictures), `api/*`, `img/[id]` (our copy of pictures that need one).
 - `src/lib/server/`: outside sources and caching (`conditions.ts`, `passes.ts`, `routing.ts`, `geocode.ts`,

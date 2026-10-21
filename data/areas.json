@@ -1,0 +1,39 @@
+{
+	"areas": [
+		{
+			"id": "wa-cascades",
+			"name": "Washington Cascades",
+			"bbox": [-122.3, 46.3, -120.3, 49.0]
+		},
+		{
+			"id": "or-cascades",
+			"name": "Oregon Cascades",
+			"bbox": [-122.5, 43.0, -121.3, 45.7]
+		},
+		{
+			"id": "sierra",
+			"name": "Sierra Nevada and Tahoe",
+			"bbox": [-121.0, 36.5, -118.4, 39.8]
+		},
+		{
+			"id": "socal",
+			"name": "Southern California mountains",
+			"bbox": [-119.0, 33.5, -116.4, 35.0]
+		},
+		{
+			"id": "central-idaho",
+			"name": "Central Idaho",
+			"bbox": [-116.5, 43.3, -113.8, 45.5]
+		},
+		{
+			"id": "wasatch",
+			"name": "Wasatch Mountains",
+			"bbox": [-112.2, 40.2, -111.3, 42.0]
+		},
+		{
+			"id": "southern-utah",
+			"name": "Southern Utah",
+			"bbox": [-114.1, 37.0, -111.0, 39.4]
+		}
+	]
+}

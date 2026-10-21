@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { COVERAGE, REGIONS } from '../regions';
+import { AREAS, inArea } from '../areas';
 import { dataFiles } from './catalog';
 
 // Every file in data/ must match its schema, and the files must agree with each other. This is what
@@ -104,6 +105,24 @@ describe('data agrees with itself', () => {
 			for (const end of [item.from, item.to])
 				if (/^[a-z0-9]+(-[a-z0-9]+)+$/.test(end) && !places.has(end))
 					problems.push(`drives/${file}: unknown place ${end}`);
+		expect(problems).toEqual([]);
+	});
+
+	it('mountain areas (data/areas.json) have unique ids and each holds a pass or ski area', () => {
+		const problems: string[] = [];
+		const seen = new Set<string>();
+		for (const a of AREAS) {
+			if (seen.has(a.id)) problems.push(`areas: id "${a.id}" is used twice`);
+			seen.add(a.id);
+			if (a.kind === 'state') continue;
+			const [w, s, e, n] = a.bbox!;
+			if (!(w < e && s < n)) problems.push(`areas: ${a.id} box is [west, south, east, north]`);
+			const held = [...data.passes, ...data.places]
+				.map((d) => d.item)
+				.filter((p) => !('collection' in p) || p.collection === 'ski-areas');
+			if (!held.some((p) => inArea(a, p as { lat: number; lon: number }, [])))
+				problems.push(`areas: ${a.id} holds no pass or ski area`);
+		}
 		expect(problems).toEqual([]);
 	});
 

@@ -2,7 +2,8 @@ import { isDormant, nearby } from '../geo';
 import { forPlace } from '../placeCameras';
 import { STATUS_LABEL } from '../passes';
 import { duration, localClock, returnLabel } from '../format';
-import { DEFAULT_TIME_ZONE } from '../regions';
+import { DEFAULT_TIME_ZONE, regionAt } from '../regions';
+import { inArea, type Area } from '../areas';
 import {
 	creditLine,
 	creditSentence,
@@ -148,10 +149,18 @@ export async function placePreview(
 	});
 }
 
-export async function collectionPreview(collection: Collection, site: string): Promise<Buffer> {
+export async function collectionPreview(
+	collection: Collection,
+	site: string,
+	/** Only this state or mountain area (`?in=sierra`) */
+	area: Area | null = null
+): Promise<Buffer> {
 	const { places, cameras } = getCatalog();
 	const list = places.filter(
-		(p) => p.collection === collection.id || collection.also?.includes(p.id)
+		(p) =>
+			(p.collection === collection.id || collection.also?.includes(p.id)) &&
+			(!area ||
+				inArea(area, p, [p.state ?? regionAt(p.lat, p.lon)?.name ?? '', ...(p.also_states ?? [])]))
 	);
 	// One picture from each of the first places that have one.
 	const covers: Camera[] = [];
@@ -168,8 +177,11 @@ export async function collectionPreview(collection: Collection, site: string): P
 	}
 	const { pictures, credit } = await sharePictures(covers, 4, (c) => placeOf.get(c.id));
 	return renderCard({
-		title: collection.name,
-		lines: [...(collection.blurb ? [collection.blurb] : []), `${list.length} places`],
+		// An area's name is the title (long ones don't fit after the list's name), the list's name under it.
+		title: area ? area.name : collection.name,
+		lines: area
+			? [collection.name, `${list.length} places`]
+			: [...(collection.blurb ? [collection.blurb] : []), `${list.length} places`],
 		credit,
 		pictures,
 		site

@@ -466,3 +466,14 @@ The site started on Render's free plan and moved to Azure App Service on 2026-10
 gone from the code and docs: the commit id now comes only from git, `onrender.com` is no longer one of our own
 addresses, and the rate limits assume one proxy in front of the app (Azure's) unless `TRUSTED_PROXIES` says
 otherwise. Old `*.onrender.com` links stop working once the Render app is deleted.
+
+## 2026-10-21: One area of a list, to share
+
+When it snows in one place (the Sierra this weekend, all of Utah), the owner wants to post just that place. The
+passes and ski areas pages take `?in=` with a state or a mountain area from `data/areas.json`, show only that, and
+give the link its own preview picture (camera pictures from there, only from sources allowed in previews). Mountain
+areas are boxes, not polygons: simple to check and edit, and close enough for the handful we need (the Sierra box
+takes in Geiger Summit above Reno, which is fine for a storm post). Both pages now share one Sort and Show control:
+two sort buttons (ski areas: Most new snow or By state; passes: Worst first or By state, worst first being the default
+November to April) and a Show menu that puts the area in the address, so the list on screen is the list shared. Each
+area's address is its own canonical page.

@@ -6,11 +6,12 @@ import { getGlance } from '../../../lib/server/conditions';
 import { skiSnow } from '../../../lib/server/skiSnow';
 import type { Glance } from '../../../lib/transit';
 import { REGIONS, regionAt } from '../../../lib/regions';
+import { AREAS, areaById, inArea } from '../../../lib/areas';
 import { APP_NAME } from '../../../lib/brand';
 import { previewSlot, sentence, type ShareMeta } from '../../../lib/sharing';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = ({ params }) => {
+export const load: PageServerLoad = ({ params, url }) => {
 	const { collections, places, cameras, weather } = getCatalog();
 	const collection = collections.find((c) => c.id === params.id);
 	if (!collection) error(404, 'Unknown collection');
@@ -21,7 +22,7 @@ export const load: PageServerLoad = ({ params }) => {
 		const i = REGIONS.findIndex((r) => r.name === name);
 		return i === -1 ? REGIONS.length : i;
 	};
-	const list = places
+	const everything = places
 		.filter((p) => p.collection === collection.id || collection.also?.includes(p.id))
 		.map((p) => {
 			const live = nearby(forPlace(cameras, p), p, p.radius_miles ?? 2).filter(
@@ -40,7 +41,14 @@ export const load: PageServerLoad = ({ params }) => {
 				cover: coverPicture(live)
 			};
 		});
-	const states = [...new Set(list.flatMap((p) => p.states))].sort((a, b) => rank(a) - rank(b));
+	// `?in=utah` or `?in=sierra`: one state or mountain area, so a storm can be shared on its own. The picker
+	// offers only areas with a place in this list.
+	const area = areaById(url.searchParams.get('in'));
+	const areas = AREAS.filter((a) => everything.some((p) => inArea(a, p, p.states)));
+	const list = area ? everything.filter((p) => inArea(area, p, p.states)) : everything;
+	const states = [...new Set(list.flatMap((p) => p.states))]
+		.filter((st) => area?.kind !== 'state' || st === area.name)
+		.sort((a, b) => rank(a) - rank(b));
 	// Ferry space and border waits on each card, so you can read them before opening a place. Streamed: the
 	// list shows at once and the lines fill in.
 	const live = weather.filter((w) => w.kind === 'ferry' || w.kind === 'border');
@@ -50,11 +58,13 @@ export const load: PageServerLoad = ({ params }) => {
 				(pairs) => Object.fromEntries(pairs.filter((x): x is [string, Glance] => x[1] !== null))
 			)
 		: null;
+	const title = area ? `${collection.name}: ${area.name}` : collection.name;
+	const path = `/collections/${encodeURIComponent(collection.id)}${area ? `?in=${area.id}` : ''}`;
 	const share: ShareMeta = {
-		title: collection.name,
-		description: `${collection.blurb ? `${sentence(collection.blurb)} ` : ''}${list.length} places, with cameras and the forecast for each, on ${APP_NAME}.`,
-		image: `/og/collection/${encodeURIComponent(collection.id)}?v=${previewSlot()}`,
-		imageAlt: `Camera pictures from ${collection.name}`
+		title,
+		description: `${collection.blurb && !area ? `${sentence(collection.blurb)} ` : ''}${list.length} places, with cameras and the forecast for each, on ${APP_NAME}.`,
+		image: `/og/collection/${encodeURIComponent(collection.id)}?${area ? `in=${area.id}&` : ''}v=${previewSlot()}`,
+		imageAlt: `Camera pictures from ${title}`
 	};
 	// Ski areas: snow at each (the nearest gauge and today's forecast), streamed like the lines above.
 	const snow =
@@ -65,8 +75,12 @@ export const load: PageServerLoad = ({ params }) => {
 		share,
 		snow,
 		crumbs: [{ name: collection.name, path: `/collections/${encodeURIComponent(collection.id)}` }],
-		canonical: `/collections/${encodeURIComponent(collection.id)}`,
+		canonical: path,
 		collection,
+		area,
+		areas,
+		title,
+		path,
 		groups: states.map((state) => ({
 			state,
 			places: list.filter((p) => p.states.includes(state))

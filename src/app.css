@@ -2977,17 +2977,44 @@ main.updating .grid {
 }
 
 /* Ski areas: snow numbers, sort and state filter */
-.ski-controls {
+/* Sort and Show above a long list (passes, ski areas): the same on each page */
+.list-controls {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 10px;
 	margin: 0.75rem 0;
 }
-.ski-controls .chip {
+.list-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+}
+.list-label {
+	flex: none;
+	width: 3.2em;
+	color: var(--muted);
+	font-size: var(--fs-sm);
+	font-weight: 600;
+}
+.list-controls .chip {
 	min-height: 40px;
 	font: inherit;
 	font-weight: 600;
 	cursor: pointer;
+}
+.list-controls select {
+	flex: 1;
+	min-width: 0;
+	max-width: 22rem;
+	min-height: 44px;
+	padding: 0 12px;
+	border-radius: var(--radius);
+	border: 1px solid var(--line);
+	background: var(--card);
+	color: var(--text);
+	font: inherit;
+	font-weight: 600;
 }
 .ski-snow {
 	padding: 12px 14px;
