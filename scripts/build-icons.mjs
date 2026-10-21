@@ -1,6 +1,6 @@
 // Draw the logo and write the app icons. Run: node scripts/build-icons.mjs
 import { createRequire } from 'node:module';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 const sharp = createRequire(import.meta.url)('sharp');
 
 // The mark on its own (no background): a lens-sun over snowy peaks, with a road winding toward them.
@@ -30,6 +30,8 @@ writeFileSync('src/lib/assets/favicon.svg', tile(MARK, 0.9));
 writeFileSync('static/logo.svg', tile(MARK, 0.9));
 writeFileSync('src/lib/markPaths.txt', MARK.trim());
 // The picture shown when a link is shared (Reddit, Facebook, messages): 1200x630.
+// The states come from data/regions.json, so rerun this after adding one.
+const states = JSON.parse(readFileSync('data/regions.json', 'utf8')).regions.map((r) => r.name);
 const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b2540"/><stop offset=".62" stop-color="#16607a"/><stop offset="1" stop-color="#f59e4b"/></linearGradient>
@@ -42,7 +44,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   <g transform="translate(70 70) scale(2.6)">${MARK}</g>
   <text x="70" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="92" fill="#ffffff">What's Up Ahead</text>
   <text x="74" y="364" font-family="DejaVu Sans, Arial, sans-serif" font-size="40" fill="#cfeaf6">Cameras, weather and waits along your way.</text>
-  <text x="74" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="34" fill="#ff9a2e">Washington · Oregon · California</text>
+  <text x="74" y="420" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="28" fill="#ff9a2e">${states.join(' · ')}</text>
 </svg>`;
 await sharp(Buffer.from(og)).png().toFile('static/og-image.png');
 console.log('icons written');
