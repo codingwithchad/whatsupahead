@@ -15,8 +15,10 @@ the services behind them. When a rule here and the code disagree, the rule wins:
   cost a source no more than one. The numbers below are those times.
 - Keys never leave the server: not in the page or the repository, and the 511 feeds' error messages strip `key=`.
 - Credit each source where its data shows, and on the [About page](https://whatsupahead.com/about).
-- A picture goes into link previews, the replay or a video only when its owner allows copies
-  (`src/lib/sharing.ts`, `RECORDABLE` in `src/lib/server/history.ts`). No stated terms means no copies.
+- A picture goes into link previews, the replay or a video unless its owner's terms say no
+  (`src/lib/sharing.ts`, `RECORDABLE` in `src/lib/server/history.ts`). A public agency that publishes no terms
+  either way gets its own cameras used, credited, until it asks us to stop (decided 2026-10-22). Private owners
+  and cameras an agency passes on for others still need a yes.
 - If a source asks us to stop or change something, we do, and write it down here.
 
 ## At a glance
@@ -26,9 +28,9 @@ the services behind them. When a rule here and the code disagree, the rule wins:
 | WSDOT Traveler Information API | Access code | None published; "go easy on its servers" (WSDOT, 2026-10-13) | Feeds kept 2 to 5 minutes | Yes, credited "Camera courtesy of WSDOT" |
 | ODOT TripCheck API | Subscription key | Developer portal terms | Kept 2 minutes | Our one refreshed copy only; never past ones |
 | Caltrans CWWP2 | None | None published | Kept 5 to 10 minutes | Yes |
-| Idaho 511 | Developer key | 10 calls a minute | 3 calls every 5 minutes | No (no picture terms) |
-| Nevada 511 | Developer key | 10 calls a minute | 3 calls every 5 minutes | No (no picture terms) |
-| UDOT Traffic (Utah) | Developer key | 10 calls a minute | 3 calls every 5 minutes | No (no picture terms) |
+| Idaho 511 | Developer key | 10 calls a minute | 3 calls every 5 minutes | Yes, credited (no terms either way) |
+| Nevada 511 | Developer key | 10 calls a minute | 3 calls every 5 minutes | Yes, credited (no terms either way) |
+| UDOT Traffic (Utah) | Developer key | 10 calls a minute | 3 calls every 5 minutes | Yes, credited (no terms either way) |
 | Windy Webcams API | Key | "Responsible" use | Kept 5 minutes | No (terms forbid it) |
 | National Weather Service | None (User-Agent) | Not published; ask for an identifying User-Agent | Kept 3 minutes to a day | n/a |
 | Open-Meteo | None | 10,000 a day, 5,000 an hour, 600 a minute, non-commercial | At most 8,000 a day, 120 a minute | n/a |
@@ -95,7 +97,9 @@ The three run on the same system, with the same developer API and the same limit
 - **What we do:** three calls (road reports, events, weather stations) every five minutes per state, whoever is
   looking, with a hard stop at 8 a minute; after a failure (a bad key, the site down) we wait five minutes before
   trying again. Cameras are loaded once, by hand, with `scripts/import-511.mjs` (one call). Pictures load straight
-  from each state's site, credited, and stay out of previews, the replay and videos until the state says otherwise.
+  from each state's site, credited. Since 2026-10-22 the agency's own cameras near passes are in the replay, videos,
+  before-and-afters and link previews too (no terms say no; we stop if a state asks), one picture every five
+  minutes for about 155 cameras across the three states.
   Only the agency's own cameras are imported: the lists also carry other states' and private cameras.
 
 ## Cameras from others
@@ -230,5 +234,5 @@ The three run on the same system, with the same developer API and the same limit
 1. Find its terms, rate limit and credit wording, and add a section here with the date you checked.
 2. Keep calls well under its limit, cache answers, and send our User-Agent.
 3. Credit it where its data shows and on the About page.
-4. Pictures: no copies (previews, replay, videos) unless its terms allow them.
+4. Pictures: no copies (previews, replay, videos) if its terms say no; a private owner needs to say yes.
 5. Add a health check in `src/lib/server/health.ts` if the app depends on it.

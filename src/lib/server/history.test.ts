@@ -7,12 +7,16 @@ describe('history', () => {
 		expect(targets.length).toBeGreaterThan(20);
 		for (const c of targets) {
 			expect(c.provider, c.id).toBeUndefined();
-			expect(['WSDOT', 'WSDOT Aviation', 'Caltrans', 'National Park Service'], c.id).toContain(
-				c.source
-			);
+			expect(
+				['WSDOT', 'WSDOT Aviation', 'Caltrans', 'National Park Service', 'ITD', 'NDOT', 'UDOT'],
+				c.id
+			).toContain(c.source);
 		}
 		expect(targets.some((c) => c.id === 'wsdot-us2-mp63-big-windy')).toBe(true);
 		expect(targets.some((c) => c.source === 'Caltrans')).toBe(true);
+		expect(targets.some((c) => c.id === 'ndot-sr431-mt-rose-summit')).toBe(true);
+		// Every pass camera fits under the limit: adding states must not push others out.
+		expect(targets.length).toBeLessThan(300);
 	});
 
 	it('returns saved frames oldest first and finds one by time', async () => {

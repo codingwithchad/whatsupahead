@@ -16,7 +16,11 @@ const PREVIEW_CREDIT: Record<string, string> = {
 	Caltrans: 'Caltrans',
 	// US government works.
 	'National Park Service': 'National Park Service',
-	USGS: 'USGS'
+	USGS: 'USGS',
+	// The 511 states publish no terms for their pictures, either way: used, credited, until they ask us to stop.
+	ITD: 'ITD Idaho 511',
+	NDOT: 'NDOT Nevada 511',
+	UDOT: 'UDOT Traffic'
 };
 
 /**

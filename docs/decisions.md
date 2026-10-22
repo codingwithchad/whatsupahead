@@ -486,3 +486,14 @@ anything that calls itself a bot, so it counted them. Page views are now sent by
 browser (`/api/view`, a beacon like the tap counter), not counted when the server sends a page; programs that only
 download pages no longer count. The same rules apply as before (no cookies, nothing kept about who anyone is, the
 page's short name and where it came from). Searches are still counted on the server, where the answer is known.
+
+## 2026-10-22: The 511 states' cameras in the replay and previews
+
+It snowed at Mount Rose, and the owner wanted to post a time-lapse of it, but Nevada's cameras had no replay. Idaho
+511, Nevada 511 and UDOT Traffic publish no terms for their pictures, and until now that meant no copies. Checked
+again today: the developer pages give only a key and a rate limit, and the disclaimer and privacy pages say nothing
+about pictures. The owner's rule from now on: a public agency that doesn't say no gets its own cameras used,
+credited, until it asks us to stop, and then we stop and write it down. So ITD's, NDOT's and UDOT's cameras near
+passes (about 155) are recorded every five minutes like WSDOT's and Caltrans's, and can go in videos,
+before-and-afters and link previews. Cameras an agency passes on for others (Boise's ACHD) and private owners
+still need a yes. The replay's limit went from 240 to 300 cameras so no Washington or California pass loses one.

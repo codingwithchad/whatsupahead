@@ -12,9 +12,9 @@ import { getCatalog } from './catalog';
 // each picture is written there as it is taken and read back after a restart or deploy, so the replay survives
 // them; two copies of the app running side by side during a deploy write to the same folder, and the new one
 // reads it again a few minutes after it starts. Without a disk (local runs) the pictures stay in memory.
-// Only cameras whose owner publishes them for public use are recorded (WSDOT, WSDOT Aviation, Caltrans and the
-// National Park Service), never Windy pictures. ODOT's pictures are left out: its terms cover serving one
-// refreshed copy, not keeping past ones; Idaho 511's and Nevada 511's too, as they publish no terms.
+// Only public agencies' own cameras are recorded (WSDOT, WSDOT Aviation, Caltrans, the National Park Service, and
+// the Idaho, Nevada and Utah 511 cameras, which publish no terms either way), never Windy pictures. ODOT's
+// pictures are left out: its terms cover serving one refreshed copy, not keeping past ones.
 
 // One picture every five minutes by default; HISTORY_EVERY_SECONDS lets tests record faster.
 const EVERY_MS = Math.max(5, Number(process.env.HISTORY_EVERY_SECONDS) || 300) * 1000;
@@ -24,13 +24,22 @@ const KEEP_MS = 6 * 60 * 60_000;
 const SPARSE_MS = 30 * 60_000;
 const NEAR_PASS_MILES = 6;
 // About 32 frames each (24 recent, 8 older): roughly 1 MB a camera on disk, or 0.3 MB in memory at the smaller size.
-const MAX_CAMERAS = 240;
+// About 255 cameras are near passes today.
+const MAX_CAMERAS = 300;
 const DIR =
 	process.env.HISTORY_DIR ||
 	(process.env.STATS_FILE ? path.join(path.dirname(process.env.STATS_FILE), 'replay') : null);
 // Sharper on disk (good enough for a phone-sized video); smaller when it all has to fit in memory.
 const WIDTH = DIR ? 720 : 480;
-const RECORDABLE = new Set(['WSDOT', 'WSDOT Aviation', 'Caltrans', 'National Park Service']);
+const RECORDABLE = new Set([
+	'WSDOT',
+	'WSDOT Aviation',
+	'Caltrans',
+	'National Park Service',
+	'ITD',
+	'NDOT',
+	'UDOT'
+]);
 
 export interface Frame {
 	t: number;

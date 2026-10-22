@@ -86,10 +86,10 @@
 	<p>
 		The Share button uses your phone's own share menu. On a computer, the Facebook choice is a plain
 		link to Facebook's share page: no Facebook code runs on this site. A shared link shows a picture
-		made by this site: the latest camera picture (only from public agencies whose pictures may be
-		reused, with their credit and the time it was taken), or the drive on a map. When you share a
-		before-and-after from a camera's replay, those two pictures are kept for 30 days so the link
-		keeps working; nothing about you is saved with them.
+		made by this site: the latest camera picture (only from public agencies' own cameras, with their
+		credit and the time it was taken), or the drive on a map. When you share a before-and-after from
+		a camera's replay, those two pictures are kept for 30 days so the link keeps working; nothing
+		about you is saved with them.
 	</p>
 
 	<h2>Please note</h2>

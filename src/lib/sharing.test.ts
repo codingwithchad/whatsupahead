@@ -23,6 +23,13 @@ describe('previewCredit', () => {
 		expect(previewCredit(cam({ source: 'Caltrans' }))).toBe('Caltrans');
 		expect(previewCredit(cam({ source: 'ODOT' }))).toBe('ODOT TripCheck');
 		expect(previewCredit(cam({ source: 'National Park Service' }))).toBe('National Park Service');
+		expect(previewCredit(cam({ source: 'NDOT' }))).toBe('NDOT Nevada 511');
+		// Boise's city cameras come through Idaho 511 but are not ITD's.
+		expect(
+			previewCredit(
+				cam({ source: 'ACHD', attribution_text: 'Ada County Highway District, via Idaho 511' })
+			)
+		).toBeNull();
 	});
 	it('never uses Windy, video, cameras passed on for someone else, or unlisted owners', () => {
 		expect(previewCredit(cam({ provider: 'windy', source: 'KING 5 via Windy.com' }))).toBeNull();
