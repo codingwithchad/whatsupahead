@@ -7,6 +7,10 @@ export interface SnowingSpot {
 	kind: 'pass' | 'ski' | 'park';
 	state: string | null;
 	href: string;
+	/** The preview picture for its page (camera pictures, credits printed on it), as a path. */
+	preview: string;
+	/** Its preview picture shows its own cameras (not just a card with the name). */
+	pictured: boolean;
 	/** The USDA gauge the numbers come from, and its height: the road's for a pass, the mountain's otherwise. */
 	gauge: string | null;
 	gaugeFeet: number | null;
@@ -75,8 +79,11 @@ export function snowWords(s: SnowingSpot): string {
 	return `${parts.join(', ')} at the USDA snow gauge at ${feet(s.gaugeFeet)}`;
 }
 
-/** A comment ready to paste under someone's snow post, ending with the link to the spot's cameras. */
-export function postText(s: SnowingSpot, origin: string): string {
+/**
+ * A comment ready to paste under someone's snow post, ending with the link to the spot's cameras. `ref` marks where
+ * the link was posted ("fb"), so visits from it show on /stats.
+ */
+export function postText(s: SnowingSpot, origin: string, ref?: string): string {
 	const snow = snowWords(s);
 	const first = snow
 		? `${s.now ? 'Snowing' : 'New snow'} at ${s.name}: ${snow}.`
@@ -87,5 +94,6 @@ export function postText(s: SnowingSpot, origin: string): string {
 		s.kind === 'pass'
 			? 'Every camera and the pass report in one place'
 			: 'Every camera and the forecast in one place';
-	return `${first} ${what}: ${origin}${s.href}`;
+	const link = ref ? `${s.href}${s.href.includes('?') ? '&' : '?'}ref=${ref}` : s.href;
+	return `${first} ${what}: ${origin}${link}`;
 }

@@ -213,6 +213,33 @@
 		</table>
 	{/if}
 
+	<h2>Facebook posts</h2>
+	<p class="sub">
+		{data.autopost.live
+			? 'The Page posts by itself when a pass, ski area or park starts snowing (at most 3 a day).'
+			: 'Dry run: no Facebook key yet, so these are what the Page would have posted.'}
+	</p>
+	{#if data.autopost.entries.length}
+		<ul class="autopost-log">
+			{#each data.autopost.entries as e (e.at)}
+				<li>
+					<strong
+						>{new Date(e.at).toLocaleString('en-US', {
+							timeZone: 'America/Los_Angeles',
+							weekday: 'short',
+							hour: 'numeric',
+							minute: '2-digit'
+						})}</strong
+					>
+					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
+					{e.text}
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p class="empty">Nothing yet.</p>
+	{/if}
+
 	<p class="sub">
 		Tip: end links you post with <code>?ref=fb</code>, <code>?ref=ig</code> or any short word (for
 		example <code>whatsupahead.com/passes?ref=ig</code>). They show under "Came from other sites"

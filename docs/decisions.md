@@ -507,4 +507,13 @@ batch for all of them) and the pass reports we already keep, so it costs no fore
 gauge rose an inch in 3 hours and is up 2 inches on the day (a gauge wobbles by an inch), or the state's report says
 snow. Passes use the gauge at the road's height, ski areas and parks the highest gauge near (two snow heights).
 Places with no working cameras of ours (Crystal Mountain, Sunrise in winter) are left out: the link would show nothing.
-Not linked from the menu or the sitemap yet.
+Not linked from the menu or the sitemap yet. Passes get the same rule (Chinook and Cayuse have no cameras of ours).
+
+## 2026-10-25: The Facebook Page posts the snow by itself
+
+The owner wants promotion to run itself and can't watch the mountains all day. Every half hour the server checks
+`/snowing`; when a spot is snowing now and its preview picture shows its own cameras (only sources allowed in
+previews, credits printed on it), the site's Facebook Page posts that picture with a line about the snow and the link
+(`?ref=fb`, so visits show on /stats). At most 3 posts a day, 2 hours apart, 6 AM to 8 PM Pacific, the same spot
+once in 3 days. Until `FACEBOOK_PAGE_ID` and `FACEBOOK_PAGE_TOKEN` are set it is a dry run: it notes what it would
+have posted, on /stats. Comments under other people's posts stay by hand: Facebook doesn't let an app do that.

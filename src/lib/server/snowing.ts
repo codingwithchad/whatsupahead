@@ -1,6 +1,7 @@
 import { isDormant, nearby } from '../geo';
 import { mountainStation, roadStation, snowReading, type SnotelStation } from '../mountain';
 import { reportSource } from '../passes';
+import { previewCredit } from '../sharing';
 import { regionAt, timeZoneAt } from '../regions';
 import { bySnow, hasNewSnow, snowFacts, type SnowingSpot } from '../snowing';
 import { getCatalog } from './catalog';
@@ -21,10 +22,15 @@ const KINDS: Record<string, SnowingSpot['kind']> = {
  */
 export async function snowingNow(now = Date.now()): Promise<SnowingSpot[]> {
 	const { passes, places, cameras } = getCatalog();
-	// A place whose cameras are all down for the winter (Sunrise at Mount Rainier) has nothing to show.
+	// A place with no working cameras of its own (Crystal Mountain; Sunrise in winter) has nothing to show: its page
+	// falls back to cameras miles away. `pictured`: its preview picture shows its cameras (their owners allow it).
 	const working = cameras.filter((c) => c.feed_url && !isDormant(c));
-	const hasCameras = (p: { lat: number; lon: number; radius_miles?: number }) =>
-		nearby(working, p, p.radius_miles ?? 10).length > 0;
+	const near = (p: { lat: number; lon: number; radius_miles?: number }) =>
+		nearby(working, p, p.radius_miles ?? 10);
+	const hasCameras = (p: { lat: number; lon: number; radius_miles?: number }) => near(p).length > 0;
+	const pictured = (p: { lat: number; lon: number; radius_miles?: number }) =>
+		near(p).some((c) => previewCredit(c) !== null);
+	const placeOf = new Map(places.map((p) => [p.id, p]));
 	const [list, reports] = await Promise.all([
 		stations(),
 		allPassReports(passes).catch(() => new Map())
@@ -40,23 +46,27 @@ export async function snowingNow(now = Date.now()): Promise<SnowingSpot[]> {
 	};
 	const state = (p: { lat: number; lon: number }) => regionAt(p.lat, p.lon)?.abbr ?? null;
 	const spots: Spot[] = [
-		...passes.map((p) => {
-			const r = reports.get(p.id);
-			return {
-				id: p.id,
-				name: p.name,
-				kind: 'pass' as const,
-				state: state(p),
-				href: `/passes/${encodeURIComponent(p.id)}`,
-				lat: p.lat,
-				lon: p.lon,
-				station: roadStation(list, p),
-				said:
-					r && r.status !== 'off-season' && r.weather
-						? { text: r.weather, by: reportSource(p) }
-						: null
-			};
-		}),
+		...passes
+			.filter((p) => hasCameras(placeOf.get(p.place) ?? p))
+			.map((p) => {
+				const r = reports.get(p.id);
+				return {
+					id: p.id,
+					name: p.name,
+					kind: 'pass' as const,
+					state: state(p),
+					href: `/passes/${encodeURIComponent(p.id)}`,
+					preview: `/og/search?place=${encodeURIComponent(p.place)}`,
+					pictured: pictured(placeOf.get(p.place) ?? p),
+					lat: p.lat,
+					lon: p.lon,
+					station: roadStation(list, p),
+					said:
+						r && r.status !== 'off-season' && r.weather
+							? { text: r.weather, by: reportSource(p) }
+							: null
+				};
+			}),
 		...places
 			.filter((p) => p.collection && KINDS[p.collection] && hasCameras(p))
 			.map((p) => ({
@@ -65,6 +75,8 @@ export async function snowingNow(now = Date.now()): Promise<SnowingSpot[]> {
 				kind: KINDS[p.collection!],
 				state: state(p),
 				href: `/search?place=${encodeURIComponent(p.id)}`,
+				preview: `/og/search?place=${encodeURIComponent(p.id)}`,
+				pictured: pictured(p),
 				lat: p.lat,
 				lon: p.lon,
 				station: mountainStation(list, p),

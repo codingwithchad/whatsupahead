@@ -1,5 +1,6 @@
 import type { Handle } from '@sveltejs/kit/hooks';
 import { getCatalog } from './lib/server/catalog';
+import { startAutopost } from './lib/server/autopost';
 import { startHistory } from './lib/server/history';
 import { startHealthChecks } from './lib/server/health';
 import { startPassHistory } from './lib/server/passHistory';
@@ -26,6 +27,9 @@ if (!dev && process.env.HEALTH_CHECKS !== 'off') startHealthChecks();
 
 // Note each pass's report every 10 minutes, for "chains required on 9 days this season" on pass pages.
 if (!dev && process.env.PASS_HISTORY !== 'off') startPassHistory();
+
+// Post the snow to the site's Facebook Page by itself (only notes what it would post until the Page's key is set).
+if (!dev && process.env.AUTOPOST !== 'off') startAutopost();
 
 // Our own visit counter (counts only, no cookies); the numbers are on /stats.
 if (!dev) startStats();

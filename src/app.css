@@ -3303,3 +3303,11 @@ main.updating .grid {
 .snowing-copy {
 	align-self: flex-start;
 }
+.autopost-log {
+	padding-left: 1.2rem;
+	font-size: var(--fs-sm);
+	overflow-wrap: anywhere;
+}
+.autopost-log li {
+	margin-bottom: 6px;
+}

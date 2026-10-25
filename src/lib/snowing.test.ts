@@ -61,6 +61,8 @@ const spot = (over: Partial<SnowingSpot>): SnowingSpot => ({
 	kind: 'pass',
 	state: 'WA',
 	href: '/passes/stevens',
+	pictured: true,
+	preview: '/og/search?place=pass-stevens',
 	gauge: 'Stevens Pass',
 	gaugeFeet: 3950,
 	gaugeLink: null,
