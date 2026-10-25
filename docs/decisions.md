@@ -497,3 +497,14 @@ credited, until it asks us to stop, and then we stop and write it down. So ITD's
 passes (about 155) are recorded every five minutes like WSDOT's and Caltrans's, and can go in videos,
 before-and-afters and link previews. Cameras an agency passes on for others (Boise's ACHD) and private owners
 still need a yes. The replay's limit went from 240 to 300 cameras so no Washington or California pass loses one.
+
+## 2026-10-25: Where it's snowing (/snowing)
+
+The first snow of the season is when people post pictures and ask about the passes, and a comment with the link to
+the right cameras gets clicks. The owner can't watch the mountains all day, so `/snowing` lists the passes, ski areas
+and parks with new snow, snowing now first, each with a comment ready to copy. It uses only the USDA gauges (one
+batch for all of them) and the pass reports we already keep, so it costs no forecast calls. "Snowing now" means the
+gauge rose an inch in 3 hours and is up 2 inches on the day (a gauge wobbles by an inch), or the state's report says
+snow. Passes use the gauge at the road's height, ski areas and parks the highest gauge near (two snow heights).
+Places with no working cameras of ours (Crystal Mountain, Sunrise in winter) are left out: the link would show nothing.
+Not linked from the menu or the sitemap yet.

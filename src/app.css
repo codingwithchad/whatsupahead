@@ -3291,3 +3291,15 @@ main.updating .grid {
 	margin-top: 0.5rem;
 	font-weight: 600;
 }
+/* Where it's snowing: the comment ready to paste, and its copy button. */
+.snowing-post {
+	margin: 4px 0 0;
+	padding: 8px 10px;
+	border-radius: 8px;
+	background: var(--bg);
+	font-size: var(--fs-sm);
+	overflow-wrap: anywhere;
+}
+.snowing-copy {
+	align-self: flex-start;
+}

@@ -31,8 +31,11 @@ type Place = Point & { id: string };
 /** A place to forecast, at the height of its gauge on the mountain when there is one. */
 type ForecastPlace = Place & { feet?: number };
 
-/** The hourly readings of many gauges in one request to USDA, each kept 30 minutes. */
-async function gaugeReadings(triplets: string[]): Promise<Map<string, AwdbSeries[]>> {
+/** USDA answers about four gauges a second, so many gauges are asked for in groups of this many, side by side. */
+const GAUGES_PER_REQUEST = 20;
+
+/** The hourly readings of many gauges from USDA, each kept 30 minutes. */
+export async function gaugeReadings(triplets: string[]): Promise<Map<string, AwdbSeries[]>> {
 	return cachedMany(
 		triplets.map((t) => `mountain:series:${t}`),
 		30 * 60_000,
@@ -40,14 +43,22 @@ async function gaugeReadings(triplets: string[]): Promise<Map<string, AwdbSeries
 			const ids = missing.map((k) => k.slice('mountain:series:'.length));
 			// Station clocks are behind UTC, so a begin date two days back in UTC always covers the last 24 hours.
 			const begin = new Date(Date.now() - 48 * HOUR).toISOString().slice(0, 13).replace('T', ' ');
-			const res = await fetch(
-				`${AWDB}/data?stationTriplets=${encodeURIComponent(ids.join(','))}&elements=SNWD,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`,
-				{ headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(15000) }
+			const groups = Array.from({ length: Math.ceil(ids.length / GAUGES_PER_REQUEST) }, (_, i) =>
+				ids.slice(i * GAUGES_PER_REQUEST, (i + 1) * GAUGES_PER_REQUEST)
 			);
-			if (!res.ok) throw new Error(`snow gauges answered ${res.status}`);
-			const body = (await res.json()) as { stationTriplet?: string; data?: AwdbSeries[] }[];
+			const bodies = await Promise.all(
+				groups.map(async (group) => {
+					const res = await fetch(
+						`${AWDB}/data?stationTriplets=${encodeURIComponent(group.join(','))}&elements=SNWD,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`,
+						{ headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(15000) }
+					);
+					if (!res.ok) throw new Error(`snow gauges answered ${res.status}`);
+					return (await res.json()) as { stationTriplet?: string; data?: AwdbSeries[] }[];
+				})
+			);
 			return new Map(
-				body
+				bodies
+					.flat()
 					.filter((b) => b.stationTriplet)
 					.map((b) => [`mountain:series:${b.stationTriplet}`, b.data ?? []] as const)
 			);
