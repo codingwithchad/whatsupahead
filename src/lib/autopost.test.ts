@@ -43,6 +43,11 @@ describe('pickNext', () => {
 		expect(pickNext([{ ...spot('a'), pictured: false }, spot('b')], [], NOW)?.id).toBe('b');
 	});
 
+	it('waits for 3 inches today, so the pictures show snow', () => {
+		const light = { ...spot('a'), sinceSix: 2, change24: 2 };
+		expect(pickNext([light, spot('b')], [], NOW)?.id).toBe('b');
+	});
+
 	it('keeps quiet at night, Pacific time', () => {
 		expect(pickNext([spot('a')], [], Date.parse('2026-12-10T05:30:00-08:00'))).toBe(null);
 		expect(pickNext([spot('a')], [], Date.parse('2026-12-10T20:00:00-08:00'))).toBe(null);

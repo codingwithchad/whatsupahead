@@ -512,8 +512,12 @@ Not linked from the menu or the sitemap yet. Passes get the same rule (Chinook a
 ## 2026-10-25: The Facebook Page posts the snow by itself
 
 The owner wants promotion to run itself and can't watch the mountains all day. Every half hour the server checks
-`/snowing`; when a spot is snowing now and its preview picture shows its own cameras (only sources allowed in
+`/snowing`; when a spot is snowing now with 3 inches or more today and its preview picture shows its own cameras (only sources allowed in
 previews, credits printed on it), the site's Facebook Page posts that picture with a line about the snow and the link
 (`?ref=fb`, so visits show on /stats). At most 3 posts a day, 2 hours apart, 6 AM to 8 PM Pacific, the same spot
 once in 3 days. Until `FACEBOOK_PAGE_ID` and `FACEBOOK_PAGE_TOKEN` are set it is a dry run: it notes what it would
 have posted, on /stats. Comments under other people's posts stay by hand: Facebook doesn't let an app do that.
+
+The first real post would have been "Snowing at Mount St. Helens" over a foggy crater and a wet parking lot: 2 inches at
+a gauge 10 miles away and higher up. So a spot needs 3 inches today before the Page posts it; in a storm, passes
+get 6 or more and the cameras show it. (Camera heights are known for too few cameras to match them to the gauge.)

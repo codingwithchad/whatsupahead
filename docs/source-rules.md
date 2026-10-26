@@ -237,7 +237,8 @@ The three run on the same system, with the same developer API and the same limit
 - **What for:** the site's Facebook Page posts the snow by itself (`src/lib/server/autopost.ts`).
 - **Key:** `FACEBOOK_PAGE_ID` and `FACEBOOK_PAGE_TOKEN` (a Page key from our own Meta app, which posts only to our
   own Page). Without them it only notes what it would post, on /stats.
-- **What we do:** at most 3 posts a day, 2 hours apart, 6 AM to 8 PM Pacific, the same spot once in 3 days. The
+- **What we do:** only a spot snowing now with 3 inches or more today; at most 3 posts a day, 2 hours apart, 6 AM to
+  8 PM Pacific, the same spot once in 3 days. The
   picture is the spot's link-preview picture, so only sources allowed in previews appear, each credited on it.
 
 ## Adding a source
