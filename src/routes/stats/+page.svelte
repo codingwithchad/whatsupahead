@@ -216,7 +216,7 @@
 	<h2>Facebook posts</h2>
 	<p class="sub">
 		{data.autopost.live
-			? 'The Page posts by itself when a pass, ski area or park starts snowing (at most 3 a day).'
+			? 'The Page posts by itself when passes, ski areas or parks are snowing (at most 3 a day in each state).'
 			: 'Dry run: no Facebook key yet, so these are what the Page would have posted.'}
 	</p>
 	{#if data.autopost.entries.length}

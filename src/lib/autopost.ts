@@ -4,6 +4,8 @@ import type { SnowingSpot } from './snowing';
 export interface PostEntry {
 	id: string;
 	name: string;
+	/** The spot's state ("WA"), as each state has its own spacing and daily limit. */
+	state?: string | null;
 	at: number;
 	text: string;
 	/** Facebook's id for the post, when it went up. */
@@ -13,9 +15,10 @@ export interface PostEntry {
 }
 
 const HOUR = 3600_000;
-/** A few posts a day at most: the Page should read like a person watching the mountains, not a feed. */
-export const MAX_PER_DAY = 3;
-/** Posts at least this far apart, so one storm doesn't fill the Page in an hour. */
+/** The Page should read like people watching the mountains, not a feed: a few posts a day for each state. */
+const PER_STATE_PER_DAY = 3;
+export const MAX_PER_DAY = 10;
+/** Posts in one state at least this far apart; different states go out together. */
 const SPACING = 2 * HOUR;
 /** The same spot again only after this long: a storm lasts days. */
 const SAME_SPOT = 3 * 24 * HOUR;
@@ -24,8 +27,11 @@ const SAME_SPOT = 3 * 24 * HOUR;
  * show wet pavement under a line that says snowing.
  */
 const POST_INCHES = 3;
-/** Posting hours, Pacific time: people read about the morning's snow, and nobody wants a post at 3 AM. */
-const FIRST_HOUR = 6;
+/**
+ * Posting hours, Pacific time: from 4 AM (5 in Idaho and Utah), for skiers up early to drive a couple of hours, and
+ * nobody wants a post at 2 AM.
+ */
+const FIRST_HOUR = 4;
 const LAST_HOUR = 20;
 
 const pacificHour = (t: number) =>
@@ -38,22 +44,30 @@ const pacificHour = (t: number) =>
 	);
 
 /**
- * The next spot to post about, or null: one snowing now with 3 inches or more today and its own camera pictures, in
- * posting hours, not posted about in three days, at most three posts a day and two hours apart. Dry runs and failed tries count too, so a dry
- * run shows what would really go up and a failing post isn't retried every half hour. `spots` comes snowing now
- * first, most snow first.
+ * The spots to post about now, at most one a state: each snowing now with 3 inches or more today and its own camera
+ * pictures, in posting hours, not posted about in three days. A state's posts are two hours apart and three a day,
+ * and ten a day in all. Dry runs and failed tries count too, so a dry run shows what would really go up and a failing
+ * post isn't retried every half hour. `spots` comes snowing now first, most snow first.
  */
-export function pickNext(spots: SnowingSpot[], log: PostEntry[], now: number): SnowingSpot | null {
+export function pickPosts(spots: SnowingSpot[], log: PostEntry[], now: number): SnowingSpot[] {
 	const hour = pacificHour(now);
-	if (hour < FIRST_HOUR || hour >= LAST_HOUR) return null;
-	const recent = log.filter((e) => now - e.at < 24 * HOUR);
-	if (recent.filter((e) => !e.error).length >= MAX_PER_DAY) return null;
-	if (log.some((e) => now - e.at < SPACING)) return null;
+	if (hour < FIRST_HOUR || hour >= LAST_HOUR) return [];
+	const day = log.filter((e) => now - e.at < 24 * HOUR && !e.error);
 	const posted = new Set(log.filter((e) => !e.error && now - e.at < SAME_SPOT).map((e) => e.id));
 	const today = (s: SnowingSpot) => Math.max(s.sinceSix ?? 0, s.change24 ?? 0);
-	return (
-		spots.find((s) => s.now && s.pictured && today(s) >= POST_INCHES && !posted.has(s.id)) ?? null
-	);
+	const stateOf = (s: SnowingSpot) => s.state ?? s.id;
+	const busy = (state: string) =>
+		log.some((e) => e.state === state && now - e.at < SPACING) ||
+		day.filter((e) => e.state === state).length >= PER_STATE_PER_DAY;
+	const out: SnowingSpot[] = [];
+	for (const s of spots) {
+		if (day.length + out.length >= MAX_PER_DAY) break;
+		const state = stateOf(s);
+		if (!s.now || !s.pictured || today(s) < POST_INCHES || posted.has(s.id)) continue;
+		if (busy(state) || out.some((o) => stateOf(o) === state)) continue;
+		out.push(s);
+	}
+	return out;
 }
 
 /** The log, newest last, keeping the last two weeks. */

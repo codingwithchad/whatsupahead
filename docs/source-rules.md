@@ -43,7 +43,7 @@ the services behind them. When a rule here and the code disagree, the rule wins:
 | NOAA tides, buoys, river gauges; FAA; USGS; NPS; Census | None | None published (US government) | Kept 2 minutes to a day | NPS, USGS: yes |
 | YouTube Data API (scripts only) | Key | Daily quota | Run by hand | Embeds only |
 | IndexNow (script only) | Our own key file | None to speak of | Run by hand after big changes | n/a |
-| Facebook Graph API (our own Page) | Page key | Meta's platform terms; posts only to our own Page | At most 3 posts a day, 2 hours apart | Pictures follow the link-preview rules |
+| Facebook Graph API (our own Page) | Page key | Meta's platform terms; posts only to our own Page | At most 3 posts a day in each state, 2 hours apart; 10 a day in all | Pictures follow the link-preview rules |
 
 ## State road departments
 
@@ -237,8 +237,8 @@ The three run on the same system, with the same developer API and the same limit
 - **What for:** the site's Facebook Page posts the snow by itself (`src/lib/server/autopost.ts`).
 - **Key:** `FACEBOOK_PAGE_ID` and `FACEBOOK_PAGE_TOKEN` (a Page key from our own Meta app, which posts only to our
   own Page). Without them it only notes what it would post, on /stats.
-- **What we do:** only a spot snowing now with 3 inches or more today; at most 3 posts a day, 2 hours apart, 6 AM to
-  8 PM Pacific, the same spot once in 3 days. The
+- **What we do:** only a spot snowing now with 3 inches or more today; 4 AM to 8 PM Pacific; in each state at most 3
+  posts a day, 2 hours apart (different states go out together); 10 a day in all; the same spot once in 3 days. The
   picture is the spot's link-preview picture, so only sources allowed in previews appear, each credited on it.
 
 ## Adding a source

@@ -521,3 +521,7 @@ have posted, on /stats. Comments under other people's posts stay by hand: Facebo
 The first real post would have been "Snowing at Mount St. Helens" over a foggy crater and a wet parking lot: 2 inches at
 a gauge 10 miles away and higher up. So a spot needs 3 inches today before the Page posts it; in a storm, passes
 get 6 or more and the cameras show it. (Camera heights are known for too few cameras to match them to the gauge.)
+
+Changed the same day, on the owner's word: posts start at 4 AM Pacific (5 in Idaho and Utah), for skiers up early to
+drive a couple of hours; and different states no longer wait for each other. If Washington, Oregon and Utah are
+snowing, all three go out at once; within one state posts stay 2 hours apart and 3 a day, with 10 a day in all.

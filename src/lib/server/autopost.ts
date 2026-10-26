@@ -1,10 +1,10 @@
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { keepRecent, pickNext, type PostEntry } from '../autopost';
+import { keepRecent, pickPosts, type PostEntry } from '../autopost';
 import { postText } from '../snowing';
 import { snowingNow } from './snowing';
 
-// Every half hour, when a pass, ski area or park starts snowing, the site's own Facebook Page posts it: the spot's
+// Every half hour, when passes, ski areas or parks are snowing, the site's own Facebook Page posts them (one a state): the spot's
 // preview picture (its camera pictures, with each source's credit printed on it, the same picture a shared link shows)
 // and a line about the snow with the link. Without FACEBOOK_PAGE_ID and FACEBOOK_PAGE_TOKEN it only notes what it
 // would have posted, shown on /stats, so the rules can be watched before anything goes up. The notes are saved next
@@ -79,23 +79,32 @@ async function tick() {
 		console.warn(`[autopost] snow: ${(err as Error).message}`);
 		return;
 	}
-	const spot = pickNext(spots, log, now);
-	if (!spot) return;
-	const text = postText(spot, SITE, 'fb');
-	const entry: PostEntry = { id: spot.id, name: spot.name, at: now, text, post: null, dry: true };
 	const key = pageKey();
-	if (key) {
-		entry.dry = false;
-		try {
-			// A fresh picture each time (the preview is otherwise kept for a while).
-			entry.post = await postPhoto(key, `${SITE}${spot.preview}&v=${now}`, text);
-			console.log(`[autopost] posted ${spot.id}`);
-		} catch (err) {
-			entry.error = (err as Error).message;
-			console.warn(`[autopost] ${spot.id}: ${entry.error}`);
-		}
+	const entries: PostEntry[] = [];
+	// One a state: Washington, Oregon and Utah snowing at once all go out now.
+	for (const spot of pickPosts(spots, log, now)) {
+		const text = postText(spot, SITE, 'fb');
+		const entry: PostEntry = {
+			id: spot.id,
+			name: spot.name,
+			state: spot.state,
+			at: Date.now(),
+			text,
+			post: null,
+			dry: !key
+		};
+		if (key)
+			try {
+				// A fresh picture each time (the preview is otherwise kept for a while).
+				entry.post = await postPhoto(key, `${SITE}${spot.preview}&v=${now}`, text);
+				console.log(`[autopost] posted ${spot.id}`);
+			} catch (err) {
+				entry.error = (err as Error).message;
+				console.warn(`[autopost] ${spot.id}: ${entry.error}`);
+			}
+		entries.push(entry);
 	}
-	saveLog(keepRecent([...log, entry], now));
+	if (entries.length) saveLog(keepRecent([...log, ...entries], now));
 }
 
 /** Start watching for snow. Safe to call more than once. */
