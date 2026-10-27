@@ -5,13 +5,20 @@
 	// "Best time to cross": when to leave to miss the snow at the summits in the next day ("Leave before 5:30 AM
 	// tomorrow to cross ahead of it"), and, folded away under "Pick a time to leave", the worst summit's forecast for
 	// each hour you could leave. Tapping an hour plans the drive for it and folds the hours away again. Without `link`
-	// (a pass page: no drive, so leaving is crossing) it says when to cross, and the hours are the summit's.
+	// (a pass page: no drive, so leaving is crossing) it says when to cross, and the hours are the summit's. A road
+	// that ends at a ski area (`deadEnd`) has no summit to cross: it says when to drive up, and the top of the road.
 	let {
 		crossing,
 		leaveIn = 0,
-		link
-	}: { crossing: Crossing; leaveIn?: number; link?: (leaveIn: number) => string } = $props();
-	const verb = $derived(link ? 'Leave' : 'Cross');
+		link,
+		deadEnd = false
+	}: {
+		crossing: Crossing;
+		leaveIn?: number;
+		link?: (leaveIn: number) => string;
+		deadEnd?: boolean;
+	} = $props();
+	const verb = $derived(link ? 'Leave' : deadEnd ? 'Drive up' : 'Cross');
 
 	const tz = $derived(crossing.timeZone);
 	const now = Date.now();
@@ -40,8 +47,9 @@
 				? crossing.passes.map((p) => p.name).join(' and ')
 				: `the ${crossing.passes.length} passes`
 	);
+	const top = $derived(deadEnd ? 'the top of the road' : 'the summit');
 	const summit = $derived(
-		one ? 'the summit' : crossing.passes.length === 2 ? 'either summit' : 'any summit'
+		one ? top : crossing.passes.length === 2 ? 'either summit' : 'any summit'
 	);
 </script>
 
@@ -52,15 +60,17 @@
 	>
 {/snippet}
 
-<section class="crossing" aria-label="Best time to cross {title}">
-	<h2>Best time to cross {title}</h2>
+<section class="crossing" aria-label="Best time to {deadEnd ? 'drive up' : 'cross'} {title}">
+	<h2>Best time to {deadEnd ? 'drive up' : 'cross'} {title}</h2>
 	<p class="crossing-advice">
 		{#if !a.snow.length}
-			No snow forecast at {summit} for a crossing in the next 24 hours.{#if a.freezing}
+			No snow forecast at {summit}
+			{deadEnd ? 'to drive into' : 'for a crossing'} in the next 24 hours.{#if a.freezing}
 				It drops to freezing at times: watch for ice.{/if}
 		{:else}
-			{#each a.snow as s, i (s.pass)}{i === 0 ? 'Snow' : ', and'} at {one ? 'the summit' : s.pass} from
-				about {when(s.from)}{s.until ? ` until about ${when(s.until)}` : ''}{/each}.
+			{#each a.snow as s, i (s.pass)}{i === 0 ? 'Snow' : ', and'} at {one ? top : s.pass} from about {when(
+					s.from
+				)}{s.until ? ` until about ${when(s.until)}` : ''}{/each}.
 			{#if a.leaveBefore !== null}
 				<strong>{verb} before {when(a.leaveBefore)}</strong> to {link ? 'cross' : 'get'} ahead of it{a.leaveAfter !==
 				null
@@ -78,7 +88,7 @@
 		{/if}
 	</p>
 	<details class="crossing-hours" bind:open>
-		<summary>{link ? 'Pick a time to leave' : 'Hour by hour at the summit'}</summary>
+		<summary>{link ? 'Pick a time to leave' : `Hour by hour at ${top}`}</summary>
 		<ol class="crossing-slots">
 			{#each crossing.slots as s (s.leaveIn)}
 				<li>
@@ -100,7 +110,7 @@
 						<span
 							class="slot slot-{s.level}"
 							aria-label="{s.leaveIn === 0 ? 'Now' : when(leaveAt(s.leaveIn))}: {s.tempF ??
-								'?'}°F and {word[s.level]} at the summit"
+								'?'}°F and {word[s.level]} at {top}"
 						>
 							{@render slot(s)}
 						</span>
@@ -109,7 +119,7 @@
 			{/each}
 		</ol>
 		<p class="crossing-key">
-			<span>{link ? 'By when you leave:' : 'At the summit:'}</span>
+			<span>{link ? 'By when you leave:' : `At ${top}:`}</span>
 			<span class="k"><i class="slot-snow"></i> ❄ snow</span>
 			<span class="k"><i class="slot-freezing"></i> freezing</span>
 			<span class="k"><i class="slot-clear"></i> above freezing</span>

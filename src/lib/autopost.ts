@@ -200,6 +200,8 @@ export interface PassOutlook {
 	preview: string;
 	/** The summit's height, where the forecast is for (the road's height: drivers' snow). */
 	feet: number | null;
+	/** The road ends up there (Mt. Baker Highway): drive up, not across. */
+	deadEnd?: boolean;
 	/** Snow forecast at the summit, in inches, and when it starts. */
 	inches: number;
 	from: number;
@@ -240,17 +242,18 @@ export function pickForecasts(
 /** "Cross before 9:45 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed." */
 function crossWords(o: PassOutlook, now: number): string {
 	const when = (t: number) => clockWithDay(t, now, o.timeZone);
+	const go = o.deadEnd ? 'Drive up' : 'Cross';
 	const before = o.crossBefore !== null && o.crossBefore - now >= LEAD ? o.crossBefore : null;
 	if (before !== null && o.crossAfter !== null)
-		return `Cross before ${when(before)} to get ahead of it, or after ${when(o.crossAfter)} once it has passed.`;
-	if (before !== null) return `Cross before ${when(before)} to get ahead of it.`;
+		return `${go} before ${when(before)} to get ahead of it, or after ${when(o.crossAfter)} once it has passed.`;
+	if (before !== null) return `${go} before ${when(before)} to get ahead of it.`;
 	if (o.crossAfter !== null)
-		return `Cross after ${when(o.crossAfter)}, once it has passed (plows need time too).`;
+		return `${go} after ${when(o.crossAfter)}, once it has passed (plows need time too).`;
 	return 'It keeps on through the next day: go prepared.';
 }
 
 const snowLine = (o: PassOutlook, now: number) =>
-	`about ${Math.round(o.inches)} in at the summit${o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : ''} from about ${clockWithDay(o.from, now, o.timeZone)}`;
+	`about ${Math.round(o.inches)} in at ${o.deadEnd ? 'the top of the road' : 'the summit'}${o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : ''} from about ${clockWithDay(o.from, now, o.timeZone)}`;
 
 /** A post about the snow coming to one state's passes, each with when to cross and its link. */
 export function forecastText(
@@ -262,11 +265,11 @@ export function forecastText(
 	const link = (o: PassOutlook) => `${origin}${linkWith(o.href, ref)}`;
 	if (passes.length === 1) {
 		const o = passes[0];
-		return `Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} Cameras, chains for your car and the best time to cross, hour by hour: ${link(o)}`;
+		return `Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} Cameras, chains for your car and the best time to ${o.deadEnd ? 'drive up' : 'cross'}, hour by hour: ${link(o)}`;
 	}
 	const region = REGIONS.find((r) => r.abbr === passes[0].state);
 	return [
-		`Snow on the way over ${region ? `${region.name} ` : ''}passes. When to cross each, hour by hour:`,
+		`Snow on the way in the ${region ? `${region.name} ` : ''}mountains. When to go, hour by hour:`,
 		...passes.map((o) => `${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} ${link(o)}`)
 	].join('\n\n');
 }

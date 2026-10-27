@@ -3,6 +3,7 @@
   "name": "Powder Mountain Road",
   "route": "SR 158",
   "connects": "Eden to Powder Mountain",
+  "dead_end": true,
   "group": "Northern Utah",
   "lat": 41.37967,
   "lon": -111.7817,

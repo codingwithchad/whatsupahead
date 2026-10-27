@@ -197,6 +197,7 @@ async function forecastPosts(log: PostEntry[], now: number) {
 			href: `/passes/${encodeURIComponent(p.id)}`,
 			preview: `/og/search?place=${encodeURIComponent(p.place)}`,
 			feet: p.elevation_ft ?? null,
+			deadEnd: p.dead_end,
 			inches: snow.inches,
 			from: snow.from,
 			crossBefore: crossing.advice.leaveBefore,

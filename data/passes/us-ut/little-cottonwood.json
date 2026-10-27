@@ -3,6 +3,7 @@
   "name": "Little Cottonwood Canyon",
   "route": "SR 210",
   "connects": "Salt Lake Valley to Snowbird and Alta",
+  "dead_end": true,
   "group": "Wasatch Front and Park City",
   "lat": 40.592,
   "lon": -111.6279,

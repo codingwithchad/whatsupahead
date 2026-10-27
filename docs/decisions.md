@@ -549,3 +549,9 @@ On the owner's word:
 Also on the passes page, Worst first puts roads shut for the winter (Tioga, the North Cascades Highway) last, and a
 state's "closed" count leaves them out, as the home page's Right now line already did: closed all season isn't news.
 
+Same day: Mt. Baker Highway ends at the ski area (and is closed past it for the winter), so "cross before" makes no
+sense there. Passes now have `dead_end` for roads that end at a ski area (Mt. Baker Highway, Crystal Mountain, Big and
+Little Cottonwood, Powder Mountain, Snowbasin, Lee Canyon): their pages and posts say "drive up before" and "the top
+of the road", and their pages don't offer other ways across. Ski areas that aren't passes (Schweitzer) only get the
+snow posts, which never say cross.
+

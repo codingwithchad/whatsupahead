@@ -3,6 +3,7 @@
   "name": "Big Cottonwood Canyon",
   "route": "SR 190",
   "connects": "Salt Lake Valley to Solitude and Brighton",
+  "dead_end": true,
   "group": "Wasatch Front and Park City",
   "lat": 40.59915,
   "lon": -111.5841,

@@ -3,6 +3,7 @@
   "name": "Lee Canyon Road",
   "route": "SR 156",
   "connects": "Las Vegas to the Lee Canyon ski area on Mount Charleston",
+  "dead_end": true,
   "group": "Mount Charleston",
   "lat": 36.3798,
   "lon": -115.6117,

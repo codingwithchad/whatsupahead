@@ -215,7 +215,7 @@
 	</section>
 
 	{#await data.crossing then crossing}
-		{#if crossing}<CrossingStrip {crossing} />{/if}
+		{#if crossing}<CrossingStrip {crossing} deadEnd={pass.dead_end} />{/if}
 	{/await}
 
 	{#if road}

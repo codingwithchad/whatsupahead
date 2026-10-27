@@ -4,6 +4,7 @@
   "pass_id": 5,
   "route": "SR 410",
   "connects": "Enumclaw to Crystal Mountain",
+  "dead_end": true,
   "group": "Foothills and ski roads",
   "lat": 47.073008417,
   "lon": -121.577912874,

@@ -4,6 +4,7 @@
   "pass_id": 6,
   "route": "SR 542",
   "connects": "Glacier to the Mt. Baker ski area",
+  "dead_end": true,
   "group": "Foothills and ski roads",
   "lat": 48.864609918,
   "lon": -121.668538475,

@@ -99,6 +99,10 @@
         }
       }
     },
+    "dead_end": {
+      "type": "boolean",
+      "description": "The road ends up there (at a ski area): nothing to cross, no other way across. Its page and posts say when to drive up."
+    },
     "winter_closure": {
       "type": "string",
       "description": "For roads that close for the winter: when, in words."

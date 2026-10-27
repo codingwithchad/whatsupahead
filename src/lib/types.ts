@@ -161,6 +161,8 @@ export interface PassInfo {
 	pass_id?: number;
 	/** Oregon and California passes: where their report comes from. */
 	report?: PassReportSource;
+	/** The road ends up there (at a ski area): nothing to cross, no other way across. */
+	dead_end?: boolean;
 	/** For roads that close for the winter, e.g. "Closed for the winter, usually November to late May". */
 	winter_closure?: string;
 	/** Its usual closing and opening days, "11-01" to "05-31" (a little wide on purpose). */

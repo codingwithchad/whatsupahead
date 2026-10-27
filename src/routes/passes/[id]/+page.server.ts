@@ -53,7 +53,8 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 	const featured = pass && places.find((p) => p.id === pass.place);
 	if (!pass || !featured) error(404, 'No pass by that name');
 
-	const alternates = alternatesFor(pass, passes);
+	// A road that ends at a ski area has no other way across.
+	const alternates = pass.dead_end ? [] : alternatesFor(pass, passes);
 	const [base, reports] = await Promise.all([
 		// The pass report is shown at the top of this page, so the conditions below leave it out.
 		placePage(featured, { url, setHeaders, locals, skipKinds: new Set(['pass-conditions']) }),
@@ -87,6 +88,7 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 			connects: pass.connects,
 			elevation_ft: pass.elevation_ft ?? null,
 			winter_closure: pass.winter_closure ?? null,
+			dead_end: pass.dead_end ?? false,
 			link: pass.link ?? null,
 			source: reportSource(pass)
 		},

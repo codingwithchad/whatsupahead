@@ -259,6 +259,13 @@ describe('snow on the way over the passes', () => {
 		);
 	});
 
+	it('a road that ends at a ski area: drive up, at the top of the road', () => {
+		const baker = outlook('mt-baker', { name: 'Mt. Baker Highway', feet: 4250, deadEnd: true });
+		expect(forecastText([baker], 'https://x.com', 'fb', NOW)).toBe(
+			'Snow on the way at Mt. Baker Highway: about 4 in at the top of the road (4,250 ft) from about 9:00 PM. Drive up before 9:00 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed. Cameras, chains for your car and the best time to drive up, hour by hour: https://x.com/passes/mt-baker?ref=fb'
+		);
+	});
+
 	it('several passes: a line and a link each; too soon to beat it, or no end in sight', () => {
 		const text = forecastText(
 			[
@@ -270,7 +277,7 @@ describe('snow on the way over the passes', () => {
 			NOW
 		);
 		expect(text.split('\n\n')).toEqual([
-			'Snow on the way over Washington passes. When to cross each, hour by hour:',
+			'Snow on the way in the Washington mountains. When to go, hour by hour:',
 			'Stevens Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. Cross after 10:00 AM tomorrow, once it has passed (plows need time too). https://x.com/passes/Stevens?ref=fb',
 			'Snoqualmie Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. It keeps on through the next day: go prepared. https://x.com/passes/Snoqualmie?ref=fb'
 		]);

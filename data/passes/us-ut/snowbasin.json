@@ -3,6 +3,7 @@
   "name": "Snowbasin Road",
   "route": "SR 226",
   "connects": "Huntsville and Trappers Loop to Snowbasin",
+  "dead_end": true,
   "group": "Northern Utah",
   "lat": 41.2196,
   "lon": -111.851,
