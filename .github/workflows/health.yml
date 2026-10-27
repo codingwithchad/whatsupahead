@@ -1,7 +1,7 @@
 name: health
 
-# Once a day: is every outside source (WSDOT, ferries, Windy, TripCheck pictures, NWS) still answering, and is
-# the GitHub token for the Add a camera form far from expiring? Opens a "site-health" issue when not (GitHub
+# Once a day: is every outside source (WSDOT, ferries, Windy, TripCheck pictures, NWS) still answering, are the
+# Facebook Page's posts going up, and is the GitHub token for the Add a camera form far from expiring? Opens a "site-health" issue when not (GitHub
 # emails the owner), and closes it again when everything works. Reads the live site's /healthz; no secrets needed.
 on:
   schedule:

@@ -31,10 +31,14 @@ for (const [name, s] of Object.entries(health.sources ?? {})) {
 			`- **${name}** is failing (${s.problem ?? 'no answer'}), last worked ${s.last_ok ?? 'not since the server started'}`
 		);
 }
+if (health.sources?.['facebook-posts']?.status === 'failing')
+	problems.push(
+		"- **To renew the Facebook Page key:** in Meta's Graph API Explorer pick our app and the Page and get a Page token, make it long-lived in the Access Token Debugger (Extend), add it to the Key Vault as facebook-page-token, then run ops/vault-sync.sh."
+	);
 const days = health.github_token_expires_in_days;
 if (typeof days === 'number' && days <= TOKEN_WARN_DAYS)
 	problems.push(
-		`- **The GitHub token for the Add a camera form expires in ${days} days.** Make a new one (GitHub, Settings, Developer settings, Fine-grained tokens; Issues read and write on this repository only) and paste it into GITHUB_ISSUES_TOKEN on Render.`
+		`- **The GitHub token for the Add a camera form expires in ${days} days.** Make a new one (GitHub, Settings, Developer settings, Fine-grained tokens; Issues read and write on this repository only) and add it to the Key Vault as github-issues-token, then run ops/vault-sync.sh.`
 	);
 
 if (problems.length) {

@@ -1,10 +1,12 @@
 import { REPO_URL } from '../brand';
+import { facebookProblem } from './autopost';
 import { getCatalog } from './catalog';
 import { idahoFeeds, nevadaFeeds, utahFeeds } from './passes';
 
 // Is each outside source still answering? Every half hour the server makes one small request to each (the same
 // kind the app makes), and /healthz reports the results. A daily GitHub Action reads them and opens an issue
-// when one keeps failing or the GitHub token is about to expire (see .github/workflows/health.yml).
+// when one keeps failing, the Facebook Page's posts fail, or the GitHub token is about to expire (see
+// .github/workflows/health.yml).
 
 export type SourceStatus = 'ok' | 'failing' | 'unknown' | 'not-configured';
 
@@ -179,6 +181,11 @@ const CHECKS: Check[] = [
 				Accept: 'application/geo+json'
 			});
 		}
+	},
+	{
+		// The Page's own posts: the key still works, and the last post went up.
+		name: 'facebook-posts',
+		run: () => facebookProblem()
 	},
 	{
 		name: 'github-token',

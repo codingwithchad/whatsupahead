@@ -85,6 +85,46 @@ function pageKey(): { page: string; token: string } | null {
 	return page && token ? { page, token } : null;
 }
 
+/** The health check's last look at the Page key: Facebook is asked about it twice a day. */
+let keyLook: { at: number; problem: string | undefined } | null = null;
+/** Warn this long before the key's data access ends (Meta renews it when someone signs in to the app again). */
+const KEY_WARN_DAYS = 14;
+
+/**
+ * For the daily health check (which emails the owner): null without a key; a problem when the last post failed, the
+ * key no longer works, or its data access ends within two weeks. Never says the key.
+ */
+export async function facebookProblem(now = Date.now()): Promise<string | null | undefined> {
+	const key = pageKey();
+	if (!key) return null;
+	const last = readLog()
+		.filter((e) => !e.dry)
+		.at(-1);
+	if (last?.error)
+		return `the last post failed: ${last.error.replace(/https?:\S+/g, '').slice(0, 100)}`;
+	if (!keyLook || now - keyLook.at > 12 * HOUR) {
+		const res = await fetch(
+			`${GRAPH}/debug_token?${new URLSearchParams({ input_token: key.token, access_token: key.token })}`,
+			{ signal: AbortSignal.timeout(10000) }
+		);
+		const body = (await res.json().catch(() => ({}))) as {
+			data?: { is_valid?: boolean; data_access_expires_at?: number };
+		};
+		const ends = body.data?.data_access_expires_at;
+		const days = ends ? Math.floor((ends * 1000 - now) / 86_400_000) : null;
+		keyLook = {
+			at: now,
+			problem:
+				!res.ok || body.data?.is_valid === false
+					? 'the Page key no longer works'
+					: days !== null && days <= KEY_WARN_DAYS
+						? `the Page key's data access ends in ${days} days`
+						: undefined
+		};
+	}
+	return keyLook.problem;
+}
+
 /** A photo post on the Page. Returns Facebook's id for it. Facebook's error message never holds the key. */
 async function postPhoto(
 	key: { page: string; token: string },
