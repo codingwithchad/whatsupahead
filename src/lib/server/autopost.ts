@@ -74,9 +74,15 @@ function saveMemory(memory: Record<string, PassMemory>) {
 	}
 }
 
-/** The posts so far (and dry runs), newest first, and whether it really posts. */
+/** The posts so far, newest first, and whether it really posts. Dry runs show only until the Page's key is set. */
 export function autopostLog(): { live: boolean; entries: PostEntry[] } {
-	return { live: pageKey() !== null, entries: readLog().reverse() };
+	const live = pageKey() !== null;
+	return {
+		live,
+		entries: readLog()
+			.filter((e) => !live || !e.dry)
+			.reverse()
+	};
 }
 
 function pageKey(): { page: string; token: string } | null {
