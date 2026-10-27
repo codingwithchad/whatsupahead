@@ -6,7 +6,14 @@ import { previewSlot } from '../../../lib/sharing';
 import { getCatalog } from '../../../lib/server/catalog';
 import { avalancheAtPass, snowAtPass } from '../../../lib/server/mountain';
 import { allPassReports, caltransCheckpoints } from '../../../lib/server/passes';
-import { kmToStretch, reportSource, sameRoute, type Checkpoint } from '../../../lib/passes';
+import {
+	blocksRoad,
+	kmToStretch,
+	reportSource,
+	sameRoute,
+	type Checkpoint
+} from '../../../lib/passes';
+import { crossingTimes } from '../../../lib/server/crossing';
 import { passSeason } from '../../../lib/server/passHistory';
 import { placePage } from '../../../lib/server/placePage';
 import type { PassInfo } from '../../../lib/types';
@@ -97,6 +104,12 @@ export const load: PageServerLoad = async ({ params, url, setHeaders, locals }) 
 		// Streamed: the page shows the report and cameras while these load.
 		snow: snowAtPass(pass),
 		checkpoints: checkpointsFor(pass),
-		avalanche: avalancheAtPass(pass)
+		avalanche: avalancheAtPass(pass),
+		// When to cross to miss the snow at the summit in the next day (at the summit road's height). Not for a road
+		// that is closed.
+		crossing:
+			report?.status === 'closed' || blocksRoad(pass, report)
+				? Promise.resolve(null)
+				: crossingTimes([{ pass, minutesToPass: 0 }]).catch(() => null)
 	};
 };

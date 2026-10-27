@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CrossingStrip from '../../../lib/CrossingStrip.svelte';
 	import PlaceBody from '../../../lib/PlaceBody.svelte';
 	import SearchBox from '../../../lib/SearchBox.svelte';
 	import ShareButton from '../../../lib/ShareButton.svelte';
@@ -212,6 +213,10 @@
 			</p>
 		{/if}
 	</section>
+
+	{#await data.crossing then crossing}
+		{#if crossing}<CrossingStrip {crossing} />{/if}
+	{/await}
 
 	{#if road}
 		<nav class="radius way" aria-label="Which way you're going">

@@ -155,7 +155,8 @@ The three run on the same system, with the same developer API and the same limit
   a minute; **non-commercial use only** (they give "websites or apps that have subscriptions or display
   advertisements" as commercial); data under CC BY 4.0, so credit is required. Voluntary donations are fine.
 - **What we do:** at most 8,000 calls a day and 120 a minute; forecasts kept 10 to 30 minutes. The Facebook Page's
-  "snow on the way" check asks for each featured drive's summits every 2 hours (about 25 summits, 300 calls a day). Credited on the About
+  "snow on the way" check asks for every pass's summit every 3 hours (84 passes, under 700 calls a day; kept 30
+  minutes, so pass pages share them). Credited on the About
   page and next to the snow forecasts. **If the site ever shows ads or sells a subscription, it needs an
   Open-Meteo paid plan first.**
 
@@ -242,8 +243,8 @@ The three run on the same system, with the same developer API and the same limit
 - **What we do:** checks every half hour, day and night. Snow: only a spot snowing now with 3 inches or more today;
   in each state at most 3 posts a day, 2 hours apart (different states go out together); 10 a day in all; the same
   spot once in 3 days. Chains: a pass's chain rule changing (held half an hour), one post an hour in each state with
-  every pass that changed, 8 a day. Snow on the way: a featured drive with 2 inches or more forecast at a summit in
-  the next day, one a day in each state, the same drive once in 3 days. The picture is a link-preview picture, so
+  every pass that changed, 8 a day. Snow on the way: passes with 2 inches or more forecast at the summit in the
+  next day, one post a day in each state naming up to 4, each with when to cross and its link. The picture is a link-preview picture, so
   only sources allowed in previews appear, each credited on it.
 
 ## Adding a source

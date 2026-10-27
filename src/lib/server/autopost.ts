@@ -8,21 +8,21 @@ import {
 	pickChains,
 	pickForecasts,
 	pickPosts,
-	type DriveOutlook,
 	type PassMemory,
+	type PassOutlook,
 	type PostEntry
 } from '../autopost';
+import { blocksRoad, type PassReport } from '../passes';
 import { regionAt } from '../regions';
 import { postText } from '../snowing';
 import { getCatalog } from './catalog';
-import { crossingTimes, type CrossingStop } from './crossing';
-import { crossingStops, driveRoute } from './drives';
+import { crossingTimes } from './crossing';
 import { allPassReports } from './passes';
 import { snowingNow } from './snowing';
 
 // Every half hour, day and night, the site's own Facebook Page posts what drivers and skiers want to know: passes, ski
-// areas or parks snowing now (one a state), a pass's chain rules changing, and snow on the way for a popular drive
-// with its best time to cross. Each post is a preview picture (camera pictures, each source's credit printed on it,
+// areas or parks snowing now (one a state), a pass's chain rules changing, and snow on the way over the passes with
+// the best time to cross each. Each post is a preview picture (camera pictures, each source's credit printed on it,
 // the same picture a shared link shows) and a few lines with the link. Without FACEBOOK_PAGE_ID and
 // FACEBOOK_PAGE_TOKEN it only notes what it would have posted, shown on /stats, so the rules can be watched before
 // anything goes up. The notes, and each pass's last posted chain rule, are saved next to the visit counts.
@@ -173,72 +173,46 @@ async function chainPosts(log: PostEntry[], memory: Record<string, PassMemory>, 
 	}));
 }
 
-/** Each featured drive's passes, kept half a day: the route rarely changes, and the free router is shared. */
-const driveStops = new Map<
-	string,
-	{ at: number; stops: CrossingStop[]; places: Map<string, string> }
->();
-const ROUTE_KEEP = 12 * HOUR;
-/** A few routes a run, so the drive pages' share of the free router is never used up at once. */
-const ROUTES_PER_RUN = 4;
-/** Summit forecasts for the drives every two hours (Open-Meteo, one call a pass). */
-const FORECAST_EVERY = 2 * HOUR;
+/** Summit forecasts for every pass every three hours (Open-Meteo, one call a pass, kept for the pass pages too). */
+const FORECAST_EVERY = 3 * HOUR;
 let forecastAt = 0;
 
-/** Routes the next few drives that need one; true when none are left waiting. */
-async function refreshRoutes(now: number): Promise<boolean> {
-	const { drives } = getCatalog();
-	const stale = drives.filter((d) => now - (driveStops.get(d.id)?.at ?? 0) > ROUTE_KEEP);
-	for (const drive of stale.slice(0, ROUTES_PER_RUN)) {
-		const safe = await driveRoute(drive);
-		if (safe)
-			driveStops.set(drive.id, {
-				at: now,
-				stops: crossingStops(safe),
-				places: new Map(safe.passes.map((p) => [p.pass.name, p.pass.place]))
-			});
-	}
-	return stale.length <= ROUTES_PER_RUN;
-}
-
-/** Snow on the way over a featured drive's passes, with when to leave: one drive a day in each state. */
+/** Snow on the way over the passes, with when to cross each: one post a day in each state. */
 async function forecastPosts(log: PostEntry[], now: number) {
-	const routed = await refreshRoutes(now);
 	if (now - forecastAt < FORECAST_EVERY) return [];
-	// Until every drive has its route (a few a run after a restart), look each run.
-	if (routed) forecastAt = now;
-	const { drives } = getCatalog();
-	const outlooks: DriveOutlook[] = [];
-	for (const drive of [...drives].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))) {
-		const known = driveStops.get(drive.id);
-		if (!known?.stops.length) continue;
-		const crossing = await crossingTimes(known.stops, now);
-		const snowiest = crossing?.advice.snow.toSorted((a, b) => b.inches - a.inches)[0];
-		if (!crossing || !snowiest) continue;
+	forecastAt = now;
+	const { passes } = getCatalog();
+	const reports = await allPassReports(passes).catch(() => new Map<string, PassReport>());
+	const outlooks: PassOutlook[] = [];
+	// One at a time, gently; a road shut for the winter or closed now is left out.
+	for (const p of passes) {
+		if (reports.get(p.id)?.status === 'closed' || blocksRoad(p, reports.get(p.id), now)) continue;
+		const crossing = await crossingTimes([{ pass: p, minutesToPass: 0 }], now);
+		const snow = crossing?.advice.snow[0];
+		if (!crossing || !snow) continue;
 		outlooks.push({
-			id: drive.id,
-			name: drive.name,
-			state: drive.state ?? null,
-			href: `/drives/${encodeURIComponent(drive.id)}`,
-			pass: snowiest.pass,
-			preview: `/og/search?place=${encodeURIComponent(known.places.get(snowiest.pass) ?? '')}`,
-			feet: crossing.passes.find((p) => p.name === snowiest.pass)?.feet ?? null,
-			inches: snowiest.inches,
-			from: snowiest.from,
-			leaveBefore: crossing.advice.leaveBefore,
-			leaveAfter: crossing.advice.leaveAfter,
+			id: p.id,
+			name: p.name,
+			state: regionAt(p.lat, p.lon)?.abbr ?? null,
+			href: `/passes/${encodeURIComponent(p.id)}`,
+			preview: `/og/search?place=${encodeURIComponent(p.place)}`,
+			feet: p.elevation_ft ?? null,
+			inches: snow.inches,
+			from: snow.from,
+			crossBefore: crossing.advice.leaveBefore,
+			crossAfter: crossing.advice.leaveAfter,
 			timeZone: crossing.timeZone
 		});
 	}
-	return pickForecasts(outlooks, log, now).map((o) => ({
+	return pickForecasts(outlooks, log, now).map((group) => ({
 		entry: {
-			id: o.id,
-			name: o.name,
+			id: group.length === 1 ? group[0].id : `forecast:${group[0].state}`,
+			name: group.map((o) => o.name).join(', '),
 			kind: 'forecast' as const,
-			state: o.state,
-			text: forecastText(o, SITE, 'fb', now)
+			state: group[0].state,
+			text: forecastText(group, SITE, 'fb', now)
 		},
-		picture: o.preview
+		picture: group[0].preview
 	}));
 }
 

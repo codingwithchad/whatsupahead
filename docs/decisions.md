@@ -539,10 +539,12 @@ On the owner's word:
   starts over, so next winter's first report isn't a change from last spring.
 - **Snow on the way.** Cameras often don't show the snow: Mt. Bachelor's own resort camera did, TripCheck's wet road
   didn't; at Mt. Hood the Windy and YouTube cameras did, which can't go in our pictures. The forecast does, and
-  "Best time to cross" says what to do about it (Seattle to Ellensburg: cross before 9 PM to get ahead of the storm).
-  Every 2 hours, the featured drives' summit forecasts (at the summit road's height); a drive with 2 inches or more
-  in the next day and a time to leave before it (2 hours away or more) or after it gets a post linking its page. One
-  drive a day in each state, the same drive every 3 days, so the feature is promoted without overdoing it.
+  "Best time to cross" says what to do about it. Under a Washington Weather Chasers storm post, dozens asked about
+  their own pass and day ("How's Stevens tomorrow afternoon?") and one person answered each by hand; that's one
+  post, in one corner of six states. So every pass page now has Best time to cross (at the summit: cross before the
+  snow, or after it), and every 3 hours the summit forecasts are read for every pass: a state with passes getting 2
+  inches or more in the next day gets one post a day naming up to 4, snowiest first, each with when to cross and its
+  link. First tried with the featured drives; the owner pointed out people cross passes, not Seattle to Spokane.
 
 Also on the passes page, Worst first puts roads shut for the winter (Tioga, the North Cascades Highway) last, and a
 state's "closed" count leaves them out, as the home page's Right now line already did: closed all season isn't news.

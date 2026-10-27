@@ -4,12 +4,14 @@
 
 	// "Best time to cross": when to leave to miss the snow at the summits in the next day ("Leave before 5:30 AM
 	// tomorrow to cross ahead of it"), and, folded away under "Pick a time to leave", the worst summit's forecast for
-	// each hour you could leave. Tapping an hour plans the drive for it and folds the hours away again.
+	// each hour you could leave. Tapping an hour plans the drive for it and folds the hours away again. Without `link`
+	// (a pass page: no drive, so leaving is crossing) it says when to cross, and the hours are the summit's.
 	let {
 		crossing,
-		leaveIn,
+		leaveIn = 0,
 		link
-	}: { crossing: Crossing; leaveIn: number; link: (leaveIn: number) => string } = $props();
+	}: { crossing: Crossing; leaveIn?: number; link?: (leaveIn: number) => string } = $props();
+	const verb = $derived(link ? 'Leave' : 'Cross');
 
 	const tz = $derived(crossing.timeZone);
 	const now = Date.now();
@@ -43,6 +45,13 @@
 	);
 </script>
 
+{#snippet slot(s: Crossing['slots'][number])}
+	<span class="slot-time">{s.leaveIn === 0 ? 'Now' : short(leaveAt(s.leaveIn))}</span>
+	<span class="slot-temp"
+		>{#if s.level === 'snow'}❄{:else}{s.tempF ?? '–'}°{/if}</span
+	>
+{/snippet}
+
 <section class="crossing" aria-label="Best time to cross {title}">
 	<h2>Best time to cross {title}</h2>
 	<p class="crossing-advice">
@@ -53,15 +62,15 @@
 			{#each a.snow as s, i (s.pass)}{i === 0 ? 'Snow' : ', and'} at {one ? 'the summit' : s.pass} from
 				about {when(s.from)}{s.until ? ` until about ${when(s.until)}` : ''}{/each}.
 			{#if a.leaveBefore !== null}
-				<strong>Leave before {when(a.leaveBefore)}</strong> to cross ahead of it{a.leaveAfter !==
+				<strong>{verb} before {when(a.leaveBefore)}</strong> to {link ? 'cross' : 'get'} ahead of it{a.leaveAfter !==
 				null
 					? ','
 					: '.'}
 			{/if}
 			{#if a.leaveAfter !== null}
 				{a.leaveBefore !== null ? 'or' : ''}
-				<strong>leave after {when(a.leaveAfter)}</strong> to cross once it has passed (plows need time
-				too).
+				<strong>{verb.toLowerCase()} after {when(a.leaveAfter)}</strong>
+				{link ? 'to cross' : ''} once it has passed (plows need time too).
 			{:else if a.leaveBefore === null}
 				<strong>It keeps on through the next day</strong>: go prepared, or wait for the forecast to
 				change.
@@ -69,31 +78,38 @@
 		{/if}
 	</p>
 	<details class="crossing-hours" bind:open>
-		<summary>Pick a time to leave</summary>
+		<summary>{link ? 'Pick a time to leave' : 'Hour by hour at the summit'}</summary>
 		<ol class="crossing-slots">
 			{#each crossing.slots as s (s.leaveIn)}
 				<li>
-					<a
-						class="slot slot-{s.level}"
-						href={link(s.leaveIn)}
-						onclick={() => (open = false)}
-						aria-current={s.leaveIn === chosen ? 'true' : undefined}
-						aria-label="Leave {s.leaveIn === 0
-							? 'now'
-							: `at ${when(leaveAt(s.leaveIn))}`}: {s.tempF ?? '?'}°F and {word[s.level]} at {one
-							? 'the summit'
-							: s.pass} around {when(s.at)}"
-					>
-						<span class="slot-time">{s.leaveIn === 0 ? 'Now' : short(leaveAt(s.leaveIn))}</span>
-						<span class="slot-temp"
-							>{#if s.level === 'snow'}❄{:else}{s.tempF ?? '–'}°{/if}</span
+					{#if link}
+						<a
+							class="slot slot-{s.level}"
+							href={link(s.leaveIn)}
+							onclick={() => (open = false)}
+							aria-current={s.leaveIn === chosen ? 'true' : undefined}
+							aria-label="Leave {s.leaveIn === 0
+								? 'now'
+								: `at ${when(leaveAt(s.leaveIn))}`}: {s.tempF ?? '?'}°F and {word[s.level]} at {one
+								? 'the summit'
+								: s.pass} around {when(s.at)}"
 						>
-					</a>
+							{@render slot(s)}
+						</a>
+					{:else}
+						<span
+							class="slot slot-{s.level}"
+							aria-label="{s.leaveIn === 0 ? 'Now' : when(leaveAt(s.leaveIn))}: {s.tempF ??
+								'?'}°F and {word[s.level]} at the summit"
+						>
+							{@render slot(s)}
+						</span>
+					{/if}
 				</li>
 			{/each}
 		</ol>
 		<p class="crossing-key">
-			<span>By when you leave:</span>
+			<span>{link ? 'By when you leave:' : 'At the summit:'}</span>
 			<span class="k"><i class="slot-snow"></i> ❄ snow</span>
 			<span class="k"><i class="slot-freezing"></i> freezing</span>
 			<span class="k"><i class="slot-clear"></i> above freezing</span>

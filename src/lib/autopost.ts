@@ -4,14 +4,14 @@ import { REGIONS } from './regions';
 import type { SnowingSpot } from './snowing';
 
 /**
- * What a post is about: snow falling at a spot, a pass's chain rules changing, or snow on the way for a popular
- * drive (with its best time to cross). Each has its own limits.
+ * What a post is about: snow falling at a spot, a pass's chain rules changing, or snow on the way over the passes
+ * (with the best time to cross each). Each has its own limits.
  */
 export type PostKind = 'snow' | 'chains' | 'forecast';
 
 /** One post to the site's Facebook Page, or one it would have made (a dry run, before the Page's key is set). */
 export interface PostEntry {
-	/** The spot, pass or drive (`chains:WA` for a post about several passes). */
+	/** The spot or pass (`chains:WA`, `forecast:WA` for a post about several passes). */
 	id: string;
 	name: string;
 	/** Missing on the first posts, which were all snow. */
@@ -189,80 +189,86 @@ export function chainText(changes: ChainChange[], origin: string, ref?: string):
 	return `${region ? `${region.name} passes` : 'Passes'} now: ${list.join('; ')}. Cameras and chains for your car on every pass: ${origin}${linkWith(where, ref)}`;
 }
 
-// ---- Snow on the way for a drive -----------------------------------------------------------------------------
+// ---- Snow on the way over the passes -------------------------------------------------------------------------
 
-/** A popular drive with snow forecast at a summit on the way in the next day, and when to leave to miss it. */
-export interface DriveOutlook {
+/** A pass with snow forecast at its summit in the next day, and when to cross to miss it. */
+export interface PassOutlook {
 	id: string;
 	name: string;
 	state: string | null;
 	href: string;
-	/** The snowiest pass on the way, its preview picture, and its summit's height (where the forecast is for). */
-	pass: string;
 	preview: string;
+	/** The summit's height, where the forecast is for (the road's height: drivers' snow). */
 	feet: number | null;
-	/** Snow forecast at that summit, in inches, and when it starts. */
+	/** Snow forecast at the summit, in inches, and when it starts. */
 	inches: number;
 	from: number;
-	leaveBefore: number | null;
-	leaveAfter: number | null;
+	/** Be over the summit before this to get ahead of the snow, or after this once it has passed. */
+	crossBefore: number | null;
+	crossAfter: number | null;
 	timeZone: string;
 }
 
-/** Enough forecast snow for a drive to be worth a post. */
+/** Enough forecast snow at a summit for a pass to be in a post. */
 const FORECAST_INCHES = 2;
-/** "Leave before" must leave time to read the post and go. */
+/** "Cross before" must leave time to read the post and get there. */
 const LEAD = 2 * HOUR;
-/** Promoting "Best time to cross" without overdoing it: one drive a day in each state, the same drive every 3 days. */
-const SAME_DRIVE = 3 * 24 * HOUR;
+/**
+ * Promoting "Best time to cross" without overdoing it: one post a day in each state, naming its snowiest passes
+ * (people ask about the pass they're crossing: Stevens on Thursday, Snoqualmie Saturday).
+ */
 const FORECAST_SPACING = 24 * HOUR;
+const PASSES_PER_POST = 4;
 
-const useful = (o: DriveOutlook, now: number) =>
-	o.inches >= FORECAST_INCHES &&
-	((o.leaveBefore !== null && o.leaveBefore - now >= LEAD) || o.leaveAfter !== null);
-
-/** The drives to post about now, at most one a state, `outlooks` in the drives' own order (most looked up first). */
+/** The posts to make now: for each state not posted today, its passes with 2 inches or more coming, snowiest first. */
 export function pickForecasts(
-	outlooks: DriveOutlook[],
+	outlooks: PassOutlook[],
 	all: PostEntry[],
 	now: number
-): DriveOutlook[] {
+): PassOutlook[][] {
 	const log = ofKind(all, 'forecast');
-	const posted = new Set(log.filter((e) => !e.error && now - e.at < SAME_DRIVE).map((e) => e.id));
 	// A failed try waits two hours, like a snow post.
 	const busy = (state: string) =>
 		log.some((e) => e.state === state && now - e.at < (e.error ? SPACING : FORECAST_SPACING));
-	const out: DriveOutlook[] = [];
-	for (const o of outlooks) {
-		const state = o.state ?? o.id;
-		if (!useful(o, now) || posted.has(o.id) || busy(state)) continue;
-		if (out.some((x) => (x.state ?? x.id) === state)) continue;
-		out.push(o);
-	}
-	return out;
+	const snowy = outlooks
+		.filter((o) => o.inches >= FORECAST_INCHES)
+		.sort((a, b) => b.inches - a.inches || a.name.localeCompare(b.name));
+	const states = [...new Set(snowy.map((o) => o.state ?? o.id))].filter((s) => !busy(s));
+	return states.map((s) => snowy.filter((o) => (o.state ?? o.id) === s).slice(0, PASSES_PER_POST));
 }
 
-/** "Snow forecast at Snoqualmie Pass from about 9 PM: ... leave before 7:45 PM ...", with the drive's link. */
+/** "Cross before 9:45 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed." */
+function crossWords(o: PassOutlook, now: number): string {
+	const when = (t: number) => clockWithDay(t, now, o.timeZone);
+	const before = o.crossBefore !== null && o.crossBefore - now >= LEAD ? o.crossBefore : null;
+	if (before !== null && o.crossAfter !== null)
+		return `Cross before ${when(before)} to get ahead of it, or after ${when(o.crossAfter)} once it has passed.`;
+	if (before !== null) return `Cross before ${when(before)} to get ahead of it.`;
+	if (o.crossAfter !== null)
+		return `Cross after ${when(o.crossAfter)}, once it has passed (plows need time too).`;
+	return 'It keeps on through the next day: go prepared.';
+}
+
+const snowLine = (o: PassOutlook, now: number) =>
+	`about ${Math.round(o.inches)} in at the summit${o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : ''} from about ${clockWithDay(o.from, now, o.timeZone)}`;
+
+/** A post about the snow coming to one state's passes, each with when to cross and its link. */
 export function forecastText(
-	o: DriveOutlook,
+	passes: PassOutlook[],
 	origin: string,
 	ref?: string,
 	now = Date.now()
 ): string {
-	const when = (t: number) => clockWithDay(t, now, o.timeZone);
-	const height = o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : '';
-	const before = o.leaveBefore !== null && o.leaveBefore - now >= LEAD ? o.leaveBefore : null;
-	const advice =
-		before !== null && o.leaveAfter !== null
-			? `leave before ${when(before)} to cross ahead of it, or after ${when(o.leaveAfter)} once it has passed`
-			: before !== null
-				? `leave before ${when(before)} to cross ahead of it`
-				: `leave after ${when(o.leaveAfter!)}, once it has passed (plows need time too)`;
+	const link = (o: PassOutlook) => `${origin}${linkWith(o.href, ref)}`;
+	if (passes.length === 1) {
+		const o = passes[0];
+		return `Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} Cameras, chains for your car and the best time to cross, hour by hour: ${link(o)}`;
+	}
+	const region = REGIONS.find((r) => r.abbr === passes[0].state);
 	return [
-		`Snow forecast at ${o.pass} from about ${when(o.from)}: about ${Math.round(o.inches)} in at the summit${height}.`,
-		`${o.name}: ${advice}.`,
-		`Best time to cross, hour by hour: ${origin}${linkWith(o.href, ref)}`
-	].join(' ');
+		`Snow on the way over ${region ? `${region.name} ` : ''}passes. When to cross each, hour by hour:`,
+		...passes.map((o) => `${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} ${link(o)}`)
+	].join('\n\n');
 }
 
 /** The log, newest last, keeping the last two weeks. */

@@ -7,8 +7,8 @@ import {
 	pickChains,
 	pickForecasts,
 	pickPosts,
-	type DriveOutlook,
 	type PassMemory,
+	type PassOutlook,
 	type PostEntry
 } from './autopost';
 import type { PassReport, PassStatus } from './passes';
@@ -214,46 +214,65 @@ describe('chain changes', () => {
 	});
 });
 
-describe('snow on the way for a drive', () => {
-	const outlook = (id: string, over: Partial<DriveOutlook> = {}): DriveOutlook => ({
+describe('snow on the way over the passes', () => {
+	const outlook = (id: string, over: Partial<PassOutlook> = {}): PassOutlook => ({
 		id,
-		name: 'Seattle to Spokane',
+		name: `${id} Pass`,
 		state: 'WA',
-		href: `/drives/${id}`,
-		pass: 'Snoqualmie Pass',
-		preview: '/og/search?place=pass-snoqualmie',
-		feet: 3022,
+		href: `/passes/${id}`,
+		preview: `/og/search?place=pass-${id}`,
+		feet: 4061,
 		inches: 4,
 		from: NOW + 11 * HOUR,
-		leaveBefore: NOW + 9 * HOUR,
-		leaveAfter: NOW + 20 * HOUR,
+		crossBefore: NOW + 11 * HOUR,
+		crossAfter: NOW + 24 * HOUR,
 		timeZone: 'America/Los_Angeles',
 		...over
 	});
-	const picked = (list: DriveOutlook[], log: PostEntry[] = []) =>
-		pickForecasts(list, log, NOW).map((o) => o.id);
+	const picked = (list: PassOutlook[], log: PostEntry[] = []) =>
+		pickForecasts(list, log, NOW).map((g) => g.map((o) => o.id));
 
-	it('posts one drive a state, the first in the drives order', () => {
-		expect(picked([outlook('a'), outlook('b'), outlook('c', { state: 'OR' })])).toEqual(['a', 'c']);
+	it('one post a state, its snowiest passes first, four at most', () => {
+		const list = [
+			outlook('a', { inches: 2 }),
+			outlook('b', { inches: 6 }),
+			outlook('c', { state: 'OR' }),
+			outlook('d', { inches: 1 }),
+			outlook('e'),
+			outlook('f'),
+			outlook('g')
+		];
+		expect(picked(list)).toEqual([['b', 'e', 'f', 'g'], ['c']]);
 	});
 
-	it('needs 2 inches, and time to leave before it or a time after it', () => {
-		expect(picked([outlook('a', { inches: 1 })])).toEqual([]);
-		expect(picked([outlook('a', { leaveBefore: NOW + HOUR, leaveAfter: null })])).toEqual([]);
-		expect(picked([outlook('a', { leaveBefore: null })])).toEqual(['a']);
+	it('once a day in a state; a failed try again after two hours', () => {
+		expect(picked([outlook('a')], [entry('x', 10, { kind: 'forecast' })])).toEqual([]);
+		expect(picked([outlook('a')], [entry('x', 25, { kind: 'forecast' })])).toEqual([['a']]);
+		const failed = [entry('x', 3, { kind: 'forecast', error: 'down' })];
+		expect(picked([outlook('a')], failed)).toEqual([['a']]);
 	});
 
-	it('once a day in a state, the same drive every three days', () => {
-		const today = [entry('a', 10, { kind: 'forecast' })];
-		expect(picked([outlook('b')], today)).toEqual([]);
-		const before = [entry('a', 30, { kind: 'forecast' })];
-		expect(picked([outlook('a'), outlook('b')], before)).toEqual(['b']);
-	});
-
-	it('says when it snows, how much at what height, and when to leave', () => {
-		// 10 AM: snow from 9 PM, leave before 7 PM or after 6 AM tomorrow.
-		expect(forecastText(outlook('seattle-spokane'), 'https://x.com', 'fb', NOW)).toBe(
-			'Snow forecast at Snoqualmie Pass from about 9:00 PM: about 4 in at the summit (3,022 ft). Seattle to Spokane: leave before 7:00 PM to cross ahead of it, or after 6:00 AM tomorrow once it has passed. Best time to cross, hour by hour: https://x.com/drives/seattle-spokane?ref=fb'
+	it('one pass: when it snows, how much at what height, when to cross', () => {
+		// 10 AM: snow from 9 PM.
+		expect(forecastText([outlook('Stevens')], 'https://x.com', 'fb', NOW)).toBe(
+			'Snow on the way at Stevens Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. Cross before 9:00 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed. Cameras, chains for your car and the best time to cross, hour by hour: https://x.com/passes/Stevens?ref=fb'
 		);
+	});
+
+	it('several passes: a line and a link each; too soon to beat it, or no end in sight', () => {
+		const text = forecastText(
+			[
+				outlook('Stevens', { crossBefore: NOW + HOUR }),
+				outlook('Snoqualmie', { crossBefore: null, crossAfter: null })
+			],
+			'https://x.com',
+			'fb',
+			NOW
+		);
+		expect(text.split('\n\n')).toEqual([
+			'Snow on the way over Washington passes. When to cross each, hour by hour:',
+			'Stevens Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. Cross after 10:00 AM tomorrow, once it has passed (plows need time too). https://x.com/passes/Stevens?ref=fb',
+			'Snoqualmie Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. It keeps on through the next day: go prepared. https://x.com/passes/Snoqualmie?ref=fb'
+		]);
 	});
 });
