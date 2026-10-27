@@ -1,18 +1,37 @@
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { keepRecent, pickPosts, type PostEntry } from '../autopost';
+import {
+	chainChanges,
+	chainText,
+	forecastText,
+	keepRecent,
+	pickChains,
+	pickForecasts,
+	pickPosts,
+	type DriveOutlook,
+	type PassMemory,
+	type PostEntry
+} from '../autopost';
+import { regionAt } from '../regions';
 import { postText } from '../snowing';
+import { getCatalog } from './catalog';
+import { crossingTimes, type CrossingStop } from './crossing';
+import { crossingStops, driveRoute } from './drives';
+import { allPassReports } from './passes';
 import { snowingNow } from './snowing';
 
-// Every half hour, when passes, ski areas or parks are snowing, the site's own Facebook Page posts them (one a state): the spot's
-// preview picture (its camera pictures, with each source's credit printed on it, the same picture a shared link shows)
-// and a line about the snow with the link. Without FACEBOOK_PAGE_ID and FACEBOOK_PAGE_TOKEN it only notes what it
-// would have posted, shown on /stats, so the rules can be watched before anything goes up. The notes are saved next
-// to the visit counts.
+// Every half hour, day and night, the site's own Facebook Page posts what drivers and skiers want to know: passes, ski
+// areas or parks snowing now (one a state), a pass's chain rules changing, and snow on the way for a popular drive
+// with its best time to cross. Each post is a preview picture (camera pictures, each source's credit printed on it,
+// the same picture a shared link shows) and a few lines with the link. Without FACEBOOK_PAGE_ID and
+// FACEBOOK_PAGE_TOKEN it only notes what it would have posted, shown on /stats, so the rules can be watched before
+// anything goes up. The notes, and each pass's last posted chain rule, are saved next to the visit counts.
 
 const FILE =
 	process.env.AUTOPOST_FILE ||
 	path.join(path.dirname(process.env.STATS_FILE || '.stats/stats.json'), 'autopost.json');
+const MEMORY_FILE = path.join(path.dirname(FILE), 'autopost-passes.json');
+const HOUR = 3600_000;
 const EVERY_MS = 30 * 60 * 1000;
 const GRAPH = 'https://graph.facebook.com/v24.0';
 const SITE = process.env.SITE_URL || 'https://whatsupahead.com';
@@ -34,6 +53,24 @@ function saveLog(log: PostEntry[]) {
 		renameSync(`${FILE}.tmp`, FILE);
 	} catch (err) {
 		console.warn(`[autopost] could not save: ${(err as Error).message}`);
+	}
+}
+
+function readMemory(): Record<string, PassMemory> {
+	try {
+		return JSON.parse(readFileSync(MEMORY_FILE, 'utf8')) as Record<string, PassMemory>;
+	} catch {
+		return {};
+	}
+}
+
+function saveMemory(memory: Record<string, PassMemory>) {
+	try {
+		mkdirSync(path.dirname(MEMORY_FILE), { recursive: true });
+		writeFileSync(`${MEMORY_FILE}.tmp`, JSON.stringify(memory));
+		renameSync(`${MEMORY_FILE}.tmp`, MEMORY_FILE);
+	} catch (err) {
+		console.warn(`[autopost] could not save the passes: ${(err as Error).message}`);
 	}
 }
 
@@ -69,41 +106,168 @@ async function postPhoto(
 	return body.post_id ?? body.id ?? '';
 }
 
-async function tick() {
-	const now = Date.now();
-	const log = readLog();
-	let spots;
-	try {
-		spots = await snowingNow(now);
-	} catch (err) {
-		console.warn(`[autopost] snow: ${(err as Error).message}`);
-		return;
-	}
-	const key = pageKey();
-	const entries: PostEntry[] = [];
-	// One a state: Washington, Oregon and Utah snowing at once all go out now.
-	for (const spot of pickPosts(spots, log, now)) {
-		const text = postText(spot, SITE, 'fb');
-		const entry: PostEntry = {
-			id: spot.id,
-			name: spot.name,
-			state: spot.state,
-			at: Date.now(),
-			text,
-			post: null,
-			dry: !key
-		};
+/** Posts each entry's picture with its text (or only notes it, without the Page's key), and returns the entries. */
+async function send(
+	key: { page: string; token: string } | null,
+	posts: { entry: Omit<PostEntry, 'at' | 'post' | 'dry'>; picture: string }[],
+	now: number
+): Promise<PostEntry[]> {
+	const out: PostEntry[] = [];
+	for (const { entry: e, picture } of posts) {
+		const entry: PostEntry = { ...e, at: Date.now(), post: null, dry: !key };
 		if (key)
 			try {
 				// A fresh picture each time (the preview is otherwise kept for a while).
-				entry.post = await postPhoto(key, `${SITE}${spot.preview}&v=${now}`, text);
-				console.log(`[autopost] posted ${spot.id}`);
+				entry.post = await postPhoto(key, `${SITE}${picture}&v=${now}`, entry.text);
+				console.log(`[autopost] posted ${entry.id}`);
 			} catch (err) {
 				entry.error = (err as Error).message;
-				console.warn(`[autopost] ${spot.id}: ${entry.error}`);
+				console.warn(`[autopost] ${entry.id}: ${entry.error}`);
 			}
-		entries.push(entry);
+		out.push(entry);
 	}
+	return out;
+}
+
+/** Snowing now, one spot a state. */
+async function snowPosts(log: PostEntry[], now: number) {
+	const spots = await snowingNow(now);
+	return pickPosts(spots, log, now).map((spot) => ({
+		entry: {
+			id: spot.id,
+			name: spot.name,
+			kind: 'snow' as const,
+			state: spot.state,
+			text: postText(spot, SITE, 'fb')
+		},
+		picture: spot.preview
+	}));
+}
+
+/** Chain rules that changed on a pass, one post a state. Updates `memory`. */
+async function chainPosts(log: PostEntry[], memory: Record<string, PassMemory>, now: number) {
+	const { passes } = getCatalog();
+	const reports = await allPassReports(passes);
+	const changes = chainChanges(
+		passes.map((p) => ({
+			id: p.id,
+			name: p.name,
+			route: p.route,
+			place: p.place,
+			state: regionAt(p.lat, p.lon)?.abbr ?? null
+		})),
+		reports,
+		memory,
+		now
+	);
+	return pickChains(changes, log, now).map((group) => ({
+		group,
+		entry: {
+			id: group.length === 1 ? group[0].id : `chains:${group[0].state}`,
+			name: group.map((c) => c.name).join(', '),
+			kind: 'chains' as const,
+			state: group[0].state,
+			text: chainText(group, SITE, 'fb')
+		},
+		picture: `/og/search?place=${encodeURIComponent(group[0].place)}`
+	}));
+}
+
+/** Each featured drive's passes, kept half a day: the route rarely changes, and the free router is shared. */
+const driveStops = new Map<
+	string,
+	{ at: number; stops: CrossingStop[]; places: Map<string, string> }
+>();
+const ROUTE_KEEP = 12 * HOUR;
+/** A few routes a run, so the drive pages' share of the free router is never used up at once. */
+const ROUTES_PER_RUN = 4;
+/** Summit forecasts for the drives every two hours (Open-Meteo, one call a pass). */
+const FORECAST_EVERY = 2 * HOUR;
+let forecastAt = 0;
+
+/** Routes the next few drives that need one; true when none are left waiting. */
+async function refreshRoutes(now: number): Promise<boolean> {
+	const { drives } = getCatalog();
+	const stale = drives.filter((d) => now - (driveStops.get(d.id)?.at ?? 0) > ROUTE_KEEP);
+	for (const drive of stale.slice(0, ROUTES_PER_RUN)) {
+		const safe = await driveRoute(drive);
+		if (safe)
+			driveStops.set(drive.id, {
+				at: now,
+				stops: crossingStops(safe),
+				places: new Map(safe.passes.map((p) => [p.pass.name, p.pass.place]))
+			});
+	}
+	return stale.length <= ROUTES_PER_RUN;
+}
+
+/** Snow on the way over a featured drive's passes, with when to leave: one drive a day in each state. */
+async function forecastPosts(log: PostEntry[], now: number) {
+	const routed = await refreshRoutes(now);
+	if (now - forecastAt < FORECAST_EVERY) return [];
+	// Until every drive has its route (a few a run after a restart), look each run.
+	if (routed) forecastAt = now;
+	const { drives } = getCatalog();
+	const outlooks: DriveOutlook[] = [];
+	for (const drive of [...drives].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))) {
+		const known = driveStops.get(drive.id);
+		if (!known?.stops.length) continue;
+		const crossing = await crossingTimes(known.stops, now);
+		const snowiest = crossing?.advice.snow.toSorted((a, b) => b.inches - a.inches)[0];
+		if (!crossing || !snowiest) continue;
+		outlooks.push({
+			id: drive.id,
+			name: drive.name,
+			state: drive.state ?? null,
+			href: `/drives/${encodeURIComponent(drive.id)}`,
+			pass: snowiest.pass,
+			preview: `/og/search?place=${encodeURIComponent(known.places.get(snowiest.pass) ?? '')}`,
+			feet: crossing.passes.find((p) => p.name === snowiest.pass)?.feet ?? null,
+			inches: snowiest.inches,
+			from: snowiest.from,
+			leaveBefore: crossing.advice.leaveBefore,
+			leaveAfter: crossing.advice.leaveAfter,
+			timeZone: crossing.timeZone
+		});
+	}
+	return pickForecasts(outlooks, log, now).map((o) => ({
+		entry: {
+			id: o.id,
+			name: o.name,
+			kind: 'forecast' as const,
+			state: o.state,
+			text: forecastText(o, SITE, 'fb', now)
+		},
+		picture: o.preview
+	}));
+}
+
+/** One part of a run; a source that fails only skips that part. */
+async function part<T>(name: string, run: () => Promise<T[]>): Promise<T[]> {
+	try {
+		return await run();
+	} catch (err) {
+		console.warn(`[autopost] ${name}: ${(err as Error).message}`);
+		return [];
+	}
+}
+
+async function tick() {
+	const now = Date.now();
+	const log = readLog();
+	const memory = readMemory();
+	const key = pageKey();
+	const chains = await part('chains', () => chainPosts(log, memory, now));
+	const entries = [
+		...(await send(key, await part('snow', () => snowPosts(log, now)), now)),
+		...(await send(key, chains, now)),
+		...(await send(key, await part('forecast', () => forecastPosts(log, now)), now))
+	];
+	// A chain change is posted once it went up (or would have, in a dry run); a failed one is tried again.
+	for (const { group, entry } of chains)
+		if (!entries.find((e) => e.kind === 'chains' && e.id === entry.id)?.error)
+			for (const c of group) memory[c.id].posted = c.to;
+	saveMemory(memory);
 	if (entries.length) saveLog(keepRecent([...log, ...entries], now));
 }
 

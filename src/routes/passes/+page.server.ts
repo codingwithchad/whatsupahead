@@ -84,7 +84,8 @@ export const load: PageServerLoad = async ({ setHeaders, url }) => {
 		.map((name) => {
 			const mine = byState(name, area);
 			const all = mine.flatMap((g) => g.passes);
-			const closed = all.filter((p) => p.report?.status === 'closed').length;
+			// A road shut for the winter is closed all season: not counted, as on the home page.
+			const closed = all.filter((p) => p.report?.status === 'closed' && !p.winter_closure).length;
 			const chains = all.filter((p) => p.report?.status === 'chains').length;
 			return { name, groups: mine, count: all.length, closed, chains };
 		})

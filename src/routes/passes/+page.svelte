@@ -42,7 +42,8 @@
 	});
 	const short = $derived(VEHICLES.find((v) => v.id === vehicle)?.short ?? '');
 	// Worst first (the default November to April): closed, then chains, then traction, then open; passes with no
-	// report last. Ties keep the road order of the state lists.
+	// report, then roads shut for the winter (Tioga, the North Cascades Highway: closed all season is not news), last.
+	// Ties keep the road order of the state lists.
 	const month = new Date().getMonth();
 	let sort = $state(month >= 10 || month <= 3 ? 'worst' : 'state');
 	const RANK: Record<string, number> = {
@@ -52,10 +53,13 @@
 		open: 3,
 		'off-season': 4
 	};
+	const winterShut = (p: { winter_closure?: string; report: { status: string } | null }) =>
+		Boolean(p.winter_closure) &&
+		(p.report?.status === 'closed' || p.report?.status === 'off-season');
 	const worstFirst = $derived(
 		data.states
 			.flatMap((st) => st.groups.flatMap((g) => g.passes))
-			.map((p, i) => ({ p, i, r: RANK[p.report?.status ?? ''] ?? 5 }))
+			.map((p, i) => ({ p, i, r: winterShut(p) ? 6 : (RANK[p.report?.status ?? ''] ?? 5) }))
 			.sort((a, b) => a.r - b.r || a.i - b.i)
 			.map((x) => x.p)
 	);
@@ -169,7 +173,9 @@
 	/>
 
 	{#if sort === 'worst'}
-		<p class="sub">Closed first, then chains, then traction tires, then open.</p>
+		<p class="sub">
+			Closed first, then chains, then traction tires, then open. Roads closed for the winter last.
+		</p>
 		<ul class="pass-list">
 			{#each worstFirst as p (p.id)}{@render passItem(p)}{/each}
 		</ul>

@@ -154,7 +154,8 @@ The three run on the same system, with the same developer API and the same limit
 - **Their rules ([terms](https://open-meteo.com/en/terms)):** fewer than 10,000 calls a day, 5,000 an hour and 600
   a minute; **non-commercial use only** (they give "websites or apps that have subscriptions or display
   advertisements" as commercial); data under CC BY 4.0, so credit is required. Voluntary donations are fine.
-- **What we do:** at most 8,000 calls a day and 120 a minute; forecasts kept 10 to 30 minutes. Credited on the About
+- **What we do:** at most 8,000 calls a day and 120 a minute; forecasts kept 10 to 30 minutes. The Facebook Page's
+  "snow on the way" check asks for each featured drive's summits every 2 hours (about 25 summits, 300 calls a day). Credited on the About
   page and next to the snow forecasts. **If the site ever shows ads or sells a subscription, it needs an
   Open-Meteo paid plan first.**
 
@@ -234,12 +235,16 @@ The three run on the same system, with the same developer API and the same limit
 
 ### Facebook Graph API (our Page)
 
-- **What for:** the site's Facebook Page posts the snow by itself (`src/lib/server/autopost.ts`).
+- **What for:** the site's Facebook Page posts the snow, chain changes and snow on the way by itself
+  (`src/lib/server/autopost.ts`).
 - **Key:** `FACEBOOK_PAGE_ID` and `FACEBOOK_PAGE_TOKEN` (a Page key from our own Meta app, which posts only to our
   own Page). Without them it only notes what it would post, on /stats.
-- **What we do:** only a spot snowing now with 3 inches or more today; 4 AM to 8 PM Pacific; in each state at most 3
-  posts a day, 2 hours apart (different states go out together); 10 a day in all; the same spot once in 3 days. The
-  picture is the spot's link-preview picture, so only sources allowed in previews appear, each credited on it.
+- **What we do:** checks every half hour, day and night. Snow: only a spot snowing now with 3 inches or more today;
+  in each state at most 3 posts a day, 2 hours apart (different states go out together); 10 a day in all; the same
+  spot once in 3 days. Chains: a pass's chain rule changing (held half an hour), one post an hour in each state with
+  every pass that changed, 8 a day. Snow on the way: a featured drive with 2 inches or more forecast at a summit in
+  the next day, one a day in each state, the same drive once in 3 days. The picture is a link-preview picture, so
+  only sources allowed in previews appear, each credited on it.
 
 ## Adding a source
 

@@ -141,6 +141,8 @@ describe('leaveAdvice', () => {
 		expect(new Date(a.snowFrom!).toISOString()).toBe('2026-11-26T15:00:00.000Z');
 		expect(new Date(a.leaveBefore!).toISOString()).toBe('2026-11-26T13:30:00.000Z'); // 5:30 AM
 		expect(new Date(a.leaveAfter!).toISOString()).toBe('2026-11-26T19:30:00.000Z'); // 11:30 AM
+		// Six snowy hours of 0.4 in at the summit.
+		expect(a.snowInches).toBe(2.4);
 	});
 
 	it('one dry hour in the middle of a storm does not end it', () => {
@@ -180,6 +182,7 @@ describe('combineAdvice', () => {
 	const advice = (over: Partial<LeaveAdvice>): LeaveAdvice => ({
 		snowFrom: null,
 		snowUntil: null,
+		snowInches: 0,
 		leaveBefore: null,
 		leaveAfter: null,
 		freezing: false,

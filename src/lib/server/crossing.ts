@@ -23,6 +23,8 @@ export interface LeaveAdvice {
 	/** The first stretch of snow at the summit that a crossing in the next 24 hours would meet. */
 	snowFrom: number | null;
 	snowUntil: number | null;
+	/** The snow forecast to fall at the summit in that stretch, in inches. */
+	snowInches: number;
 	leaveBefore: number | null;
 	leaveAfter: number | null;
 	/** Freezing at the summit at some time you could cross, without snow (ice is possible). */
@@ -32,7 +34,7 @@ export interface LeaveAdvice {
 /** When to leave to miss the snow at every pass on the drive. */
 export interface CrossingAdvice {
 	/** Each pass where a crossing would meet snow, in road order, with when it snows at its summit. */
-	snow: { pass: string; from: number; until: number }[];
+	snow: { pass: string; from: number; until: number; inches: number }[];
 	leaveBefore: number | null;
 	leaveAfter: number | null;
 	freezing: boolean;
@@ -84,19 +86,28 @@ export function leaveAdvice(
 	const snowy = (i: number) => (hourly.snowfall[i] ?? 0) >= 0.1;
 	let from: number | null = null;
 	let until: number | null = null;
+	let inches = 0;
 	for (let i = 0; i < hourly.times.length; i++) {
 		const end = hourly.times[i];
 		if (end <= first || end - HOUR > last) continue;
 		if (snowy(i)) {
 			if (from === null) from = Math.max(end - HOUR, first);
 			until = end;
+			inches += hourly.snowfall[i];
 		} else if (from !== null && !(snowy(i + 1) && hourly.times[i + 1] - HOUR <= last)) break;
 	}
 	const freezing = hourly.times.some(
 		(t, i) => t > first && t - HOUR <= last && !snowy(i) && (hourly.temperature[i] ?? 99) <= 32
 	);
 	if (from === null)
-		return { snowFrom: null, snowUntil: null, leaveBefore: null, leaveAfter: null, freezing };
+		return {
+			snowFrom: null,
+			snowUntil: null,
+			snowInches: 0,
+			leaveBefore: null,
+			leaveAfter: null,
+			freezing
+		};
 	// Still snowing past the next day's crossings: no "after" to give.
 	const next = hourly.times.indexOf(until! + HOUR);
 	const keepsOn = next !== -1 && snowy(next) && until! >= last;
@@ -105,6 +116,7 @@ export function leaveAdvice(
 	return {
 		snowFrom: from,
 		snowUntil: until,
+		snowInches: Math.round(inches * 10) / 10,
 		// Already snowing by the time you could get there: there's no beating it.
 		leaveBefore: from > first && before > now ? before : null,
 		leaveAfter: !keepsOn && after <= now + AHEAD_HOURS * HOUR ? after : null,
@@ -126,7 +138,8 @@ export function combineAdvice(per: { pass: string; advice: LeaveAdvice }[]): Cro
 		snow: snowy.map((p) => ({
 			pass: p.pass,
 			from: p.advice.snowFrom!,
-			until: p.advice.snowUntil!
+			until: p.advice.snowUntil!,
+			inches: p.advice.snowInches
 		})),
 		leaveBefore:
 			snowy.length && !befores.includes(null) ? Math.min(...(befores as number[])) : null,

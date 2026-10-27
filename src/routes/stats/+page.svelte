@@ -216,12 +216,12 @@
 	<h2>Facebook posts</h2>
 	<p class="sub">
 		{data.autopost.live
-			? 'The Page posts by itself when passes, ski areas or parks are snowing (at most 3 a day in each state).'
+			? 'The Page posts by itself, day and night: spots snowing now (at most 3 a day in each state), chain rules changing on a pass (at most one post an hour in each state) and snow on the way for a popular drive with its best time to cross (one a day in each state).'
 			: 'Dry run: no Facebook key yet, so these are what the Page would have posted.'}
 	</p>
 	{#if data.autopost.entries.length}
 		<ul class="autopost-log">
-			{#each data.autopost.entries as e (e.at)}
+			{#each data.autopost.entries as e (`${e.at}:${e.id}`)}
 				<li>
 					<strong
 						>{new Date(e.at).toLocaleString('en-US', {

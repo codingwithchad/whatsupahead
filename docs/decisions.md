@@ -525,3 +525,25 @@ get 6 or more and the cameras show it. (Camera heights are known for too few cam
 Changed the same day, on the owner's word: posts start at 4 AM Pacific (5 in Idaho and Utah), for skiers up early to
 drive a couple of hours; and different states no longer wait for each other. If Washington, Oregon and Utah are
 snowing, all three go out at once; within one state posts stay 2 hours apart and 3 a day, with 10 a day in all.
+
+## 2026-10-27: The Facebook Page posts day and night, chain changes, and snow on the way
+
+The first storm of the season (a winter weather advisory for the Cascades from 5 PM) showed what the snow posts miss.
+On the owner's word:
+
+- **Day and night.** No posting hours: a storm at 2 AM is news by 5.
+- **Chain changes.** When a pass's report changes to chains required, traction tires advised or no restrictions, and
+  holds half an hour (two checks, so a report fixed a minute later isn't posted), the Page posts it: one post a state
+  an hour, with every pass that changed in it. Closures and "no report" are left to the pass pages. Each pass's last
+  posted rule is kept on disk (`autopost-passes.json`), so a deploy posts nothing; a pass with no rule for 3 days
+  starts over, so next winter's first report isn't a change from last spring.
+- **Snow on the way.** Cameras often don't show the snow: Mt. Bachelor's own resort camera did, TripCheck's wet road
+  didn't; at Mt. Hood the Windy and YouTube cameras did, which can't go in our pictures. The forecast does, and
+  "Best time to cross" says what to do about it (Seattle to Ellensburg: cross before 9 PM to get ahead of the storm).
+  Every 2 hours, the featured drives' summit forecasts (at the summit road's height); a drive with 2 inches or more
+  in the next day and a time to leave before it (2 hours away or more) or after it gets a post linking its page. One
+  drive a day in each state, the same drive every 3 days, so the feature is promoted without overdoing it.
+
+Also on the passes page, Worst first puts roads shut for the winter (Tioga, the North Cascades Highway) last, and a
+state's "closed" count leaves them out, as the home page's Right now line already did: closed all season isn't news.
+
