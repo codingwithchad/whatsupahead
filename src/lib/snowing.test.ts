@@ -6,9 +6,10 @@ const HOUR = 3600_000;
 // 2 PM in Seattle on a winter day.
 const NOW = Date.parse('2026-12-10T14:00:00-08:00');
 
-function reading(inches: number[]): SnowReading {
-	// One reading an hour, the last one now.
+function reading(inches: number[], waterUp = 0.5): SnowReading {
+	// One reading an hour, the last one now; the water in the snow rises evenly by `waterUp` over the readings.
 	const hourly = inches.map((v, i) => ({ t: NOW - (inches.length - 1 - i) * HOUR, in: v }));
+	const water = hourly.map((h, i) => ({ t: h.t, in: 2 + (waterUp * i) / (hourly.length - 1) }));
 	return {
 		station: 'Stevens Pass',
 		elevation_ft: 3950,
@@ -16,6 +17,7 @@ function reading(inches: number[]): SnowReading {
 		depthIn: inches.at(-1)!,
 		change24: inches.at(-1)! - inches[0],
 		hourly,
+		water,
 		tempF: 28,
 		at: NOW,
 		link: 'https://wcc.sc.egov.usda.gov/nwcc/site?sitenum=791'
@@ -39,6 +41,20 @@ describe('snowFacts', () => {
 		const f = snowFacts(reading(flat), null, 'America/Los_Angeles', NOW);
 		expect(f.now).toBe(false);
 		expect(hasNewSnow({ ...f })).toBe(false);
+	});
+
+	it('does not call a depth rise snow when the water in the snow stayed the same', () => {
+		const f = snowFacts(reading(steady(10, 0.5), 0), null, 'America/Los_Angeles', NOW);
+		expect(f.now).toBe(false);
+		expect(f.change24).toBeNull();
+		expect(hasNewSnow({ ...f })).toBe(false);
+	});
+
+	it('reads the water rise across hours the gauge skipped', () => {
+		const r = reading(steady(10, 0.5));
+		// No water readings for the first 12 hours, as gauges sometimes do.
+		const f = snowFacts({ ...r, water: r.water.slice(12) }, null, 'America/Los_Angeles', NOW);
+		expect(f.now).toBe(true);
 	});
 
 	it('trusts the state report saying snow, but not "no snow"', () => {
@@ -65,6 +81,7 @@ const spot = (over: Partial<SnowingSpot>): SnowingSpot => ({
 	preview: '/og/search?place=pass-stevens',
 	gauge: 'Stevens Pass',
 	gaugeFeet: 3950,
+	gaugeMiles: 1,
 	gaugeLink: null,
 	last3: 2,
 	sinceSix: 6,
@@ -78,6 +95,19 @@ describe('postText', () => {
 	it('says how much snow, at what height, and links the cameras', () => {
 		expect(postText(spot({}), 'https://whatsupahead.com')).toBe(
 			'Snowing at Stevens Pass: 2 in in the last 3 hours, 6 in since 6 AM at the USDA snow gauge at 3,950 ft. Every camera and the pass report in one place: https://whatsupahead.com/passes/stevens'
+		);
+	});
+
+	it('says "near" and how far away when the gauge is miles from the spot', () => {
+		const s = spot({
+			name: 'Beaver Mountain',
+			gaugeFeet: 8610,
+			gaugeMiles: 7.4,
+			sinceSix: 0,
+			change24: 3
+		});
+		expect(postText(s, 'https://whatsupahead.com')).toMatch(
+			/^Snowing near Beaver Mountain: 2 in in the last 3 hours, 3 in in 24 hours at the USDA snow gauge 7 mi away, at 8,610 ft\./
 		);
 	});
 

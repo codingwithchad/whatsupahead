@@ -48,7 +48,7 @@ export async function snowAtPass(
 			// Station clocks are behind UTC, so a begin date two days back in UTC always covers the last 24 hours.
 			const begin = new Date(Date.now() - 48 * HOUR).toISOString().slice(0, 13).replace('T', ' ');
 			const body = await getJson<{ data?: AwdbSeries[] }[]>(
-				`${AWDB}/data?stationTriplets=${encodeURIComponent(station.stationTriplet)}&elements=SNWD,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`
+				`${AWDB}/data?stationTriplets=${encodeURIComponent(station.stationTriplet)}&elements=SNWD,WTEQ,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`
 			);
 			return snowReading(station, body[0]?.data ?? []);
 		}).then((r) => (r ? { ...r, roadFt: pass.elevation_ft ?? null } : null));

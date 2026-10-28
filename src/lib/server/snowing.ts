@@ -37,7 +37,7 @@ export async function snowingNow(now = Date.now()): Promise<SnowingSpot[]> {
 	]);
 	type Spot = Omit<
 		SnowingSpot,
-		keyof ReturnType<typeof snowFacts> | 'gauge' | 'gaugeFeet' | 'gaugeLink'
+		keyof ReturnType<typeof snowFacts> | 'gauge' | 'gaugeFeet' | 'gaugeMiles' | 'gaugeLink'
 	> & {
 		lat: number;
 		lon: number;
@@ -96,6 +96,7 @@ export async function snowingNow(now = Date.now()): Promise<SnowingSpot[]> {
 				...s,
 				gauge: station?.name ?? null,
 				gaugeFeet: station?.elevation ?? null,
+				gaugeMiles: station ? Math.round(station.miles * 10) / 10 : null,
 				gaugeLink: reading?.link ?? null,
 				...snowFacts(reading, said, timeZoneAt(lat, lon), now)
 			};

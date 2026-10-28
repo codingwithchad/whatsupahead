@@ -23,6 +23,8 @@ export interface SnowReading {
 	change24: number | null;
 	/** Every hourly depth reading of the last day or two, oldest first (for "new snow since 6 AM"). */
 	hourly: { t: number; in: number }[];
+	/** The water in the snow (snow water equivalent) each hour, oldest first: new snow adds to it, wobble doesn't. */
+	water: { t: number; in: number }[];
 	tempF: number | null;
 	at: number;
 	link: string;
@@ -89,6 +91,14 @@ export interface AwdbSeries {
 	values: { date: string; value: number | null }[];
 }
 
+/**
+ * USDA's table of a gauge's last 48 hours (snow depth, snow water, temperature), so anyone can check our numbers.
+ * The station's own page shows none of them.
+ */
+function gaugeTable(triplet: string): string {
+	return `https://wcc.sc.egov.usda.gov/reportGenerator/view/customSingleStationReport/hourly/start_of_period/${triplet}%7Cid=%22%22%7Cname/-47,0/SNWD::value,WTEQ::value,TOBS::value`;
+}
+
 /** The latest snow depth, its change over 24 hours and the temperature, from hourly readings. */
 export function snowReading(
 	station: SnotelStation & { miles: number },
@@ -112,7 +122,6 @@ export function snowReading(
 		.filter((x) => x.gap <= 3600_000)
 		.sort((a, b) => a.gap - b.gap)[0]?.v;
 	const temp = valid('TOBS').at(-1);
-	const id = station.stationTriplet.split(':')[0];
 	return {
 		station: station.name,
 		elevation_ft: station.elevation,
@@ -120,9 +129,10 @@ export function snowReading(
 		depthIn: Math.max(0, last.value),
 		change24: dayBefore ? last.value - dayBefore.value : null,
 		hourly: depth.map((v) => ({ t: time(v.date), in: Math.max(0, v.value) })),
+		water: valid('WTEQ').map((v) => ({ t: time(v.date), in: Math.max(0, v.value) })),
 		tempF: temp && time(temp.date) >= at - 3 * 3600_000 ? temp.value : null,
 		at,
-		link: `https://wcc.sc.egov.usda.gov/nwcc/site?sitenum=${id}`
+		link: gaugeTable(station.stationTriplet)
 	};
 }
 

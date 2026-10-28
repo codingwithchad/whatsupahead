@@ -164,8 +164,9 @@ The three run on the same system, with the same developer API and the same limit
 
 - **What for:** snow depth and new snow at passes and ski areas.
 - **Key:** none. US government data, public domain; no rate limit published.
-- **What we do:** the station list once a day; each station's readings kept 30 minutes, asked for 20 stations to a request (it answers about four a second). Each reading links to its
-  station page.
+- **What we do:** the station list once a day; each station's readings kept 30 minutes, asked for 20 stations to a request (it answers about four a second). Snow depth, snow water and
+  temperature are asked for together. Each reading links to USDA's own hourly table for that gauge, so anyone can
+  check our numbers.
 
 ### avalanche.org
 

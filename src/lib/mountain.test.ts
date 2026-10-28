@@ -40,15 +40,17 @@ describe('snowReading', () => {
 		const depths = [...Array(24).fill(10), ...Array(5).fill(16)];
 		const series: AwdbSeries[] = [
 			{ stationElement: { elementCode: 'SNWD' }, values: hours('2026-12-01', [...depths, null]) },
-			{ stationElement: { elementCode: 'TOBS' }, values: hours('2026-12-01', Array(30).fill(28)) }
+			{ stationElement: { elementCode: 'TOBS' }, values: hours('2026-12-01', Array(30).fill(28)) },
+			{ stationElement: { elementCode: 'WTEQ' }, values: hours('2026-12-01', [2, 2.6]) }
 		];
 		const r = snowReading(station, series)!;
+		expect(r.water.map((w) => w.in)).toEqual([2, 2.6]);
 		expect(r.depthIn).toBe(16);
 		expect(r.change24).toBe(6);
 		expect(r.tempF).toBe(28);
 		// 04:00 station time (UTC-8) on Dec 2 is 12:00 UTC.
 		expect(new Date(r.at).toISOString()).toBe('2026-12-02T12:00:00.000Z');
-		expect(r.link).toContain('sitenum=672');
+		expect(r.link).toContain('/hourly/start_of_period/672:WA:SNTL');
 	});
 
 	it('has no change without a reading from a day earlier, and nothing without any depth', () => {

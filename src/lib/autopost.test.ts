@@ -28,6 +28,7 @@ const spot = (id: string, now = true, state = 'WA'): SnowingSpot => ({
 	preview: `/og/search?place=pass-${id}`,
 	gauge: null,
 	gaugeFeet: null,
+	gaugeMiles: null,
 	gaugeLink: null,
 	last3: 2,
 	sinceSix: 4,

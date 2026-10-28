@@ -14,8 +14,10 @@ export interface SnowingSpot {
 	/** The USDA gauge the numbers come from, and its height: the road's for a pass, the mountain's otherwise. */
 	gauge: string | null;
 	gaugeFeet: number | null;
+	/** How far the gauge is from the spot, in miles. */
+	gaugeMiles: number | null;
 	gaugeLink: string | null;
-	/** New snow at the gauge, in inches. */
+	/** New snow at the gauge, in inches; null unless the water in the snow rose too (see snowFacts). */
 	last3: number | null;
 	sinceSix: number | null;
 	change24: number | null;
@@ -29,8 +31,23 @@ const HOUR = 3600_000;
 // A gauge's depth wobbles by an inch from hour to hour, so one inch alone is not snow: it must also be up over the day.
 const NOW_INCHES = 1;
 const DAY_INCHES = 2;
+// The snow pillow weighs the snow, to a tenth of an inch of water. Two inches of dry snow add about a tenth.
+const DAY_WATER = 0.1;
+/** Farther than this from the spot, a post says the snow is "near" it and how far away the gauge is. */
+const AT_MILES = 2;
 const SAYS_SNOW = /snow/i;
 const SAYS_NONE = /\bno snow\b/i;
+
+/**
+ * How much water the snow gained over the last day, in inches: the latest reading (within 3 hours of the depth's)
+ * above the day's lowest. Gauges skip water hours now and then, so it doesn't need a reading at any one hour.
+ */
+function waterRose(reading: SnowReading): number {
+	const day = reading.water.filter((w) => w.t >= reading.at - 24 * HOUR && w.t <= reading.at);
+	const last = day.at(-1);
+	if (!last || last.t < reading.at - 3 * HOUR) return 0;
+	return Math.round((last.in - Math.min(...day.map((w) => w.in))) * 10) / 10;
+}
 
 /** The snow numbers for one spot from its gauge's readings and the state's report. */
 export function snowFacts(
@@ -40,7 +57,10 @@ export function snowFacts(
 	now = Date.now()
 ): Pick<SnowingSpot, 'last3' | 'sinceSix' | 'change24' | 'reported' | 'now'> {
 	// A reading more than a few hours old says nothing about now.
-	const fresh = reading && now - reading.at < 6 * HOUR ? reading : null;
+	// A depth sensor can rise without snow (it wobbles, or reads grass or a drift in the fall). Real new snow also
+	// adds water to the snow pillow, so the gauge's snow counts only when its water rose over the day too.
+	const fresh =
+		reading && now - reading.at < 6 * HOUR && waterRose(reading) >= DAY_WATER ? reading : null;
 	const last3 = fresh ? snowBetween(fresh.hourly, now - 3 * HOUR, now) : null;
 	const sinceSix = fresh ? snowSinceSix(fresh.hourly, timeZone, now) : null;
 	const change24 = fresh?.change24 ?? null;
@@ -67,6 +87,7 @@ export function bySnow(a: SnowingSpot, b: SnowingSpot): number {
 }
 
 const feet = (n: number) => `${n.toLocaleString('en-US')} ft`;
+const away = (s: Pick<SnowingSpot, 'gaugeMiles'>) => (s.gaugeMiles ?? 0) > AT_MILES;
 
 /** The snow in a few words, with the gauge's height: "3 in in the last 3 hours, 7 in since 6 AM". */
 export function snowWords(s: SnowingSpot): string {
@@ -76,7 +97,8 @@ export function snowWords(s: SnowingSpot): string {
 		(s.change24 ?? 0) >= 1 && !((s.sinceSix ?? 0) >= 1) ? `${s.change24} in in 24 hours` : null
 	].filter(Boolean);
 	if (!parts.length || !s.gaugeFeet) return '';
-	return `${parts.join(', ')} at the USDA snow gauge at ${feet(s.gaugeFeet)}`;
+	const where = away(s) ? ` ${Math.round(s.gaugeMiles!)} mi away,` : '';
+	return `${parts.join(', ')} at the USDA snow gauge${where} at ${feet(s.gaugeFeet)}`;
 }
 
 /**
@@ -86,7 +108,7 @@ export function snowWords(s: SnowingSpot): string {
 export function postText(s: SnowingSpot, origin: string, ref?: string): string {
 	const snow = snowWords(s);
 	const first = snow
-		? `${s.now ? 'Snowing' : 'New snow'} at ${s.name}: ${snow}.`
+		? `${s.now ? 'Snowing' : 'New snow'} ${away(s) ? 'near' : 'at'} ${s.name}: ${snow}.`
 		: s.reported
 			? `${s.reported.by} reports ${s.reported.text.toLowerCase()} at ${s.name}.`
 			: `New snow at ${s.name}.`;

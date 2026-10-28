@@ -65,8 +65,10 @@
 		{/if}
 		<p class="sub">
 			Snow from the USDA SNOTEL gauges: for a pass, the gauge nearest the road's height; for a ski
-			area or park, the highest gauge near it. "Snowing now" means the gauge rose in the last 3
-			hours or the state's pass report says snow. Checked every half hour.
+			area or park, the highest gauge near it. A gauge's snow counts only when the water in the snow
+			rose too, so a sensor's wobble isn't called snow. "Snowing now" means the gauge rose in the
+			last 3 hours or the state's pass report says snow. Each gauge's name opens USDA's own hourly
+			readings. Checked every half hour.
 		</p>
 	{/await}
 </main>

@@ -49,7 +49,7 @@ export async function gaugeReadings(triplets: string[]): Promise<Map<string, Awd
 			const bodies = await Promise.all(
 				groups.map(async (group) => {
 					const res = await fetch(
-						`${AWDB}/data?stationTriplets=${encodeURIComponent(group.join(','))}&elements=SNWD,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`,
+						`${AWDB}/data?stationTriplets=${encodeURIComponent(group.join(','))}&elements=SNWD,WTEQ,TOBS&duration=HOURLY&beginDate=${encodeURIComponent(`${begin}:00`)}&endDate=2100-01-01`,
 						{ headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(15000) }
 					);
 					if (!res.ok) throw new Error(`snow gauges answered ${res.status}`);
