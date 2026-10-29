@@ -3,6 +3,7 @@ import { getCatalog } from './lib/server/catalog';
 import { startAutopost } from './lib/server/autopost';
 import { startHistory } from './lib/server/history';
 import { startHealthChecks } from './lib/server/health';
+import { startIndexNow } from './lib/server/indexNow';
 import { startPassHistory } from './lib/server/passHistory';
 import { allow, tooManyRequests, visitorAddress } from './lib/server/rateLimit';
 import { withVisitor } from './lib/server/visitor';
@@ -33,6 +34,9 @@ if (!dev && process.env.AUTOPOST !== 'off') startAutopost();
 
 // Our own visit counter (counts only, no cookies); the numbers are on /stats.
 if (!dev) startStats();
+
+// Tells Bing and others which pages changed; only on the site's own address (CANONICAL_HOST).
+if (!dev && process.env.INDEXNOW !== 'off') startIndexNow();
 
 // A missing key does not stop the app, but those cameras and reports show as offline, so say so loudly in the logs.
 for (const [name, what] of [

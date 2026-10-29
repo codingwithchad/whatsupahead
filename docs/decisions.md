@@ -590,3 +590,13 @@ Same day: pictures on the Page's snow posts and most-new-snow posts use only cam
 miles); a ski area whose cameras are down in the valley (Schweitzer's are in Sandpoint; Mount St. Helens's are miles
 off) gets the card with its name instead of a road in fall colours under "Snowing". Shared links keep their usual
 pictures.
+
+## 2026-10-29: Helping search engines find the pass pages
+
+Search Console showed about 3,000 pages known and almost none indexed: 1,471 "crawled, not indexed" (mostly the
+8,950 one-picture camera pages), 1,193 addresses with `?ref=` or `?in=` pointing to their main page (fine), and 226
+drive pages kept out by robots.txt (on purpose). Google sent 22 visitors in a month; the pass pages, which answer what
+people search before a storm ("Snoqualmie Pass conditions"), are what we want found. So: camera pages say noindex
+(their links are still followed, and link previews still work); the sitemap gives each pass page the time its state
+last updated the report; and IndexNow tells Bing and others weekly about every page and daily about the passes that
+changed. Links from other sites (a meteorologist or a news story sharing a page) would do more than any of this.

@@ -1,33 +1,20 @@
-import { getCatalog } from '../../lib/server/catalog';
+import { sitemapPages } from '../../lib/server/sitemap';
 import type { RequestHandler } from './$types';
 
-// The pages search engines should know about: the main pages, every pass, every place and every list.
-// Drive pages are left out (robots.txt keeps search engines off them), except the featured drives' own pages, and
-// so are single cameras.
 const escape = (s: string) =>
 	s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-export const GET: RequestHandler = ({ url }) => {
-	const { passes, places, collections, drives } = getCatalog();
-	const passPlaces = new Set(passes.map((p) => p.place));
-	const paths = [
-		'/',
-		'/passes',
-		'/tires',
-		'/powder',
-		'/drives',
-		'/places',
-		'/about',
-		...passes.map((p) => `/passes/${encodeURIComponent(p.id)}`),
-		...places
-			.filter((p) => !passPlaces.has(p.id))
-			.map((p) => `/search?place=${encodeURIComponent(p.id)}`),
-		...drives.map((d) => `/drives/${encodeURIComponent(d.id)}`),
-		...collections.map((c) => `/collections/${encodeURIComponent(c.id)}`)
-	];
+/** The sitemap (see sitemapPages): every page we want found, with when a pass's report last changed. */
+export const GET: RequestHandler = async ({ url }) => {
+	const pages = await sitemapPages();
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${paths.map((p) => `<url><loc>${escape(url.origin + p)}</loc></url>`).join('\n')}
+${pages
+	.map(
+		(p) =>
+			`<url><loc>${escape(url.origin + p.path)}</loc>${p.modified ? `<lastmod>${new Date(p.modified).toISOString()}</lastmod>` : ''}</url>`
+	)
+	.join('\n')}
 </urlset>
 `;
 	return new Response(body, {

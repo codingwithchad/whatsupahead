@@ -252,6 +252,16 @@ The three run on the same system, with the same developer API and the same limit
   edited to put the update at its top (`pages_manage_posts` allows editing our own posts). The picture is a
   link-preview picture, so only sources allowed in previews appear, each credited on it.
 
+### IndexNow (search engines)
+
+- **What for:** tells Bing (also behind DuckDuckGo, Yahoo and chat assistants' search) and Yandex which pages
+  changed, so they look again soon (`src/lib/server/indexNow.ts`). Google doesn't use it; it reads the sitemap's
+  dates.
+- **Key:** none to set up: the key is made from the site's address and readable at `/indexnow.txt`, as IndexNow
+  asks. Sent only when `CANONICAL_HOST` is set, and only for that address.
+- **What we do:** every sitemap page once a week; once a day the passes whose reports changed that day, the home
+  page, the passes page, Powder day and the ski areas. One request each time (IndexNow takes up to 10,000 pages).
+
 ## Adding a source
 
 1. Find its terms, rate limit and credit wording, and add a section here with the date you checked.

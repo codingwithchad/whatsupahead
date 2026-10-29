@@ -46,6 +46,9 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 	];
 	return {
 		share,
+		// One picture a page, 8,950 of them: search engines should spend their visits on the pass and place pages,
+		// which hold these cameras with the report and forecast. Links on it are still followed.
+		noindex: true,
 		crumbs,
 		camera,
 		back,
