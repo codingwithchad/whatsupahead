@@ -8,12 +8,14 @@ import {
 	pickChains,
 	pickForecasts,
 	pickPosts,
+	postsToUpdate,
+	updatePost,
 	type PassMemory,
 	type PassOutlook,
 	type PostEntry
 } from '../autopost';
 import { blocksRoad, type PassReport } from '../passes';
-import { regionAt } from '../regions';
+import { regionAt, timeZoneAt } from '../regions';
 import { postText } from '../snowing';
 import { getCatalog } from './catalog';
 import { crossingTimes } from './crossing';
@@ -152,6 +154,18 @@ async function postPhoto(
 	return body.post_id ?? body.id ?? '';
 }
 
+/** New words for one of the Page's own posts (an update at the top of an old chain post). */
+async function editPost(key: { page: string; token: string }, post: string, message: string) {
+	const res = await fetch(`${GRAPH}/${encodeURIComponent(post)}`, {
+		method: 'POST',
+		body: new URLSearchParams({ message, access_token: key.token }),
+		signal: AbortSignal.timeout(30000)
+	});
+	const body = (await res.json().catch(() => ({}))) as { error?: { message?: string } };
+	if (!res.ok || body.error)
+		throw new Error(body.error?.message ?? `Facebook answered ${res.status}`);
+}
+
 /** Posts each entry's picture with its text (or only notes it, without the Page's key), and returns the entries. */
 async function send(
 	key: { page: string; token: string } | null,
@@ -184,7 +198,7 @@ async function snowPosts(log: PostEntry[], now: number) {
 			name: spot.name,
 			kind: 'snow' as const,
 			state: spot.state,
-			text: postText(spot, SITE, 'fb')
+			text: `❄️ ${postText(spot, SITE, 'fb')}`
 		},
 		picture: spot.preview
 	}));
@@ -200,7 +214,8 @@ async function chainPosts(log: PostEntry[], memory: Record<string, PassMemory>, 
 			name: p.name,
 			route: p.route,
 			place: p.place,
-			state: regionAt(p.lat, p.lon)?.abbr ?? null
+			state: regionAt(p.lat, p.lon)?.abbr ?? null,
+			timeZone: timeZoneAt(p.lat, p.lon)
 		})),
 		reports,
 		memory,
@@ -213,6 +228,7 @@ async function chainPosts(log: PostEntry[], memory: Record<string, PassMemory>, 
 			name: group.map((c) => c.name).join(', '),
 			kind: 'chains' as const,
 			state: group[0].state,
+			passes: group.map((c) => c.id),
 			text: chainText(group, SITE, 'fb')
 		},
 		picture: `/og/search?place=${encodeURIComponent(group[0].place)}`
@@ -288,6 +304,23 @@ async function tick() {
 	for (const { group, entry } of chains)
 		if (!entries.find((e) => e.kind === 'chains' && e.id === entry.id)?.error)
 			for (const c of group) memory[c.id].posted = c.to;
+	// Someone may see Tuesday's "chains required" on Friday: once the new post is up, the earlier post about each pass
+	// gets the change at its top. A failed update is noted on /stats; the new post still stands.
+	for (const { group, entry } of chains) {
+		const sent = entries.find((e) => e.kind === 'chains' && e.id === entry.id);
+		if (!key || !sent?.post) continue;
+		for (const { entry: old, changes } of postsToUpdate(group, log, now)) {
+			const next = updatePost(old, changes, now);
+			try {
+				await editPost(key, old.post!, next.text);
+				Object.assign(old, next, { updateError: undefined });
+				console.log(`[autopost] updated ${old.id}`);
+			} catch (err) {
+				old.updateError = (err as Error).message;
+				console.warn(`[autopost] update ${old.id}: ${old.updateError}`);
+			}
+		}
+	}
 	saveMemory(memory);
 	if (entries.length) saveLog(keepRecent([...log, ...entries], now));
 }

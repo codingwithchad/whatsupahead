@@ -232,6 +232,7 @@
 						})}</strong
 					>
 					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
+					{#if e.updateError}(update failed: {e.updateError}){/if}
 					{e.text}
 				</li>
 			{/each}

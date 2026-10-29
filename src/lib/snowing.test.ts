@@ -94,7 +94,7 @@ const spot = (over: Partial<SnowingSpot>): SnowingSpot => ({
 describe('postText', () => {
 	it('says how much snow, at what height, and links the cameras', () => {
 		expect(postText(spot({}), 'https://whatsupahead.com')).toBe(
-			'Snowing at Stevens Pass: 2 in in the last 3 hours, 6 in since 6 AM at the USDA snow gauge at 3,950 ft. Every camera and the pass report in one place: https://whatsupahead.com/passes/stevens'
+			'Snowing at Stevens Pass: 2 in in the last 3 hours, 9 in in 24 hours at the USDA snow gauge at 3,950 ft. Every camera and the pass report in one place: https://whatsupahead.com/passes/stevens'
 		);
 	});
 
@@ -108,6 +108,17 @@ describe('postText', () => {
 		});
 		expect(postText(s, 'https://whatsupahead.com')).toMatch(
 			/^Snowing near Beaver Mountain: 2 in in the last 3 hours, 3 in in 24 hours at the USDA snow gauge 7 mi away, at 8,610 ft\./
+		);
+	});
+
+	it('never gives a day smaller than the last 3 hours (snow settles during the day)', () => {
+		// Tombstone Pass at 11 PM: 2 in since 8 PM, the depth only 1 in above 6 AM's, 4 in over the day.
+		const s = spot({ name: 'Tombstone Pass', last3: 2, sinceSix: 1, change24: 4 });
+		expect(postText(s, 'https://whatsupahead.com')).toMatch(
+			/^Snowing at Tombstone Pass: 2 in in the last 3 hours, 4 in in 24 hours at/
+		);
+		expect(postText(spot({ last3: 2, sinceSix: 1, change24: 2 }), '')).toMatch(
+			/^Snowing at Stevens Pass: 2 in in the last 3 hours at the USDA/
 		);
 	});
 

@@ -67,6 +67,21 @@ export function classifyRestriction(text: string): PassStatus {
 	return 'open';
 }
 
+// Chains only for big trucks ("over 10,000 gross vehicle weight"), towing or oversize loads.
+const HEAVY = /over 10,?000|gvw|gross vehicle|towing|commercial|trucks?\b|buses|oversize/i;
+
+/**
+ * "Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight": the chains are for
+ * trucks, so for a car this is traction tires required, not chains.
+ */
+export function tractionForCars(restrictions: { text: string }[]): boolean {
+	const parts = restrictions.flatMap((r) => r.text.split(/[.,;]\s+/).map((p) => p.trim()));
+	return (
+		parts.some((p) => /traction tires? (are )?required/i.test(p)) &&
+		parts.filter((p) => classifyRestriction(p) === 'chains').every((p) => HEAVY.test(p))
+	);
+}
+
 // A report this old is history, not the road today (WSDOT updates live reports many times a day in season).
 const STALE_MS = 3 * 24 * 60 * 60 * 1000;
 
@@ -118,7 +133,10 @@ export function classifyPass(
 
 	// An old "open" or "chains" is not today's road. A closure stays shown: it is safer to send people to check.
 	const updated = raw.DateUpdated ? parseDotNetDate(raw.DateUpdated) : null;
-	let label = STATUS_LABEL[status];
+	let label =
+		status === 'chains' && tractionForCars(restrictions)
+			? 'Traction tires required'
+			: STATUS_LABEL[status];
 	if (
 		updated !== null &&
 		now - updated > STALE_MS &&
@@ -228,6 +246,7 @@ export function kmToStretch(p: Pt, a: Pt, b: Pt = a): number {
 /** Labels beyond STATUS_LABEL that Oregon and California reports use, and the colour each gets. */
 export const EXTRA_LABELS: Record<string, PassStatus> = {
 	'No chain controls': 'open',
+	'Traction tires required': 'chains',
 	'Carry chains or traction tires': 'traction',
 	'No recent report': 'off-season',
 	'Usually closed in winter': 'off-season'

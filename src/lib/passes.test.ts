@@ -401,12 +401,25 @@ describe('classifyPass with real WSDOT winter wording', () => {
 				'Snowing'
 			).status
 		).toBe('chains');
+		// Chains only for trucks: for a car, traction tires required.
+		expect(
+			real(
+				'Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight.  Oversize Vehicles Prohibited.',
+				'Snowing'
+			).label
+		).toBe('Traction tires required');
 		expect(
 			real(
 				'Chains required on all vehicles except all wheel drive, Oversize Vehicles Prohibited.',
 				''
 			).status
 		).toBe('chains');
+		expect(
+			real(
+				'Chains required on all vehicles except all wheel drive, Oversize Vehicles Prohibited.',
+				''
+			).label
+		).toBe('Chains required');
 		expect(real('Chains Required All Vehicles Including All Wheel Drive', '').status).toBe(
 			'chains'
 		);

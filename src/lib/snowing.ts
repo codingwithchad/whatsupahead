@@ -89,12 +89,20 @@ export function bySnow(a: SnowingSpot, b: SnowingSpot): number {
 const feet = (n: number) => `${n.toLocaleString('en-US')} ft`;
 const away = (s: Pick<SnowingSpot, 'gaugeMiles'>) => (s.gaugeMiles ?? 0) > AT_MILES;
 
-/** The snow in a few words, with the gauge's height: "3 in in the last 3 hours, 7 in since 6 AM". */
+/**
+ * The snow in a few words, with the gauge's height: "3 in in the last 3 hours, 9 in in 24 hours". The day's number
+ * is the larger of the two the gauge gives (snow settles during the day, so "since 6 AM" can be less than the last
+ * 3 hours at night), and is left out when it is no more than the last 3 hours.
+ */
 export function snowWords(s: SnowingSpot): string {
+	const last3 = (s.last3 ?? 0) >= NOW_INCHES ? s.last3! : 0;
+	const day =
+		(s.sinceSix ?? 0) > (s.change24 ?? 0)
+			? { in: s.sinceSix!, when: 'since 6 AM' }
+			: { in: s.change24 ?? 0, when: 'in 24 hours' };
 	const parts = [
-		(s.last3 ?? 0) >= NOW_INCHES ? `${s.last3} in in the last 3 hours` : null,
-		(s.sinceSix ?? 0) >= 1 ? `${s.sinceSix} in since 6 AM` : null,
-		(s.change24 ?? 0) >= 1 && !((s.sinceSix ?? 0) >= 1) ? `${s.change24} in in 24 hours` : null
+		last3 ? `${last3} in in the last 3 hours` : null,
+		day.in >= 1 && day.in > last3 ? `${day.in} in ${day.when}` : null
 	].filter(Boolean);
 	if (!parts.length || !s.gaugeFeet) return '';
 	const where = away(s) ? ` ${Math.round(s.gaugeMiles!)} mi away,` : '';

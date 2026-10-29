@@ -7,6 +7,11 @@ import {
 	pickChains,
 	pickForecasts,
 	pickPosts,
+	postClock,
+	postsToUpdate,
+	ruleOf,
+	updatePost,
+	type ChainChange,
 	type PassMemory,
 	type PassOutlook,
 	type PostEntry
@@ -183,11 +188,34 @@ describe('chain changes', () => {
 		expect(memory.snoq.posted).toBe('open');
 	});
 
-	const change = (id: string, to: 'chains' | 'traction' | 'open', state = 'WA') => ({
+	const LABEL = {
+		chains: 'Chains required',
+		required: 'Traction tires required',
+		traction: 'Traction tires advised',
+		open: 'Open'
+	} as const;
+	const change = (
+		id: string,
+		to: ChainChange['to'],
+		state = 'WA',
+		from: ChainChange['from'] = 'open'
+	): ChainChange => ({
 		...pass(id, state),
-		from: 'open' as const,
+		from,
 		to,
-		report: report(to, to === 'chains' ? 'Chains are required on all vehicles except AWD.' : '')
+		report: {
+			...report(
+				to === 'required' ? 'chains' : to,
+				to === 'chains' ? 'Chains are required on all vehicles except AWD.' : ''
+			),
+			label: LABEL[to]
+		}
+	});
+
+	it('tells traction tires required (chains for trucks only) from chains', () => {
+		expect(ruleOf({ ...report('chains'), label: 'Traction tires required' })).toBe('required');
+		expect(ruleOf({ ...report('chains'), label: 'Chains required' })).toBe('chains');
+		expect(ruleOf(report('closed'))).toBe(null);
 	});
 
 	it('one post a state with every pass that changed, chains first, an hour apart', () => {
@@ -198,20 +226,76 @@ describe('chain changes', () => {
 		expect(pickChains(list, recent, NOW).map((g) => g.map((c) => c.id))).toEqual([['c']]);
 	});
 
-	it('says what changed and links the pass, or the state when several changed', () => {
-		const one = chainText([change('Snoqualmie', 'chains')], 'https://x.com', 'fb');
-		expect(one).toBe(
-			'Snoqualmie Pass (I-90): chains required now, was no restrictions. Eastbound: Chains are required on all vehicles except AWD. Cameras, chains for your car and the pass report: https://x.com/passes/Snoqualmie?ref=fb'
+	it('says what changed, in plain words with a sign, and links the pass', () => {
+		expect(chainText([change('Snoqualmie', 'chains')], 'https://x.com', 'fb')).toBe(
+			'⛓️❄️ Chains required on Snoqualmie Pass (I-90). Eastbound: Chains are required on all vehicles except AWD.\n\nWhat it means for your car, the latest report and cameras: https://x.com/passes/Snoqualmie?ref=fb'
 		);
+		const both = change('White', 'required');
+		both.report.restrictions = ['Eastbound', 'Westbound'].map((direction) => ({
+			direction,
+			text: 'Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight.  Oversize Vehicles Prohibited.'
+		}));
+		expect(chainText([both], 'https://x.com')).toMatch(
+			/^⚠️ Traction tires required on White Pass \(I-90\)\. Both ways: Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight\. Oversize Vehicles Prohibited\.\n/
+		);
+		expect(chainText([change('Stevens', 'open', 'WA', 'traction')], 'https://x.com')).toBe(
+			'✅ No more restrictions on Stevens Pass (I-90): the traction tire advisory is lifted.\n\nThe latest report and cameras: https://x.com/passes/Stevens'
+		);
+		expect(chainText([change('White', 'traction', 'WA', 'chains')], 'https://x.com')).toMatch(
+			/^⚠️ Easing on White Pass \(I-90\): chains are off, traction tires advised now\./
+		);
+	});
+
+	it('several passes in a state: a line each and the state link', () => {
 		const two = chainText(
-			[change('Stevens', 'chains'), change('White', 'traction')],
+			[change('Stevens', 'chains'), change('White', 'open', 'WA', 'traction')],
 			'https://x.com',
 			'fb'
 		);
-		expect(two).toContain(
-			'Washington passes now: Stevens Pass, chains required (was no restrictions);'
+		expect(two.split('\n')).toEqual([
+			'Washington pass update:',
+			'⛓️❄️ Stevens Pass (I-90): chains required',
+			'✅ White Pass (I-90): no more restrictions',
+			'',
+			'The latest report and cameras for every pass: https://x.com/passes?in=washington&ref=fb'
+		]);
+	});
+
+	it('puts an update at the top of the earlier post when its pass changes again', () => {
+		const tue = entry('White', 30, {
+			kind: 'chains',
+			dry: false,
+			post: 'p1',
+			text: '⛓️❄️ Chains required on White Pass (I-90).'
+		});
+		const group = entry('chains:WA', 20, {
+			kind: 'chains',
+			dry: false,
+			post: 'p2',
+			passes: ['Stevens', 'White'],
+			text: 'Washington pass update: ...'
+		});
+		const off = change('White', 'open', 'WA', 'chains');
+		// The newest post about White Pass, not one a dry run or a failure made, nor one over a week old.
+		expect(postsToUpdate([off], [tue, group], NOW).map((u) => u.entry.post)).toEqual(['p2']);
+		expect(postsToUpdate([off], [tue], NOW).map((u) => u.entry.post)).toEqual(['p1']);
+		expect(postsToUpdate([off], [{ ...tue, dry: true }], NOW)).toEqual([]);
+		expect(postsToUpdate([off], [{ ...tue, at: NOW - 8 * 24 * HOUR }], NOW)).toEqual([]);
+
+		const once = updatePost(tue, [off], NOW);
+		expect(once.text).toBe(
+			'🔄 Update Thu 10:00 AM: No more restrictions on White Pass (I-90): chains are off.\n\n⛓️❄️ Chains required on White Pass (I-90).'
 		);
-		expect(two).toContain('https://x.com/passes?in=washington&ref=fb');
+		const again = updatePost(
+			{ ...tue, ...once },
+			[change('White', 'traction', 'WA', 'open')],
+			NOW + HOUR
+		);
+		expect(again.text.split('\n\n')).toEqual([
+			'🔄 Update Thu 11:00 AM: Traction tires advised on White Pass (I-90).',
+			'🔄 Update Thu 10:00 AM: No more restrictions on White Pass (I-90): chains are off.',
+			'⛓️❄️ Chains required on White Pass (I-90).'
+		]);
 	});
 });
 
@@ -256,14 +340,14 @@ describe('snow on the way over the passes', () => {
 	it('one pass: when it snows, how much at what height, when to cross', () => {
 		// 10 AM: snow from 9 PM.
 		expect(forecastText([outlook('Stevens')], 'https://x.com', 'fb', NOW)).toBe(
-			'Snow on the way at Stevens Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. Cross before 9:00 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed. Cameras, chains for your car and the best time to cross, hour by hour: https://x.com/passes/Stevens?ref=fb'
+			'🌨️ Snow on the way at Stevens Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. Cross before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.\n\nThe best time to cross, hour by hour, and cameras: https://x.com/passes/Stevens?ref=fb'
 		);
 	});
 
 	it('a road that ends at a ski area: drive up, at the top of the road', () => {
 		const baker = outlook('mt-baker', { name: 'Mt. Baker Highway', feet: 4250, deadEnd: true });
 		expect(forecastText([baker], 'https://x.com', 'fb', NOW)).toBe(
-			'Snow on the way at Mt. Baker Highway: about 4 in at the top of the road (4,250 ft) from about 9:00 PM. Drive up before 9:00 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed. Cameras, chains for your car and the best time to drive up, hour by hour: https://x.com/passes/mt-baker?ref=fb'
+			'🌨️ Snow on the way at Mt. Baker Highway: about 4 in at the top of the road (4,250 ft) from about 9 PM tonight. Drive up before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.\n\nThe best time to drive up, hour by hour, and cameras: https://x.com/passes/mt-baker?ref=fb'
 		);
 	});
 
@@ -278,9 +362,23 @@ describe('snow on the way over the passes', () => {
 			NOW
 		);
 		expect(text.split('\n\n')).toEqual([
-			'Snow on the way in the Washington mountains. When to go, hour by hour:',
-			'Stevens Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. Cross after 10:00 AM tomorrow, once it has passed (plows need time too). https://x.com/passes/Stevens?ref=fb',
-			'Snoqualmie Pass: about 4 in at the summit (4,061 ft) from about 9:00 PM. It keeps on through the next day: go prepared. https://x.com/passes/Snoqualmie?ref=fb'
+			'🌨️ Snow on the way in the Washington mountains. When to go, hour by hour:',
+			'Stevens Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. Cross after 10 AM tomorrow, once it has passed (plows need time too). https://x.com/passes/Stevens?ref=fb',
+			'Snoqualmie Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. It keeps on through the next day: go prepared. https://x.com/passes/Snoqualmie?ref=fb'
 		]);
+	});
+});
+
+describe('postClock', () => {
+	const tz = 'America/Los_Angeles';
+	const at = (iso: string) => Date.parse(`${iso}-08:00`);
+	it('says times the way people do', () => {
+		expect(postClock(at('2026-12-11T00:00:00'), NOW, tz)).toBe('midnight tonight');
+		expect(postClock(at('2026-12-10T21:00:00'), NOW, tz)).toBe('9 PM tonight');
+		expect(postClock(at('2026-12-10T21:45:00'), NOW, tz)).toBe('9:45 PM tonight');
+		expect(postClock(at('2026-12-10T15:00:00'), NOW, tz)).toBe('3 PM');
+		expect(postClock(at('2026-12-10T12:00:00'), NOW, tz)).toBe('noon');
+		expect(postClock(at('2026-12-11T09:00:00'), NOW, tz)).toBe('9 AM tomorrow');
+		expect(postClock(at('2026-12-12T00:00:00'), NOW, tz)).toBe('Sat midnight');
 	});
 });

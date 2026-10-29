@@ -1,6 +1,6 @@
 import { clockWithDay } from './format';
 import type { PassReport, PassStatus } from './passes';
-import { REGIONS } from './regions';
+import { DEFAULT_TIME_ZONE, REGIONS } from './regions';
 import type { SnowingSpot } from './snowing';
 
 /**
@@ -22,6 +22,13 @@ export interface PostEntry {
 	text: string;
 	/** Facebook's id for the post, when it went up. */
 	post: string | null;
+	/** A chain post's passes (its id alone for one pass), to update the post when they change again. */
+	passes?: string[];
+	/** Update lines put at the top of the post since, newest first, and its words before them. */
+	updates?: string[];
+	original?: string;
+	/** Why the last update didn't go up. */
+	updateError?: string;
 	dry: boolean;
 	error?: string;
 }
@@ -75,9 +82,19 @@ export function pickPosts(spots: SnowingSpot[], all: PostEntry[], now: number): 
 
 // ---- Chain rules changing ------------------------------------------------------------------------------------
 
-/** The rules a chain post is about. Closures and "no report" are left to the pass pages. */
-export type Rule = Extract<PassStatus, 'chains' | 'traction' | 'open'>;
-const RULES: Rule[] = ['chains', 'traction', 'open'];
+/**
+ * The rules a chain post is about, worst first. "Required" is traction tires required, with chains only for big
+ * trucks (WSDOT's "Chains required on vehicles over 10,000 GVW"): for a car, not chains. Closures and "no report"
+ * are left to the pass pages.
+ */
+export type Rule = 'chains' | 'required' | 'traction' | 'open';
+const RULES: Rule[] = ['chains', 'required', 'traction', 'open'];
+
+/** The rule a pass report gives, if it gives one. */
+export function ruleOf(report: PassReport | undefined): Rule | null {
+	if (report?.status === 'chains' && report.label === 'Traction tires required') return 'required';
+	return RULES.find((r) => r === report?.status) ?? null;
+}
 
 /** What we last posted about a pass, and what its report says lately (since when). */
 export interface PassMemory {
@@ -95,6 +112,8 @@ export interface ChainChange {
 	/** The pass's place, for its preview picture. */
 	place: string;
 	state: string | null;
+	/** Where the pass is, for the time in an update line; Pacific when missing. */
+	timeZone?: string;
 	from: Rule;
 	to: Rule;
 	report: PassReport;
@@ -117,7 +136,14 @@ const CHAINS_PER_STATE_PER_DAY = 8;
  * without a rule) is only remembered, so a deploy doesn't post every pass.
  */
 export function chainChanges(
-	passes: { id: string; name: string; route: string; place: string; state: string | null }[],
+	passes: {
+		id: string;
+		name: string;
+		route: string;
+		place: string;
+		state: string | null;
+		timeZone?: string;
+	}[],
 	reports: Map<string, PassReport>,
 	memory: Record<string, PassMemory>,
 	now: number
@@ -125,7 +151,7 @@ export function chainChanges(
 	const out: ChainChange[] = [];
 	for (const p of passes) {
 		const report = reports.get(p.id);
-		const rule = RULES.find((r) => r === report?.status);
+		const rule = ruleOf(report);
 		if (!report || !rule) continue;
 		const m = memory[p.id];
 		if (!m || now - (m.read ?? m.since) > FORGET) {
@@ -163,30 +189,103 @@ export function pickChains(changes: ChainChange[], all: PostEntry[], now: number
 		);
 }
 
-const RULE_WORDS: Record<Rule, string> = {
-	chains: 'chains required',
-	traction: 'traction tires advised',
-	open: 'no restrictions'
+/** A sign to see at a glance in a feed: chains, a tire rule, or clear. */
+const ICON: Record<Rule, string> = { chains: '⛓️❄️', required: '⚠️', traction: '⚠️', open: '✅' };
+/** What coming off sounds like, for each rule. */
+const LIFTED: Record<Rule, string> = {
+	chains: 'chains are off',
+	required: 'traction tires are no longer required',
+	traction: 'the traction tire advisory is lifted',
+	open: ''
 };
-const sentence = (s: string) => s.trim().replace(/[.\s]+$/, '');
+const worse = (c: ChainChange) => RULES.indexOf(c.to) < RULES.indexOf(c.from);
+const sentence = (s: string) =>
+	s
+		.trim()
+		.replace(/\s+/g, ' ')
+		.replace(/[.\s]+$/, '');
+/** "Traction tires required", in the middle of a sentence. */
+const lower = (label: string) => label.charAt(0).toLowerCase() + label.slice(1);
+
+/** "⛓️❄️ Chains required on Snoqualmie Pass (I-90).", "✅ No more restrictions on Stevens Pass (US 2): ..." */
+export function changeWords(c: ChainChange): string {
+	const pass = `${c.name} (${c.route})`;
+	if (c.to === 'open') return `${ICON.open} No more restrictions on ${pass}: ${LIFTED[c.from]}.`;
+	if (worse(c)) return `${ICON[c.to]} ${c.report.label} on ${pass}.`;
+	return `${ICON[c.to]} Easing on ${pass}: ${LIFTED[c.from]}, ${lower(c.report.label)} now.`;
+}
+
+/** The state's own words, once when both ways say the same: "Both ways: Traction Tires Required, ...". */
+function ruleLines(report: PassReport): string[] {
+	const rules = report.restrictions.filter((r) => !/^no restrictions/i.test(r.text));
+	const texts = [...new Set(rules.map((r) => sentence(r.text)))];
+	if (rules.length > 1 && texts.length === 1) return [`Both ways: ${texts[0]}.`];
+	return rules.map((r) =>
+		r.direction ? `${r.direction}: ${sentence(r.text)}.` : `${sentence(r.text)}.`
+	);
+}
 
 /** A post about one state's chain changes, ending with the link to the pass (or the state's passes). */
 export function chainText(changes: ChainChange[], origin: string, ref?: string): string {
 	if (changes.length === 1) {
 		const c = changes[0];
-		const rules = c.report.restrictions
-			.filter((r) => !/^no restrictions/i.test(r.text))
-			.map((r) => (r.direction ? `${r.direction}: ${sentence(r.text)}.` : `${sentence(r.text)}.`));
-		return [
-			`${c.name} (${c.route}): ${RULE_WORDS[c.to]} now, was ${RULE_WORDS[c.from]}.`,
-			...rules,
-			`Cameras, chains for your car and the pass report: ${origin}${linkWith(`/passes/${encodeURIComponent(c.id)}`, ref)}`
-		].join(' ');
+		const link = `${origin}${linkWith(`/passes/${encodeURIComponent(c.id)}`, ref)}`;
+		if (c.to === 'open') return `${changeWords(c)}\n\nThe latest report and cameras: ${link}`;
+		return `${[changeWords(c), ...ruleLines(c.report)].join(' ')}\n\nWhat it means for your car, the latest report and cameras: ${link}`;
 	}
 	const region = REGIONS.find((r) => r.abbr === changes[0].state);
-	const list = changes.map((c) => `${c.name}, ${RULE_WORDS[c.to]} (was ${RULE_WORDS[c.from]})`);
+	const list = changes.map(
+		(c) =>
+			`${ICON[c.to]} ${c.name} (${c.route}): ${c.to === 'open' ? 'no more restrictions' : lower(c.report.label)}`
+	);
 	const where = region ? `/passes?in=${region.name.toLowerCase().replace(/\s+/g, '-')}` : '/passes';
-	return `${region ? `${region.name} passes` : 'Passes'} now: ${list.join('; ')}. Cameras and chains for your car on every pass: ${origin}${linkWith(where, ref)}`;
+	return [
+		`${region ? `${region.name} pass` : 'Pass'} update:`,
+		...list,
+		`\nThe latest report and cameras for every pass: ${origin}${linkWith(where, ref)}`
+	].join('\n');
+}
+
+/** How long an old chain post is still worth updating when its pass changes again. */
+const UPDATE_WITHIN = 7 * 24 * HOUR;
+
+/**
+ * Earlier chain posts that are now out of date, each with the passes in it that changed since: Facebook shows an
+ * old post days later, so "chains required" on Tuesday gets "Update Thu 4:30 AM: no more restrictions" at its top.
+ */
+export function postsToUpdate(
+	changes: ChainChange[],
+	all: PostEntry[],
+	now: number
+): { entry: PostEntry; changes: ChainChange[] }[] {
+	const live = ofKind(all, 'chains').filter(
+		(e) => e.post && !e.dry && !e.error && now - e.at < UPDATE_WITHIN
+	);
+	const out = new Map<PostEntry, ChainChange[]>();
+	for (const c of changes) {
+		const last = live.findLast((e) => (e.passes ?? [e.id]).includes(c.id));
+		if (last) out.set(last, [...(out.get(last) ?? []), c]);
+	}
+	return [...out].map(([entry, list]) => ({ entry, changes: list }));
+}
+
+/** The old post's words with the newest update on top (earlier updates stay under it). */
+export function updatePost(
+	entry: PostEntry,
+	changes: ChainChange[],
+	now: number
+): Required<Pick<PostEntry, 'text' | 'updates' | 'original'>> {
+	const when = new Intl.DateTimeFormat('en-US', {
+		weekday: 'short',
+		hour: 'numeric',
+		minute: '2-digit',
+		timeZone: changes[0].timeZone ?? DEFAULT_TIME_ZONE
+	}).format(new Date(now));
+	// The words without their sign: "No more restrictions on Crystal to Greenwater (SR 410): chains are off."
+	const words = changes.map((c) => changeWords(c).replace(/^\S+ /, '')).join(' ');
+	const updates = [`🔄 Update ${when}: ${words}`, ...(entry.updates ?? [])];
+	const original = entry.original ?? entry.text;
+	return { updates, original, text: [...updates, original].join('\n\n') };
 }
 
 // ---- Snow on the way over the passes -------------------------------------------------------------------------
@@ -239,9 +338,18 @@ export function pickForecasts(
 	return states.map((s) => snowy.filter((o) => (o.state ?? o.id) === s).slice(0, PASSES_PER_POST));
 }
 
-/** "Cross before 9:45 PM to get ahead of it, or after 10:00 AM tomorrow once it has passed." */
+/** "9 PM tonight", "midnight tonight", "10 AM tomorrow", "Sat 9:45 AM": how people say it. */
+export function postClock(ms: number, now: number, timeZone: string): string {
+	const c = clockWithDay(ms, now, timeZone).replace(':00', '');
+	if (/^12\sAM tomorrow$/.test(c)) return 'midnight tonight';
+	const tonight = /^(\d+)(:\d+)?\sPM$/.exec(c);
+	if (tonight && Number(tonight[1]) >= 6 && Number(tonight[1]) < 12) return `${c} tonight`;
+	return c.replace(/(^|\s)12\sAM/, '$1midnight').replace(/(^|\s)12\sPM/, '$1noon');
+}
+
+/** "Cross before 9:45 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed." */
 function crossWords(o: PassOutlook, now: number): string {
-	const when = (t: number) => clockWithDay(t, now, o.timeZone);
+	const when = (t: number) => postClock(t, now, o.timeZone);
 	const go = o.deadEnd ? 'Drive up' : 'Cross';
 	const before = o.crossBefore !== null && o.crossBefore - now >= LEAD ? o.crossBefore : null;
 	if (before !== null && o.crossAfter !== null)
@@ -253,7 +361,7 @@ function crossWords(o: PassOutlook, now: number): string {
 }
 
 const snowLine = (o: PassOutlook, now: number) =>
-	`about ${Math.round(o.inches)} in at ${o.deadEnd ? 'the top of the road' : 'the summit'}${o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : ''} from about ${clockWithDay(o.from, now, o.timeZone)}`;
+	`about ${Math.round(o.inches)} in at ${o.deadEnd ? 'the top of the road' : 'the summit'}${o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : ''} from about ${postClock(o.from, now, o.timeZone)}`;
 
 /** A post about the snow coming to one state's passes, each with when to cross and its link. */
 export function forecastText(
@@ -265,11 +373,11 @@ export function forecastText(
 	const link = (o: PassOutlook) => `${origin}${linkWith(o.href, ref)}`;
 	if (passes.length === 1) {
 		const o = passes[0];
-		return `Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} Cameras, chains for your car and the best time to ${o.deadEnd ? 'drive up' : 'cross'}, hour by hour: ${link(o)}`;
+		return `🌨️ Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)}\n\nThe best time to ${o.deadEnd ? 'drive up' : 'cross'}, hour by hour, and cameras: ${link(o)}`;
 	}
 	const region = REGIONS.find((r) => r.abbr === passes[0].state);
 	return [
-		`Snow on the way in the ${region ? `${region.name} ` : ''}mountains. When to go, hour by hour:`,
+		`🌨️ Snow on the way in the ${region ? `${region.name} ` : ''}mountains. When to go, hour by hour:`,
 		...passes.map((o) => `${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} ${link(o)}`)
 	].join('\n\n');
 }
