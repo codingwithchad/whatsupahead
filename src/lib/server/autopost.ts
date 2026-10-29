@@ -207,7 +207,8 @@ async function snowPosts(log: PostEntry[], now: number) {
 			state: spot.state,
 			text: `❄️ ${postText(spot, SITE, 'fb')}`
 		},
-		picture: spot.preview
+		// Only cameras up on the mountain, or the card with the name: not a valley road under "Snowing".
+		picture: `${spot.preview}&near=1`
 	}));
 }
 

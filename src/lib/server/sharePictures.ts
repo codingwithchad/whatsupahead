@@ -123,9 +123,11 @@ export async function cameraPreview(camera: Camera, site: string): Promise<Buffe
 export async function placePreview(
 	place: Place,
 	featured: FeaturedPlace | undefined,
-	site: string
+	site: string,
+	/** Only cameras this close (the Page's snow posts: up on the mountain, or the card alone). */
+	withinMiles?: number
 ): Promise<Buffer> {
-	const radius = featured?.radius_miles ?? 10;
+	const radius = withinMiles ?? featured?.radius_miles ?? 10;
 	const pool = featured ? forPlace(getCatalog().cameras, featured) : getCatalog().cameras;
 	const around = nearby(pool, place, radius).filter(
 		(c) => !isDormant(c) && (c.feed_url || c.provider)
@@ -191,10 +193,10 @@ export async function collectionPreview(
 }
 
 /**
- * A camera this close to a ski area is up on the mountain; farther (Schweitzer's are down in Sandpoint, 15 miles of
- * radius) it shows a valley road in fall colours under "+7 in".
+ * A camera this close to a ski area or pass is up on the mountain; farther (Schweitzer's are down in Sandpoint, 15
+ * miles of radius) it shows a valley road in fall colours under "+7 in".
  */
-const ON_MOUNTAIN_MILES = 3;
+export const ON_MOUNTAIN_MILES = 3;
 
 /**
  * The most new snow in a mountain area (the Facebook Page's morning post): a camera on the mountain at each of the

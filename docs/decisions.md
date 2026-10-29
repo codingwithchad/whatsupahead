@@ -585,3 +585,8 @@ Reading two days of posts with the owner:
   snow gets nothing. Ski areas sharing a gauge share a line. New areas so every ski area is in one: Spokane and
   North Idaho, Blue Mountains, Mt. Shasta and Southern Oregon, Southern and Eastern Idaho, Mt. Charleston (Las
   Vegas); a test keeps it so. The link opens the area's ski areas sorted by most new snow (`&sort=snow`).
+
+Same day: pictures on the Page's snow posts and most-new-snow posts use only cameras up on the mountain (within 3
+miles); a ski area whose cameras are down in the valley (Schweitzer's are in Sandpoint; Mount St. Helens's are miles
+off) gets the card with its name instead of a road in fall colours under "Snowing". Shared links keep their usual
+pictures.
