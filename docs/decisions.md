@@ -600,3 +600,10 @@ people search before a storm ("Snoqualmie Pass conditions"), are what we want fo
 (their links are still followed, and link previews still work); the sitemap gives each pass page the time its state
 last updated the report; and IndexNow tells Bing and others weekly about every page and daily about the passes that
 changed. Links from other sites (a meteorologist or a news story sharing a page) would do more than any of this.
+
+## 2026-10-29: /stats counts only people
+
+Until the morning of 2026-10-21 a visit counted when the server sent a page, so robots that only download pages
+counted too: 120 to 590 "visitors" a day, against 3 to 68 a day once only pages that run in a browser count. The
+days are kept as totals, so the robots can't be picked out afterwards. /stats leaves out every day before 2026-10-22
+(still in the store, not deleted), so its numbers are people and nobody mistakes the early days for use.

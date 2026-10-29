@@ -89,7 +89,8 @@
 	<h1>Visits</h1>
 	<p class="sub">
 		Counts only: nothing about who anyone is, and no cookies (except the one below, on devices you
-		ask not to count). Counting since {pacific(data.since)}. Days are Pacific time. Kept in {data.storage}{#if data.lastSave.at},
+		ask not to count). Counted only once a page has run in a browser, so robots that just download
+		pages aren't people; since {pacific(data.since)}. Days are Pacific time. Kept in {data.storage}{#if data.lastSave.at},
 			last saved {pacific(data.lastSave.at)}{/if}.
 	</p>
 	{#if !data.lastSave.ok}

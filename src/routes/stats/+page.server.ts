@@ -15,6 +15,14 @@ function total(days: Day[], pick: (d: Day) => Record<string, number>, limit = 15
 }
 
 const DAY_MS = 86_400_000;
+/**
+ * Until the morning of 2026-10-21 a visit was counted when the server sent a page, so robots that only download pages
+ * counted too (120 to 590 "visitors" a day, against 3 to 68 since); now only once the page has run in a browser
+ * (/api/view). Those days stay in the store but are left out here, so every number is people. A copy started later
+ * has none.
+ */
+const BROWSER_COUNTED_FROM = '2026-10-22';
+const BROWSER_COUNTED_SINCE = '2026-10-22T07:00:00.000Z'; // midnight Pacific
 const HOURS = Array.from({ length: 24 }, (_, h) => String(h).padStart(2, '0'));
 
 /**
@@ -25,7 +33,10 @@ const HOURS = Array.from({ length: 24 }, (_, h) => String(h).padStart(2, '0'));
 export const load: PageServerLoad = async ({ url, cookies, setHeaders }) => {
 	setHeaders({ 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' });
 	await statsReady();
-	const { since, days, storage, lastSave } = statsReport();
+	const report = statsReport();
+	const { storage, lastSave } = report;
+	const days = report.days.filter(([d]) => d >= BROWSER_COUNTED_FROM);
+	const since = report.since < BROWSER_COUNTED_SINCE ? BROWSER_COUNTED_SINCE : report.since;
 	const { places, collections, passes } = getCatalog();
 	const names = new Map<string, string>([
 		...places.map((p) => [p.id, p.name] as [string, string]),
