@@ -43,7 +43,7 @@ the services behind them. When a rule here and the code disagree, the rule wins:
 | NOAA tides, buoys, river gauges; FAA; USGS; NPS; Census | None | None published (US government) | Kept 2 minutes to a day | NPS, USGS: yes |
 | YouTube Data API (scripts only) | Key | Daily quota | Run by hand | Embeds only |
 | IndexNow (script only) | Our own key file | None to speak of | Run by hand after big changes | n/a |
-| Facebook Graph API (our own Page) | Page key | Meta's platform terms; posts only to our own Page | At most 3 posts a day in each state, 2 hours apart; 10 a day in all | Pictures follow the link-preview rules |
+| Facebook Graph API (our own Page) | Page key | Meta's platform terms; posts only to our own Page | Snow: 3 a day in each state, 2 hours apart, 10 a day in all; chains: 1 an hour in a state; snow on the way: 1 a day in a state; most new snow: 1 a morning in each mountain area | Pictures follow the link-preview rules |
 
 ## State road departments
 
@@ -156,7 +156,8 @@ The three run on the same system, with the same developer API and the same limit
   advertisements" as commercial); data under CC BY 4.0, so credit is required. Voluntary donations are fine.
 - **What we do:** at most 8,000 calls a day and 120 a minute; forecasts kept 10 to 30 minutes. The Facebook Page's
   "snow on the way" check asks for every pass's summit every 3 hours (84 passes, under 700 calls a day; kept 30
-  minutes, so pass pages share them). Credited on the About
+  minutes, so pass pages share them); its most-new-snow post asks for each ski area's rest-of-today snow at most
+  once an hour in the morning (about 70 places, in one request). Credited on the About
   page and next to the snow forecasts. **If the site ever shows ads or sells a subscription, it needs an
   Open-Meteo paid plan first.**
 
@@ -164,7 +165,7 @@ The three run on the same system, with the same developer API and the same limit
 
 - **What for:** snow depth and new snow at passes and ski areas.
 - **Key:** none. US government data, public domain; no rate limit published.
-- **What we do:** the station list once a day; each station's readings kept 30 minutes, asked for 20 stations to a request (it answers about four a second). Snow depth, snow water and
+- **What we do:** the station list once a day; each station's readings kept 30 minutes, asked for 20 stations to a request (it answers about four a second). The Facebook Page's most-new-snow post reads the ski areas' gauges at most once an hour, 6 AM to noon. Snow depth, snow water and
   temperature are asked for together. Each reading links to USDA's own hourly table for that gauge, so anyone can
   check our numbers.
 
@@ -245,8 +246,11 @@ The three run on the same system, with the same developer API and the same limit
   in each state at most 3 posts a day, 2 hours apart (different states go out together); 10 a day in all; the same
   spot once in 3 days. Chains: a pass's chain rule changing (held half an hour), one post an hour in each state with
   every pass that changed, 8 a day. Snow on the way: passes with 2 inches or more forecast at the summit in the
-  next day, one post a day in each state naming up to 4, each with when to cross and its link. The picture is a link-preview picture, so
-  only sources allowed in previews appear, each credited on it.
+  next day, one post a day in each state naming up to 4, each with when to cross and its link. Most new snow: each
+  mountain area (`data/areas.json`) once a morning, 6 AM to noon there, one area each half hour, only when its
+  snowiest ski area has 3 inches or more. When a pass's rule changes again within a week, its earlier post is
+  edited to put the update at its top (`pages_manage_posts` allows editing our own posts). The picture is a
+  link-preview picture, so only sources allowed in previews appear, each credited on it.
 
 ## Adding a source
 

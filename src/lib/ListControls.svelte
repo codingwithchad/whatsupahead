@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 	import type { Area } from './areas';
 
 	// Sort and Show for a long list (passes, ski areas), the same on each page. Show picks a state or a mountain
 	// area and puts it in the address (`?in=sierra`), so the list you are looking at is the one you share. The sort
-	// is remembered on this device under `storageKey`.
+	// is remembered on this device under `storageKey`; a link can pick one (`&sort=snow`, from a Facebook post).
 	let {
 		sorts,
 		sort = $bindable(),
@@ -24,7 +25,7 @@
 
 	$effect(() => {
 		try {
-			const saved = localStorage.getItem(storageKey);
+			const saved = page.url.searchParams.get('sort') ?? localStorage.getItem(storageKey);
 			if (saved && sorts.some((s) => s.id === saved)) sort = saved;
 		} catch {
 			// remembering is optional

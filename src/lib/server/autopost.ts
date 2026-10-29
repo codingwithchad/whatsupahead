@@ -21,6 +21,9 @@ import { getCatalog } from './catalog';
 import { crossingTimes } from './crossing';
 import { allPassReports } from './passes';
 import { snowingNow } from './snowing';
+import { skiSnow } from './skiSnow';
+import { AREAS } from '../areas';
+import { middle, skiAreasIn, topSnow, topSnowDue, topSnowText, worthPosting } from '../topSnow';
 
 // Every half hour, day and night, the site's own Facebook Page posts what drivers and skiers want to know: passes, ski
 // areas or parks snowing now (one a state), a pass's chain rules changing, and snow on the way over the passes with
@@ -178,7 +181,11 @@ async function send(
 		if (key)
 			try {
 				// A fresh picture each time (the preview is otherwise kept for a while).
-				entry.post = await postPhoto(key, `${SITE}${picture}&v=${now}`, entry.text);
+				entry.post = await postPhoto(
+					key,
+					`${SITE}${picture}${picture.includes('?') ? '&' : '?'}v=${now}`,
+					entry.text
+				);
 				console.log(`[autopost] posted ${entry.id}`);
 			} catch (err) {
 				entry.error = (err as Error).message;
@@ -279,6 +286,50 @@ async function forecastPosts(log: PostEntry[], now: number) {
 	}));
 }
 
+/** The gauges are read for this at most once an hour (the ski areas page keeps them for 30 minutes too). */
+const TOP_EVERY = HOUR;
+let topAt = 0;
+
+/**
+ * The morning's most new snow in each mountain area, one area each half hour, from 6 AM to noon there; an area
+ * with less than 3 inches at its snowiest ski area isn't posted.
+ */
+async function topSnowPosts(log: PostEntry[], now: number) {
+	const { places, collections } = getCatalog();
+	const also = collections.find((c) => c.id === 'ski-areas')?.also ?? [];
+	const due = AREAS.filter((a) => a.kind === 'mountains')
+		.map((area) => ({ area, list: skiAreasIn(area, places, also) }))
+		.filter(
+			({ area, list }) =>
+				list.length && topSnowDue(area, timeZoneAt(middle(area).lat, middle(area).lon), log, now)
+		);
+	if (!due.length || now - topAt < TOP_EVERY) return [];
+	topAt = now;
+	const snow = await skiSnow(
+		due.flatMap((d) => d.list),
+		now
+	);
+	for (const { area, list } of due) {
+		const lines = topSnow(list, snow);
+		if (!worthPosting(lines)) continue;
+		// The next area waits for the next half hour (and the gauges are read again then).
+		topAt = 0;
+		return [
+			{
+				entry: {
+					id: `top:${area.id}`,
+					name: area.name,
+					kind: 'top' as const,
+					state: null,
+					text: topSnowText(area, lines, SITE, 'fb')
+				},
+				picture: `/og/top-snow/${area.id}`
+			}
+		];
+	}
+	return [];
+}
+
 /** One part of a run; a source that fails only skips that part. */
 async function part<T>(name: string, run: () => Promise<T[]>): Promise<T[]> {
 	try {
@@ -298,7 +349,8 @@ async function tick() {
 	const entries = [
 		...(await send(key, await part('snow', () => snowPosts(log, now)), now)),
 		...(await send(key, chains, now)),
-		...(await send(key, await part('forecast', () => forecastPosts(log, now)), now))
+		...(await send(key, await part('forecast', () => forecastPosts(log, now)), now)),
+		...(await send(key, await part('top snow', () => topSnowPosts(log, now)), now))
 	];
 	// A chain change is posted once it went up (or would have, in a dry run); a failed one is tried again.
 	for (const { group, entry } of chains)

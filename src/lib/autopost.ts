@@ -4,10 +4,10 @@ import { DEFAULT_TIME_ZONE, REGIONS } from './regions';
 import type { SnowingSpot } from './snowing';
 
 /**
- * What a post is about: snow falling at a spot, a pass's chain rules changing, or snow on the way over the passes
- * (with the best time to cross each). Each has its own limits.
+ * What a post is about: snow falling at a spot, a pass's chain rules changing, snow on the way over the passes
+ * (with the best time to cross each), or the morning's most new snow in a mountain area. Each has its own limits.
  */
-export type PostKind = 'snow' | 'chains' | 'forecast';
+export type PostKind = 'snow' | 'chains' | 'forecast' | 'top';
 
 /** One post to the site's Facebook Page, or one it would have made (a dry run, before the Page's key is set). */
 export interface PostEntry {

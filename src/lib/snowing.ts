@@ -32,7 +32,7 @@ const HOUR = 3600_000;
 const NOW_INCHES = 1;
 const DAY_INCHES = 2;
 // The snow pillow weighs the snow, to a tenth of an inch of water. Two inches of dry snow add about a tenth.
-const DAY_WATER = 0.1;
+export const DAY_WATER = 0.1;
 /** Farther than this from the spot, a post says the snow is "near" it and how far away the gauge is. */
 const AT_MILES = 2;
 const SAYS_SNOW = /snow/i;
@@ -42,7 +42,7 @@ const SAYS_NONE = /\bno snow\b/i;
  * How much water the snow gained over the last day, in inches: the latest reading (within 3 hours of the depth's)
  * above the day's lowest. Gauges skip water hours now and then, so it doesn't need a reading at any one hour.
  */
-function waterRose(reading: SnowReading): number {
+export function waterRose(reading: SnowReading): number {
 	const day = reading.water.filter((w) => w.t >= reading.at - 24 * HOUR && w.t <= reading.at);
 	const last = day.at(-1);
 	if (!last || last.t < reading.at - 3 * HOUR) return 0;

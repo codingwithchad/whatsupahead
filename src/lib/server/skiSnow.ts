@@ -1,6 +1,7 @@
 import type { Point } from '../geo';
 import { mountainStation, snowReading, snowSinceSix, todayAt, type AwdbSeries } from '../mountain';
 import { timeZoneAt } from '../regions';
+import { waterRose } from '../snowing';
 import { cachedMany } from './cache';
 import { stations } from './mountain';
 import { forecastAt } from './openMeteo';
@@ -19,6 +20,8 @@ export interface SkiSnow {
 	depthIn: number | null;
 	change24: number | null;
 	sinceSix: number | null;
+	/** Water the snow gained over the day, in inches: real new snow adds some (a wobbling depth sensor doesn't). */
+	water24: number | null;
 	/** When the gauge last reported. */
 	at: number | null;
 	/** Snow forecast from now until midnight there, in inches. */
@@ -136,6 +139,7 @@ export async function skiSnow(places: Place[], now = Date.now()): Promise<Record
 			depthIn: fresh ? fresh.depthIn : null,
 			change24: fresh ? fresh.change24 : null,
 			sinceSix: fresh ? snowSinceSix(fresh.hourly, timeZoneAt(p.lat, p.lon), now) : null,
+			water24: fresh ? waterRose(fresh) : null,
 			at: fresh?.at ?? null,
 			forecastIn: forecast.get(p.id) ?? null,
 			timeZone: timeZoneAt(p.lat, p.lon)

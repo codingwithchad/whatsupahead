@@ -555,3 +555,33 @@ Little Cottonwood, Powder Mountain, Snowbasin, Lee Canyon): their pages and post
 of the road", and their pages don't offer other ways across. Ski areas that aren't passes (Schweitzer) only get the
 snow posts, which never say cross.
 
+
+## 2026-10-29: The Facebook Page reads like people, updates old posts, and posts the most new snow by area
+
+Reading two days of posts with the owner:
+
+- **Wording.** "Crystal to Greenwater (SR 410): chains required now, was no restrictions. ... Cameras, chains for your
+  car and the pass report" read like a machine. Posts now lead with a sign to see in a feed and say it the way a person
+  would: "⛓️❄️ Chains required on Snoqualmie Pass (I-90).", "⚠️ Traction tires required on White Pass (US 12).",
+  "✅ No more restrictions on Stevens Pass (US 2): the traction tire advisory is lifted.", "⚠️ Easing on ...: chains
+  are off, traction tires advised now." The two directions' rules print once when they match ("Both ways: ...").
+  Times read "9 PM tonight", "midnight tonight", "10 AM tomorrow". Snow posts start with ❄️, snow on the way with 🌨️.
+- **Traction tires required isn't chains.** WSDOT's "Traction Tires Required, Chains required on Vehicles over 10,000
+  gross vehicle weight" was posted, and shown on pass pages, as "Chains required". For a car it's traction tires
+  required: pass pages now say so (still the chains colour, as it is a requirement), and posts treat it as its own
+  rule, so a change from it to real chains is posted.
+- **Snow settles.** Tombstone Pass at night said "2 in in the last 3 hours, 1 in since 6 AM": the depth had settled
+  during the day. A post gives the larger of "since 6 AM" and "in 24 hours", and none when it is no more than the
+  last 3 hours.
+- **Old posts.** Facebook shows posts out of order and days late: someone can see Tuesday's "chains required" on
+  Friday, when the road is bare, and never see the post that lifted it. The Page key can edit our own posts (not
+  comment), so when a pass changes again within a week, its earlier post gets "🔄 Update Thu 4:32 AM: No more
+  restrictions on ..." at its top. A failed edit shows on /stats; the new post still stands.
+- **Most new snow by area.** Like the weather people's "top snowfall by resort", but by mountain area, since people
+  care about their own mountains and we cover only six states (we never say "most in the West": Colorado, BC or
+  Alaska may have had more). Each morning, 6 AM to noon there, an area whose snowiest ski area got 3 inches or more
+  in 24 hours gets one post: up to 5 ski areas, each with its new snow, snow on the ground and gauge height
+  (skiers' snow: the highest gauge near each), and a picture of their cameras labelled "+4 in". An area with no
+  snow gets nothing. Ski areas sharing a gauge share a line. New areas so every ski area is in one: Spokane and
+  North Idaho, Blue Mountains, Mt. Shasta and Southern Oregon, Southern and Eastern Idaho, Mt. Charleston (Las
+  Vegas); a test keeps it so. The link opens the area's ski areas sorted by most new snow (`&sort=snow`).

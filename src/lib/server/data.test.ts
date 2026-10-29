@@ -126,6 +126,20 @@ describe('data agrees with itself', () => {
 		expect(problems).toEqual([]);
 	});
 
+	it('every ski area is in exactly one mountain area, for its most-new-snow post', () => {
+		const mountains = AREAS.filter((a) => a.kind === 'mountains');
+		const problems = data.places
+			.map((d) => d.item)
+			.filter((p) => 'collection' in p && p.collection === 'ski-areas')
+			.map((p) => ({
+				id: p.id,
+				in: mountains.filter((a) => inArea(a, p as { lat: number; lon: number }, []))
+			}))
+			.filter((p) => p.in.length !== 1)
+			.map((p) => `${p.id}: in ${p.in.map((a) => a.id).join(', ') || 'no area'}`);
+		expect(problems).toEqual([]);
+	});
+
 	it('roads that close for the winter give their usual closing days', () => {
 		const missing = data.passes
 			.filter(({ item }) => item.winter_closure && !item.seasonal_closure)

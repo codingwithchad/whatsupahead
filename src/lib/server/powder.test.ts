@@ -11,6 +11,7 @@ const snow = (over: Partial<SkiSnow>): SkiSnow => ({
 	depthIn: 40,
 	change24: 0,
 	sinceSix: 0,
+	water24: 0,
 	at: 0,
 	forecastIn: 0,
 	timeZone: 'America/Los_Angeles',

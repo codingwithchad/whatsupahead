@@ -26,6 +26,8 @@ import {
 	type CardPicture
 } from './shareCard';
 import { camerasAlong, DEFAULT_DESTINATION_RADIUS, parseVia, resolvePlace } from './trip';
+import { skiSnow } from './skiSnow';
+import { names, skiAreasIn, topSnow } from '../topSnow';
 
 // The share pictures for each kind of page. Only pictures whose owners allow it go in (see ../sharing.ts);
 // a page with none still gets a card with its name.
@@ -182,6 +184,40 @@ export async function collectionPreview(
 		lines: area
 			? [collection.name, `${list.length} places`]
 			: [...(collection.blurb ? [collection.blurb] : []), `${list.length} places`],
+		credit,
+		pictures,
+		site
+	});
+}
+
+/**
+ * The most new snow in a mountain area (the Facebook Page's morning post): a camera at each of the snowiest ski areas,
+ * each labelled with its new snow, and the list beside them.
+ */
+export async function topSnowPreview(area: Area, site: string): Promise<Buffer> {
+	const { places, cameras, collections } = getCatalog();
+	const also = collections.find((c) => c.id === 'ski-areas')?.also ?? [];
+	const list = skiAreasIn(area, places, also);
+	const lines = topSnow(list, await skiSnow(list));
+	const covers: Camera[] = [];
+	const caption = new Map<string, string>();
+	for (const line of lines) {
+		const p = list.find((x) => x.id === line.ids[0])!;
+		const c = nearby(forPlace(cameras, p), p, p.radius_miles ?? 2).find(
+			(x) => !isDormant(x) && previewCredit(x)
+		);
+		if (c && !caption.has(c.id)) {
+			covers.push(c);
+			caption.set(c.id, `${p.name} +${line.inches} in`);
+		}
+	}
+	const { pictures, credit } = await sharePictures(covers, 4, (c) => caption.get(c.id));
+	return renderCard({
+		title: area.name,
+		lines: [
+			'Most new snow, last 24 hours',
+			...lines.slice(0, 4).map((l) => `${l.inches} in: ${names(l.names)}`)
+		],
 		credit,
 		pictures,
 		site
