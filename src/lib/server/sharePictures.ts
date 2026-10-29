@@ -191,8 +191,15 @@ export async function collectionPreview(
 }
 
 /**
- * The most new snow in a mountain area (the Facebook Page's morning post): a camera at each of the snowiest ski areas,
- * each labelled with its new snow, and the list beside them.
+ * A camera this close to a ski area is up on the mountain; farther (Schweitzer's are down in Sandpoint, 15 miles of
+ * radius) it shows a valley road in fall colours under "+7 in".
+ */
+const ON_MOUNTAIN_MILES = 3;
+
+/**
+ * The most new snow in a mountain area (the Facebook Page's morning post): a camera on the mountain at each of the
+ * snowiest ski areas, labelled with its new snow, and the list beside them. When the snowiest has no camera up there,
+ * the card with the name and list alone.
  */
 export async function topSnowPreview(area: Area, site: string): Promise<Buffer> {
 	const { places, cameras, collections } = getCatalog();
@@ -201,11 +208,12 @@ export async function topSnowPreview(area: Area, site: string): Promise<Buffer> 
 	const lines = topSnow(list, await skiSnow(list));
 	const covers: Camera[] = [];
 	const caption = new Map<string, string>();
-	for (const line of lines) {
+	for (const [i, line] of lines.entries()) {
 		const p = list.find((x) => x.id === line.ids[0])!;
-		const c = nearby(forPlace(cameras, p), p, p.radius_miles ?? 2).find(
+		const c = nearby(forPlace(cameras, p), p, ON_MOUNTAIN_MILES).find(
 			(x) => !isDormant(x) && previewCredit(x)
 		);
+		if (!c && i === 0) break;
 		if (c && !caption.has(c.id)) {
 			covers.push(c);
 			caption.set(c.id, `${p.name} +${line.inches} in`);
