@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
 	chainChanges,
+	changeWords,
 	chainText,
 	forecastText,
 	keepRecent,
@@ -216,6 +217,15 @@ describe('chain changes', () => {
 		expect(ruleOf({ ...report('chains'), label: 'Traction tires required' })).toBe('required');
 		expect(ruleOf({ ...report('chains'), label: 'Chains required' })).toBe('chains');
 		expect(ruleOf(report('closed'))).toBe(null);
+		// Chains for towing and trucks only: amber for a car, and the words say whose chains came off.
+		const trucks = {
+			...change('Santiam', 'traction', 'OR', 'chains'),
+			report: { ...report('traction'), label: 'Chains required for towing and over 10,000 lb' }
+		};
+		expect(ruleOf(trucks.report)).toBe('traction');
+		expect(changeWords(trucks)).toBe(
+			'⚠️ Easing on Santiam Pass (I-90): chains are off for cars, chains required for towing and over 10,000 lb now.'
+		);
 	});
 
 	it('one post a state with every pass that changed, chains first, an hour apart', () => {
@@ -239,7 +249,7 @@ describe('chain changes', () => {
 			/^⚠️ Traction tires required on White Pass \(I-90\)\. Both ways: Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight\. Oversize Vehicles Prohibited\.\n/
 		);
 		expect(chainText([change('Stevens', 'open', 'WA', 'traction')], 'https://x.com')).toBe(
-			'✅ No more restrictions on Stevens Pass (I-90): the traction tire advisory is lifted.\n\nThe latest report and cameras: https://x.com/passes/Stevens'
+			'✅ No more restrictions on Stevens Pass (I-90).\n\nThe latest report and cameras: https://x.com/passes/Stevens'
 		);
 		expect(chainText([change('White', 'traction', 'WA', 'chains')], 'https://x.com')).toMatch(
 			/^⚠️ Easing on White Pass \(I-90\): chains are off, traction tires advised now\./
@@ -276,8 +286,8 @@ describe('chain changes', () => {
 			text: 'Washington pass update: ...'
 		});
 		const off = change('White', 'open', 'WA', 'chains');
-		// The newest post about White Pass, not one a dry run or a failure made, nor one over a week old.
-		expect(postsToUpdate([off], [tue, group], NOW).map((u) => u.entry.post)).toEqual(['p2']);
+		// Every post of the week about White Pass, not one a dry run or a failure made, nor one over a week old.
+		expect(postsToUpdate([off], [tue, group], NOW).map((u) => u.entry.post)).toEqual(['p1', 'p2']);
 		expect(postsToUpdate([off], [tue], NOW).map((u) => u.entry.post)).toEqual(['p1']);
 		expect(postsToUpdate([off], [{ ...tue, dry: true }], NOW)).toEqual([]);
 		expect(postsToUpdate([off], [{ ...tue, at: NOW - 8 * 24 * HOUR }], NOW)).toEqual([]);
@@ -291,10 +301,35 @@ describe('chain changes', () => {
 			[change('White', 'traction', 'WA', 'open')],
 			NOW + HOUR
 		);
+		// The earlier update about White Pass is no longer true: only the newest stays.
 		expect(again.text.split('\n\n')).toEqual([
 			'🔄 Update Thu 11:00 AM: Traction tires advised on White Pass (I-90).',
-			'🔄 Update Thu 10:00 AM: No more restrictions on White Pass (I-90): chains are off.',
 			'⛓️❄️ Chains required on White Pass (I-90).'
+		]);
+	});
+
+	it("keeps the lines about a group post's other passes, one line a pass", () => {
+		const group = entry('chains:WA', 20, {
+			kind: 'chains',
+			dry: false,
+			post: 'p2',
+			passes: ['Stevens', 'White'],
+			text: 'Washington pass update: ...'
+		});
+		const both = updatePost(
+			group,
+			[change('Stevens', 'open', 'WA', 'chains'), change('White', 'open', 'WA', 'chains')],
+			NOW
+		);
+		const later = updatePost(
+			{ ...group, ...both },
+			[change('White', 'chains', 'WA', 'open')],
+			NOW + HOUR
+		);
+		expect(later.text.split('\n\n')).toEqual([
+			'🔄 Update Thu 11:00 AM: Chains required on White Pass (I-90).',
+			'🔄 Update Thu 10:00 AM: No more restrictions on Stevens Pass (I-90): chains are off.',
+			'Washington pass update: ...'
 		]);
 	});
 });

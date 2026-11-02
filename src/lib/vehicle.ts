@@ -48,6 +48,9 @@ export function needFor(text: string, v: Vehicle): Answer {
 	const base = classifyRestriction(t);
 	if (base === 'off-season') return { need: 'unknown', text: 'No report' };
 	if (base === 'closed') return answer('closed');
+	// WSDOT from November 1: "Vehicles over 10,000 GVW must carry chains", and nothing else for anyone smaller.
+	if (base === 'open' && /\bcarry chains\b/i.test(t))
+		return v === 'tow' ? answer('carry', 'Carry chains if over 10,000 lb') : answer('ok');
 	if (v === 'tow' && /(towing|trailers?)[^.]{0,30}prohibited|prohibited[^.]{0,30}towing/i.test(t))
 		return answer('closed', 'No towing allowed');
 	if (
@@ -63,21 +66,27 @@ export function needFor(text: string, v: Vehicle): Answer {
 		// WSDOT: all-wheel drive is exempt "when all wheels are in gear and equipped with approved traction tires".
 		return answer('tires', 'AWD with traction tires: no chains. Carry them');
 	}
-	// Caltrans R-2 and NDOT ("All Vehicles except 4-wheel drive with Snow tires"): four-wheel drive with snow
+	// Caltrans R-2 and NDOT ("All Vehicles except 4-wheel drive with Snow tires"): four- or all-wheel drive with snow
 	// tires on all four wheels may go without chains.
-	if (/(four|4)-wheel drive with snow tires/i.test(t))
+	if (/(four|4|all)-wheel drive with snow tires/i.test(t))
 		return v === 'awd'
 			? answer('tires', 'Snow tires on all four wheels, or chains. Carry chains')
 			: answer('chains');
 	// Caltrans R-1: snow tires instead of chains on vehicles under 6,000 lb. NDOT: "Chains or Snow Tires Required".
 	if (/snow tires allowed|chains or snow tires required/i.test(t))
 		return v === 'tow' ? answer('chains') : answer('tires', 'Snow tires, or chains. Carry chains');
-	// UDOT's traction rule (the Cottonwood canyons and other roads in a storm): four- or all-wheel drive with snow
-	// tires (M+S or the snowflake mark), or chains; "4WD/AWD or Chains Required".
-	if (/traction (law|device)|(4wd|awd|4x4|(four|all)[- ]wheel drive)[^.]{0,40}\bor chains/i.test(t))
+	// UDOT's traction law (the Cottonwood canyons, and other roads in a storm): four- or all-wheel drive with snow
+	// tires (M+S or the snowflake mark) on all four wheels, a two-wheel drive car under 12,000 lb with
+	// snowflake-mark tires on all four, or chains; "4WD/AWD or Chains Required" leaves out the car's tires.
+	if (/(4wd|awd|4x4|(four|all)[- ]wheel drive)[^.]{0,40}\bor chains/i.test(t))
 		return v === 'awd'
 			? answer('tires', 'AWD or 4WD with snow tires: no chains. Carry them')
 			: answer('chains');
+	if (/traction (law|devices? required)/i.test(t)) {
+		if (v === 'awd') return answer('tires', 'AWD or 4WD with snow tires: no chains. Carry them');
+		if (v === 'car') return answer('tires', 'Snowflake-mark tires on all four wheels, or chains');
+		return answer('chains');
+	}
 	// ODOT C: traction tires instead of chains under 10,000 lb and not towing.
 	if (/traction tires allowed in place of chains/i.test(t))
 		return v === 'tow'

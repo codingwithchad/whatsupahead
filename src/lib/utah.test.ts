@@ -113,9 +113,14 @@ describe('utahPassReport', () => {
 });
 
 describe('Utah traction rule', () => {
-	it('lets AWD with snow tires through and asks the rest for chains', () => {
+	it('lets AWD with snow tires, and a car with snowflake-mark tires, through; the rest need chains', () => {
 		expect(needFor('Traction Law in effect', 'awd').need).toBe('tires');
-		expect(needFor('Traction Law in effect', 'car').need).toBe('chains');
+		expect(needFor('Traction Law in effect', 'car').text).toBe(
+			'Snowflake-mark tires on all four wheels, or chains'
+		);
+		expect(needFor('Traction Law in effect', 'tow').need).toBe('chains');
+		expect(needFor('Traction Devices Recommended', 'car').need).toBe('carry');
+		expect(needFor('4WD/AWD or Chains Required', 'car').need).toBe('chains');
 		expect(needFor('4WD/AWD or Chains Required', 'tow').need).toBe('chains');
 	});
 });

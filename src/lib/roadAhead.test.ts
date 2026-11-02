@@ -235,7 +235,7 @@ describe('toCheckpoint', () => {
 			elevation_ft: 6100,
 			direction: 'East'
 		});
-		expect(c?.text).toContain('Four-wheel drive');
+		expect(c?.text).toContain('Four-wheel and all-wheel drive');
 		expect(
 			toCheckpoint({ location: { latitude: '39.3', longitude: '-120.4' }, inService: 'false' })
 		).toBeNull();

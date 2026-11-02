@@ -111,7 +111,11 @@ export function nevadaPassReport(
 				  !closures.length &&
 				  !reports.some((r) => /road closed/i.test(r['Overall Status'] ?? ''))
 				? 'Traffic held'
-				: STATUS_LABEL[status];
+				: status === 'chains' &&
+					  restrictions.every((r) => /chains or snow tires required/i.test(r.text))
+					? // NDOT's first level: a car with snow tires goes on without chains.
+						'Chains or snow tires required'
+					: STATUS_LABEL[status];
 	const updated = Math.max(
 		...[latest?.LastUpdated, ...closures.map((c) => c.LastUpdated)].map((t) => (t ? t * 1000 : 0))
 	);

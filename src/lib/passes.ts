@@ -54,31 +54,71 @@ const SEVERITY: PassStatus[] = ['closed', 'chains', 'traction', 'open', 'off-sea
 const OFF_SEASON =
 	/reports? (have|has) ended|not reporting|no current information|reporting (season|period)|traditionally .{0,40}(reported|conditions)|reported (on this page )?from/i;
 
+// Chains only for big trucks ("over 10,000 gross vehicle weight"), towing or oversize loads.
+const HEAVY = /over 10,?000|gvw|gross vehicle|towing|commercial|trucks?\b|buses|oversize/i;
+const TIRES_REQUIRED = /traction tires? (are |is )?required/i;
+const parts = (text: string) =>
+	text
+		.split(/[.,;]\s+/)
+		.map((p) => p.trim())
+		.filter(Boolean);
+/**
+ * From November 1 WSDOT may write "Vehicles over 10,000 GVW must carry chains" (the law for trucks all winter):
+ * nothing for a car, and no chains on anyone's wheels yet.
+ */
+const heavyCarry = (part: string) => /\bcarry chains\b/i.test(part) && HEAVY.test(part);
+
 /** What one restriction line means. WSDOT writes these by hand, so match the common wordings. */
 export function classifyRestriction(text: string): PassStatus {
-	const t = text.trim();
-	if (!t || /^no current information/i.test(t)) return 'off-season';
+	const t = parts(text)
+		.filter((p) => !heavyCarry(p))
+		.join('. ');
+	if (!text.trim() || /^no current information/i.test(text.trim())) return 'off-season';
 	if (/\bclosed\b/i.test(t) && !/reopen|not closed/i.test(t)) return 'closed';
-	if (/chains?\b/i.test(t) && !/no chains?|chains? (are )?not (required|needed)/i.test(t))
+	// "Carry chains or traction tires" (ODOT) is advice, not chains on the wheels.
+	if (
+		/chains?\b/i.test(t.replace(/\bcarry chains\b/gi, '')) &&
+		!/no chains?|chains? (are )?not (required|needed)/i.test(t)
+	)
 		return 'chains';
-	if (/traction|snow tires?|tire advisory|advised/i.test(t) && !/^no restrictions/i.test(t))
+	// Required, not advised: the same rule as WSDOT's "Traction Tires Required, Chains required on vehicles over
+	// 10,000 GVW" (see tractionForCars).
+	if (TIRES_REQUIRED.test(t)) return 'chains';
+	if (
+		/traction|snow tires?|tire advisory|advised|carry chains/i.test(t) &&
+		!/^no restrictions/i.test(t)
+	)
 		return 'traction';
-	if (/^no restrictions/i.test(t)) return 'open';
 	return 'open';
 }
 
-// Chains only for big trucks ("over 10,000 gross vehicle weight"), towing or oversize loads.
-const HEAVY = /over 10,?000|gvw|gross vehicle|towing|commercial|trucks?\b|buses|oversize/i;
+/** The parts of these lines that put chains on someone's wheels (not "traction tires required"). */
+const chainParts = (restrictions: { text: string }[]) =>
+	restrictions
+		.flatMap((r) => parts(r.text))
+		.filter((p) => classifyRestriction(p) === 'chains' && !TIRES_REQUIRED.test(p));
 
 /**
  * "Traction Tires Required, Chains required on Vehicles over 10,000 gross vehicle weight": the chains are for
  * trucks, so for a car this is traction tires required, not chains.
  */
 export function tractionForCars(restrictions: { text: string }[]): boolean {
-	const parts = restrictions.flatMap((r) => r.text.split(/[.,;]\s+/).map((p) => p.trim()));
 	return (
-		parts.some((p) => /traction tires? (are )?required/i.test(p)) &&
-		parts.filter((p) => classifyRestriction(p) === 'chains').every((p) => HEAVY.test(p))
+		restrictions.some((r) => TIRES_REQUIRED.test(r.text)) &&
+		chainParts(restrictions).every((p) => HEAVY.test(p))
+	);
+}
+
+/** The label for chains only on towing and heavy vehicles: for a car, carry chains or traction tires. */
+export const HEAVY_CHAINS = 'Chains required for towing and over 10,000 lb';
+
+/** "Chains are required on vehicles towing and vehicles over 10,000 GVW", and nothing more for cars. */
+export function chainsOnlyHeavy(restrictions: { text: string }[]): boolean {
+	const chains = chainParts(restrictions);
+	return (
+		chains.length > 0 &&
+		chains.every((p) => HEAVY.test(p)) &&
+		!restrictions.some((r) => TIRES_REQUIRED.test(r.text))
 	);
 }
 
@@ -133,10 +173,12 @@ export function classifyPass(
 
 	// An old "open" or "chains" is not today's road. A closure stays shown: it is safer to send people to check.
 	const updated = raw.DateUpdated ? parseDotNetDate(raw.DateUpdated) : null;
-	let label =
-		status === 'chains' && tractionForCars(restrictions)
-			? 'Traction tires required'
-			: STATUS_LABEL[status];
+	let label = STATUS_LABEL[status];
+	if (status === 'chains' && tractionForCars(restrictions)) label = 'Traction tires required';
+	else if (status === 'chains' && chainsOnlyHeavy(restrictions)) {
+		status = 'traction';
+		label = HEAVY_CHAINS;
+	}
 	if (
 		updated !== null &&
 		now - updated > STALE_MS &&
@@ -247,6 +289,8 @@ export function kmToStretch(p: Pt, a: Pt, b: Pt = a): number {
 export const EXTRA_LABELS: Record<string, PassStatus> = {
 	'No chain controls': 'open',
 	'Traction tires required': 'chains',
+	'Chains or snow tires required': 'chains',
+	[HEAVY_CHAINS]: 'traction',
 	'Carry chains or traction tires': 'traction',
 	'No recent report': 'off-season',
 	'Usually closed in winter': 'off-season'
@@ -321,6 +365,17 @@ const ODOT_RESTRICTION: Record<string, string> = {
 	C: 'Chains required. Traction tires allowed in place of chains on vehicles under 10,000 GVW and not towing',
 	D: 'Chains required. Traction tires alone are not enough'
 };
+/**
+ * What each level is for a car, strictest last: B is chains for towing and trucks only (a car carries chains or
+ * traction tires, as in A), and C lets cars use traction tires instead of chains.
+ */
+const ODOT_LEVEL: Record<string, { rank: number; status: PassStatus; label: string }> = {
+	A: { rank: 1, status: 'traction', label: 'Carry chains or traction tires' },
+	B: { rank: 2, status: 'traction', label: HEAVY_CHAINS },
+	B1: { rank: 2, status: 'traction', label: HEAVY_CHAINS },
+	C: { rank: 3, status: 'chains', label: 'Traction tires required' },
+	D: { rank: 4, status: 'chains', label: STATUS_LABEL.chains }
+};
 
 const stretch = (l: OdotRwReport['location'] | OdotIncident['location']) => {
 	const s = l?.['start-location'];
@@ -376,12 +431,15 @@ export function odotPassReport(
 	if (!closures.length && !live.length) return empty(pass.id);
 
 	let status: PassStatus = live.length ? 'open' : 'closed';
+	let level: string | null = null;
 	const restrictions: Restriction[] = [];
 	for (const r of live) {
 		const id = (r['driving-restriction']?.['restriction-id'] ?? '0').toUpperCase();
 		const text = ODOT_RESTRICTION[id];
 		if (!text) continue;
-		status = worst(status, id === 'A' ? 'traction' : 'chains');
+		const rule = ODOT_LEVEL[id];
+		status = worst(status, rule.status);
+		if (!level || ODOT_LEVEL[level].rank < rule.rank) level = id;
 		restrictions.push({ direction: titleWords(r.location?.['location-name'] ?? ''), text });
 	}
 	const latest = live[0];
@@ -393,7 +451,7 @@ export function odotPassReport(
 				.filter(Boolean)
 				.join('. ');
 	if (closures.length) status = 'closed';
-	const label = status === 'traction' ? 'Carry chains or traction tires' : STATUS_LABEL[status];
+	const label = status !== 'closed' && level ? ODOT_LEVEL[level].label : STATUS_LABEL[status];
 	return {
 		id: pass.id,
 		status,
@@ -469,7 +527,8 @@ export function checkpointName(raw: string): string {
 
 export const CHAIN_LEVEL: Record<string, string> = {
 	'R-1': 'Chains required. Snow tires allowed on vehicles under 6,000 lb',
-	'R-2': 'Chains required. Four-wheel drive with snow tires on all four wheels allowed',
+	'R-2':
+		'Chains required. Four-wheel and all-wheel drive with snow tires on all four wheels allowed',
 	'R-3': 'Chains required on all vehicles'
 };
 
@@ -582,7 +641,11 @@ export function caltransPassReport(
 		return {
 			...empty(pass.id),
 			status: 'chains',
-			label: STATUS_LABEL.chains,
+			// R-1: a car with snow tires goes on without chains.
+			label:
+				active[0].statusData!.status === 'R-1'
+					? 'Chains or snow tires required'
+					: STATUS_LABEL.chains,
 			restrictions: active
 				.filter((c) => {
 					const key = `${c.location.direction}|${c.statusData!.status}`;

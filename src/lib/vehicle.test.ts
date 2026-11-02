@@ -32,6 +32,17 @@ describe('needFor', () => {
 		expect(needFor('No restrictions', 'car').need).toBe('ok');
 		expect(needFor('Pass closed for avalanche control', 'awd').need).toBe('closed');
 		expect(needFor('Vehicles towing are prohibited.', 'tow').need).toBe('closed');
+		// From November 1, the trucks' law all winter: nothing for a car.
+		const carry = 'Vehicles over 10,000 GVW must carry chains.';
+		expect(needFor(carry, 'car').need).toBe('ok');
+		expect(needFor(carry, 'awd').need).toBe('ok');
+		expect(needFor(carry, 'tow').need).toBe('carry');
+		expect(
+			needFor(
+				'Chains required. Four-wheel and all-wheel drive with snow tires on all four wheels allowed',
+				'awd'
+			).need
+		).toBe('tires');
 	});
 
 	it('reads ODOT levels', () => {

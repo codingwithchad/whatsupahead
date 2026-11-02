@@ -607,3 +607,28 @@ Until the morning of 2026-10-21 a visit counted when the server sent a page, so 
 counted too: 120 to 590 "visitors" a day, against 3 to 68 a day once only pages that run in a browser count. The
 days are kept as totals, so the robots can't be picked out afterwards. /stats leaves out every day before 2026-10-22
 (still in the store, not deleted), so its numbers are people and nobody mistakes the early days for use.
+
+## 2026-11-02: Chain wording checked after November 1, and old posts kept true
+
+The first look at live reports since the November 1 winter rules (wording checked against WSDOT, ODOT, Caltrans,
+NDOT and UDOT phrasing):
+
+- WSDOT's "Vehicles over 10,000 GVW must carry chains" (trucks' law from November 1 to April 1) would have read as
+  "Chains required". It is nothing for a car, so the pass stays open; a towing or heavy vehicle is told to carry chains.
+- "Traction Tires Required" on its own was labelled "advised"; it is required, like the usual line with trucks' chains.
+- Chains for towing and over 10,000 lb only (WSDOT, and ODOT's level B) are amber, "Chains required for towing and
+  over 10,000 lb", not red "Chains required": a car only carries chains or traction tires. ODOT C (traction tires
+  instead of chains for cars) is "Traction tires required".
+- Caltrans R-1 and NDOT's "Chains or Snow Tires Required" are "Chains or snow tires required" (a car with snow tires
+  goes on). R-2 names all-wheel drive too.
+- UDOT's traction law lets a two-wheel drive car with snowflake-mark tires on all four wheels through (Cottonwood
+  canyons and R920-6), and is labelled "Traction tires required"; "Traction Devices Recommended" is advice.
+
+Facebook shows posts days late and out of order, and only a pass's last post was updated: Saturday morning's "no more
+restrictions on Donner" still stood on Sunday under chains again, and Friday's Carson post said "Update: chains
+required" after they came off. Now every post of the week about the pass gets the newest rule, one update line a
+pass, and that pass's earlier update line goes. A post that went from an advisory to nothing says only "No more
+restrictions".
+
+Nevada (NDOT's reports say "No Report") and Utah (UDOT's road reports last changed in May 2026) aren't reporting
+yet; their pass pages say "No report", which is true. Check both at the first real storm.

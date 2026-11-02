@@ -139,7 +139,14 @@ export function utahPassReport(
 	return {
 		id: pass.id,
 		status,
-		label: status === 'off-season' ? 'No report' : STATUS_LABEL[status],
+		label:
+			status === 'off-season'
+				? 'No report'
+				: status === 'chains' &&
+					  restrictions.every((r) => !/^chains? (are )?required/i.test(r.text))
+					? // UDOT's traction law: snow tires (or AWD with them) instead of chains.
+						'Traction tires required'
+					: STATUS_LABEL[status],
 		restrictions,
 		road: closures.length
 			? tidy(closures[0].Description)

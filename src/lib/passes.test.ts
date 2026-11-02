@@ -35,6 +35,15 @@ describe('classifyRestriction', () => {
 		expect(classifyRestriction('No current information available')).toBe('off-season');
 	});
 
+	it('reads the truck rules from November 1 as nothing for a car', () => {
+		// The law for trucks all winter, not chains on anyone's wheels.
+		expect(classifyRestriction('Vehicles over 10,000 GVW must carry chains.')).toBe('open');
+		expect(
+			classifyRestriction('Traction tires advised. Vehicles over 10,000 GVW must carry chains.')
+		).toBe('traction');
+		expect(classifyRestriction('Carry chains or traction tires')).toBe('traction');
+	});
+
 	it('does not read a negative as a requirement', () => {
 		expect(classifyRestriction('No chains required')).not.toBe('chains');
 		expect(classifyRestriction('Reopened, chains not required')).toBe('open');
@@ -186,6 +195,21 @@ describe('Oregon pass reports (ODOT)', () => {
 		).toBe('open');
 	});
 
+	it('names each level for a car: B is for towing and trucks, C is traction tires, D is chains', () => {
+		const level = (id: string) => {
+			const r = odotPassReport(
+				santiam,
+				[rw({ 'driving-restriction': { 'restriction-id': id } })],
+				[],
+				{ now }
+			);
+			return [r.status, r.label];
+		};
+		expect(level('B')).toEqual(['traction', 'Chains required for towing and over 10,000 lb']);
+		expect(level('C')).toEqual(['chains', 'Traction tires required']);
+		expect(level('D')).toEqual(['chains', 'Chains required']);
+	});
+
 	it('ignores other highways, far-away and expired reports', () => {
 		expect(
 			odotPassReport(santiam, [rw({ location: { ...rw().location, 'route-id': 'OR22' } })], [], {
@@ -297,11 +321,19 @@ describe('California pass reports (Caltrans)', () => {
 			{ now }
 		);
 		expect(r.status).toBe('chains');
-		expect(r.restrictions[0].text).toMatch(/Four-wheel drive/);
+		expect(r.restrictions[0].text).toMatch(/Four-wheel and all-wheel drive/);
 		expect(r.restrictions.map((x) => x.direction)).toEqual([
 			'Westbound at Soda Springs',
 			'Eastbound at Kingvale',
 			'Westbound at Kingvale'
+		]);
+		expect(r.label).toBe('Chains required');
+		// R-1 alone: a car with snow tires goes on.
+		const r1 = caltransPassReport(donner, [cc('R-1')], [], { now });
+		expect([r1.status, r1.label, toneOf(r1.label)]).toEqual([
+			'chains',
+			'Chains or snow tires required',
+			'chains'
 		]);
 	});
 
@@ -420,6 +452,18 @@ describe('classifyPass with real WSDOT winter wording', () => {
 				''
 			).label
 		).toBe('Chains required');
+		// Required alone, without the trucks' chains: still required, not advised.
+		expect(real('Traction Tires Required. Oversize Vehicles Prohibited.', '').label).toBe(
+			'Traction tires required'
+		);
+		// Chains only on towing and trucks: amber, and said so.
+		const trucks = real('Chains are required on vehicles towing and vehicles over 10,000 GVW.', '');
+		expect([trucks.status, trucks.label]).toEqual([
+			'traction',
+			'Chains required for towing and over 10,000 lb'
+		]);
+		const carry = real('Vehicles over 10,000 GVW must carry chains.', 'Bare and dry');
+		expect([carry.status, carry.label]).toEqual(['open', 'Open']);
 		expect(real('Chains Required All Vehicles Including All Wheel Drive', '').status).toBe(
 			'chains'
 		);

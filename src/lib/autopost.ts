@@ -1,5 +1,5 @@
 import { clockWithDay } from './format';
-import type { PassReport, PassStatus } from './passes';
+import { HEAVY_CHAINS, type PassReport, type PassStatus } from './passes';
 import { DEFAULT_TIME_ZONE, REGIONS } from './regions';
 import type { SnowingSpot } from './snowing';
 
@@ -191,11 +191,14 @@ export function pickChains(changes: ChainChange[], all: PostEntry[], now: number
 
 /** A sign to see at a glance in a feed: chains, a tire rule, or clear. */
 const ICON: Record<Rule, string> = { chains: '⛓️❄️', required: '⚠️', traction: '⚠️', open: '✅' };
-/** What coming off sounds like, for each rule. */
+/**
+ * What coming off sounds like, for each rule. Nothing for `traction`: it was an advisory (WSDOT, ODOT's "carry
+ * chains") or chains for towing and trucks only, and "No more restrictions" says it for both.
+ */
 const LIFTED: Record<Rule, string> = {
 	chains: 'chains are off',
 	required: 'traction tires are no longer required',
-	traction: 'the traction tire advisory is lifted',
+	traction: '',
 	open: ''
 };
 const worse = (c: ChainChange) => RULES.indexOf(c.to) < RULES.indexOf(c.from);
@@ -210,9 +213,12 @@ const lower = (label: string) => label.charAt(0).toLowerCase() + label.slice(1);
 /** "⛓️❄️ Chains required on Snoqualmie Pass (I-90).", "✅ No more restrictions on Stevens Pass (US 2): ..." */
 export function changeWords(c: ChainChange): string {
 	const pass = `${c.name} (${c.route})`;
-	if (c.to === 'open') return `${ICON.open} No more restrictions on ${pass}: ${LIFTED[c.from]}.`;
+	if (c.to === 'open')
+		return `${ICON.open} No more restrictions on ${pass}${LIFTED[c.from] ? `: ${LIFTED[c.from]}` : ''}.`;
 	if (worse(c)) return `${ICON[c.to]} ${c.report.label} on ${pass}.`;
-	return `${ICON[c.to]} Easing on ${pass}: ${LIFTED[c.from]}, ${lower(c.report.label)} now.`;
+	// "Chains are off for cars, chains required for towing and over 10,000 lb now."
+	const off = c.report.label === HEAVY_CHAINS ? `${LIFTED[c.from]} for cars` : LIFTED[c.from];
+	return `${ICON[c.to]} Easing on ${pass}: ${off}, ${lower(c.report.label)} now.`;
 }
 
 /** The state's own words, once when both ways say the same: "Both ways: Traction Tires Required, ...". */
@@ -252,6 +258,8 @@ const UPDATE_WITHIN = 7 * 24 * HOUR;
 /**
  * Earlier chain posts that are now out of date, each with the passes in it that changed since: Facebook shows an
  * old post days later, so "chains required" on Tuesday gets "Update Thu 4:30 AM: no more restrictions" at its top.
+ * Every post of the week about the pass, not only the last: Saturday morning's "no more restrictions" must not still
+ * stand on Sunday, under chains again.
  */
 export function postsToUpdate(
 	changes: ChainChange[],
@@ -262,14 +270,16 @@ export function postsToUpdate(
 		(e) => e.post && !e.dry && !e.error && now - e.at < UPDATE_WITHIN
 	);
 	const out = new Map<PostEntry, ChainChange[]>();
-	for (const c of changes) {
-		const last = live.findLast((e) => (e.passes ?? [e.id]).includes(c.id));
-		if (last) out.set(last, [...(out.get(last) ?? []), c]);
-	}
+	for (const c of changes)
+		for (const e of live.filter((e) => (e.passes ?? [e.id]).includes(c.id)))
+			out.set(e, [...(out.get(e) ?? []), c]);
 	return [...out].map(([entry, list]) => ({ entry, changes: list }));
 }
 
-/** The old post's words with the newest update on top (earlier updates stay under it). */
+/**
+ * The old post's words with the newest update on top: one line a pass, and a pass's earlier update line goes (it is
+ * no longer true). Lines about the post's other passes stay under it.
+ */
 export function updatePost(
 	entry: PostEntry,
 	changes: ChainChange[],
@@ -282,8 +292,12 @@ export function updatePost(
 		timeZone: changes[0].timeZone ?? DEFAULT_TIME_ZONE
 	}).format(new Date(now));
 	// The words without their sign: "No more restrictions on Crystal to Greenwater (SR 410): chains are off."
-	const words = changes.map((c) => changeWords(c).replace(/^\S+ /, '')).join(' ');
-	const updates = [`🔄 Update ${when}: ${words}`, ...(entry.updates ?? [])];
+	const lines = changes.map((c) => `🔄 Update ${when}: ${changeWords(c).replace(/^\S+ /, '')}`);
+	const passes = changes.map((c) => `${c.name} (${c.route})`);
+	const updates = [
+		...lines,
+		...(entry.updates ?? []).filter((u) => !passes.some((p) => u.includes(p)))
+	];
 	const original = entry.original ?? entry.text;
 	return { updates, original, text: [...updates, original].join('\n\n') };
 }
