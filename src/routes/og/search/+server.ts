@@ -5,24 +5,28 @@ import {
 	ON_MOUNTAIN_MILES,
 	placePreview,
 	previewResponse,
+	shapeOf,
 	siteName
 } from '../../../lib/server/sharePictures';
 import type { RequestHandler } from './$types';
 
 /**
  * The picture a shared place page shows: one of our places (?place=) or a searched town (?q=). `&near=1` (the
- * Facebook Page's snow posts) shows only cameras up on the mountain, or the card alone.
+ * Facebook Page's snow posts) shows only cameras up on the mountain, or the card alone; `&shape=tall` or `story`
+ * makes it to post as a picture.
  */
 export const GET: RequestHandler = async ({ url }) => {
 	const featured = getCatalog().places.find((p) => p.id === url.searchParams.get('place'));
 	const near = url.searchParams.has('near') ? ON_MOUNTAIN_MILES : undefined;
+	const shape = shapeOf(url);
 	if (featured)
-		return previewResponse(`place:${featured.id}${near ? ':near' : ''}`, () =>
+		return previewResponse(`place:${featured.id}${near ? ':near' : ''}:${shape}`, () =>
 			placePreview(
 				{ lat: featured.lat, lon: featured.lon, label: featured.name },
 				featured,
 				siteName(url),
-				near
+				near,
+				shape
 			)
 		);
 	const q = url.searchParams.get('q')?.trim().slice(0, 200);

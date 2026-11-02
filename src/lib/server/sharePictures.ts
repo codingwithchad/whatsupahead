@@ -23,7 +23,9 @@ import {
 	renderCard,
 	renderPair,
 	renderPairTall,
-	type CardPicture
+	renderShape,
+	type CardPicture,
+	type Shape
 } from './shareCard';
 import { camerasAlong, DEFAULT_DESTINATION_RADIUS, parseVia, resolvePlace } from './trip';
 import { skiSnow } from './skiSnow';
@@ -98,6 +100,12 @@ async function passLine(pass: PassInfo): Promise<string | null> {
  */
 export const siteName = (url: URL) => process.env.CANONICAL_HOST?.trim() || url.host;
 
+/** `?shape=tall` (Instagram's feed) or `story`; the wide link preview otherwise. */
+export const shapeOf = (url: URL): Shape => {
+	const s = url.searchParams.get('shape');
+	return s === 'tall' || s === 'story' ? s : 'wide';
+};
+
 export async function cameraPreview(camera: Camera, site: string): Promise<Buffer> {
 	const near = whereIs(camera);
 	const back = isDormant(camera) ? returnLabel(camera.expected_return) : null;
@@ -125,7 +133,8 @@ export async function placePreview(
 	featured: FeaturedPlace | undefined,
 	site: string,
 	/** Only cameras this close (the Page's snow posts: up on the mountain, or the card alone). */
-	withinMiles?: number
+	withinMiles?: number,
+	shape: Shape = 'wide'
 ): Promise<Buffer> {
 	const radius = withinMiles ?? featured?.radius_miles ?? 10;
 	const pool = featured ? forPlace(getCatalog().cameras, featured) : getCatalog().cameras;
@@ -138,19 +147,22 @@ export async function placePreview(
 		sharePictures(around, 3),
 		pass ? passLine(pass) : null
 	]);
-	return renderCard({
-		title: place.label,
-		lines: [
-			...(status ? [status] : []),
-			...(featured?.blurb ? [featured.blurb] : []),
-			around.length
-				? `${around.length} ${around.length === 1 ? 'camera' : 'cameras'} and the forecast`
-				: 'The forecast and the nearest cameras'
-		],
-		credit,
-		pictures,
-		site
-	});
+	return renderShape(
+		{
+			title: place.label,
+			lines: [
+				...(status ? [status] : []),
+				...(featured?.blurb ? [featured.blurb] : []),
+				around.length
+					? `${around.length} ${around.length === 1 ? 'camera' : 'cameras'} and the forecast`
+					: 'The forecast and the nearest cameras'
+			],
+			credit,
+			pictures,
+			site
+		},
+		shape
+	);
 }
 
 export async function collectionPreview(
@@ -194,16 +206,21 @@ export async function collectionPreview(
 
 /**
  * A camera this close to a ski area or pass is up on the mountain; farther (Schweitzer's are down in Sandpoint, 15
- * miles of radius) it shows a valley road in fall colours under "+7 in".
+ * miles of radius) it shows a valley road in fall colours under "+7 in". Not 3: Cherry Peak's nearest, 2.99 miles
+ * off, is a street corner in Richmond, and Snowbasin's, 2.63, is down Ogden Canyon.
  */
-export const ON_MOUNTAIN_MILES = 3;
+export const ON_MOUNTAIN_MILES = 2.5;
 
 /**
  * The most new snow in a mountain area (the Facebook Page's morning post): a camera on the mountain at each of the
  * snowiest ski areas, labelled with its new snow, and the list beside them. When the snowiest has no camera up there,
  * the card with the name and list alone.
  */
-export async function topSnowPreview(area: Area, site: string): Promise<Buffer> {
+export async function topSnowPreview(
+	area: Area,
+	site: string,
+	shape: Shape = 'wide'
+): Promise<Buffer> {
 	const { places, cameras, collections } = getCatalog();
 	const also = collections.find((c) => c.id === 'ski-areas')?.also ?? [];
 	const list = skiAreasIn(area, places, also);
@@ -222,16 +239,37 @@ export async function topSnowPreview(area: Area, site: string): Promise<Buffer> 
 		}
 	}
 	const { pictures, credit } = await sharePictures(covers, 4, (c) => caption.get(c.id));
-	return renderCard({
-		title: area.name,
-		lines: [
-			'Most new snow, last 24 hours',
-			...lines.slice(0, 4).map((l) => `${l.inches} in: ${names(l.names)}`)
-		],
-		credit,
-		pictures,
-		site
-	});
+	if (shape !== 'wide' && lines.length) {
+		// Posted as a picture: the snowiest in big numbers, the rest under it.
+		const [first, ...rest] = lines;
+		return renderShape(
+			{
+				title: `Most new snow: ${area.name}`,
+				headline: {
+					value: `+${first.inches} in`,
+					label: `${names(first.names)}, last 24 hours (gauge at ${first.gaugeFeet.toLocaleString('en-US')} ft)`
+				},
+				lines: rest.slice(0, 4).map((l) => `+${l.inches} in: ${names(l.names)}`),
+				credit,
+				pictures,
+				site
+			},
+			shape
+		);
+	}
+	return renderShape(
+		{
+			title: area.name,
+			lines: [
+				'Most new snow, last 24 hours',
+				...lines.slice(0, 4).map((l) => `${l.inches} in: ${names(l.names)}`)
+			],
+			credit,
+			pictures,
+			site
+		},
+		shape
+	);
 }
 
 /** The drive: its line on a map, a camera at the first pass and one at the destination. */

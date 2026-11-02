@@ -7,6 +7,8 @@ import {
 	renderCard,
 	renderPair,
 	renderPairTall,
+	renderShape,
+	STORY,
 	TALL,
 	textWidth,
 	WIDTH,
@@ -124,5 +126,34 @@ describe('renderPairTall', () => {
 		});
 		const meta = await sharp(out).metadata();
 		expect([meta.width, meta.height]).toEqual([TALL.width, TALL.height]);
+	});
+});
+
+describe('renderShape', () => {
+	it('draws the feed and Story sizes as JPEG, with pictures or none', async () => {
+		const shot = await sharp({
+			create: { width: 640, height: 480, channels: 3, background: '#f0f4f8' }
+		})
+			.jpeg()
+			.toBuffer();
+		const card = {
+			title: 'Most new snow: Washington Cascades',
+			headline: { value: '+7 in', label: 'Mt. Baker, last 24 hours (gauge at 4,040 ft)' },
+			lines: ['+4 in: Stevens Pass', '+3 in: Crystal Mountain'],
+			credit: 'Pictures: WSDOT',
+			pictures: [{ image: shot, caption: 'Mt. Baker +7 in' }, { image: shot }],
+			site: 'whatsupahead.com'
+		};
+		for (const [shape, size] of [
+			['tall', TALL],
+			['story', STORY]
+		] as const) {
+			const meta = await sharp(await renderShape(card, shape)).metadata();
+			expect([meta.format, meta.width, meta.height]).toEqual(['jpeg', size.width, size.height]);
+			const bare = await sharp(await renderShape({ ...card, pictures: [] }, shape)).metadata();
+			expect([bare.width, bare.height]).toEqual([size.width, size.height]);
+		}
+		const wide = await sharp(await renderShape(card)).metadata();
+		expect([wide.width, wide.height]).toEqual([WIDTH, HEIGHT]);
 	});
 });
