@@ -641,8 +641,14 @@ export async function renderTall(card: Card, shape: Exclude<Shape, 'wide'>): Pro
 		y += titleSize * 1.15;
 	}
 	if (card.headline) {
-		y += 96;
-		svg.push(text(fit(card.headline.value, 120, w, 'bold'), pad, y, 120, '#ff9a2e', 'bold'));
+		// A number ("+7 in") big; words that don't fit at that size ("Chains required for towing and over
+		// 10,000 lb") smaller, on up to two lines.
+		const big = textWidth(card.headline.value, 120, 'bold') <= w;
+		const size = big ? 120 : 72;
+		for (const l of big ? [card.headline.value] : wrap(card.headline.value, size, w, 2, 'bold')) {
+			y += big ? 96 : 80;
+			svg.push(text(l, pad, y, size, '#ff9a2e', 'bold'));
+		}
 		y += 56;
 		svg.push(text(fit(card.headline.label, 34, w), pad, y, 34, '#d7ecf5'));
 		y += 30;

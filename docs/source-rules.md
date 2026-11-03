@@ -44,6 +44,7 @@ the services behind them. When a rule here and the code disagree, the rule wins:
 | YouTube Data API (scripts only) | Key | Daily quota | Run by hand | Embeds only |
 | IndexNow (script only) | Our own key file | None to speak of | Run by hand after big changes | n/a |
 | Facebook Graph API (our own Page) | Page key | Meta's platform terms; posts only to our own Page | Snow: 3 a day in each state, 2 hours apart, 10 a day in all; chains: 1 an hour in a state; snow on the way: 1 a day in a state; most new snow: 1 a morning in each mountain area | Pictures follow the link-preview rules |
+| Instagram API (our own account) | Instagram key (`INSTAGRAM_TOKEN`, 60 days, renewed by hand monthly) | Meta's platform terms; Instagram allows 100 posts a day from the API | A story with each Facebook snow, chain and most-new-snow post (up to 3 passes for one chain post); each story's numbers read every half hour while it is up | Pictures follow the link-preview rules; the news and our address are printed on them |
 
 ## State road departments
 

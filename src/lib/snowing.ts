@@ -110,6 +110,30 @@ export function snowWords(s: SnowingSpot): string {
 }
 
 /**
+ * The snow as a picture's big number, for a story with no caption: "+9 in", "in 24 hours at the USDA snow gauge at
+ * 5,430 ft". The larger of the last 3 hours and the day (as snowWords), always with the gauge's height; the state's
+ * own words when the gauge shows nothing yet.
+ */
+export function snowHeadline(s: SnowingSpot): { value: string; label: string } | null {
+	const last3 = (s.last3 ?? 0) >= NOW_INCHES ? s.last3! : 0;
+	const day =
+		(s.sinceSix ?? 0) > (s.change24 ?? 0)
+			? { in: s.sinceSix!, when: 'since 6 AM' }
+			: { in: s.change24 ?? 0, when: 'in 24 hours' };
+	const where = away(s) ? ` ${Math.round(s.gaugeMiles!)} mi away,` : '';
+	if (s.gaugeFeet && Math.max(last3, day.in) >= 1) {
+		const big = day.in > last3 ? day : { in: last3, when: 'in the last 3 hours' };
+		return {
+			value: `+${big.in} in`,
+			label: `${big.when} at the USDA snow gauge${where} at ${feet(s.gaugeFeet)}`
+		};
+	}
+	if (s.reported)
+		return { value: 'Snowing', label: `${s.reported.by} reports ${s.reported.text.toLowerCase()}` };
+	return null;
+}
+
+/**
  * A comment ready to paste under someone's snow post, ending with the link to the spot's cameras. `ref` marks where
  * the link was posted ("fb"), so visits from it show on /stats.
  */

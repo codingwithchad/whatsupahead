@@ -632,3 +632,24 @@ restrictions".
 
 Nevada (NDOT's reports say "No Report") and Utah (UDOT's road reports last changed in May 2026) aren't reporting
 yet; their pass pages say "No report", which is true. Check both at the first real storm.
+
+## 2026-11-03: Instagram stories, and a month to see what people watch
+
+The site's Instagram account (whas.up.ahead) posts a story with each snow, chain and most-new-snow post the
+Facebook Page makes. Stories, not feed posts: a story is gone after a day, like the snow and chain news in it. A
+Facebook post about heavy snow can still be shown to someone a week later, after the snow has gone.
+
+- A story has no caption and no link the API can add, so the picture says it all: `shape=story`, with the news big.
+  `&news=snow` prints the snow at its gauge ("+9 in", "in 24 hours at the USDA snow gauge at 3,950 ft", the height
+  always given). `&news=chains` prints the pass's rule from its report ("Traction tires required", "WSDOT report,
+  3:32 AM"). Both come from our own data at the time the picture is made, never from words in the address, so
+  nobody can make our picture say something that isn't so.
+- Snow on the way isn't a story: stories are for what is happening now. Rules coming off ("no more restrictions")
+  aren't either; a chain post about several passes makes up to three stories.
+- The key comes from Instagram login (Meta's legacy Instagram setup), which needs no business verification for our
+  own account. It lasts 60 days. The web app can't write to the Key Vault, so it is renewed by hand: a reminder
+  issue opens on the first Sunday of each month, and the daily health check emails if the key stops working or a
+  story fails.
+- Instagram counts what people did with a story only while it is up, so the app reads each story's views, replies,
+  shares and profile visits every half hour until it ends, and keeps them two months. /stats shows each kind's
+  average over 30 days. After a month, kinds nobody watches stop and the rest get more.

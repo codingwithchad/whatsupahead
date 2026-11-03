@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { SnowReading } from './mountain';
-import { bySnow, hasNewSnow, postText, snowFacts, type SnowingSpot } from './snowing';
+import { bySnow, hasNewSnow, postText, snowFacts, snowHeadline, type SnowingSpot } from './snowing';
 
 const HOUR = 3600_000;
 // 2 PM in Seattle on a winter day.
@@ -143,5 +143,28 @@ describe('bySnow', () => {
 			spot({ id: 'c', name: 'C', sinceSix: 8, change24: 8 })
 		].sort(bySnow);
 		expect(list.map((s) => s.id)).toEqual(['c', 'b', 'a']);
+	});
+});
+
+describe('snowHeadline', () => {
+	it('prints the larger number with when and the gauge height', () => {
+		expect(snowHeadline(spot({}))).toEqual({
+			value: '+9 in',
+			label: 'in 24 hours at the USDA snow gauge at 3,950 ft'
+		});
+	});
+
+	it('uses the last 3 hours when that is the most', () => {
+		expect(snowHeadline(spot({ last3: 3, sinceSix: 0, change24: 2 }))?.value).toBe('+3 in');
+	});
+
+	it("gives the state's words when the gauge shows nothing yet", () => {
+		const s = spot({
+			last3: null,
+			sinceSix: null,
+			change24: null,
+			reported: { text: 'Light snow', by: 'WSDOT' }
+		});
+		expect(snowHeadline(s)).toEqual({ value: 'Snowing', label: 'WSDOT reports light snow' });
 	});
 });

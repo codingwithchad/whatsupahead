@@ -13,21 +13,27 @@ import type { RequestHandler } from './$types';
 /**
  * The picture a shared place page shows: one of our places (?place=) or a searched town (?q=). `&near=1` (the
  * Facebook Page's snow posts) shows only cameras up on the mountain, or the card alone; `&shape=tall` or `story`
- * makes it to post as a picture.
+ * makes it to post as a picture, and `&news=snow` or `chains` prints the snow or the pass's rule big (stories).
  */
 export const GET: RequestHandler = async ({ url }) => {
 	const featured = getCatalog().places.find((p) => p.id === url.searchParams.get('place'));
 	const near = url.searchParams.has('near') ? ON_MOUNTAIN_MILES : undefined;
 	const shape = shapeOf(url);
+	// A story's news, from our own data (never words from the address): `&news=snow` or `chains`.
+	const ask = url.searchParams.get('news');
+	const news = ask === 'snow' || ask === 'chains' ? ask : undefined;
 	if (featured)
-		return previewResponse(`place:${featured.id}${near ? ':near' : ''}:${shape}`, () =>
-			placePreview(
-				{ lat: featured.lat, lon: featured.lon, label: featured.name },
-				featured,
-				siteName(url),
-				near,
-				shape
-			)
+		return previewResponse(
+			`place:${featured.id}${near ? ':near' : ''}:${shape}${news ? `:${news}` : ''}`,
+			() =>
+				placePreview(
+					{ lat: featured.lat, lon: featured.lon, label: featured.name },
+					featured,
+					siteName(url),
+					near,
+					shape,
+					news
+				)
 		);
 	const q = url.searchParams.get('q')?.trim().slice(0, 200);
 	if (!q) error(404, 'Nothing to show');

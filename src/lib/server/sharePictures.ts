@@ -1,8 +1,8 @@
 import { isDormant, nearby } from '../geo';
 import { forPlace } from '../placeCameras';
-import { STATUS_LABEL } from '../passes';
+import { reportSource, STATUS_LABEL } from '../passes';
 import { duration, localClock, returnLabel } from '../format';
-import { DEFAULT_TIME_ZONE, regionAt } from '../regions';
+import { DEFAULT_TIME_ZONE, regionAt, timeZoneAt } from '../regions';
 import { inArea, type Area } from '../areas';
 import {
 	creditLine,
@@ -29,6 +29,8 @@ import {
 } from './shareCard';
 import { camerasAlong, DEFAULT_DESTINATION_RADIUS, parseVia, resolvePlace } from './trip';
 import { skiSnow } from './skiSnow';
+import { snowingNow } from './snowing';
+import { snowHeadline } from '../snowing';
 import { names, skiAreasIn, topSnow } from '../topSnow';
 
 // The share pictures for each kind of page. Only pictures whose owners allow it go in (see ../sharing.ts);
@@ -128,13 +130,53 @@ export async function cameraPreview(camera: Camera, site: string): Promise<Buffe
 	});
 }
 
+/** What a story picture is about, printed big since a story has no caption. */
+export type PlaceNews = 'snow' | 'chains';
+
+/** The big words for a story: the snow at its gauge, or the pass's rule from its report. */
+async function newsHeadline(
+	news: PlaceNews,
+	featured: FeaturedPlace,
+	pass: PassInfo | undefined
+): Promise<{ headline: { value: string; label: string }; line: string | null } | null> {
+	if (news === 'chains') {
+		if (!pass) return null;
+		const report = (await allPassReports([pass])).get(pass.id);
+		if (!report || report.status === 'off-season') return null;
+		// The report's own refined words ("Chains required for towing and over 10,000 lb"), as on the pass page.
+		const words =
+			report.status === 'closed'
+				? STATUS_LABEL.closed
+				: report.status === 'open'
+					? report.label && report.label !== 'Open'
+						? report.label
+						: 'No restrictions'
+					: report.label || STATUS_LABEL[report.status];
+		const at = report.updated
+			? `, ${localClock(report.updated, timeZoneAt(pass.lat, pass.lon))}`
+			: '';
+		return {
+			headline: { value: words, label: `${reportSource(pass)} report${at}` },
+			// The title names the pass already.
+			line: null
+		};
+	}
+	const id = pass?.id ?? featured.id;
+	const spot = (await snowingNow()).find((s) => s.id === id);
+	const headline = spot && snowHeadline(spot);
+	if (!spot || !headline) return null;
+	return { headline, line: spot.now ? 'Snowing now' : 'New snow today' };
+}
+
 export async function placePreview(
 	place: Place,
 	featured: FeaturedPlace | undefined,
 	site: string,
 	/** Only cameras this close (the Page's snow posts: up on the mountain, or the card alone). */
 	withinMiles?: number,
-	shape: Shape = 'wide'
+	shape: Shape = 'wide',
+	/** A story's news, printed big; left out when it no longer holds (the snow stopped, no report). */
+	news?: PlaceNews
 ): Promise<Buffer> {
 	const radius = withinMiles ?? featured?.radius_miles ?? 10;
 	const pool = featured ? forPlace(getCatalog().cameras, featured) : getCatalog().cameras;
@@ -143,16 +185,22 @@ export async function placePreview(
 	);
 	// A pass's page leads with its report, when there is one (winter).
 	const pass = featured && getCatalog().passes.find((p) => p.place === featured.id);
-	const [{ pictures, credit }, status] = await Promise.all([
+	const [{ pictures, credit }, status, story] = await Promise.all([
 		sharePictures(around, 3),
-		pass ? passLine(pass) : null
+		pass ? passLine(pass) : null,
+		news && featured && shape !== 'wide'
+			? newsHeadline(news, featured, pass).catch(() => null)
+			: null
 	]);
 	return renderShape(
 		{
 			title: place.label,
+			headline: story?.headline,
 			lines: [
-				...(status ? [status] : []),
-				...(featured?.blurb ? [featured.blurb] : []),
+				...(story?.line ? [story.line] : []),
+				// A chain story's headline is the report already.
+				...(status && !(story && news === 'chains') ? [status] : []),
+				...(featured?.blurb && !story ? [featured.blurb] : []),
 				around.length
 					? `${around.length} ${around.length === 1 ? 'camera' : 'cameras'} and the forecast`
 					: 'The forecast and the nearest cameras'

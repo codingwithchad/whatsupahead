@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import type { PageProps } from './$types';
+	import { KIND_NAMES } from '../../lib/instagram';
 
 	let { data }: PageProps = $props();
 	/** "Tue, Oct 13" for "2026-10-13". */
@@ -235,6 +236,61 @@
 					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
 					{#if e.updateError}(update failed: {e.updateError}){/if}
 					{e.text}
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p class="empty">Nothing yet.</p>
+	{/if}
+
+	<h2>Instagram stories</h2>
+	<p class="sub">
+		{data.stories.live
+			? 'A story goes with each snow, chain and most-new-snow post on the Page, and is gone a day later, like the news in it. Instagram counts what people did with a story only while it is up; the numbers below are read until then.'
+			: 'Dry run: no Instagram key yet, so these are the stories that would have gone up.'}
+	</p>
+	{#if data.stories.live}
+		<table class="story-kinds">
+			<thead>
+				<tr
+					><th>Last 30 days</th><th>Stories</th><th>Views</th><th>Replies</th><th>Shares</th><th
+						>Profile visits</th
+					></tr
+				>
+			</thead>
+			<tbody>
+				{#each data.stories.kinds as k (k.kind)}
+					<tr>
+						<td>{KIND_NAMES[k.kind]}</td>
+						<td>{k.stories}</td>
+						<td>{k.views}</td>
+						<td>{k.replies}</td>
+						<td>{k.shares}</td>
+						<td>{k.profileVisits}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+		<p class="sub">Each number is the average for one story.</p>
+	{/if}
+	{#if data.stories.entries.length}
+		<ul class="autopost-log">
+			{#each data.stories.entries as e (`${e.at}:${e.id}`)}
+				<li>
+					<strong
+						>{new Date(e.at).toLocaleString('en-US', {
+							timeZone: 'America/Los_Angeles',
+							weekday: 'short',
+							hour: 'numeric',
+							minute: '2-digit'
+						})}</strong
+					>
+					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
+					{KIND_NAMES[e.kind]}: {e.name}
+					{#if e.numbers}
+						: {e.numbers.views} views, {e.numbers.replies} replies, {e.numbers.shares} shares,
+						{e.numbers.profileVisits} profile visits
+					{/if}
 				</li>
 			{/each}
 		</ul>

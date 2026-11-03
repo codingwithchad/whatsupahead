@@ -22,6 +22,8 @@ import { crossingTimes } from './crossing';
 import { allPassReports } from './passes';
 import { snowingNow } from './snowing';
 import { skiSnow } from './skiSnow';
+import { storyRun } from './instagram';
+import { CHAIN_STORIES, type StoryKind } from '../instagram';
 import { AREAS } from '../areas';
 import { middle, skiAreasIn, topSnow, topSnowDue, topSnowText, worthPosting } from '../topSnow';
 
@@ -208,7 +210,8 @@ async function snowPosts(log: PostEntry[], now: number) {
 			text: `❄️ ${postText(spot, SITE, 'fb')}`
 		},
 		// Only cameras up on the mountain, or the card with the name: not a valley road under "Snowing".
-		picture: `${spot.preview}&near=1`
+		picture: `${spot.preview}&near=1`,
+		stories: [`${spot.preview}&near=1&shape=story&news=snow`]
 	}));
 }
 
@@ -239,7 +242,16 @@ async function chainPosts(log: PostEntry[], memory: Record<string, PassMemory>, 
 			passes: group.map((c) => c.id),
 			text: chainText(group, SITE, 'fb')
 		},
-		picture: `/og/search?place=${encodeURIComponent(group[0].place)}`
+		picture: `/og/search?place=${encodeURIComponent(group[0].place)}`,
+		// A story for each pass a rule came on or got worse at (not one coming off), its rule printed big.
+		stories: group
+			.filter((c) => c.to !== 'open')
+			.slice(0, CHAIN_STORIES)
+			.map((c) => ({
+				id: c.id,
+				name: c.name,
+				picture: `/og/search?place=${encodeURIComponent(c.place)}&shape=story&news=chains`
+			}))
 	}));
 }
 
@@ -324,7 +336,8 @@ async function topSnowPosts(log: PostEntry[], now: number) {
 					state: null,
 					text: topSnowText(area, lines, SITE, 'fb')
 				},
-				picture: `/og/top-snow/${area.id}`
+				picture: `/og/top-snow/${area.id}`,
+				stories: [`/og/top-snow/${area.id}?shape=story`]
 			}
 		];
 	}
@@ -347,12 +360,34 @@ async function tick() {
 	const memory = readMemory();
 	const key = pageKey();
 	const chains = await part('chains', () => chainPosts(log, memory, now));
-	const entries = [
-		...(await send(key, await part('snow', () => snowPosts(log, now)), now)),
-		...(await send(key, chains, now)),
-		...(await send(key, await part('forecast', () => forecastPosts(log, now)), now)),
-		...(await send(key, await part('top snow', () => topSnowPosts(log, now)), now))
-	];
+	const snow = await part('snow', () => snowPosts(log, now));
+	const sentSnow = await send(key, snow, now);
+	const sentChains = await send(key, chains, now);
+	const sentForecast = await send(key, await part('forecast', () => forecastPosts(log, now)), now);
+	const top = await part('top snow', () => topSnowPosts(log, now));
+	const sentTop = await send(key, top, now);
+	const entries = [...sentSnow, ...sentChains, ...sentForecast, ...sentTop];
+	// Instagram stories go with the Facebook posts that went up (a failed one is tried again next time, and its
+	// story then). Snow on the way isn't a story: stories are for what is happening now.
+	type Story = { id: string; name: string; kind: StoryKind; picture: string };
+	const stories: Story[] = [
+		...snow.flatMap((p, i) =>
+			sentSnow[i].error
+				? []
+				: p.stories.map((picture) => ({ ...p.entry, kind: 'snow' as const, picture }))
+		),
+		...chains.flatMap((p, i) =>
+			sentChains[i].error ? [] : p.stories.map((s) => ({ ...s, kind: 'chains' as const }))
+		),
+		...top.flatMap((p, i) =>
+			sentTop[i].error
+				? []
+				: p.stories.map((picture) => ({ ...p.entry, kind: 'top' as const, picture }))
+		)
+	].map(({ id, name, kind, picture }) => ({ id, name, kind, picture }));
+	await storyRun(stories, now).catch((err) =>
+		console.warn(`[instagram] ${(err as Error).message}`)
+	);
 	// A chain change is posted once it went up (or would have, in a dry run); a failed one is tried again.
 	for (const { group, entry } of chains)
 		if (!entries.find((e) => e.kind === 'chains' && e.id === entry.id)?.error)
