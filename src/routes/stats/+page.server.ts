@@ -1,5 +1,6 @@
 import { autopostLog } from '../../lib/server/autopost';
 import { storyLog } from '../../lib/server/instagram';
+import { threadLog } from '../../lib/server/threads';
 import { getCatalog } from '../../lib/server/catalog';
 import { azureMapsKey } from '../../lib/server/azureMaps';
 import { mapsUsage } from '../../lib/server/mapsBudget';
@@ -69,6 +70,7 @@ export const load: PageServerLoad = async ({ url, cookies, setHeaders }) => {
 		maps: azureMapsKey() ? mapsUsage() : null,
 		autopost: autopostLog(),
 		stories: storyLog(),
+		threads: threadLog(),
 		today,
 		yesterday: dayOf(Date.now() - DAY_MS),
 		oldest: days[days.length - 1]?.[0] ?? today,

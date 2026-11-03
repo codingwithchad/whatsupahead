@@ -653,3 +653,21 @@ Facebook post about heavy snow can still be shown to someone a week later, after
 - Instagram counts what people did with a story only while it is up, so the app reads each story's views, replies,
   shares and profile visits every half hour until it ends, and keeps them two months. /stats shows each kind's
   average over 30 days. After a month, kinds nobody watches stop and the rest get more.
+
+## 2026-11-03: Threads, where old news comes down
+
+Threads gets every kind of Facebook post, with a picture (4:5, the news printed big) and a link that can be tapped
+(`?ref=th`). Unlike a story, a Threads post stays up, and a post about heavy snow or chains can be shown to someone
+days later. So:
+
+- News comes down once it's over. Chain alerts and snowing now go 48 hours after their last update, unless still
+  true (the pass's rule unchanged, still snowing there), and at most a week on. Snow on the way goes after 36 hours,
+  once its times have passed.
+- A pass's next chain change is a reply under its earlier post, and snow still falling adds the new numbers as a
+  reply at most every 6 hours (four to a thread): one thread a storm, not a new post each time. "No more
+  restrictions" goes only under a post that said there were some.
+- The morning's most new snow stays up, dated ("Most new snow in the last 24 hours, Washington Cascades, Tue,
+  Nov 3"), so the profile has a history and nobody lands on an empty page.
+- Each post's views, likes, replies, reposts and shares are read every 6 hours for a week, and once more before it
+  comes down, for the same 30-day look as Instagram. The Threads key lasts 60 days and is renewed with the
+  Instagram key, from the same monthly reminder.

@@ -84,7 +84,9 @@ export function topSnowText(
 	area: Area,
 	lines: TopSnowLine[],
 	origin: string,
-	ref?: string
+	ref?: string,
+	/** The day it is about ("Tue, Nov 3"), for posts that stay up. */
+	day?: string
 ): string {
 	const link = `${origin}/collections/ski-areas?in=${area.id}&sort=snow${ref ? `&ref=${ref}` : ''}`;
 	const list = lines.map(
@@ -92,7 +94,7 @@ export function topSnowText(
 			`${i + 1}. ${names(l.names)}: ${l.inches} in${l.depthIn ? `, ${l.depthIn} in on the ground` : ''} (gauge at ${feet(l.gaugeFeet)})`
 	);
 	return [
-		`❄️ Most new snow in the last 24 hours, ${area.name}:`,
+		`❄️ Most new snow in the last 24 hours, ${area.name}${day ? `, ${day}` : ''}:`,
 		...list,
 		'',
 		"From the USDA snow gauge on each mountain. Resorts' own reports may differ.",

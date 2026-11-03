@@ -1,12 +1,13 @@
 import { REPO_URL } from '../brand';
 import { facebookProblem } from './autopost';
 import { instagramProblem } from './instagram';
+import { threadsProblem } from './threads';
 import { getCatalog } from './catalog';
 import { idahoFeeds, nevadaFeeds, utahFeeds } from './passes';
 
 // Is each outside source still answering? Every half hour the server makes one small request to each (the same
 // kind the app makes), and /healthz reports the results. A daily GitHub Action reads them and opens an issue
-// when one keeps failing, the Facebook Page's posts or the Instagram stories fail, or the GitHub token is about to expire (see
+// when one keeps failing, the Facebook, Instagram or Threads posts fail, or the GitHub token is about to expire (see
 // .github/workflows/health.yml).
 
 export type SourceStatus = 'ok' | 'failing' | 'unknown' | 'not-configured';
@@ -192,6 +193,11 @@ const CHECKS: Check[] = [
 		// The Instagram stories: the key still works (it lasts 60 days), and the last story went up.
 		name: 'instagram-stories',
 		run: () => instagramProblem()
+	},
+	{
+		// The Threads posts: the key still works (it lasts 60 days), and the last post went up.
+		name: 'threads-posts',
+		run: () => threadsProblem()
 	},
 	{
 		name: 'github-token',

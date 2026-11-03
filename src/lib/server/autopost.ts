@@ -16,13 +16,15 @@ import {
 } from '../autopost';
 import { blocksRoad, type PassReport } from '../passes';
 import { regionAt, timeZoneAt } from '../regions';
-import { postText } from '../snowing';
+import { postText, snowWords, type SnowingSpot } from '../snowing';
 import { getCatalog } from './catalog';
 import { crossingTimes } from './crossing';
 import { allPassReports } from './passes';
 import { snowingNow } from './snowing';
 import { skiSnow } from './skiSnow';
 import { storyRun } from './instagram';
+import { threadRun } from './threads';
+import type { ThreadItem } from '../threads';
 import { CHAIN_STORIES, type StoryKind } from '../instagram';
 import { AREAS } from '../areas';
 import { middle, skiAreasIn, topSnow, topSnowDue, topSnowText, worthPosting } from '../topSnow';
@@ -199,8 +201,12 @@ async function send(
 }
 
 /** Snowing now, one spot a state. */
+/** The last run's spots with new snow, to tell whether a Threads snow post still holds. */
+let snowSpots: SnowingSpot[] = [];
+
 async function snowPosts(log: PostEntry[], now: number) {
 	const spots = await snowingNow(now);
+	snowSpots = spots;
 	return pickPosts(spots, log, now).map((spot) => ({
 		entry: {
 			id: spot.id,
@@ -211,7 +217,16 @@ async function snowPosts(log: PostEntry[], now: number) {
 		},
 		// Only cameras up on the mountain, or the card with the name: not a valley road under "Snowing".
 		picture: `${spot.preview}&near=1`,
-		stories: [`${spot.preview}&near=1&shape=story&news=snow`]
+		stories: [`${spot.preview}&near=1&shape=story&news=snow`],
+		threads: [
+			{
+				key: spot.id,
+				kind: 'snow' as const,
+				name: spot.name,
+				text: `❄️ ${postText(spot, SITE, 'th')}`,
+				picture: `${spot.preview}&near=1&shape=tall&news=snow`
+			}
+		] as ThreadItem[]
 	}));
 }
 
@@ -251,7 +266,16 @@ async function chainPosts(log: PostEntry[], memory: Record<string, PassMemory>, 
 				id: c.id,
 				name: c.name,
 				picture: `/og/search?place=${encodeURIComponent(c.place)}&shape=story&news=chains`
-			}))
+			})),
+		// Threads: a post a pass, a reply under its earlier post when that is still up.
+		threads: group.map((c): ThreadItem => ({
+			key: c.id,
+			kind: 'chains',
+			name: c.name,
+			text: chainText([c], SITE, 'th'),
+			picture: `/og/search?place=${encodeURIComponent(c.place)}&shape=tall&news=chains`,
+			rule: c.to
+		}))
 	}));
 }
 
@@ -295,7 +319,16 @@ async function forecastPosts(log: PostEntry[], now: number) {
 			state: group[0].state,
 			text: forecastText(group, SITE, 'fb', now)
 		},
-		picture: group[0].preview
+		picture: group[0].preview,
+		threads: [
+			{
+				key: `forecast:${group[0].state ?? group[0].id}`,
+				kind: 'forecast' as const,
+				name: group.map((o) => o.name).join(', '),
+				text: forecastText(group, SITE, 'th', now),
+				picture: `${group[0].preview}&shape=tall`
+			}
+		] as ThreadItem[]
 	}));
 }
 
@@ -337,7 +370,23 @@ async function topSnowPosts(log: PostEntry[], now: number) {
 					text: topSnowText(area, lines, SITE, 'fb')
 				},
 				picture: `/og/top-snow/${area.id}`,
-				stories: [`/og/top-snow/${area.id}?shape=story`]
+				stories: [`/og/top-snow/${area.id}?shape=story`],
+				// Threads keeps these, dated: the profile's history of snowy mornings.
+				threads: [
+					{
+						key: `top:${area.id}:${new Date(now).toISOString().slice(0, 10)}`,
+						kind: 'top' as const,
+						name: area.name,
+						text: topSnowText(
+							area,
+							lines,
+							SITE,
+							'th',
+							dayName(now, timeZoneAt(middle(area).lat, middle(area).lon))
+						),
+						picture: `/og/top-snow/${area.id}?shape=tall`
+					}
+				] as ThreadItem[]
 			}
 		];
 	}
@@ -363,7 +412,8 @@ async function tick() {
 	const snow = await part('snow', () => snowPosts(log, now));
 	const sentSnow = await send(key, snow, now);
 	const sentChains = await send(key, chains, now);
-	const sentForecast = await send(key, await part('forecast', () => forecastPosts(log, now)), now);
+	const forecast = await part('forecast', () => forecastPosts(log, now));
+	const sentForecast = await send(key, forecast, now);
 	const top = await part('top snow', () => topSnowPosts(log, now));
 	const sentTop = await send(key, top, now);
 	const entries = [...sentSnow, ...sentChains, ...sentForecast, ...sentTop];
@@ -388,6 +438,37 @@ async function tick() {
 	await storyRun(stories, now).catch((err) =>
 		console.warn(`[instagram] ${(err as Error).message}`)
 	);
+	// Threads too, with every kind (snow on the way as well), for the posts that went up.
+	const sentForecastOk = forecast.map((_, i) => !sentForecast[i].error);
+	const threads: ThreadItem[] = [
+		...snow.flatMap((p, i) => (sentSnow[i].error ? [] : p.threads)),
+		...chains.flatMap((p, i) => (sentChains[i].error ? [] : p.threads)),
+		...forecast.flatMap((p, i) => (sentForecastOk[i] ? p.threads : [])),
+		...top.flatMap((p, i) => (sentTop[i].error ? [] : p.threads))
+	];
+	await threadRun(
+		threads,
+		{
+			// Still true: the pass's rule is the one posted last; it is still snowing there.
+			holds: (e) =>
+				e.kind === 'chains'
+					? e.rule !== 'open' && memory[e.key]?.seen === e.rule
+					: snowSpots.some((s) => s.id === e.key && s.now),
+			stillSnowing: (e) => {
+				const s = snowSpots.find((x) => x.id === e.key && x.now);
+				const words = s && snowWords(s);
+				if (!s || !words) return null;
+				return {
+					key: s.id,
+					kind: 'snow',
+					name: s.name,
+					text: `🔄 Still snowing at ${s.name}: ${words}. ${SITE}${s.href}${s.href.includes('?') ? '&' : '?'}ref=th`,
+					picture: `${s.preview}&near=1&shape=tall&news=snow`
+				};
+			}
+		},
+		now
+	).catch((err) => console.warn(`[threads] ${(err as Error).message}`));
 	// A chain change is posted once it went up (or would have, in a dry run); a failed one is tried again.
 	for (const { group, entry } of chains)
 		if (!entries.find((e) => e.kind === 'chains' && e.id === entry.id)?.error)
@@ -421,4 +502,14 @@ export function startAutopost() {
 	const timer = setInterval(() => void tick(), EVERY_MS);
 	first.unref?.();
 	timer.unref?.();
+}
+
+/** "Tue, Nov 3", where the mountains are. */
+function dayName(ms: number, timeZone: string) {
+	return new Intl.DateTimeFormat('en-US', {
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		timeZone
+	}).format(new Date(ms));
 }

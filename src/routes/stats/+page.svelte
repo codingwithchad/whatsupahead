@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
 	import type { PageProps } from './$types';
 	import { KIND_NAMES } from '../../lib/instagram';
+	import { THREAD_KIND_NAMES } from '../../lib/threads';
 
 	let { data }: PageProps = $props();
 	/** "Tue, Oct 13" for "2026-10-13". */
@@ -291,6 +292,69 @@
 						: {e.numbers.views} views, {e.numbers.replies} replies, {e.numbers.shares} shares,
 						{e.numbers.profileVisits} profile visits
 					{/if}
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p class="empty">Nothing yet.</p>
+	{/if}
+
+	<h2>Threads posts</h2>
+	<p class="sub">
+		{data.threads.live
+			? "Threads gets every kind of post. Snow, chain and snow-on-the-way posts come down once they're over (chain and snow posts 2 days after their last update, unless still true; snow on the way after 36 hours). A pass's next change, or snow still falling, goes as a reply under the earlier post. The morning's most new snow stays up, with its date."
+			: 'Dry run: no Threads key yet, so these are what would have gone up.'}
+	</p>
+	{#if data.threads.live}
+		<table class="story-kinds">
+			<thead>
+				<tr
+					><th>Last 30 days</th><th>Posts</th><th>Views</th><th>Likes</th><th>Replies</th><th
+						>Shares</th
+					></tr
+				>
+			</thead>
+			<tbody>
+				{#each data.threads.kinds as k (k.kind)}
+					<tr>
+						<td>{THREAD_KIND_NAMES[k.kind]}</td>
+						<td>{k.posts}</td>
+						<td>{k.views}</td>
+						<td>{k.likes}</td>
+						<td>{k.replies}</td>
+						<td>{k.shares}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+		<p class="sub">
+			Each number is the average for one post. Taps on links show under "Came from other sites" as
+			th.
+		</p>
+	{/if}
+	{#if data.threads.entries.length}
+		<ul class="autopost-log">
+			{#each data.threads.entries as e (`${e.at}:${e.key}`)}
+				<li>
+					<strong
+						>{new Date(e.at).toLocaleString('en-US', {
+							timeZone: 'America/Los_Angeles',
+							weekday: 'short',
+							hour: 'numeric',
+							minute: '2-digit'
+						})}</strong
+					>
+					{e.dry
+						? '(would post)'
+						: e.error
+							? `(failed: ${e.error})`
+							: e.deletedAt
+								? '(taken down)'
+								: '(up)'}
+					{#if e.replies.length}({e.replies.length}
+						{e.replies.length === 1 ? 'update' : 'updates'}){/if}
+					{#if e.numbers}({e.numbers.views} views, {e.numbers.likes} likes, {e.numbers.replies} replies){/if}
+					{e.text}
 				</li>
 			{/each}
 		</ul>

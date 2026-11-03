@@ -1,6 +1,6 @@
-name: instagram-key
+name: social-keys
 
-# The Instagram key lasts 60 days and is renewed by hand. On the first Sunday of each month this opens a reminder
+# The Instagram and Threads keys last 60 days and are renewed by hand. On the first Sunday of each month this opens a reminder
 # issue (GitHub emails the owner). GitHub's schedule can't say "first Sunday", so it runs every Sunday and checks
 # the date. Close the issue once the key is renewed.
 on:
@@ -24,8 +24,8 @@ jobs:
         run: |
           if [ "$MANUAL" != "true" ] && [ "$(date -u +%d)" -gt 7 ]; then exit 0; fi
           gh label create reminder --color fbca04 --description "Something to do by hand" --force
-          title="Renew the Instagram key ($(date -u +%B))"
-          if gh issue list --label reminder --state open --search "in:title Renew the Instagram key" --json number --jq '.[0].number' | grep -q .; then
+          title="Renew the Instagram and Threads keys ($(date -u +%B))"
+          if gh issue list --label reminder --state open --search "in:title Renew the Instagram" --json number --jq '.[0].number' | grep -q .; then
             exit 0
           fi
-          gh issue create --title "$title" --label reminder --body "The Instagram key lasts 60 days, so it is renewed once a month. The steps are in the private notes. Close this issue when it's done."
+          gh issue create --title "$title" --label reminder --body "The Instagram and Threads keys last 60 days, so they are renewed once a month. The steps are in the private notes. Close this issue when it's done."
