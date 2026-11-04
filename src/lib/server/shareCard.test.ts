@@ -10,7 +10,9 @@ import {
 	renderShape,
 	STORY,
 	TALL,
+	tallLayers,
 	textWidth,
+	tooDark,
 	WIDTH,
 	wrap
 } from './shareCard';
@@ -155,5 +157,76 @@ describe('renderShape', () => {
 		}
 		const wide = await sharp(await renderShape(card)).metadata();
 		expect([wide.width, wide.height]).toEqual([WIDTH, HEIGHT]);
+	});
+});
+
+describe('posted cards', () => {
+	const flat = (background: string) =>
+		sharp({ create: { width: 320, height: 240, channels: 3, background } })
+			.jpeg()
+			.toBuffer();
+	const news = { value: 'Chains required', label: 'WSDOT report, 3:43 AM' };
+	const card = { title: 'Chinook Pass (SR 410)', lines: [], pictures: [], site: 'x.com' };
+	const size = async (image: Buffer) => {
+		const { width, height } = await sharp(image).metadata();
+		return { width, height };
+	};
+
+	it('leaves out a picture too dark to see, and keeps a night road with its lights', async () => {
+		expect(await tooDark(await flat('#050505'))).toBe(true);
+		expect(await tooDark(Buffer.from('not a picture'))).toBe(true);
+		expect(await tooDark(await flat('#6a8a9a'))).toBe(false);
+		// Black, but a fifth of it lit.
+		const lights = await sharp({
+			create: { width: 320, height: 240, channels: 3, background: '#000000' }
+		})
+			.composite([
+				{
+					input: await sharp({
+						create: { width: 320, height: 48, channels: 3, background: '#ffffff' }
+					})
+						.png()
+						.toBuffer(),
+					top: 100,
+					left: 0
+				}
+			])
+			.jpeg()
+			.toBuffer();
+		expect(await tooDark(lights)).toBe(false);
+	});
+
+	it('draws the news over mountains when there is no picture, in both shapes', async () => {
+		expect(await size(await renderShape({ ...card, headline: news }, 'story'))).toEqual(STORY);
+		expect(await size(await renderShape({ ...card, headline: news }, 'tall'))).toEqual(TALL);
+	});
+
+	it('gives each place its own mountains, the same each time', async () => {
+		const scene = (title: string) =>
+			tallLayers({ ...card, title, headline: news }, 'story').then((l) => l.base);
+		const first = await scene('Chinook Pass');
+		expect(first.equals(await scene('Chinook Pass'))).toBe(true);
+		expect(first.equals(await scene('Carson Pass'))).toBe(false);
+	});
+
+	it('shows snow only when the card says it is falling', async () => {
+		const still = await renderShape({ ...card, headline: news }, 'story');
+		const falling = await renderShape({ ...card, headline: news, snowing: true }, 'story');
+		expect(still.equals(falling)).toBe(false);
+		expect((await tallLayers({ ...card, headline: news }, 'story')).snowing).toBe(false);
+	});
+
+	it('makes a ranked list, with or without pictures', async () => {
+		const ranking = {
+			heading: 'MOST NEW SNOW',
+			day: 'Wed, Nov 4, last 24 hours',
+			rows: [
+				{ value: '+14 in', name: 'Crystal Mountain', note: 'USDA gauge at 5,900 ft' },
+				{ value: '+9 in', name: 'Stevens Pass', note: 'USDA gauge at 4,000 ft' }
+			]
+		};
+		const pictures = [{ image: await flat('#6a8a9a'), caption: 'Stevens Pass +9 in' }];
+		expect(await size(await renderShape({ ...card, ranking }, 'tall'))).toEqual(TALL);
+		expect(await size(await renderShape({ ...card, ranking, pictures }, 'story'))).toEqual(STORY);
 	});
 });

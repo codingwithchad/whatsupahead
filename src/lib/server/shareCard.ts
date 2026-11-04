@@ -1,9 +1,10 @@
 import opentype from 'opentype.js';
-import sharp from 'sharp';
+import sharp, { type OverlayOptions } from 'sharp';
 import regular from './fonts/inter-latin-400.woff?inline';
 import bold from './fonts/inter-latin-700.woff?inline';
 import mark from '../markPaths.txt?raw';
 import { DEFAULT_TIME_ZONE } from '../regions';
+import { sceneSvg, stillFlakes } from './scene';
 
 // The pictures shown when someone shares a link (Facebook, messages): 1200 by 630, a camera picture (or a few,
 // or a map of the drive) on the left and the name, what it is, the picture credit and our address on the right.
@@ -354,6 +355,17 @@ export interface Card {
 	now?: number;
 	/** Tall cards only: a number to read from across the room ("+7 in") and what it is. */
 	headline?: { value: string; label: string };
+	/** Tall cards only: a ranked list, made big, in place of the pictures-first layout. */
+	ranking?: Ranking;
+	/** Tall cards only: snow is really falling or has just fallen there, so the card may show it falling. */
+	snowing?: boolean;
+}
+
+export interface Ranking {
+	heading: string;
+	/** The day it is about, since a list like this can stay up. */
+	day: string;
+	rows: { value: string; name: string; note: string }[];
 }
 
 const when = (ms: number) =>
@@ -583,61 +595,249 @@ export async function renderPairTall(card: PairCard): Promise<Buffer> {
 export const STORY = { width: 1080, height: 1920 };
 export type Shape = 'wide' | 'tall' | 'story';
 
-/**
- * A card for posting as a picture rather than beside a link: the pictures on top, then the name, a big number when
- * there is one, the lines, and the credit and our address at the bottom, so the address travels with the picture
- * (Instagram captions' links can't be tapped). `tall` is the feed's 4:5, `story` the full screen, which keeps clear
- * of the top and bottom where Instagram puts its own buttons.
- */
-export async function renderTall(card: Card, shape: Exclude<Shape, 'wide'>): Promise<Buffer> {
-	const { width: W, height: H } = shape === 'story' ? STORY : TALL;
-	const pad = 56;
-	const top = shape === 'story' ? 230 : 40;
-	const bottom = shape === 'story' ? H - 250 : H - 44;
-	const pictures: (CardPicture & { width: number; height: number })[] = [];
+/** A picture this dark says nothing: night on an unlit road. Less than this share of it can be made out. */
+const LIT_SHARE = 0.1;
+const LIT_LEVEL = 60;
+
+/** Too dark to post: almost nothing in it is lit. A picture that can't be read counts as dark. */
+export async function tooDark(image: Buffer): Promise<boolean> {
+	try {
+		const data = await sharp(image).resize(64, 64, { fit: 'fill' }).greyscale().raw().toBuffer();
+		return data.filter((v) => v > LIT_LEVEL).length / data.length < LIT_SHARE;
+	} catch {
+		return true;
+	}
+}
+
+/** Stories are read on Instagram, where a link can't be tapped: this says where to find one. */
+const LINK_HINT = 'Link in our profile';
+/** Said on every card with drawn mountains, so nobody takes them for the road. */
+const DRAWN = 'Drawing, not a camera picture';
+
+/** A tall card in two sheets with the room for snow between them: the background, and all that sits over it. */
+export interface Layers {
+	width: number;
+	height: number;
+	base: Buffer;
+	top: Buffer;
+	snowing: boolean;
+}
+
+type TallShape = Exclude<Shape, 'wide'>;
+const PAD = 56;
+const frame = (shape: TallShape) => ({
+	...(shape === 'story' ? STORY : TALL),
+	// A story keeps clear of the top and bottom, where Instagram puts its own buttons.
+	top: shape === 'story' ? 230 : 40,
+	bottom: shape === 'story' ? STORY.height - 250 : TALL.height - 44
+});
+
+const brand = (top: number) =>
+	`<g transform="translate(${PAD} ${top}) scale(1.1)">${mark}</g>${text("What's Up Ahead", PAD + 86, top + 52, 34, '#ffffff', 'bold')}`;
+
+async function readable(card: Card) {
+	const out: (CardPicture & { width: number; height: number })[] = [];
 	for (const p of card.pictures.slice(0, 4)) {
 		try {
 			const meta = await sharp(p.image).metadata();
-			if (meta.width && meta.height)
-				pictures.push({ ...p, width: meta.width, height: meta.height });
+			if (meta.width && meta.height) out.push({ ...p, width: meta.width, height: meta.height });
 		} catch {
 			// a picture that isn't one is simply not shown
 		}
 	}
-	const area: Box = { x: pad, y: top + 96, w: W - 2 * pad, h: shape === 'story' ? 820 : 620 };
+	return out;
+}
+
+/** The frame and name strip on a picture. */
+function pictureMarks(p: CardPicture, b: Box): string[] {
+	const out = [
+		`<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${RADIUS}" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>`
+	];
+	if (p.caption) {
+		const size = b.w < 600 ? 28 : 34;
+		const words = fit(p.caption, size, b.w - 56, 'bold');
+		out.push(
+			`<rect x="${b.x + 14}" y="${b.y + b.h - size - 40}" width="${textWidth(words, size, 'bold') + 32}" height="${size + 26}" rx="12" fill="#04192a" fill-opacity=".74"/>`,
+			text(words, b.x + 30, b.y + b.h - 34, size, '#ffffff', 'bold')
+		);
+	}
+	return out;
+}
+
+/** The credit, our address and where the link is, on a dark panel so they read over snow. Its height is given back. */
+function panelFooter(notes: string[], site: string, shape: TallShape, W: number, bottom: number) {
+	const hint = shape === 'story';
+	const h = 40 + notes.length * 34 + 48 + (hint ? 42 : 0);
+	const y = bottom + 16 - h;
+	const svg = [
+		`<rect x="${PAD - 24}" y="${y}" width="${W - 2 * PAD + 48}" height="${h}" rx="20" fill="#04192a" fill-opacity=".84"/>`
+	];
+	let at = y + 40;
+	for (const n of notes) {
+		svg.push(text(n, PAD, at, 26, '#d7ecf5'));
+		at += 34;
+	}
+	at += 12;
+	svg.push(text(site, PAD, at, 44, '#ff9a2e', 'bold'));
+	if (hint) svg.push(text(LINK_HINT, PAD, at + 42, 32, '#ffffff'));
+	return { svg, top: y };
+}
+
+const creditNotes = (card: Card, w: number) =>
+	[...wrap(card.credit ?? '', 26, w, 2), when(card.now ?? Date.now())].filter(Boolean);
+
+async function flat(width: number, height: number, composites: OverlayOptions[], svg: string[]) {
+	return sharp({
+		create: { width, height, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } }
+	})
+		.composite([
+			...composites,
+			{
+				input: Buffer.from(
+					`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">${svg.join('\n')}</svg>`
+				),
+				left: 0,
+				top: 0
+			}
+		])
+		.png()
+		.toBuffer();
+}
+
+/** The drawn mountains as a background, their top at `peakY`. */
+const drawnBase = (name: string, W: number, H: number, peakY: number) =>
+	sharp(Buffer.from(sceneSvg(name, W, H, peakY)))
+		.png()
+		.toBuffer();
+
+/** No picture to show: the news big on the sky, the drawn mountains starting where the words end. */
+async function sceneLayers(card: Card, shape: TallShape): Promise<Layers> {
+	const { width: W, height: H, top, bottom } = frame(shape);
+	const w = W - 2 * PAD;
+	const svg = [brand(top)];
+	let y = top + 186;
+	const titleSize = card.title.length > 26 ? 56 : 66;
+	for (const l of wrap(card.title, titleSize, w, 2, 'bold')) {
+		svg.push(text(l, PAD, y, titleSize, '#ffffff', 'bold'));
+		y += titleSize * 1.16;
+	}
+	y -= titleSize * 0.16;
+	if (card.headline) {
+		const big = textWidth(card.headline.value, 170, 'bold') <= w;
+		const size = big ? 170 : 104;
+		for (const l of big ? [card.headline.value] : wrap(card.headline.value, size, w, 3, 'bold')) {
+			y += big ? 170 : 118;
+			svg.push(text(l, PAD, y, size, '#ff9a2e', 'bold'));
+		}
+		for (const l of wrap(card.headline.label, 40, w, 2)) {
+			y += 58;
+			svg.push(text(l, PAD, y, 40, '#e6f3f8'));
+		}
+	}
+	for (const line of card.lines)
+		for (const l of wrap(line, 36, w, 2)) {
+			y += 52;
+			svg.push(text(l, PAD, y, 36, '#d7ecf5'));
+		}
+	svg.push(...panelFooter([DRAWN], card.site, shape, W, bottom).svg);
+	return {
+		width: W,
+		height: H,
+		base: await drawnBase(card.title, W, H, y + 60),
+		top: await flat(W, H, [], svg),
+		snowing: Boolean(card.snowing)
+	};
+}
+
+/** A row's name: smaller when long ("Alpental, Summit West and Summit East"), so it is cut only as a last resort. */
+function nameLine(name: string, x: number, y: number, room: number) {
+	const size = Math.max(30, Math.min(40, (40 * room) / textWidth(name, 40, 'bold')));
+	return text(fit(name, size, room, 'bold'), x, y, size, '#ffffff', 'bold');
+}
+
+/** A ranked list made big, like a resort's opening dates: the heading, the list on a panel, then any pictures. */
+async function rankingLayers(card: Card, ranking: Ranking, shape: TallShape): Promise<Layers> {
+	const { width: W, height: H, top, bottom } = frame(shape);
+	const story = shape === 'story';
+	const w = W - 2 * PAD;
+	const svg = [brand(top)];
+	const size = Math.min(116, (116 * w) / textWidth(ranking.heading, 116, 'bold'));
+	let y = top + (story ? 210 : 196);
+	svg.push(text(ranking.heading, PAD, y, size, '#ffffff', 'bold'));
+	y += 66;
+	svg.push(text(fit(card.title, 50, w, 'bold'), PAD, y, 50, '#ff9a2e', 'bold'));
+	y += 50;
+	svg.push(text(ranking.day, PAD, y, 34, '#d7ecf5'));
+	const skyEnds = y;
+	y += 34;
+
+	const rowH = story ? 112 : 92;
+	const panelH = ranking.rows.length * rowH + 28;
+	svg.push(
+		`<rect x="${PAD - 24}" y="${y}" width="${W - 2 * PAD + 48}" height="${panelH}" rx="24" fill="#04192a" fill-opacity=".76"/>`
+	);
+	const valueWidth = Math.max(...ranking.rows.map((r) => textWidth(r.value, 58, 'bold')));
+	const nameX = PAD + valueWidth + 32;
+	ranking.rows.forEach((row, i) => {
+		const rowY = y + 14 + i * rowH;
+		const mid = rowY + rowH / 2;
+		svg.push(
+			text(row.value, PAD, mid + 21, 58, '#ff9a2e', 'bold'),
+			nameLine(row.name, nameX, mid - 4, W - PAD - nameX),
+			text(fit(row.note, 27, W - PAD - nameX), nameX, mid + 34, 27, '#a9cbdb')
+		);
+		if (i)
+			svg.push(
+				`<rect x="${PAD}" y="${rowY}" width="${w}" height="2" fill="#ffffff" fill-opacity=".14"/>`
+			);
+	});
+	y += panelH + 20;
+
+	// The pictures take the room left above the footer, when there is enough to see them.
+	const pictures = (await readable(card)).slice(0, 2);
+	const noted = panelFooter(creditNotes(card, w), card.site, shape, W, bottom);
+	const room = Math.min(noted.top - 20 - y, story ? 420 : 300);
+	const show = room >= 170 ? pictures : [];
+	const each = show.length ? (w - GAP * (show.length - 1)) / show.length : 0;
+	const boxes = show.map((_, i) => ({ x: PAD + i * (each + GAP), y, w: each, h: room }));
+	const composites = await Promise.all(show.map((p, i) => tile(p.image, boxes[i], 'cover')));
+	show.forEach((p, i) => svg.push(...pictureMarks(p, boxes[i])));
+	svg.push(...(show.length ? noted : panelFooter([DRAWN], card.site, shape, W, bottom)).svg);
+	return {
+		width: W,
+		height: H,
+		base: await drawnBase(card.title, W, H, skyEnds + 40),
+		top: await flat(W, H, composites, svg),
+		snowing: Boolean(card.snowing)
+	};
+}
+
+/** Pictures on top, then the name, a big number when there is one, the lines, the credit and our address. */
+async function pictureLayers(
+	card: Card,
+	pictures: Awaited<ReturnType<typeof readable>>,
+	shape: TallShape
+): Promise<Layers> {
+	const { width: W, height: H, top, bottom } = frame(shape);
+	const area: Box = { x: PAD, y: top + 96, w: W - 2 * PAD, h: shape === 'story' ? 820 : 620 };
 	const boxes =
 		pictures.length === 1
 			? [fitted(pictures[0].width, pictures[0].height, area)]
 			: grid(pictures.length, area);
 	const composites = await Promise.all(pictures.map((p, i) => tile(p.image, boxes[i], 'cover')));
 
-	const svg: string[] = [];
-	svg.push(`<g transform="translate(${pad} ${top}) scale(1.1)">${mark}</g>`);
-	svg.push(text("What's Up Ahead", pad + 86, top + 52, 34, '#ffffff', 'bold'));
-	for (const [i, p] of pictures.entries()) {
-		const b = boxes[i];
-		svg.push(
-			`<rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="${RADIUS}" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>`
-		);
-		if (p.caption) {
-			const size = b.w < 600 ? 28 : 34;
-			const words = fit(p.caption, size, b.w - 56, 'bold');
-			svg.push(
-				`<rect x="${b.x + 14}" y="${b.y + b.h - size - 40}" width="${textWidth(words, size, 'bold') + 32}" height="${size + 26}" rx="12" fill="#04192a" fill-opacity=".74"/>`,
-				text(words, b.x + 30, b.y + b.h - 34, size, '#ffffff', 'bold')
-			);
-		}
-	}
-	if (!pictures.length)
-		svg.push(
-			`<g transform="translate(${W / 2 - 192} ${area.y + area.h / 2 - 228}) scale(6)">${mark}</g>`
-		);
+	const w = W - 2 * PAD;
+	const svg = [
+		`<defs><linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04192a" stop-opacity="0"/><stop offset="1" stop-color="#04192a" stop-opacity=".6"/></linearGradient></defs>`,
+		`<rect y="${area.y + area.h}" width="${W}" height="${H - area.y - area.h}" fill="url(#shade)"/>`,
+		brand(top)
+	];
+	pictures.forEach((p, i) => svg.push(...pictureMarks(p, boxes[i])));
 
-	const w = W - 2 * pad;
 	let y = area.y + area.h + 84;
 	const titleSize = card.title.length > 30 ? 52 : 62;
 	for (const l of wrap(card.title, titleSize, w, 2, 'bold')) {
-		svg.push(text(l, pad, y, titleSize, '#ffffff', 'bold'));
+		svg.push(text(l, PAD, y, titleSize, '#ffffff', 'bold'));
 		y += titleSize * 1.15;
 	}
 	if (card.headline) {
@@ -647,39 +847,56 @@ export async function renderTall(card: Card, shape: Exclude<Shape, 'wide'>): Pro
 		const size = big ? 120 : 72;
 		for (const l of big ? [card.headline.value] : wrap(card.headline.value, size, w, 2, 'bold')) {
 			y += big ? 96 : 80;
-			svg.push(text(l, pad, y, size, '#ff9a2e', 'bold'));
+			svg.push(text(l, PAD, y, size, '#ff9a2e', 'bold'));
 		}
 		y += 56;
-		svg.push(text(fit(card.headline.label, 34, w), pad, y, 34, '#d7ecf5'));
+		svg.push(text(fit(card.headline.label, 34, w), PAD, y, 34, '#d7ecf5'));
 		y += 30;
 	}
 	y += 30;
 	// The credit and the time sit above our address; the lines stop before them.
-	const credit = pictures.length
-		? [...wrap(card.credit ?? '', 26, w, 2), when(card.now ?? Date.now())].filter(Boolean)
-		: [];
+	const credit = creditNotes(card, w);
 	const last = bottom - 70 - credit.length * 34;
 	for (const line of card.lines) {
 		for (const l of wrap(line, 36, w, 2)) {
 			if (y + 12 > last) break;
-			svg.push(text(l, pad, y + 12, 36, '#d7ecf5'));
+			svg.push(text(l, PAD, y + 12, 36, '#d7ecf5'));
 			y += 48;
 		}
 		y += 8;
 	}
 	credit.forEach((l, i) =>
-		svg.push(text(l, pad, bottom - 66 - (credit.length - 1 - i) * 34, 26, '#a9cbdb'))
+		svg.push(text(l, PAD, bottom - 66 - (credit.length - 1 - i) * 34, 26, '#a9cbdb'))
 	);
-	svg.push(text(card.site, pad, bottom, 40, '#ff9a2e', 'bold'));
+	svg.push(text(card.site, PAD, bottom, 40, '#ff9a2e', 'bold'));
+	if (shape === 'story')
+		svg.push(text(LINK_HINT, PAD + textWidth(card.site, 40, 'bold') + 28, bottom, 30, '#ffffff'));
+	return {
+		width: W,
+		height: H,
+		base: await background(pictures[0].image, W, H),
+		top: await flat(W, H, composites, svg),
+		snowing: Boolean(card.snowing)
+	};
+}
 
-	const overlay = Buffer.from(
-		`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">
-<defs><linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04192a" stop-opacity="0"/><stop offset="1" stop-color="#04192a" stop-opacity=".6"/></linearGradient></defs>
-<rect y="${area.y + area.h}" width="${W}" height="${H - area.y - area.h}" fill="url(#shade)"/>
-${svg.join('\n')}</svg>`
-	);
-	return sharp(await background(pictures[0]?.image, W, H))
-		.composite([...composites, { input: overlay, left: 0, top: 0 }])
+/**
+ * A card for posting as a picture rather than beside a link: the pictures with the news, a ranked list, or, with no
+ * picture to show, the news over drawn mountains. Our address is always on it, so it travels with the picture
+ * (Instagram captions' links can't be tapped). `tall` is the feed's 4:5, `story` the full screen.
+ */
+export async function tallLayers(card: Card, shape: TallShape): Promise<Layers> {
+	if (card.ranking) return rankingLayers(card, card.ranking, shape);
+	const pictures = await readable(card);
+	return pictures.length ? pictureLayers(card, pictures, shape) : sceneLayers(card, shape);
+}
+
+/** The sheets as one JPEG, with any snow held still between them. */
+export async function renderTall(card: Card, shape: TallShape): Promise<Buffer> {
+	const { base, top, width, height, snowing } = await tallLayers(card, shape);
+	const flakes = snowing ? await stillFlakes(width, height) : [];
+	return sharp(base)
+		.composite([...flakes.map((input) => ({ input })), { input: top }])
 		.jpeg({ quality: 88, mozjpeg: true })
 		.toBuffer();
 }

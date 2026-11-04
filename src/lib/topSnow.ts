@@ -89,17 +89,33 @@ export function topSnowText(
 	day?: string
 ): string {
 	const link = `${origin}/collections/ski-areas?in=${area.id}&sort=snow${ref ? `&ref=${ref}` : ''}`;
-	const list = lines.map(
-		(l, i) =>
-			`${i + 1}. ${names(l.names)}: ${l.inches} in${l.depthIn ? `, ${l.depthIn} in on the ground` : ''} (gauge at ${feet(l.gaugeFeet)})`
-	);
 	return [
-		`❄️ Most new snow in the last 24 hours, ${area.name}${day ? `, ${day}` : ''}:`,
-		...list,
-		'',
-		"From the USDA snow gauge on each mountain. Resorts' own reports may differ.",
+		...topSnowLines(area, lines, day),
 		'',
 		`Cameras and snow at every ski area: ${link}`
+	].join('\n');
+}
+
+function topSnowLines(area: Area, lines: TopSnowLine[], day?: string): string[] {
+	return [
+		`❄️ Most new snow in the last 24 hours, ${area.name}${day ? `, ${day}` : ''}:`,
+		...lines.map(
+			(l, i) =>
+				`${i + 1}. ${names(l.names)}: ${l.inches} in${l.depthIn ? `, ${l.depthIn} in on the ground` : ''} (gauge at ${feet(l.gaugeFeet)})`
+		),
+		'',
+		"From the USDA snow gauge on each mountain. Resorts' own reports may differ."
+	];
+}
+
+/** The same words under an Instagram post, where a link can't be tapped. */
+export function topSnowCaption(area: Area, lines: TopSnowLine[], day: string): string {
+	return [
+		...topSnowLines(area, lines, day),
+		'',
+		'Cameras and snow at every ski area: link in our profile.',
+		'',
+		'#snow #skiing #snowboarding #powder #snowreport'
 	].join('\n');
 }
 

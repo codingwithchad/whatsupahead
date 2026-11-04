@@ -1,6 +1,7 @@
 import { REPO_URL } from '../brand';
 import { facebookProblem } from './autopost';
 import { instagramProblem } from './instagram';
+import { videoProblem } from './storyVideo';
 import { threadsProblem } from './threads';
 import { getCatalog } from './catalog';
 import { idahoFeeds, nevadaFeeds, utahFeeds } from './passes';
@@ -193,6 +194,11 @@ const CHECKS: Check[] = [
 		// The Instagram stories: the key still works (it lasts 60 days), and the last story went up.
 		name: 'instagram-stories',
 		run: () => instagramProblem()
+	},
+	{
+		// Snow-falling stories are videos: the server can still make one (without it they go up as pictures).
+		name: 'story-video',
+		run: () => videoProblem()
 	},
 	{
 		// The Threads posts: the key still works (it lasts 60 days), and the last post went up.

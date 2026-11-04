@@ -36,6 +36,21 @@ export function previewCredit(
 	return PREVIEW_CREDIT[camera.source] ?? null;
 }
 
+/**
+ * Public agencies' own cameras, whose past pictures we may keep: the replay, and posts that stay up. ODOT's are left
+ * out: its terms cover serving one refreshed copy, not keeping past ones.
+ */
+const KEPT_SOURCES = new Set([
+	'WSDOT',
+	'WSDOT Aviation',
+	'Caltrans',
+	'National Park Service',
+	'ITD',
+	'NDOT',
+	'UDOT'
+]);
+export const mayKeep = (camera: Pick<Camera, 'source'>) => KEPT_SOURCES.has(camera.source);
+
 /** Each credit once, in the order the pictures appear: "Caltrans, ODOT TripCheck". */
 export function credits(list: (string | null)[]): string {
 	return [...new Set(list.filter(Boolean))].join(', ');

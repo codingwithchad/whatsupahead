@@ -244,19 +244,19 @@
 		<p class="empty">Nothing yet.</p>
 	{/if}
 
-	<h2>Instagram stories</h2>
+	<h2>Instagram</h2>
 	<p class="sub">
 		{data.stories.live
-			? 'A story goes with each snow, chain and most-new-snow post on the Page, and is gone a day later, like the news in it. Instagram counts what people did with a story only while it is up; the numbers below are read until then.'
+			? 'A story goes with each snow, chain and most-new-snow post on the Page, and is gone a day later, like the news in it. Where snow is really falling it is a short video. Instagram counts what people did with a story only while it is up; the numbers below are read until then. The morning most new snow also goes to the feed, dated, and stays; comments on it count as replies.'
 			: 'Dry run: no Instagram key yet, so these are the stories that would have gone up.'}
 	</p>
 	{#if data.stories.live}
 		<table class="story-kinds">
 			<thead>
 				<tr
-					><th>Last 30 days</th><th>Stories</th><th>Views</th><th>Replies</th><th>Shares</th><th
-						>Profile visits</th
-					></tr
+					><th>Last 30 days</th><th>Posts</th><th>Views</th><th>Replies</th><th>Likes</th><th
+						>Shares</th
+					><th>Profile visits</th></tr
 				>
 			</thead>
 			<tbody>
@@ -266,13 +266,14 @@
 						<td>{k.stories}</td>
 						<td>{k.views}</td>
 						<td>{k.replies}</td>
+						<td>{k.likes}</td>
 						<td>{k.shares}</td>
 						<td>{k.profileVisits}</td>
 					</tr>
 				{/each}
 			</tbody>
 		</table>
-		<p class="sub">Each number is the average for one story.</p>
+		<p class="sub">Each number is the average for one post.</p>
 	{/if}
 	{#if data.stories.entries.length}
 		<ul class="autopost-log">
@@ -287,7 +288,10 @@
 						})}</strong
 					>
 					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
-					{KIND_NAMES[e.kind]}: {e.name}
+					{KIND_NAMES[e.kind]}{e.video ? ' (video)' : ''}: {e.name}
+					{#if e.videoError}
+						(picture instead of video: {e.videoError})
+					{/if}
 					{#if e.numbers}
 						: {e.numbers.views} views, {e.numbers.replies} replies, {e.numbers.shares} shares,
 						{e.numbers.profileVisits} profile visits

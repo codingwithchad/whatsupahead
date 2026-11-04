@@ -8,10 +8,13 @@ import {
 	type StoryKind,
 	type StoryNumbers
 } from '../instagram';
+import { saveVideo } from './storyVideo';
+import { storyLayers } from './sharePictures';
 
 // The site's Instagram account posts a story for each snow, chain and most-new-snow post the Facebook Page makes.
 // A story has no caption and no link, so its picture says it all (`shape=story`, the news printed big) and our
-// address is printed on it. Without INSTAGRAM_TOKEN it only notes what it would have posted, shown on /stats. The
+// address is printed on it. Where snow is really falling the story is a short video (see ./storyVideo.ts). The
+// morning's most new snow also goes to the feed, dated, so the profile has a history. Without INSTAGRAM_TOKEN it only notes what it would have posted, shown on /stats. The
 // key lasts 60 days and is renewed by hand once a month (a reminder issue opens on the first Sunday).
 
 const FILE = path.join(
@@ -20,6 +23,7 @@ const FILE = path.join(
 );
 const GRAPH = 'https://graph.instagram.com/v24.0';
 const SITE = process.env.SITE_URL || 'https://whatsupahead.com';
+const siteHost = () => process.env.CANONICAL_HOST?.trim() || new URL(SITE).host;
 const HOUR = 3600_000;
 
 function readLog(): StoryEntry[] {
@@ -70,40 +74,65 @@ async function accountId(): Promise<string> {
 	return account;
 }
 
-/** Puts one picture up as a story and returns Instagram's id for it. */
-async function postStory(picture: string): Promise<string> {
+/** Instagram fetches what it is given, then says when it is ready; a video takes a while. */
+async function publish(params: Record<string, string>, tries: number): Promise<string> {
 	const me = await accountId();
-	const { id } = await call<{ id: string }>(
-		`/${me}/media`,
-		{ image_url: picture, media_type: 'STORIES' },
-		'POST'
-	);
-	// Instagram fetches the picture first; it is usually ready at once.
-	for (let i = 0; i < 10; i++) {
+	const { id } = await call<{ id: string }>(`/${me}/media`, params, 'POST');
+	for (let i = 0; i < tries; i++) {
 		const { status_code } = await call<{ status_code?: string }>(`/${id}`, {
 			fields: 'status_code'
 		});
 		if (status_code === 'FINISHED') break;
 		if (status_code === 'ERROR' || status_code === 'EXPIRED')
-			throw new Error(`Instagram could not use the picture (${status_code})`);
+			throw new Error(`Instagram could not use it (${status_code})`);
 		await new Promise((r) => setTimeout(r, 3000));
 	}
 	const done = await call<{ id: string }>(`/${me}/media_publish`, { creation_id: id }, 'POST');
 	return done.id;
 }
 
-const METRICS = 'views,reach,replies,shares,navigation,profile_visits,follows';
+/** A fresh picture each time (the preview is otherwise kept for a while). */
+const fresh = (picture: string, now: number) =>
+	`${SITE}${picture}${picture.includes('?') ? '&' : '?'}v=${now}`;
 
-async function readNumbers(media: string): Promise<StoryNumbers> {
+/**
+ * Where snow is really falling, the story as a video; anything else, or a video that doesn't work out, the picture.
+ * The picture always remains: a story about chains matters more than how it looks.
+ */
+async function postStory(entry: StoryEntry, picture: string, now: number): Promise<string> {
+	try {
+		const layers = await storyLayers(picture, siteHost());
+		if (layers?.snowing) {
+			const name = await saveVideo(layers);
+			const media = await publish(
+				{ video_url: `${SITE}/og/video/${name}`, media_type: 'STORIES' },
+				40
+			);
+			entry.video = true;
+			return media;
+		}
+	} catch (err) {
+		entry.videoError = (err as Error).message.slice(0, 200);
+		console.warn(`[instagram] video for ${entry.id}: ${entry.videoError}`);
+	}
+	return publish({ image_url: fresh(picture, now), media_type: 'STORIES' }, 10);
+}
+
+const STORY_METRICS = 'views,reach,replies,shares,navigation,profile_visits,follows';
+const FEED_METRICS = 'views,reach,likes,comments,shares,profile_visits,follows';
+
+async function readNumbers(e: StoryEntry): Promise<StoryNumbers> {
+	const feed = e.kind === 'feed';
 	const { data } = await call<{ data: { name: string; values?: { value: number }[] }[] }>(
-		`/${media}/insights`,
-		{ metric: METRICS }
+		`/${e.media}/insights`,
+		{ metric: feed ? FEED_METRICS : STORY_METRICS }
 	);
 	const n = (name: string) => data.find((d) => d.name === name)?.values?.[0]?.value ?? 0;
 	return {
 		views: n('views'),
 		reach: n('reach'),
-		replies: n('replies'),
+		replies: n(feed ? 'comments' : 'replies'),
+		...(feed ? { likes: n('likes') } : {}),
 		shares: n('shares'),
 		navigation: n('navigation'),
 		profileVisits: n('profile_visits'),
@@ -117,7 +146,9 @@ async function readNumbers(media: string): Promise<StoryNumbers> {
  */
 export async function storyRun(
 	stories: { id: string; name: string; kind: StoryKind; picture: string }[],
-	now = Date.now()
+	now = Date.now(),
+	/** The morning's most new snow, for the feed, with the words under it. */
+	feed: { id: string; name: string; picture: string; caption: string }[] = []
 ) {
 	const log = readLog();
 	const live = token() !== null;
@@ -125,10 +156,7 @@ export async function storyRun(
 		const entry: StoryEntry = { ...s, at: Date.now(), media: null, dry: !live };
 		if (live)
 			try {
-				// A fresh picture each time (the preview is otherwise kept for a while).
-				entry.media = await postStory(
-					`${SITE}${s.picture}${s.picture.includes('?') ? '&' : '?'}v=${now}`
-				);
+				entry.media = await postStory(entry, s.picture, now);
 				console.log(`[instagram] story ${s.id}`);
 			} catch (err) {
 				entry.error = (err as Error).message;
@@ -136,17 +164,37 @@ export async function storyRun(
 			}
 		log.push(entry);
 	}
+	for (const f of feed) {
+		const entry: StoryEntry = {
+			id: f.id,
+			name: f.name,
+			kind: 'feed',
+			picture: f.picture,
+			at: Date.now(),
+			media: null,
+			dry: !live
+		};
+		if (live)
+			try {
+				entry.media = await publish({ image_url: fresh(f.picture, now), caption: f.caption }, 10);
+				console.log(`[instagram] feed post ${f.id}`);
+			} catch (err) {
+				entry.error = (err as Error).message;
+				console.warn(`[instagram] ${f.id}: ${entry.error}`);
+			}
+		log.push(entry);
+	}
 	let read = false;
 	if (live)
 		for (const e of storiesToRead(log, now))
 			try {
-				e.numbers = await readNumbers(e.media!);
+				e.numbers = await readNumbers(e);
 				e.numbersAt = now;
 				read = true;
 			} catch (err) {
 				console.warn(`[instagram] numbers for ${e.id}: ${(err as Error).message}`);
 			}
-	if (stories.length || read) saveLog(keepStories(log, now));
+	if (stories.length || feed.length || read) saveLog(keepStories(log, now));
 }
 
 /** For /stats: the stories so far, newest first, and the last 30 days by kind. */

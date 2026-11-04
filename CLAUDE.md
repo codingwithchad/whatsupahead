@@ -42,7 +42,8 @@ Check layouts at phone width (390 px) with headless Chromium (playwright-core in
 - `src/routes/`: pages (`search` is a place page, `trip`, `passes`, `collections/[id]`, `cameras/[id]`,
   `moments/[id]`), `og/*` (link-preview pictures), `api/*`, `img/[id]` (our copy of pictures that need one).
 - `src/lib/server/`: outside sources and caching (`conditions.ts`, `passes.ts`, `routing.ts`, `geocode.ts`,
-  `azureMaps.ts` + `mapsBudget.ts`, `history.ts` replay, `moments.ts`, `shareCard.ts`, `stats.ts`).
+  `azureMaps.ts` + `mapsBudget.ts`, `history.ts` replay, `moments.ts`, `shareCard.ts`, `scene.ts` drawn
+  mountains and snow, `storyVideo.ts`, `stats.ts`).
 - `scripts/`: importers (`import-caltrans.mjs`, `import-tripcheck.mjs`, `import-wsdot-route.mjs`,
   `import-windy.mjs`, ...).
 - `docs/`: `decisions.md` (why things are the way they are, newest last), `data-model.md`, `sources.md`

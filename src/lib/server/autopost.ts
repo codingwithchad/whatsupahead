@@ -16,6 +16,7 @@ import {
 } from '../autopost';
 import { blocksRoad, type PassReport } from '../passes';
 import { regionAt, timeZoneAt } from '../regions';
+import { dayName } from '../format';
 import { postText, snowWords, type SnowingSpot } from '../snowing';
 import { getCatalog } from './catalog';
 import { crossingTimes } from './crossing';
@@ -27,7 +28,15 @@ import { threadRun } from './threads';
 import type { ThreadItem } from '../threads';
 import { CHAIN_STORIES, type StoryKind } from '../instagram';
 import { AREAS } from '../areas';
-import { middle, skiAreasIn, topSnow, topSnowDue, topSnowText, worthPosting } from '../topSnow';
+import {
+	middle,
+	skiAreasIn,
+	topSnow,
+	topSnowCaption,
+	topSnowDue,
+	topSnowText,
+	worthPosting
+} from '../topSnow';
 
 // Every half hour, day and night, the site's own Facebook Page posts what drivers and skiers want to know: passes, ski
 // areas or parks snowing now (one a state), a pass's chain rules changing, and snow on the way over the passes with
@@ -371,7 +380,17 @@ async function topSnowPosts(log: PostEntry[], now: number) {
 				},
 				picture: `/og/top-snow/${area.id}`,
 				stories: [`/og/top-snow/${area.id}?shape=story`],
-				// Threads keeps these, dated: the profile's history of snowy mornings.
+				// Instagram's feed and Threads keep these, dated: the profile's history of snowy mornings.
+				feed: {
+					id: `feed:${area.id}:${new Date(now).toISOString().slice(0, 10)}`,
+					name: area.name,
+					picture: `/og/top-snow/${area.id}?shape=tall&keep=1`,
+					caption: topSnowCaption(
+						area,
+						lines,
+						dayName(now, timeZoneAt(middle(area).lat, middle(area).lon))
+					)
+				},
 				threads: [
 					{
 						key: `top:${area.id}:${new Date(now).toISOString().slice(0, 10)}`,
@@ -384,7 +403,7 @@ async function topSnowPosts(log: PostEntry[], now: number) {
 							'th',
 							dayName(now, timeZoneAt(middle(area).lat, middle(area).lon))
 						),
-						picture: `/og/top-snow/${area.id}?shape=tall`
+						picture: `/og/top-snow/${area.id}?shape=tall&keep=1`
 					}
 				] as ThreadItem[]
 			}
@@ -417,8 +436,8 @@ async function tick() {
 	const top = await part('top snow', () => topSnowPosts(log, now));
 	const sentTop = await send(key, top, now);
 	const entries = [...sentSnow, ...sentChains, ...sentForecast, ...sentTop];
-	// Instagram stories go with the Facebook posts that went up (a failed one is tried again next time, and its
-	// story then). Snow on the way isn't a story: stories are for what is happening now.
+	// Instagram goes with the Facebook posts that went up (a failed one is tried again next time, and its story
+	// then). Snow on the way isn't a story: stories are for what is happening now.
 	type Story = { id: string; name: string; kind: StoryKind; picture: string };
 	const stories: Story[] = [
 		...snow.flatMap((p, i) =>
@@ -435,7 +454,8 @@ async function tick() {
 				: p.stories.map((picture) => ({ ...p.entry, kind: 'top' as const, picture }))
 		)
 	].map(({ id, name, kind, picture }) => ({ id, name, kind, picture }));
-	await storyRun(stories, now).catch((err) =>
+	const feed = top.flatMap((p, i) => (sentTop[i].error ? [] : [p.feed]));
+	await storyRun(stories, now, feed).catch((err) =>
 		console.warn(`[instagram] ${(err as Error).message}`)
 	);
 	// Threads too, with every kind (snow on the way as well), for the posts that went up.
@@ -502,14 +522,4 @@ export function startAutopost() {
 	const timer = setInterval(() => void tick(), EVERY_MS);
 	first.unref?.();
 	timer.unref?.();
-}
-
-/** "Tue, Nov 3", where the mountains are. */
-function dayName(ms: number, timeZone: string) {
-	return new Intl.DateTimeFormat('en-US', {
-		weekday: 'short',
-		month: 'short',
-		day: 'numeric',
-		timeZone
-	}).format(new Date(ms));
 }

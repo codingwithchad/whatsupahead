@@ -3,6 +3,7 @@ import { mkdir, readdir, readFile, rm, unlink, writeFile } from 'node:fs/promise
 import path from 'node:path';
 import sharp from 'sharp';
 import { distanceMiles } from '../geo';
+import { mayKeep } from '../sharing';
 import type { Camera } from '../types';
 import { getCatalog } from './catalog';
 
@@ -31,16 +32,6 @@ const DIR =
 	(process.env.STATS_FILE ? path.join(path.dirname(process.env.STATS_FILE), 'replay') : null);
 // Sharper on disk (good enough for a phone-sized video); smaller when it all has to fit in memory.
 const WIDTH = DIR ? 720 : 480;
-const RECORDABLE = new Set([
-	'WSDOT',
-	'WSDOT Aviation',
-	'Caltrans',
-	'National Park Service',
-	'ITD',
-	'NDOT',
-	'UDOT'
-]);
-
 export interface Frame {
 	t: number;
 	hash: string;
@@ -66,7 +57,7 @@ export function historyTargets(): Camera[] {
 				c.feed_type === 'image' &&
 				!c.provider &&
 				c.availability !== 'seasonal' &&
-				RECORDABLE.has(c.source)
+				mayKeep(c)
 		)
 		.map((c) => ({ c, d: Math.min(...passes.map((p) => distanceMiles(p, c))) }))
 		.filter((x) => x.d <= NEAR_PASS_MILES)

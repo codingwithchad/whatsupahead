@@ -47,3 +47,13 @@ export function clockWithDay(
 		? `${clock} tomorrow`
 		: `${new Date(ms).toLocaleDateString('en-US', { timeZone, weekday: 'short' })} ${clock}`;
 }
+
+/** "Tue, Nov 3" where the place is. */
+export function dayName(ms: number, timeZone: string) {
+	return new Intl.DateTimeFormat('en-US', {
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		timeZone
+	}).format(new Date(ms));
+}

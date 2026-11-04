@@ -35,6 +35,20 @@ describe('storiesToRead', () => {
 	});
 });
 
+describe('storiesToRead, feed posts', () => {
+	const feed = (over: Partial<StoryEntry>) => story({ kind: 'feed', ...over });
+	it('reads a feed post every 6 hours for a week', () => {
+		expect(storiesToRead([feed({ at: NOW - 2 * 24 * HOUR })], NOW)).toHaveLength(1);
+		expect(
+			storiesToRead([feed({ at: NOW - 2 * 24 * HOUR, numbersAt: NOW - HOUR })], NOW)
+		).toHaveLength(0);
+		expect(
+			storiesToRead([feed({ at: NOW - 2 * 24 * HOUR, numbersAt: NOW - 7 * HOUR })], NOW)
+		).toHaveLength(1);
+		expect(storiesToRead([feed({ at: NOW - 8 * 24 * HOUR })], NOW)).toHaveLength(0);
+	});
+});
+
 describe('summarize', () => {
 	it('averages each kind over the stories with numbers', () => {
 		const log = [

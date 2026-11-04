@@ -2,7 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { areaById } from './areas';
 import type { PostEntry } from './autopost';
 import type { SkiSnow } from './server/skiSnow';
-import { names, skiAreasIn, topSnow, topSnowDue, topSnowText, worthPosting } from './topSnow';
+import {
+	names,
+	skiAreasIn,
+	topSnow,
+	topSnowCaption,
+	topSnowDue,
+	topSnowText,
+	worthPosting
+} from './topSnow';
 
 const HOUR = 3600_000;
 // 7 AM Pacific.
@@ -80,6 +88,12 @@ describe('topSnowText', () => {
 				'Cameras and snow at every ski area: https://x.com/collections/ski-areas?in=wa-cascades&sort=snow&ref=fb'
 			].join('\n')
 		);
+		// On Instagram a link can't be tapped, and the post stays up, so it has its date.
+		const caption = topSnowCaption(area, lines, 'Tue, Nov 3');
+		expect(caption).toContain('Washington Cascades, Tue, Nov 3:');
+		expect(caption).toContain('(gauge at 6,110 ft)');
+		expect(caption).toContain('link in our profile');
+		expect(caption).not.toContain('https://');
 	});
 });
 

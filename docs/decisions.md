@@ -671,3 +671,26 @@ days later. So:
 - Each post's views, likes, replies, reposts and shares are read every 6 hours for a week, and once more before it
   comes down, for the same 30-day look as Instagram. The Threads key lasts 60 days and is renewed with the
   Instagram key, from the same monthly reminder.
+
+## 2026-11-04: Stories with something to look at, a feed that stays
+
+The first real stories showed three problems: a pass with no camera got a small logo on a plain background, night
+cameras went up nearly black, and the profile's photo section was empty.
+
+- A picture with almost nothing lit (under 10% of it) is left out of posted cards; a night road with its lights
+  stays. Link previews keep their pictures: there the page says what they are.
+- With no picture to show, the news goes over drawn mountains, worked out from the place's name, so each place has
+  its own and keeps them. We draw them rather than use stock photos: a photo of some other mountain under "Chains
+  required" could pass for the road, and a drawing can't, and it says so ("Drawing, not a camera picture").
+- A story is a 6-second video only where snow is really falling: the snow gauge says so, or for the most-new-snow
+  list, which is what fell. A chain rule on a dry road stays still, so falling snow never tells someone it is snowing
+  when it isn't. The app makes it with ffmpeg at the lowest priority; if that fails the still picture goes up,
+  because a story about chains matters more than how it looks. /stats says which happened.
+- Most new snow is now a ranked list, big, like a resort's opening dates post, dated, each number with its gauge's
+  height (the snow heights rule).
+- The morning's most new snow also goes to the Instagram feed, because the feed stays. That reverses "stories, not
+  feed posts" only for the one post that stays true: it is dated and says "last 24 hours". Snow and chain news stay
+  stories. Posts that stay up (the feed, Threads' morning post) show only cameras whose past pictures we may keep, the
+  same list as the replay, so never ODOT's.
+- A story's link can't be added from the API (nothing in Meta's publishing documents offers it), and a story's printed
+  address can't be tapped. So stories say "Link in our profile", and the profile's link is `?ref=ig`, to count them.
