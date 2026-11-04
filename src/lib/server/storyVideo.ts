@@ -145,12 +145,12 @@ export async function saveVideo(layers: Layers): Promise<string> {
 /** Where a saved video is, or null for any other name. */
 export const videoFile = (name: string) => (NAME.test(name) ? path.join(DIR, name) : null);
 
-let looked: { at: number; problem: string | null } | null = null;
+let looked: { at: number; problem: string | undefined } | null = null;
 
 /** For the daily health check: can this server make a video at all? A tiny one, once a day. */
-export async function videoProblem(now = Date.now()): Promise<string | null> {
+export async function videoProblem(now = Date.now()): Promise<string | undefined> {
 	if (looked && now - looked.at < 20 * 3600_000) return looked.problem;
-	let problem: string | null = null;
+	let problem: string | undefined;
 	try {
 		await encode([
 			...['-f', 'lavfi', '-i', 'color=c=black:s=64x64:d=0.1'],
