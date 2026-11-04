@@ -162,7 +162,8 @@ async function newsHeadline(
 	snowing: boolean;
 } | null> {
 	const id = pass?.id ?? featured.id;
-	const spot = (await snowingNow()).find((s) => s.id === id);
+	// Only whether snow is falling hangs on this for a chain rule: without it the rule still goes out, standing still.
+	const spot = (await snowingNow().catch(() => [])).find((s) => s.id === id);
 	const snowing = Boolean(spot?.now);
 	if (news === 'chains') {
 		if (!pass) return null;
@@ -209,12 +210,14 @@ async function placeCard(
 	);
 	// A pass's page leads with its report, when there is one (winter).
 	const pass = featured && getCatalog().passes.find((p) => p.place === featured.id);
-	const [{ pictures, credit }, status, story] = await Promise.all([
-		sharePictures(around, 3, undefined, { bright: shape !== 'wide' }),
-		pass ? passLine(pass) : null,
+	// The news first: reading the gauges can take seconds, and the cameras' pictures are given only five.
+	const story =
 		news && featured && shape !== 'wide'
-			? newsHeadline(news, featured, pass).catch(() => null)
-			: null
+			? await newsHeadline(news, featured, pass).catch(() => null)
+			: null;
+	const [{ pictures, credit }, status] = await Promise.all([
+		sharePictures(around, 3, undefined, { bright: shape !== 'wide' }),
+		pass ? passLine(pass) : null
 	]);
 	return {
 		title: place.label,
