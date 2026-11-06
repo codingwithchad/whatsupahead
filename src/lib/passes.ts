@@ -221,6 +221,35 @@ export function closureSentences(road: string): string[] {
 		.filter((x) => CLOSED_SENTENCE.test(x) && !PART_OF_ROAD.test(x) && !REOPENED.test(x));
 }
 
+// "SR 542 is closed at milepost 54 for the season".
+const SEASON_GATE = /\bmilepost (\d+)\b.*\bfor the (?:season|winter)\b/i;
+
+/**
+ * A road that ends at a ski area (`dead_end`) is gated for the winter somewhere past it, and WSDOT then reports the
+ * whole road as "Pass Closed". The gate is where the road stops all winter, not news, and the road up to it isn't
+ * closed. It stays as a notice, and the report says only what it knows of the rest: fresh "No restrictions" lines
+ * are open, and anything else is no report (never open). Any other closure, such as a slide lower down, stays closed.
+ */
+export function seasonGate(report: PassReport, now = Date.now()): PassReport {
+	if (report.status !== 'closed') return report;
+	const closures = closureSentences(report.road);
+	const gates = closures.map((c) => c.match(SEASON_GATE));
+	if (!gates.length || gates.some((g) => !g)) return report;
+	const live =
+		report.restrictions.length > 0 &&
+		report.restrictions.every((r) => /^no restrictions/i.test(r.text)) &&
+		report.updated !== null &&
+		now - report.updated <= STALE_MS;
+	const status = live ? 'open' : 'off-season';
+	return {
+		...report,
+		status,
+		label: STATUS_LABEL[status],
+		restrictions: live ? report.restrictions : [],
+		notice: `Closed past the ski area for the winter, at milepost ${gates[0]![1]}.`
+	};
+}
+
 // ---- Oregon (ODOT TripCheck) and California (Caltrans) ----------------------------------------------------
 // Neither state writes one report per pass the way WSDOT does. ODOT's crews file road-and-weather reports for
 // stretches of highway, and Caltrans posts chain-control status at checkpoints and full closures as lane

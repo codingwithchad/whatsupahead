@@ -1,7 +1,7 @@
 import { isDormant } from '../geo';
 import type { Conditions, Nearby, WeatherSource } from '../types';
 import { riverRows, type GaugeInfo, type StageFlow } from '../river';
-import { classifyPass, toneOf, type RawPass } from '../passes';
+import { classifyPass, seasonGate, toneOf, type RawPass } from '../passes';
 import { allPassReports } from './passes';
 import { getCatalog } from './catalog';
 import { faaRows, observationRows } from '../airport';
@@ -96,13 +96,15 @@ async function fetchWsdotPass(src: WeatherSource): Promise<Row[]> {
 	const raw = await getJson<RawPass>(
 		`${WSDOT}/MountainPassConditions/MountainPassConditionsREST.svc/GetMountainPassConditionAsJson?AccessCode=${key}&PassConditionID=${encodeURIComponent(src.provider_ref ?? '')}`
 	);
-	const pass = classifyPass(raw);
+	const reported = classifyPass(raw);
+	const dead_end = getCatalog().passes.find((p) => p.pass_id === reported.id)?.dead_end;
+	const pass = dead_end ? seasonGate(reported) : reported;
 	return compact([
 		['Status', pass.label],
 		...pass.restrictions
 			.filter((r) => !/^no restrictions/i.test(r.text))
 			.map((r): [string, string | null] => [r.direction || 'Restriction', r.text]),
-		['Road', show(pass.road)],
+		['Road', show(pass.status === 'closed' ? pass.road : (pass.notice ?? pass.road))],
 		['Weather', show(pass.weather)],
 		['Temperature', show(pass.tempF, '°F')],
 		['Travel advisory', pass.advisory ? 'Active' : null]

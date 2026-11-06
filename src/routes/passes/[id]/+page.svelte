@@ -98,7 +98,7 @@
 		list.length > 1 ? `${list.slice(0, -1).join(', ')} or ${list[list.length - 1]}` : list[0];
 	const isOpenAnswer = $derived.by(() => {
 		if (!report || report.status === 'off-season')
-			return `There is no official report for ${pass.name} right now${pass.winter_closure ? ` (${pass.winter_closure.toLowerCase()})` : ''}. Look at the cameras on this page, and check ${statePage.label} before you go.`;
+			return `There is no official report for ${pass.name} right now${pass.winter_closure ? ` (${pass.winter_closure.toLowerCase()})` : ''}.${report?.notice ? ` ${report.notice}` : ''} Look at the cameras on this page, and check ${statePage.label} before you go.`;
 		if (report.status === 'closed')
 			return `No. ${pass.source} reports it closed${updated ? ` (${updated})` : ''}.${report.road ? ` ${report.road}` : ''}`;
 		return `Yes. ${pass.source} reports: ${report.label}${updated ? ` (${updated})` : ''}.`;

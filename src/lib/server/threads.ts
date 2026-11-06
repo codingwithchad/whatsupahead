@@ -13,6 +13,7 @@ import {
 	type ThreadItem,
 	type ThreadNumbers
 } from '../threads';
+import { drawFirst } from './sharePictures';
 
 // The site's Threads account posts what the Facebook Page posts, with a picture and a link that can be tapped
 // (`?ref=th`, so visits show on /stats). News that ends is taken down a day and a half to two days on, and a pass's
@@ -68,6 +69,7 @@ async function call<T>(
 /** One post with a picture (a reply under `replyTo` when given). Returns Threads' id for it. */
 async function publish(item: ThreadItem, now: number, replyTo?: string): Promise<string> {
 	const picture = `${SITE}${item.picture}${item.picture.includes('?') ? '&' : '?'}v=${now}`;
+	await drawFirst(picture);
 	const { id } = await call<{ id: string }>(
 		'/me/threads',
 		{

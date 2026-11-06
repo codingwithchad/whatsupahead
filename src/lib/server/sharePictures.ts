@@ -66,6 +66,18 @@ export async function previewResponse(
 	}
 }
 
+/**
+ * Instagram gives up on a picture that takes about 8 seconds to arrive and calls it not a picture ("Only photo or
+ * video can be accepted as media type"), and ours can take 12 to draw the first time. Asking for it first keeps it
+ * ready for the rest of its ten minutes. A failed drawing sends our PNG logo instead, which is no use either.
+ */
+export async function drawFirst(url: string): Promise<void> {
+	const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
+	await res.arrayBuffer();
+	if (!res.ok || res.headers.get('content-type') !== 'image/jpeg')
+		throw new Error(`the picture wasn't ready (${res.status})`);
+}
+
 /** How pictures for a post differ from a link preview's. */
 interface Posted {
 	/** Left out when too dark to see: it stands alone on the screen, with no page around it. */

@@ -295,7 +295,7 @@ export function passVerdict(p: PassInput): Verdict {
 		return {
 			level: 'unknown',
 			title: TITLES.unknown,
-			sentence: `No official report for ${p.name} right now. The cameras below show the road.`,
+			sentence: `No official report for ${p.name} right now.${r?.notice ? ` ${r.notice}` : ''} The cameras below show the road.`,
 			facts: []
 		};
 	const level: Level =

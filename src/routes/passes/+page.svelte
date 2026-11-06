@@ -152,7 +152,9 @@
 					<span class="pass-detail">Cameras and forecast. No live pass report here yet.</span>
 				{:else if p.report}
 					<span class="pass-detail"
-						>{firstSentence(p.report.road) || 'No report for this pass right now.'}</span
+						>{p.report.notice ||
+							firstSentence(p.report.road) ||
+							'No report for this pass right now.'}</span
 					>
 				{/if}
 				{#if p.winter_closure}<span class="pass-detail">{p.winter_closure}.</span>{/if}

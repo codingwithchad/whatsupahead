@@ -694,3 +694,21 @@ cameras went up nearly black, and the profile's photo section was empty.
   same list as the replay, so never ODOT's.
 - A story's link can't be added from the API (nothing in Meta's publishing documents offers it), and a story's printed
   address can't be tapped. So stories say "Link in our profile", and the profile's link is `?ref=ig`, to count them.
+
+## 2026-11-05: A winter gate past the ski area is not a closed road; pictures are drawn before Instagram asks
+
+WSDOT reports the whole of Mt. Baker Highway as "Pass Closed" once SR 542 is gated for the season at milepost 54,
+past the ski area. It topped Worst first and the home page's closed list all winter, and drives to the ski area
+treated it as blocked, though the road up to the ski area was fine.
+
+- On a road that ends at a ski area (`dead_end`), a closure that says "milepost N ... for the season" is now a line
+  of its own ("Closed past the ski area for the winter, at milepost 54"), not the road's status. We don't then call
+  the road open: with WSDOT's lines still saying "Pass Closed" it is "No report yet", so it says only what we know.
+  Fresh "No restrictions" lines read as open, and live chain or traction rules stand. Any other closure, such as a
+  slide at milepost 46, stays closed.
+- Instagram refused 4 of the first 7 stories with "Only photo or video can be accepted as media type". The words are
+  misleading: a test with unpublished drafts showed it refuses a picture that takes about 8 seconds to arrive, and
+  ours can take 12 to draw the first time, while the same picture a moment later went through every time. So the app
+  now fetches each picture itself just before posting (it then stays ready for its ten minutes), and tries twice
+  more 20 seconds apart. Only the getting ready repeats, never the last step, so a story can't go up twice. Threads
+  gets the same first fetch.

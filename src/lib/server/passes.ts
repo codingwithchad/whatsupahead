@@ -1,6 +1,7 @@
 import {
 	caltransPassReport,
 	classifyPass,
+	seasonGate,
 	odotPassReport,
 	toCheckpoint,
 	type Checkpoint,
@@ -257,7 +258,7 @@ export async function allPassReports(
 		const r = p.report;
 		if (p.pass_id !== undefined) {
 			const w = wsdot.get(p.pass_id);
-			if (w) out.set(p.id, w);
+			if (w) out.set(p.id, p.dead_end ? seasonGate(w) : w);
 		} else if (r?.source === 'odot' && odot)
 			out.set(p.id, odotPassReport({ ...p, report: r }, odot.reports, odot.incidents));
 		else if (r?.source === 'caltrans' && caltrans)

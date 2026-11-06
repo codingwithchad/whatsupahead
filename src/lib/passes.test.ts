@@ -7,6 +7,7 @@ import {
 	classifyPass,
 	classifyRestriction,
 	odotPassReport,
+	seasonGate,
 	toneOf,
 	type CaltransChainControl,
 	type CaltransClosure,
@@ -495,6 +496,46 @@ describe('classifyPass with real WSDOT winter wording', () => {
 		);
 		expect(r1.status).toBe('traction');
 		expect(r1.notice).toBeUndefined();
+	});
+
+	describe('a road that ends at a ski area', () => {
+		const GATE =
+			'Effective October 25, SR 542/Mount Baker Highway is closed at milepost 54 for the season.';
+
+		it('is not closed by its winter gate past the ski area, and gives no all-clear either', () => {
+			const report = seasonGate(real('Pass Closed', GATE));
+			expect(report.status).toBe('off-season');
+			expect(report.label).toBe('No report yet');
+			expect(report.restrictions).toEqual([]);
+			expect(report.notice).toBe('Closed past the ski area for the winter, at milepost 54.');
+		});
+
+		it('is open when the report says no restrictions beside the gate', () => {
+			const now = Date.now();
+			const report = classifyPass(
+				pass({
+					RestrictionOne: r('No restrictions', 'Eastbound'),
+					RestrictionTwo: r('No restrictions', 'Westbound'),
+					RoadCondition: GATE,
+					DateUpdated: `/Date(${now}-0800)/`
+				}),
+				{ now }
+			);
+			expect(report.status).toBe('closed');
+			expect(seasonGate(report, now).status).toBe('open');
+		});
+
+		it('stays closed for anything else, such as a slide lower down', () => {
+			const slide = 'SR 542 is closed at milepost 46 due to a slide.';
+			expect(seasonGate(real('Pass Closed', slide)).status).toBe('closed');
+			expect(seasonGate(real('Pass Closed', `${GATE} ${slide}`)).status).toBe('closed');
+			expect(seasonGate(real('Pass Closed', '')).status).toBe('closed');
+		});
+
+		it('keeps live rules', () => {
+			const report = real('Traction Tires Advised', GATE);
+			expect(seasonGate(report)).toBe(report);
+		});
 	});
 
 	it('passes on night closures and closures down the road as a notice', () => {

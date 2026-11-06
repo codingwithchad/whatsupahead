@@ -1039,10 +1039,13 @@ button.wide {
 	margin: 0 0 8px;
 	padding: 0;
 	display: grid;
+	grid-template-columns: minmax(0, 1fr);
 	gap: 10px;
 }
 .pass-list a {
 	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	overflow-wrap: anywhere;
 	gap: 3px;
 	padding: 14px;
 	border-radius: var(--radius);

@@ -9,7 +9,7 @@ import {
 	type StoryNumbers
 } from '../instagram';
 import { saveVideo } from './storyVideo';
-import { storyLayers } from './sharePictures';
+import { drawFirst, storyLayers } from './sharePictures';
 
 // The site's Instagram account posts a story for each snow, chain and most-new-snow post the Facebook Page makes.
 // A story has no caption and no link, so its picture says it all (`shape=story`, the news printed big) and our
@@ -25,6 +25,8 @@ const GRAPH = 'https://graph.instagram.com/v24.0';
 const SITE = process.env.SITE_URL || 'https://whatsupahead.com';
 const siteHost = () => process.env.CANONICAL_HOST?.trim() || new URL(SITE).host;
 const HOUR = 3600_000;
+const PUBLISH_TRIES = 3;
+const PUBLISH_PAUSE = 20_000;
 
 function readLog(): StoryEntry[] {
 	try {
@@ -74,9 +76,11 @@ async function accountId(): Promise<string> {
 	return account;
 }
 
+const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 /** Instagram fetches what it is given, then says when it is ready; a video takes a while. */
-async function publish(params: Record<string, string>, tries: number): Promise<string> {
-	const me = await accountId();
+async function prepare(me: string, params: Record<string, string>, tries: number): Promise<string> {
+	if (params.image_url) await drawFirst(params.image_url);
 	const { id } = await call<{ id: string }>(`/${me}/media`, params, 'POST');
 	for (let i = 0; i < tries; i++) {
 		const { status_code } = await call<{ status_code?: string }>(`/${id}`, {
@@ -85,10 +89,30 @@ async function publish(params: Record<string, string>, tries: number): Promise<s
 		if (status_code === 'FINISHED') break;
 		if (status_code === 'ERROR' || status_code === 'EXPIRED')
 			throw new Error(`Instagram could not use it (${status_code})`);
-		await new Promise((r) => setTimeout(r, 3000));
+		await wait(3000);
 	}
-	const done = await call<{ id: string }>(`/${me}/media_publish`, { creation_id: id }, 'POST');
-	return done.id;
+	return id;
+}
+
+/**
+ * Two more tries before giving up: nothing tries a story again later, because its Facebook post has gone up. Only
+ * the getting ready is repeated, never the last step, so a story can't go up twice.
+ */
+async function publish(params: Record<string, string>, tries: number): Promise<string> {
+	const me = await accountId();
+	for (let attempt = 1; ; attempt++) {
+		let id: string;
+		try {
+			id = await prepare(me, params, tries);
+		} catch (err) {
+			if (attempt >= PUBLISH_TRIES) throw err;
+			console.warn(`[instagram] try ${attempt}: ${(err as Error).message}`);
+			await wait(PUBLISH_PAUSE);
+			continue;
+		}
+		const done = await call<{ id: string }>(`/${me}/media_publish`, { creation_id: id }, 'POST');
+		return done.id;
+	}
 }
 
 /** A fresh picture each time (the preview is otherwise kept for a while). */
