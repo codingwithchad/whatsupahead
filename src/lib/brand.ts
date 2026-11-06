@@ -12,3 +12,5 @@ export const COVERAGE_SHORT = states.join(' · ');
 /** One sentence for descriptions and link previews. */
 export const WHERE = `For ${COVERAGE}.`;
 export const REPO_URL = 'https://github.com/codingwithchad/whatsupahead';
+export const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61595524337129';
+export const INSTAGRAM_URL = 'https://www.instagram.com/whas.up.ahead/';

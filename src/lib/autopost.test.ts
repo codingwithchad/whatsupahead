@@ -3,9 +3,11 @@ import {
 	chainChanges,
 	changeWords,
 	chainText,
+	forecastStory,
 	forecastText,
 	keepRecent,
 	pickChains,
+	passOutlook,
 	pickForecasts,
 	pickPosts,
 	postClock,
@@ -375,14 +377,14 @@ describe('snow on the way over the passes', () => {
 	it('one pass: when it snows, how much at what height, when to cross', () => {
 		// 10 AM: snow from 9 PM.
 		expect(forecastText([outlook('Stevens')], 'https://x.com', 'fb', NOW)).toBe(
-			'🌨️ Snow on the way at Stevens Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. Cross before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.\n\nThe best time to cross, hour by hour, and cameras: https://x.com/passes/Stevens?ref=fb'
+			'🌨️ Snow on the way at Stevens Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. Cross before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.\n\nThe best time to cross, hour by hour, and cameras: https://x.com/passes/Stevens?ref=fb\n\nFollow this Page for snow and chain news on your pass.'
 		);
 	});
 
 	it('a road that ends at a ski area: drive up, at the top of the road', () => {
 		const baker = outlook('mt-baker', { name: 'Mt. Baker Highway', feet: 4250, deadEnd: true });
 		expect(forecastText([baker], 'https://x.com', 'fb', NOW)).toBe(
-			'🌨️ Snow on the way at Mt. Baker Highway: about 4 in at the top of the road (4,250 ft) from about 9 PM tonight. Drive up before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.\n\nThe best time to drive up, hour by hour, and cameras: https://x.com/passes/mt-baker?ref=fb'
+			'🌨️ Snow on the way at Mt. Baker Highway: about 4 in at the top of the road (4,250 ft) from about 9 PM tonight. Drive up before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.\n\nThe best time to drive up, hour by hour, and cameras: https://x.com/passes/mt-baker?ref=fb\n\nFollow this Page for snow and chain news on your pass.'
 		);
 	});
 
@@ -399,8 +401,48 @@ describe('snow on the way over the passes', () => {
 		expect(text.split('\n\n')).toEqual([
 			'🌨️ Snow on the way in the Washington mountains. When to go, hour by hour:',
 			'Stevens Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. Cross after 10 AM tomorrow, once it has passed (plows need time too). https://x.com/passes/Stevens?ref=fb',
-			'Snoqualmie Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. It keeps on through the next day: go prepared. https://x.com/passes/Snoqualmie?ref=fb'
+			'Snoqualmie Pass: about 4 in at the summit (4,061 ft) from about 9 PM tonight. It keeps on through the next day: go prepared. https://x.com/passes/Snoqualmie?ref=fb',
+			'Follow this Page for snow and chain news on your pass.'
 		]);
+	});
+
+	it('asks for the follow on Facebook only', () => {
+		const text = forecastText([outlook('Stevens')], 'https://x.com', 'th', NOW);
+		expect(text).not.toContain('Follow this Page');
+	});
+
+	it('a story prints how much, at what height, when, and when to go', () => {
+		expect(forecastStory(outlook('Stevens'), NOW)).toEqual({
+			headline: { value: 'About 4 in', label: 'from about 9 PM tonight, at the summit (4,061 ft)' },
+			advice:
+				'Cross before 9 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed.'
+		});
+		const baker = outlook('mt-baker', { feet: 4250, deadEnd: true });
+		expect(forecastStory(baker, NOW).headline.label).toBe('from about 9 PM tonight, at 4,250 ft');
+		expect(forecastStory(baker, NOW).advice).toContain('Drive up before');
+	});
+
+	it('reads a pass with snow coming, and none without', () => {
+		const pass = {
+			id: 'stevens',
+			name: 'Stevens Pass',
+			place: 'pass-stevens',
+			lat: 47.74,
+			lon: -121.08,
+			elevation_ft: 4061
+		};
+		const advice = { leaveBefore: 5, leaveAfter: 9 };
+		const timeZone = 'America/Los_Angeles';
+		const snow = [{ inches: 4, from: 7 }];
+		expect(passOutlook(pass, { timeZone, advice: { ...advice, snow } })).toMatchObject({
+			state: 'WA',
+			inches: 4,
+			from: 7,
+			crossBefore: 5,
+			crossAfter: 9,
+			feet: 4061
+		});
+		expect(passOutlook(pass, { timeZone, advice: { ...advice, snow: [] } })).toBeNull();
 	});
 });
 

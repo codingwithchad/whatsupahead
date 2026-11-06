@@ -3,6 +3,7 @@ import { getCatalog } from '../../../lib/server/catalog';
 import { geocode } from '../../../lib/server/geocode';
 import {
 	ON_MOUNTAIN_MILES,
+	placeNews,
 	placePreview,
 	previewResponse,
 	shapeOf,
@@ -13,15 +14,13 @@ import type { RequestHandler } from './$types';
 /**
  * The picture a shared place page shows: one of our places (?place=) or a searched town (?q=). `&near=1` (the
  * Facebook Page's snow posts) shows only cameras up on the mountain, or the card alone; `&shape=tall` or `story`
- * makes it to post as a picture, and `&news=snow` or `chains` prints the snow or the pass's rule big (stories).
+ * makes it to post as a picture, and `&news=snow`, `chains` or `forecast` prints the snow, the pass's rule or the snow on the way big (stories).
  */
 export const GET: RequestHandler = async ({ url }) => {
 	const featured = getCatalog().places.find((p) => p.id === url.searchParams.get('place'));
 	const near = url.searchParams.has('near') ? ON_MOUNTAIN_MILES : undefined;
 	const shape = shapeOf(url);
-	// A story's news, from our own data (never words from the address): `&news=snow` or `chains`.
-	const ask = url.searchParams.get('news');
-	const news = ask === 'snow' || ask === 'chains' ? ask : undefined;
+	const news = placeNews(url.searchParams.get('news'));
 	if (featured)
 		return previewResponse(
 			`place:${featured.id}${near ? ':near' : ''}:${shape}${news ? `:${news}` : ''}`,

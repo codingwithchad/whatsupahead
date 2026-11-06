@@ -1,5 +1,6 @@
 import { isDormant, nearby } from '../geo';
 import { forPlace } from '../placeCameras';
+import { forecastStory, passOutlook } from '../autopost';
 import { reportSource, STATUS_LABEL } from '../passes';
 import { dayName, duration, localClock, returnLabel } from '../format';
 import { DEFAULT_TIME_ZONE, regionAt, timeZoneAt } from '../regions';
@@ -16,6 +17,7 @@ import type { Camera, Collection, FeaturedPlace, PassInfo, Place } from '../type
 import { cached } from './cache';
 import { getCatalog } from './catalog';
 import { nearestTown } from './gazetteer';
+import { crossingTimes } from './crossing';
 import { allPassReports } from './passes';
 import { safeRoute } from './safeRoute';
 import { momentPicture, type Moment } from './moments';
@@ -161,22 +163,34 @@ export async function cameraPreview(camera: Camera, site: string): Promise<Buffe
 }
 
 /** What a story picture is about, printed big since a story has no caption. */
-export type PlaceNews = 'snow' | 'chains';
+export type PlaceNews = 'snow' | 'chains' | 'forecast';
 
-/** The big words for a story: the snow at its gauge, or the pass's rule from its report. */
+/** The news a picture's address asks for, from our own data: never words from the address. */
+export const placeNews = (ask: string | null): PlaceNews | undefined =>
+	ask === 'snow' || ask === 'chains' || ask === 'forecast' ? ask : undefined;
+
+/** The big words for a story: the snow at its gauge, the pass's rule from its report, or the snow on its way. */
 async function newsHeadline(
 	news: PlaceNews,
 	featured: FeaturedPlace,
 	pass: PassInfo | undefined
 ): Promise<{
 	headline: { value: string; label: string };
-	line: string | null;
+	line?: string | null;
+	advice?: string;
 	snowing: boolean;
 } | null> {
 	const id = pass?.id ?? featured.id;
 	// Only whether snow is falling hangs on this for a chain rule: without it the rule still goes out, standing still.
 	const spot = (await snowingNow().catch(() => [])).find((s) => s.id === id);
 	const snowing = Boolean(spot?.now);
+	if (news === 'forecast') {
+		if (!pass) return null;
+		const now = Date.now();
+		const crossing = await crossingTimes([{ pass, minutesToPass: 0 }], now);
+		const outlook = crossing && passOutlook(pass, crossing);
+		return outlook ? { ...forecastStory(outlook, now), snowing } : null;
+	}
 	if (news === 'chains') {
 		if (!pass) return null;
 		const report = (await allPassReports([pass])).get(pass.id);
@@ -234,11 +248,12 @@ async function placeCard(
 	return {
 		title: place.label,
 		headline: story?.headline,
+		advice: story?.advice,
 		snowing: story?.snowing,
 		lines: [
 			...(story?.line ? [story.line] : []),
-			// A chain story's headline is the report already.
-			...(status && !(story && news === 'chains') ? [status] : []),
+			// A chain story's headline is the report already; a forecast story has its advice to fit.
+			...(status && !(story && news !== 'snow') ? [status] : []),
 			...(featured?.blurb && !story ? [featured.blurb] : []),
 			// Said only with a picture beside it; a story's drawn mountains need no invitation.
 			...(story && !pictures.length
@@ -402,14 +417,13 @@ export async function storyLayers(picture: string, site: string): Promise<Layers
 	}
 	const featured = getCatalog().places.find((p) => p.id === url.searchParams.get('place'));
 	if (url.pathname !== '/og/search' || !featured) return null;
-	const ask = url.searchParams.get('news');
 	const card = await placeCard(
 		{ lat: featured.lat, lon: featured.lon, label: featured.name },
 		featured,
 		site,
 		url.searchParams.has('near') ? ON_MOUNTAIN_MILES : undefined,
 		shape,
-		ask === 'snow' || ask === 'chains' ? ask : undefined
+		placeNews(url.searchParams.get('news'))
 	);
 	return tallLayers(card, shape);
 }

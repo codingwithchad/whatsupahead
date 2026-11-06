@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { afterNavigate } from '$app/navigation';
-	import { trackView } from '../lib/track';
+	import { track, trackView } from '../lib/track';
 	import favicon from '../lib/assets/favicon.svg';
 	import '../app.css';
-	import { APP_NAME, REPO_URL, TAGLINE, WHERE } from '../lib/brand';
+	import { APP_NAME, FACEBOOK_URL, INSTAGRAM_URL, REPO_URL, TAGLINE, WHERE } from '../lib/brand';
 	import OfflineBanner from '../lib/OfflineBanner.svelte';
 	import { breadcrumbData, jsonLd, websiteData } from '../lib/seo';
 	import type { LayoutProps } from './$types';
@@ -68,6 +68,12 @@
 		<a href="/tires">Tires and chains</a>
 		<a href="/contribute">Add a camera</a>
 		<a href="{REPO_URL}/blob/main/docs/sources.md" target="_blank" rel="noopener">Sources</a>
+		<a href={FACEBOOK_URL} target="_blank" rel="noopener" onclick={() => track('follow-facebook')}
+			>Facebook</a
+		>
+		<a href={INSTAGRAM_URL} target="_blank" rel="noopener" onclick={() => track('follow-instagram')}
+			>Instagram</a
+		>
 		<a href={REPO_URL} target="_blank" rel="noopener">Open source</a>
 	</nav>
 	<p>

@@ -10,6 +10,7 @@
 	import { rememberRecent } from '../../../lib/recents';
 	import { timeZoneAt } from '../../../lib/regions';
 	import { track } from '../../../lib/track';
+	import FollowLine from '../../../lib/FollowLine.svelte';
 	import { NEED_TONE, passAnswer, VEHICLES } from '../../../lib/vehicle';
 	import { passVerdict } from '../../../lib/verdict';
 	import VerdictCard from '../../../lib/VerdictCard.svelte';
@@ -217,6 +218,8 @@
 	{#await data.crossing then crossing}
 		{#if crossing}<CrossingStrip {crossing} deadEnd={pass.dead_end} />{/if}
 	{/await}
+
+	<FollowLine />
 
 	{#if road}
 		<nav class="radius way" aria-label="Which way you're going">

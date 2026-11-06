@@ -1,6 +1,6 @@
 import { clockWithDay } from './format';
 import { HEAVY_CHAINS, type PassReport, type PassStatus } from './passes';
-import { DEFAULT_TIME_ZONE, REGIONS } from './regions';
+import { DEFAULT_TIME_ZONE, REGIONS, regionAt } from './regions';
 import type { SnowingSpot } from './snowing';
 
 /**
@@ -361,6 +361,44 @@ export function postClock(ms: number, now: number, timeZone: string): string {
 	return c.replace(/(^|\s)12\sAM/, '$1midnight').replace(/(^|\s)12\sPM/, '$1noon');
 }
 
+/** A pass's outlook from its crossing times, when snow is coming in the next day. */
+export function passOutlook(
+	p: {
+		id: string;
+		name: string;
+		place: string;
+		lat: number;
+		lon: number;
+		elevation_ft?: number;
+		dead_end?: boolean;
+	},
+	crossing: {
+		timeZone: string;
+		advice: {
+			snow: { inches: number; from: number }[];
+			leaveBefore: number | null;
+			leaveAfter: number | null;
+		};
+	}
+): PassOutlook | null {
+	const snow = crossing.advice.snow[0];
+	if (!snow) return null;
+	return {
+		id: p.id,
+		name: p.name,
+		state: regionAt(p.lat, p.lon)?.abbr ?? null,
+		href: `/passes/${encodeURIComponent(p.id)}`,
+		preview: `/og/search?place=${encodeURIComponent(p.place)}`,
+		feet: p.elevation_ft ?? null,
+		deadEnd: p.dead_end,
+		inches: snow.inches,
+		from: snow.from,
+		crossBefore: crossing.advice.leaveBefore,
+		crossAfter: crossing.advice.leaveAfter,
+		timeZone: crossing.timeZone
+	};
+}
+
 /** "Cross before 9:45 PM tonight to get ahead of it, or after 10 AM tomorrow once it has passed." */
 function crossWords(o: PassOutlook, now: number): string {
 	const when = (t: number) => postClock(t, now, o.timeZone);
@@ -377,6 +415,26 @@ function crossWords(o: PassOutlook, now: number): string {
 const snowLine = (o: PassOutlook, now: number) =>
 	`about ${Math.round(o.inches)} in at ${o.deadEnd ? 'the top of the road' : 'the summit'}${o.feet ? ` (${o.feet.toLocaleString('en-US')} ft)` : ''} from about ${postClock(o.from, now, o.timeZone)}`;
 
+/** A snow-on-the-way story's words: it has no caption, so the amount, its height, when, and when to go. */
+export function forecastStory(o: PassOutlook, now: number) {
+	const height = o.feet ? o.feet.toLocaleString('en-US') : null;
+	const top = o.deadEnd
+		? height
+			? `at ${height} ft`
+			: 'at the top of the road'
+		: `at the summit${height ? ` (${height} ft)` : ''}`;
+	return {
+		headline: {
+			value: `About ${Math.round(o.inches)} in`,
+			label: `from about ${postClock(o.from, now, o.timeZone)}, ${top}`
+		},
+		advice: crossWords(o, now)
+	};
+}
+
+/** Who follows the Page sees the next storm; said only on the post people share, not on every one. */
+const FOLLOW = 'Follow this Page for snow and chain news on your pass.';
+
 /** A post about the snow coming to one state's passes, each with when to cross and its link. */
 export function forecastText(
 	passes: PassOutlook[],
@@ -385,15 +443,18 @@ export function forecastText(
 	now = Date.now()
 ): string {
 	const link = (o: PassOutlook) => `${origin}${linkWith(o.href, ref)}`;
+	const follow = ref === 'fb' ? `\n\n${FOLLOW}` : '';
 	if (passes.length === 1) {
 		const o = passes[0];
-		return `🌨️ Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)}\n\nThe best time to ${o.deadEnd ? 'drive up' : 'cross'}, hour by hour, and cameras: ${link(o)}`;
+		return `🌨️ Snow on the way at ${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)}\n\nThe best time to ${o.deadEnd ? 'drive up' : 'cross'}, hour by hour, and cameras: ${link(o)}${follow}`;
 	}
 	const region = REGIONS.find((r) => r.abbr === passes[0].state);
-	return [
-		`🌨️ Snow on the way in the ${region ? `${region.name} ` : ''}mountains. When to go, hour by hour:`,
-		...passes.map((o) => `${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} ${link(o)}`)
-	].join('\n\n');
+	return (
+		[
+			`🌨️ Snow on the way in the ${region ? `${region.name} ` : ''}mountains. When to go, hour by hour:`,
+			...passes.map((o) => `${o.name}: ${snowLine(o, now)}. ${crossWords(o, now)} ${link(o)}`)
+		].join('\n\n') + follow
+	);
 }
 
 /** The log, newest last, keeping the last two weeks. */

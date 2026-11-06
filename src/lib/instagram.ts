@@ -2,7 +2,7 @@
 // nobody sees last week's storm. Instagram gives a story's numbers only while it is up, so they are read until it
 // ends and kept here. A feed post stays, so only the morning's most new snow goes there, with its date.
 
-export type StoryKind = 'snow' | 'chains' | 'top' | 'feed';
+export type StoryKind = 'snow' | 'chains' | 'forecast' | 'top' | 'feed';
 
 /** What people did with a story: Instagram's own counts, read while it was up. */
 export interface StoryNumbers {
@@ -81,7 +81,7 @@ export interface KindSummary {
 /** Each kind's stories over the last `days`: how many, and the average views, replies, shares and profile visits. */
 export function summarize(log: StoryEntry[], now: number, days = 30): KindSummary[] {
 	const recent = log.filter((e) => !e.dry && e.media && now - e.at < days * 24 * HOUR);
-	const kinds: StoryKind[] = ['snow', 'chains', 'top', 'feed'];
+	const kinds: StoryKind[] = ['snow', 'chains', 'forecast', 'top', 'feed'];
 	return kinds.map((kind) => {
 		const of = recent.filter((e) => e.kind === kind);
 		const counted = of.filter((e) => e.numbers);
@@ -105,6 +105,7 @@ export function summarize(log: StoryEntry[], now: number, days = 30): KindSummar
 export const KIND_NAMES: Record<StoryKind, string> = {
 	snow: 'Snowing now',
 	chains: 'Chain rules',
+	forecast: 'Snow on the way',
 	top: 'Most new snow',
 	feed: 'Morning feed post'
 };

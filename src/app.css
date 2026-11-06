@@ -3314,3 +3314,8 @@ main.updating .grid {
 .autopost-log li {
 	margin-bottom: 6px;
 }
+.follow-line {
+	margin: 12px 0;
+	font-size: var(--fs-sm);
+	color: var(--muted);
+}

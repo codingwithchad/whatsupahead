@@ -11,7 +11,8 @@ import {
 import { saveVideo } from './storyVideo';
 import { drawFirst, storyLayers } from './sharePictures';
 
-// The site's Instagram account posts a story for each snow, chain and most-new-snow post the Facebook Page makes.
+// The site's Instagram account posts a story for each snow, chain, snow-on-the-way and most-new-snow post the
+// Facebook Page makes.
 // A story has no caption and no link, so its picture says it all (`shape=story`, the news printed big) and our
 // address is printed on it. Where snow is really falling the story is a short video (see ./storyVideo.ts). The
 // morning's most new snow also goes to the feed, dated, so the profile has a history. Without INSTAGRAM_TOKEN it only notes what it would have posted, shown on /stats. The

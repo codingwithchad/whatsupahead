@@ -355,6 +355,8 @@ export interface Card {
 	now?: number;
 	/** Tall cards only: a number to read from across the room ("+7 in") and what it is. */
 	headline?: { value: string; label: string };
+	/** Tall cards only: what to do about it ("Cross before 9 PM"), under the number; the picture makes room for it. */
+	advice?: string;
 	/** Tall cards only: a ranked list, made big, in place of the pictures-first layout. */
 	ranking?: Ranking;
 	/** Tall cards only: snow is really falling or has just fallen there, so the card may show it falling. */
@@ -710,6 +712,8 @@ const drawnBase = (name: string, W: number, H: number, peakY: number) =>
 		.png()
 		.toBuffer();
 
+const ADVICE_SIZE = 42;
+
 /** No picture to show: the news big on the sky, the drawn mountains starting where the words end. */
 async function sceneLayers(card: Card, shape: TallShape): Promise<Layers> {
 	const { width: W, height: H, top, bottom } = frame(shape);
@@ -732,6 +736,13 @@ async function sceneLayers(card: Card, shape: TallShape): Promise<Layers> {
 		for (const l of wrap(card.headline.label, 40, w, 2)) {
 			y += 58;
 			svg.push(text(l, PAD, y, 40, '#e6f3f8'));
+		}
+	}
+	if (card.advice) {
+		y += 16;
+		for (const l of wrap(card.advice, ADVICE_SIZE, w, 3, 'bold')) {
+			y += 58;
+			svg.push(text(l, PAD, y, ADVICE_SIZE, '#ffffff', 'bold'));
 		}
 	}
 	for (const line of card.lines)
@@ -819,7 +830,12 @@ async function pictureLayers(
 	shape: TallShape
 ): Promise<Layers> {
 	const { width: W, height: H, top, bottom } = frame(shape);
-	const area: Box = { x: PAD, y: top + 96, w: W - 2 * PAD, h: shape === 'story' ? 820 : 620 };
+	const area: Box = {
+		x: PAD,
+		y: top + 96,
+		w: W - 2 * PAD,
+		h: shape === 'story' && !card.advice ? 820 : 620
+	};
 	const boxes =
 		pictures.length === 1
 			? [fitted(pictures[0].width, pictures[0].height, area)]
@@ -852,6 +868,13 @@ async function pictureLayers(
 		y += 56;
 		svg.push(text(fit(card.headline.label, 34, w), PAD, y, 34, '#d7ecf5'));
 		y += 30;
+	}
+	if (card.advice) {
+		y += 26;
+		for (const l of wrap(card.advice, ADVICE_SIZE, w, 3, 'bold')) {
+			svg.push(text(l, PAD, y + 12, ADVICE_SIZE, '#ffffff', 'bold'));
+			y += 54;
+		}
 	}
 	y += 30;
 	// The credit and the time sit above our address; the lines stop before them.

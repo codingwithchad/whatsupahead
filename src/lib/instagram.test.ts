@@ -59,7 +59,7 @@ describe('summarize', () => {
 			story({ kind: 'chains', at: NOW - 40 * 24 * HOUR, numbers }),
 			story({ kind: 'chains', dry: true, media: null })
 		];
-		const [snow, chains, top] = summarize(log, NOW);
+		const [snow, chains, , top] = summarize(log, NOW);
 		expect(snow).toMatchObject({ stories: 3, views: 20, replies: 0.5 });
 		expect(chains.stories).toBe(0);
 		expect(top).toMatchObject({ stories: 1, views: 10, profileVisits: 3 });

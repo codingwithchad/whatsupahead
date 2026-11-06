@@ -7,6 +7,7 @@ import {
 	keepRecent,
 	pickChains,
 	pickForecasts,
+	passOutlook,
 	pickPosts,
 	postsToUpdate,
 	updatePost,
@@ -303,22 +304,8 @@ async function forecastPosts(log: PostEntry[], now: number) {
 	for (const p of passes) {
 		if (reports.get(p.id)?.status === 'closed' || blocksRoad(p, reports.get(p.id), now)) continue;
 		const crossing = await crossingTimes([{ pass: p, minutesToPass: 0 }], now);
-		const snow = crossing?.advice.snow[0];
-		if (!crossing || !snow) continue;
-		outlooks.push({
-			id: p.id,
-			name: p.name,
-			state: regionAt(p.lat, p.lon)?.abbr ?? null,
-			href: `/passes/${encodeURIComponent(p.id)}`,
-			preview: `/og/search?place=${encodeURIComponent(p.place)}`,
-			feet: p.elevation_ft ?? null,
-			deadEnd: p.dead_end,
-			inches: snow.inches,
-			from: snow.from,
-			crossBefore: crossing.advice.leaveBefore,
-			crossAfter: crossing.advice.leaveAfter,
-			timeZone: crossing.timeZone
-		});
+		const outlook = crossing && passOutlook(p, crossing);
+		if (outlook) outlooks.push(outlook);
 	}
 	return pickForecasts(outlooks, log, now).map((group) => ({
 		entry: {
@@ -329,6 +316,12 @@ async function forecastPosts(log: PostEntry[], now: number) {
 			text: forecastText(group, SITE, 'fb', now)
 		},
 		picture: group[0].preview,
+		// Snowiest first; each story says how much and when to go.
+		stories: group.slice(0, CHAIN_STORIES).map((o) => ({
+			id: o.id,
+			name: o.name,
+			picture: `${o.preview}&shape=story&news=forecast`
+		})),
 		threads: [
 			{
 				key: `forecast:${group[0].state ?? group[0].id}`,
@@ -437,7 +430,7 @@ async function tick() {
 	const sentTop = await send(key, top, now);
 	const entries = [...sentSnow, ...sentChains, ...sentForecast, ...sentTop];
 	// Instagram goes with the Facebook posts that went up (a failed one is tried again next time, and its story
-	// then). Snow on the way isn't a story: stories are for what is happening now.
+	// then). Rules coming off aren't stories; snow on the way is, so the quiet days before a storm aren't empty.
 	type Story = { id: string; name: string; kind: StoryKind; picture: string };
 	const stories: Story[] = [
 		...snow.flatMap((p, i) =>
@@ -447,6 +440,9 @@ async function tick() {
 		),
 		...chains.flatMap((p, i) =>
 			sentChains[i].error ? [] : p.stories.map((s) => ({ ...s, kind: 'chains' as const }))
+		),
+		...forecast.flatMap((p, i) =>
+			sentForecast[i].error ? [] : p.stories.map((s) => ({ ...s, kind: 'forecast' as const }))
 		),
 		...top.flatMap((p, i) =>
 			sentTop[i].error

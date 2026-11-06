@@ -64,6 +64,8 @@
 		'leave-later': 'Leave in 1–3 h',
 		install: 'Install now',
 		'use-location': 'Use my location',
+		'follow-facebook': 'Follow on Facebook',
+		'follow-instagram': 'Follow on Instagram',
 		share: 'Share (tapped)',
 		'share-sent': 'Shared from the phone menu',
 		'share-copy': 'Copied a link',
@@ -247,7 +249,7 @@
 	<h2>Instagram</h2>
 	<p class="sub">
 		{data.stories.live
-			? 'A story goes with each snow, chain and most-new-snow post on the Page, and is gone a day later, like the news in it. Where snow is really falling it is a short video. Instagram counts what people did with a story only while it is up; the numbers below are read until then. The morning most new snow also goes to the feed, dated, and stays; comments on it count as replies.'
+			? 'A story goes with each snow, chain, snow-on-the-way and most-new-snow post on the Page, and is gone a day later, like the news in it. Where snow is really falling it is a short video. Instagram counts what people did with a story only while it is up; the numbers below are read until then. The morning most new snow also goes to the feed, dated, and stays; comments on it count as replies.'
 			: 'Dry run: no Instagram key yet, so these are the stories that would have gone up.'}
 	</p>
 	{#if data.stories.live}

@@ -712,3 +712,17 @@ treated it as blocked, though the road up to the ski area was fine.
   now fetches each picture itself just before posting (it then stays ready for its ten minutes), and tries twice
   more 20 seconds apart. Only the getting ready repeats, never the last step, so a story can't go up twice. Threads
   gets the same first fetch.
+
+## 2026-11-05: Snow on the way goes on Instagram; the site asks people to follow
+
+This reverses "stories are for what is happening now". With only that rule, Instagram stood empty on the quiet days
+before a storm, which is when someone deciding about a trip wants to know.
+
+- Each "snow on the way" post on the Page now makes stories, up to three, snowiest pass first. It prints the amount,
+  when it starts, its height, and when to cross (`news=forecast`, from our own forecast when the picture is made). The
+  words get room over the size of the picture: without when to go, the story isn't worth posting. It stays a still
+  picture unless snow is already falling there, and stories end in a day, so it never outlives its forecast.
+- The site had no link to its own Page, so nobody could follow it from a page they liked. The footer now links
+  Facebook and Instagram, and pass pages have a line under Best time to cross (tap counts are on /stats). Never in
+  Follow mode.
+- "Follow this Page" goes only on Facebook's snow-on-the-way posts, the ones people share, not on every post.
