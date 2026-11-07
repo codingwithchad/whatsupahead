@@ -48,6 +48,8 @@ export interface ThreadEntry {
 	numbersAt?: number;
 	/** When it was taken down (its news was over). */
 	deletedAt?: number;
+	/** Why the last try to take it down failed. */
+	takeDownError?: string;
 }
 
 const HOUR = 3600_000;

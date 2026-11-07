@@ -510,12 +510,32 @@ async function tick() {
 	if (entries.length) saveLog(keepRecent([...log, ...entries], now));
 }
 
+/**
+ * One run at a time. The log is saved at the end of a run, and a storm's run can outlast the half hour (each story
+ * waits on a drawing, and a video on Instagram), so a second run on top of it would post the same news again.
+ */
+let running = false;
+async function run() {
+	if (running) {
+		console.warn('[autopost] the last run is still going; skipped this one');
+		return;
+	}
+	running = true;
+	try {
+		await tick();
+	} catch (err) {
+		console.warn(`[autopost] ${(err as Error).message}`);
+	} finally {
+		running = false;
+	}
+}
+
 /** Start watching for snow. Safe to call more than once. */
 export function startAutopost() {
 	if (started) return;
 	started = true;
-	const first = setTimeout(() => void tick(), 2 * 60_000);
-	const timer = setInterval(() => void tick(), EVERY_MS);
+	const first = setTimeout(() => void run(), 2 * 60_000);
+	const timer = setInterval(() => void run(), EVERY_MS);
 	first.unref?.();
 	timer.unref?.();
 }

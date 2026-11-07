@@ -69,7 +69,8 @@ async function call<T>(
 /** One post with a picture (a reply under `replyTo` when given). Returns Threads' id for it. */
 async function publish(item: ThreadItem, now: number, replyTo?: string): Promise<string> {
 	const picture = `${SITE}${item.picture}${item.picture.includes('?') ? '&' : '?'}v=${now}`;
-	await drawFirst(picture);
+	// A first drawing can take 20 seconds or more; one that runs out of time is ready by the second try.
+	await drawFirst(picture).catch(() => drawFirst(picture));
 	const { id } = await call<{ id: string }>(
 		'/me/threads',
 		{
@@ -195,10 +196,14 @@ export async function threadRun(
 				e.numbersAt = now;
 				await takeDown(e);
 				e.deletedAt = now;
+				delete e.takeDownError;
 				console.log(`[threads] took down ${e.key}`);
 				changed = true;
 			} catch (err) {
-				console.warn(`[threads] take down ${e.key}: ${(err as Error).message}`);
+				// Tried again next run. Noted so the health check says so: some pictures may not stay up.
+				e.takeDownError = (err as Error).message;
+				changed = true;
+				console.warn(`[threads] take down ${e.key}: ${e.takeDownError}`);
 			}
 		for (const e of threadsToRead(log, now))
 			try {
@@ -221,14 +226,19 @@ export function threadLog(now = Date.now()) {
 
 let keyLook: { at: number; problem: string | undefined } | null = null;
 
-/** For the daily health check: null without a key; a problem when the last post failed or the key stopped working. */
+/**
+ * For the daily health check: null without a key; a problem when the last post failed, a post that should have come
+ * down hasn't, or the key stopped working.
+ */
 export async function threadsProblem(now = Date.now()): Promise<string | null | undefined> {
 	if (!token()) return null;
-	const last = readLog()
-		.filter((e) => !e.dry)
-		.at(-1);
+	const log = readLog().filter((e) => !e.dry);
+	const last = log.at(-1);
 	if (last?.error)
 		return `the last post failed: ${last.error.replace(/https?:\S+/g, '').slice(0, 100)}`;
+	const stuck = log.find((e) => e.takeDownError && !e.deletedAt);
+	if (stuck)
+		return `a post won't come down: ${stuck.takeDownError!.replace(/https?:\S+/g, '').slice(0, 100)}`;
 	if (!keyLook || now - keyLook.at > 12 * HOUR) {
 		let problem: string | undefined;
 		try {

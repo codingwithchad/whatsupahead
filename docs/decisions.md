@@ -726,3 +726,14 @@ before a storm, which is when someone deciding about a trip wants to know.
   Facebook and Instagram, and pass pages have a line under Best time to cross (tap counts are on /stats). Never in
   Follow mode.
 - "Follow this Page" goes only on Facebook's snow-on-the-way posts, the ones people share, not on every post.
+
+## 2026-11-07: Threads goes live; a storm's busy run can't post twice
+
+The Threads key from the dashboard's User Token Generator has a fixed list of permissions without `threads_delete`, so
+ours is made by asking for each permission by name. Taking news down is what lets those posts carry pictures we may not
+keep, so a key that can't delete isn't good enough.
+
+- One autopost run at a time. The log is saved when a run ends, and in a storm the stories and Threads posts can take
+  longer than the half hour between runs, so a second run on top would have posted the same news again.
+- Threads tries a slow first drawing twice. A post that fails is not tried again, so one slow picture would lose it.
+- A post that won't come down now reaches the health check, not just the server's log.
