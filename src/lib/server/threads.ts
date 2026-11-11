@@ -14,6 +14,7 @@ import {
 	type ThreadNumbers
 } from '../threads';
 import { drawFirst } from './sharePictures';
+import { notReadyYet, whenReady } from './metaReady';
 
 // The site's Threads account posts what the Facebook Page posts, with a picture and a link that can be tapped
 // (`?ref=th`, so visits show on /stats). News that ends is taken down a day and a half to two days on, and a pass's
@@ -81,15 +82,25 @@ async function publish(item: ThreadItem, now: number, replyTo?: string): Promise
 		},
 		'POST'
 	);
-	// Threads fetches the picture first; it is usually ready within a few seconds.
+	// Threads fetches the picture first and asks for a pause before publishing. Just after it is made it may say the
+	// post "does not exist": not ready yet.
 	for (let i = 0; i < 10; i++) {
-		const { status } = await call<{ status?: string }>(`/${id}`, { fields: 'status' });
+		await new Promise((r) => setTimeout(r, 3000));
+		const { status, error_message } = await call<{ status?: string; error_message?: string }>(
+			`/${id}`,
+			{ fields: 'status,error_message' }
+		).catch((err): { status?: string; error_message?: string } => {
+			if (notReadyYet(err)) return {};
+			throw err;
+		});
 		if (status === 'FINISHED') break;
 		if (status === 'ERROR' || status === 'EXPIRED')
-			throw new Error(`Threads could not use the picture (${status})`);
-		await new Promise((r) => setTimeout(r, 3000));
+			throw new Error(`Threads could not use the picture (${error_message || status})`);
 	}
-	return (await call<{ id: string }>('/me/threads_publish', { creation_id: id }, 'POST')).id;
+	const done = await whenReady(() =>
+		call<{ id: string }>('/me/threads_publish', { creation_id: id }, 'POST')
+	);
+	return done.id;
 }
 
 async function readNumbers(media: string): Promise<ThreadNumbers> {

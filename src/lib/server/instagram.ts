@@ -9,6 +9,7 @@ import {
 	type StoryNumbers
 } from '../instagram';
 import { saveVideo } from './storyVideo';
+import { notReadyYet, whenReady } from './metaReady';
 import { drawFirst, storyLayers } from './sharePictures';
 
 // The site's Instagram account posts a story for each snow, chain, snow-on-the-way and most-new-snow post the
@@ -84,8 +85,12 @@ async function prepare(me: string, params: Record<string, string>, tries: number
 	if (params.image_url) await drawFirst(params.image_url);
 	const { id } = await call<{ id: string }>(`/${me}/media`, params, 'POST');
 	for (let i = 0; i < tries; i++) {
+		// Just after it is made, Instagram may say it "does not exist": not ready yet.
 		const { status_code } = await call<{ status_code?: string }>(`/${id}`, {
 			fields: 'status_code'
+		}).catch((err): { status_code?: string } => {
+			if (notReadyYet(err)) return {};
+			throw err;
 		});
 		if (status_code === 'FINISHED') break;
 		if (status_code === 'ERROR' || status_code === 'EXPIRED')
@@ -111,7 +116,10 @@ async function publish(params: Record<string, string>, tries: number): Promise<s
 			await wait(PUBLISH_PAUSE);
 			continue;
 		}
-		const done = await call<{ id: string }>(`/${me}/media_publish`, { creation_id: id }, 'POST');
+		// "Media ID is not available" can come even after "FINISHED"; nothing went up, so it is asked again.
+		const done = await whenReady(() =>
+			call<{ id: string }>(`/${me}/media_publish`, { creation_id: id }, 'POST')
+		);
 		return done.id;
 	}
 }

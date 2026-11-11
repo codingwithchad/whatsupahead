@@ -10,7 +10,9 @@ describe('story videos', () => {
 		const filter = videoFilter(1920);
 		expect(filter).toContain('mod(t*120\\,1920)-1920');
 		expect(filter.match(/overlay=/g)).toHaveLength(4);
-		expect(filter.endsWith('[s3][4:v]overlay=format=auto,format=yuv420p[out]')).toBe(true);
+		expect(filter.endsWith('[s3][p4]overlay=format=auto,format=yuv420p[out]')).toBe(true);
+		// each picture is read once and repeated, not read again every frame
+		expect(filter.match(/loop=loop=143:size=1/g)).toHaveLength(5);
 	});
 
 	it('serves only names it made, never a path', () => {

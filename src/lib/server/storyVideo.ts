@@ -41,13 +41,20 @@ const FALL = [
  * in that order. A sheet is two screens tall, so it slides one screen and starts over.
  */
 export function videoFilter(height: number): string {
+	// Each picture comes in once and is repeated here: read again for every frame, the five full-size pictures made
+	// the server's one core spend over five minutes on six seconds.
+	const frames = FPS * SECONDS;
+	const repeat = [0, 1, 2, 3, 4].map(
+		(i) =>
+			`[${i}:v]format=${i ? 'yuva420p' : 'yuv420p'},loop=loop=${frames - 1}:size=1,setpts=N/${FPS}/TB[p${i}]`
+	);
 	const steps = FALL.map(({ speed, sway }, i) => {
-		const from = i ? `s${i}` : '0:v';
+		const from = i ? `s${i}` : 'p0';
 		const x = `-${SWAY_ROOM}+${sway}*sin(t*0.9+${i})`;
 		const y = `mod(t*${speed}\\,${height})-${height}`;
-		return `[${from}][${i + 1}:v]overlay=x='${x}':y='${y}'[s${i + 1}]`;
+		return `[${from}][p${i + 1}]overlay=x='${x}':y='${y}'[s${i + 1}]`;
 	});
-	return [...steps, `[s3][4:v]overlay=format=auto,format=yuv420p[out]`].join(';');
+	return [...repeat, ...steps, `[s3][p4]overlay=format=auto,format=yuv420p[out]`].join(';');
 }
 
 /** The way to start ffmpeg. A deploy can lose the file's "may be run" mark, so a copy is made when that happened. */
@@ -108,18 +115,10 @@ export async function makeVideo(layers: Layers, file: string): Promise<void> {
 			return name;
 		});
 		await encode([
-			...pictures.flatMap((p) => [
-				'-loop',
-				'1',
-				'-framerate',
-				String(FPS),
-				'-t',
-				String(SECONDS),
-				'-i',
-				p
-			]),
+			...pictures.flatMap((p) => ['-i', p]),
 			...['-f', 'lavfi', '-t', String(SECONDS), '-i', 'anullsrc=r=44100:cl=stereo'],
 			...['-filter_complex', videoFilter(layers.height), '-map', '[out]', '-map', '5:a'],
+			...['-t', String(SECONDS)],
 			...['-threads', '2', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24'],
 			...['-c:a', 'aac', '-b:a', '64k', '-movflags', '+faststart', file]
 		]);
