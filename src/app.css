@@ -3319,3 +3319,11 @@ main.updating .grid {
 	font-size: var(--fs-sm);
 	color: var(--muted);
 }
+.older-posts {
+	margin: 4px 0 8px;
+	font-size: var(--fs-sm);
+}
+.older-posts summary {
+	cursor: pointer;
+	color: var(--muted);
+}

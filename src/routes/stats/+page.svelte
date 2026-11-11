@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import type { Snippet } from 'svelte';
 	import type { PageProps } from './$types';
 	import { KIND_NAMES } from '../../lib/instagram';
 	import { THREAD_KIND_NAMES } from '../../lib/threads';
@@ -77,7 +78,48 @@
 		'replay-video': 'Made a replay video',
 		'replay-video-share': 'Shared or saved a replay video'
 	};
+	// The post logs grow by the day: the newest few stay open, the rest fold away, and each line
+	// shows the post's first line only, so the page stays short on a phone.
+	const SHOWN = 3;
+	const firstLine = (text: string) => {
+		const line = text.split('\n').find((l) => l.trim()) ?? '';
+		return line.length > 120 ? `${line.slice(0, 117)}…` : line;
+	};
+	const when = (at: string | number) =>
+		new Date(at).toLocaleString('en-US', {
+			timeZone: 'America/Los_Angeles',
+			weekday: 'short',
+			hour: 'numeric',
+			minute: '2-digit'
+		});
 </script>
+
+{#snippet postLog<T>(entries: T[], item: Snippet<[T]>, failed: (e: T) => boolean)}
+	{#if entries.length}
+		{@const older = entries.slice(SHOWN)}
+		{@const olderFailed = older.filter(failed).length}
+		<ul class="autopost-log">
+			{#each entries.slice(0, SHOWN) as e, i (i)}<li>{@render item(e)}</li>{/each}
+		</ul>
+		{#if older.length}
+			<details class="older-posts">
+				<summary>{older.length} older{olderFailed ? ` (${olderFailed} failed)` : ''}</summary>
+				<ul class="autopost-log">
+					{#each older as e, i (i)}<li>{@render item(e)}</li>{/each}
+				</ul>
+			</details>
+		{/if}
+	{:else}
+		<p class="empty">Nothing yet.</p>
+	{/if}
+{/snippet}
+
+{#snippet about(text: string)}
+	<details class="older-posts">
+		<summary>How it works</summary>
+		<p class="sub">{text}</p>
+	</details>
+{/snippet}
 
 <svelte:head>
 	<title>Stats · What's Up Ahead</title>
@@ -219,39 +261,25 @@
 	{/if}
 
 	<h2>Facebook posts</h2>
-	<p class="sub">
-		{data.autopost.live
+	{@render about(
+		data.autopost.live
 			? 'The Page posts by itself, day and night: spots snowing now (at most 3 a day in each state), chain rules changing on a pass (at most one post an hour in each state; the earlier post about the pass gets the update at its top), snow on the way over the passes with the best time to cross (one a day in each state) and each morning the most new snow in each mountain area.'
-			: 'Dry run: no Facebook key yet, so these are what the Page would have posted.'}
-	</p>
-	{#if data.autopost.entries.length}
-		<ul class="autopost-log">
-			{#each data.autopost.entries as e (`${e.at}:${e.id}`)}
-				<li>
-					<strong
-						>{new Date(e.at).toLocaleString('en-US', {
-							timeZone: 'America/Los_Angeles',
-							weekday: 'short',
-							hour: 'numeric',
-							minute: '2-digit'
-						})}</strong
-					>
-					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
-					{#if e.updateError}(update failed: {e.updateError}){/if}
-					{e.text}
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p class="empty">Nothing yet.</p>
-	{/if}
+			: 'Dry run: no Facebook key yet, so these are what the Page would have posted.'
+	)}
+	{#snippet fbItem(e: (typeof data.autopost.entries)[number])}
+		<strong>{when(e.at)}</strong>
+		{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
+		{#if e.updateError}(update failed: {e.updateError}){/if}
+		{firstLine(e.text)}
+	{/snippet}
+	{@render postLog(data.autopost.entries, fbItem, (e) => !!(e.error || e.updateError))}
 
 	<h2>Instagram</h2>
-	<p class="sub">
-		{data.stories.live
+	{@render about(
+		data.stories.live
 			? 'A story goes with each snow, chain, snow-on-the-way and most-new-snow post on the Page, and is gone a day later, like the news in it. Where snow is really falling it is a short video. Instagram counts what people did with a story only while it is up; the numbers below are read until then. The morning most new snow also goes to the feed, dated, and stays; comments on it count as replies.'
-			: 'Dry run: no Instagram key yet, so these are the stories that would have gone up.'}
-	</p>
+			: 'Dry run: no Instagram key yet, so these are the stories that would have gone up.'
+	)}
 	{#if data.stories.live}
 		<table class="story-kinds">
 			<thead>
@@ -277,40 +305,26 @@
 		</table>
 		<p class="sub">Each number is the average for one post.</p>
 	{/if}
-	{#if data.stories.entries.length}
-		<ul class="autopost-log">
-			{#each data.stories.entries as e (`${e.at}:${e.id}`)}
-				<li>
-					<strong
-						>{new Date(e.at).toLocaleString('en-US', {
-							timeZone: 'America/Los_Angeles',
-							weekday: 'short',
-							hour: 'numeric',
-							minute: '2-digit'
-						})}</strong
-					>
-					{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
-					{KIND_NAMES[e.kind]}{e.video ? ' (video)' : ''}: {e.name}
-					{#if e.videoError}
-						(picture instead of video: {e.videoError})
-					{/if}
-					{#if e.numbers}
-						: {e.numbers.views} views, {e.numbers.replies} replies, {e.numbers.shares} shares,
-						{e.numbers.profileVisits} profile visits
-					{/if}
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p class="empty">Nothing yet.</p>
-	{/if}
+	{#snippet storyItem(e: (typeof data.stories.entries)[number])}
+		<strong>{when(e.at)}</strong>
+		{e.dry ? '(would post)' : e.error ? `(failed: ${e.error})` : '(posted)'}
+		{KIND_NAMES[e.kind]}{e.video ? ' (video)' : ''}: {e.name}
+		{#if e.videoError}
+			(picture instead of video: {e.videoError})
+		{/if}
+		{#if e.numbers}
+			: {e.numbers.views} views, {e.numbers.replies} replies, {e.numbers.shares} shares,
+			{e.numbers.profileVisits} profile visits
+		{/if}
+	{/snippet}
+	{@render postLog(data.stories.entries, storyItem, (e) => !!e.error)}
 
 	<h2>Threads posts</h2>
-	<p class="sub">
-		{data.threads.live
+	{@render about(
+		data.threads.live
 			? "Threads gets every kind of post. Snow, chain and snow-on-the-way posts come down once they're over (chain and snow posts 2 days after their last update, unless still true; snow on the way after 36 hours). A pass's next change, or snow still falling, goes as a reply under the earlier post. The morning's most new snow stays up, with its date."
-			: 'Dry run: no Threads key yet, so these are what would have gone up.'}
-	</p>
+			: 'Dry run: no Threads key yet, so these are what would have gone up.'
+	)}
 	{#if data.threads.live}
 		<table class="story-kinds">
 			<thead>
@@ -338,35 +352,21 @@
 			th.
 		</p>
 	{/if}
-	{#if data.threads.entries.length}
-		<ul class="autopost-log">
-			{#each data.threads.entries as e (`${e.at}:${e.key}`)}
-				<li>
-					<strong
-						>{new Date(e.at).toLocaleString('en-US', {
-							timeZone: 'America/Los_Angeles',
-							weekday: 'short',
-							hour: 'numeric',
-							minute: '2-digit'
-						})}</strong
-					>
-					{e.dry
-						? '(would post)'
-						: e.error
-							? `(failed: ${e.error})`
-							: e.deletedAt
-								? '(taken down)'
-								: '(up)'}
-					{#if e.replies.length}({e.replies.length}
-						{e.replies.length === 1 ? 'update' : 'updates'}){/if}
-					{#if e.numbers}({e.numbers.views} views, {e.numbers.likes} likes, {e.numbers.replies} replies){/if}
-					{e.text}
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p class="empty">Nothing yet.</p>
-	{/if}
+	{#snippet threadItem(e: (typeof data.threads.entries)[number])}
+		<strong>{when(e.at)}</strong>
+		{e.dry
+			? '(would post)'
+			: e.error
+				? `(failed: ${e.error})`
+				: e.deletedAt
+					? '(taken down)'
+					: '(up)'}
+		{#if e.replies.length}({e.replies.length}
+			{e.replies.length === 1 ? 'update' : 'updates'}){/if}
+		{#if e.numbers}({e.numbers.views} views, {e.numbers.likes} likes, {e.numbers.replies} replies){/if}
+		{firstLine(e.text)}
+	{/snippet}
+	{@render postLog(data.threads.entries, threadItem, (e) => !!e.error)}
 
 	<p class="sub">
 		Tip: end links you post with <code>?ref=fb</code>, <code>?ref=ig</code> or any short word (for
