@@ -613,8 +613,6 @@ export async function tooDark(image: Buffer): Promise<boolean> {
 
 /** Stories are read on Instagram, where a link can't be tapped: this says where to find one. */
 const LINK_HINT = 'Link in our profile';
-/** Said on every card with drawn mountains, so nobody takes them for the road. */
-const DRAWN = 'Drawing, not a camera picture';
 
 /** A tall card in two sheets with the room for snow between them: the background, and all that sits over it. */
 export interface Layers {
@@ -750,7 +748,7 @@ async function sceneLayers(card: Card, shape: TallShape): Promise<Layers> {
 			y += 52;
 			svg.push(text(l, PAD, y, 36, '#d7ecf5'));
 		}
-	svg.push(...panelFooter([DRAWN], card.site, shape, W, bottom).svg);
+	svg.push(...panelFooter([], card.site, shape, W, bottom).svg);
 	return {
 		width: W,
 		height: H,
@@ -813,7 +811,7 @@ async function rankingLayers(card: Card, ranking: Ranking, shape: TallShape): Pr
 	const boxes = show.map((_, i) => ({ x: PAD + i * (each + GAP), y, w: each, h: room }));
 	const composites = await Promise.all(show.map((p, i) => tile(p.image, boxes[i], 'cover')));
 	show.forEach((p, i) => svg.push(...pictureMarks(p, boxes[i])));
-	svg.push(...(show.length ? noted : panelFooter([DRAWN], card.site, shape, W, bottom)).svg);
+	svg.push(...(show.length ? noted : panelFooter([], card.site, shape, W, bottom)).svg);
 	return {
 		width: W,
 		height: H,

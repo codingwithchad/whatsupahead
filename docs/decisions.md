@@ -747,3 +747,9 @@ keep, so a key that can't delete isn't good enough.
   never went up. Both mean the post isn't ready yet, sometimes even after it says "finished". Only on those words is
   the publish step asked again, 10 seconds later, up to 4 times: any other failure, a timeout above all, may have
   posted, so it is never repeated.
+
+## 2026-11-11: Drawn mountains carry no "Drawing" label
+
+Cards with no camera picture said "Drawing, not a camera picture" so nobody would take the drawing for the road. The
+owner dropped it: the drawing is flat shapes (pines are three triangles) and can't pass for a photo, and on a holiday
+post the line was only noise. The footer keeps our address.
