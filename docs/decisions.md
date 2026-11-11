@@ -737,3 +737,13 @@ keep, so a key that can't delete isn't good enough.
   longer than the half hour between runs, so a second run on top would have posted the same news again.
 - Threads tries a slow first drawing twice. A post that fails is not tried again, so one slow picture would lose it.
 - A post that won't come down now reaches the health check, not just the server's log.
+
+## 2026-11-11: Videos read each picture once; Meta's "not available" means not yet
+
+- Snow videos never got made on the server: ffmpeg read the five full-size pictures again for every one of the 144
+  frames and ran past its five minutes on the one core. Each picture is now read once, repeated, and laid over in
+  video colours (yuv), which took a real story from over 30 seconds to about 4 on one core here.
+- Instagram's "Media ID is not available" and Threads' "The requested resource does not exist" came on posts that
+  never went up. Both mean the post isn't ready yet, sometimes even after it says "finished". Only on those words is
+  the publish step asked again, 10 seconds later, up to 4 times: any other failure, a timeout above all, may have
+  posted, so it is never repeated.
