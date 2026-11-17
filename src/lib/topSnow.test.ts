@@ -3,6 +3,7 @@ import { areaById } from './areas';
 import type { PostEntry } from './autopost';
 import type { SkiSnow } from './server/skiSnow';
 import {
+	gaugesMissing,
 	names,
 	skiAreasIn,
 	topSnow,
@@ -67,6 +68,24 @@ describe('topSnow', () => {
 		expect(worthPosting([])).toBe(false);
 		expect(worthPosting(topSnow([place('a')], { a: snow('A', 2) }))).toBe(false);
 		expect(worthPosting(topSnow([place('a')], { a: snow('A', 3) }))).toBe(true);
+	});
+});
+
+describe('gaugesMissing', () => {
+	it('names each gauge USDA gave nothing for, once, and not patchy ones or places with no gauge', () => {
+		const link = 'https://wcc.sc.egov.usda.gov/x';
+		expect(
+			gaugesMissing(
+				[place('palisades'), place('northstar'), place('kirkwood'), place('patchy'), place('far')],
+				{
+					palisades: snow('Palisades Tahoe', 0, { change24: null, depthIn: null }),
+					northstar: snow('Palisades Tahoe', 0, { change24: null, depthIn: null }),
+					kirkwood: snow('Lost Lakes', 8, { link }),
+					patchy: snow('Patchy', 0, { change24: null, link }),
+					far: snow('', 0, { station: null })
+				}
+			)
+		).toEqual(['Palisades Tahoe']);
 	});
 });
 

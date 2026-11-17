@@ -753,3 +753,11 @@ keep, so a key that can't delete isn't good enough.
 Cards with no camera picture said "Drawing, not a camera picture" so nobody would take the drawing for the road. The
 owner dropped it: the drawing is flat shapes (pines are three triangles) and can't pass for a photo, and on a holiday
 post the line was only noise. The footer keeps our address.
+
+## 2026-11-17: The morning snow list waits for missing gauges
+
+The Sierra list on Nov 17 left out Palisades Tahoe (7 in at its gauge, it should have been second), Sugar Bowl and
+Mt Rose: a reader asked about Mt Rose. USDA was slow that morning and those three gauges came back with no
+readings and no error. A gauge USDA answers empty is no longer kept for 30 minutes, and an area with a gauge that
+gave nothing waits for the next half hour and asks again, for up to an hour, then posts with what there is (a gauge
+broken for days mustn't stop the post). Gauges that answer with gaps don't hold it: some are patchy for days.

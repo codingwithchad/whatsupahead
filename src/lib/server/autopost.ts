@@ -32,6 +32,7 @@ import { AREAS } from '../areas';
 import {
 	middle,
 	skiAreasIn,
+	gaugesMissing,
 	topSnow,
 	topSnowCaption,
 	topSnowDue,
@@ -337,6 +338,13 @@ async function forecastPosts(log: PostEntry[], now: number) {
 /** The gauges are read for this at most once an hour (the ski areas page keeps them for 30 minutes too). */
 const TOP_EVERY = HOUR;
 let topAt = 0;
+/**
+ * An area whose gauges didn't all answer waits for the next half hour and asks again, for up to this long; then
+ * it goes up with what there is (a gauge that is broken for days mustn't stop the post).
+ */
+const TOP_HOLD = HOUR;
+/** When each area's list was first held back, by area and day. */
+const topHeld = new Map<string, number>();
 
 /**
  * The morning's most new snow in each mountain area, one area each half hour, from 6 AM to noon there; an area
@@ -357,8 +365,22 @@ async function topSnowPosts(log: PostEntry[], now: number) {
 		due.flatMap((d) => d.list),
 		now
 	);
+	let held = false;
+	for (const [key, at] of topHeld) if (now - at > 24 * HOUR) topHeld.delete(key);
 	for (const { area, list } of due) {
 		const lines = topSnow(list, snow);
+		const missing = gaugesMissing(list, snow);
+		if (missing.length) {
+			const key = `${area.id}:${new Date(now).toISOString().slice(0, 10)}`;
+			const since = topHeld.get(key) ?? now;
+			topHeld.set(key, since);
+			if (now - since < TOP_HOLD) {
+				console.warn(`[autopost] top:${area.id} waits: no numbers from ${missing.join(', ')}`);
+				held = true;
+				continue;
+			}
+			console.warn(`[autopost] top:${area.id} goes up without ${missing.join(', ')}`);
+		}
 		if (!worthPosting(lines)) continue;
 		// The next area waits for the next half hour (and the gauges are read again then).
 		topAt = 0;
@@ -402,6 +424,8 @@ async function topSnowPosts(log: PostEntry[], now: number) {
 			}
 		];
 	}
+	// A held area is asked about again next half hour, not in an hour.
+	if (held) topAt = 0;
 	return [];
 }
 

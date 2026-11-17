@@ -73,6 +73,25 @@ export function topSnow(
 		.slice(0, LINES);
 }
 
+/**
+ * The gauges near the area's ski areas that USDA gave no readings for (it timed out, or answered them empty on a
+ * slow morning), by name, once each. A list made without them can leave out the snowiest mountain. A gauge that
+ * answers with gaps isn't counted: some are patchy for days, and that mustn't hold the post every morning.
+ */
+export function gaugesMissing(
+	places: { id: string }[],
+	snow: Record<string, SkiSnow | undefined>
+): string[] {
+	return [
+		...new Set(
+			places.flatMap((p) => {
+				const s = snow[p.id];
+				return s?.station && !s.link ? [s.station] : [];
+			})
+		)
+	];
+}
+
 /** "Alta and Snowbird", "Alta, Snowbird and Brighton". */
 export const names = (list: string[]) =>
 	list.length < 2 ? list.join('') : `${list.slice(0, -1).join(', ')} and ${list.at(-1)}`;

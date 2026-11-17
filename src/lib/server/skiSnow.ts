@@ -65,9 +65,18 @@ export async function gaugeReadings(triplets: string[]): Promise<Map<string, Awd
 					.filter((b) => b.stationTriplet)
 					.map((b) => [`mountain:series:${b.stationTriplet}`, b.data ?? []] as const)
 			);
-		}
+		},
+		// A gauge USDA answered with no snow depth at all isn't kept: on a slow morning it has answered some gauges
+		// empty, and a morning list made from that left out the snowiest ski area.
+		hasDepth
 	).then((m) => new Map([...m].map(([k, v]) => [k.slice('mountain:series:'.length), v])));
 }
+
+const hasDepth = (series: AwdbSeries[]) =>
+	series.some(
+		(s) =>
+			s.stationElement.elementCode === 'SNWD' && s.values.some((v) => typeof v.value === 'number')
+	);
 
 type Hourly = { time: string[]; snowfall: number[] };
 

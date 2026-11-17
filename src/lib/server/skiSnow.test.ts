@@ -95,6 +95,32 @@ describe('skiSnow', () => {
 		});
 	});
 
+	it("doesn't keep a gauge USDA answered empty: the next look asks again", async () => {
+		let dataCalls = 0;
+		vi.stubGlobal(
+			'fetch',
+			vi.fn(async (url: string | URL) => {
+				const u = String(url);
+				if (u.includes('/stations')) return new Response(JSON.stringify(STATIONS));
+				if (u.includes('/data')) {
+					dataCalls++;
+					// A slow morning: the first answer has the gauge but no readings.
+					const data = dataCalls === 1 ? [] : series();
+					return new Response(JSON.stringify([{ stationTriplet: '652:NV:SNTL', data }]));
+				}
+				return new Response('down', { status: 503 });
+			})
+		);
+		const place = [{ id: 'ski-mt-rose', lat: 39.3285, lon: -119.885 }];
+		expect((await skiSnow(place, NOW))['ski-mt-rose']).toMatchObject({
+			station: 'Mt Rose Ski Area',
+			link: null,
+			change24: null
+		});
+		expect((await skiSnow(place, NOW))['ski-mt-rose']).toMatchObject({ change24: 12 });
+		expect(dataCalls).toBe(2);
+	});
+
 	it('leaves numbers out rather than guess when there is no gauge near', async () => {
 		vi.stubGlobal(
 			'fetch',

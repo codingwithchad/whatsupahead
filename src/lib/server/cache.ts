@@ -51,11 +51,13 @@ export function cached<T>(key: string, ttlMs: number, load: () => Promise<T>): P
 /**
  * Like `cached`, for many keys at once: fresh entries come from memory and all the missing ones are loaded in
  * one call (for APIs that answer many ids per request). Missing keys that `load` does not return stay missing.
+ * A value `keep` turns down is returned this once but not kept, so the next call asks for it again.
  */
 export async function cachedMany<T>(
 	keys: string[],
 	ttlMs: number,
-	load: (missing: string[]) => Promise<Map<string, T>>
+	load: (missing: string[]) => Promise<Map<string, T>>,
+	keep: (value: T) => boolean = () => true
 ): Promise<Map<string, T>> {
 	const out = new Map<string, T>();
 	const missing: string[] = [];
@@ -66,7 +68,7 @@ export async function cachedMany<T>(
 	}
 	if (missing.length) {
 		for (const [key, value] of await load(missing)) {
-			put(key, value);
+			if (keep(value)) put(key, value);
 			out.set(key, value);
 		}
 	}
